@@ -153,7 +153,7 @@ void cpaf::gtk2::gui::Window::set_client_size(cpaf::Size s)
         window. Alternatively if we treat the window as a container, we might be able to
         just set the size of the widget, that inside the container that is equal to the client
         area, with gdk_window_resize.
-    */
+     */
     gtk_window_resize(GTK_WINDOW(m_widget), s.width, s.height);
 }
 
@@ -164,4 +164,14 @@ cpaf::Size cpaf::gtk2::gui::Window::get_client_size()
     // race condition? configure_event instead?
     gtk_window_get_size(GTK_WINDOW(m_widget), &width, &height);
     return cpaf::Size(width, height);
+}
+
+cpaf::Point cpaf::gtk2::gui::Window::get_client_position()
+{
+    /*!
+        \todo Return the offset from the topleft corner of the frame extents.
+        This should be (width of left frame extent; height of top extent + height of menubar + height of toolbar if not detached).
+     */
+    // A very rough estimation till then.
+    return cpaf::Point(5, 21);
 }

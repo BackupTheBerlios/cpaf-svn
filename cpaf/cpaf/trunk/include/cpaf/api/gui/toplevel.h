@@ -43,9 +43,9 @@ public:
     virtual cpaf::Size get_client_size() = 0;
 
     /*!
-        \return The position of the client area of a widget. This is typically (0,0), but
-        it is not always. If the widget is managing a toolbar, the position of the client area
-        will be moved down to make room.
+        \return The position of the client area of a widget relative to the top-left corner
+        of the frame extents. If the widget is managing a menubar and/or toolbar,
+        the position of the client area will be moved down to make room.
     */
     virtual cpaf::Point get_client_position() = 0;
 

@@ -46,7 +46,7 @@ public:
 
     virtual void set_client_size(cpaf::Size s);
     virtual cpaf::Size get_client_size();
-    virtual cpaf::Point get_client_position() { return cpaf::Point(); }
+    virtual cpaf::Point get_client_position();
 };
 
         } // gui
