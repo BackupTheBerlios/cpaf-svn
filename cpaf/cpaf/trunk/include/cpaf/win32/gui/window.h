@@ -39,7 +39,7 @@ public:
     virtual void enable(bool e);
     virtual void show(bool show, bool activate);
     virtual bool is_enabled();
-    virtual bool is_shown();
+    virtual bool is_visible();
 
     // toplevel interface
     virtual void set_title(const std::string &t){ }

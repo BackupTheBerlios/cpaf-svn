@@ -45,7 +45,7 @@ bool cpaf::gui::Widget::is_enabled()
     return m_impl->is_enabled();
 }
 
-bool cpaf::gui::Widget::is_shown()
+bool cpaf::gui::Widget::is_visible()
 {
-    return m_impl->is_shown();
+    return m_impl->is_visible();
 }

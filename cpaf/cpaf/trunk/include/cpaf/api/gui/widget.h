@@ -44,7 +44,7 @@ public:
         is also visible, it is not hidden. This function will return true if a widget is visible but
         is completely obscured by another widget.
     */
-    virtual bool is_shown() = 0;
+    virtual bool is_visible() = 0;
 
     // commented until they are needed
     /*

@@ -65,7 +65,8 @@ LRESULT CALLBACK window_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 } // cpaf
 
 cpaf::win32::gui::Window::Window()
-: m_max_size(-1,-1)
+    : m_max_size(-1,-1),
+    m_min_size(-1,-1)
 {
     static bool registered = false;
 
@@ -73,7 +74,7 @@ cpaf::win32::gui::Window::Window()
     if( !registered )
         ::RegisterClassEx(&wnd_class);
 
-    m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPED,
+    m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPEDWINDOW ,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, ::GetDesktopWindow(), NULL, ::GetModuleHandle(NULL),
         NULL);
 
@@ -138,7 +139,7 @@ void cpaf::win32::gui::Window::show(bool show, bool activate)
     ::ShowWindow(m_hwnd, cmd);
 }
 
-bool cpaf::win32::gui::Window::is_shown()
+bool cpaf::win32::gui::Window::is_visible()
 {
     // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
     return ::IsWindowVisible(m_hwnd) != 0;
