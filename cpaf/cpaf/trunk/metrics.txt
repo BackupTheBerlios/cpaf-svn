@@ -1,0 +1,16 @@
+Metrics:
+
+Frame Extents (L,R,T,B)
+	Requirements: A top level window object to retrieve extents for
+
+Drag(X|Y) threshhold
+	Requirements: Varies by screen on gtk
+
+	Description:
+	DRAG(X|Y) specifies the disance from the mouse click in the x and y directions that the mouse is allowed to move before starting a drag. DRAGX of 2 means that if the mouse moves 3 pixels to the left (or right) of the click position, dragging will begin, but not if it moved 2 pixels.
+
+Double Click (X|Y)
+	Requirements: Varies by screen on gtk
+
+Double Click time
+	Requirements: Varies by screen on gtk

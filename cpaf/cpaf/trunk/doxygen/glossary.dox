@@ -1,0 +1,33 @@
+/*!
+	\page glossary Glossary of Terms
+
+	- \ref g_child Child
+	- \ref g_parent Parent
+	- \ref g_subwindow Subwindow
+	- \ref g_widget Widget
+	- \ref g_window Window
+
+	\subsection g_child Child
+		A Child is a widget that is not wholey contained within its \ref g_parent Parent widget. If a Child's
+		Parent widget is disabled or hidden, the Child is \b not disabled or hidden. An example of this would
+		be a Dialog being displayed with a \ref g_window Window as its Parent.
+
+	\subsection g_parent Parent
+		A Parent widget is a widget that owns \ref g_child Children or \ref g_subwindow Subwindows. Parent windows
+		will destroy their children and subwindows when they are destroyed.
+
+	\subsection g_subwindow Subwindow
+		A Subwindow is a widget that is wholey contained within its \ref g_parent Parent widget.
+		If a Subwindow's parent is disabled or hidden, the Subwindow is also disabled or hidden.
+		An example of this would be a Button whos Parent is a Window.
+
+	\subsection g_widget Widget
+		Widget is a general term used to refer to a GUI object. For Microsoft Windows programmers,
+		"widget" can be considered a "window", although Widget and \ref g_window Window are \b not
+		the same thing!
+
+	\subsection g_widget Window
+		A Window explicitly refers to a top level \ref g_widget Widget that contains a title bar and
+		\ref g_subwindow Subwindows. For Microsoft Windows programmers, this is \b not the same as a "window",
+		and is instead a "frame", or CFrameWnd for MFC programmers. Do not confuse Window and Widget!
+*/
