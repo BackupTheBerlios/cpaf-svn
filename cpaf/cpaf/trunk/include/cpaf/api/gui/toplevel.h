@@ -26,10 +26,11 @@ public:
     /*
     virtual void maximize() = 0;
     virtual void minimize() = 0;
+    */
+
     virtual void set_client_size(cpaf::Size s) = 0;
     virtual cpaf::Size get_client_size() = 0;
     virtual cpaf::Point get_client_position() = 0;
-    */
 
 };
 

@@ -19,6 +19,20 @@ void cpaf::gui::TopLevel::set_title(const std::string &t)
 
 std::string cpaf::gui::TopLevel::get_title()
 {
-    //return m_impl->get_title();
-    return std::string("foo");
+    return m_impl->get_title();
+}
+
+void cpaf::gui::TopLevel::set_client_size(cpaf::Size s)
+{
+    m_impl->set_client_size(s);
+}
+
+cpaf::Size cpaf::gui::TopLevel::get_client_size()
+{
+    return m_impl->get_client_size();
+}
+
+cpaf::Point cpaf::gui::TopLevel::get_client_position()
+{
+    return m_impl->get_client_position();
 }
