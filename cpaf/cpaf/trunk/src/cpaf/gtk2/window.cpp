@@ -148,10 +148,12 @@ std::string cpaf::gtk2::gui::Window::get_title()
 
 void cpaf::gtk2::gui::Window::set_client_size(cpaf::Size s)
 {
-    //! \todo Add visible size of the menubar/statusbar, and similar non-drawable portions in the
-    //! \todo window. Alternatively if we treat the window as a container, we might be able to
-    //! \todo just set the size of the widget, that inside the container that is equal to the client
-    //! \todo area, with gdk_window_resize.
+    /*!
+        \todo Add visible size of the menubar/statusbar, and similar non-drawable portions in the
+        window. Alternatively if we treat the window as a container, we might be able to
+        just set the size of the widget, that inside the container that is equal to the client
+        area, with gdk_window_resize.
+    */
     gtk_window_resize(GTK_WINDOW(m_widget), s.width, s.height);
 }
 
