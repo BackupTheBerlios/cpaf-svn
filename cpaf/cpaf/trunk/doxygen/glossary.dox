@@ -4,6 +4,7 @@
 	- \ref g_child Child
 	- \ref g_parent Parent
 	- \ref g_subwindow Subwindow
+	- \ref g_tlw TLW
 	- \ref g_widget Widget
 	- \ref g_window Window
 
@@ -20,6 +21,10 @@
 		A Subwindow is a widget that is wholey contained within its \ref g_parent Parent widget.
 		If a Subwindow's parent is disabled or hidden, the Subwindow is also disabled or hidden.
 		An example of this would be a Button whos Parent is a Window.
+
+	\subsection g_tlw TLW
+		TLW stands for Top Level Widget. Referring to a Top Level Widget means you are dealing with
+		a widget derived from the TopLevel interface.
 
 	\subsection g_widget Widget
 		Widget is a general term used to refer to a GUI object. For Microsoft Windows programmers,

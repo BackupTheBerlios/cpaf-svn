@@ -6,14 +6,12 @@ implementation of win32 window
 
 using namespace cpaf::win32::gui;
 
-LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
 #define CLASSNAME "cpaf::Window"
 
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
-    (WNDPROC)WindowProc,
+    (WNDPROC)window_proc,
     0,
     0,
     GetModuleHandle(NULL),
@@ -24,7 +22,11 @@ static WNDCLASSEX wnd_class = {
     CLASSNAME
 };
 
-LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+namespace cpaf {
+    namespace win32 {
+        namespace gui {
+
+LRESULT CALLBACK window_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     Window *wnd = get_widget_from_hwnd<Window>(hwnd);
 
@@ -33,12 +35,37 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
+
+        case WM_GETMINMAXINFO:
+        {
+            MINMAXINFO *info = (MINMAXINFO*)lParam;
+            if( wnd )
+            {
+                if( wnd->m_max_size.width != -1 )
+                    info->ptMaxTrackSize.x = wnd->m_max_size.width;
+                if( wnd->m_max_size.height != -1 )
+                    info->ptMaxTrackSize.y = wnd->m_max_size.height;
+                if( wnd->m_min_size.width != -1 )
+                    info->ptMinTrackSize.x = wnd->m_min_size.width;
+                if( wnd->m_min_size.height != -1 )
+                    info->ptMinTrackSize.y = wnd->m_min_size.height;
+                return 0;
+            }
+            else
+                break;
+        }
+
     }
 
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
+        } // gui
+    } // win32
+} // cpaf
+
 cpaf::win32::gui::Window::Window()
+: m_max_size(-1,-1)
 {
     static bool registered = false;
 
@@ -65,6 +92,38 @@ cpaf::Size cpaf::win32::gui::Window::get_size()
     return cpaf::Size(rect.right - rect.left, rect.bottom - rect.top);
 }
 
+void cpaf::win32::gui::Window::set_min_size(cpaf::Size s)
+{
+    m_min_size = s;
+}
+
+void cpaf::win32::gui::Window::set_max_size(cpaf::Size s)
+{
+    m_max_size = s;
+}
+
+cpaf::Size cpaf::win32::gui::Window::get_min_size()
+{
+    return m_min_size;
+}
+
+cpaf::Size cpaf::win32::gui::Window::get_max_size()
+{
+    return m_max_size;
+}
+
+void cpaf::win32::gui::Window::set_position(cpaf::Point p)
+{
+    ::SetWindowPos(m_hwnd, NULL, p.x, p.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+}
+
+cpaf::Point cpaf::win32::gui::Window::get_position()
+{
+    RECT rect;
+    ::GetWindowRect(m_hwnd, &rect);
+    return cpaf::Point(rect.left, rect.top);
+}
+
 void cpaf::win32::gui::Window::show(bool show, bool activate)
 {
     int cmd;
@@ -77,6 +136,23 @@ void cpaf::win32::gui::Window::show(bool show, bool activate)
         cmd = SW_HIDE;
 
     ::ShowWindow(m_hwnd, cmd);
+}
+
+bool cpaf::win32::gui::Window::is_shown()
+{
+    // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
+    return ::IsWindowVisible(m_hwnd) != 0;
+}
+
+void cpaf::win32::gui::Window::enable(bool e)
+{
+    ::EnableWindow(m_hwnd, e);
+}
+
+bool cpaf::win32::gui::Window::is_enabled()
+{
+    // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
+    return ::IsWindowEnabled(m_hwnd) != 0;
 }
 
 std::string cpaf::win32::gui::Window::get_title()
