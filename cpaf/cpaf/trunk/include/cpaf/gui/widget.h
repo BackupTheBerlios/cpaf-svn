@@ -31,7 +31,7 @@ public:
     virtual int get_handle();
     virtual void enable(bool e);
     virtual void disable();
-    virtual void show(bool s);
+    virtual void show(bool show = true, bool activate = true);
     virtual void hide();
     virtual bool is_enabled();
     virtual bool is_shown();

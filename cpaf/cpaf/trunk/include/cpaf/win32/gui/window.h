@@ -34,7 +34,7 @@ public:
     // widget interface
     virtual int get_handle() { return 0; }
     virtual void enable(bool e) { }
-    virtual void show(bool s) { }
+    virtual void show(bool show, bool activate);
     virtual bool is_enabled() { return 0; }
     virtual bool is_shown() { return 0; }
 

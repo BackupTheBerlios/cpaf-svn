@@ -18,7 +18,7 @@ public:
 
     virtual int get_handle() = 0; // int return value for now...
     virtual void enable(bool e) = 0;
-    virtual void show(bool s) = 0;
+    virtual void show(bool show, bool activate) = 0;
     virtual bool is_enabled() = 0;
     virtual bool is_shown() = 0;
 

@@ -46,13 +46,11 @@ cpaf::win32::gui::Window::Window()
     if( !registered )
         ::RegisterClassEx(&wnd_class);
 
-    m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPED | WS_VISIBLE,
+    m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPED,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, ::GetDesktopWindow(), NULL, ::GetModuleHandle(NULL),
         NULL);
 
     widget_map_add_hwnd(m_hwnd, this);
-
-    ::ShowWindow(m_hwnd, SW_SHOW);
 }
 
 void cpaf::win32::gui::Window::set_size(cpaf::Size s)
@@ -65,6 +63,20 @@ cpaf::Size cpaf::win32::gui::Window::get_size()
     RECT rect;
     ::GetWindowRect(m_hwnd, &rect);
     return cpaf::Size(rect.right - rect.left, rect.bottom - rect.top);
+}
+
+void cpaf::win32::gui::Window::show(bool show, bool activate)
+{
+    int cmd;
+    if( show )
+        if( activate )
+            cmd = SW_SHOW;
+        else
+            cmd = SW_SHOWNA;
+    else
+        cmd = SW_HIDE;
+
+    ::ShowWindow(m_hwnd, cmd);
 }
 
 std::string cpaf::win32::gui::Window::get_title()

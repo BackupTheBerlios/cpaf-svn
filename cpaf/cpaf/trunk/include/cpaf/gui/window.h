@@ -13,7 +13,6 @@ namespace cpaf {
     \brief A Window is a top level widget that contains a title bar, min max and close buttons,
     and contains subwindows.
 */
-// this will inherit from TopLevel once gui::TopLevel exists
 class CPAF_EXP Window : public TopLevel
 {
 private:

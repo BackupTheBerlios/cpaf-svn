@@ -30,14 +30,14 @@ void cpaf::gui::Widget::disable()
     m_impl->enable(false);
 }
 
-void cpaf::gui::Widget::show(bool s)
+void cpaf::gui::Widget::show(bool show, bool activate)
 {
-    m_impl->show(s);
+    m_impl->show(show, activate);
 }
 
 void cpaf::gui::Widget::hide()
 {
-    m_impl->show(false);
+    m_impl->show(false, false);
 }
 
 bool cpaf::gui::Widget::is_enabled()
