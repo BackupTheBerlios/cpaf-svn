@@ -139,7 +139,7 @@ void cpaf::win32::gui::Window::show(bool show, bool activate)
     ::ShowWindow(m_hwnd, cmd);
 }
 
-bool cpaf::win32::gui::Window::is_visible()
+bool cpaf::win32::gui::Window::is_shown()
 {
     // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
     return ::IsWindowVisible(m_hwnd) != 0;

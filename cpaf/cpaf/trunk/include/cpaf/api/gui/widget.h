@@ -39,12 +39,11 @@ public:
     virtual bool is_enabled() = 0;
 
     /*!
-        This function determines wether or not the widget is visible. If any of a widget's parents
-        are hidden, the widget is considered hidden. If all of the parents are visible and the widget
-        is also visible, it is not hidden. This function will return true if a widget is visible but
-        is completely obscured by another widget.
+        \return True if the widget is shown and none of its parents are hidden, false otherwise. A widget
+        is shown if it would be drawn by the system. A widget may be completely obscured by another widget,
+        but if the widget would otherwise be drawn, this function returns true.
     */
-    virtual bool is_visible() = 0;
+    virtual bool is_shown() = 0;
 
     // commented until they are needed
     /*

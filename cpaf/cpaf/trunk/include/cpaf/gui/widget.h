@@ -34,7 +34,7 @@ public:
     virtual void show(bool show = true, bool activate = true);
     virtual void hide();
     virtual bool is_enabled();
-    virtual bool is_visible();
+    virtual bool is_shown();
 
 };
 
