@@ -18,7 +18,7 @@ namespace cpaf {
 class Window : public cpaf::api::gui::Window
 {
 private:
-    GtkWidget m_widget;
+    GtkWidget * m_widget;
 
 public:
     Window();

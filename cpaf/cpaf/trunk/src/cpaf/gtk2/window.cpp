@@ -65,7 +65,7 @@ cpaf::Size cpaf::gtk2::gui::Window::get_size()
         if (width == -1 || height == -1)
         {
             //! \todo multihead: GdkScreen must be associated with the widget (font sizes)
-            gtk_widget_size_request(m_widget, req);
+            gtk_widget_size_request(m_widget, &req);
 
             if (width == -1)
                 width = req.width;
@@ -77,6 +77,13 @@ cpaf::Size cpaf::gtk2::gui::Window::get_size()
         return cpaf::Size(width, height);
     }
 }
+
+struct _GtkWindowGeometryInfo
+{
+    GdkGeometry geometry; /* Geometry hints */
+    // ...
+    // We don't care what the remaining fields are.
+};
 
 cpaf::Size cpaf::gtk2::gui::Window::get_min_size()
 {
@@ -137,7 +144,7 @@ bool cpaf::gtk2::gui::Window::is_shown()
 void cpaf::gtk2::gui::Window::set_title(const std::string &t)
 {
     //! \todo std::string -> UTF8
-    gtk_window_set_title(GTK_WINDOW(m_widget), t);
+    gtk_window_set_title(GTK_WINDOW(m_widget), t.c_str());
 }
 
 std::string cpaf::gtk2::gui::Window::get_title()
