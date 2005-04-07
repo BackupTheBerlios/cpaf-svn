@@ -5,6 +5,8 @@ Defines for __declspec(dllexport) and __declspec(dllimport)
 #ifndef CPAF_DLLIMPEXP_H
 #define CPAF_DLLIMPEXP_H
 
+#include <cpaf/macros.h>
+
 #ifdef CPAF_WIN32
 #   ifdef CPAF_DLL
 #       ifdef CPAF_BUILDING
