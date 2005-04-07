@@ -5,6 +5,11 @@ This file implements cpaf::gui::App::run() for win32
 #include <cpaf/win32/win.h>
 #include <cpaf/gui/app.h>
 
+void cpaf::gui::App::gui_init()
+{
+    // dont need to do anything for win32 yet...
+}
+
 int CPAF_EXP cpaf::gui::App::run()
 {
     // the win32 message loop

@@ -7,6 +7,9 @@ Implementation for cpaf::gui::App
 
 cpaf::gui::App::App()
 {
-    // we are a gui app, and as such we need to registry the factory function pointers
+    // implementation specific gui initialization
+    gui_init();
+
+    // we are a gui app, and as such we need to register the factory function pointers
     cpaf::gui::factory::register_factories();
 }

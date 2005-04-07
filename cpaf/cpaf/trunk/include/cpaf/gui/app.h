@@ -16,6 +16,15 @@ class CPAF_EXP App : public cpaf::App
 protected:
     App();
 
+private:
+    /*!
+        Called by the constructor, and implemented by an implementation for port specific initialization.
+
+        If gui initialization fails for what ever reason (no X server for a *nix port), an exception will
+        be thrown.
+    */
+    void gui_init();
+
 public:
     virtual bool init() = 0;
 
