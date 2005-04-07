@@ -2,6 +2,9 @@
 Sizeable interface definition
 */
 
+#ifndef _CPAF_API_GUI_SIZEABLE_H_
+#define _CPAF_API_GUI_SIZEABLE_H_
+
 namespace cpaf {
 
     struct Size;
@@ -68,3 +71,5 @@ public:
         } // gui
     } // api
 } // cpaf
+
+#endif // _CPAF_API_GUI_SIZEABLE_H_

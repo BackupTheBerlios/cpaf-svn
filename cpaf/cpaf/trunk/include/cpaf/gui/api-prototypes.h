@@ -2,6 +2,9 @@
 cpaf::api::gui namespace prototypes for use by gui::foo headers
 */
 
+#ifndef _CPAF_GUI_API_PROTOTYPES_H_
+#define _CPAF_GUI_API_PROTOTYPES_H_
+
 #include <boost/shared_ptr.hpp>
 
 namespace cpaf {
@@ -20,3 +23,5 @@ namespace cpaf {
         } // gui
     } // api
 } // cpaf
+
+#endif // _CPAF_GUI_API_PROTOTYPES_H_

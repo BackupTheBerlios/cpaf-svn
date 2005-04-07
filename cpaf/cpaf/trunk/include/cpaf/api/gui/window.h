@@ -2,6 +2,9 @@
 Window interface definition
 */
 
+#ifndef _CPAF_API_GUI_WINDOW_H_
+#define _CPAF_API_GUI_WINDOW_H_
+
 #include <cpaf/api/gui/toplevel.h>
 
 namespace cpaf {
@@ -19,3 +22,5 @@ public:
         } // gui
     } // api
 } // cpaf
+
+#endif // _CPAF_API_GUI_WINDOW_H_

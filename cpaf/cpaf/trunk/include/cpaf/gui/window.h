@@ -2,6 +2,9 @@
 Client wrapper for api::gui::Window
 */
 
+#ifndef _CPAF_GUI_WINDOW_H_
+#define _CPAF_GUI_WINDOW_H_
+
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/toplevel.h>
@@ -29,3 +32,5 @@ protected:
 
     } // gui
 } // cpaf
+
+#endif // _CPAF_GUI_WINDOW_H_

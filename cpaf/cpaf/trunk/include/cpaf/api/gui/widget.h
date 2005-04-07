@@ -2,6 +2,9 @@
 Widget interface definition
 */
 
+#ifndef _CPAF_API_GUI_WIDGET_H_
+#define _CPAF_API_GUI_WIDGET_H_
+
 #include <cpaf/api/gui/sizeable.h>
 
 namespace cpaf {
@@ -57,3 +60,5 @@ public:
         } // gui
     } // api
 } // cpaf
+
+#endif // _CPAF_API_GUI_WIDGET_H_

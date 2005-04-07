@@ -2,6 +2,9 @@
 Common structure definitions
 */
 
+#ifndef _CPAF_DEFS_H_
+#define _CPAF_DEFS_H_
+
 namespace cpaf {
 
 struct Size
@@ -35,3 +38,5 @@ struct Point
 };
 
 } // namespace cpaf
+
+#endif // _CPAF_DEFS_H_
