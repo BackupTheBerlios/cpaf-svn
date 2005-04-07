@@ -29,18 +29,40 @@ cpaf::App::init()
 #ifndef CPAF_APP_H
 #define CPAF_APP_H
 
+#if _MSC_VER
+#   pragma warning(disable:4786 4251)
+#endif
+
 #include <cpaf/dllimpexp.h>
+
+#include <vector>
+#include <string>
 
 namespace cpaf {
 
 class CPAF_EXP App
 {
 public:
+    /*!
+        Command line storage as a vector of strings
+    */
+    typedef std::vector<std::string> cmd_line;
+
+private:
+    cmd_line m_cmd;
+
+public:
     //! \todo Should I make this not an inilined dtor?
     virtual ~App() { }
 
     virtual bool init() = 0;
     virtual int run() = 0;
+
+    /*!
+        \return Command line used to launch the application
+    */
+    const cmd_line &get_cmd_line();
+    void set_cmd_line(const cmd_line &cmd);
 };
 
 } // cpaf

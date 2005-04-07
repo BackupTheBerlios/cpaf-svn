@@ -21,14 +21,14 @@ namespace cpaf {
     Called by the library, implemented by an application. The purpose of this function is to 
     return a cpaf::App derived object which will be used to run the application.
 */
-cpaf::App *main();
-typedef cpaf::App *(main_ptr)();
+cpaf::App *main(const cpaf::App::cmd_line &cmd);
+typedef cpaf::App *(main_ptr)(const cpaf::App::cmd_line &);
 
 // win32 has a different entry function, and cpaf_entry function than other ports
 #ifdef CPAF_WIN32
-    int CPAF_EXP cpaf_entry(main_ptr, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
+    int CPAF_EXP entry(main_ptr, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 #else // !CPAF_WIN32
-    int CPAF_EXP cpaf_entry(main_ptr, int argc, char *argv[]);
+    int CPAF_EXP entry(main_ptr, int argc, char *argv[]);
 #endif // CPAF_WIN32
 
 } // cpaf
@@ -58,7 +58,7 @@ Explanation for the following code:
   I realize that the code for non win32 systems prevents access to the command line. Once cpaf provides
   command line facilities, I will update this entry function to reflect that.
 
-  cpef_entry is given a pointer to the cpaf::main() function, as well as 
+  cpef_entry is given a pointer to the cpaf::main() function, as well as native entry function arguments.
 */
 #if !defined(CPAF_ENTRY_IMPLEMENTED) && !defined(CPAF_BUILDING)
 #define CPAF_ENTRY_IMPLEMENTED
@@ -66,12 +66,12 @@ Explanation for the following code:
 #ifdef CPAF_WIN32
     int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
     {
-        return cpaf::cpaf_entry(cpaf::main, hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+        return cpaf::entry(cpaf::main, hInstance, hPrevInstance, lpCmdLine, nCmdShow);
     }
 #else // !CPAF_WIN32
     int main(int argc, char *argv[])
     {
-        return cpaf::cpaf_entry(cpaf::main, argc, argv);
+        return cpaf::entry(cpaf::main, argc, argv);
     }
 #endif // CPAF_WIN32
 

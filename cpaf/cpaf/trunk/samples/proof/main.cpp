@@ -23,10 +23,11 @@ bool MyApp::init()
     // memleaks, yea yea
     cpaf::gui::Window *wnd = new cpaf::gui::Window;
     wnd->show(true, false);
+
     return true;
 }
 
-cpaf::App *cpaf::main()
+cpaf::App *cpaf::main(const cpaf::App::cmd_line &cmd)
 {
     return new MyApp;
 }
