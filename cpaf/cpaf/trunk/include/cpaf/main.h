@@ -44,6 +44,9 @@ Explanation for the following code:
   The purpose of cpaf::cpaf_entry is to avoid implementing more code than is neccessary in this header file,
   allowing for at least slight binary compatability between changes so long as this header file is not modified.
   cpaf_entry will call app->init(), and app->run() to actually run the application.
+
+  I realize that the code for non win32 systems prevents access to the command line. Once cpaf provides
+  command line facilities, I will update this entry function to reflect that.
 */
 #if !defined(CPAF_ENTRY_IMPLEMENTED) && !defined(CPAF_BUILDING)
 #define CPAF_ENTRY_IMPLEMENTED
