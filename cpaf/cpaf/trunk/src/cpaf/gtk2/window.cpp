@@ -5,6 +5,7 @@
  */
 
 #include <cpaf/gtk2/gui/window.h>
+#include <cpaf/gtk2/utils.h>
 
 #include <gtk/gtk.h>
 
@@ -18,8 +19,26 @@ cpaf::gtk2::gui::Window::Window()
 
 void cpaf::gtk2::gui::Window::set_size(cpaf::Size s)
 {
-    //! \todo Subtract frame extents to set the _absolute_ size. Careful with negative values (set to 1).
-    // gtk_window_resize resizes without taking wm frame extents into account.
+    //! \todo What's the best estimation for these?
+    int w = 10, // estimated width of left+right extent
+        h = 26; // estimated height of top+bottom extent
+
+    long * extents;
+    if ( (extents = cpaf::gtk2::utils::get_extents(m_widget)) != NULL )
+    {
+        w = extents[CPAF_EXTENT_LEFT] + extents[CPAF_EXTENT_RIGHT];
+        h = extents[CPAF_EXTENT_TOP] + extents[CPAF_EXTENT_BOTTOM];
+        XFree(extents);
+    }
+
+    s.width -= w;
+    s.height -= h;
+
+    if (s.width < 1)
+        s.width = 1;
+    if (s.height < 1)
+        s.height = 1;
+
     gtk_window_resize(GTK_WINDOW(m_widget), s.width, s.height);
 }
 
@@ -178,10 +197,17 @@ cpaf::Size cpaf::gtk2::gui::Window::get_client_size()
 
 cpaf::Point cpaf::gtk2::gui::Window::get_client_position()
 {
-    /*!
-        \todo Return the offset from the topleft corner of the frame extents.
-        This should be (width of left frame extent; height of top extent + height of menubar + height of toolbar if not detached).
-     */
-    // A very rough estimation till then.
-    return cpaf::Point(5, 21);
+    //! \todo What's the best estimation for these?
+    int x = 5, y = 21;
+
+    long * extents;
+    if ( (extents = cpaf::gtk2::utils::get_extents(m_widget)) != NULL )
+    {
+        x = extents[CPAF_EXTENT_LEFT];
+        y = extents[CPAF_EXTENT_TOP];
+        XFree(extents);
+    }
+
+    //! \todo Add menubar/attached toolbar height.
+    return cpaf::Point(x, y);
 }
