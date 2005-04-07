@@ -8,9 +8,12 @@ is implemented within the library.
 #ifndef CPAF_MAIN_H
 #define CPAF_MAIN_H
 
-#include <boost/scoped_ptr.hpp>
 #include <cpaf/app.h>
 #include <cpaf/dllimpexp.h>
+
+#ifdef CPAF_WIN32
+#include <windows.h>
+#endif
 
 namespace cpaf {
 
@@ -19,7 +22,14 @@ namespace cpaf {
     return a cpaf::App derived object which will be used to run the application.
 */
 cpaf::App *main();
-int CPAF_EXP cpaf_entry(cpaf::App *app);
+typedef cpaf::App *(main_ptr)();
+
+// win32 has a different entry function, and cpaf_entry function than other ports
+#ifdef CPAF_WIN32
+    int CPAF_EXP cpaf_entry(main_ptr, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
+#else // !CPAF_WIN32
+    int CPAF_EXP cpaf_entry(main_ptr, int argc, char *argv[]);
+#endif // CPAF_WIN32
 
 } // cpaf
 
@@ -47,20 +57,23 @@ Explanation for the following code:
 
   I realize that the code for non win32 systems prevents access to the command line. Once cpaf provides
   command line facilities, I will update this entry function to reflect that.
+
+  cpef_entry is given a pointer to the cpaf::main() function, as well as 
 */
 #if !defined(CPAF_ENTRY_IMPLEMENTED) && !defined(CPAF_BUILDING)
 #define CPAF_ENTRY_IMPLEMENTED
 
 #ifdef CPAF_WIN32
-    #include <windows.h>
     int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+    {
+        return cpaf::cpaf_entry(cpaf::main, hInstance, hPrevInstance, lpCmdLine, nCmdShow);
+    }
 #else // !CPAF_WIN32
     int main(int argc, char *argv[])
-#endif
     {
-        boost::scoped_ptr<cpaf::App> app(cpaf::main());
-        return cpaf::cpaf_entry(app.get());
+        return cpaf::cpaf_entry(cpaf::main, argc, argv);
     }
+#endif // CPAF_WIN32
 
 #endif // CPAF_ENTRY_IMPLEMENTED
 
