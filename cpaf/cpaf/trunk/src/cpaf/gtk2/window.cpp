@@ -11,6 +11,9 @@
 cpaf::gtk2::gui::Window::Window()
 {
     m_widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
+    // Quit the application for now when the toplevel is closed
+    g_signal_connect_swapped(G_OBJECT(m_widget), "delete-event", gtk_main_quit, NULL);
 }
 
 void cpaf::gtk2::gui::Window::set_size(cpaf::Size s)
