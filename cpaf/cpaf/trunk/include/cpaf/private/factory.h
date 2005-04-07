@@ -40,8 +40,7 @@ template <typename T> void register_widget_factory(WidgetFactoryPtr ptr)
 // declared by an implementation
 // will be called so that implementations can use register_widget_factory
 // to register their widget factory function pointers
-// this is CPAF_EXP for now because i need to call it manually in my demo
-void CPAF_EXP register_factories();
+void register_factories();
 
         }
     }

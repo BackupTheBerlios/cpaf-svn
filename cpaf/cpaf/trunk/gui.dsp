@@ -110,6 +110,10 @@ SOURCE=.\src\cpaf\api_factory_keys.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\cpaf\gui\app.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\cpaf\gui\factory.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
@@ -179,6 +183,19 @@ SOURCE=.\src\cpaf\gui\window.cpp
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\src\cpaf\win32\app.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/win32/Debug"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\cpaf\win32\factory.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
@@ -194,7 +211,29 @@ SOURCE=.\src\cpaf\win32\factory.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\cpaf\win32\main.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/win32/Debug"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\cpaf\win32\win.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/win32/Debug"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -241,6 +280,10 @@ SOURCE=.\include\cpaf\private\factory.h
 # Begin Group "gui"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cpaf\gui\app.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\include\cpaf\gui\sizeable.h
@@ -299,11 +342,19 @@ SOURCE=.\include\cpaf\api\gui\window.h
 # End Group
 # Begin Source File
 
+SOURCE=.\include\cpaf\app.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cpaf\defs.h
 # End Source File
 # Begin Source File
 
 SOURCE=.\include\cpaf\dllimpexp.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cpaf\main.h
 # End Source File
 # End Group
 # Begin Group "win32_h"
