@@ -2,8 +2,8 @@
 Sizeable interface definition
 */
 
-#ifndef _CPAF_API_GUI_SIZEABLE_H_
-#define _CPAF_API_GUI_SIZEABLE_H_
+#ifndef CPAF_API_GUI_SIZEABLE_H
+#define CPAF_API_GUI_SIZEABLE_H
 
 namespace cpaf {
 
@@ -72,4 +72,4 @@ public:
     } // api
 } // cpaf
 
-#endif // _CPAF_API_GUI_SIZEABLE_H_
+#endif // CPAF_API_GUI_SIZEABLE_H

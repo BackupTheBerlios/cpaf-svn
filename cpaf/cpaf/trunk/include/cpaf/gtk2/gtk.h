@@ -4,8 +4,8 @@
  * \date 2005-04-05
  */
 
-#ifndef _CPAF_GTK2_GTK_H_
-#define _CPAF_GTK2_GTK_H_
+#ifndef CPAF_GTK2_GTK_H
+#define CPAF_GTK2_GTK_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,4 +20,4 @@ extern int XFree( void* );
 }
 #endif
 
-#endif // _CPAF_GTK2_GTK_H_
+#endif // CPAF_GTK2_GTK_H

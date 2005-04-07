@@ -2,8 +2,8 @@
 Client wrapper for api::gui::Sizeable
 */
 
-#ifndef _CPAF_GUI_SIZEABLE_H_
-#define _CPAF_GUI_SIZEABLE_H_
+#ifndef CPAF_GUI_SIZEABLE_H
+#define CPAF_GUI_SIZEABLE_H
 
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
@@ -43,4 +43,4 @@ public:
     } // gui
 } // cpaf
 
-#endif // _CPAF_GUI_SIZEABLE_H_
+#endif // CPAF_GUI_SIZEABLE_H

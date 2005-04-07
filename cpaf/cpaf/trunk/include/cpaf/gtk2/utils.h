@@ -4,8 +4,8 @@
  * \date 2005-04-07
  */
 
-#ifndef _CPAF_GTK2_UTILS_H_
-#define _CPAF_GTK2_UTILS_H_
+#ifndef CPAF_GTK2_UTILS_H
+#define CPAF_GTK2_UTILS_H
 
 #include <cpaf/gtk2/gtk.h>
 
@@ -30,4 +30,4 @@ namespace cpaf {
     } // gtk2
 } // cpaf
 
-#endif // _CPAF_GTK2_UTILS_H_
+#endif // CPAF_GTK2_UTILS_H

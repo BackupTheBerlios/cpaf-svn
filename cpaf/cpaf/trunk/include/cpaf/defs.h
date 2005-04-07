@@ -2,8 +2,8 @@
 Common structure definitions
 */
 
-#ifndef _CPAF_DEFS_H_
-#define _CPAF_DEFS_H_
+#ifndef CPAF_DEFS_H
+#define CPAF_DEFS_H
 
 namespace cpaf {
 
@@ -39,4 +39,4 @@ struct Point
 
 } // namespace cpaf
 
-#endif // _CPAF_DEFS_H_
+#endif // CPAF_DEFS_H

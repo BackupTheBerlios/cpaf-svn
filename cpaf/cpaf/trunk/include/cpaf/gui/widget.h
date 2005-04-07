@@ -3,8 +3,8 @@ Client wrapper for api::gui::Widget
 this object is not createable by client code
 */
 
-#ifndef _CPAF_GUI_WIDGET_H_
-#define _CPAF_GUI_WIDGET_H_
+#ifndef CPAF_GUI_WIDGET_H
+#define CPAF_GUI_WIDGET_H
 
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
@@ -44,4 +44,4 @@ public:
     } // gui
 } // cpaf
 
-#endif //# _CPAF_GUI_WIDGET_H_
+#endif // CPAF_GUI_WIDGET_H

@@ -2,8 +2,8 @@
 Factory functions
 */
 
-#ifndef _CPAF_PRIVATE_FACTORY_H_
-#define _CPAF_PRIVATE_FACTORY_H_
+#ifndef CPAF_PRIVATE_FACTORY_H
+#define CPAF_PRIVATE_FACTORY_H
 
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/dllimpexp.h>
@@ -47,4 +47,4 @@ void CPAF_EXP register_factories();
     }
 }
 
-#endif // _CPAF_PRIVATE_FACTORY_H_
+#endif // CPAF_PRIVATE_FACTORY_H

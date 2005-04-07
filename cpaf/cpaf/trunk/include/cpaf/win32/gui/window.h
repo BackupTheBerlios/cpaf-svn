@@ -2,8 +2,8 @@
 win32 version of api::Window
 */
 
-#ifndef _CPAF_WIN32_GUI_WINDOW_H_
-#define _CPAF_WIN32_GUI_WINDOW_H_
+#ifndef CPAF_WIN32_GUI_WINDOW_H
+#define CPAF_WIN32_GUI_WINDOW_H
 
 #include <cpaf/win32/win.h>
 
@@ -57,4 +57,4 @@ public:
     } // win32
 } // cpaf
 
-#endif // _CPAF_WIN32_GUI_WINDOW_H_
+#endif // CPAF_WIN32_GUI_WINDOW_H

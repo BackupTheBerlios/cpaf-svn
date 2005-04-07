@@ -4,8 +4,8 @@
  * \date 2005-04-05
  */
 
-#ifndef _CPAF_GTK2_FACTORY_H_
-#define _CPAF_GTK2_FACTORY_H_
+#ifndef CPAF_GTK2_FACTORY_H
+#define CPAF_GTK2_FACTORY_H
 
 #include <cpaf/gui/api-prototypes.h>
 
@@ -21,4 +21,4 @@ cpaf::api::gui::Widget *create_window();
    } // gtk2
 } // cpaf
 
-#endif // _CPAF_GTK2_FACTORY_H_
+#endif // CPAF_GTK2_FACTORY_H

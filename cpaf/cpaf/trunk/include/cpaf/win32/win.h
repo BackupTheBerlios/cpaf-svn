@@ -2,8 +2,8 @@
 common header for win32 implementation
 */
 
-#ifndef _CPAF_WIN32_WIN_H_
-#define _CPAF_WIN32_WIN_H_
+#ifndef CPAF_WIN32_WIN_H
+#define CPAF_WIN32_WIN_H
 
 #if _MSC_VER
 #   pragma warning(disable:4786) // truncated to 255 characters in the debug info
@@ -35,4 +35,4 @@ void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Window *wnd);
     } // win32
 } // cpaf
 
-#endif // _CPAF_WIN32_WIN_H_
+#endif // CPAF_WIN32_WIN_H

@@ -2,8 +2,8 @@
 TopLevel interface definition
 */
 
-#ifndef _CPAF_API_GUI_TOPLEVEL_H_
-#define _CPAF_API_GUI_TOPLEVEL_H_
+#ifndef CPAF_API_GUI_TOPLEVEL_H
+#define CPAF_API_GUI_TOPLEVEL_H
 
 #include <cpaf/api/gui/widget.h>
 
@@ -58,4 +58,4 @@ public:
     } // api
 } // cpaf
 
-#endif // _CPAF_API_GUI_TOPLEVEL_H_
+#endif // CPAF_API_GUI_TOPLEVEL_H

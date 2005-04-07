@@ -2,8 +2,8 @@
 win32 factories
 */
 
-#ifndef _CPAF_WIN32_FACTORY_H_
-#define _CPAF_WIN32_FACTORY_H_
+#ifndef CPAF_WIN32_FACTORY_H
+#define CPAF_WIN32_FACTORY_H
 
 #include <cpaf/gui/api-prototypes.h>
 
@@ -19,4 +19,4 @@ cpaf::api::gui::Widget *create_window();
    } // win32
 } // cpaf
 
-#endif // _CPAF_WIN32_FACTORY_H_
+#endif // CPAF_WIN32_FACTORY_H

@@ -2,8 +2,8 @@
 Sizer interface definition
 */
 
-#ifndef _CPAF_API_GUI_SIZER_H_
-#define _CPAF_API_GUI_SIZER_H_
+#ifndef CPAF_API_GUI_SIZER_H
+#define CPAF_API_GUI_SIZER_H
 
 #include <cpaf/api/gui/sizeable.h>
 
@@ -25,4 +25,4 @@ public:
     } // api
 } // cpaf
 
-#endif // _CPAF_API_GUI_SIZER_H_
+#endif // CPAF_API_GUI_SIZER_H

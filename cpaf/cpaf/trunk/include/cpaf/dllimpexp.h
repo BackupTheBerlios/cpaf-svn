@@ -2,8 +2,8 @@
 Defines for __declspec(dllexport) and __declspec(dllimport)
 */
 
-#ifndef _CPAF_DLLIMPEXP_H_
-#define _CPAF_DLLIMPEXP_H_
+#ifndef CPAF_DLLIMPEXP_H
+#define CPAF_DLLIMPEXP_H
 
 #ifdef CPAF_WIN32
 #   ifdef CPAF_DLL
@@ -19,4 +19,4 @@ Defines for __declspec(dllexport) and __declspec(dllimport)
 #   define CPAF_EXP
 #endif
 
-#endif // _CPAF_DLLIMPEXP_H_
+#endif // CPAF_DLLIMPEXP_H

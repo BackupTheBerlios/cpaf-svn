@@ -4,8 +4,8 @@
  * \date 2005-04-05
  */
 
-#ifndef _CPAF_GTK2_GUI_WINDOW_H_
-#define _CPAF_GTK2_GUI_WINDOW_H_
+#ifndef CPAF_GTK2_GUI_WINDOW_H
+#define CPAF_GTK2_GUI_WINDOW_H
 
 #include <cpaf/gtk2/gtk.h>
 
@@ -56,4 +56,4 @@ public:
     } // gtk2
 } // cpaf
 
-#endif // _CPAF_GTK2_GUI_WINDOW_H_
+#endif // CPAF_GTK2_GUI_WINDOW_H
