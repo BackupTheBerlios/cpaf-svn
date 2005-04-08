@@ -23,9 +23,13 @@ int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstanc
 
 #else // !CPAF_WIN32
 
-// LEIO: you should store argc and argv somewhere for use via gui gtk2 projects
 int cpaf::entry(cpaf::main_ptr main, int argc, char *argv[])
 {
+#ifdef CPAF_GTK2
+    extern void register_argc_argv(int argc, char *argv[]);
+    register_argc_argv(argc, argv);
+#endif
+
     cpaf::App::cmd_line cmd;
 
     // get an application instance
