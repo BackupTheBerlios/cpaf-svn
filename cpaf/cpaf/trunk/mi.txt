@@ -1,0 +1,33 @@
+MI with virtual base classes
+
+     api::gui::Widget
+            /  \ 
+           /    \
+          /      \
+gtk2::widget  api::gui::Window
+          \     /  \
+           \   /    \
+            \ /      \
+       gtk2::window  api::gui::dialog
+              \      /
+               \    /
+                \  /
+              gtk2::dialog
+
+---------------------------------------
+
+Wrappers without MI and no virtual bases
+
+      api::gui::Widget         gtk2::impl::widget
+            /  \                         \
+           /    \                         \
+          /      \                         \
+gtk2::widget  api::gui::Window    gtk2::impl::window
+                /  \                         \
+               /    \                         \
+              /      \                         \
+     gtk2::window  api::gui::dialog      gtk2::impl::dialog
+                     /
+                    /
+                   /
+             gtk2::dialog
