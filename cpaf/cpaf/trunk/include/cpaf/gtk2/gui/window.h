@@ -27,10 +27,10 @@ public:
     Window();
 
     // sizeable interface
-    virtual void set_size(cpaf::Size s);
-    virtual void set_min_size(cpaf::Size s);
-    virtual void set_max_size(cpaf::Size s);
-    virtual void set_position(cpaf::Point p);
+    virtual void set_size(const cpaf::Size &s);
+    virtual void set_min_size(const cpaf::Size &s);
+    virtual void set_max_size(const cpaf::Size &s);
+    virtual void set_position(const cpaf::Point &p);
     virtual cpaf::Size get_size();
     virtual cpaf::Size get_min_size();
     virtual cpaf::Size get_max_size();
@@ -47,7 +47,7 @@ public:
     virtual void set_title(const std::string &t);
     virtual std::string get_title();
 
-    virtual void set_client_size(cpaf::Size s);
+    virtual void set_client_size(const cpaf::Size &s);
     virtual cpaf::Size get_client_size();
     virtual cpaf::Point get_client_position();
 };

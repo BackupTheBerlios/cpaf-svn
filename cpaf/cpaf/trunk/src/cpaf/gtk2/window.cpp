@@ -17,32 +17,39 @@ cpaf::gtk2::gui::Window::Window()
     g_signal_connect_swapped(G_OBJECT(m_widget), "delete-event", gtk_main_quit, NULL);
 }
 
-void cpaf::gtk2::gui::Window::set_size(cpaf::Size s)
+void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
 {
-    //! \todo What's the best estimation for these?
-    int w = 10, // estimated width of left+right extent
+    int w, h;
+    
+    if( gtk_window_get_decorated( GTK_WINDOW(m_widget ) ) )
+    {
+        long * extents;
+        //! \todo What's the best estimation for these?
+        w = 10; // estimated width of left+right extent
         h = 26; // estimated height of top+bottom extent
 
-    long * extents;
-    if ( (extents = cpaf::gtk2::utils::get_extents(m_widget)) != NULL )
+        if ( (extents = cpaf::gtk2::utils::get_extents(m_widget)) != NULL )
+        {
+            w = extents[CPAF_EXTENT_LEFT] + extents[CPAF_EXTENT_RIGHT];
+            h = extents[CPAF_EXTENT_TOP] + extents[CPAF_EXTENT_BOTTOM];
+            XFree(extents);
+        }
+    
+        if ( (w = s.width - w) < 1)
+            w = 1;
+        if ( (h = s.height - h) < 1)
+            h = 1;
+    }
+    else
     {
-        w = extents[CPAF_EXTENT_LEFT] + extents[CPAF_EXTENT_RIGHT];
-        h = extents[CPAF_EXTENT_TOP] + extents[CPAF_EXTENT_BOTTOM];
-        XFree(extents);
+        w = s.width;
+        h = s.height;
     }
 
-    s.width -= w;
-    s.height -= h;
-
-    if (s.width < 1)
-        s.width = 1;
-    if (s.height < 1)
-        s.height = 1;
-
-    gtk_window_resize(GTK_WINDOW(m_widget), s.width, s.height);
+    gtk_window_resize(GTK_WINDOW(m_widget), w, h);
 }
 
-void cpaf::gtk2::gui::Window::set_min_size(cpaf::Size s)
+void cpaf::gtk2::gui::Window::set_min_size(const cpaf::Size &s)
 {
     GdkGeometry hints;
     hints.min_width = s.width;
@@ -53,7 +60,7 @@ void cpaf::gtk2::gui::Window::set_min_size(cpaf::Size s)
                                   GDK_HINT_MIN_SIZE);
 }
 
-void cpaf::gtk2::gui::Window::set_max_size(cpaf::Size s)
+void cpaf::gtk2::gui::Window::set_max_size(const cpaf::Size &s)
 {
     GdkGeometry hints;
     hints.max_width = s.width;
@@ -64,7 +71,7 @@ void cpaf::gtk2::gui::Window::set_max_size(cpaf::Size s)
                                   GDK_HINT_MAX_SIZE);
 }
 
-void cpaf::gtk2::gui::Window::set_position(cpaf::Point p)
+void cpaf::gtk2::gui::Window::set_position(const cpaf::Point &p)
 {
     gtk_window_move(GTK_WINDOW(m_widget), p.x, p.y);
 }
@@ -175,7 +182,7 @@ std::string cpaf::gtk2::gui::Window::get_title()
     return gtk_window_get_title(GTK_WINDOW(m_widget));
 }
 
-void cpaf::gtk2::gui::Window::set_client_size(cpaf::Size s)
+void cpaf::gtk2::gui::Window::set_client_size(const cpaf::Size &s)
 {
     /*!
         \todo Add visible size of the menubar/statusbar, and similar non-drawable portions in the

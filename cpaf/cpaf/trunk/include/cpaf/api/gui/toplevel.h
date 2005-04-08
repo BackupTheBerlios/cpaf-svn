@@ -38,7 +38,7 @@ public:
     /*!
         \brief Sets the client size of the widget.
     */
-    virtual void set_client_size(cpaf::Size s) = 0;
+    virtual void set_client_size(const cpaf::Size &s) = 0;
 
     /*!
         \return The client size of the widget.

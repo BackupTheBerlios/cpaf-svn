@@ -81,7 +81,7 @@ cpaf::win32::gui::Window::Window()
     widget_map_add_hwnd(m_hwnd, this);
 }
 
-void cpaf::win32::gui::Window::set_size(cpaf::Size s)
+void cpaf::win32::gui::Window::set_size(const cpaf::Size &s)
 {
     ::SetWindowPos(m_hwnd, NULL, 0, 0, s.width, s.height, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 }
@@ -93,12 +93,12 @@ cpaf::Size cpaf::win32::gui::Window::get_size()
     return cpaf::Size(rect.right - rect.left, rect.bottom - rect.top);
 }
 
-void cpaf::win32::gui::Window::set_min_size(cpaf::Size s)
+void cpaf::win32::gui::Window::set_min_size(const cpaf::Size &s)
 {
     m_min_size = s;
 }
 
-void cpaf::win32::gui::Window::set_max_size(cpaf::Size s)
+void cpaf::win32::gui::Window::set_max_size(const cpaf::Size &s)
 {
     m_max_size = s;
 }
@@ -113,7 +113,7 @@ cpaf::Size cpaf::win32::gui::Window::get_max_size()
     return m_max_size;
 }
 
-void cpaf::win32::gui::Window::set_position(cpaf::Point p)
+void cpaf::win32::gui::Window::set_position(const cpaf::Point &p)
 {
     ::SetWindowPos(m_hwnd, NULL, p.x, p.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 }
