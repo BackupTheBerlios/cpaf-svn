@@ -22,7 +22,7 @@ std::string cpaf::gui::TopLevel::get_title()
     return m_impl->get_title();
 }
 
-void cpaf::gui::TopLevel::set_client_size(cpaf::Size s)
+void cpaf::gui::TopLevel::set_client_size(const cpaf::Size &s)
 {
     m_impl->set_client_size(s);
 }

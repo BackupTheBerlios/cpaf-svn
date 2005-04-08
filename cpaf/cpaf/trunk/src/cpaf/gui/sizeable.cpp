@@ -14,22 +14,22 @@ cpaf::gui::Sizeable::Sizeable(const SizeablePtr &p)
 // empty virtual dtor
 cpaf::gui::Sizeable::~Sizeable() { }
 
-void cpaf::gui::Sizeable::set_size(cpaf::Size s)
+void cpaf::gui::Sizeable::set_size(const cpaf::Size &s)
 {
     m_impl->set_size(s);
 }
 
-void cpaf::gui::Sizeable::set_min_size(cpaf::Size s)
+void cpaf::gui::Sizeable::set_min_size(const cpaf::Size &s)
 {
     m_impl->set_min_size(s);
 }
 
-void cpaf::gui::Sizeable::set_max_size(cpaf::Size s)
+void cpaf::gui::Sizeable::set_max_size(const cpaf::Size &s)
 {
     m_impl->set_max_size(s);
 }
 
-void cpaf::gui::Sizeable::set_position(cpaf::Point p)
+void cpaf::gui::Sizeable::set_position(const cpaf::Point &p)
 {
     m_impl->set_position(p);
 }
