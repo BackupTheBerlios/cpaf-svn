@@ -25,14 +25,6 @@
     Microsoft Visual C++ 5.0:   _MSC_VER = 1100
 */
 
-#if __GNUC__ >= 4
-/*!
-    \brief This macro is defined if the C++ compiler used is gcc and it supports
-    ELF visibility attributes.
- */
-#   define CPAF_HAVE_GNUG_VISIBILITY
-#endif
-
 #if GCC_VERSION >= 30100
 /*!
     \brief Used to mark functions, types and variables as deprecated.

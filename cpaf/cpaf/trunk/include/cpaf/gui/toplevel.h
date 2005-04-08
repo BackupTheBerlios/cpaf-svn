@@ -16,7 +16,7 @@ this object is not createable by client code
 namespace cpaf {
     namespace gui {
 
-class CPAF_EXP TopLevel : public Widget
+class CPAF_API TopLevel : public Widget
 {
 private:
     // not shared_ptr because this object will never be responsible for deleting this pointer

@@ -12,7 +12,7 @@ Client wrapper for api::gui::Sizeable
 namespace cpaf {
     namespace gui {
 
-class CPAF_EXP Sizeable
+class CPAF_API Sizeable
 {
 protected:
     // Widget and Sizeable are responsible for cleaning up the implementation object

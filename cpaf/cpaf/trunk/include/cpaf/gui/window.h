@@ -16,7 +16,7 @@ namespace cpaf {
     \brief A Window is a top level widget that contains a title bar, min max and close buttons,
     and contains subwindows.
 */
-class CPAF_EXP Window : public TopLevel
+class CPAF_API Window : public TopLevel
 {
 private:
     // not shared_ptr because this object will never be responsible for deleting this pointer

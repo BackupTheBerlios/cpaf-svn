@@ -13,7 +13,7 @@ this object is not createable by client code
 namespace cpaf {
     namespace gui {
 
-class CPAF_EXP Widget : public Sizeable
+class CPAF_API Widget : public Sizeable
 {
 protected:
     // Widget and Sizeable are responsible for cleaning up the implementation object

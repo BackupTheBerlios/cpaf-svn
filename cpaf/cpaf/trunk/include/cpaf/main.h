@@ -26,9 +26,9 @@ typedef cpaf::App *(main_ptr)(const cpaf::App::cmd_line &);
 
 // win32 has a different entry function, and cpaf_entry function than other ports
 #ifdef CPAF_WIN32
-    int CPAF_EXP entry(main_ptr, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
+    int CPAF_API entry(main_ptr, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 #else // !CPAF_WIN32
-    int CPAF_EXP entry(main_ptr, int argc, char *argv[]);
+    int CPAF_API entry(main_ptr, int argc, char *argv[]);
 #endif // CPAF_WIN32
 
 } // cpaf

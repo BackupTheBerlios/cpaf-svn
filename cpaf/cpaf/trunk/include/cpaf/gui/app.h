@@ -11,7 +11,7 @@ cpaf::gui::App application class
 namespace cpaf {
     namespace gui {
 
-class CPAF_EXP App : public cpaf::App
+class CPAF_API App : public cpaf::App
 {
 protected:
     App();

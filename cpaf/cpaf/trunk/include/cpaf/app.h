@@ -40,7 +40,7 @@ cpaf::App::init()
 
 namespace cpaf {
 
-class CPAF_EXP App
+class CPAF_API App
 {
 public:
     /*!

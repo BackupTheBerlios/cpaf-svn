@@ -4,8 +4,8 @@ OBJ_DIR = build
 OUTPUT_DIR = lib
 TARGET = libcpaf_gui_gtk2d.so
 INCLUDE_DIRS = -I include -I .
-CXXFLAGS = -pipe `pkg-config --cflags gtk+-2.0` -ggdb -Wall
-LD_FLAGS = -shared -fPIC `pkg-config --libs gtk+-2.0`
+CXXFLAGS = -pipe `pkg-config --cflags gtk+-2.0` -ggdb -Wall -fvisibility-inlines-hidden
+LD_FLAGS = -shared -fpic `pkg-config --libs gtk+-2.0`
 
 SRC_OBJS = \
 	$(OBJ_DIR)/gui/sizeable.o \
