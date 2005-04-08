@@ -30,10 +30,10 @@ protected:
 public:
     virtual ~Sizeable();
 
-    virtual void set_size(cpaf::Size s);
-    virtual void set_min_size(cpaf::Size s);
-    virtual void set_max_size(cpaf::Size s);
-    virtual void set_position(cpaf::Point p);
+    virtual void set_size(const cpaf::Size &s);
+    virtual void set_min_size(const cpaf::Size &s);
+    virtual void set_max_size(const cpaf::Size &s);
+    virtual void set_position(const cpaf::Point &p);
     virtual cpaf::Size get_size();
     virtual cpaf::Size get_min_size();
     virtual cpaf::Size get_max_size();

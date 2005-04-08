@@ -30,7 +30,7 @@ public:
     virtual void set_title(const std::string &t);
     virtual std::string get_title();
 
-    virtual void set_client_size(cpaf::Size s);
+    virtual void set_client_size(const cpaf::Size &s);
     virtual cpaf::Size get_client_size();
     virtual cpaf::Point get_client_position();
 };
