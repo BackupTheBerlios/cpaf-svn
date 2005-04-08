@@ -25,6 +25,7 @@ private:
 
 public:
     Window();
+    virtual ~Window();
 
     // sizeable interface
     virtual void set_size(const cpaf::Size &s);
