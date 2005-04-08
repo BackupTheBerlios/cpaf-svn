@@ -15,7 +15,7 @@ namespace cpaf {
     \brief The Widget interface represents a generic widget that appears on screen. All
     widgets are based off of this interface.
 */
-class Widget : public Sizeable
+class Widget : public virtual Sizeable
 {
 public:
 

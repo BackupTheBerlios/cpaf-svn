@@ -11,7 +11,7 @@ using namespace cpaf::win32::gui;
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
-    (WNDPROC)window_proc,
+    (WNDPROC)window_wndproc,
     0,
     0,
     GetModuleHandle(NULL),
@@ -26,7 +26,7 @@ namespace cpaf {
     namespace win32 {
         namespace gui {
 
-LRESULT CALLBACK window_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK window_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     Window *wnd = get_widget_from_hwnd<Window>(hwnd);
 
@@ -65,8 +65,6 @@ LRESULT CALLBACK window_proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 } // cpaf
 
 cpaf::win32::gui::Window::Window()
-    : m_max_size(-1,-1),
-    m_min_size(-1,-1)
 {
     static bool registered = false;
 
@@ -79,81 +77,6 @@ cpaf::win32::gui::Window::Window()
         NULL);
 
     widget_map_add_hwnd(m_hwnd, this);
-}
-
-void cpaf::win32::gui::Window::set_size(const cpaf::Size &s)
-{
-    ::SetWindowPos(m_hwnd, NULL, 0, 0, s.width, s.height, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
-}
-
-cpaf::Size cpaf::win32::gui::Window::get_size()
-{
-    RECT rect;
-    ::GetWindowRect(m_hwnd, &rect);
-    return cpaf::Size(rect.right - rect.left, rect.bottom - rect.top);
-}
-
-void cpaf::win32::gui::Window::set_min_size(const cpaf::Size &s)
-{
-    m_min_size = s;
-}
-
-void cpaf::win32::gui::Window::set_max_size(const cpaf::Size &s)
-{
-    m_max_size = s;
-}
-
-cpaf::Size cpaf::win32::gui::Window::get_min_size()
-{
-    return m_min_size;
-}
-
-cpaf::Size cpaf::win32::gui::Window::get_max_size()
-{
-    return m_max_size;
-}
-
-void cpaf::win32::gui::Window::set_position(const cpaf::Point &p)
-{
-    ::SetWindowPos(m_hwnd, NULL, p.x, p.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
-}
-
-cpaf::Point cpaf::win32::gui::Window::get_position()
-{
-    RECT rect;
-    ::GetWindowRect(m_hwnd, &rect);
-    return cpaf::Point(rect.left, rect.top);
-}
-
-void cpaf::win32::gui::Window::show(bool show, bool activate)
-{
-    int cmd;
-    if( show )
-        if( activate )
-            cmd = SW_SHOW;
-        else
-            cmd = SW_SHOWNA;
-    else
-        cmd = SW_HIDE;
-
-    ::ShowWindow(m_hwnd, cmd);
-}
-
-bool cpaf::win32::gui::Window::is_shown()
-{
-    // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
-    return ::IsWindowVisible(m_hwnd) != 0;
-}
-
-void cpaf::win32::gui::Window::enable(bool e)
-{
-    ::EnableWindow(m_hwnd, e);
-}
-
-bool cpaf::win32::gui::Window::is_enabled()
-{
-    // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
-    return ::IsWindowEnabled(m_hwnd) != 0;
 }
 
 std::string cpaf::win32::gui::Window::get_title()

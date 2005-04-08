@@ -16,7 +16,7 @@ namespace cpaf {
 /*!
     \brief The TopLevel interface defines a widget that is a top level widget.
 */
-class TopLevel : public Widget
+class TopLevel : public virtual Widget
 {
 public:
 

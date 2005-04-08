@@ -18,9 +18,9 @@ namespace cpaf {
     namespace win32 {
         namespace gui {
 
-class Window;
+class Widget;
 
-typedef std::map<HWND, cpaf::win32::gui::Window *> WidgetMap;
+typedef std::map<HWND, cpaf::win32::gui::Widget *> WidgetMap;
 
 extern WidgetMap widget_map;
 
@@ -29,7 +29,7 @@ template <typename T> T *get_widget_from_hwnd(HWND h)
     return static_cast<T*>(widget_map[h]);
 }
 
-void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Window *wnd);
+void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd);
 
         } // gui
     } // win32

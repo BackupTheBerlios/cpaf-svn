@@ -27,7 +27,7 @@ void add_factory(int key, WidgetFactoryPtr fact);
 
 template <typename T> T *create_widget()
 {
-    return static_cast<T*>(get_factory(T::factory_key)());
+    return dynamic_cast<T*>(get_factory(T::factory_key)());
     //return static_cast<T*>(widget_factory_map[T::factory_key]());
 }
 

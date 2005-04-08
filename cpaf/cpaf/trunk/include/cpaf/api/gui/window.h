@@ -13,7 +13,7 @@ namespace cpaf {
 /*!
     \brief A Window is a top level widget which has a title bar and contains subwindows
 */
-class Window : public TopLevel
+class Window : public virtual TopLevel
 {
 public:
     static int factory_key;

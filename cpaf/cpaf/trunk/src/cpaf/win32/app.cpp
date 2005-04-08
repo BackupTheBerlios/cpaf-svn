@@ -10,7 +10,7 @@ void cpaf::gui::App::gui_init()
     // dont need to do anything for win32 yet...
 }
 
-int CPAF_API cpaf::gui::App::run()
+int cpaf::gui::App::run()
 {
     // the win32 message loop
     MSG msg;

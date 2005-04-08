@@ -2,7 +2,7 @@
 Header file which declares the cpaf::main() entry function.
 
 This file also declares the platform specific entry function. This function
-is implemented within the library.
+is a wrapper for cpaf::entry which is implemented within the library.
 */
 
 #ifndef CPAF_MAIN_H
@@ -24,7 +24,7 @@ namespace cpaf {
 cpaf::App *main(const cpaf::App::cmd_line &cmd);
 typedef cpaf::App *(main_ptr)(const cpaf::App::cmd_line &);
 
-// win32 has a different entry function, and cpaf_entry function than other ports
+// win32 has a different entry function, and cpaf::entry function than other ports
 #ifdef CPAF_WIN32
     int CPAF_API entry(main_ptr, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 #else // !CPAF_WIN32
@@ -54,9 +54,6 @@ Explanation for the following code:
   The purpose of cpaf::cpaf_entry is to avoid implementing more code than is neccessary in this header file,
   allowing for at least slight binary compatability between changes so long as this header file is not modified.
   cpaf_entry will call app->init(), and app->run() to actually run the application.
-
-  I realize that the code for non win32 systems prevents access to the command line. Once cpaf provides
-  command line facilities, I will update this entry function to reflect that.
 
   cpef_entry is given a pointer to the cpaf::main() function, as well as native entry function arguments.
 */

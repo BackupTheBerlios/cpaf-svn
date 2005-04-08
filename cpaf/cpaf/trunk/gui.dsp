@@ -95,6 +95,100 @@ LINK32=link.exe
 # Begin Group "cpaf_s"
 
 # PROP Default_Filter ""
+# Begin Group ".gui"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cpaf\gui\app.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/Release/gui"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug/gui"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gui\factory.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/Release/gui"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug/gui"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gui\sizeable.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/Release/gui"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug/gui"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gui\toplevel.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/Release/gui"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug/gui"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gui\widget.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/Release/gui"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug/gui"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gui\window.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/Release/gui"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug/gui"
+
+!ENDIF 
+
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=.\src\cpaf\api_factory_keys.cpp
@@ -110,72 +204,11 @@ SOURCE=.\src\cpaf\api_factory_keys.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\cpaf\gui\app.cpp
+SOURCE=.\src\cpaf\app.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\cpaf\gui\factory.cpp
-
-!IF  "$(CFG)" == "gui - Win32 Release"
-
-# PROP Intermediate_Dir "build/Release"
-
-!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cpaf\gui\sizeable.cpp
-
-!IF  "$(CFG)" == "gui - Win32 Release"
-
-# PROP Intermediate_Dir "build/Release"
-
-!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cpaf\gui\toplevel.cpp
-
-!IF  "$(CFG)" == "gui - Win32 Release"
-
-# PROP Intermediate_Dir "build/Release"
-
-!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cpaf\gui\widget.cpp
-
-!IF  "$(CFG)" == "gui - Win32 Release"
-
-# PROP Intermediate_Dir "build/Release"
-
-!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=.\src\cpaf\gui\window.cpp
-
-!IF  "$(CFG)" == "gui - Win32 Release"
-
-# PROP Intermediate_Dir "build/Release"
-
-!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
-
-!ENDIF 
-
+SOURCE=.\src\cpaf\main.cpp
 # End Source File
 # End Group
 # Begin Group "win32_s"
@@ -186,6 +219,8 @@ SOURCE=.\src\cpaf\gui\window.cpp
 SOURCE=.\src\cpaf\win32\app.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/win32/Release"
 
 !ELSEIF  "$(CFG)" == "gui - Win32 Debug"
 
@@ -211,22 +246,11 @@ SOURCE=.\src\cpaf\win32\factory.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\cpaf\win32\main.cpp
-
-!IF  "$(CFG)" == "gui - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
-
-# PROP Intermediate_Dir "build/win32/Debug"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
 SOURCE=.\src\cpaf\win32\win.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/win32/Release"
 
 !ELSEIF  "$(CFG)" == "gui - Win32 Debug"
 
