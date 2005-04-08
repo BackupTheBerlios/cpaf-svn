@@ -26,7 +26,7 @@ extern WidgetMap widget_map;
 
 template <typename T> T *get_widget_from_hwnd(HWND h)
 {
-    return static_cast<T*>(widget_map[h]);
+    return dynamic_cast<T*>(widget_map[h]);
 }
 
 void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd);

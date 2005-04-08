@@ -14,7 +14,7 @@ namespace cpaf {
     namespace win32 {
         namespace gui {
 
-class Window : public cpaf::win32::gui::Widget, cpaf::api::gui::Window
+class Window : public virtual cpaf::win32::gui::Widget, virtual cpaf::api::gui::Window
 {
     friend LRESULT CALLBACK window_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
