@@ -1,7 +1,6 @@
 /**
  * \file src/cpaf/gtk2/factory.cpp
  * \brief Implementation of gtk2 factory
- * \author Mart Raudsepp
  * \date 2005-04-05
  */
 
