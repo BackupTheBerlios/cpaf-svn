@@ -17,11 +17,6 @@ cpaf::gtk2::gui::Window::Window()
     g_signal_connect_swapped(G_OBJECT(m_widget), "delete-event", gtk_main_quit, NULL);
 }
 
-cpaf::gtk2::gui::Window::~Window()
-{
-    gtk_widget_destroy(m_widget);
-}
-
 void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
 {
     int w, h;

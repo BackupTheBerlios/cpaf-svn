@@ -12,7 +12,34 @@ cpaf::gtk2::gui::Widget::Widget()
 { }
 
 // empty virtual dtor
-cpaf::gtk2::gui::Widget::~Widget() { }
+cpaf::gtk2::gui::Widget::~Widget()
+{
+    gtk_widget_destroy(m_widget);
+}
+
+void cpaf::gtk2::gui::Widget::set_size(const cpaf::Size& s)
+{
+    // Sets the size request
+    /*
+        "The size request of a widget is the smallest size a widget can
+        accept while still functioning well and drawing itself correctly.
+        However in some strange cases a widget may be allocated less than
+        its requested size, and in many cases a widget may be allocated
+        more space than it requested.
+
+        If the size request in a given direction is -1 (unset), then the
+        "natural" size request of the widget will be used instead." - gtk manual
+    */
+    // Do we want to enforce allocation instead?
+    gtk_widget_set_size_request(m_widget, s.width, s.height);
+    gtk_widget_queue_resize(m_widget);
+}
+
+cpaf::Size cpaf::gtk2::gui::Widget::get_size()
+{
+    // Is this correct? Maybe use gdk_window_get_frame_extents instead?
+    return cpaf::Size(m_widget->allocation.width, m_widget->allocation.height);
+}
 
 void cpaf::gtk2::gui::Widget::enable(bool e)
 {

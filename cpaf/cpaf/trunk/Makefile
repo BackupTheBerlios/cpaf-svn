@@ -21,7 +21,7 @@ SRC_OBJS =                     \
 	$(OBJ_DIR)/gtk2/utils.o    \
 	$(OBJ_DIR)/main.o          \
 	$(OBJ_DIR)/app.o           \
-	$(OBJ_DIR)/api_factory_keys.o
+	$(OBJ_DIR)/api.o
 
 define build_target
 	@echo Creating library...
@@ -95,5 +95,5 @@ $(OBJ_DIR)/main.o: src/cpaf/main.cpp
 $(OBJ_DIR)/app.o: src/cpaf/app.cpp
 	$(compile_source)
 
-$(OBJ_DIR)/api_factory_keys.o: src/cpaf/api_factory_keys.cpp
+$(OBJ_DIR)/api.o: src/cpaf/api.cpp
 	$(compile_source)

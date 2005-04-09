@@ -26,11 +26,11 @@ public:
     virtual ~Widget();
 
     // object interface
-    virtual void set_size(const cpaf::Size&) { }
+    virtual void set_size(const cpaf::Size&);
     virtual void set_min_size(const cpaf::Size&) { }
     virtual void set_max_size(const cpaf::Size&) { }
     virtual void set_position(const cpaf::Point&) { }
-    virtual cpaf::Size get_size() { return cpaf::Size(); }
+    virtual cpaf::Size get_size();
     virtual cpaf::Size get_min_size() { return cpaf::Size(); }
     virtual cpaf::Size get_max_size() { return cpaf::Size(); }
     virtual cpaf::Point get_position() { return cpaf::Point(); }
