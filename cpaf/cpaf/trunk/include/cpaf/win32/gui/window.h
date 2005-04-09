@@ -22,7 +22,7 @@ public:
     Window();
 
     // toplevel interface
-    virtual void set_title(const std::string &t){ }
+    virtual void set_title(const std::string &t);
     virtual std::string get_title();
 
     virtual void set_client_size(const cpaf::Size &s) { }

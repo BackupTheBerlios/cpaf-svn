@@ -88,3 +88,9 @@ std::string cpaf::win32::gui::Window::get_title()
     delete buff;
     return ret;
 }
+
+void cpaf::win32::gui::Window::set_title(const std::string &t)
+{
+    //! \todo This won't work for unicode...
+    ::SetWindowText(m_hwnd, t.c_str());
+}
