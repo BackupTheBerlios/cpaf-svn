@@ -67,6 +67,8 @@ CPAF OBJECT DESCTRUCTION OVERVIEW
 
   The use of these two functions allows deletion of either end (wrapper, or implementation) to delete BOTH
   the wrapping object and the implementation object.
+
+  BECAUSE OF THIS CHANGE ALL OBJECTS MUST BE CREATED WITH THE NEW OPERATOR.
 */
 
 // map from implementations to their wrappers
