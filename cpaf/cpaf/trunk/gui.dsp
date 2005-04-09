@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "GUI_EXPORTS" /YX /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /D "CPAF_WIN32" /D "CPAF_DLL" /D "CPAF_BUILDING" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "GUI_EXPORTS" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O2 /D "CPAF_WIN32" /D "CPAF_DLL" /D "CPAF_BUILDING" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "GUI_EXPORTS" /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG"
@@ -70,7 +70,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "GUI_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "CPAF_WIN32" /D "CPAF_DLL" /D "CPAF_BUILDING" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "GUI_EXPORTS" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GR /GX /ZI /Od /D "CPAF_WIN32" /D "CPAF_DLL" /D "CPAF_BUILDING" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "GUI_EXPORTS" /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
@@ -130,18 +130,7 @@ SOURCE=.\src\cpaf\gui\factory.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\src\cpaf\gui\sizeable.cpp
-
-!IF  "$(CFG)" == "gui - Win32 Release"
-
-# PROP Intermediate_Dir "build/Release/gui"
-
-!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
-
-# PROP Intermediate_Dir "build/Debug/gui"
-
-!ENDIF 
-
+SOURCE=.\src\cpaf\gui\object.cpp
 # End Source File
 # Begin Source File
 
@@ -191,16 +180,7 @@ SOURCE=.\src\cpaf\gui\window.cpp
 # End Group
 # Begin Source File
 
-SOURCE=.\src\cpaf\api_factory_keys.cpp
-
-!IF  "$(CFG)" == "gui - Win32 Release"
-
-# PROP Intermediate_Dir "build/Release"
-
-!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
-
-!ENDIF 
-
+SOURCE=.\src\cpaf\api.cpp
 # End Source File
 # Begin Source File
 
@@ -243,6 +223,10 @@ SOURCE=.\src\cpaf\win32\factory.cpp
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\win32\widget.cpp
 # End Source File
 # Begin Source File
 
@@ -310,7 +294,7 @@ SOURCE=.\include\cpaf\gui\app.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\cpaf\gui\sizeable.h
+SOURCE=.\include\cpaf\gui\object.h
 # End Source File
 # Begin Source File
 
@@ -344,7 +328,7 @@ SOURCE=.\include\cpaf\gui\window.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\include\cpaf\api\gui\sizeable.h
+SOURCE=.\include\cpaf\api\gui\object.h
 # End Source File
 # Begin Source File
 
@@ -387,6 +371,10 @@ SOURCE=.\include\cpaf\main.h
 # Begin Source File
 
 SOURCE=.\include\cpaf\win32\factory.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cpaf\win32\gui\widget.h
 # End Source File
 # Begin Source File
 
