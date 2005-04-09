@@ -5,7 +5,7 @@ Widget interface definition
 #ifndef CPAF_API_GUI_WIDGET_H
 #define CPAF_API_GUI_WIDGET_H
 
-#include <cpaf/api/gui/sizeable.h>
+#include <cpaf/api/gui/object.h>
 
 namespace cpaf {
     namespace api {
@@ -15,7 +15,7 @@ namespace cpaf {
     \brief The Widget interface represents a generic widget that appears on screen. All
     widgets are based off of this interface.
 */
-class Widget : public virtual Sizeable
+class Widget : public virtual Object
 {
 public:
 

@@ -25,7 +25,7 @@ public:
     Window();
     virtual ~Window();
 
-    // sizeable interface
+    // object interface
     virtual void set_size(const cpaf::Size&);
     virtual void set_min_size(const cpaf::Size&);
     virtual void set_max_size(const cpaf::Size&);

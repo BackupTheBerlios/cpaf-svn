@@ -8,12 +8,9 @@ Wrapper for api::gui::widget
 using namespace cpaf::api::gui;
 
 cpaf::gui::Widget::Widget(const WidgetPtr &p)
-    : Sizeable(p),
+    : Object(p),
     m_impl(p)
 { }
-
-// empty virtual dtor
-cpaf::gui::Widget::~Widget() { }
 
 int cpaf::gui::Widget::get_handle()
 {

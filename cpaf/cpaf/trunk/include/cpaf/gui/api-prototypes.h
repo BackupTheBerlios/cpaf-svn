@@ -10,8 +10,8 @@ cpaf::api::gui namespace prototypes for use by gui::foo headers
 namespace cpaf {
     namespace api {
         namespace gui {
-            class Sizeable;
-            typedef boost::shared_ptr<cpaf::api::gui::Sizeable> SizeablePtr;
+            class Object;
+            typedef boost::shared_ptr<cpaf::api::gui::Object> ObjectPtr;
             class Widget;
             typedef boost::shared_ptr<cpaf::api::gui::Widget> WidgetPtr;
             class TopLevel;

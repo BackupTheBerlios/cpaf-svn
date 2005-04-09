@@ -8,12 +8,12 @@ this object is not createable by client code
 
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
-#include <cpaf/gui/sizeable.h>
+#include <cpaf/gui/object.h>
 
 namespace cpaf {
     namespace gui {
 
-class CPAF_API Widget : public Sizeable
+class CPAF_API Widget : public Object
 {
 protected:
     // Widget and Sizeable are responsible for cleaning up the implementation object
@@ -29,7 +29,6 @@ protected:
     Widget(const cpaf::api::gui::WidgetPtr &p);
 
 public:
-    virtual ~Widget();
 
     virtual int get_handle();
     virtual void enable(bool e);

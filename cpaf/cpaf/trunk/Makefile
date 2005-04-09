@@ -9,7 +9,7 @@ LD_FLAGS = -shared -fpic `pkg-config --libs gtk+-2.0`
 
 SRC_OBJS =                     \
 	$(OBJ_DIR)/gui/app.o       \
-	$(OBJ_DIR)/gui/sizeable.o  \
+	$(OBJ_DIR)/gui/object.o  \
 	$(OBJ_DIR)/gui/widget.o    \
 	$(OBJ_DIR)/gui/toplevel.o  \
 	$(OBJ_DIR)/gui/factory.o   \
@@ -59,7 +59,7 @@ directories:
 $(OBJ_DIR)/gui/app.o: src/cpaf/gui/app.cpp
 	$(compile_source)
 
-$(OBJ_DIR)/gui/sizeable.o: src/cpaf/gui/sizeable.cpp
+$(OBJ_DIR)/gui/object.o: src/cpaf/gui/object.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gui/widget.o: src/cpaf/gui/widget.cpp

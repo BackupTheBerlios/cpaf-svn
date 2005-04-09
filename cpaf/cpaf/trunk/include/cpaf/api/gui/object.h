@@ -1,9 +1,9 @@
 /*
-Sizeable interface definition
+Object interface definition
 */
 
-#ifndef CPAF_API_GUI_SIZEABLE_H
-#define CPAF_API_GUI_SIZEABLE_H
+#ifndef CPAF_API_GUI_OBJECT_H
+#define CPAF_API_GUI_OBJECT_H
 
 namespace cpaf {
 
@@ -14,11 +14,13 @@ namespace cpaf {
         namespace gui {
 
 /*!
-    \brief The Sizeable interface represents an object that can be positioned and sized.
+    \brief The Object interface represents an object that can be positioned and sized.
 */
-class Sizeable
+class Object
 {
 public:
+    // virtual dtor ensuring that all gui objects are properly destructed
+    virtual ~Object();
 
     /*!
         \brief Sets the absolute size of a widget.
@@ -72,4 +74,4 @@ public:
     } // api
 } // cpaf
 
-#endif // CPAF_API_GUI_SIZEABLE_H
+#endif // CPAF_API_GUI_OBJECT_H
