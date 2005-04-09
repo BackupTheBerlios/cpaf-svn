@@ -16,8 +16,8 @@ namespace cpaf {
 class CPAF_API Widget : public Object
 {
 protected:
-    // Widget and Sizeable are responsible for cleaning up the implementation object
-    // so they use the booast::shared_ptr typedefs instead of raw pointers
+    // Widget and Object are responsible for cleaning up the implementation object
+    // so they use the boost::shared_ptr typedefs instead of raw pointers
 #if _MSC_VER
 #   pragma warning(disable:4251) // class 'boost::shared_ptr<>' needs to have dll-interface to be used by clients
 #endif
