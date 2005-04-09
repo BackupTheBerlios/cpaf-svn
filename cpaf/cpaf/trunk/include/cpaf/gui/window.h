@@ -25,8 +25,10 @@ private:
 
 public:
     Window();
+
 protected:
-    Window(const cpaf::api::gui::WindowPtr &p);
+    //Window(const cpaf::api::gui::WindowPtr &p);
+    Window(cpaf::api::gui::Window *p);
 
 };
 

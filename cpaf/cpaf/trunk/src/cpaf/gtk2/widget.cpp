@@ -8,13 +8,18 @@
 
 #include <gtk/gtk.h>
 
+// for delete_implementation_wrapper
+#include <cpaf/private/factory.h>
+
 cpaf::gtk2::gui::Widget::Widget()
 { }
 
-// empty virtual dtor
 cpaf::gtk2::gui::Widget::~Widget()
 {
     gtk_widget_destroy(m_widget);
+
+    // delete our wrapper object safely
+    cpaf::gui::factory::delete_implementation_wrapper(this);
 }
 
 void cpaf::gtk2::gui::Widget::set_size(const cpaf::Size& s)

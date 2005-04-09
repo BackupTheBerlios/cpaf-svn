@@ -7,12 +7,11 @@ Wrapper for api::gui::Object
 
 using namespace cpaf::api::gui;
 
-cpaf::gui::Object::Object(const ObjectPtr &p)
+cpaf::gui::Object::Object(cpaf::api::gui::Object *p)
     : m_impl(p)
 { }
 
-// empty virtual dtor
-cpaf::gui::Object::~Object() { }
+cpaf::gui::Object::~Object() { }    
 
 void cpaf::gui::Object::set_size(const cpaf::Size &s)
 {

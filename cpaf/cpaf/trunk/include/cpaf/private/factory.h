@@ -5,7 +5,12 @@ Factory functions
 #ifndef CPAF_PRIVATE_FACTORY_H
 #define CPAF_PRIVATE_FACTORY_H
 
+#ifdef _MSC_VER
+#pragma warning(disable:4786)
+#endif
+
 #include <cpaf/gui/api-prototypes.h>
+#include <cpaf/gui/widget.h>
 #include <cpaf/dllimpexp.h>
 #include <map>
 
@@ -41,6 +46,42 @@ template <typename T> void register_widget_factory(WidgetFactoryPtr ptr)
 // will be called so that implementations can use register_widget_factory
 // to register their widget factory function pointers
 void register_factories();
+
+
+
+
+/*
+CPAF OBJECT DESCTRUCTION OVERVIEW
+
+  gui::Foo wrappers are no longer solely responsible for deleting their implementations.
+  
+  It is now possible for an implementation to delete its wrapper, or for a wrapper to delete its implementation.
+  During one deletion chain, both events will occur.
+
+  When a gui wrapper is created, the gui wrapper registers itself as wrapping a given implementation with
+  add_implementation_wrapper. When its gui::Widget base is destructed, delete_widget_implementation is called
+  to delete the implementation object only if it has not been deleted already (meaning its still in the map).
+  delete_widget_implementation will remove the wrapper implementation pair from the map and then delete the
+  implementation. This invokes the implementations destructor, which will call delete_implementation_wrapper.
+  Because the wrapper implementation pair is no longer in the list, the function does nothing.
+
+  The use of these two functions allows deletion of either end (wrapper, or implementation) to delete BOTH
+  the wrapping object and the implementation object.
+*/
+
+// map from implementations to their wrappers
+typedef std::map<cpaf::api::gui::Widget *, cpaf::gui::Widget *> WidgetImplementationWrapperMap;
+
+// adds a wrappper implementation pair to the map
+void add_implementation_wrapper(cpaf::api::gui::Widget *impl, cpaf::gui::Widget* wrapper);
+
+// called by gui::Foo destructors to delete their implementations only if the impl pointer is
+// in the map. If the impl pointer is in the map, it will be removed, and then deleted.
+void delete_widget_implementation(cpaf::api::gui::Widget *impl);
+
+// called by implementation destructors to delete their gui wrappers only if the implementation
+// pointer is in the map. If the impl pointer is in the map, it will be removed, and its wrapper deleted.
+void delete_implementation_wrapper(cpaf::api::gui::Widget *impl);
 
         }
     }

@@ -26,10 +26,15 @@ extern WidgetMap widget_map;
 
 template <typename T> T *get_widget_from_hwnd(HWND h)
 {
-    return dynamic_cast<T*>(widget_map[h]);
+    WidgetMap::iterator i = widget_map.find(h);
+    if( i != widget_map.end() )
+        return dynamic_cast<T*>(i->second);
+    else
+        return NULL;
 }
 
 void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd);
+void widget_map_remove_hwnd(HWND h);
 
         } // gui
     } // win32

@@ -18,6 +18,7 @@ class CPAF_API Widget : public Object
 protected:
     // Widget and Object are responsible for cleaning up the implementation object
     // so they use the boost::shared_ptr typedefs instead of raw pointers
+    /*
 #if _MSC_VER
 #   pragma warning(disable:4251) // class 'boost::shared_ptr<>' needs to have dll-interface to be used by clients
 #endif
@@ -25,10 +26,14 @@ protected:
 #if _MSV_VER
 #   pragma warning(default:4251)
 #endif
+    */
+    cpaf::api::gui::Widget *m_impl;
 
-    Widget(const cpaf::api::gui::WidgetPtr &p);
+    //Widget(const cpaf::api::gui::WidgetPtr &p);
+    Widget(cpaf::api::gui::Widget *p);
 
 public:
+    virtual ~Widget();
 
     virtual int get_handle();
     virtual void enable(bool e);

@@ -7,9 +7,10 @@ Wrapper for api::gui::TopLevel
 
 using namespace cpaf::api::gui;
 
-cpaf::gui::TopLevel::TopLevel(const TopLevelPtr &p)
+//cpaf::gui::TopLevel::TopLevel(const TopLevelPtr &p)
+cpaf::gui::TopLevel::TopLevel(cpaf::api::gui::TopLevel *p)
     : Widget(p),
-    m_impl(p.get())
+    m_impl(p)
 { }
 
 void cpaf::gui::TopLevel::show(bool show, bool focus)

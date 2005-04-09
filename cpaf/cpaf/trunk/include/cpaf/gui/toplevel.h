@@ -24,7 +24,8 @@ private:
     cpaf::api::gui::TopLevel *m_impl;
 
 protected:
-    TopLevel(const cpaf::api::gui::TopLevelPtr &p);
+    //TopLevel(const cpaf::api::gui::TopLevelPtr &p);
+    TopLevel(cpaf::api::gui::TopLevel *p);
 
 public:
     virtual void show(bool show = true, bool focus = true);

@@ -11,7 +11,7 @@ using namespace cpaf::win32::gui;
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
-    (WNDPROC)window_wndproc,
+    (WNDPROC)widget_wndproc,
     0,
     0,
     GetModuleHandle(NULL),

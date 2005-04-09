@@ -5,12 +5,21 @@ Wrapper for api::gui::widget
 #include <cpaf/gui/widget.h>
 #include <cpaf/api/gui/widget.h>
 
+// for delete_widget_implementation
+#include <cpaf/private/factory.h>
+
 using namespace cpaf::api::gui;
 
-cpaf::gui::Widget::Widget(const WidgetPtr &p)
+cpaf::gui::Widget::Widget(cpaf::api::gui::Widget *p)
     : Object(p),
     m_impl(p)
 { }
+
+cpaf::gui::Widget::~Widget()
+{
+    // delete the implementation safely
+    cpaf::gui::factory::delete_widget_implementation(m_impl);
+}
 
 int cpaf::gui::Widget::get_handle()
 {
