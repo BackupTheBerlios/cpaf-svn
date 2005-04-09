@@ -25,7 +25,7 @@ cpaf::gtk2::gui::Window::~Window()
 void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
 {
     int w, h;
-    
+
     if( gtk_window_get_decorated( GTK_WINDOW(m_widget ) ) )
     {
         long * extents;
@@ -39,7 +39,7 @@ void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
             h = extents[CPAF_EXTENT_TOP] + extents[CPAF_EXTENT_BOTTOM];
             XFree(extents);
         }
-    
+
         if ( (w = s.width - w) < 1)
             w = 1;
         if ( (h = s.height - h) < 1)
@@ -148,11 +148,6 @@ cpaf::Point cpaf::gtk2::gui::Window::get_position()
     return cpaf::Point(root_x, root_y);
 }
 
-void cpaf::gtk2::gui::Window::enable(bool sensitive)
-{
-    gtk_widget_set_sensitive(m_widget, sensitive);
-}
-
 void cpaf::gtk2::gui::Window::show(bool show, bool activate)
 {
     if (show)
@@ -163,16 +158,6 @@ void cpaf::gtk2::gui::Window::show(bool show, bool activate)
     }
     else
         gtk_widget_hide(m_widget);
-}
-
-bool cpaf::gtk2::gui::Window::is_enabled()
-{
-    return GTK_WIDGET_IS_SENSITIVE(m_widget);
-}
-
-bool cpaf::gtk2::gui::Window::is_shown()
-{
-    return GTK_WIDGET_VISIBLE(m_widget);
 }
 
 void cpaf::gtk2::gui::Window::set_title(const std::string &t)
