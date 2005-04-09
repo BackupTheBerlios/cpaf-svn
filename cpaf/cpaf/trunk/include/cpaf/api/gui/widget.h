@@ -32,7 +32,7 @@ public:
     /*!
         \brief Shows or hides a widget.
     */
-    virtual void show(bool show, bool activate) = 0;
+    virtual void show(bool show, bool focus) = 0;
 
     /*!
         This function determines wether or not the widget is enabled. If any of a widget's parents

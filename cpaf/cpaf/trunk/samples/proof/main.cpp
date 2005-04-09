@@ -23,7 +23,7 @@ bool MyApp::init()
     // memleaks, yea yea
     cpaf::gui::Window *wnd = new cpaf::gui::Window;
     wnd->set_title("Hello world!");
-    wnd->show(true, false);
+    wnd->show();
 
     return true;
 }

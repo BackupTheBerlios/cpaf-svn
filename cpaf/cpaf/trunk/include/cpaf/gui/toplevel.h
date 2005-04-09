@@ -27,6 +27,8 @@ protected:
     TopLevel(const cpaf::api::gui::TopLevelPtr &p);
 
 public:
+    virtual void show(bool show = true, bool focus = true);
+
     virtual void set_title(const std::string &t);
     virtual std::string get_title();
 

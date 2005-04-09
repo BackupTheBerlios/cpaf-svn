@@ -12,6 +12,11 @@ cpaf::gui::TopLevel::TopLevel(const TopLevelPtr &p)
     m_impl(p.get())
 { }
 
+void cpaf::gui::TopLevel::show(bool show, bool focus)
+{
+    m_impl->show(show, focus);
+}
+
 void cpaf::gui::TopLevel::set_title(const std::string &t)
 {
     m_impl->set_title(t);
