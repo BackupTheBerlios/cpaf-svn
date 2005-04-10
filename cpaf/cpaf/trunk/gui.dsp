@@ -259,6 +259,75 @@ SOURCE=.\src\cpaf\win32\window.cpp
 
 # End Source File
 # End Group
+# Begin Group "gtk2_s"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\src\cpaf\gtk2\app.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gtk2\factory.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gtk2\utils.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gtk2\widget.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gtk2\window.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
+# End Source File
+# End Group
 # End Group
 # Begin Group "Header Files"
 
@@ -383,6 +452,34 @@ SOURCE=.\include\cpaf\win32\win.h
 # Begin Source File
 
 SOURCE=.\include\cpaf\win32\gui\window.h
+# End Source File
+# End Group
+# Begin Group "gtk2_h"
+
+# PROP Default_Filter ""
+# Begin Group "..gui"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cpaf\gtk2\gui\widget.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cpaf\gtk2\gui\window.h
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=.\include\cpaf\gtk2\factory.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cpaf\gtk2\gtk.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cpaf\gtk2\utils.h
 # End Source File
 # End Group
 # Begin Source File

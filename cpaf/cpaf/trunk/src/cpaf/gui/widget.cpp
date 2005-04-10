@@ -13,7 +13,10 @@ using namespace cpaf::api::gui;
 cpaf::gui::Widget::Widget(cpaf::api::gui::Widget *p)
     : Object(p),
     m_impl(p)
-{ }
+{
+    // add the wrapper / implementation pair to the map
+    cpaf::gui::factory::add_implementation_wrapper(m_impl, this);
+}
 
 cpaf::gui::Widget::~Widget()
 {

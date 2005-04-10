@@ -28,7 +28,7 @@ LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
             }
 
             //! \todo Only do this if we are the main application window...
-            //PostQuitMessage(0);
+            PostQuitMessage(0);
             break;
 
         case WM_GETMINMAXINFO:

@@ -4,6 +4,7 @@ Wrapper for api::gui::TopLevel
 
 #include <cpaf/gui/toplevel.h>
 #include <cpaf/api/gui/toplevel.h>
+#include <cpaf/private/factory.h>
 
 using namespace cpaf::api::gui;
 
@@ -11,7 +12,18 @@ using namespace cpaf::api::gui;
 cpaf::gui::TopLevel::TopLevel(cpaf::api::gui::TopLevel *p)
     : Widget(p),
     m_impl(p)
-{ }
+{ 
+    // because TopLevel widget derivatives are allowed to be on the stack,
+    // their implementation objects must not be allowed to delete them,
+    // so remove ourselves from the wrapper -> implementation map
+    //cpaf::gui::factory::remove_implementation_wrapper(m_impl);
+}
+
+cpaf::gui::TopLevel::~TopLevel()
+{
+    // delete out implementation unconditionally
+    //delete m_impl;
+}
 
 void cpaf::gui::TopLevel::show(bool show, bool focus)
 {

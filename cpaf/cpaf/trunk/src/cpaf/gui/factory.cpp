@@ -42,13 +42,21 @@ void cpaf::gui::factory::add_factory(int key, WidgetFactoryPtr fact)
     widget_factory_map[key] = fact;
 }
 
-
 static cpaf::gui::factory::WidgetImplementationWrapperMap widget_impl_map;
 
 // adds a wrappper implementation pair to the map
 void cpaf::gui::factory::add_implementation_wrapper(cpaf::api::gui::Widget *impl, cpaf::gui::Widget* wrapper)
 {
     widget_impl_map[impl] = wrapper;
+}
+
+void cpaf::gui::factory::remove_implementation_wrapper(cpaf::api::gui::Widget *impl)
+{
+    WidgetImplementationWrapperMap::iterator i = widget_impl_map.find(impl);
+
+    if( i != widget_impl_map.end() )
+        widget_impl_map.erase(i);
+    //! \todo I should throw here
 }
 
 // called by gui::Foo destructors to delete their implementations only if the impl pointer is

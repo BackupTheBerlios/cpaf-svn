@@ -77,6 +77,10 @@ typedef std::map<cpaf::api::gui::Widget *, cpaf::gui::Widget *> WidgetImplementa
 // adds a wrappper implementation pair to the map
 void add_implementation_wrapper(cpaf::api::gui::Widget *impl, cpaf::gui::Widget* wrapper);
 
+// removes a wrapper implementation pair from the map but does not delete the implementation or wrapper objects
+// this is called by top level wrapper ctors to allow creation of them on the stack
+void remove_implementation_wrapper(cpaf::api::gui::Widget *impl);
+
 // called by gui::Foo destructors to delete their implementations only if the impl pointer is
 // in the map. If the impl pointer is in the map, it will be removed, and then deleted.
 void delete_widget_implementation(cpaf::api::gui::Widget *impl);
