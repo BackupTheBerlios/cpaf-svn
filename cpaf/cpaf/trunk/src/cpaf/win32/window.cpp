@@ -64,7 +64,7 @@ LRESULT CALLBACK window_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
     } // win32
 } // cpaf
 
-cpaf::win32::gui::Window::Window()
+cpaf::win32::gui::Window::Window(cpaf::api::gui::Window *parent)
 {
     static bool registered = false;
 
@@ -72,8 +72,14 @@ cpaf::win32::gui::Window::Window()
     if( !registered )
         ::RegisterClassEx(&wnd_class);
 
+    HWND hparent;
+    if( parent )
+        hparent = (HWND)parent->get_handle();
+    else
+        hparent = ::GetDesktopWindow();
+
     m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPEDWINDOW ,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, ::GetDesktopWindow(), NULL, ::GetModuleHandle(NULL),
+        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
         NULL);
 
     widget_map_add_hwnd(m_hwnd, this);

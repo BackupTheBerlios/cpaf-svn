@@ -30,6 +30,8 @@ protected:
 public:
     virtual ~TopLevel();
 
+    operator cpaf::api::gui::TopLevel *();
+
     virtual void show(bool show = true, bool focus = true);
 
     virtual void set_title(const std::string &t);

@@ -15,17 +15,6 @@ namespace cpaf {
 class CPAF_API Object
 {
 protected:
-    // Widget and Object are responsible for cleaning up the implementation object
-    // so they use the booast::shared_ptr typedefs instead of raw pointers
-    /*
-#if _MSC_VER
-#   pragma warning(disable:4251) // class 'boost::shared_ptr<>' needs to have dll-interface to be used by clients
-#endif
-    cpaf::api::gui::ObjectPtr m_impl;
-#if _MSV_VER
-#   pragma warning(default:4251)
-#endif
-    */
     cpaf::api::gui::Object *m_impl;
 
     //Object(const cpaf::api::gui::ObjectPtr &p);
@@ -33,6 +22,8 @@ protected:
 
 public:
     virtual ~Object();
+
+    operator cpaf::api::gui::Object *();
 
     virtual void set_size(const cpaf::Size &s);
     virtual void set_min_size(const cpaf::Size &s);

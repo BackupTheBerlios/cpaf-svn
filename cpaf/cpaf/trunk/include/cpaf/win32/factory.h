@@ -8,11 +8,13 @@ win32 factories
 #include <cpaf/gui/api-prototypes.h>
 
 namespace cpaf {
-   namespace win32 {
+    namespace gui { Widget; }
+    namespace win32 {
         namespace gui {
             namespace factory {
 
-cpaf::api::gui::Widget *create_window();
+cpaf::api::gui::Widget *create_window(cpaf::api::gui::Widget *parent);
+cpaf::api::gui::Widget *create_button(cpaf::api::gui::Widget *parent);
 
             } // factory
         } // gui

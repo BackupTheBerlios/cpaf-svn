@@ -27,7 +27,7 @@ LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
                 delete wnd;
             }
 
-            //! \todo Only do this if we are the main application window...
+            //! \todo Decide when to terminate an application
             PostQuitMessage(0);
             break;
 

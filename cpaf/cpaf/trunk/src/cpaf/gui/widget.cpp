@@ -24,6 +24,11 @@ cpaf::gui::Widget::~Widget()
     cpaf::gui::factory::delete_widget_implementation(m_impl);
 }
 
+cpaf::gui::Widget::operator cpaf::api::gui::Widget *()
+{
+    return m_impl;
+}
+
 int cpaf::gui::Widget::get_handle()
 {
     return m_impl->get_handle();

@@ -24,12 +24,15 @@ private:
     cpaf::api::gui::Window *m_impl;
 
 public:
-    Window();
+    //! \todo this should ask for a api::gui parent...
+    Window(cpaf::gui::Window *parent = NULL);
 
 protected:
     //Window(const cpaf::api::gui::WindowPtr &p);
     Window(cpaf::api::gui::Window *p);
 
+public:
+    operator cpaf::api::gui::Window *();
 };
 
     } // gui

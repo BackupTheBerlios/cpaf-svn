@@ -13,20 +13,13 @@ this object is not createable by client code
 namespace cpaf {
     namespace gui {
 
+        class App;
+
 class CPAF_API Widget : public Object
 {
+    friend class cpaf::gui::App;
+
 protected:
-    // Widget and Object are responsible for cleaning up the implementation object
-    // so they use the boost::shared_ptr typedefs instead of raw pointers
-    /*
-#if _MSC_VER
-#   pragma warning(disable:4251) // class 'boost::shared_ptr<>' needs to have dll-interface to be used by clients
-#endif
-    cpaf::api::gui::WidgetPtr m_impl;
-#if _MSV_VER
-#   pragma warning(default:4251)
-#endif
-    */
     cpaf::api::gui::Widget *m_impl;
 
     //Widget(const cpaf::api::gui::WidgetPtr &p);
@@ -34,6 +27,8 @@ protected:
 
 public:
     virtual ~Widget();
+
+    operator cpaf::api::gui::Widget *();
 
     virtual int get_handle();
     virtual void enable(bool e);

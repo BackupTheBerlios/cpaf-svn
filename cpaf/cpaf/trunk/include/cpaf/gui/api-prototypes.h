@@ -20,6 +20,7 @@ namespace cpaf {
             //typedef boost::shared_ptr<cpaf::api::gui::Window> WindowPtr;
             class Sizer;
             //typedef boost::shared_ptr<cpaf::api::gui::Sizer> SizerPtr;
+            class Button;
         } // gui
     } // api
 } // cpaf

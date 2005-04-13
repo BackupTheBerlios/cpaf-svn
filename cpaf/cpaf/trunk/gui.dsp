@@ -104,11 +104,26 @@ SOURCE=.\src\cpaf\gui\app.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
 
-# PROP Intermediate_Dir "build/Release/gui"
+# PROP Intermediate_Dir "build/release"
 
 !ELSEIF  "$(CFG)" == "gui - Win32 Debug"
 
-# PROP Intermediate_Dir "build/Debug/gui"
+# PROP Intermediate_Dir "build/gui/Debug"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\gui\button.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/gui/Debug"
 
 !ENDIF 
 
@@ -119,11 +134,11 @@ SOURCE=.\src\cpaf\gui\factory.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
 
-# PROP Intermediate_Dir "build/Release/gui"
+# PROP Intermediate_Dir "build/release"
 
 !ELSEIF  "$(CFG)" == "gui - Win32 Debug"
 
-# PROP Intermediate_Dir "build/Debug/gui"
+# PROP Intermediate_Dir "build/gui/Debug"
 
 !ENDIF 
 
@@ -131,6 +146,17 @@ SOURCE=.\src\cpaf\gui\factory.cpp
 # Begin Source File
 
 SOURCE=.\src\cpaf\gui\object.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/gui/Debug"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -138,11 +164,11 @@ SOURCE=.\src\cpaf\gui\toplevel.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
 
-# PROP Intermediate_Dir "build/Release/gui"
+# PROP Intermediate_Dir "build/release"
 
 !ELSEIF  "$(CFG)" == "gui - Win32 Debug"
 
-# PROP Intermediate_Dir "build/Debug/gui"
+# PROP Intermediate_Dir "build/gui/Debug"
 
 !ENDIF 
 
@@ -153,11 +179,11 @@ SOURCE=.\src\cpaf\gui\widget.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
 
-# PROP Intermediate_Dir "build/Release/gui"
+# PROP Intermediate_Dir "build/release"
 
 !ELSEIF  "$(CFG)" == "gui - Win32 Debug"
 
-# PROP Intermediate_Dir "build/Debug/gui"
+# PROP Intermediate_Dir "build/gui/Debug"
 
 !ENDIF 
 
@@ -168,11 +194,11 @@ SOURCE=.\src\cpaf\gui\window.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
 
-# PROP Intermediate_Dir "build/Release/gui"
+# PROP Intermediate_Dir "build/release"
 
 !ELSEIF  "$(CFG)" == "gui - Win32 Debug"
 
-# PROP Intermediate_Dir "build/Debug/gui"
+# PROP Intermediate_Dir "build/gui/Debug"
 
 !ENDIF 
 
@@ -181,14 +207,47 @@ SOURCE=.\src\cpaf\gui\window.cpp
 # Begin Source File
 
 SOURCE=.\src\cpaf\api.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\src\cpaf\app.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
 SOURCE=.\src\cpaf\main.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/Debug"
+
+!ENDIF 
+
 # End Source File
 # End Group
 # Begin Group "win32_s"
@@ -197,6 +256,21 @@ SOURCE=.\src\cpaf\main.cpp
 # Begin Source File
 
 SOURCE=.\src\cpaf\win32\app.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/win32/Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/win32/Debug"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\win32\button.cpp
 
 !IF  "$(CFG)" == "gui - Win32 Release"
 
@@ -227,6 +301,17 @@ SOURCE=.\src\cpaf\win32\factory.cpp
 # Begin Source File
 
 SOURCE=.\src\cpaf\win32\widget.cpp
+
+!IF  "$(CFG)" == "gui - Win32 Release"
+
+# PROP Intermediate_Dir "build/win32/Release"
+
+!ELSEIF  "$(CFG)" == "gui - Win32 Debug"
+
+# PROP Intermediate_Dir "build/win32/Debug"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -363,6 +448,10 @@ SOURCE=.\include\cpaf\gui\app.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\include\cpaf\gui\button.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\include\cpaf\gui\object.h
 # End Source File
 # Begin Source File
@@ -395,6 +484,10 @@ SOURCE=.\include\cpaf\gui\window.h
 # Begin Group "_gui"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cpaf\api\gui\button.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\include\cpaf\api\gui\object.h
@@ -437,6 +530,10 @@ SOURCE=.\include\cpaf\main.h
 # Begin Group "win32_h"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\include\cpaf\win32\gui\button.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\include\cpaf\win32\factory.h

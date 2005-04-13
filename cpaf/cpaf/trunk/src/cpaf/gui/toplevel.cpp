@@ -25,6 +25,11 @@ cpaf::gui::TopLevel::~TopLevel()
     //delete m_impl;
 }
 
+cpaf::gui::TopLevel::operator cpaf::api::gui::TopLevel *()
+{
+    return m_impl;
+}
+
 void cpaf::gui::TopLevel::show(bool show, bool focus)
 {
     m_impl->show(show, focus);

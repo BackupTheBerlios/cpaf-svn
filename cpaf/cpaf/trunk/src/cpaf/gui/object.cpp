@@ -13,6 +13,11 @@ cpaf::gui::Object::Object(cpaf::api::gui::Object *p)
 
 cpaf::gui::Object::~Object() { }    
 
+cpaf::gui::Object::operator cpaf::api::gui::Object *()
+{
+    return m_impl;
+}
+
 void cpaf::gui::Object::set_size(const cpaf::Size &s)
 {
     m_impl->set_size(s);

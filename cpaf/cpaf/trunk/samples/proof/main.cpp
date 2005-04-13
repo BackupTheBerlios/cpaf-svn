@@ -11,6 +11,7 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/main.h>
 #include <cpaf/gui/app.h>
 #include <cpaf/gui/window.h>
+#include <cpaf/gui/button.h>
 
 class MyApp : public cpaf::gui::App
 {
@@ -22,8 +23,10 @@ bool MyApp::init()
 {
     // memleaks, yea yea
     cpaf::gui::Window *wnd = new cpaf::gui::Window;
+    cpaf::gui::Button *btn = new cpaf::gui::Button(wnd);
     wnd->show();
     wnd->set_title("Hello World!");
+    btn->show();
     //delete wnd;
 
     return true;
