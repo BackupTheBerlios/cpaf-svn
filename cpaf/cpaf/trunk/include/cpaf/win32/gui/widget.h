@@ -48,7 +48,7 @@ public:
     virtual cpaf::Point get_position();
 
     // widget interface
-    virtual int get_handle() { return 0; }
+    virtual void *get_handle() { return m_hwnd; }
     virtual void enable(bool e);
     virtual void show(bool show, bool focus);
     virtual bool is_enabled();

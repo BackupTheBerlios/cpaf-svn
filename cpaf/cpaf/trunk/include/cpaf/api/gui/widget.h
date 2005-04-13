@@ -20,9 +20,11 @@ class Widget : public virtual Object
 public:
 
     /*!
-        \return A native handle for the widget.
+        \return A native handle for the widget. This value is returned as a void*, and how you use this value
+            is dependant on the port you are working with. For win32, simply casting the return value to a HWND
+            is sufficient.
     */
-    virtual int get_handle() = 0; // int return value for now...
+    virtual void *get_handle() = 0;
 
     /*!
         \brief Enables or disables the widget. Disabled widgets cannot recieve user input.

@@ -30,7 +30,7 @@ public:
 
     operator cpaf::api::gui::Widget *();
 
-    virtual int get_handle();
+    virtual void *get_handle();
     virtual void enable(bool e);
     virtual void disable();
     virtual void show(bool show = true, bool focus = false);

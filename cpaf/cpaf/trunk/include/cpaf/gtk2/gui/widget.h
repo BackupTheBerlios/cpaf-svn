@@ -36,7 +36,7 @@ public:
     virtual cpaf::Point get_position() { return cpaf::Point(); }
 
     // widget interface
-    virtual int get_handle() { return (int)(void*)m_widget; }
+    virtual void *get_handle() { return (void*)m_widget; }
     virtual void enable(bool sensitive);
     virtual void show(bool show, bool activate);
     virtual bool is_enabled();

@@ -29,7 +29,7 @@ cpaf::gui::Widget::operator cpaf::api::gui::Widget *()
     return m_impl;
 }
 
-int cpaf::gui::Widget::get_handle()
+void *cpaf::gui::Widget::get_handle()
 {
     return m_impl->get_handle();
 }
