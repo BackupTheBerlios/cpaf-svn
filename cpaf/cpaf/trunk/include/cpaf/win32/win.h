@@ -22,19 +22,26 @@ class Widget;
 
 typedef std::map<HWND, cpaf::win32::gui::Widget *> WidgetMap;
 
-extern WidgetMap widget_map;
+//extern WidgetMap widget_map;
 
-template <typename T> T *get_widget_from_hwnd(HWND h)
-{
-    WidgetMap::iterator i = widget_map.find(h);
-    if( i != widget_map.end() )
-        return dynamic_cast<T*>(i->second);
-    else
-        return NULL;
-}
+//template <typename T> T *get_widget_from_hwnd(HWND h)
+cpaf::win32::gui::Widget *get_widget_from_hwnd(HWND h);
 
 void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd);
 void widget_map_remove_hwnd(HWND h);
+
+/*!
+    Structure containing information passed to the window procedure through WM_CREATE.
+    The reason I use this is because I cannot pass 'this' directly though lpParam of
+    CreateWindowEx as a void*. Once it is recieved by the window procedure, it is a broken
+    pointer unless it is assigned to a pointer of its original class. This original class is
+    unknown. To avoid pointer breakage, the 'this' pointer will be passed through this struct
+    which is passed through lpParam, thus preventing casting breakage. The casting breakage is
+    caused by the judicious use of virtual base classes; c-style casts will not work because of them.
+*/
+struct CreationInfo {
+    Widget *wnd; //! The object creating this window
+};
 
         } // gui
     } // win32

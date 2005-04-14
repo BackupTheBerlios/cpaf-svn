@@ -3,7 +3,7 @@ cpaf::win32::gui::Widget implementation
 */
 
 #include <cpaf/win32/gui/widget.h>
-
+#include <cpaf/win32/gui/window.h>
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
@@ -13,13 +13,32 @@ namespace cpaf {
     namespace win32 {
         namespace gui {
 
-LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-    Widget *wnd = get_widget_from_hwnd<Widget>(hwnd);
+    Widget *wnd = get_widget_from_hwnd/*<Widget>*/(hwnd);
 
-    switch(uMsg)
+    switch(msg)
     {
+        case WM_NCCREATE:
+        {
+            break;
+        }
+
+        case WM_CREATE:
+        {
+            // lpCreateParams of CREATESTRUCT specifies the address of a CreationInfo struct.
+            // This struct currently contains a pointer to the object creating this window.
+
+            //! \todo Send create event
+            LPCREATESTRUCT create = (LPCREATESTRUCT)l_param;
+            CreationInfo *info = (CreationInfo*)create->lpCreateParams;
+            widget_map_add_hwnd(hwnd, info->wnd);
+            break;
+        }
+
         case WM_DESTROY:
+            //! \todo send destroy event
+
             // destroy the widget instance if we need to
             if( wnd && wnd->m_delete )
             {
@@ -33,7 +52,7 @@ LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
         case WM_GETMINMAXINFO:
         {
-            MINMAXINFO *info = (MINMAXINFO*)lParam;
+            MINMAXINFO *info = (MINMAXINFO*)l_param;
             if( wnd )
             {
                 if( wnd->m_max_size.width != -1 )
@@ -52,7 +71,7 @@ LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
     }
 
-    return DefWindowProc(hwnd, uMsg, wParam, lParam);
+    return DefWindowProc(hwnd, msg, w_param, l_param);
 }
 
         } // gui
@@ -79,6 +98,11 @@ cpaf::win32::gui::Widget::~Widget()
 
     // delete our wrapper safely
     cpaf::gui::factory::delete_implementation_wrapper(this);
+}
+
+int cpaf::win32::gui::Widget::process_message(HWND hwnd, MSG msg, WPARAM w_param, LPARAM l_param)
+{
+    return 0;
 }
 
 void cpaf::win32::gui::Widget::set_size(const cpaf::Size &s)

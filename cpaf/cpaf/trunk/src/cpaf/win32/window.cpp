@@ -11,7 +11,7 @@ using namespace cpaf::win32::gui;
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
-    (WNDPROC)widget_wndproc,
+    (WNDPROC)widget_wndproc, // subclass to use window_wndproc later
     0,
     0,
     GetModuleHandle(NULL),
@@ -22,6 +22,7 @@ static WNDCLASSEX wnd_class = {
     CLASSNAME
 };
 
+/*
 namespace cpaf {
     namespace win32 {
         namespace gui {
@@ -64,11 +65,15 @@ LRESULT CALLBACK window_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
     } // win32
 } // cpaf
 
+*/
+
 cpaf::win32::gui::Window::Window(cpaf::api::gui::Window *parent)
 {
     static bool registered = false;
 
     // register the window class
+    //! \todo This may leak some memory because window classes registered by dll's are not unloaded
+    // by the NT kernel, but they are on flavors of win 95.
     if( !registered )
         ::RegisterClassEx(&wnd_class);
 
@@ -78,11 +83,12 @@ cpaf::win32::gui::Window::Window(cpaf::api::gui::Window *parent)
     else
         hparent = ::GetDesktopWindow();
 
+    // initialize creation info
+    CreationInfo info = { this };
+
     m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPEDWINDOW ,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
-        NULL);
-
-    widget_map_add_hwnd(m_hwnd, this);
+        &info);
 }
 
 std::string cpaf::win32::gui::Window::get_title()
