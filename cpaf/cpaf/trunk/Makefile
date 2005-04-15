@@ -4,8 +4,8 @@ OBJ_DIR = build
 OUTPUT_DIR = lib
 TARGET = libcpaf_gui_gtk2d.so
 INCLUDE_DIRS = -I include -I .
-CXXFLAGS = -pipe -DCPAF_GTK2 -DCPAF_BUILDING -DCPAF_DLL `pkg-config --cflags gtk+-2.0` -ggdb -Wall -fvisibility-inlines-hidden -fvisibility=hidden
-LD_FLAGS = -shared -fpic `pkg-config --libs gtk+-2.0`
+CXXFLAGS = -pipe -DCPAF_GTK2 -DCPAF_BUILDING -DCPAF_DLL `PKG_CONFIG_PATH=~/.ROOT/lib/pkgconfig pkg-config --cflags gtk+-2.0` -ggdb -Wall -fvisibility-inlines-hidden -fvisibility=hidden
+LD_FLAGS = -shared -fpic -Wl,-rpath,/home/leio/.ROOT/lib `PKG_CONFIG_PATH=~/.ROOT/lib/pkgconfig pkg-config --libs gtk+-2.0`
 
 SRC_OBJS =                     \
 	$(OBJ_DIR)/gui/app.o       \
@@ -14,10 +14,12 @@ SRC_OBJS =                     \
 	$(OBJ_DIR)/gui/toplevel.o  \
 	$(OBJ_DIR)/gui/factory.o   \
 	$(OBJ_DIR)/gui/window.o    \
+	$(OBJ_DIR)/gui/button.o    \
 	$(OBJ_DIR)/gtk2/app.o      \
 	$(OBJ_DIR)/gtk2/factory.o  \
 	$(OBJ_DIR)/gtk2/widget.o   \
 	$(OBJ_DIR)/gtk2/window.o   \
+	$(OBJ_DIR)/gtk2/button.o   \
 	$(OBJ_DIR)/gtk2/utils.o    \
 	$(OBJ_DIR)/main.o          \
 	$(OBJ_DIR)/app.o           \
@@ -74,6 +76,9 @@ $(OBJ_DIR)/gui/factory.o: src/cpaf/gui/factory.cpp
 $(OBJ_DIR)/gui/window.o: src/cpaf/gui/window.cpp
 	$(compile_source)
 
+$(OBJ_DIR)/gui/button.o: src/cpaf/gui/button.cpp
+	$(compile_source)
+
 $(OBJ_DIR)/gtk2/app.o: src/cpaf/gtk2/app.cpp
 	$(compile_source)
 
@@ -84,6 +89,9 @@ $(OBJ_DIR)/gtk2/widget.o: src/cpaf/gtk2/widget.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/window.o: src/cpaf/gtk2/window.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gtk2/button.o: src/cpaf/gtk2/button.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/utils.o: src/cpaf/gtk2/utils.cpp
