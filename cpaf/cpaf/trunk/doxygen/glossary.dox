@@ -31,7 +31,7 @@
 		"widget" can be considered a "window", although Widget and \ref g_window Window are \b not
 		the same thing!
 
-	\subsection g_widget Window
+	\subsection g_window Window
 		A Window explicitly refers to a top level \ref g_widget Widget that contains a title bar and
 		\ref g_subwindow Subwindows. For Microsoft Windows programmers, this is \b not the same as a "window",
 		and is instead a "frame", or CFrameWnd for MFC programmers. Do not confuse Window and Widget!
