@@ -7,14 +7,22 @@
 #include <cpaf/private/factory.h>
 #include <cpaf/gtk2/factory.h>
 #include <cpaf/gtk2/gui/window.h>
+#include <cpaf/gtk2/gui/button.h>
 
-cpaf::api::gui::Widget *cpaf::gtk2::gui::factory::create_window()
+cpaf::api::gui::Widget *cpaf::gtk2::gui::factory::create_window(cpaf::api::gui::Widget *parent)
 {
-    return new cpaf::gtk2::gui::Window;
+    return new cpaf::gtk2::gui::Window( dynamic_cast<cpaf::api::gui::Window*>(parent) );
+}
+
+cpaf::api::gui::Widget *cpaf::gtk2::gui::factory::create_button(cpaf::api::gui::Widget *parent)
+{
+    return new cpaf::gtk2::gui::Button( parent );
 }
 
 void cpaf::gui::factory::register_factories()
 {
-    // register window factory
-    cpaf::gui::factory::register_widget_factory<cpaf::api::gui::Window>(cpaf::gtk2::gui::factory::create_window);
+    // register widget factories
+    cpaf::gui::factory::register_widget_factory(cpaf::api::gui::Window::factory_key, cpaf::gtk2::gui::factory::create_window);
+    cpaf::gui::factory::register_widget_factory(cpaf::api::gui::Button::factory_key, cpaf::gtk2::gui::factory::create_button);
+
 }

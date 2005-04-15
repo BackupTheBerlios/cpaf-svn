@@ -10,15 +10,16 @@
 #include <cpaf/gui/api-prototypes.h>
 
 namespace cpaf {
-   namespace gtk2 {
+    namespace gtk2 {
         namespace gui {
             namespace factory {
 
-cpaf::api::gui::Widget *create_window();
+cpaf::api::gui::Widget *create_window(cpaf::api::gui::Widget *parent);
+cpaf::api::gui::Widget *create_button(cpaf::api::gui::Widget *parent);
 
             } // factory
         } // gui
-   } // gtk2
+    } // gtk2
 } // cpaf
 
 #endif // CPAF_GTK2_FACTORY_H

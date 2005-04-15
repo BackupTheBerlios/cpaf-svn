@@ -21,11 +21,11 @@ public:
 
     /*!
         \brief Sets the label of the button
-        
+
         \todo Move this to the common base
     */
     virtual void set_label(const std::string &label) = 0;
-    
+
     /*!
         \return The button label
 

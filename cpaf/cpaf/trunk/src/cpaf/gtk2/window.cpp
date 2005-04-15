@@ -9,12 +9,16 @@
 
 #include <gtk/gtk.h>
 
-cpaf::gtk2::gui::Window::Window()
+cpaf::gtk2::gui::Window::Window(cpaf::api::gui::Window *parent)
+    : Widget(gtk_window_new(GTK_WINDOW_TOPLEVEL))
 {
-    m_widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    if (parent)
+        gtk_window_set_transient_for(GTK_WINDOW(m_widget),
+                                     GTK_WINDOW(parent->get_handle()));
 
     // Quit the application for now when the toplevel is closed
-    g_signal_connect_swapped(G_OBJECT(m_widget), "delete-event", gtk_main_quit, NULL);
+    g_signal_connect_swapped(m_widget, "delete-event",
+                             G_CALLBACK (gtk_main_quit), NULL);
 }
 
 void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)

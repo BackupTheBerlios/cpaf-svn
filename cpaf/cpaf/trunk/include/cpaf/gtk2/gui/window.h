@@ -22,7 +22,7 @@ namespace cpaf {
 class Window : public cpaf::gtk2::gui::Widget, cpaf::api::gui::Window
 {
 public:
-    Window();
+    Window(cpaf::api::gui::Window *parent);
 
     // object interface
     virtual void set_size(const cpaf::Size&);

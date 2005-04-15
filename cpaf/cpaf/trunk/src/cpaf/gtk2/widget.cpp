@@ -11,12 +11,18 @@
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
-cpaf::gtk2::gui::Widget::Widget()
-{ }
+cpaf::gtk2::gui::Widget::Widget(GtkWidget * widget)
+    : m_widget(widget)
+{
+    // Set m_widget to NULL when gtk+ internally destroys the widget
+    g_signal_connect_after(m_widget, "destroy",
+                           G_CALLBACK (gtk_widget_destroyed), &m_widget);
+}
 
 cpaf::gtk2::gui::Widget::~Widget()
 {
-    gtk_widget_destroy(m_widget);
+    if (m_widget)
+        gtk_widget_destroy(m_widget);
 
     // delete our wrapper object safely
     cpaf::gui::factory::delete_implementation_wrapper(this);
