@@ -24,6 +24,7 @@ bool MyApp::init()
     // memleaks, yea yea
     cpaf::gui::Window *wnd = new cpaf::gui::Window;
     cpaf::gui::Button *btn = new cpaf::gui::Button(wnd);
+    btn->set_label("Hello World!");
     wnd->show();
     wnd->set_title("Hello World!");
     btn->show();
