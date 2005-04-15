@@ -13,7 +13,7 @@ static int get_key()
     return ++next;
 }
 
-int cpaf::api::gui::Window::factory_key = 6;
-int cpaf::api::gui::Button::factory_key = 1000;
+int cpaf::api::gui::Window::factory_key = get_key();
+int cpaf::api::gui::Button::factory_key = get_key();
 
 cpaf::api::gui::Object::~Object() { }
