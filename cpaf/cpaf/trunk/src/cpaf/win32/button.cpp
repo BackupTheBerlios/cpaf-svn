@@ -5,6 +5,16 @@ cpaf::win32::gui::Button implementation
 #include <cpaf/win32/gui/button.h>
 #include <cpaf/gui/widget.h>
 
+using namespace cpaf::win32::gui;
+
+static WNDPROC old_proc = 0;
+
+// Window procedure for our buttons
+static LRESULT CALLBACK button_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+{
+    return cpaf::win32::gui::widget_wndproc(old_proc, hwnd, msg, w_param, l_param);
+}
+
 cpaf::win32::gui::Button::Button(cpaf::api::gui::Widget *parent)
 {
     static bool wnd_proc_replaced = false;
@@ -22,7 +32,9 @@ cpaf::win32::gui::Button::Button(cpaf::api::gui::Widget *parent)
             ;//! \todo Um...this is bad, so most likely need to throw here
         else
         {
-            WNDPROC old_proc = (WNDPROC)::SetClassLong(btn, GCL_WNDPROC, (LONG)cpaf::win32::gui::widget_wndproc);
+            // replace the old window procedure with our own instead of hooking WM_CREATE
+            old_proc = (WNDPROC)::SetClassLong(btn, GCL_WNDPROC, (LONG)button_wndproc);
+            m_old_proc = old_proc;
             DestroyWindow(btn);
         }
     }
@@ -33,7 +45,7 @@ cpaf::win32::gui::Button::Button(cpaf::api::gui::Widget *parent)
     else
         ; //! \todo throw here, buttons must have parents
 
-    CreationInfo info = { this };
+    CreationInfo info(this);
 
     m_hwnd = ::CreateWindowEx(0, "BUTTON", "Cpaf!!", WS_CHILD | BS_PUSHBUTTON,
         0, 0, 100, 25, hparent, NULL, ::GetModuleHandle(NULL),

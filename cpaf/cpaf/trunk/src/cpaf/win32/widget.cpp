@@ -9,77 +9,10 @@ cpaf::win32::gui::Widget implementation
 
 using namespace cpaf::win32::gui;
 
-namespace cpaf {
-    namespace win32 {
-        namespace gui {
-
-LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
-{
-    Widget *wnd = get_widget_from_hwnd/*<Widget>*/(hwnd);
-
-    switch(msg)
-    {
-        case WM_NCCREATE:
-        {
-            break;
-        }
-
-        case WM_CREATE:
-        {
-            // lpCreateParams of CREATESTRUCT specifies the address of a CreationInfo struct.
-            // This struct currently contains a pointer to the object creating this window.
-
-            //! \todo Send create event
-            LPCREATESTRUCT create = (LPCREATESTRUCT)l_param;
-            CreationInfo *info = (CreationInfo*)create->lpCreateParams;
-            widget_map_add_hwnd(hwnd, info->wnd);
-            break;
-        }
-
-        case WM_DESTROY:
-            //! \todo send destroy event
-
-            // destroy the widget instance if we need to
-            if( wnd && wnd->m_delete )
-            {
-                wnd->m_delete = false;
-                delete wnd;
-            }
-
-            //! \todo Decide when to terminate an application
-            PostQuitMessage(0);
-            break;
-
-        case WM_GETMINMAXINFO:
-        {
-            MINMAXINFO *info = (MINMAXINFO*)l_param;
-            if( wnd )
-            {
-                if( wnd->m_max_size.width != -1 )
-                    info->ptMaxTrackSize.x = wnd->m_max_size.width;
-                if( wnd->m_max_size.height != -1 )
-                    info->ptMaxTrackSize.y = wnd->m_max_size.height;
-                if( wnd->m_min_size.width != -1 )
-                    info->ptMinTrackSize.x = wnd->m_min_size.width;
-                if( wnd->m_min_size.height != -1 )
-                    info->ptMinTrackSize.y = wnd->m_min_size.height;
-                return 0;
-            }
-            else
-                break;
-        }
-
-    }
-
-    return DefWindowProc(hwnd, msg, w_param, l_param);
-}
-
-        } // gui
-    } // win32
-} // cpaf
-
 cpaf::win32::gui::Widget::Widget()
     : m_delete(true),
+    m_hwnd(0),
+    m_old_proc(0),
     m_max_size(-1,-1),
     m_min_size(-1,-1)
 { }
@@ -100,9 +33,71 @@ cpaf::win32::gui::Widget::~Widget()
     cpaf::gui::factory::delete_implementation_wrapper(this);
 }
 
-int cpaf::win32::gui::Widget::process_message(HWND hwnd, MSG msg, WPARAM w_param, LPARAM l_param)
+int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-    return 0;
+    switch(msg)
+    {
+        case WM_NCCREATE:
+        {
+            break;
+        }
+
+        case WM_CREATE:
+        {
+            // lpCreateParams of CREATESTRUCT specifies the address of a CreationInfo struct.
+            // This struct currently contains a pointer to the object creating this window.
+
+            //! \todo Send create event
+            LPCREATESTRUCT create = (LPCREATESTRUCT)l_param;
+            CreationInfo *info = (CreationInfo*)create->lpCreateParams;
+            widget_map_add_hwnd(hwnd, info->wnd);
+            break;
+        }
+
+        case WM_DESTROY:
+        {
+            //! \todo send destroy event
+
+            // process native event first, because m_old_proc will be invalid once
+            // 'delete this' is executed
+            int ret;
+            if( m_old_proc )
+                ret = ::CallWindowProc(m_old_proc, hwnd, msg, w_param, l_param);
+            else
+                ret = ::DefWindowProc(hwnd, msg, w_param, l_param);
+
+            // destroy the widget instance if we need to
+            if( m_delete )
+            {
+                m_delete = false;
+                delete this;
+            }
+
+            //! \todo Decide when to terminate an application
+            PostQuitMessage(0);
+            return ret;
+        }
+
+        case WM_GETMINMAXINFO:
+        {
+            MINMAXINFO *info = (MINMAXINFO*)l_param;
+            if( m_max_size.width != -1 )
+                info->ptMaxTrackSize.x = m_max_size.width;
+            if( m_max_size.height != -1 )
+                info->ptMaxTrackSize.y = m_max_size.height;
+            if( m_min_size.width != -1 )
+                info->ptMinTrackSize.x = m_min_size.width;
+            if( m_min_size.height != -1 )
+                info->ptMinTrackSize.y = m_min_size.height;
+            return 0;
+        }
+
+    }
+
+    if( m_old_proc )
+        return ::CallWindowProc(m_old_proc, hwnd, msg, w_param, l_param);
+    else
+        return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
 
 void cpaf::win32::gui::Widget::set_size(const cpaf::Size &s)

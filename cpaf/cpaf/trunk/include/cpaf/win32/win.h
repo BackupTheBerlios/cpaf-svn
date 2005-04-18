@@ -14,7 +14,6 @@ common header for win32 implementation
 #include <map>
 
 namespace cpaf {
-
     namespace win32 {
         namespace gui {
 
@@ -41,7 +40,15 @@ void widget_map_remove_hwnd(HWND h);
 */
 struct CreationInfo {
     Widget *wnd; //! The object creating this window
+
+    CreationInfo(Widget *w);
 };
+
+/*!
+    This is the window procedure which is implemented outside of the win32::gui::widget classes.
+    It is called by the window procedures for all widgets and contains only common functionality.
+*/
+LRESULT CALLBACK widget_wndproc(WNDPROC old_proc, HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
         } // gui
     } // win32

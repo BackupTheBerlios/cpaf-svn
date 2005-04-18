@@ -1,0 +1,18 @@
+An illustration of object deletion for cpaf
+
+This is what happens once 'a' destructs.
+'b' and 'c' are children of 'a'.
+
+                  _____     _____     _____      
+  gui wrappers    | a |     | b |     | c |      
+                  |___|     |___|     |___|      
+                    |        /|\       /|\       
+                    |         |         |        
+                  _\|/_     __|__     __|__      
+  implementations |   |     |   |     |   |      
+                  |___|     |___|     |___|      
+                    |        /|\       /|\       
+                    |         |         |        
+                  _\|/_     __|__     __|__      
+  native          |   |---->|   |---->|   |      
+                  |___|     |___|     |___|       

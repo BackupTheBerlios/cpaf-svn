@@ -19,7 +19,6 @@ namespace cpaf {
 
 class Widget : public virtual cpaf::api::gui::Widget
 {
-    friend LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 private:
     bool m_delete;
 
@@ -30,19 +29,21 @@ protected:
     // it will delete the window object only if this flag is true. It will set it to false before the delete.
 
     HWND m_hwnd;
+    WNDPROC m_old_proc; // old window procedure
+
     cpaf::Size m_min_size, m_max_size;
 
     Widget();
 
+public:
     /*
         Instead of subclassing window procedures to simulate inheritance, there is only
         one window procedure, which is widget_wndproc. This function calls process_message
         which does all message processing. process_message is responsible for knowing wether or
         not to call DefWindowProc, or some other window procedure.
     */
-    virtual int process_message(HWND hwnd, MSG msg, WPARAM w_param, LPARAM l_param);
+    virtual int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
-public:
     virtual ~Widget();
 
     // object interface

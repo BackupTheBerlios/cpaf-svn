@@ -11,7 +11,7 @@ using namespace cpaf::win32::gui;
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
-    (WNDPROC)widget_wndproc, // subclass to use window_wndproc later
+    (WNDPROC)window_wndproc, // subclass to use window_wndproc later
     0,
     0,
     GetModuleHandle(NULL),
@@ -22,50 +22,19 @@ static WNDCLASSEX wnd_class = {
     CLASSNAME
 };
 
-/*
 namespace cpaf {
     namespace win32 {
         namespace gui {
 
-LRESULT CALLBACK window_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-    Window *wnd = get_widget_from_hwnd<Window>(hwnd);
-
-    switch(uMsg)
-    {
-        case WM_DESTROY:
-            PostQuitMessage(0);
-            break;
-
-        case WM_GETMINMAXINFO:
-        {
-            MINMAXINFO *info = (MINMAXINFO*)lParam;
-            if( wnd )
-            {
-                if( wnd->m_max_size.width != -1 )
-                    info->ptMaxTrackSize.x = wnd->m_max_size.width;
-                if( wnd->m_max_size.height != -1 )
-                    info->ptMaxTrackSize.y = wnd->m_max_size.height;
-                if( wnd->m_min_size.width != -1 )
-                    info->ptMinTrackSize.x = wnd->m_min_size.width;
-                if( wnd->m_min_size.height != -1 )
-                    info->ptMinTrackSize.y = wnd->m_min_size.height;
-                return 0;
-            }
-            else
-                break;
-        }
-
-    }
-
-    return DefWindowProc(hwnd, uMsg, wParam, lParam);
+    return cpaf::win32::gui::widget_wndproc(0, hwnd, msg, w_param, l_param);
 }
 
         } // gui
     } // win32
 } // cpaf
 
-*/
 
 cpaf::win32::gui::Window::Window(cpaf::api::gui::Window *parent)
 {
@@ -84,7 +53,7 @@ cpaf::win32::gui::Window::Window(cpaf::api::gui::Window *parent)
         hparent = ::GetDesktopWindow();
 
     // initialize creation info
-    CreationInfo info = { this };
+    CreationInfo info(this);
 
     m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPEDWINDOW ,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
