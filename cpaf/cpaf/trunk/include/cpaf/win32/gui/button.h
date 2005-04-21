@@ -9,7 +9,6 @@ win32 version of api::Button
 #include <cpaf/api/gui/button.h>
 
 namespace cpaf {
-    namespace gui { class Widget; }
     namespace win32 {
         namespace gui {
 
@@ -18,8 +17,8 @@ class Button : public virtual cpaf::win32::gui::Widget, virtual cpaf::api::gui::
 public:
     Button(cpaf::api::gui::Widget *parent);
 
-    virtual void set_label(const std::string &label);
-    virtual std::string get_label();
+    virtual void set_label(const cpaf::String &label);
+    virtual cpaf::String get_label();
 };
 
         } // gui

@@ -8,7 +8,7 @@ Button interface definition
 //! \todo "Controls" need a common base (checkboxes, radio, ...)
 #include <cpaf/api/gui/widget.h>
 
-#include <string>
+#include <cpaf/string.h>
 
 namespace cpaf {
     namespace api {
@@ -24,14 +24,14 @@ public:
 
         \todo Move this to the common base
     */
-    virtual void set_label(const std::string &label) = 0;
+    virtual void set_label(const cpaf::String &label) = 0;
 
     /*!
         \return The button label
 
         \todo Move this to the common base
     */
-    virtual std::string get_label() = 0;
+    virtual cpaf::String get_label() = 0;
 };
 
         } // gui

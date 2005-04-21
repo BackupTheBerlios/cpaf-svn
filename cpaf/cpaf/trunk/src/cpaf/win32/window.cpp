@@ -4,14 +4,12 @@ implementation of win32 window
 
 #include <cpaf/win32/gui/window.h>
 
-using namespace cpaf::win32::gui;
-
-#define CLASSNAME "cpaf::Window"
+#define CLASSNAME cS("cpaf::Window")
 
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
-    (WNDPROC)window_wndproc, // subclass to use window_wndproc later
+    (WNDPROC)cpaf::win32::gui::window_wndproc, // subclass to use window_wndproc later
     0,
     0,
     GetModuleHandle(NULL),
@@ -55,23 +53,23 @@ cpaf::win32::gui::Window::Window(cpaf::api::gui::Window *parent)
     // initialize creation info
     CreationInfo info(this);
 
-    m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPEDWINDOW ,
+    m_hwnd = ::CreateWindowEx(0, CLASSNAME, cS("Cpaf!!"), WS_OVERLAPPEDWINDOW ,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
         &info);
 }
 
-std::string cpaf::win32::gui::Window::get_title()
+//! \todo re-do this code considering that win32 is always unicode and move it to a common function
+cpaf::String cpaf::win32::gui::Window::get_title()
 {
     int len = ::GetWindowTextLength(m_hwnd) + 1; //GetWindowTextLength doesn't include the terminating NULL char
     LPTSTR buff = new TCHAR[len];
     ::GetWindowText(m_hwnd, buff, len);
-    std::string ret(buff);
+    cpaf::String ret(buff);
     delete buff;
     return ret;
 }
 
-void cpaf::win32::gui::Window::set_title(const std::string &t)
+void cpaf::win32::gui::Window::set_title(const cpaf::String &t)
 {
-    //! \todo This won't work for unicode...
     ::SetWindowText(m_hwnd, t.c_str());
 }

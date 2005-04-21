@@ -9,8 +9,6 @@ win32 version of api::Window
 #include <cpaf/api/gui/window.h>
 #include <cpaf/gui/window.h>
 
-#include <string>
-
 namespace cpaf {
     namespace win32 {
         namespace gui {
@@ -23,8 +21,8 @@ public:
     Window(cpaf::api::gui::Window *parent);
 
     // toplevel interface
-    virtual void set_title(const std::string &t);
-    virtual std::string get_title();
+    virtual void set_title(const cpaf::String &t);
+    virtual cpaf::String get_title();
 
     virtual void set_client_size(const cpaf::Size &s) { }
     virtual cpaf::Size get_client_size() { return cpaf::Size(); }

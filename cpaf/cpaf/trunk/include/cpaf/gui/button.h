@@ -9,7 +9,7 @@ Client wrapper for api::gui::Window
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/widget.h>
 
-#include <string>
+#include <cpaf/string.h>
 
 namespace cpaf {
     namespace gui {
@@ -28,8 +28,8 @@ protected:
 public:
     operator cpaf::api::gui::Button *();
 
-    virtual void set_label(const std::string &label);
-    virtual std::string get_label();
+    virtual void set_label(const cpaf::String &label);
+    virtual cpaf::String get_label();
 };
 
     } // gui

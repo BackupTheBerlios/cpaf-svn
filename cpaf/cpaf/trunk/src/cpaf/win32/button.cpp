@@ -5,8 +5,6 @@ cpaf::win32::gui::Button implementation
 #include <cpaf/win32/gui/button.h>
 #include <cpaf/gui/widget.h>
 
-using namespace cpaf::win32::gui;
-
 static WNDPROC old_proc = 0;
 
 // Window procedure for our buttons
@@ -25,7 +23,7 @@ cpaf::win32::gui::Button::Button(cpaf::api::gui::Widget *parent)
 
         // create a temp button to use to replace the system class's window procedure
         // with the widget window procedure
-        HWND btn = CreateWindowEx(0, "BUTTON", "", 0, 0, 0, 0, 0,
+        HWND btn = CreateWindowEx(0, cS("BUTTON"), cS(""), 0, 0, 0, 0, 0,
             ::GetDesktopWindow(), NULL, ::GetModuleHandle(NULL), NULL);
 
         if( !btn )
@@ -47,17 +45,17 @@ cpaf::win32::gui::Button::Button(cpaf::api::gui::Widget *parent)
 
     CreationInfo info(this);
 
-    m_hwnd = ::CreateWindowEx(0, "BUTTON", "Cpaf!!", WS_CHILD | BS_PUSHBUTTON,
+    m_hwnd = ::CreateWindowEx(0, cS("BUTTON"), cS("Cpaf!!"), WS_CHILD | BS_PUSHBUTTON,
         0, 0, 100, 25, hparent, NULL, ::GetModuleHandle(NULL),
         &info);
 }
 
-void cpaf::win32::gui::Button::set_label(const std::string &label)
+void cpaf::win32::gui::Button::set_label(const cpaf::String &label)
 {
 
 }
 
-std::string cpaf::win32::gui::Button::get_label()
+cpaf::String cpaf::win32::gui::Button::get_label()
 {
-    return "";
+    return cS("");
 }

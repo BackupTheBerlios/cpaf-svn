@@ -12,6 +12,7 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/app.h>
 #include <cpaf/gui/window.h>
 #include <cpaf/gui/button.h>
+#include <cpaf/string.h>
 
 class MyApp : public cpaf::gui::App
 {
@@ -21,12 +22,15 @@ public:
 
 bool MyApp::init()
 {
+    // test the const char* ctor
+    cpaf::String s("Hello world!");
+
     // memleaks, yea yea
     cpaf::gui::Window *wnd = new cpaf::gui::Window;
     cpaf::gui::Button *btn = new cpaf::gui::Button(wnd);
-    btn->set_label("Hello World!");
+    btn->set_label(s);
     wnd->show();
-    wnd->set_title("Hello World!");
+    wnd->set_title(s);
     btn->show();
     //delete wnd;
 

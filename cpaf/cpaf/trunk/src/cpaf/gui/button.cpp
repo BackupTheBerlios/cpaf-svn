@@ -22,12 +22,12 @@ cpaf::gui::Button::operator cpaf::api::gui::Button *()
     return m_impl;
 }
 
-void cpaf::gui::Button::set_label(const std::string &label)
+void cpaf::gui::Button::set_label(const cpaf::String &label)
 {
     m_impl->set_label(label);
 }
 
-std::string cpaf::gui::Button::get_label()
+cpaf::String cpaf::gui::Button::get_label()
 {
     return m_impl->get_label();
 }
