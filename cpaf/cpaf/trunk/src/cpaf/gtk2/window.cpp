@@ -159,15 +159,15 @@ void cpaf::gtk2::gui::Window::show(bool show, bool activate)
         gtk_widget_hide(m_widget);
 }
 
-void cpaf::gtk2::gui::Window::set_title(const cpaf::String &t)
+void cpaf::gtk2::gui::Window::set_title(const std::string &t)
 {
-    //! \todo cpaf::String -> UTF8
+    //! \todo std::string -> UTF8
     gtk_window_set_title(GTK_WINDOW(m_widget), t.c_str());
 }
 
-cpaf::String cpaf::gtk2::gui::Window::get_title()
+std::string cpaf::gtk2::gui::Window::get_title()
 {
-    //! \todo UTF8 -> cpaf::String
+    //! \todo UTF8 -> std::string
     return gtk_window_get_title(GTK_WINDOW(m_widget));
 }
 

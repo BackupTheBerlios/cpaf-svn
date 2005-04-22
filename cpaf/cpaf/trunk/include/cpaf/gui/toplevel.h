@@ -10,7 +10,8 @@ this object is not createable by client code
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/widget.h>
 
-#include <cpaf/string.h>
+// would rather not need this but no way around it right now
+#include <string>
 
 namespace cpaf {
     namespace gui {
@@ -33,8 +34,8 @@ public:
 
     virtual void show(bool show = true, bool focus = true);
 
-    virtual void set_title(const cpaf::String &t);
-    virtual cpaf::String get_title();
+    virtual void set_title(const std::string &t);
+    virtual std::string get_title();
 
     virtual void set_client_size(const cpaf::Size &s);
     virtual cpaf::Size get_client_size();

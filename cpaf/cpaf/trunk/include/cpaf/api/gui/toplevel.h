@@ -7,7 +7,7 @@ TopLevel interface definition
 
 #include <cpaf/api/gui/widget.h>
 
-#include <cpaf/string.h>
+#include <string>
 
 namespace cpaf {
     namespace api {
@@ -23,12 +23,12 @@ public:
     /*!
         \brief Sets the title of the widgets caption.
     */
-    virtual void set_title(const cpaf::String &t) = 0;
+    virtual void set_title(const std::string &t) = 0;
 
     /*!
         \return The title of the widgets caption.
     */
-    virtual cpaf::String get_title() = 0;
+    virtual std::string get_title() = 0;
 
     /*
     virtual void maximize() = 0;

@@ -6,6 +6,8 @@ Wrapper for api::gui::TopLevel
 #include <cpaf/api/gui/toplevel.h>
 #include <cpaf/private/factory.h>
 
+using namespace cpaf::api::gui;
+
 //cpaf::gui::TopLevel::TopLevel(const TopLevelPtr &p)
 cpaf::gui::TopLevel::TopLevel(cpaf::api::gui::TopLevel *p)
     : Widget(p),
@@ -33,12 +35,12 @@ void cpaf::gui::TopLevel::show(bool show, bool focus)
     m_impl->show(show, focus);
 }
 
-void cpaf::gui::TopLevel::set_title(const cpaf::String &t)
+void cpaf::gui::TopLevel::set_title(const std::string &t)
 {
     m_impl->set_title(t);
 }
 
-cpaf::String cpaf::gui::TopLevel::get_title()
+std::string cpaf::gui::TopLevel::get_title()
 {
     return m_impl->get_title();
 }

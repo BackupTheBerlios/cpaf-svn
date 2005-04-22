@@ -13,7 +13,7 @@
 #include <cpaf/gtk2/gui/widget.h>
 #include <cpaf/defs.h>
 
-#include <cpaf/string.h>
+#include <string>
 
 namespace cpaf {
     namespace gtk2 {
@@ -41,8 +41,8 @@ public:
     virtual void show(bool show, bool activate);
 
     // toplevel interface
-    virtual void set_title(const cpaf::String&);
-    virtual cpaf::String get_title();
+    virtual void set_title(const std::string&);
+    virtual std::string get_title();
 
     virtual void set_client_size(const cpaf::Size&);
     virtual cpaf::Size get_client_size();
