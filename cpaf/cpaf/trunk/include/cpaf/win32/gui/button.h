@@ -16,7 +16,7 @@ namespace cpaf {
 class Button : public virtual cpaf::win32::gui::Widget, virtual cpaf::api::gui::Button
 {
 public:
-    Button(cpaf::api::gui::Widget *parent);
+    Button(int id, cpaf::api::gui::Widget *parent);
 
     virtual void set_label(const std::string &label);
     virtual std::string get_label();

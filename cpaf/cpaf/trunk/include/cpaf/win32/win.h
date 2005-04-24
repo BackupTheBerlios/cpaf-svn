@@ -30,6 +30,7 @@ void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd);
 void widget_map_remove_hwnd(HWND h);
 
 /*!
+    \internal
     Structure containing information passed to the window procedure through WM_CREATE.
     The reason I use this is because I cannot pass 'this' directly though lpParam of
     CreateWindowEx as a void*. Once it is recieved by the window procedure, it is a broken

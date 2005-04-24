@@ -9,14 +9,17 @@ win32 factory implementation
 
 #include <cpaf/gui/window.h>
 
-cpaf::api::gui::Widget *cpaf::win32::gui::factory::create_window(cpaf::api::gui::Widget *parent)
+
+#include <cpaf/exception.h>
+
+cpaf::api::gui::Widget *cpaf::win32::gui::factory::create_window(int id, cpaf::api::gui::Widget *parent)
 {
-    return new cpaf::win32::gui::Window( dynamic_cast<cpaf::api::gui::Window*>(parent) );
+    return new cpaf::win32::gui::Window( id, dynamic_cast<cpaf::api::gui::Window*>(parent) );
 }
 
-cpaf::api::gui::Widget *cpaf::win32::gui::factory::create_button(cpaf::api::gui::Widget *parent)
+cpaf::api::gui::Widget *cpaf::win32::gui::factory::create_button(int id, cpaf::api::gui::Widget *parent)
 {
-    return new cpaf::win32::gui::Button( parent );
+    return new cpaf::win32::gui::Button( id, parent );
 }
 
 void cpaf::gui::factory::register_factories()

@@ -20,7 +20,7 @@ class Window : public virtual cpaf::win32::gui::Widget, virtual cpaf::api::gui::
     friend LRESULT CALLBACK window_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 public:
-    Window(cpaf::api::gui::Window *parent);
+    Window(int id, cpaf::api::gui::Window *parent);
 
     // toplevel interface
     virtual void set_title(const std::string &t);

@@ -7,8 +7,8 @@ Wrapper for api::gui::button
 #include <cpaf/private/factory.h>
 
 cpaf::gui::Button::Button(cpaf::gui::Widget *parent)
-//! \todo this crashes if parent is null
-: Widget( cpaf::gui::factory::create_button(*parent) ),
+: Widget( cpaf::gui::factory::create_button( (parent) ?
+          (cpaf::api::gui::Widget*)*parent : (cpaf::api::gui::Widget*)0 ) ),
     m_impl( dynamic_cast<cpaf::api::gui::Button*>(Widget::m_impl) )
 { }
 

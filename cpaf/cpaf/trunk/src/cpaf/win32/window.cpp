@@ -3,15 +3,14 @@ implementation of win32 window
 */
 
 #include <cpaf/win32/gui/window.h>
-
-using namespace cpaf::win32::gui;
+#include <cpaf/win32/exception.h>
 
 #define CLASSNAME "cpaf::Window"
 
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
-    (WNDPROC)window_wndproc, // subclass to use window_wndproc later
+    (WNDPROC)cpaf::win32::gui::window_wndproc, // subclass to use window_wndproc later
     0,
     0,
     GetModuleHandle(NULL),
@@ -36,7 +35,8 @@ LRESULT CALLBACK window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_pa
 } // cpaf
 
 
-cpaf::win32::gui::Window::Window(cpaf::api::gui::Window *parent)
+cpaf::win32::gui::Window::Window(int id, cpaf::api::gui::Window *parent)
+: Widget(id)
 {
     static bool registered = false;
 
@@ -58,20 +58,17 @@ cpaf::win32::gui::Window::Window(cpaf::api::gui::Window *parent)
     m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPEDWINDOW ,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
         &info);
+
+    if( !m_hwnd )
+        throw cpaf::win32::Exception(cpaf::Exception::error_codes::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
 }
 
 std::string cpaf::win32::gui::Window::get_title()
 {
-    int len = ::GetWindowTextLength(m_hwnd) + 1; //GetWindowTextLength doesn't include the terminating NULL char
-    LPTSTR buff = new TCHAR[len];
-    ::GetWindowText(m_hwnd, buff, len);
-    std::string ret(buff);
-    delete buff;
-    return ret;
+    return get_window_text();
 }
 
 void cpaf::win32::gui::Window::set_title(const std::string &t)
 {
-    //! \todo This won't work for unicode...
-    ::SetWindowText(m_hwnd, t.c_str());
+    set_window_text(t);
 }

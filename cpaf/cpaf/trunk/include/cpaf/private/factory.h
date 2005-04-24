@@ -19,7 +19,7 @@ namespace cpaf {
         namespace factory {
 
 // widget factory function pointer
-typedef cpaf::api::gui::Widget *(*WidgetFactoryPtr)(cpaf::api::gui::Widget *parent);
+typedef cpaf::api::gui::Widget *(*WidgetFactoryPtr)(int id, cpaf::api::gui::Widget *parent);
 
 // widget factory registry map typedef
 typedef std::map<int, cpaf::gui::factory::WidgetFactoryPtr> WidgetFactoryMap;
@@ -57,7 +57,12 @@ void register_widget_factory(int key, WidgetFactoryPtr ptr);
 void register_factories();
 
 
-
+/*!
+    \internal
+    \return A unique widget identifier. Called by create_foo functions and passed to the
+        implementation create_foo functions to be passed to implementation class ctors
+*/
+int get_widget_id();
 
 /*
 CPAF OBJECT DESCTRUCTION OVERVIEW
@@ -98,8 +103,8 @@ void delete_widget_implementation(cpaf::api::gui::Widget *impl);
 // pointer is in the map. If the impl pointer is in the map, it will be removed, and its wrapper deleted.
 void delete_implementation_wrapper(cpaf::api::gui::Widget *impl);
 
-        }
-    }
-}
+        } // factory
+    } // gui
+} // cpaf
 
 #endif // CPAF_PRIVATE_FACTORY_H

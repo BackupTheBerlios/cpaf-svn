@@ -7,10 +7,9 @@ cpaf::win32::gui::Widget implementation
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
-using namespace cpaf::win32::gui;
-
-cpaf::win32::gui::Widget::Widget()
+cpaf::win32::gui::Widget::Widget(int id)
     : m_delete(true),
+    m_id(id),
     m_hwnd(0),
     m_old_proc(0),
     m_max_size(-1,-1),
@@ -173,4 +172,32 @@ bool cpaf::win32::gui::Widget::is_enabled()
 {
     // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
     return ::IsWindowEnabled(m_hwnd) != 0;
+}
+
+int cpaf::win32::gui::Widget::get_id()
+{
+    return GetWindowLong(m_hwnd, GWL_ID);
+}
+
+/**********************************************
+
+  Implementation specific functions
+
+**********************************************/
+
+void cpaf::win32::gui::Widget::set_window_text(const std::string &str)
+{
+    //! \todo This won't work for unicode...
+    ::SetWindowText(m_hwnd, str.c_str());
+}
+
+std::string cpaf::win32::gui::Widget::get_window_text()
+{
+    //! \todo Clean this function when we figure out what we are doing with strings
+    int len = ::GetWindowTextLength(m_hwnd) + 1; //GetWindowTextLength doesn't include the terminating NULL char
+    LPTSTR buff = new TCHAR[len];
+    ::GetWindowText(m_hwnd, buff, len);
+    std::string ret(buff);
+    delete buff;
+    return ret;
 }

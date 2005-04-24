@@ -47,18 +47,28 @@ void cpaf::gui::factory::add_factory(int key, WidgetFactoryPtr fact)
 
 cpaf::api::gui::Window *cpaf::gui::factory::create_window(cpaf::api::gui::Widget *parent)
 {
-    return dynamic_cast<cpaf::api::gui::Window*>(get_factory(cpaf::api::gui::Window::factory_key)(parent));
+    return dynamic_cast<cpaf::api::gui::Window*>(get_factory(cpaf::api::gui::Window::factory_key)(get_widget_id(), parent));
 }
+#include <windows.h>
 
 cpaf::api::gui::Button *cpaf::gui::factory::create_button(cpaf::api::gui::Widget *parent)
 {
-    return dynamic_cast<cpaf::api::gui::Button*>(get_factory(cpaf::api::gui::Button::factory_key)(parent));
+    return dynamic_cast<cpaf::api::gui::Button*>(get_factory(cpaf::api::gui::Button::factory_key)(get_widget_id(), parent));
 }
 
 void cpaf::gui::factory::register_widget_factory(int key, WidgetFactoryPtr ptr)
 {
     add_factory(key, ptr);
 }
+
+int cpaf::gui::factory::get_widget_id()
+{
+    static int id = 1;
+
+    return id++;
+}
+
+
 
 static cpaf::gui::factory::WidgetImplementationWrapperMap widget_impl_map;
 

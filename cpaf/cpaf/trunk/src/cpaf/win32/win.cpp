@@ -4,10 +4,11 @@ Implementation for common win32 implementation functions
 
 #include <cpaf/win32/win.h>
 #include <cpaf/win32/gui/widget.h>
+#include <cpaf/exception.h>
+
+using cpaf::win32::gui::WidgetMap;
 
 static cpaf::win32::gui::WidgetMap widget_map;
-
-using namespace cpaf::win32::gui;
 
 void cpaf::win32::gui::widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
 {
@@ -20,7 +21,10 @@ void cpaf::win32::gui::widget_map_remove_hwnd(HWND h)
 
     if( i != widget_map.end() )
         widget_map.erase(i);
-    //! todo I should probably throw if the above is not true because this is bad...
+
+    // we do not throw if the hwnd was not found in the map because this function is called by
+    // win32::gui::Widget dtor. Throwing dtors are bad and cause all sorts of trouble as I recently
+    // discovered...
 }
 
 cpaf::win32::gui::Widget *cpaf::win32::gui::get_widget_from_hwnd(HWND h)

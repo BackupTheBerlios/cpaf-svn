@@ -13,6 +13,8 @@ win32 version of api::Widget
 #include <cpaf/defs.h>
 #include <cpaf/api/gui/widget.h>
 
+#include <string>
+
 namespace cpaf {
     namespace win32 {
         namespace gui {
@@ -23,17 +25,13 @@ private:
     bool m_delete;
 
 protected:
-    // i need a flag saying wether or not the dtor should call DestroyWindow(m_hwnd);
-    // flag is true by default. Whe dtor is called, DestroyWindow is called if the flag is true.
-    // the flag is set to false before calling this. When the window procedure recieves WM_DESTROY,
-    // it will delete the window object only if this flag is true. It will set it to false before the delete.
-
-    HWND m_hwnd;
+    int m_id; // widget identifier, will never change after construction
+    HWND m_hwnd; // native window handle
     WNDPROC m_old_proc; // old window procedure
 
     cpaf::Size m_min_size, m_max_size;
 
-    Widget();
+    Widget(int id);
 
 public:
     /*
@@ -62,6 +60,16 @@ public:
     virtual void show(bool show, bool focus);
     virtual bool is_enabled();
     virtual bool is_shown();
+    int get_id();
+
+protected:
+    // implementation specific functions
+
+    /*!
+        Sets the text of this widget using SetWindowText
+    */
+    void set_window_text(const std::string &str);
+    std::string get_window_text();
 };
 
         } // gui

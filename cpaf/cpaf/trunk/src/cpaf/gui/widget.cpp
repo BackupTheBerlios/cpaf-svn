@@ -63,3 +63,8 @@ bool cpaf::gui::Widget::is_shown()
 {
     return m_impl->is_shown();
 }
+
+int cpaf::gui::Widget::get_id()
+{
+    return m_impl->get_id();
+}

@@ -9,12 +9,12 @@
 #include <cpaf/gtk2/gui/window.h>
 #include <cpaf/gtk2/gui/button.h>
 
-cpaf::api::gui::Widget *cpaf::gtk2::gui::factory::create_window(cpaf::api::gui::Widget *parent)
+cpaf::api::gui::Widget *cpaf::gtk2::gui::factory::create_window(int id, cpaf::api::gui::Widget *parent)
 {
     return new cpaf::gtk2::gui::Window( dynamic_cast<cpaf::api::gui::Window*>(parent) );
 }
 
-cpaf::api::gui::Widget *cpaf::gtk2::gui::factory::create_button(cpaf::api::gui::Widget *parent)
+cpaf::api::gui::Widget *cpaf::gtk2::gui::factory::create_button(int id, cpaf::api::gui::Widget *parent)
 {
     return new cpaf::gtk2::gui::Button( parent );
 }

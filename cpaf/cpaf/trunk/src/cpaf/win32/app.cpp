@@ -4,6 +4,7 @@ This file implements cpaf::gui::App::run() for win32
 
 #include <cpaf/win32/win.h>
 #include <cpaf/gui/app.h>
+#include <cpaf/exception.h>
 
 void cpaf::gui::App::gui_init()
 {

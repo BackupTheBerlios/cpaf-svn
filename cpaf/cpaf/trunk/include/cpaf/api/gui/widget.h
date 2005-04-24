@@ -27,6 +27,12 @@ public:
     virtual void *get_handle() = 0;
 
     /*!
+        \return A widget identifier which uniquely identifies this widget. Widget identifiers are assigned
+            automatically during widget creation and cannot be changed.
+    */
+    virtual int get_id() = 0;
+
+    /*!
         \brief Enables or disables the widget. Disabled widgets cannot recieve user input.
     */
     virtual void enable(bool e) = 0;
@@ -56,7 +62,6 @@ public:
     virtual void set_sizer(cpaf::api::Sizer s) = 0;
     virtual cpaf::api::Sizer set_sizer() = 0;
     */
-
 };
 
         } // gui
