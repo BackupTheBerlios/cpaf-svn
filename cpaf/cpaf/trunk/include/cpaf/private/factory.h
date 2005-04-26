@@ -14,8 +14,6 @@ Factory functions
 #include <cpaf/dllimpexp.h>
 #include <map>
 
-#include <cpaf/win32/win.h>
-
 namespace cpaf {
     namespace gui {
         namespace factory {
@@ -29,6 +27,14 @@ typedef std::map<int, cpaf::gui::factory::WidgetFactoryPtr> WidgetFactoryMap;
 // these two functions wrap retrieving and inserting into the widget factory map
 WidgetFactoryPtr get_factory(int key);
 void add_factory(int key, WidgetFactoryPtr fact);
+
+
+/*!
+    \internal
+    \return A unique widget identifier. Called by create_foo functions and passed to the
+        implementation create_foo functions to be passed to implementation class ctors
+ */
+int get_widget_id();
 
 template <typename T> T *create_widget(cpaf::api::gui::Widget *parent)
 {
@@ -46,19 +52,11 @@ template <typename T> void register_widget_factory(WidgetFactoryPtr ptr)
 // to register their widget factory function pointers
 void register_factories();
 
-
-/*!
-    \internal
-    \return A unique widget identifier. Called by create_foo functions and passed to the
-        implementation create_foo functions to be passed to implementation class ctors
-*/
-int get_widget_id();
-
 /*
 CPAF OBJECT DESCTRUCTION OVERVIEW
 
   gui::Foo wrappers are no longer solely responsible for deleting their implementations.
-  
+
   It is now possible for an implementation to delete its wrapper, or for a wrapper to delete its implementation.
   During one deletion chain, both events will occur.
 
