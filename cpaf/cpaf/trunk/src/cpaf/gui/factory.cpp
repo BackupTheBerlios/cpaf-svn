@@ -10,26 +10,6 @@ Factory function implementations
 #include <cpaf/api/gui/button.h>
 #include <cpaf/api/gui/window.h>
 
-/*
-#ifdef CPAF_WIN32
-#include <cpaf/win32/factory.h>
-#endif
-#ifdef CPAF_GTK
-#include <cpaf/gtk/factory.h>
-#endif
-
-// a WindowPtr will be conveniently constructed for us by return;
-cpaf::api::gui::WindowPtr cpaf::gui::factory::create_window()
-{
-#ifdef CPAF_WIN32 // win32 build
-    return cpaf::win32::gui::factory::create_window();
-#endif
-#ifdef CPAF_GTK
-    return cpaf::gtk::gui::factory::create_window();
-#endif
-}
-*/
-
 // the widget factory function pointer registry
 //cpaf::gui::factory::WidgetFactoryMap cpaf::gui::factory::widget_factory_map;
 static cpaf::gui::factory::WidgetFactoryMap widget_factory_map;
@@ -43,22 +23,6 @@ void cpaf::gui::factory::add_factory(int key, WidgetFactoryPtr fact)
 {
     //! \todo check to see that the key doesn't exist already
     widget_factory_map[key] = fact;
-}
-
-cpaf::api::gui::Window *cpaf::gui::factory::create_window(cpaf::api::gui::Widget *parent)
-{
-    return dynamic_cast<cpaf::api::gui::Window*>(get_factory(cpaf::api::gui::Window::factory_key)(get_widget_id(), parent));
-}
-#include <windows.h>
-
-cpaf::api::gui::Button *cpaf::gui::factory::create_button(cpaf::api::gui::Widget *parent)
-{
-    return dynamic_cast<cpaf::api::gui::Button*>(get_factory(cpaf::api::gui::Button::factory_key)(get_widget_id(), parent));
-}
-
-void cpaf::gui::factory::register_widget_factory(int key, WidgetFactoryPtr ptr)
-{
-    add_factory(key, ptr);
 }
 
 int cpaf::gui::factory::get_widget_id()

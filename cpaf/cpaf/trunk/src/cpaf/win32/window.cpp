@@ -27,7 +27,7 @@ namespace cpaf {
 
 LRESULT CALLBACK window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-    return cpaf::win32::gui::widget_wndproc(0, hwnd, msg, w_param, l_param);
+    return cpaf::win32::gui::widget_wndproc(hwnd, msg, w_param, l_param);
 }
 
         } // gui

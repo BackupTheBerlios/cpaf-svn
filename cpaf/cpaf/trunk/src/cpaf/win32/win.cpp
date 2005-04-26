@@ -4,9 +4,12 @@ Implementation for common win32 implementation functions
 
 #include <cpaf/win32/win.h>
 #include <cpaf/win32/gui/widget.h>
-#include <cpaf/exception.h>
+#include <cpaf/win32/exception.h>
+#include <cpaf/win32/msgnames.h>
 
 using cpaf::win32::gui::WidgetMap;
+
+static const char * const MessageTypeNames[WM_USER + 1];
 
 static cpaf::win32::gui::WidgetMap widget_map;
 
@@ -40,7 +43,7 @@ cpaf::win32::gui::CreationInfo::CreationInfo(cpaf::win32::gui::Widget *w)
     : wnd(w)
 { }
 
-LRESULT CALLBACK cpaf::win32::gui::widget_wndproc(WNDPROC old_proc, HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+LRESULT CALLBACK cpaf::win32::gui::widget_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
     Widget *wnd = get_widget_from_hwnd(hwnd);
 
@@ -65,11 +68,52 @@ LRESULT CALLBACK cpaf::win32::gui::widget_wndproc(WNDPROC old_proc, HWND hwnd, U
             return info->wnd->process_message(hwnd, msg, w_param, l_param);
     }
 
-    // call the old window procedure if we get this far
+    DBG_MSG_2("widget_wndproc failed to proceess a message: %s", cpaf::win32::MessageTypeNames[msg]);
+    // call the default window procedure if we get this far
     // this will happen if the first message sent to a window is not WM_NCCREATE,
     // which is the case for overlapped (toplevel) windows: they get WM_MINMAXINFO first
-    if( old_proc )
-        return ::CallWindowProc(old_proc, hwnd, msg, w_param, l_param);
-    else
-        return ::DefWindowProc(hwnd, msg, w_param, l_param);
+    return ::DefWindowProc(hwnd, msg, w_param, l_param);
+}
+
+
+/********************
+
+  CreationHook implementation
+
+********************/
+
+static HHOOK m_hook; // hook procedure handle
+
+cpaf::win32::gui::CreationHook::CreationHook()
+{
+    // create the hook
+    m_hook = ::SetWindowsHookEx(WH_CBT, cpaf::win32::gui::CreationHook::hook_proc,NULL, ::GetCurrentThreadId());
+
+    if( !m_hook )
+        throw cpaf::win32::Exception(cpaf::win32::Exception::error_codes::HOOK, ::GetLastError(), __LINE__, __FILE__);
+}
+
+cpaf::win32::gui::CreationHook::~CreationHook()
+{
+    // unhook
+    //! \todo destructors really shouldn't throw...
+    if( !::UnhookWindowsHookEx(m_hook) )
+        throw cpaf::win32::Exception(cpaf::win32::Exception::error_codes::UNHOOK, ::GetLastError(), __LINE__, __FILE__);
+}
+
+LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_param, LPARAM l_param)
+{
+    if( code == HCBT_CREATEWND )
+    {
+        HWND hwnd = (HWND)w_param;
+        LPCREATESTRUCT create = ((LPCBT_CREATEWND)l_param)->lpcs;
+        CreationInfo *info = (CreationInfo*)create->lpCreateParams;
+        widget_map_add_hwnd(hwnd, info->wnd);
+
+        // subclass the window
+        info->wnd->set_old_proc((WNDPROC)::SetWindowLong(hwnd, GWL_WNDPROC, (LONG)cpaf::win32::gui::widget_wndproc));
+        return 0;
+    }
+
+    return CallNextHookEx(m_hook, code, w_param, l_param);
 }

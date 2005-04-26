@@ -5,8 +5,6 @@ Wrapper for api::gui::Object
 #include <cpaf/gui/object.h>
 #include <cpaf/api/gui/object.h>
 
-using namespace cpaf::api::gui;
-
 cpaf::gui::Object::Object(cpaf::api::gui::Object *p)
     : m_impl(p)
 { }

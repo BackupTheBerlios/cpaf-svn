@@ -34,6 +34,8 @@ protected:
     Widget(int id);
 
 public:
+    void set_old_proc(WNDPROC proc) { m_old_proc = proc; }
+
     /*
         Instead of subclassing window procedures to simulate inheritance, there is only
         one window procedure, which is widget_wndproc. This function calls process_message

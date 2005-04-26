@@ -14,6 +14,8 @@ Factory functions
 #include <cpaf/dllimpexp.h>
 #include <map>
 
+#include <cpaf/win32/win.h>
+
 namespace cpaf {
     namespace gui {
         namespace factory {
@@ -28,28 +30,16 @@ typedef std::map<int, cpaf::gui::factory::WidgetFactoryPtr> WidgetFactoryMap;
 WidgetFactoryPtr get_factory(int key);
 void add_factory(int key, WidgetFactoryPtr fact);
 
-//extern WidgetFactoryMap widget_factory_map;
-
-/*
 template <typename T> T *create_widget(cpaf::api::gui::Widget *parent)
 {
     WidgetFactoryPtr ptr = get_factory(T::factory_key);
-    return dynamic_cast<T*>(ptr(parent));
-    //return dynamic_cast<T*>(widget_factory_map[T::factory_key]());
+    return dynamic_cast<T*>(ptr(get_widget_id(), parent));
 }
-*/
 
-/*
 template <typename T> void register_widget_factory(WidgetFactoryPtr ptr)
 {
     add_factory(T::factory_key, ptr);
-    //widget_factory_map[T::factory_key] = ptr;
 }
-*/
-
-cpaf::api::gui::Window *create_window(cpaf::api::gui::Widget *parent);
-cpaf::api::gui::Button *create_button(cpaf::api::gui::Widget *parent);
-void register_widget_factory(int key, WidgetFactoryPtr ptr);
 
 // declared by an implementation
 // will be called so that implementations can use register_widget_factory

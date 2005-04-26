@@ -22,7 +22,7 @@ cpaf::api::gui::Widget *cpaf::gtk2::gui::factory::create_button(int id, cpaf::ap
 void cpaf::gui::factory::register_factories()
 {
     // register widget factories
-    cpaf::gui::factory::register_widget_factory(cpaf::api::gui::Window::factory_key, cpaf::gtk2::gui::factory::create_window);
-    cpaf::gui::factory::register_widget_factory(cpaf::api::gui::Button::factory_key, cpaf::gtk2::gui::factory::create_button);
+    cpaf::gui::factory::register_widget_factory<cpaf::api::gui::Window>(cpaf::gtk2::gui::factory::create_window);
+    cpaf::gui::factory::register_widget_factory<cpaf::api::gui::Button>(cpaf::gtk2::gui::factory::create_button);
 
 }

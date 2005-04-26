@@ -17,8 +17,6 @@ namespace cpaf {
 
 class CPAF_API Widget : public Object
 {
-    friend class cpaf::gui::App;
-
 protected:
     cpaf::api::gui::Widget *m_impl;
 
@@ -41,6 +39,25 @@ public:
 
 };
 
+        namespace factory {
+
+template <typename T>
+class WidgetFact : public ObjectFact<T>
+{
+protected:
+    cpaf::gui::Widget *m_parent;
+
+public:
+    T &parent(cpaf::gui::Widget *p)
+    {
+        m_parent = p;
+        return *dynamic_cast<T*>(this);
+    }
+
+    cpaf::gui::Widget *get_parent() { return m_parent; }
+};
+
+        } // factory
     } // gui
 } // cpaf
 

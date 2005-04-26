@@ -19,6 +19,8 @@ class CPAF_EXCEPTION_API(CPAF_API) Exception : public cpaf::Exception
 public:
     enum error_codes {
         WIDGET_INIT = CPAF_WIN32_EXCEPTION_LOWEST, //!< failed internal initialization for win32
+        HOOK, //!< error calling SetWindowsHookEx
+        UNHOOK, //!< error calling UnhookWindowsHookEx
     };
 
 private:

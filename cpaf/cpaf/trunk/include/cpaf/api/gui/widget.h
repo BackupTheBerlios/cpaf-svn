@@ -8,6 +8,7 @@ Widget interface definition
 #include <cpaf/api/gui/object.h>
 
 namespace cpaf {
+    namespace gui { class Widget; } // prototype
     namespace api {
         namespace gui {
 
@@ -18,7 +19,6 @@ namespace cpaf {
 class Widget : public virtual Object
 {
 public:
-
     /*!
         \return A native handle for the widget. This value is returned as a void*, and how you use this value
             is dependant on the port you are working with. For win32, simply casting the return value to a HWND

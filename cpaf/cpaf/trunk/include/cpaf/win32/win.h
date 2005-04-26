@@ -13,6 +13,15 @@ common header for win32 implementation
 
 #include <map>
 
+#ifdef _MSC_VER
+#   include <crtdbg.h>
+#   define DBG_MSG(s)      _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", s ## "\n");
+#   define DBG_MSG_2(f, s)   _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
+#else
+#   define DBG_MSG(s)
+#   define DBG_MSG_2(s)
+#endif
+
 namespace cpaf {
     namespace win32 {
         namespace gui {
@@ -46,10 +55,27 @@ struct CreationInfo {
 };
 
 /*!
+    \internal
     This is the window procedure which is implemented outside of the win32::gui::widget classes.
     It is called by the window procedures for all widgets and contains only common functionality.
 */
-LRESULT CALLBACK widget_wndproc(WNDPROC old_proc, HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
+LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
+
+
+/*!
+    \internal
+    This class wraps hooking the WM_CREATE message and is used for cpaf native widget creation.
+
+    It hooks during ctor, and de-hooks during dtor.
+*/
+class CreationHook
+{
+public:
+    CreationHook();
+    ~CreationHook();
+
+    static LRESULT CALLBACK hook_proc(int code, WPARAM w_param, LPARAM l_param);
+};
 
         } // gui
     } // win32

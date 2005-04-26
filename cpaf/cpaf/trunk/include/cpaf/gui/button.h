@@ -13,14 +13,19 @@ Client wrapper for api::gui::Window
 
 namespace cpaf {
     namespace gui {
+        namespace factory { class Button; }
 
 class CPAF_API Button : public Widget
 {
+    friend class factory::Button;
+
 private:
     cpaf::api::gui::Button *m_impl;
 
 public:
     Button(cpaf::gui::Widget *parent);
+    
+    Button &operator =(cpaf::gui::Button *);
 
 protected:
     Button(cpaf::api::gui::Button *b);
@@ -32,6 +37,33 @@ public:
     virtual std::string get_label();
 };
 
+        namespace factory {
+
+template <typename T>
+class ButtonFact : public WidgetFact<T>
+{
+protected:
+    std::string m_label;
+
+public:
+    T &label(const std::string &s)
+    {
+        m_label = s;
+        return *dynamic_cast<T*>(this);
+    }
+
+    std::string get_label() { return m_label; }
+};
+
+class Button : public ButtonFact<Button>
+{
+public:
+    cpaf::gui::Button *create();
+};
+
+//typedef ButtonFact<ButtonFact> Button;
+
+        } // factory
     } // gui
 } // cpaf
 

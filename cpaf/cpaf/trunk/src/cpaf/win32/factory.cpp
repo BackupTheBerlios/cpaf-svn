@@ -25,6 +25,6 @@ cpaf::api::gui::Widget *cpaf::win32::gui::factory::create_button(int id, cpaf::a
 void cpaf::gui::factory::register_factories()
 {
     // register widget factories
-    cpaf::gui::factory::register_widget_factory(cpaf::api::gui::Window::factory_key, cpaf::win32::gui::factory::create_window);
-    cpaf::gui::factory::register_widget_factory(cpaf::api::gui::Button::factory_key, cpaf::win32::gui::factory::create_button);
+    cpaf::gui::factory::register_widget_factory<cpaf::api::gui::Window>(cpaf::win32::gui::factory::create_window);
+    cpaf::gui::factory::register_widget_factory<cpaf::api::gui::Button>(cpaf::win32::gui::factory::create_button);
 }

@@ -24,7 +24,16 @@ bool MyApp::init()
 {
     // believe it or not, these don't leak...
     cpaf::gui::Window *wnd = new cpaf::gui::Window;
-    cpaf::gui::Button *btn = new cpaf::gui::Button((cpaf::gui::Widget*)wnd);
+    
+    cpaf::gui::factory::Button fact_btn;
+    cpaf::gui::Button *btn = fact_btn.label("Hello world!").parent(wnd).create();
+    btn->show();
+
+    // create something on the stack to show that its possible
+    cpaf::gui::Button btn2(wnd);
+    btn2.set_position(cpaf::Point(100,100));
+    btn2.show();
+
     btn->set_label("Hello World!");
     btn->set_size(cpaf::Size(300,50));
     wnd->show();
@@ -34,16 +43,67 @@ bool MyApp::init()
     return true;
 }
 
-#include <cpaf/win32/gui/button.h>
-
-
-class api_Object
-{
-public:
-    virtual ~api_Object() { }
-};
-
 cpaf::App *cpaf::main(const cpaf::App::cmd_line &cmd)
 {
     return new MyApp;
 }
+
+
+
+
+#if 0
+
+
+class EventListener
+{
+public:
+    virtual ~EventListener() { }
+};
+
+class Event
+{
+public:
+    virtual ~Event() { }
+};
+
+class Paint : public Event
+{
+public:
+    typedef void (EventListener::*ptr)(Paint&);
+    static int id;
+};
+
+int Paint::id = 1;
+
+class MyEventListener : public EventListener
+{
+public:
+    void OnPaint(Paint&paint) { }
+};
+
+static void *_ptr;
+
+template <typename T> void register_event_listener(typename T::ptr ptr)
+{
+    _ptr = &ptr;
+}
+
+template <typename T> void process_event(EventListener &obj, T &t)
+{
+    T::ptr ptr = *(static_cast<T::ptr*>(_ptr));
+    (obj.*ptr)(t);
+}
+
+template <typename T, typename U> typename T::ptr cast_listener(U u)
+{
+    return static_cast<T::ptr>(u);
+}
+
+int main(int, char**)
+{
+    register_event_listener<Paint>(cast_listener<Paint>(MyEventListener::OnPaint));
+    MyEventListener list;
+    process_event<Paint>(list, Paint());
+}
+
+#endif
