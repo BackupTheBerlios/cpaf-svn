@@ -36,8 +36,15 @@ bool MyApp::init()
 
     btn->set_label("Hello World!");
     btn->set_size(cpaf::Size(300,50));
-    wnd->show();
+    
     wnd->set_title("Hello World!");
+
+    cpaf::Size s(100,100);
+    s = cpaf::Size(50,50) + s;
+
+    wnd->set_size(s);
+    wnd->set_position(cpaf::Point(0,0));
+    wnd->show();
     btn->show();
 
     return true;

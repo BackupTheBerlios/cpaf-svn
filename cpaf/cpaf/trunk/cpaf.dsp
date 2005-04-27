@@ -227,10 +227,6 @@ SOURCE=.\include\cpaf\app.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\include\cpaf\defs.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\include\cpaf\dllimpexp.h
 # End Source File
 # Begin Source File
@@ -244,6 +240,10 @@ SOURCE=.\include\cpaf\macros.h
 # Begin Source File
 
 SOURCE=.\include\cpaf\main.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\include\cpaf\types.h
 # End Source File
 # End Group
 # Begin Group "source"

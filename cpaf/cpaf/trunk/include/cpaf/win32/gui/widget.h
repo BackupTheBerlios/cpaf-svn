@@ -10,7 +10,7 @@ win32 version of api::Widget
 #endif
 
 #include <cpaf/win32/win.h>
-#include <cpaf/defs.h>
+#include <cpaf/types.h>
 #include <cpaf/api/gui/widget.h>
 
 #include <string>

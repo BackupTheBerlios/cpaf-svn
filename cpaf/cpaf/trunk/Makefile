@@ -21,6 +21,7 @@ SRC_OBJS =                     \
 	$(OBJ_DIR)/gtk2/window.o   \
 	$(OBJ_DIR)/gtk2/button.o   \
 	$(OBJ_DIR)/gtk2/utils.o    \
+	$(OBJ_DIR)/types.o         \
 	$(OBJ_DIR)/main.o          \
 	$(OBJ_DIR)/app.o           \
 	$(OBJ_DIR)/api.o
@@ -95,6 +96,9 @@ $(OBJ_DIR)/gtk2/button.o: src/cpaf/gtk2/button.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/utils.o: src/cpaf/gtk2/utils.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/types.o: src/cpaf/types.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/main.o: src/cpaf/main.cpp

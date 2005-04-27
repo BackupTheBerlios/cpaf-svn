@@ -7,7 +7,7 @@ Client wrapper for api::gui::Object
 
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
-#include <cpaf/defs.h>
+#include <cpaf/types.h>
 
 namespace cpaf {
     namespace gui {

@@ -11,7 +11,7 @@
 
 #include <cpaf/api/gui/window.h>
 #include <cpaf/gtk2/gui/widget.h>
-#include <cpaf/defs.h>
+#include <cpaf/types.h>
 
 #include <string>
 

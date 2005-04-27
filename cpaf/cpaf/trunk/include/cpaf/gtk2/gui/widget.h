@@ -10,7 +10,7 @@
 #include <cpaf/gtk2/gtk.h>
 
 #include <cpaf/api/gui/widget.h>
-#include <cpaf/defs.h>
+#include <cpaf/types.h>
 
 namespace cpaf {
     namespace gtk2 {

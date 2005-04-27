@@ -14,7 +14,8 @@ namespace cpaf {
         namespace gui {
 
 /*!
-    \brief The Object interface represents an object that can be positioned and sized.
+    \brief The Object interface represents an object that can be positioned and sized. It does
+        not neccesarily represent a widget which has a presence at the system level.
 */
 class Object
 {
