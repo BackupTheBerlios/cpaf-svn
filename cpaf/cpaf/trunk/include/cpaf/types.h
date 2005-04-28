@@ -16,11 +16,19 @@ struct Size
 {
     float width, height;
 
+    /*!
+        Default constructor, initializes values to 0
+    */
     Size()
         : width(0),
         height(0)
     { }
 
+    /*!
+        Constructs a Size object from a width and height.
+        \param w Width
+        \param h Height
+    */
     Size(float w, float h)
         : width(w),
         height(h)
@@ -95,11 +103,19 @@ struct Point
 {
     float x, y;
 
+    /*!
+        Default constructor, initializes values to 0
+    */
     Point()
         : x(0),
         y(0)
     { }
 
+    /*!
+        Constructs a Point from an x and y value.
+        \param xx X value
+        \param yy Y value
+    */
     Point(float xx, float yy)
         : x(xx),
         y(yy)
@@ -153,16 +169,31 @@ struct Rect
     Size size;
     Point position;
 
+    /*!
+        Default constructor, initializes size and position to 0
+    */
     Rect()
         : size(0,0),
         position(0,0)
     { }
 
-    Rect(const Size &s, const Point &p)
+    /*!
+        Constructs a Rect from a position and a size
+        \param p Position
+        \param s Size
+    */
+    Rect(const Point &p, const Size &s)
         : size(s),
         position(p)
     { }
 
+    /*!
+        Constructs a Rect from a position and size defined as four floating point values.
+        \param x X position
+        \param y Y position
+        \param w Width
+        \param h Height
+    */
     Rect(float x, float y, float w, float h)
         : size(w,h),
         position(x,y)
@@ -182,6 +213,7 @@ struct Rect
     bool operator!=(const Rect &r)
     {
         return size != r.size || position != r.position;
+    }
 };
 
 } // namespace cpaf
