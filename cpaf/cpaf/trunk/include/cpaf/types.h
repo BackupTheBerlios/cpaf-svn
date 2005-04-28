@@ -9,6 +9,9 @@ Declaration of basic cpaf types
 
 namespace cpaf {
 
+/*!
+    \brief Data structure representing a size using floating point values.
+*/
 struct Size
 {
     float width, height;
@@ -23,6 +26,9 @@ struct Size
         height(h)
     { }
 
+    /*!
+        Adds the width and height from size \a s to this size's width and height.
+    */
     Size &operator+=(const Size &s)
     {
         width += s.width;
@@ -30,6 +36,9 @@ struct Size
         return *this;
     }
 
+    /*!
+        Subtracts the width and height from size \a s from this size's width and height.
+    */
     Size &operator-=(const Size &s)
     {
         width -= s.width;
@@ -37,6 +46,9 @@ struct Size
         return *this;
     }
 
+    /*!
+        Multiply the height and width of this size by the factor \a f.
+    */
     Size &operator*=(float f)
     {
         width *= f;
@@ -44,6 +56,9 @@ struct Size
         return *this;
     }
 
+    /*!
+        Divide the height and width of this size by the factor \a f.
+    */
     Size &operator/=(float f)
     {
         width /= f;
@@ -51,14 +66,20 @@ struct Size
         return *this;
     }
 
+    /*!
+        \return True if this size is equal to the size \a s.
+    */
     bool operator==(const Size &s)
     {
         return width == s.width && height == s.height;
     }
 
+    /*!
+        \return True if this size is not equal to the size \a s.
+    */
     bool operator!=(const Size &s)
     {
-        return width == s.width && height == s.height;
+        return width != s.width || height != s.height;
     }
 
     friend Size operator+(const Size &l, const Size &r);
@@ -67,6 +88,9 @@ struct Size
     friend Size operator/(const Size &l, float f);
 };
 
+/*!
+    \brief Class representing a point using floating point values.
+*/
 struct Point
 {
     float x, y;
@@ -81,6 +105,9 @@ struct Point
         y(yy)
     { }
 
+    /*!
+        Add the x and y values of position \a p to this position's x and y values.
+    */
     Point &operator+=(const Point &p)
     {
         x += p.x;
@@ -88,6 +115,9 @@ struct Point
         return *this;
     }
 
+    /*!
+        Subtract the x and y values of position \a p from this position's x and y values.
+    */
     Point &operator-=(const Point &p)
     {
         x -= p.x;
@@ -95,20 +125,29 @@ struct Point
         return *this;
     }
 
+    /*!
+        \return True if this position is equal to the position \a p.
+    */
     bool operator==(const Point &p)
     {
         return x == p.x && y == p.y;
     }
 
+    /*!
+        \return True if this position is not equal to the position \a p.
+    */
     bool operator!=(const Point &p)
     {
-        return x == p.x && y == p.y;
+        return x != p.x || y != p.y;
     }
 
     friend Point operator+(const Point &l, const Point &r);
     friend Point operator-(const Point &l, const Point &r);
 };
 
+/*!
+    \brief Data structure representing a rectangle, which is composed of an origin position and a size
+*/
 struct Rect
 {
     Size size;
@@ -129,10 +168,20 @@ struct Rect
         position(x,y)
     { }
 
+    /*!
+        \return True if this rect is equal to the rect \a r.
+    */
     bool operator==(const Rect &r)
     {
         return size == r.size && position == r.position;
     }
+
+    /*!
+        \return True if this rect is not equal to the rect \a r.
+    */
+    bool operator!=(const Rect &r)
+    {
+        return size != r.size || position != r.position;
 };
 
 } // namespace cpaf
