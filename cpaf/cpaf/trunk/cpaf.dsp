@@ -515,6 +515,10 @@ SOURCE=.\src\cpaf\exception.cpp
 
 SOURCE=.\src\cpaf\main.cpp
 # End Source File
+# Begin Source File
+
+SOURCE=.\src\cpaf\types.cpp
+# End Source File
 # End Group
 # End Target
 # End Project

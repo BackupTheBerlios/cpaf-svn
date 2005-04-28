@@ -89,12 +89,12 @@ struct Size
     {
         return width != s.width || height != s.height;
     }
-
-    friend Size operator+(const Size &l, const Size &r);
-    friend Size operator-(const Size &l, const Size &r);
-    friend Size operator*(const Size &l, float f);
-    friend Size operator/(const Size &l, float f);
 };
+
+Size operator+(const Size &l, const Size &r);
+Size operator-(const Size &l, const Size &r);
+Size operator*(const Size &l, float f);
+Size operator/(const Size &l, float f);
 
 /*!
     \brief Class representing a point using floating point values.
@@ -156,10 +156,10 @@ struct Point
     {
         return x != p.x || y != p.y;
     }
-
-    friend Point operator+(const Point &l, const Point &r);
-    friend Point operator-(const Point &l, const Point &r);
 };
+
+Point operator+(const Point &l, const Point &r);
+Point operator-(const Point &l, const Point &r);
 
 /*!
     \brief Data structure representing a rectangle, which is composed of an origin position and a size
