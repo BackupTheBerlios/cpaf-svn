@@ -91,10 +91,10 @@ struct CPAF_API Size
         return width != s.width || height != s.height;
     }
 
-    friend Size operator+(const Size &l, const Size &r);
-    friend Size operator-(const Size &l, const Size &r);
-    friend Size operator*(const Size &l, float f);
-    friend Size operator/(const Size &l, float f);
+    friend Size CPAF_API operator+(const Size &l, const Size &r);
+    friend Size CPAF_API operator-(const Size &l, const Size &r);
+    friend Size CPAF_API operator*(const Size &l, float f);
+    friend Size CPAF_API operator/(const Size &l, float f);
 };
 
 /*!
@@ -213,8 +213,8 @@ struct CPAF_API Rect
         return size != r.size || position != r.position;
     }
 
-    friend Point operator+(const Point &l, const Point &r);
-    friend Point operator-(const Point &l, const Point &r);
+    friend Point CPAF_API operator+(const Point &l, const Point &r);
+    friend Point CPAF_API operator-(const Point &l, const Point &r);
 };
 
 } // namespace cpaf
