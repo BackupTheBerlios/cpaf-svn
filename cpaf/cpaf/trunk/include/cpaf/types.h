@@ -5,6 +5,8 @@ Declaration of basic cpaf types
 #ifndef CPAF_TYPES_H
 #define CPAF_TYPES_H
 
+#include <stddef.h>
+
 namespace cpaf {
 
 struct Size
@@ -49,12 +51,12 @@ struct Size
         return *this;
     }
 
-    operator==(const Size &s)
+    bool operator==(const Size &s)
     {
         return width == s.width && height == s.height;
     }
 
-    operator!=(const Size &s)
+    bool operator!=(const Size &s)
     {
         return width == s.width && height == s.height;
     }
@@ -93,12 +95,12 @@ struct Point
         return *this;
     }
 
-    operator==(const Point &p)
+    bool operator==(const Point &p)
     {
         return x == p.x && y == p.y;
     }
 
-    operator!=(const Point &p)
+    bool operator!=(const Point &p)
     {
         return x == p.x && y == p.y;
     }
@@ -127,7 +129,7 @@ struct Rect
         position(x,y)
     { }
 
-    operator==(const Rect &r)
+    bool operator==(const Rect &r)
     {
         return size == r.size && position == r.position;
     }
