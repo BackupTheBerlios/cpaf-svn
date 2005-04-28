@@ -6,13 +6,14 @@ Declaration of basic cpaf types
 #define CPAF_TYPES_H
 
 #include <stddef.h>
+#include <cpaf/dllimpexp.h>
 
 namespace cpaf {
 
 /*!
     \brief Data structure representing a size using floating point values.
 */
-struct Size
+struct CPAF_API Size
 {
     float width, height;
 
@@ -89,17 +90,17 @@ struct Size
     {
         return width != s.width || height != s.height;
     }
-};
 
-Size operator+(const Size &l, const Size &r);
-Size operator-(const Size &l, const Size &r);
-Size operator*(const Size &l, float f);
-Size operator/(const Size &l, float f);
+    friend Size operator+(const Size &l, const Size &r);
+    friend Size operator-(const Size &l, const Size &r);
+    friend Size operator*(const Size &l, float f);
+    friend Size operator/(const Size &l, float f);
+};
 
 /*!
     \brief Class representing a point using floating point values.
 */
-struct Point
+struct CPAF_API Point
 {
     float x, y;
 
@@ -158,13 +159,10 @@ struct Point
     }
 };
 
-Point operator+(const Point &l, const Point &r);
-Point operator-(const Point &l, const Point &r);
-
 /*!
     \brief Data structure representing a rectangle, which is composed of an origin position and a size
 */
-struct Rect
+struct CPAF_API Rect
 {
     Size size;
     Point position;
@@ -214,6 +212,9 @@ struct Rect
     {
         return size != r.size || position != r.position;
     }
+
+    friend Point operator+(const Point &l, const Point &r);
+    friend Point operator-(const Point &l, const Point &r);
 };
 
 } // namespace cpaf
