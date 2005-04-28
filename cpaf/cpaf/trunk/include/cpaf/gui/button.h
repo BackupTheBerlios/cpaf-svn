@@ -43,7 +43,7 @@ template <typename T>
 class ButtonFact : public WidgetFact<T>
 {
 protected:
-    std::string m_label;
+     std::string m_label;
 
 public:
     T &label(const std::string &s)
@@ -55,7 +55,7 @@ public:
     std::string get_label() { return m_label; }
 };
 
-class Button : public ButtonFact<Button>
+class  CPAF_API Button : public ButtonFact<Button>
 {
 public:
     cpaf::gui::Button *create();
