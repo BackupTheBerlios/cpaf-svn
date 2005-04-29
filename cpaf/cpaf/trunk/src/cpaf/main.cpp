@@ -50,10 +50,8 @@ int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstanc
 
 int cpaf::entry(cpaf::main_ptr main, int argc, char *argv[])
 {
-#ifdef CPAF_GTK2
     extern void register_argc_argv(int argc, char *argv[]);
     register_argc_argv(argc, argv);
-#endif
 
     // the end-all exception handling block
     try

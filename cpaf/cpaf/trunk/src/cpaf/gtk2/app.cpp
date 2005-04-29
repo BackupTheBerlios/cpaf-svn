@@ -1,5 +1,5 @@
 /**
- * \file src/cpaf/gtk2/factory.cpp
+ * \file src/cpaf/gtk2/app.cpp
  * \brief Implementation of cpaf::gui::App::run() for gtk2
  * \date 2005-04-07
  */
