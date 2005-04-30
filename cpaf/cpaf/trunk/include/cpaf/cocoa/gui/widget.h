@@ -9,6 +9,7 @@
 
 #include <cpaf/api/gui/widget.h>
 #include <cpaf/types.h>
+#import <Cocoa/Cocoa.h>
 
 namespace cpaf {
     namespace cocoa {
@@ -17,7 +18,8 @@ namespace cpaf {
 class Widget : public virtual cpaf::api::gui::Widget
 {
 protected:
-    Widget();
+	id m_widget;
+    Widget(id);
 
 public:
     virtual ~Widget();
@@ -33,7 +35,7 @@ public:
     virtual cpaf::Point get_position() { return cpaf::Point(); }
 
     // widget interface
-    virtual void *get_handle() { return NULL; }
+    virtual id get_handle() { return m_widget; }
     virtual int get_id() { return 0; } //! \todo No unique id's for Cocoa port yet.
     virtual void enable(bool sensitive);
     virtual void show(bool show, bool activate);

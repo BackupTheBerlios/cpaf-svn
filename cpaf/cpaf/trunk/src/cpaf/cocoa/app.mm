@@ -18,9 +18,11 @@ void register_argc_argv(int argc, char *argv[])
 
 void cpaf::gui::App::gui_init()
 {
+	[[NSAutoreleasePool alloc] init]; //! \todo Should i release this?
+	NSApplicationLoad();
 }
 
 int cpaf::gui::App::run()
 {
-    return NSApplicationMain(s_argc, s_argv);
+    return NSApplicationMain(s_argc, (const char **)s_argv);
 }

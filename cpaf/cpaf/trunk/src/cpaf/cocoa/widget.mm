@@ -9,7 +9,8 @@
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
-cpaf::cocoa::gui::Widget::Widget()
+cpaf::cocoa::gui::Widget::Widget(id widget)
+	: m_widget(widget)
 {
 }
 
@@ -21,11 +22,15 @@ cpaf::cocoa::gui::Widget::~Widget()
 
 void cpaf::cocoa::gui::Widget::set_size(const cpaf::Size& s)
 {
+    NSRect f = [m_widget frame];
+    f.size.width = s.width;
+    f.size.height = s.height;
+    [m_widget setFrame:f];
 }
 
 cpaf::Size cpaf::cocoa::gui::Widget::get_size()
 {
-    return cpaf::Size;
+    return cpaf::Size();
 }
 
 void cpaf::cocoa::gui::Widget::enable(bool e)

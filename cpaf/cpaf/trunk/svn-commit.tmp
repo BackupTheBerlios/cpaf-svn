@@ -1,0 +1,13 @@
+added xcode-project for the cocoa port, the proof-sample works now basically
+--This line, and those below, will be ignored--
+
+A    version.plist
+M    include/cpaf/cocoa/gui/widget.h
+M    src/cpaf/cocoa/window.mm
+M    src/cpaf/cocoa/button.mm
+M    src/cpaf/cocoa/app.mm
+M    src/cpaf/cocoa/widget.mm
+A    svn-commit.tmp
+A    lib
+A    English.lproj
+AM   English.lproj/InfoPlist.strings
