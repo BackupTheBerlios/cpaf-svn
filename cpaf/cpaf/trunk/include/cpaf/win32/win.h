@@ -5,21 +5,17 @@ common header for win32 implementation
 #ifndef CPAF_WIN32_WIN_H
 #define CPAF_WIN32_WIN_H
 
-#if _MSC_VER
-#   pragma warning(disable:4786) // truncated to 255 characters in the debug info
-#endif
-
 #include <windows.h>
 
 #include <map>
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) && defined(_DEBUG)
 #   include <crtdbg.h>
 #   define DBG_MSG(s)      _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", s ## "\n");
-#   define DBG_MSG_2(f, s)   _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
+#   define DBG_MSG_2(f, s) _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
 #else
 #   define DBG_MSG(s)
-#   define DBG_MSG_2(s)
+#   define DBG_MSG_2(f,s)
 #endif
 
 namespace cpaf {

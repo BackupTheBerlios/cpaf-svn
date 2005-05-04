@@ -6,22 +6,14 @@ win32 entry function implementation
 //#include <boost/scoped_ptr.hpp>
 #include <memory> // for auto_ptr
 #include <cpaf/exception.h>
-#include <exception>
 
 #ifdef CPAF_WIN32
-//! \todo What does this do? Do we need the set_terminate for other ports?
-void term_handler()
-{
-    ::MessageBox(0, "term_handler", 0, 0);
-}
 
 //! \todo Construct the command line vector and pass it to main()
 //! \todo Find some way to prevent common code duplication between functions
 
 int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    std::set_terminate(term_handler);
-
     // the end-all exception handling block
     try
     {

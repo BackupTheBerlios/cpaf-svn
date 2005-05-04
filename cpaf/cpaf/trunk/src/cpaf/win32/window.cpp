@@ -5,7 +5,7 @@ implementation of win32 window
 #include <cpaf/win32/gui/window.h>
 #include <cpaf/win32/exception.h>
 
-#define CLASSNAME "cpaf::Window"
+#define CLASSNAME TEXT("cpaf::Window")
 
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
@@ -55,7 +55,7 @@ cpaf::win32::gui::Window::Window(int id, cpaf::api::gui::Window *parent)
     // initialize creation info
     CreationInfo info(this);
 
-    m_hwnd = ::CreateWindowEx(0, CLASSNAME, "Cpaf!!", WS_OVERLAPPEDWINDOW ,
+    m_hwnd = ::CreateWindowEx(0, CLASSNAME, TEXT("Cpaf!!"), WS_OVERLAPPEDWINDOW ,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
         &info);
 

@@ -1,0 +1,40 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpaf", "cpaf.vcproj", "{0D192004-77CE-4E79-81F6-E126E712CFE9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "proof", "samples\proof\proof.vcproj", "{108BFF97-EB3D-45EC-AA27-5794C24CF131}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D192004-77CE-4E79-81F6-E126E712CFE9} = {0D192004-77CE-4E79-81F6-E126E712CFE9}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		debug dll = debug dll
+		debug static lib = debug static lib
+		release dll = release dll
+		release static lib = release static lib
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{0D192004-77CE-4E79-81F6-E126E712CFE9}.debug dll.ActiveCfg = debug dll|Win32
+		{0D192004-77CE-4E79-81F6-E126E712CFE9}.debug dll.Build.0 = debug dll|Win32
+		{0D192004-77CE-4E79-81F6-E126E712CFE9}.debug static lib.ActiveCfg = debug static lib|Win32
+		{0D192004-77CE-4E79-81F6-E126E712CFE9}.debug static lib.Build.0 = debug static lib|Win32
+		{0D192004-77CE-4E79-81F6-E126E712CFE9}.release dll.ActiveCfg = release dll|Win32
+		{0D192004-77CE-4E79-81F6-E126E712CFE9}.release dll.Build.0 = release dll|Win32
+		{0D192004-77CE-4E79-81F6-E126E712CFE9}.release static lib.ActiveCfg = release static lib|Win32
+		{0D192004-77CE-4E79-81F6-E126E712CFE9}.release static lib.Build.0 = release static lib|Win32
+		{108BFF97-EB3D-45EC-AA27-5794C24CF131}.debug dll.ActiveCfg = debug dll|Win32
+		{108BFF97-EB3D-45EC-AA27-5794C24CF131}.debug dll.Build.0 = debug dll|Win32
+		{108BFF97-EB3D-45EC-AA27-5794C24CF131}.debug static lib.ActiveCfg = debug static lib|Win32
+		{108BFF97-EB3D-45EC-AA27-5794C24CF131}.debug static lib.Build.0 = debug static lib|Win32
+		{108BFF97-EB3D-45EC-AA27-5794C24CF131}.release dll.ActiveCfg = release dll|Win32
+		{108BFF97-EB3D-45EC-AA27-5794C24CF131}.release dll.Build.0 = release dll|Win32
+		{108BFF97-EB3D-45EC-AA27-5794C24CF131}.release static lib.ActiveCfg = release static lib|Win32
+		{108BFF97-EB3D-45EC-AA27-5794C24CF131}.release static lib.Build.0 = release static lib|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

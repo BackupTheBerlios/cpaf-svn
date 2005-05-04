@@ -27,7 +27,7 @@ cpaf::win32::gui::Button::Button(int id, cpaf::api::gui::Widget *parent)
     {
         cpaf::win32::gui::CreationHook hook; // hook WM_CREATE for initialization stuff
 
-        m_hwnd = ::CreateWindowEx(0, "BUTTON", "Cpaf!!", WS_CHILD | BS_PUSHBUTTON,
+        m_hwnd = ::CreateWindowEx(0, TEXT("BUTTON"), TEXT("Cpaf!!"), WS_CHILD | BS_PUSHBUTTON,
             0, 0, 100, 25, hparent, (HMENU)id, ::GetModuleHandle(NULL),
             &info);
     }
