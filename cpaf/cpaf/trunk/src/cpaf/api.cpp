@@ -1,6 +1,6 @@
 /*
 This file implements the static factory_key members for all of the api::gui classes that are constructable,
-as well as the api::gui::Object dtor
+and also implements the api::gui::Object dtor.
 */
 
 #include <cpaf/api/gui/window.h>
@@ -8,7 +8,7 @@ as well as the api::gui::Object dtor
 
 static int get_key()
 {
-    static int next = 5;
+    static int next;
 
     return ++next;
 }
