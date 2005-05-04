@@ -204,7 +204,7 @@
 	<Files>
 		<Filter
 			Name="souce"
-			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx;mm"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
 				RelativePath=".\src\cpaf\api.cpp">
@@ -212,29 +212,7 @@
 					Name="debug dll|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release dll|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="debug static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+						ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -243,29 +221,7 @@
 					Name="debug dll|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release dll|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="debug static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+						ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -274,29 +230,7 @@
 					Name="debug dll|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release dll|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="debug static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+						ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -305,29 +239,7 @@
 					Name="debug dll|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release dll|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="debug static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+						ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -336,29 +248,7 @@
 					Name="debug dll|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release dll|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="debug static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="release static lib|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-						ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+						ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 				</FileConfiguration>
 			</File>
 			<Filter
@@ -370,28 +260,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -401,28 +287,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -432,28 +314,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -463,28 +341,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -494,28 +368,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -525,28 +395,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -556,28 +422,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -757,28 +619,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -788,28 +646,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -819,28 +673,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -850,28 +700,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -881,28 +727,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -912,28 +754,24 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 				</File>
@@ -943,29 +781,79 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
-							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/$(SafeInputName)"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="cocoa"
+				Filter="mm">
+				<File
+					RelativePath=".\src\cpaf\cocoa\app.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\button.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\factory.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\widget.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\window.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
 				</File>
 			</Filter>
@@ -1082,6 +970,46 @@
 						RelativePath=".\include\cpaf\gtk2\gui\window.h">
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="cocoa"
+				Filter="">
+				<File
+					RelativePath=".\include\cpaf\cocoa\gui\button.h">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\cpaf\cocoa\factory.h">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\cpaf\cocoa\gui\widget.h">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\cpaf\cocoa\gui\window.h">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
