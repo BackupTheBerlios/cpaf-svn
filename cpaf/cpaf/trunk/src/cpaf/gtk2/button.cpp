@@ -16,7 +16,7 @@ cpaf::gtk2::gui::Button::Button(cpaf::api::gui::Widget *parent)
     if( parent )
     {
         hparent = GTK_WIDGET(parent->get_handle());
-        gtk_container_add(GTK_CONTAINER(hparent), m_widget);
+        gtk_container_add(GTK_CONTAINER(gtk_bin_get_child(GTK_BIN(hparent))), m_widget);
     }
     else
         ; //! \todo throw here, buttons must have parents

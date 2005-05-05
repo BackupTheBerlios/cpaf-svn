@@ -16,6 +16,9 @@ cpaf::gtk2::gui::Window::Window(cpaf::api::gui::Window *parent)
         gtk_window_set_transient_for(GTK_WINDOW(m_widget),
                                      GTK_WINDOW(parent->get_handle()));
 
+    gtk_container_add(GTK_CONTAINER(m_widget), gtk_fixed_new());
+    gtk_widget_show(gtk_bin_get_child(GTK_BIN(m_widget)));
+
     // Quit the application for now when the toplevel is closed
     g_signal_connect_swapped(m_widget, "delete-event",
                              G_CALLBACK (gtk_main_quit), NULL);
