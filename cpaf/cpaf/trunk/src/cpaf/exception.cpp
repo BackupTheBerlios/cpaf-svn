@@ -37,6 +37,8 @@ const char *cpaf::Exception::get_message()
             return "An attempt was made to create a widget with no parent";
         case NATIVE_HANDLE:
             return "An error was encountered creating the native widget";
+        case GUI_INIT_FAILED:
+            return "An error was encountered initializing the GUI";
 
         default:
             return "An unknown error was encountered";

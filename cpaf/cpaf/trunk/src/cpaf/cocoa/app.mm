@@ -5,10 +5,12 @@
  */
 
 #include <cpaf/gui/app.h>
+#include <cpaf/exception.h>
 #import <Cocoa/Cocoa.h>
 
 static int s_argc;
 static char **s_argv;
+static NSAutoreleasePool *pool;
 
 void register_argc_argv(int argc, char *argv[])
 {
@@ -18,11 +20,15 @@ void register_argc_argv(int argc, char *argv[])
 
 void cpaf::gui::App::gui_init()
 {
-	[[NSAutoreleasePool alloc] init]; //! \todo Should i release this?
-	NSApplicationLoad();
+    pool = [[NSAutoreleasePool alloc] init];
+    
+    // We need to call NSApplicationLoad() if we're creating a window before NSApplicationMain() is called
+    if (NSApplicationLoad() == NO)
+        throw cpaf::Exception(cpaf::Exception::GUI_INIT_FAILED, __LINE__, __FILE__);
 }
 
 int cpaf::gui::App::run()
 {
+    [pool release];
     return NSApplicationMain(s_argc, (const char **)s_argv);
 }

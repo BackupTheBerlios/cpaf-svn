@@ -24,6 +24,7 @@ public:
     enum error_codes {
         WIDGET_NO_PARENT = CPAF_EXCEPTION_LOWEST, //!< An attempt was made to create a widget with no parent, but the widget requires one
         NATIVE_HANDLE, //!< An error was encountered creating the native widget
+        GUI_INIT_FAILED, //!< An error was encountered initializing the GUI
     };
 
 protected:

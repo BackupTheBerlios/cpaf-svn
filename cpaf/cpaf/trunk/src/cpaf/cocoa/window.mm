@@ -11,79 +11,81 @@ using namespace cpaf::cocoa::utils;
 
 
 cpaf::cocoa::gui::Window::Window(cpaf::api::gui::Window *parent)
-    : Widget([[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 400, 300) styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing:NSBackingStoreBuffered defer:YES])
+    : m_window([[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 400, 300) styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing:NSBackingStoreBuffered defer:YES])
 {
+    //! \todo Is there some default size?
+    set_position(cpaf::Point(0, 0));
     //! \todo if (parent) { }
 }
 
 void cpaf::cocoa::gui::Window::set_size(const cpaf::Size &s)
 {
-    NSRect f = [m_widget frame];
+    NSRect f = [m_window frame];
     f.size.width = s.width;
     f.size.height = s.height;
-    [m_widget setFrame:f display:YES];
+    [m_window setFrame:f display:YES];
 }
 
 void cpaf::cocoa::gui::Window::set_min_size(const cpaf::Size &s)
 {
-	[m_widget setMinSize:NSMakeSize(s.width, s.height)];
+    [m_window setMinSize:NSMakeSize(s.width, s.height)];
 }
 
 void cpaf::cocoa::gui::Window::set_max_size(const cpaf::Size &s)
 {
-	[m_widget setMaxSize:NSMakeSize(s.width, s.height)];
+    [m_window setMaxSize:NSMakeSize(s.width, s.height)];
 }
 
 void cpaf::cocoa::gui::Window::set_position(const cpaf::Point &p)
 {
-    NSRect f = [m_widget frame];
-	f.origin = convert_point(p);
-    [m_widget setFrame:f display:YES];
+    NSRect f = [m_window frame];
+    f.origin = convert_point(p);
+    [m_window setFrame:f display:YES];
 }
 
 cpaf::Size cpaf::cocoa::gui::Window::get_size()
 {
-    NSRect f = [m_widget frame];
+    NSRect f = [m_window frame];
     return cpaf::Size(f.size.width, f.size.height);
 }
 
 cpaf::Size cpaf::cocoa::gui::Window::get_min_size()
 {
-	NSSize size = [m_widget minSize];
+    NSSize size = [m_window minSize];
     return cpaf::Size(size.width, size.height);
 }
 
 cpaf::Size cpaf::cocoa::gui::Window::get_max_size()
 {
-	NSSize size = [m_widget maxSize];
+    NSSize size = [m_window maxSize];
     return cpaf::Size(size.width, size.height);
 }
 
 cpaf::Point cpaf::cocoa::gui::Window::get_position()
 {
-    NSRect f = [m_widget frame];
+    NSRect f = [m_window frame];
     return convert_point(f.origin);
 }
 
 void cpaf::cocoa::gui::Window::show(bool show, bool activate)
 {
-	//! \todo show, activate
-	[m_widget makeKeyAndOrderFront:nil];
+    //! \todo show, activate
+    [m_window makeKeyAndOrderFront:nil];
 }
 
 void cpaf::cocoa::gui::Window::set_title(const std::string &t)
 {
-	[m_widget setTitle:[NSString stringWithUTF8String:t.c_str()]];
+    [m_window setTitle:[NSString stringWithUTF8String:t.c_str()]];
 }
 
 std::string cpaf::cocoa::gui::Window::get_title()
 {
-    return [[m_widget title] UTF8String];
+    return [[m_window title] UTF8String];
 }
 
 void cpaf::cocoa::gui::Window::set_client_size(const cpaf::Size &s)
 {
-	set_size(s);
+    set_size(s);
 }
 
 cpaf::Size cpaf::cocoa::gui::Window::get_client_size()
@@ -93,5 +95,5 @@ cpaf::Size cpaf::cocoa::gui::Window::get_client_size()
 
 cpaf::Point cpaf::cocoa::gui::Window::get_client_position()
 {
-	return cpaf::Point();
+    return cpaf::Point();
 }

@@ -7,16 +7,11 @@
 #include <cpaf/cocoa/gui/button.h>
 
 cpaf::cocoa::gui::Button::Button(cpaf::api::gui::Widget *parent)
-	: Widget([[NSButton alloc] init])
+    : Widget(parent, [[NSButton alloc] init])
 {
     [m_widget setButtonType:NSToggleButton];
-    [m_widget setBezelStyle:NSRegularSquareBezelStyle];
+    [(NSButton*)m_widget setBezelStyle:NSRegularSquareBezelStyle];
     //[m_widget setAction:@selector(:)];
-	if (parent)
-	{
-		//! \todo parent must be a window
-		[[parent->get_handle() contentView] addSubview:m_widget];
-	}
 }
 
 void cpaf::cocoa::gui::Button::set_label(const std::string &label)

@@ -18,8 +18,8 @@ namespace cpaf {
 class Widget : public virtual cpaf::api::gui::Widget
 {
 protected:
-	id m_widget;
-    Widget(id);
+    id m_widget;
+    Widget(cpaf::api::gui::Widget *, id);
 
 public:
     virtual ~Widget();
@@ -28,7 +28,7 @@ public:
     virtual void set_size(const cpaf::Size&);
     virtual void set_min_size(const cpaf::Size&) { }
     virtual void set_max_size(const cpaf::Size&) { }
-    virtual void set_position(const cpaf::Point&) { }
+    virtual void set_position(const cpaf::Point&);
     virtual cpaf::Size get_size();
     virtual cpaf::Size get_min_size() { return cpaf::Size(); }
     virtual cpaf::Size get_max_size() { return cpaf::Size(); }

@@ -17,8 +17,10 @@ namespace cpaf {
     namespace cocoa {
         namespace gui {
 
-class Window : public cpaf::cocoa::gui::Widget, cpaf::api::gui::Window
+class Window : public /*cpaf::cocoa::gui::Widget, */cpaf::api::gui::Window
 {
+private:
+    NSWindow *m_window;
 public:
     Window(cpaf::api::gui::Window *parent);
 
@@ -33,6 +35,11 @@ public:
     virtual cpaf::Point get_position();
 
     // widget interface
+    virtual id get_handle() { return m_window; }
+    virtual int get_id() { return 0; } //! \todo No unique id's for Cocoa port yet.
+    virtual void enable(bool sensitive) { }
+    virtual bool is_enabled() { return false; }
+    virtual bool is_shown() { return false; }
 
     // Do we need to override Widget::Show in Cocoa?
     virtual void show(bool show, bool activate);

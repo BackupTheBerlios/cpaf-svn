@@ -5,13 +5,25 @@
  */
 
 #include <cpaf/cocoa/gui/widget.h>
+#include <cpaf/cocoa/utils.h>
 
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
-cpaf::cocoa::gui::Widget::Widget(id widget)
-	: m_widget(widget)
+using namespace cpaf::cocoa::utils;
+
+cpaf::cocoa::gui::Widget::Widget(cpaf::api::gui::Widget *parent, id widget)
+    : m_widget(widget)
 {
+    if (parent)
+    {
+        //! \todo Check if the parent is a window or so
+        [[(id)parent->get_handle() contentView] addSubview:m_widget];
+        set_position(cpaf::Point(0, 0));
+    }
+    
+    // The widget shouldn't move when we resize the window
+    [m_widget setAutoresizingMask:NSViewMinYMargin];
 }
 
 cpaf::cocoa::gui::Widget::~Widget()
@@ -24,7 +36,16 @@ void cpaf::cocoa::gui::Widget::set_size(const cpaf::Size& s)
 {
     NSRect f = [m_widget frame];
     f.size.width = s.width;
+    f.origin.y += f.size.height - s.height;
     f.size.height = s.height;
+    [m_widget setFrame:f];
+}
+
+void cpaf::cocoa::gui::Widget::set_position(const cpaf::Point& s)
+{
+    NSRect f = [m_widget frame];
+    f.origin.x = s.x;
+    f.origin.y = [[m_widget superview] frame].size.height - s.y - f.size.height;
     [m_widget setFrame:f];
 }
 

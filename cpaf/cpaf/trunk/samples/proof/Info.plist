@@ -6,7 +6,7 @@
         <key>CFBundleExecutable</key>
         <string>proof</string>
         <key>CFBundleName</key>
-        <string>Test</string>
+        <string>proof</string>
         <key>CFBundlePackageType</key>
         <string>APPL</string>
         <key>CFBundleSignature</key>
@@ -14,31 +14,5 @@
         <key>NSPrincipalClass</key>
         <string>NSApplication</string>
 </dict>
-</plist>
-
-<!--
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>proof</string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-        <key>CFBundleIdentifier</key>
-	<string>com.apple.myCocoaApp</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>0.1</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-</dict>
--->
 
 </plist>
