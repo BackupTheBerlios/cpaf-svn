@@ -862,6 +862,24 @@
 			Name="include"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File
+				RelativePath=".\include\cpaf\app.h">
+			</File>
+			<File
+				RelativePath=".\include\cpaf\dllimpexp.h">
+			</File>
+			<File
+				RelativePath=".\include\cpaf\exception.h">
+			</File>
+			<File
+				RelativePath=".\include\cpaf\macros.h">
+			</File>
+			<File
+				RelativePath=".\include\cpaf\main.h">
+			</File>
+			<File
+				RelativePath=".\include\cpaf\types.h">
+			</File>
 			<Filter
 				Name="api"
 				Filter="">

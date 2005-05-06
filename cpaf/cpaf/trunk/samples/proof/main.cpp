@@ -29,11 +29,6 @@ bool MyApp::init()
     cpaf::gui::Button *btn = fact_btn.label("Hello world!").parent(wnd).create();
     btn->show();
 
-    // create something on the stack to show that its possible
-    cpaf::gui::Button btn2(wnd);
-    btn2.set_position(cpaf::Point(100,100));
-    btn2.show();
-
     btn->set_label("Hello World!");
     btn->set_size(cpaf::Size(300,50));
     

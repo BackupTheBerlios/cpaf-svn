@@ -22,11 +22,6 @@ class CPAF_API Button : public Widget
 private:
     cpaf::api::gui::Button *m_impl;
 
-public:
-    Button(cpaf::gui::Widget *parent);
-    
-    Button &operator =(cpaf::gui::Button *);
-
 protected:
     Button(cpaf::api::gui::Button *b);
 

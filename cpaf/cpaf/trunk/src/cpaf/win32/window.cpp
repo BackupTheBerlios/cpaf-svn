@@ -10,7 +10,7 @@ implementation of win32 window
 static WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
-    (WNDPROC)cpaf::win32::gui::window_wndproc, // subclass to use window_wndproc later
+    (WNDPROC)cpaf::win32::gui::window_wndproc,
     0,
     0,
     GetModuleHandle(NULL),
@@ -60,7 +60,7 @@ cpaf::win32::gui::Window::Window(int id, cpaf::api::gui::Window *parent)
         &info);
 
     if( !m_hwnd )
-        throw cpaf::win32::Exception(cpaf::Exception::error_codes::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
+        throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
 }
 
 std::string cpaf::win32::gui::Window::get_title()

@@ -90,7 +90,7 @@ cpaf::win32::gui::CreationHook::CreationHook()
     m_hook = ::SetWindowsHookEx(WH_CBT, cpaf::win32::gui::CreationHook::hook_proc,NULL, ::GetCurrentThreadId());
 
     if( !m_hook )
-        throw cpaf::win32::Exception(cpaf::win32::Exception::error_codes::HOOK, ::GetLastError(), __LINE__, __FILE__);
+        throw cpaf::win32::Exception(cpaf::win32::Exception::HOOK, ::GetLastError(), __LINE__, __FILE__);
 }
 
 cpaf::win32::gui::CreationHook::~CreationHook()
@@ -98,7 +98,7 @@ cpaf::win32::gui::CreationHook::~CreationHook()
     // unhook
     //! \todo destructors really shouldn't throw...
     if( !::UnhookWindowsHookEx(m_hook) )
-        throw cpaf::win32::Exception(cpaf::win32::Exception::error_codes::UNHOOK, ::GetLastError(), __LINE__, __FILE__);
+        throw cpaf::win32::Exception(cpaf::win32::Exception::UNHOOK, ::GetLastError(), __LINE__, __FILE__);
 }
 
 LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_param, LPARAM l_param)

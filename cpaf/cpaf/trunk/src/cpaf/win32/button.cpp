@@ -6,8 +6,6 @@ cpaf::win32::gui::Button implementation
 #include <cpaf/gui/widget.h>
 #include <cpaf/win32/exception.h>
 
-static WNDPROC old_proc = 0;
-
 cpaf::win32::gui::Button::Button(int id, cpaf::api::gui::Widget *parent)
     : Widget(id)
 {
@@ -20,7 +18,7 @@ cpaf::win32::gui::Button::Button(int id, cpaf::api::gui::Widget *parent)
     if( parent )
         hparent = (HWND)parent->get_handle();
     else
-        throw cpaf::Exception(cpaf::Exception::error_codes::WIDGET_NO_PARENT, __LINE__, __FILE__);
+        throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     CreationInfo info(this);
 
@@ -33,7 +31,7 @@ cpaf::win32::gui::Button::Button(int id, cpaf::api::gui::Widget *parent)
     }
 
     if( !m_hwnd )
-        throw cpaf::win32::Exception(cpaf::Exception::error_codes::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
+        throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
 }
 
 void cpaf::win32::gui::Button::set_label(const std::string &label)
