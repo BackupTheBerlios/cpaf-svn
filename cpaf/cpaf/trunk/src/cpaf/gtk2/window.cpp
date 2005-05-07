@@ -9,9 +9,10 @@
 
 #include <gtk/gtk.h>
 
-cpaf::gtk2::gui::Window::Window(cpaf::api::gui::Window *parent)
+cpaf::gtk2::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
     : Widget(gtk_window_new(GTK_WINDOW_TOPLEVEL))
 {
+    cpaf::gui::Widget *parent = params.m_parent;
     if (parent)
         gtk_window_set_transient_for(GTK_WINDOW(m_widget),
                                      GTK_WINDOW(parent->get_handle()));

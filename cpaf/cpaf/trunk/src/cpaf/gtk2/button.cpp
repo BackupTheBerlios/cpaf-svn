@@ -5,21 +5,22 @@
  */
 
 #include <cpaf/gtk2/gui/button.h>
-
+#include <cpaf/exception.h>
 #include <gtk/gtk.h>
 
-cpaf::gtk2::gui::Button::Button(cpaf::api::gui::Widget *parent)
+cpaf::gtk2::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
     : Widget(gtk_button_new()),
       m_label(NULL)
 {
     GtkWidget * hparent;
+    cpaf::gui::Widget *parent = params.m_parent;
     if( parent )
     {
         hparent = GTK_WIDGET(parent->get_handle());
         gtk_container_add(GTK_CONTAINER(gtk_bin_get_child(GTK_BIN(hparent))), m_widget);
     }
     else
-        ; //! \todo throw here, buttons must have parents
+        throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 }
 
 void cpaf::gtk2::gui::Button::set_label(const std::string &label)

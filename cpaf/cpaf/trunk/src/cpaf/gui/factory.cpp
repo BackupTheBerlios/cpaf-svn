@@ -10,30 +10,6 @@ Factory function implementations
 #include <cpaf/api/gui/button.h>
 #include <cpaf/api/gui/window.h>
 
-// the widget factory function pointer registry
-//cpaf::gui::factory::WidgetFactoryMap cpaf::gui::factory::widget_factory_map;
-static cpaf::gui::factory::WidgetFactoryMap widget_factory_map;
-
-cpaf::gui::factory::WidgetFactoryPtr cpaf::gui::factory::get_factory(int key)
-{
-    return widget_factory_map[key];
-}
-
-void cpaf::gui::factory::add_factory(int key, WidgetFactoryPtr fact)
-{
-    //! \todo check to see that the key doesn't exist already
-    widget_factory_map[key] = fact;
-}
-
-int cpaf::gui::factory::get_widget_id()
-{
-    static int id = 1;
-
-    return id++;
-}
-
-
-
 static cpaf::gui::factory::WidgetImplementationWrapperMap widget_impl_map;
 
 // adds a wrappper implementation pair to the map

@@ -6,7 +6,7 @@
 
 #include <cpaf/cocoa/gui/button.h>
 
-cpaf::cocoa::gui::Button::Button(cpaf::api::gui::Widget *parent)
+cpaf::cocoa::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
     : Widget(parent, [[NSButton alloc] init])
 {
     [m_widget setButtonType:NSToggleButton];

@@ -5,9 +5,10 @@ cpaf::win32::gui::Button implementation
 #include <cpaf/win32/gui/button.h>
 #include <cpaf/gui/widget.h>
 #include <cpaf/win32/exception.h>
+#include <cpaf/gui/button.h>
 
-cpaf::win32::gui::Button::Button(int id, cpaf::api::gui::Widget *parent)
-    : Widget(id)
+cpaf::win32::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
+    : Widget(params)
 {
     DBG_MSG("win32::button ctor");
     static bool wnd_proc_replaced = false;
@@ -15,6 +16,7 @@ cpaf::win32::gui::Button::Button(int id, cpaf::api::gui::Widget *parent)
     // this needs to go before the wnd_proc_replaced bit or I get an access violation from VC
     // for what ever stupid reason if the parent is null
     HWND hparent;
+    cpaf::gui::Widget *parent = params.m_parent;
     if( parent )
         hparent = (HWND)parent->get_handle();
     else
@@ -23,10 +25,10 @@ cpaf::win32::gui::Button::Button(int id, cpaf::api::gui::Widget *parent)
     CreationInfo info(this);
 
     {
-        cpaf::win32::gui::CreationHook hook; // hook WM_CREATE for initialization stuff
+        CreationHook hook; // hook WM_CREATE for initialization stuff
 
         m_hwnd = ::CreateWindowEx(0, TEXT("BUTTON"), TEXT("Cpaf!!"), WS_CHILD | BS_PUSHBUTTON,
-            0, 0, 100, 25, hparent, (HMENU)id, ::GetModuleHandle(NULL),
+            0, 0, 100, 25, hparent, NULL, ::GetModuleHandle(NULL),
             &info);
     }
 

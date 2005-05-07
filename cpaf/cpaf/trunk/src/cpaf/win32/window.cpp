@@ -35,8 +35,8 @@ LRESULT CALLBACK window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_pa
 } // cpaf
 
 
-cpaf::win32::gui::Window::Window(int id, cpaf::api::gui::Window *parent)
-: Widget(id)
+cpaf::win32::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
+: Widget(params)
 {
     static bool registered = false;
 
@@ -47,6 +47,7 @@ cpaf::win32::gui::Window::Window(int id, cpaf::api::gui::Window *parent)
         ::RegisterClassEx(&wnd_class);
 
     HWND hparent;
+    cpaf::gui::Widget *parent = params.m_parent;
     if( parent )
         hparent = (HWND)parent->get_handle();
     else

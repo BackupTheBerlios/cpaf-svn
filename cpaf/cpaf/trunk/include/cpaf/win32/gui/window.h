@@ -15,12 +15,12 @@ namespace cpaf {
     namespace win32 {
         namespace gui {
 
-class Window : public virtual cpaf::win32::gui::Widget, virtual cpaf::api::gui::Window
+class Window : public virtual cpaf::win32::gui::Widget, public virtual cpaf::api::gui::Window
 {
     friend LRESULT CALLBACK window_wndproc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 public:
-    Window(int id, cpaf::api::gui::Window *parent);
+    Window(const cpaf::gui::factory::WindowData &params);
 
     // toplevel interface
     virtual void set_title(const std::string &t);

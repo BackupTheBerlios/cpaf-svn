@@ -26,7 +26,11 @@ std::string cpaf::gui::Button::get_label()
     return m_impl->get_label();
 }
 
-cpaf::gui::Button *cpaf::gui::factory::Button::create()
+cpaf::gui::Button::Factory::Factory()
+    : cpaf::gui::factory::Button<Factory>(new cpaf::gui::factory::ButtonData)
+{ }
+
+cpaf::gui::Button *cpaf::gui::Button::Factory::create() const
 {
-    return new cpaf::gui::Button( cpaf::gui::factory::create_widget<cpaf::api::gui::Button>(*m_parent) );
+    return new cpaf::gui::Button(cpaf::gui::factory::create_button(*m_data));
 }

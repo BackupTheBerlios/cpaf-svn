@@ -8,15 +8,17 @@ win32 version of api::Button
 #include <cpaf/win32/gui/widget.h>
 #include <cpaf/api/gui/button.h>
 
+// for the initializer factory
+#include <cpaf/gui/button.h>
+
 namespace cpaf {
-    namespace gui { class Widget; }
     namespace win32 {
         namespace gui {
 
-class Button : public virtual cpaf::win32::gui::Widget, virtual cpaf::api::gui::Button
+class Button : public virtual cpaf::win32::gui::Widget, public virtual cpaf::api::gui::Button
 {
 public:
-    Button(int id, cpaf::api::gui::Widget *parent);
+    Button(const cpaf::gui::factory::ButtonData &params);
 
     virtual void set_label(const std::string &label);
     virtual std::string get_label();

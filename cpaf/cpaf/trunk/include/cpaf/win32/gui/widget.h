@@ -13,6 +13,9 @@ win32 version of api::Widget
 #include <cpaf/types.h>
 #include <cpaf/api/gui/widget.h>
 
+// for initializer factory
+#include <cpaf/gui/widget.h>
+
 #include <string>
 
 namespace cpaf {
@@ -25,13 +28,12 @@ private:
     bool m_delete;
 
 protected:
-    int m_id; // widget identifier, will never change after construction
     HWND m_hwnd; // native window handle
     WNDPROC m_old_proc; // old window procedure
 
     cpaf::Size m_min_size, m_max_size;
 
-    Widget(int id);
+    Widget(const cpaf::gui::factory::WidgetData &params);
 
 public:
     void set_old_proc(WNDPROC proc) { m_old_proc = proc; }

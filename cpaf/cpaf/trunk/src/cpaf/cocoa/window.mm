@@ -10,7 +10,7 @@
 using namespace cpaf::cocoa::utils;
 
 
-cpaf::cocoa::gui::Window::Window(cpaf::api::gui::Window *parent)
+cpaf::cocoa::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
     : m_window([[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 400, 300) styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing:NSBackingStoreBuffered defer:YES])
 {
     //! \todo Is there some default size?

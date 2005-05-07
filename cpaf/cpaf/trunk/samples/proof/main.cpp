@@ -22,16 +22,16 @@ public:
 
 bool MyApp::init()
 {
-    // believe it or not, these don't leak...
-    cpaf::gui::Window *wnd = new cpaf::gui::Window;
-    
-    cpaf::gui::factory::Button fact_btn;
+    cpaf::gui::Window::Factory fact_wnd;
+    cpaf::gui::Window *wnd = fact_wnd.title("Cpaf").create();
+
+    cpaf::gui::Button::Factory fact_btn;
     cpaf::gui::Button *btn = fact_btn.label("Hello world!").parent(wnd).create();
     btn->show();
 
     btn->set_label("Hello World!");
     btn->set_size(cpaf::Size(300,50));
-    
+
     wnd->set_title("Hello World!");
 
     cpaf::Size s(100,100);
@@ -49,9 +49,6 @@ cpaf::App *cpaf::main(const cpaf::App::cmd_line &cmd)
 {
     return new MyApp;
 }
-
-
-
 
 #if 0
 

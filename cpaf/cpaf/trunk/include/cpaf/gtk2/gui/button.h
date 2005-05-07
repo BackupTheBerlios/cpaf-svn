@@ -17,7 +17,7 @@ namespace cpaf {
 class Button : public virtual cpaf::gtk2::gui::Widget, virtual cpaf::api::gui::Button
 {
 public:
-    Button(cpaf::api::gui::Widget *parent);
+    Button(const cpaf::gui::factory::ButtonData &params);
 
     virtual void set_label(const std::string &label);
     virtual std::string get_label();

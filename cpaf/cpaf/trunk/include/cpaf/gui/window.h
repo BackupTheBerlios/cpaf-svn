@@ -8,6 +8,7 @@ Client wrapper for api::gui::Window
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/toplevel.h>
+#include <cpaf/gui/factory/window.h>
 
 namespace cpaf {
     namespace gui {
@@ -18,14 +19,21 @@ namespace cpaf {
 */
 class CPAF_API Window : public TopLevel
 {
+public:
+    /*!
+        Factory for creating window objects
+    */
+    class CPAF_API Factory : public cpaf::gui::factory::Window<Factory>
+    {
+    public:
+        Factory();
+        Window *create() const;
+    };
+
 private:
     // not shared_ptr because this object will never be responsible for deleting this pointer
     // it only serves to save extraneous casting in source
     cpaf::api::gui::Window *m_impl;
-
-public:
-    //! \todo this should ask for a api::gui parent...
-    Window(cpaf::gui::Window *parent = NULL);
 
 protected:
     //Window(const cpaf::api::gui::WindowPtr &p);

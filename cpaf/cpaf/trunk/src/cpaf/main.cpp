@@ -6,6 +6,7 @@ win32 entry function implementation
 //#include <boost/scoped_ptr.hpp>
 #include <memory> // for auto_ptr
 #include <cpaf/exception.h>
+#include <exception>
 
 #ifdef CPAF_WIN32
 
@@ -29,6 +30,11 @@ int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstanc
     catch(cpaf::Exception &e)
     {
         ::MessageBoxA(0, e.get_message(), e.get_file(), MB_ICONERROR);
+        return 1;
+    }
+    catch(bad_cast e)
+    {
+        ::MessageBoxA(0, e.what(), "A bad cast was encountered", MB_ICONERROR);
         return 1;
     }
     catch(...)

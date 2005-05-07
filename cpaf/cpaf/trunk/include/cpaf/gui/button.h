@@ -8,16 +8,23 @@ Client wrapper for api::gui::Window
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/widget.h>
-
-#include <string>
+#include <cpaf/gui/factory/button.h>
 
 namespace cpaf {
     namespace gui {
-        namespace factory { class Button; }
 
 class CPAF_API Button : public Widget
 {
-    friend class factory::Button;
+public:
+    /*!
+        Factory for creating button objects
+    */
+    class CPAF_API Factory : public cpaf::gui::factory::Button<Factory>
+    {
+    public:
+        Factory();
+        Button *create() const;
+    };
 
 private:
     cpaf::api::gui::Button *m_impl;
@@ -32,33 +39,6 @@ public:
     virtual std::string get_label();
 };
 
-        namespace factory {
-
-template <typename T>
-class ButtonFact : public WidgetFact<T>
-{
-protected:
-     std::string m_label;
-
-public:
-    T &label(const std::string &s)
-    {
-        m_label = s;
-        return *dynamic_cast<T*>(this);
-    }
-
-    std::string get_label() { return m_label; }
-};
-
-class  CPAF_API Button : public ButtonFact<Button>
-{
-public:
-    cpaf::gui::Button *create();
-};
-
-//typedef ButtonFact<ButtonFact> Button;
-
-        } // factory
     } // gui
 } // cpaf
 

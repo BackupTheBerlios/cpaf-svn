@@ -5,52 +5,45 @@ Factory functions
 #ifndef CPAF_PRIVATE_FACTORY_H
 #define CPAF_PRIVATE_FACTORY_H
 
-#ifdef _MSC_VER
-#pragma warning(disable:4786)
-#endif
-
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/widget.h>
 #include <cpaf/dllimpexp.h>
+
+#include <cpaf/gui/button.h>
+#include <cpaf/gui/window.h>
+
 #include <map>
 
 namespace cpaf {
     namespace gui {
         namespace factory {
 
-// widget factory function pointer
-typedef cpaf::api::gui::Widget *(*WidgetFactoryPtr)(int id, cpaf::api::gui::Widget *parent);
+/*!
+    \internal
+    \brief Helper macro for declaring widget factory functions.
 
-// widget factory registry map typedef
-typedef std::map<int, cpaf::gui::factory::WidgetFactoryPtr> WidgetFactoryMap;
-
-// these two functions wrap retrieving and inserting into the widget factory map
-WidgetFactoryPtr get_factory(int key);
-void add_factory(int key, WidgetFactoryPtr fact);
-
+    \param name Name of the api widget class that will be constructed. "Button"
+    \param lname Name of the api widget class being constructed in lower case. "button"
+*/
+#define DECLARE_FACTORY(name, lname) cpaf::api::gui::##name *create_##lname(const cpaf::gui::factory::##name##Data &params)
 
 /*!
     \internal
-    \return A unique widget identifier. Called by create_foo functions and passed to the
-        implementation create_foo functions to be passed to implementation class ctors
- */
-int get_widget_id();
+    \brief Helper macro for defining widget factory functions.
 
-template <typename T> T *create_widget(cpaf::api::gui::Widget *parent)
-{
-    WidgetFactoryPtr ptr = get_factory(T::factory_key);
-    return dynamic_cast<T*>(ptr(get_widget_id(), parent));
-}
+    \param name Name of the api widget class that will be constructed. "Button"
+    \param lname Name of the api widget class being constructed in lower case. "button"
+*/
+#define DEFINE_FACTORY(name, lname) cpaf::api::gui::##name *cpaf::gui::factory::create_##lname(const cpaf::gui::factory:: ##name##Data &params)
 
-template <typename T> void register_widget_factory(WidgetFactoryPtr ptr)
-{
-    add_factory(T::factory_key, ptr);
-}
+/*
+    Widget factory function prototypes
 
-// declared by an implementation
-// will be called so that implementations can use register_widget_factory
-// to register their widget factory function pointers
-void register_factories();
+    These factories are defined by an implementation and are called directly
+    by initializer factory objects.
+*/
+DECLARE_FACTORY(Button, button);
+DECLARE_FACTORY(Window, window);
 
 /*
 CPAF OBJECT DESCTRUCTION OVERVIEW
