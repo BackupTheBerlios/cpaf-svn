@@ -9,12 +9,13 @@
 
 #include <cpaf/cocoa/gui/widget.h>
 #include <cpaf/api/gui/button.h>
+#include <cpaf/private/factory.h>
 
 namespace cpaf {
     namespace cocoa {
         namespace gui {
 
-class Button : public virtual cpaf::cocoa::gui::Widget, virtual cpaf::api::gui::Button
+class Button : public virtual cpaf::cocoa::gui::Widget, public virtual cpaf::api::gui::Button
 {
 public:
     Button(const cpaf::gui::factory::ButtonData &params);

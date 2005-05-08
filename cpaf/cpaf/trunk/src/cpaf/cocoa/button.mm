@@ -7,19 +7,20 @@
 #include <cpaf/cocoa/gui/button.h>
 
 cpaf::cocoa::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
-    : Widget(parent, [[NSButton alloc] init])
+    : Widget(params, [[NSButton alloc] init])
 {
-    [m_widget setButtonType:NSToggleButton];
-    [(NSButton*)m_widget setBezelStyle:NSRegularSquareBezelStyle];
-    //[m_widget setAction:@selector(:)];
+    [m_view setButtonType:NSToggleButton];
+    [(NSButton*)m_view setBezelStyle:NSRegularSquareBezelStyle];
+    set_label(params.m_label);
+    //[m_view setAction:@selector(:)];
 }
 
 void cpaf::cocoa::gui::Button::set_label(const std::string &label)
 {
-    [m_widget setTitle:[NSString stringWithUTF8String:label.c_str()]];
+    [m_view setTitle:[NSString stringWithUTF8String:label.c_str()]];
 }
 
 std::string cpaf::cocoa::gui::Button::get_label()
 {
-    return [[m_widget title] UTF8String];
+    return [[m_view title] UTF8String];
 }

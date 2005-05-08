@@ -7,6 +7,7 @@
 	objects = {
 		080E96DDFE201D6D7F000001 = {
 			children = (
+				6EAF8C2A0822C052006031F2,
 			);
 			isa = PBXGroup;
 			name = Classes;
@@ -130,7 +131,6 @@
 		};
 		29B97315FDCFA39411CA2CEA = {
 			children = (
-				6EAF8C2A0822C052006031F2,
 				32CA4F630368D1EE00C91783,
 			);
 			isa = PBXGroup;

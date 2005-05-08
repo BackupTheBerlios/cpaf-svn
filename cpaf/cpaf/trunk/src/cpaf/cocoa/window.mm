@@ -15,6 +15,7 @@ cpaf::cocoa::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
 {
     //! \todo Is there some default size?
     set_position(cpaf::Point(0, 0));
+    set_title(params.m_title);
     //! \todo if (parent) { }
 }
 

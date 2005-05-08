@@ -14,7 +14,7 @@ DEFINE_FACTORY(Window, window)
     return new cpaf::cocoa::gui::Window(params);
 }
 
-DEFINE_FACTORY(Window, window)
+DEFINE_FACTORY(Button, button)
 {
     return new cpaf::cocoa::gui::Button(params);
 }

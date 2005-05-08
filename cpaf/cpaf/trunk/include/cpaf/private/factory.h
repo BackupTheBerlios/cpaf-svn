@@ -25,7 +25,7 @@ namespace cpaf {
     \param name Name of the api widget class that will be constructed. "Button"
     \param lname Name of the api widget class being constructed in lower case. "button"
 */
-#define DECLARE_FACTORY(name, lname) cpaf::api::gui::##name *create_##lname(const cpaf::gui::factory::##name##Data &params)
+#define DECLARE_FACTORY(name, lname) cpaf::api::gui::name *create_##lname(const cpaf::gui::factory::name##Data &params)
 
 /*!
     \internal
@@ -34,7 +34,7 @@ namespace cpaf {
     \param name Name of the api widget class that will be constructed. "Button"
     \param lname Name of the api widget class being constructed in lower case. "button"
 */
-#define DEFINE_FACTORY(name, lname) cpaf::api::gui::##name *cpaf::gui::factory::create_##lname(const cpaf::gui::factory:: ##name##Data &params)
+#define DEFINE_FACTORY(name, lname) cpaf::api::gui::name *cpaf::gui::factory::create_##lname(const cpaf::gui::factory::name##Data &params)
 
 /*
     Widget factory function prototypes
