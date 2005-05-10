@@ -7,13 +7,13 @@ cpaf::win32::Exception class
 
 #include <cpaf/exception.h>
 
-#define CPAF_WIN32_EXCEPTION_IN_RANGE(c) ( (c) <= cpaf::win32::EXCEPTION_HIGHST && (c) >= cpaf::win32::EXCEPTION_LOWEST )
+#define CPAF_WIN32_EXCEPTION_IN_RANGE(c) ( (c) <= cpaf::win32::EXCEPTION_HIGHEST && (c) >= cpaf::win32::EXCEPTION_LOWEST )
 
 namespace cpaf {
     namespace win32 {
 
 const int EXCEPTION_LOWEST(cpaf::EXCEPTION_HIGHEST + 1000);
-const int EXCEPTION_HIGHST(EXCEPTION_LOWEST + 1000);
+const int EXCEPTION_HIGHEST(EXCEPTION_LOWEST + 1000);
 
 class CPAF_EXCEPTION_API(CPAF_API) Exception : public cpaf::Exception
 {
