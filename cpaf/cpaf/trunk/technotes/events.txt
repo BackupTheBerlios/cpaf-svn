@@ -1,0 +1,24 @@
+CPAF EVENT HANDLING
+
+Basis of the design: Signals and Slots
+
+Current view of the system:
+
+Any object may register to become an "event listener". It does so by registering a function as listening for a given event from a given object. This is accomplished through a call to register_event_listener();
+
+You can register to recieve events in 3 different ways:
+1. An event E, from object O, with function F
+2. Any event, from object O, with function F
+3. An event E, from any object, with function F
+
+To accomplish this, there are 3 internal maps to store registered event listeners. One map holds event, object, function (1). One map holds object, function (2). The last map holds event, function (3).
+
+Registered events will actually be stored with functor objects inside these maps. They will most likely be of the templated variety so that operator() can be type safe, as well as the functors internal function pointer member.
+
+If more than one function is registered to recieve the same event from the same object (any counts here too), the listeners are independant of eachother. Neither can chose whether or not the other recieves the event. Both listeners will recieve the event in an undefined order.
+
+The event system will also allow for an equivilant of "connect_after()" functionality. There will be 3 additional maps to support this. The first 3 maps will be executed first, in an officiall undefined order, followed by the 3 "connect_after()" maps. The only gaurentee on the order of event processing is that functions registered with "connect_after()" will always go after functions registered normally.
+
+When you register a function as an event listener, the events system actually creates an "EventChain" object, adds your event listener as the only listener in the chain, and stores that EventChain object. This object is what allows for creating chains of event handlers, similar to how wxEvtHandler functions. When an event listener is called, it will recieve a reference to its EventChain object. It can use this object to control the processing of the event within this chain. The event listener can chose the link in the chain to go next (if any), can directly invoke other links in the chain, and can prevent other listeners in the chain from recieving the event.
+
+Creating event chains is currently done by accessing this EventChain object and adding new event listeners to it. The problem is that there is currently no way to access an EventChain object with which to create a chain. There may also be many EventChains associated with a given event for a given object which are independant of eachother. The same event listener (function) may also be involved in multiple chains for multiple events from multiple objects. How do you find the right EventChain to use?
