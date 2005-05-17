@@ -22,7 +22,7 @@ The above is pretty straightforward for rectangles, as the northwest
 point is given and the width/height, not the bottom-right point. For
 example a square covering four pixels on the northwest corner could
 be expressed as cpaf::Rect(cpaf::Point(0.0, 0.0), cpaf::Size(2.0, 2.0)).
-The southwest point is (2.0, 2.0), and covers pixels (0,0), (1,0),
+The southeast point is (2.0, 2.0), and covers pixels (0,0), (1,0),
 (0,1) and (1,1) - contrast the pixel(1, 1) with point(2.0, 2.0):
 
                 p(1.0, 0.0)
