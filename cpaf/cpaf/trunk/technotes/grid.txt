@@ -1,0 +1,72 @@
+Everything is defined as points on the grid that separates pixels.
+So given a northwest position of (0,0) the most northwest pixel is
+actually a rectangle with origin of (0.0, 0.0) with a width of 1.0
+and height of 1.0 (postscript rendering model).
+
+
+p(0,0)        p(1,0)
+     ---------    <--
+     !  one  !       |
+     ! pixel !       | height
+     ! on a  !       |  1.0
+     !monitor!       |
+     ---------    <--
+p(0,1)        p(1,1)
+
+     ^       ^
+     |_______|
+    width = 1.0
+
+
+The above is pretty straightforward for rectangles, as the northwest
+point is given and the width/height, not the bottom-right point. For
+example a square covering four pixels on the northwest corner could
+be expressed as cpaf::Rect(cpaf::Point(0.0, 0.0), cpaf::Size(2.0, 2.0)).
+The southwest point is (2.0, 2.0), and covers pixels (0,0), (1,0),
+(0,1) and (1,1) - contrast the pixel(1, 1) with point(2.0, 2.0):
+
+                p(1.0, 0.0)
+                     |
+                     v
+p(0.0, 0.0) -> ------------- <- p(2.0, 0.0)
+               |pixel|pixel|
+               |(0,0)|(1,0)+ <- p(2,0, 0.5)
+               |     |     |
+p(0.0, 1.0) -> ------------- <- p(2.0, 1.0)
+               |pixel|pixel|
+               |(1,0)|(1,1)|
+               |     |     |
+p(0.0, 2.0) -> ------------- <- p(2.0, 2.0)
+                     ^
+                     |
+                p(1.0, 2.0)
+
+
+Things can get interesting when for example drawing lines.
+Imagine that you want a line covering pixels (0,0) and (1,1) on the above image.
+The draw_line method would take two arguments of type cpaf::Size, when thinking
+with the mindset of WinAPI or gtk+ one would specify the pixels, for example
+the prototype for a typical gtk+ line drawing function is as follows:
+
+void gdk_draw_line(GdkDrawable *drawable, GdkGC *gc, gint x1, gint y1, gint x2, gint y2);
+
+So one gives the pixel of where the line starts, and where it ends. Not the case with
+cpaf, as we are talking about points on a floating precision grid, not pixels - a
+hypothetical cpaf::utils::draw_line(cpaf::gui::Widget *drawable, cpaf::Point p1, cpaf::Point p2)
+would only cover pixel(0,0) with draw_line(..., cpaf::Point(0.0, 0.0), cpaf::Point(1.0, 1.0),
+we must use cpaf::Point(2.0, 2.0). See the above four pixel image and understand why this is
+so. This is the most important difference in the "mindset", so make sure you truly understand.
+
+Now when we would be drawing much longer lines and have starting or end points have a floating
+point value, on some systems in certain cases anti-aliasing can kick in nicely. This is one of
+the reasons why cpaf is using the above described definition of the grid.
+Also, the monitor with a set size of a point, called a pixel, is not the only outputting
+device of a computer. Modern laser printers can very well draw diagonal lines that are
+actually lines - unlike old matrix printers. A plotter is perhaps an even better example.
+Things ought to be abstract and generalized, so we have the same grid system for everything -
+a plotting application could draw on something without the programmer even knowing certainly
+where the output will go - there shouldn't be a difference, and there isn't in cpaf.
+
+
+TODO: Describe how backends for systems that don't support floating point grid natively
+      do the conversion to int pixels for rectangles, lines, etc.
