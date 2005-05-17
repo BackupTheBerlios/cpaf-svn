@@ -23,6 +23,7 @@ SRC_OBJS =                     \
 	$(OBJ_DIR)/gtk2/utils.o    \
 	$(OBJ_DIR)/types.o         \
 	$(OBJ_DIR)/main.o          \
+	$(OBJ_DIR)/exception.o     \
 	$(OBJ_DIR)/app.o           \
 	$(OBJ_DIR)/api.o
 
@@ -102,6 +103,9 @@ $(OBJ_DIR)/types.o: src/cpaf/types.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/main.o: src/cpaf/main.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/exception.o: src/cpaf/exception.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/app.o: src/cpaf/app.cpp
