@@ -44,7 +44,7 @@ p(0.0, 2.0) -> ------------- <- p(2.0, 2.0)
 
 Things can get interesting when for example drawing lines.
 Imagine that you want a line covering pixels (0,0) and (1,1) on the above image.
-The draw_line method would take two arguments of type cpaf::Size, when thinking
+The draw_line method would take two arguments of type cpaf::Point, when thinking
 with the mindset of WinAPI or gtk+ one would specify the pixels, for example
 the prototype for a typical gtk+ line drawing function is as follows:
 
