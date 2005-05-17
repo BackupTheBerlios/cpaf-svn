@@ -12,6 +12,7 @@
 #include <cpaf/api/gui/window.h>
 #include <cpaf/gtk2/gui/widget.h>
 #include <cpaf/types.h>
+#include <cpaf/gui/window.h>
 
 #include <string>
 
@@ -19,7 +20,7 @@ namespace cpaf {
     namespace gtk2 {
         namespace gui {
 
-class Window : public cpaf::gtk2::gui::Widget, cpaf::api::gui::Window
+class Window : public virtual cpaf::gtk2::gui::Widget, public virtual cpaf::api::gui::Window
 {
 public:
     Window(const cpaf::gui::factory::WindowData &params);

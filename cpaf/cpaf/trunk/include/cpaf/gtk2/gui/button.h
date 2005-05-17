@@ -9,12 +9,13 @@
 
 #include <cpaf/gtk2/gui/widget.h>
 #include <cpaf/api/gui/button.h>
+#include <cpaf/gui/button.h>
 
 namespace cpaf {
     namespace gtk2 {
         namespace gui {
 
-class Button : public virtual cpaf::gtk2::gui::Widget, virtual cpaf::api::gui::Button
+class Button : public virtual cpaf::gtk2::gui::Widget, public virtual cpaf::api::gui::Button
 {
 public:
     Button(const cpaf::gui::factory::ButtonData &params);

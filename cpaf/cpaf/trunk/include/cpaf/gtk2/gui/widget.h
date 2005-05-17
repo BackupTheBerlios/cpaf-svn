@@ -12,6 +12,9 @@
 #include <cpaf/api/gui/widget.h>
 #include <cpaf/types.h>
 
+// for initializer factory
+#include <cpaf/gui/widget.h>
+
 namespace cpaf {
     namespace gtk2 {
         namespace gui {

@@ -14,7 +14,7 @@ DEFINE_FACTORY(Window, window)
     return new cpaf::gtk2::gui::Window(params);
 }
 
-DEFINE_FACTORY(Window, window)
+DEFINE_FACTORY(Button, button)
 {
     return new cpaf::gtk2::gui::Button(params);
 }
