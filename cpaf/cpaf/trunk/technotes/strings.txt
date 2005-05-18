@@ -1,0 +1,36 @@
+Premise:
+Cpaf is a cross-platform application framework and thrives to work as good as
+possible on every platform with native speed and look.
+Strings however are in different formats on different backend toolkits, so if
+we'd use a preexisting solution (for example std::string, std::wstring and ICU)
+our format would be fixed for all platforms leading to encoding conversions
+each time a backend toolkit function, that takes a string, has to be called.
+This is so, because a different string solution can't be used across different
+platforms - the backends must be simply switchable and given a stable C++ ABI
+the application should be able to use a different backend by simply changing
+the cpaf DLL it uses. If the strings ABI (at least frontends) is different,
+this becomes impossible.
+
+To solve this problem, the creation of a new string library is in order,
+because there exists no existing one that does not have a performance hit for
+any platforms used by us. At least one platform would need character
+conversions - in case of ICU gtk+ backend would have to convert from UTF-16 to
+UTF-18, in case of std::string win32 would have to convert from UTF-8 to UCS-2
+(UTF-16?), etc.
+
+-------------------------------------------------------------------------------
+
+To implement this, there are two options known:
+
+a) Create a common frontend for all ports, and implement (or use existing
+   libraries) them in the backends suitable for the strings format used in the
+   backend - just like done with all of GUI.
+
+b) A common code for all ports - format problem solved by telling the string
+   class what encoding is to be used (can be done in cpaf::entry or equivalent),
+   then it either uses a pimpl idiom to use a specialized class for that, or
+   some other equally good or better method.
+
+
+The option B seems to be the better option of the two. (Why?)
+
