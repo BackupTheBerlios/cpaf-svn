@@ -217,6 +217,11 @@ struct CPAF_API Rect
     friend Point CPAF_API operator-(const Point &l, const Point &r);
 };
 
+// default position and size constants
+const float DEFAULT_VALUE(-1);
+const Point DEFAULT_POS(DEFAULT_VALUE, DEFAULT_VALUE);
+const Size DEFAULT_SIZE(DEFAULT_VALUE, DEFAULT_VALUE);
+
 } // namespace cpaf
 
 #endif // CPAF_DEFS_H

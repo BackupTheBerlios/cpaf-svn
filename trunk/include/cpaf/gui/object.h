@@ -20,8 +20,8 @@ public:
 protected:
     cpaf::api::gui::Object *m_impl;
 
-    //Object(const cpaf::api::gui::ObjectPtr &p);
-    Object(cpaf::api::gui::Object *p);
+    Object();
+    void set_impl(cpaf::api::gui::Object *impl);
 
 public:
     virtual ~Object();

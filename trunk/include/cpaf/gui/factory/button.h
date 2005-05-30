@@ -13,10 +13,8 @@ namespace cpaf {
     namespace gui {
         namespace factory {
 
-
-class ButtonData : public WidgetData
+struct ButtonData : public WidgetData
 {
-public:
     std::string m_label;
 };
 

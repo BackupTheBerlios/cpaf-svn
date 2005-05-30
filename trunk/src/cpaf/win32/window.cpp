@@ -7,7 +7,9 @@ implementation of win32 window
 
 #define CLASSNAME TEXT("cpaf::Window")
 
-static WNDCLASSEX wnd_class = {
+namespace {
+
+WNDCLASSEX wnd_class = {
     sizeof(WNDCLASSEX),
     CS_DBLCLKS,
     (WNDPROC)cpaf::win32::gui::window_wndproc,
@@ -20,6 +22,8 @@ static WNDCLASSEX wnd_class = {
     NULL,
     CLASSNAME
 };
+
+} // unnamed namespace
 
 namespace cpaf {
     namespace win32 {
@@ -34,7 +38,7 @@ LRESULT CALLBACK window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_pa
     } // win32
 } // cpaf
 
-
+//! \todo remove duplicated code from window and button ctor
 cpaf::win32::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
 : Widget(params)
 {
@@ -55,13 +59,24 @@ cpaf::win32::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
 
     // initialize creation info
     CreationInfo info(this);
+    int x = params.m_pos.x, y = params.m_pos.y;
+    int w = params.m_size.width, h = params.m_size.height;
 
-    m_hwnd = ::CreateWindowEx(0, CLASSNAME, TEXT("Cpaf!!"), WS_OVERLAPPEDWINDOW ,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
+    if( x == cpaf::DEFAULT_VALUE )
+        x = CW_USEDEFAULT;
+    if( w == cpaf::DEFAULT_VALUE )
+        w = CW_USEDEFAULT;
+
+    m_hwnd = ::CreateWindowEx(0, CLASSNAME, params.m_title.c_str(), WS_OVERLAPPEDWINDOW,
+        x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
         &info);
 
     if( !m_hwnd )
         throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
+
+    // show the window if necessary
+    if( params.m_show )
+        show(true, params.m_activate);
 }
 
 std::string cpaf::win32::gui::Window::get_title()

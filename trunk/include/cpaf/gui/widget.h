@@ -21,8 +21,8 @@ class CPAF_API Widget : public Object
 protected:
     cpaf::api::gui::Widget *m_impl;
 
-    //Widget(const cpaf::api::gui::WidgetPtr &p);
-    Widget(cpaf::api::gui::Widget *p);
+    Widget();
+    void set_impl(cpaf::api::gui::Widget *impl);
 
 public:
     virtual ~Widget();

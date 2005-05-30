@@ -6,10 +6,15 @@ Wrapper for api::gui::button
 #include <cpaf/api/gui/button.h>
 #include <cpaf/private/factory.h>
 
-cpaf::gui::Button::Button(cpaf::api::gui::Button *p)
-    : Widget(p),
-    m_impl(p)
+cpaf::gui::Button::Button()
+    : m_impl(NULL)
 { }
+
+void cpaf::gui::Button::set_impl(cpaf::api::gui::Button *impl)
+{
+    m_impl = impl;
+    cpaf::gui::Widget::set_impl(impl);
+}
 
 cpaf::gui::Button::operator cpaf::api::gui::Button *()
 {
@@ -30,7 +35,8 @@ cpaf::gui::Button::Factory::Factory()
     : cpaf::gui::factory::Button<Factory>(new cpaf::gui::factory::ButtonData)
 { }
 
-cpaf::gui::Button *cpaf::gui::Button::Factory::create() const
+cpaf::gui::Button *cpaf::gui::Button::Factory::create(cpaf::gui::Button *w) const
 {
-    return new cpaf::gui::Button(cpaf::gui::factory::create_button(*m_data));
+    w->set_impl(cpaf::gui::factory::create_button(*m_data));
+    return w;
 }

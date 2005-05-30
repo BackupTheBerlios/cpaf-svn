@@ -10,7 +10,9 @@ Factory function implementations
 #include <cpaf/api/gui/button.h>
 #include <cpaf/api/gui/window.h>
 
-static cpaf::gui::factory::WidgetImplementationWrapperMap widget_impl_map;
+namespace {
+    cpaf::gui::factory::WidgetImplementationWrapperMap widget_impl_map;
+}
 
 // adds a wrappper implementation pair to the map
 void cpaf::gui::factory::add_implementation_wrapper(cpaf::api::gui::Widget *impl, cpaf::gui::Widget* wrapper)

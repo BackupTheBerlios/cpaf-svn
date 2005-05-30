@@ -23,14 +23,32 @@ public:
     {
     public:
         Factory();
-        Button *create() const;
+
+        template <typename T> T *create() const
+        {
+            return dynamic_cast<T*>(create(new T));
+        }
+
+        Button *create() const
+        {
+            return create(new Button);
+        }
+
+    protected:
+        /*!
+            This function creates a native widget and uses \a w to wrap it.
+
+            \return The initialized wrapper w.
+        */
+        cpaf::gui::Button *create(cpaf::gui::Button *w) const;
     };
 
 private:
     cpaf::api::gui::Button *m_impl;
 
 protected:
-    Button(cpaf::api::gui::Button *b);
+    Button();
+    void set_impl(cpaf::api::gui::Button *impl);
 
 public:
     operator cpaf::api::gui::Button *();

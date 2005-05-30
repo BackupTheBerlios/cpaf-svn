@@ -65,6 +65,22 @@ public:
     void set_cmd_line(const cmd_line &cmd);
 };
 
+/*!
+    Returns a reference to the cpaf::App object that is running this application
+
+    \internal Note that this is implemented in src/cpaf/main.cpp
+*/
+CPAF_API App &get_app();
+
+/*!
+    Convenience template to save casting the return value of get_app to your
+    derived application type.
+*/
+template<typename T> T &get_app()
+{
+    return dynamic_cast<T&>(cpaf::get_app());
+}
+
 } // cpaf
 
 #endif // CPAF_APP_H

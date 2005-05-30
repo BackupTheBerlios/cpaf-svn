@@ -10,3 +10,8 @@ cpaf::gui::App::App()
     // implementation specific gui initialization
     gui_init();
 }
+
+inline cpaf::event::Manager &cpaf::gui::App::get_events_manager()
+{
+    return m_events_manager;
+}

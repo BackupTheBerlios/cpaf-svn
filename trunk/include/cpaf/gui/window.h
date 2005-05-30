@@ -27,7 +27,24 @@ public:
     {
     public:
         Factory();
-        Window *create() const;
+
+        template <typename T> T *create() const
+        {
+            return dynamic_cast<T*>(create(new T));
+        }
+
+        Window *create() const
+        {
+            return create(new Window);
+        }
+
+    protected:
+        /*!
+            This function creates a native widget and uses \a w to wrap it.
+
+            \return The initialized wrapper w.
+        */
+        cpaf::gui::Window *create(cpaf::gui::Window *w) const;
     };
 
 private:
@@ -36,8 +53,8 @@ private:
     cpaf::api::gui::Window *m_impl;
 
 protected:
-    //Window(const cpaf::api::gui::WindowPtr &p);
-    Window(cpaf::api::gui::Window *p);
+    Window();
+    void set_impl(cpaf::api::gui::Window *impl);
 
 public:
     operator cpaf::api::gui::Window *();

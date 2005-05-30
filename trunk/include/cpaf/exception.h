@@ -7,22 +7,22 @@ cpaf::Exception definition. The base class for any exception thrown by cpaf
 
 #include <cpaf/dllimpexp.h>
 
-#define CPAF_EXCEPTION_IN_RANGE(c) ( (c) <= cpaf::EXCEPTION_LOWEST && (c) >= cpaf::EXCEPTION_LOWEST )
+#define CPAF_EXCEPTION_IN_RANGE(c) ( (c) <= cpaf::Exception::HIGHEST && (c) >= cpaf::Exception::LOWEST )
 
 namespace cpaf {
 
-const int EXCEPTION_LOWEST = 1;
-const int EXCEPTION_HIGHEST(EXCEPTION_LOWEST + 2000);
 /*!
     Base class for all exceptions thrown by cpaf
 */
 class CPAF_EXCEPTION_API(CPAF_API) Exception
 {
 public:
+    static const int LOWEST     = 1;
+    static const int HIGHEST    = LOWEST + 2000;
 
     // only add to the bottom of this enum...
     enum error_codes {
-        WIDGET_NO_PARENT = EXCEPTION_LOWEST, //!< An attempt was made to create a widget with no parent, but the widget requires one
+        WIDGET_NO_PARENT = LOWEST, //!< An attempt was made to create a widget with no parent, but the widget requires one
         NATIVE_HANDLE, //!< An error was encountered creating the native widget
         GUI_INIT_FAILED, //!< An error was encountered initializing the GUI
     };

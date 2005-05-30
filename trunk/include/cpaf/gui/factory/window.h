@@ -13,10 +13,15 @@ namespace cpaf {
     namespace gui {
         namespace factory {
 
-class WindowData : public WidgetData
+struct WindowData : public WidgetData
 {
-public:
     std::string m_title;
+
+    WindowData()
+    {
+        // windows should be activated when shown by default
+        WidgetData::m_activate = true;
+    }
 };
 
 template <typename T> class Window : public Widget<T>

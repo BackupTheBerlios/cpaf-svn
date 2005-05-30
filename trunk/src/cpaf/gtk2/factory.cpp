@@ -9,12 +9,12 @@
 #include <cpaf/gtk2/gui/window.h>
 #include <cpaf/gtk2/gui/button.h>
 
-DEFINE_FACTORY(Window, window)
+IMPLEMENT_FACTORY(Window, window)
 {
     return new cpaf::gtk2::gui::Window(params);
 }
 
-DEFINE_FACTORY(Button, button)
+IMPLEMENT_FACTORY(Button, button)
 {
     return new cpaf::gtk2::gui::Button(params);
 }

@@ -24,8 +24,8 @@ private:
     cpaf::api::gui::TopLevel *m_impl;
 
 protected:
-    //TopLevel(const cpaf::api::gui::TopLevelPtr &p);
-    TopLevel(cpaf::api::gui::TopLevel *p);
+    TopLevel();
+    void set_impl(cpaf::api::gui::TopLevel *impl);
 
 public:
     virtual ~TopLevel();

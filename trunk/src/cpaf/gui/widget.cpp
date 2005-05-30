@@ -10,10 +10,15 @@ Wrapper for api::gui::widget
 
 using namespace cpaf::api::gui;
 
-cpaf::gui::Widget::Widget(cpaf::api::gui::Widget *p)
-    : Object(p),
-    m_impl(p)
+cpaf::gui::Widget::Widget()
+    : m_impl(NULL)
+{ }
+
+void cpaf::gui::Widget::set_impl(cpaf::api::gui::Widget *impl)
 {
+    m_impl = impl;
+    cpaf::gui::Object::set_impl(impl);
+
     // add the wrapper / implementation pair to the map
     cpaf::gui::factory::add_implementation_wrapper(m_impl, this);
 }

@@ -15,6 +15,7 @@ SRC_OBJS =                     \
 	$(OBJ_DIR)/gui/factory.o   \
 	$(OBJ_DIR)/gui/window.o    \
 	$(OBJ_DIR)/gui/button.o    \
+	#(OBJ_DIR)/event/event.o   \
 	$(OBJ_DIR)/gtk2/app.o      \
 	$(OBJ_DIR)/gtk2/factory.o  \
 	$(OBJ_DIR)/gtk2/widget.o   \
@@ -79,6 +80,9 @@ $(OBJ_DIR)/gui/window.o: src/cpaf/gui/window.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gui/button.o: src/cpaf/gui/button.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/event/event.o: src/cpaf/event/event.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/app.o: src/cpaf/gtk2/app.cpp

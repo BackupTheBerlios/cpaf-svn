@@ -9,12 +9,12 @@
 #include <cpaf/cocoa/gui/window.h>
 #include <cpaf/cocoa/gui/button.h>
 
-DEFINE_FACTORY(Window, window)
+IMPLEMENT_FACTORY(Window, window)
 {
     return new cpaf::cocoa::gui::Window(params);
 }
 
-DEFINE_FACTORY(Button, button)
+IMPLEMENT_FACTORY(Button, button)
 {
     return new cpaf::cocoa::gui::Button(params);
 }

@@ -12,15 +12,15 @@ namespace cpaf {
         class Widget; // prototype
         namespace factory {
 
-class WidgetData : public ObjectData
+struct WidgetData : public ObjectData
 {
-public:
     cpaf::gui::Widget *m_parent;
-    bool m_show, m_enable;
+    bool m_show, m_activate, m_enable;
 
     WidgetData()
         : m_parent(NULL),
         m_show(false),
+        m_activate(false),
         m_enable(true)
     { }
 };
@@ -45,6 +45,12 @@ public:
     T &show(bool s = true)
     {
         m_data->m_show = s;
+        return *dynamic_cast<T*>(this);
+    }
+
+    T &activate(bool a = true)
+    {
+        m_data->m_activate = a;
         return *dynamic_cast<T*>(this);
     }
 

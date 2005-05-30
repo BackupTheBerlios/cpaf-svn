@@ -7,12 +7,12 @@ win32 factory implementation
 #include <cpaf/win32/gui/window.h>
 #include <cpaf/win32/gui/button.h>
 
-DEFINE_FACTORY(Window, window)
+IMPLEMENT_FACTORY(Window, window)
 {
     return new cpaf::win32::gui::Window(params);
 }
 
-DEFINE_FACTORY(Button, button)
+IMPLEMENT_FACTORY(Button, button)
 {
     return new cpaf::win32::gui::Button(params);
 }

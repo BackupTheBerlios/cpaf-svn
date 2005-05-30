@@ -11,11 +11,20 @@ namespace cpaf {
     namespace gui {
         namespace factory {
 
-class ObjectData
+struct ObjectData
 {
-public:
     cpaf::Size m_size, m_min_size, m_max_size;
     cpaf::Point m_pos;
+
+    /*!
+        Default constructor which initializes data members to DEFAULT_* values
+    */
+    ObjectData()
+        : m_size(DEFAULT_SIZE),
+        m_min_size(DEFAULT_SIZE),
+        m_max_size(DEFAULT_SIZE),
+        m_pos(DEFAULT_POS)
+    { }
 
     virtual ~ObjectData() { }
 };

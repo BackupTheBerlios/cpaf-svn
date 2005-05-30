@@ -8,11 +8,15 @@ Wrapper for api::gui::TopLevel
 
 using namespace cpaf::api::gui;
 
-//cpaf::gui::TopLevel::TopLevel(const TopLevelPtr &p)
-cpaf::gui::TopLevel::TopLevel(cpaf::api::gui::TopLevel *p)
-    : Widget(p),
-    m_impl(p)
-{ 
+cpaf::gui::TopLevel::TopLevel()
+    : m_impl(NULL)
+{ }
+
+void cpaf::gui::TopLevel::set_impl(cpaf::api::gui::TopLevel *impl)
+{
+    m_impl = impl;
+    cpaf::gui::Widget::set_impl(impl);
+
     // because TopLevel widget derivatives are allowed to be on the stack,
     // their implementation objects must not be allowed to delete them,
     // so remove ourselves from the wrapper -> implementation map

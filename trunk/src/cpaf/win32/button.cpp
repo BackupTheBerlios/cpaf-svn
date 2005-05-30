@@ -10,9 +10,6 @@ cpaf::win32::gui::Button implementation
 cpaf::win32::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
     : Widget(params)
 {
-    DBG_MSG("win32::button ctor");
-    static bool wnd_proc_replaced = false;
-
     // this needs to go before the wnd_proc_replaced bit or I get an access violation from VC
     // for what ever stupid reason if the parent is null
     HWND hparent;
@@ -23,17 +20,23 @@ cpaf::win32::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     CreationInfo info(this);
+    int x = params.m_pos.x, y = params.m_pos.y;
+    int w = params.m_size.width, h = params.m_size.height;
 
     {
         CreationHook hook; // hook WM_CREATE for initialization stuff
 
-        m_hwnd = ::CreateWindowEx(0, TEXT("BUTTON"), TEXT("Cpaf!!"), WS_CHILD | BS_PUSHBUTTON,
-            0, 0, 100, 25, hparent, NULL, ::GetModuleHandle(NULL),
+        m_hwnd = ::CreateWindowEx(0, TEXT("BUTTON"), params.m_label.c_str(), WS_CHILD | BS_PUSHBUTTON,
+            x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
             &info);
     }
 
     if( !m_hwnd )
         throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
+
+    // show the window if necessary
+    if( params.m_show )
+        show(true, params.m_activate);
 }
 
 void cpaf::win32::gui::Button::set_label(const std::string &label)

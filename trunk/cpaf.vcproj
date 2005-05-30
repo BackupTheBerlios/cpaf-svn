@@ -29,7 +29,8 @@
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
+				DebugInformationFormat="4"
+				DisableSpecificWarnings="4251; 4244"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -70,7 +71,7 @@
 			CharacterSet="0">
 			<Tool
 				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;CPAF_EXPORTS"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;CPAF_EXPORTS"
 				StringPooling="TRUE"
 				MinimalRebuild="FALSE"
 				RuntimeLibrary="2"
@@ -79,18 +80,18 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="3"
-				DisableSpecificWarnings="4786"/>
+				DisableSpecificWarnings="4251; 4244"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)/cpaf.dll"
+				OutputFile="$(OutDir)/cpaf-gui-win32.dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="$(OutDir)/cpaf.lib"
+				ImportLibrary="$(OutDir)/cpaf-gui-win32-dll.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -131,7 +132,8 @@
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
+				DebugInformationFormat="4"
+				DisableSpecificWarnings="4251; 4244"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -173,7 +175,8 @@
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="0"/>
+				DebugInformationFormat="0"
+				DisableSpecificWarnings="4251; 4244"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -552,6 +555,91 @@
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)/$(SafeParentName)/"
 							ProgramDataBaseFileName="$(IntDir)/vc70.pdb"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="cocoa"
+				Filter="mm">
+				<File
+					RelativePath=".\src\cpaf\cocoa\app.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\button.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\factory.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\widget.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\window.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="event"
+				Filter="">
+				<File
+					RelativePath=".\src\cpaf\event\event.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)"/>
 					</FileConfiguration>
 				</File>
 			</Filter>
@@ -935,60 +1023,6 @@
 					</FileConfiguration>
 				</File>
 			</Filter>
-			<Filter
-				Name="cocoa"
-				Filter="mm">
-				<File
-					RelativePath=".\src\cpaf\cocoa\app.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\button.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\factory.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\widget.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\window.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
 			Name="include"
@@ -1175,6 +1209,13 @@
 						<Tool
 							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="event"
+				Filter="">
+				<File
+					RelativePath=".\include\cpaf\event\event.h">
 				</File>
 			</Filter>
 		</Filter>

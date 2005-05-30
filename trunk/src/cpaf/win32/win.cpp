@@ -82,7 +82,9 @@ LRESULT CALLBACK cpaf::win32::gui::widget_wndproc(HWND hwnd, UINT msg, WPARAM w_
 
 ********************/
 
-static HHOOK m_hook; // hook procedure handle
+namespace {
+    HHOOK m_hook; // hook procedure handle
+}
 
 cpaf::win32::gui::CreationHook::CreationHook()
 {
@@ -111,7 +113,7 @@ LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_pa
         widget_map_add_hwnd(hwnd, info->wnd);
 
         // subclass the window
-        info->wnd->set_old_proc((WNDPROC)::SetWindowLong(hwnd, GWL_WNDPROC, (LONG)cpaf::win32::gui::widget_wndproc));
+        info->wnd->set_old_proc((WNDPROC)(LONG_PTR)::SetWindowLongPtr(hwnd, GWL_WNDPROC, (LONG_PTR)cpaf::win32::gui::widget_wndproc));
         return 0;
     }
 

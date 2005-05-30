@@ -5,8 +5,9 @@ cpaf::gui::App application class
 #ifndef CPAF_GUI_APP_H
 #define CPAF_GUI_APP_H
 
-#include <cpaf/app.h>
 #include <cpaf/dllimpexp.h>
+#include <cpaf/app.h>
+#include <cpaf/event/event.h>
 
 namespace cpaf {
     namespace gui {
@@ -25,6 +26,8 @@ private:
     */
     void gui_init();
 
+    cpaf::event::Manager m_events_manager; //!< events manager for the application's main thread
+
 public:
     virtual bool init() = 0;
 
@@ -32,6 +35,8 @@ public:
         This function must be implemented by an implementation (win32, gtk2, ...).
     */
     int run();
+
+    cpaf::event::Manager &get_events_manager();
 };
 
     } // gui

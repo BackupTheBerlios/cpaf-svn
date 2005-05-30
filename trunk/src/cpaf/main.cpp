@@ -8,6 +8,10 @@ win32 entry function implementation
 #include <cpaf/exception.h>
 #include <exception>
 
+namespace {
+    cpaf::App *the_app; // point to the application instance
+}
+
 #ifdef CPAF_WIN32
 
 //! \todo Construct the command line vector and pass it to main()
@@ -22,6 +26,9 @@ int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstanc
 
         // get an application instance
         std::auto_ptr<cpaf::App> app(main(cmd));
+
+        // store the application instance
+        the_app = app.get();
 
         app->set_cmd_line(cmd);
         app->init();
@@ -59,6 +66,9 @@ int cpaf::entry(cpaf::main_ptr main, int argc, char *argv[])
         // get an application instance
         std::auto_ptr<cpaf::App> app(main(cmd));
 
+        // store the application instance
+        the_app = app.get();
+
         app->set_cmd_line(cmd);
         app->init();
         return app->run();
@@ -70,3 +80,8 @@ int cpaf::entry(cpaf::main_ptr main, int argc, char *argv[])
 }
 
 #endif
+
+cpaf::App &cpaf::get_app()
+{
+    return *the_app;
+}

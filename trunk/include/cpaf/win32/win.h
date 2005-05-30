@@ -35,7 +35,6 @@ void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd);
 void widget_map_remove_hwnd(HWND h);
 
 /*!
-    \internal
     Structure containing information passed to the window procedure through WM_CREATE.
     The reason I use this is because I cannot pass 'this' directly though lpParam of
     CreateWindowEx as a void*. Once it is recieved by the window procedure, it is a broken
@@ -51,7 +50,6 @@ struct CreationInfo {
 };
 
 /*!
-    \internal
     This is the window procedure which is implemented outside of the win32::gui::widget classes.
     It is called by the window procedures for all widgets and contains only common functionality.
 */
@@ -59,10 +57,11 @@ LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_pa
 
 
 /*!
-    \internal
     This class wraps hooking the WM_CREATE message and is used for cpaf native widget creation.
 
     It hooks during ctor, and de-hooks during dtor.
+
+    \warning Implementation of this class is not thread safe.
 */
 class CreationHook
 {

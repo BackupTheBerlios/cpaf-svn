@@ -6,10 +6,15 @@ gui window wrapper
 #include <cpaf/api/gui/window.h>
 #include <cpaf/private/factory.h>
 
-cpaf::gui::Window::Window(cpaf::api::gui::Window *p)
-    : TopLevel(p),
-    m_impl(p)
+cpaf::gui::Window::Window()
+    : m_impl(NULL)
 { }
+
+void cpaf::gui::Window::set_impl(cpaf::api::gui::Window *impl)
+{
+    m_impl = impl;
+    cpaf::gui::TopLevel::set_impl(impl);
+}
 
 cpaf::gui::Window::operator cpaf::api::gui::Window *()
 {
@@ -20,7 +25,8 @@ cpaf::gui::Window::Factory::Factory()
     : cpaf::gui::factory::Window<Factory>(new cpaf::gui::factory::WindowData)
 { }
 
-cpaf::gui::Window *cpaf::gui::Window::Factory::create() const
+cpaf::gui::Window *cpaf::gui::Window::Factory::create(cpaf::gui::Window *w) const
 {
-    return new cpaf::gui::Window(cpaf::gui::factory::create_window(*m_data));
+    w->set_impl(cpaf::gui::factory::create_window(*m_data));
+    return w;
 }
