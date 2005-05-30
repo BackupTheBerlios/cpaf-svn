@@ -15,7 +15,7 @@ To solve this problem, the creation of a new string library is in order,
 because there exists no existing one that does not have a performance hit for
 any platforms used by us. At least one platform would need character
 conversions - in case of ICU gtk+ backend would have to convert from UTF-16 to
-UTF-18, in case of std::string win32 would have to convert from UTF-8 to UCS-2
+UTF-8, in case of std::string win32 would have to convert from UTF-8 to UCS-2
 (UTF-16?), etc.
 
 -------------------------------------------------------------------------------
@@ -34,3 +34,6 @@ b) A common code for all ports - format problem solved by telling the string
 
 The option B seems to be the better option of the two. (Why?)
 
+On the implementation side for B, one option is to store the data in a common
+way for all formats - e.g in a char (byte) std::vector - and then treat that
+data container as needed for the format used.
