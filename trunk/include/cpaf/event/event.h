@@ -9,7 +9,7 @@
 
 #include <map>
 #include <vector>
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 namespace cpaf {
     namespace event {
@@ -37,7 +37,7 @@ CPAF_DECLARE_EVENT(foo);
 //! \todo decide wether we use addresses or object id's here
 typedef int object_id; // value specifying which object sent the event
 typedef int event_id; // event identifier
-typedef boost::shared_ptr<EventChain> event_chain_ptr;
+typedef std::auto_ptr<EventChain> event_chain_ptr;
 
 const event_id EVENT_ID_ANY     = 0;
 const object_id OBJECT_ID_ANY   = 0;
@@ -123,6 +123,50 @@ public:
 };
 
 /*!
+    Represents a chain of event listeners
+*/
+class CPAF_API EventChain
+{
+    friend class Manager;
+
+private:
+    typedef std::auto_ptr<ListenerFunctorBase> functor_ptr_type;
+    typedef std::vector<functor_ptr_type> listener_vector_type;    
+    listener_vector_type m_listeners;
+
+    Manager *m_manager;
+
+    object_id m_object_id; // the object that this eventchain recieves events from
+    event_id m_event_id; // the event id that this eventchain recieves events from
+
+    /*
+        Private constructor for use via the friended Manager class
+    */
+    EventChain(Manager *manager, object_id object, event_id event);
+
+public:
+    /*!
+        \return The event id that this chain recieves events for
+    */
+    event_id get_event_id() { return m_event_id; }
+
+    /*!
+        \return The object that this event chain recieves events from
+    */
+    object_id get_object_id() { return m_object_id; }
+
+    /*!
+        Process an event.
+    */
+    void process_event(Event &e);
+
+    /*!
+        Connect an event listener
+    */
+    EventChain &connect(ListenerFunctorBase *func);
+};
+
+/*!
     Main event system object. Manages sending events and connecting listeners which form chains.
 */
 class CPAF_API Manager
@@ -193,7 +237,7 @@ public:
     template<typename E, typename L> void connect(object_id from, event_id id, L &l, typename ListenerFunctor<L, E>::ptr_type function)
     {
         EventChain &chain = create_event_chain(from, id, false);
-        LisaaaaaaaaatenerFunctor<L,E> *functor = new ListenerFunctor<L,E>(l, function);
+        ListenerFunctor<L,E> *functor = new ListenerFunctor<L,E>(l, function);
         chain.connect(functor);
     }
 
@@ -219,50 +263,6 @@ public:
 
 private:
     void send_event(event_chain_vector &chain, Event &e);
-};
-
-/*!
-    Represents a chain of event listeners
-*/
-class CPAF_API EventChain
-{
-    friend class Manager;
-
-private:
-    typedef boost::shared_ptr<ListenerFunctorBase> functor_ptr_type;
-    typedef std::vector<functor_ptr_type> listener_vector_type;    
-    listener_vector_type m_listeners;
-
-    Manager *m_manager;
-
-    object_id m_object_id; // the object that this eventchain recieves events from
-    event_id m_event_id; // the event id that this eventchain recieves events from
-
-    /*
-        Private constructor for use via the friended Manager class
-    */
-    EventChain(Manager *manager, object_id object, event_id event);
-
-public:
-    /*!
-        \return The event id that this chain recieves events for
-    */
-    event_id get_event_id() { return m_event_id; }
-
-    /*!
-        \return The object that this event chain recieves events from
-    */
-    object_id get_object_id() { return m_object_id; }
-
-    /*!
-        Process an event.
-    */
-    void process_event(Event &e);
-
-    /*!
-        Connect an event listener
-    */
-    EventChain &connect(ListenerFunctorBase *func);
 };
 
 /*!
