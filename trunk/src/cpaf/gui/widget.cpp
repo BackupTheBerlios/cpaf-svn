@@ -14,9 +14,9 @@ cpaf::gui::Widget::Widget()
     : m_impl(NULL)
 { }
 
-void cpaf::gui::Widget::set_impl(cpaf::api::gui::Widget *impl)
+void cpaf::gui::Widget::set_impl(cpaf::api::gui::Object *impl)
 {
-    m_impl = impl;
+    m_impl = dynamic_cast<cpaf::api::gui::Widget*>(impl);
     cpaf::gui::Object::set_impl(impl);
 
     // add the wrapper / implementation pair to the map

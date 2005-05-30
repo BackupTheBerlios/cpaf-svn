@@ -7,7 +7,7 @@ cpaf::win32::gui::Widget implementation
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
-cpaf::win32::gui::Widget::Widget(const cpaf::gui::factory::WidgetData &params)
+cpaf::win32::gui::Widget::Widget()
     : m_delete(true),
     m_hwnd(0),
     m_old_proc(0),

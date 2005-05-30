@@ -54,9 +54,9 @@ private:
 
 protected:
     Window();
-    void set_impl(cpaf::api::gui::Window *impl);
 
 public:
+    void set_impl(cpaf::api::gui::Object *impl);
     operator cpaf::api::gui::Window *();
 };
 

@@ -23,7 +23,9 @@ namespace cpaf {
 class Window : public virtual cpaf::gtk2::gui::Widget, public virtual cpaf::api::gui::Window
 {
 public:
-    Window(const cpaf::gui::factory::WindowData &params);
+    Window();
+
+    void create(const cpaf::gui::factory::WindowData &params);
 
     // object interface
     virtual void set_size(const cpaf::Size&);

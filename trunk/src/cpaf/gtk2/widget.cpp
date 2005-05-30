@@ -11,6 +11,11 @@
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
+/*
+    There is an inlined default constructor in the header file, you will need to do
+    something with this one to work with the create() methods in other classes.
+*/
+
 cpaf::gtk2::gui::Widget::Widget(GtkWidget * widget)
     : m_widget(widget)
 {

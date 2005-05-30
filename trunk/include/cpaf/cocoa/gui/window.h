@@ -22,7 +22,9 @@ class Window : public /*cpaf::cocoa::gui::Widget, */cpaf::api::gui::Window
 private:
     NSWindow *m_window;
 public:
-    Window(const cpaf::gui::factory::WindowData &params);
+    Window();
+
+    void create(const cpaf::gui::factory::WindowData &params);
 
     // object interface
     virtual void set_size(const cpaf::Size&);

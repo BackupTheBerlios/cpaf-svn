@@ -10,9 +10,9 @@ cpaf::gui::Button::Button()
     : m_impl(NULL)
 { }
 
-void cpaf::gui::Button::set_impl(cpaf::api::gui::Button *impl)
+void cpaf::gui::Button::set_impl(cpaf::api::gui::Object *impl)
 {
-    m_impl = impl;
+    m_impl = dynamic_cast<cpaf::api::gui::Button*>(impl);
     cpaf::gui::Widget::set_impl(impl);
 }
 
@@ -37,6 +37,6 @@ cpaf::gui::Button::Factory::Factory()
 
 cpaf::gui::Button *cpaf::gui::Button::Factory::create(cpaf::gui::Button *w) const
 {
-    w->set_impl(cpaf::gui::factory::create_button(*m_data));
+    cpaf::gui::factory::create_button(w, *m_data);
     return w;
 }

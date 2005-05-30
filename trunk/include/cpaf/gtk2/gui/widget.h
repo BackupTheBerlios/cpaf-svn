@@ -23,6 +23,7 @@ class Widget : public virtual cpaf::api::gui::Widget
 {
 protected:
     GtkWidget * m_widget;
+    Widget() { }
     Widget(GtkWidget *);
 
 public:

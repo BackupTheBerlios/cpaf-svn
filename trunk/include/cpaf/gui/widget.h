@@ -22,11 +22,11 @@ protected:
     cpaf::api::gui::Widget *m_impl;
 
     Widget();
-    void set_impl(cpaf::api::gui::Widget *impl);
 
 public:
     virtual ~Widget();
 
+    void set_impl(cpaf::api::gui::Object *impl);
     operator cpaf::api::gui::Widget *();
 
     virtual void *get_handle();

@@ -22,6 +22,7 @@ class Widget : public virtual cpaf::api::gui::Widget
 protected:
     id m_view;
     Widget(const cpaf::gui::factory::WidgetData &, id);
+    Widget() { }
 
 public:
     virtual ~Widget();

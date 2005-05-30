@@ -6,13 +6,22 @@
 
 #include <cpaf/cocoa/gui/button.h>
 
-cpaf::cocoa::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
-    : Widget(params, [[NSButton alloc] init])
+/*
+    Please move all object construction related code into the empty create method below.
+*/
+
+cpaf::cocoa::gui::Button::Button()
+    /*: Widget(params, [[NSButton alloc] init])
 {
     [m_view setButtonType:NSToggleButton];
     [(NSButton*)m_view setBezelStyle:NSRegularSquareBezelStyle];
     set_label(params.m_label);
     //[m_view setAction:@selector(:)];
+}*/
+
+void cpaf::cocoa::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
+{
+
 }
 
 void cpaf::cocoa::gui::Button::set_label(const std::string &label)

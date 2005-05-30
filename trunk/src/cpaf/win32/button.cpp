@@ -7,8 +7,7 @@ cpaf::win32::gui::Button implementation
 #include <cpaf/win32/exception.h>
 #include <cpaf/gui/button.h>
 
-cpaf::win32::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
-    : Widget(params)
+void cpaf::win32::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
 {
     // this needs to go before the wnd_proc_replaced bit or I get an access violation from VC
     // for what ever stupid reason if the parent is null

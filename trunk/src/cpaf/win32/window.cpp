@@ -38,9 +38,8 @@ LRESULT CALLBACK window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_pa
     } // win32
 } // cpaf
 
-//! \todo remove duplicated code from window and button ctor
-cpaf::win32::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
-: Widget(params)
+//! \todo remove duplicated code from window and button create methods
+void cpaf::win32::gui::Window::create(const cpaf::gui::factory::WindowData &params)
 {
     static bool registered = false;
 

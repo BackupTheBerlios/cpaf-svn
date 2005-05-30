@@ -12,7 +12,12 @@
 
 using namespace cpaf::cocoa::utils;
 
-//cpaf::cocoa::gui::Widget::Widget(cpaf::api::gui::Widget *parent, id widget)
+/*
+    There is an inlined default constructor in the header file, you will need to do
+    something with this one to work with the create() methods in other classes.
+*/
+
+
 cpaf::cocoa::gui::Widget::Widget(const cpaf::gui::factory::WidgetData &params, id widget)
     : m_view(widget)
 {

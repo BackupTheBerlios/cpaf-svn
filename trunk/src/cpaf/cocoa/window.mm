@@ -9,14 +9,22 @@
 
 using namespace cpaf::cocoa::utils;
 
+/*
+    Please move all object construction related code into the empty create method below
+*/
 
 cpaf::cocoa::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
-    : m_window([[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 400, 300) styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing:NSBackingStoreBuffered defer:YES])
+    /*: m_window([[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 400, 300) styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing:NSBackingStoreBuffered defer:YES])
 {
     //! \todo Is there some default size?
     set_position(cpaf::Point(0, 0));
     set_title(params.m_title);
     //! \todo if (parent) { }
+}*/
+
+void cpaf::cocoa::gui::Window::create(const cpaf::gui::factory::WindowData &params)
+{
+
 }
 
 void cpaf::cocoa::gui::Window::set_size(const cpaf::Size &s)

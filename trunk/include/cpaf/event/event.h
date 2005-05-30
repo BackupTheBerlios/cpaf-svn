@@ -9,7 +9,7 @@
 
 #include <map>
 #include <vector>
-//#include <boost/shared_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 
 namespace cpaf {
     namespace event {
@@ -37,7 +37,7 @@ CPAF_DECLARE_EVENT(foo);
 //! \todo decide wether we use addresses or object id's here
 typedef int object_id; // value specifying which object sent the event
 typedef int event_id; // event identifier
-typedef std::auto_ptr<EventChain> event_chain_ptr;
+typedef boost::shared_ptr<EventChain> event_chain_ptr;
 
 const event_id EVENT_ID_ANY     = 0;
 const object_id OBJECT_ID_ANY   = 0;
@@ -130,7 +130,7 @@ class CPAF_API EventChain
     friend class Manager;
 
 private:
-    typedef std::auto_ptr<ListenerFunctorBase> functor_ptr_type;
+    typedef boost::shared_ptr<ListenerFunctorBase> functor_ptr_type;
     typedef std::vector<functor_ptr_type> listener_vector_type;    
     listener_vector_type m_listeners;
 

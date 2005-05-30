@@ -9,8 +9,12 @@
 
 #include <gtk/gtk.h>
 
+/*
+    Please move all object construction related code into the empty create method below
+*/
+
 cpaf::gtk2::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
-    : Widget(gtk_window_new(GTK_WINDOW_TOPLEVEL))
+    /*: Widget(gtk_window_new(GTK_WINDOW_TOPLEVEL))
 {
     cpaf::gui::Widget *parent = params.m_parent;
     if (parent)
@@ -23,6 +27,11 @@ cpaf::gtk2::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
     // Quit the application for now when the toplevel is closed
     g_signal_connect_swapped(m_widget, "delete-event",
                              G_CALLBACK (gtk_main_quit), NULL);
+}*/
+
+void cpaf::gtk2::gui::Window::create(const cpaf::gui::factory::WindowData &params)
+{
+
 }
 
 void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)

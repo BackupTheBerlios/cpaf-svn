@@ -8,7 +8,12 @@
 #include <cpaf/exception.h>
 #include <gtk/gtk.h>
 
-cpaf::gtk2::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
+/*
+    Please move all object construction related code into the empty create method below
+*/
+
+cpaf::gtk2::gui::Button::Button()
+/*
     : Widget(gtk_button_new()),
       m_label(NULL)
 {
@@ -21,6 +26,11 @@ cpaf::gtk2::gui::Button::Button(const cpaf::gui::factory::ButtonData &params)
     }
     else
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
+}*/
+
+void cpaf::gtk2::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
+{
+
 }
 
 void cpaf::gtk2::gui::Button::set_label(const std::string &label)

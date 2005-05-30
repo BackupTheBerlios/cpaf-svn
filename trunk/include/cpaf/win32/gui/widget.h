@@ -5,10 +5,6 @@ win32 version of api::Widget
 #ifndef CPAF_WIN32_GUI_WIDGET_H
 #define CPAF_WIN32_GUI_WIDGET_H
 
-#ifdef _MSC_VER
-#pragma warning(disable: 4250) // warning C4250: 'Foo' : inherits 'Foo::foo' via dominance
-#endif
-
 #include <cpaf/win32/win.h>
 #include <cpaf/types.h>
 #include <cpaf/api/gui/widget.h>
@@ -33,7 +29,7 @@ protected:
 
     cpaf::Size m_min_size, m_max_size;
 
-    Widget(const cpaf::gui::factory::WidgetData &params);
+    Widget();
 
 public:
     void set_old_proc(WNDPROC proc) { m_old_proc = proc; }

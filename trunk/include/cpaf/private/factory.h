@@ -16,7 +16,16 @@ Factory functions
 
 namespace cpaf {
     namespace gui {
+        class Widget;
         namespace factory {
+
+template<typename T, typename U> T *widget_factory_helper(cpaf::gui::Widget *wrapper, const U &u)
+{
+    T *t = new T;
+    wrapper->set_impl(t);
+    t->create(u);
+    return t;
+}
 
 /*!
     \brief Helper macro for declaring widget factory functions.
@@ -24,15 +33,19 @@ namespace cpaf {
     \param name Name of the api widget class that will be constructed. "Button"
     \param lname Name of the api widget class being constructed in lower case. "button"
 */
-#define DECLARE_FACTORY(name, lname) cpaf::api::gui::name *create_##lname(const cpaf::gui::factory::name##Data &params)
+#define DECLARE_FACTORY(name, lname) cpaf::api::gui::name *create_##lname(cpaf::gui::Widget *wrapper, const cpaf::gui::factory::name##Data &params)
 
 /*!
     \brief Helper macro for implementing widget factory functions.
 
     \param name Name of the api widget class that will be constructed. "Button"
     \param lname Name of the api widget class being constructed in lower case. "button"
+    \param port Port that this factory is for. "win32", "gtk2", ...
 */
-#define IMPLEMENT_FACTORY(name, lname) cpaf::api::gui::name *cpaf::gui::factory::create_##lname(const cpaf::gui::factory::name##Data &params)
+#define IMPLEMENT_FACTORY(name, lname, port) cpaf::api::gui::name *cpaf::gui::factory::create_##lname(cpaf::gui::Widget *wrapper, const cpaf::gui::factory::name##Data &params) \
+        {                                                           \
+            return widget_factory_helper<cpaf::port::gui::name>(wrapper, params);  \
+        }
 
 /*
     Widget factory function prototypes
