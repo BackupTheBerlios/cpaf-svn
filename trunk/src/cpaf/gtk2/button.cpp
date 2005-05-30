@@ -8,29 +8,26 @@
 #include <cpaf/exception.h>
 #include <gtk/gtk.h>
 
-/*
-    Please move all object construction related code into the empty create method below
-*/
-
 cpaf::gtk2::gui::Button::Button()
-/*
-    : Widget(gtk_button_new()),
-      m_label(NULL)
+    : m_label(NULL)
 {
+}
+
+void cpaf::gtk2::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
+{
+    //! \todo Use factory params
+    cpaf::gtk2::gui::Widget::create(gtk_button_new());
+
     GtkWidget * hparent;
     cpaf::gui::Widget *parent = params.m_parent;
     if( parent )
     {
         hparent = GTK_WIDGET(parent->get_handle());
+        //! \todo Figure out a better way to use the GtkFixed inside toplevels
         gtk_container_add(GTK_CONTAINER(gtk_bin_get_child(GTK_BIN(hparent))), m_widget);
     }
     else
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
-}*/
-
-void cpaf::gtk2::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
-{
-
 }
 
 void cpaf::gtk2::gui::Button::set_label(const std::string &label)

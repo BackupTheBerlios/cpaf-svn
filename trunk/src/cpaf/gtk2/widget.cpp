@@ -11,14 +11,10 @@
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
-/*
-    There is an inlined default constructor in the header file, you will need to do
-    something with this one to work with the create() methods in other classes.
-*/
-
-cpaf::gtk2::gui::Widget::Widget(GtkWidget * widget)
-    : m_widget(widget)
+void cpaf::gtk2::gui::Widget::create(GtkWidget * widget)
 {
+    m_widget = widget;
+
     // Set m_widget to NULL when gtk+ internally destroys the widget
     g_signal_connect_after(m_widget, "destroy",
                            G_CALLBACK (gtk_widget_destroyed), &m_widget);

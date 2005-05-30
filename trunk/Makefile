@@ -15,7 +15,7 @@ SRC_OBJS =                     \
 	$(OBJ_DIR)/gui/factory.o   \
 	$(OBJ_DIR)/gui/window.o    \
 	$(OBJ_DIR)/gui/button.o    \
-	#(OBJ_DIR)/event/event.o   \
+	$(OBJ_DIR)/event/event.o   \
 	$(OBJ_DIR)/gtk2/app.o      \
 	$(OBJ_DIR)/gtk2/factory.o  \
 	$(OBJ_DIR)/gtk2/widget.o   \
@@ -59,6 +59,7 @@ directories:
 	-@if [ ! -d "$(OUTPUT_DIR)" ]; then mkdir "$(OUTPUT_DIR)"; fi
 	-@if [ ! -d "$(OBJ_DIR)" ]; then mkdir "$(OBJ_DIR)"; fi
 	-@if [ ! -d "$(OBJ_DIR)/gui" ]; then mkdir "$(OBJ_DIR)/gui"; fi
+	-@if [ ! -d "$(OBJ_DIR)/event" ]; then mkdir "$(OBJ_DIR)/event"; fi
 	-@if [ ! -d "$(OBJ_DIR)/gtk2" ]; then mkdir "$(OBJ_DIR)/gtk2"; fi
 
 $(OBJ_DIR)/gui/app.o: src/cpaf/gui/app.cpp
