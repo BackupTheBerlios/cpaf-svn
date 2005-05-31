@@ -12,8 +12,7 @@ namespace cpaf {
         namespace gui {
             namespace factory {
 
-cpaf::api::gui::Widget *create_window(int id, cpaf::api::gui::Widget *parent);
-cpaf::api::gui::Widget *create_button(int id, cpaf::api::gui::Widget *parent);
+
 
             } // factory
         } // gui

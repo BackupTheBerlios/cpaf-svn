@@ -19,13 +19,13 @@ public:
 
 protected:
     cpaf::api::gui::Object *m_impl;
+    void set_impl(cpaf::api::gui::Object *impl);
 
     Object();
 
 public:
     virtual ~Object();
 
-    virtual void set_impl(cpaf::api::gui::Object *impl);
     operator cpaf::api::gui::Object *();
 
     virtual void set_size(const cpaf::Size &s);

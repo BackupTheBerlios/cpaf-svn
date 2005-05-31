@@ -5,9 +5,8 @@
  */
 
 #include <cpaf/private/factory.h>
-//#include <cpaf/cocoa/factory.h>
 #include <cpaf/cocoa/gui/window.h>
 #include <cpaf/cocoa/gui/button.h>
 
-IMPLEMENT_FACTORY(Window, window, cocoa)
-IMPLEMENT_FACTORY(Button, button, cocoa)
+IMPLEMENT_WIDGET_FACTORY(Window, window, cocoa)
+IMPLEMENT_WIDGET_FACTORY(Button, button, cocoa)

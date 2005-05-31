@@ -5,9 +5,8 @@
  */
 
 #include <cpaf/private/factory.h>
-//#include <cpaf/gtk2/factory.h>
 #include <cpaf/gtk2/gui/window.h>
 #include <cpaf/gtk2/gui/button.h>
 
-IMPLEMENT_FACTORY(Window, window, gtk2)
-IMPLEMENT_FACTORY(Button, button, gtk2)
+IMPLEMENT_WIDGET_FACTORY(Window, window, gtk2)
+IMPLEMENT_WIDGET_FACTORY(Button, button, gtk2)

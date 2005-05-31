@@ -13,19 +13,24 @@ Factory functions
 #include <cpaf/gui/window.h>
 
 #include <map>
+#include <memory>
 
 namespace cpaf {
     namespace gui {
         class Widget;
         namespace factory {
 
-template<typename T, typename U> T *widget_factory_helper(cpaf::gui::Widget *wrapper, const U &u)
+template<typename Api, typename Data> class widget_functor
 {
-    T *t = new T;
-    wrapper->set_impl(t);
-    t->create(u);
-    return t;
-}
+public:
+    typedef Api api_type;
+    typedef Data data_type;
+
+    virtual api_type *create() = 0;
+    virtual void initialize(const data_type &params) = 0;
+
+    virtual ~widget_functor() { }
+};
 
 /*!
     \brief Helper macro for declaring widget factory functions.
@@ -33,19 +38,33 @@ template<typename T, typename U> T *widget_factory_helper(cpaf::gui::Widget *wra
     \param name Name of the api widget class that will be constructed. "Button"
     \param lname Name of the api widget class being constructed in lower case. "button"
 */
-#define DECLARE_FACTORY(name, lname) cpaf::api::gui::name *create_##lname(cpaf::gui::Widget *wrapper, const cpaf::gui::factory::name##Data &params)
+#define DECLARE_WIDGET_FACTORY(type, name)                                                          \
+    typedef widget_functor<cpaf::api::gui::type, cpaf::gui::factory::type##Data> name##_functor;    \
+    typedef std::auto_ptr<name##_functor> name##_functor_ptr;                                       \
+    name##_functor_ptr create_##name();                                                             \
 
-/*!
-    \brief Helper macro for implementing widget factory functions.
+#define IMPLEMENT_WIDGET_FACTORY(type, name, port)                      \
+namespace {                                                             \
+class name##_functor_impl : public cpaf::gui::factory::name##_functor   \
+{                                                                       \
+private:                                                                \
+    typedef cpaf::port::gui::type impl_type;                            \
+    impl_type *m_i;                                                     \
+public:                                                                 \
+    api_type *create()                                                  \
+    {                                                                   \
+        m_i = new impl_type;                                            \
+        return m_i;                                                     \
+    }                                                                   \
+    void initialize(const data_type &params)                            \
+    {                                                                   \
+        m_i->create(params);                                            \
+    }                                                                   \
+};                                                                      \
+}                                                                       \
+cpaf::gui::factory::name##_functor_ptr cpaf::gui::factory::create_##name() \
+{ return name##_functor_ptr(new name##_functor_impl); }                 \
 
-    \param name Name of the api widget class that will be constructed. "Button"
-    \param lname Name of the api widget class being constructed in lower case. "button"
-    \param port Port that this factory is for. "win32", "gtk2", ...
-*/
-#define IMPLEMENT_FACTORY(name, lname, port) cpaf::api::gui::name *cpaf::gui::factory::create_##lname(cpaf::gui::Widget *wrapper, const cpaf::gui::factory::name##Data &params) \
-        {                                                           \
-            return widget_factory_helper<cpaf::port::gui::name>(wrapper, params);  \
-        }
 
 /*
     Widget factory function prototypes
@@ -53,8 +72,10 @@ template<typename T, typename U> T *widget_factory_helper(cpaf::gui::Widget *wra
     These factories are defined by an implementation and are called directly
     by initializer factory objects.
 */
-DECLARE_FACTORY(Button, button);
-DECLARE_FACTORY(Window, window);
+DECLARE_WIDGET_FACTORY(Button, button)
+DECLARE_WIDGET_FACTORY(Window, window)
+
+
 
 /*
 CPAF OBJECT DESCTRUCTION OVERVIEW

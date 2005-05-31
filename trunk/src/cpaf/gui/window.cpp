@@ -10,9 +10,9 @@ cpaf::gui::Window::Window()
     : m_impl(NULL)
 { }
 
-void cpaf::gui::Window::set_impl(cpaf::api::gui::Object *impl)
+void cpaf::gui::Window::set_impl(cpaf::api::gui::Window *impl)
 {
-    m_impl = dynamic_cast<cpaf::api::gui::Window*>(impl);
+    m_impl = impl;
     cpaf::gui::TopLevel::set_impl(impl);
 }
 
@@ -27,6 +27,8 @@ cpaf::gui::Window::Factory::Factory()
 
 cpaf::gui::Window *cpaf::gui::Window::Factory::create(cpaf::gui::Window *w) const
 {
-    cpaf::gui::factory::create_window(w, *m_data);
+    cpaf::gui::factory::window_functor_ptr window = cpaf::gui::factory::create_window();
+    w->set_impl(window->create());
+    window->initialize(*m_data);
     return w;
 }

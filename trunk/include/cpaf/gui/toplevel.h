@@ -25,11 +25,11 @@ private:
 
 protected:
     TopLevel();
+    void set_impl(cpaf::api::gui::TopLevel *impl);
 
 public:
     virtual ~TopLevel();
 
-    void set_impl(cpaf::api::gui::Object *impl);
     operator cpaf::api::gui::TopLevel *();
 
     virtual void show(bool show = true, bool focus = true);

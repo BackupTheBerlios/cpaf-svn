@@ -48,9 +48,9 @@ private:
 
 protected:
     Button();
+    void set_impl(cpaf::api::gui::Button *impl);
 
 public:
-    void set_impl(cpaf::api::gui::Object *impl);
     operator cpaf::api::gui::Button *();
 
     virtual void set_label(const std::string &label);

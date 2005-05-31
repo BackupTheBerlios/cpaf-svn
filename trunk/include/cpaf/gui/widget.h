@@ -20,13 +20,13 @@ class CPAF_API Widget : public Object
 {
 protected:
     cpaf::api::gui::Widget *m_impl;
+    void set_impl(cpaf::api::gui::Widget *impl);
 
     Widget();
 
 public:
     virtual ~Widget();
 
-    void set_impl(cpaf::api::gui::Object *impl);
     operator cpaf::api::gui::Widget *();
 
     virtual void *get_handle();
