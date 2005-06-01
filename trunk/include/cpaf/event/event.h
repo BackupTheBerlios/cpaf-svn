@@ -18,7 +18,7 @@ namespace cpaf {
 class ListenerFunctorBase;
 class EventChain;
 template<typename E> class EventChainWrapper;
-
+class Manager;
 /*!
     This function generates a unique event id.
     \return A unique event id
@@ -131,7 +131,7 @@ class CPAF_API EventChain
 
 private:
     typedef boost::shared_ptr<ListenerFunctorBase> functor_ptr_type;
-    typedef std::vector<functor_ptr_type> listener_vector_type;    
+    typedef std::vector<functor_ptr_type> listener_vector_type;
     listener_vector_type m_listeners;
 
     Manager *m_manager;
@@ -179,8 +179,8 @@ private:
     typedef std::map<object_id, event_vector_map> object_event_vector_map;
 
     // there are two of each map, one for regular event chains, and one for "post processing" chains
-    static const int BEFORE_MAP = 0;
-    static const int AFTER_MAP = 1;
+    static const int BEFORE_MAP;
+    static const int AFTER_MAP;
 
     // {object, event, chain} map
     object_event_vector_map m_obj_evt_map[2];
@@ -194,7 +194,7 @@ private:
 public:
     /*!
         Creates an EventChain object to connect event listeners to.
-        
+
         \param from     Object to recieve events from
         \param event_id Event id to recieve
         \param after    If true, this event chain will be a "post processing" event chain. If false,

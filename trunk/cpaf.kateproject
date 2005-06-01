@@ -7,7 +7,7 @@ Dirs=cpaf
 Files=
 
 [Dir include/cpaf]
-Dirs=api/gtk2/gui/private
+Dirs=api/gtk2/gui/private/event
 Files=dllimpexp.h/macros.h/app.h/main.h/exception.h/types.h
 
 [Dir include/cpaf/api]
@@ -17,6 +17,10 @@ Files=
 [Dir include/cpaf/api/gui]
 Dirs=
 Files=sizer.h/toplevel.h/widget.h/window.h/object.h/button.h
+
+[Dir include/cpaf/event]
+Dirs=
+Files=event.h
 
 [Dir include/cpaf/gtk2]
 Dirs=gui
@@ -51,8 +55,12 @@ Dirs=cpaf
 Files=
 
 [Dir src/cpaf]
-Dirs=gtk2/gui
+Dirs=gtk2/gui/event
 Files=app.cpp/main.cpp/api.cpp/exception.cpp/types.cpp
+
+[Dir src/cpaf/event]
+Dirs=
+Files=event.cpp
 
 [Dir src/cpaf/gtk2]
 Dirs=

@@ -6,6 +6,9 @@
 
 using namespace cpaf::event;
 
+const int Manager::BEFORE_MAP = 0;
+const int Manager::AFTER_MAP = 1;
+
 CPAF_IMPLEMENT_EVENT(cpaf::event::foo)
 
 int cpaf::event::get_unique_id()

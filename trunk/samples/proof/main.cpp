@@ -93,8 +93,9 @@ bool MyApp::init()
 
     // events testing
     get_events_manager().create_event_chain<cpaf::event::Event>(cpaf::event::OBJECT_ID_ANY, 1).connect(*this, &MyApp::event_listener).connect(*this, &MyApp::event_listener_2);
-    get_events_manager().connect_after<cpaf::event::Event>(1, 1, *this, event_listener);
-    get_events_manager().send_event(2, cpaf::event::Event(1));
+    get_events_manager().connect_after<cpaf::event::Event>(1, 1, *this, &MyApp::event_listener);
+    cpaf::event::Event event(1);
+    get_events_manager().send_event(2, event);
 
     return true;
 }
