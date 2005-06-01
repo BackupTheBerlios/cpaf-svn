@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/cocoa/gui/widget.h
  * \brief Cocoa version of api::Widget
- * \date 2005-04-29
+ * \date Created: 2005-04-29
  */
 
 #ifndef CPAF_COCOA_GUI_WIDGET_H

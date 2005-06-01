@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/gtk2/utils.h
  * \brief Gtk2 utils
- * \date 2005-04-07
+ * \date Created: 2005-04-07
  */
 
 #ifndef CPAF_GTK2_UTILS_H

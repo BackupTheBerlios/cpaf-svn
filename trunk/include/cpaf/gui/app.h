@@ -1,5 +1,7 @@
-/*
-cpaf::gui::App application class
+/*!
+    \file include/cpaf/gui/app.h
+    \brief cpaf::gui::App declaration
+    \date Created: 2005-04-07
 */
 
 #ifndef CPAF_GUI_APP_H

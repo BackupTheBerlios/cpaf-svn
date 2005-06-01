@@ -1,5 +1,7 @@
-/*
-Widget initializer factory
+/*!
+    \file include/cpaf/gui/factory/widget.h
+    \brief Factory initializer for cpaf::gui::Widget
+    \date Created: 2005-05-07
 */
 
 #ifndef CPAF_GUI_FACTORY_WIDGET_H

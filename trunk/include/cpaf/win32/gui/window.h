@@ -1,5 +1,7 @@
-/*
-win32 version of api::Window
+/*!
+    \file include/cpaf/win32/window.h
+    \brief win32 version of cpaf::api::gui::Window
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_WIN32_GUI_WINDOW_H
@@ -28,7 +30,7 @@ public:
     virtual void set_title(const std::string &t);
     virtual std::string get_title();
 
-    virtual void set_client_size(const cpaf::Size &s) { }
+    virtual void set_client_size(const cpaf::Size &s);
     virtual cpaf::Size get_client_size() { return cpaf::Size(); }
     virtual cpaf::Point get_client_position() { return cpaf::Point(); }
 };

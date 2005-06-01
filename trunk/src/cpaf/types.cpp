@@ -1,5 +1,7 @@
-/*
-Implementation for basic cpaf types
+/*!
+    \file src/cpaf/types.cpp
+    \brief Implementation of basic cpaf types
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/types.h>

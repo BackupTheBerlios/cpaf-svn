@@ -1,5 +1,7 @@
-/*
-win32 version of api::Button
+/*!
+    \file include/cpaf/win32/button.h
+    \brief win32 version of cpaf::api::gui::Button
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_WIN32_GUI_BUTTON_H

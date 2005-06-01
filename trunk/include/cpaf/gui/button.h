@@ -1,5 +1,7 @@
-/*
-Client wrapper for api::gui::Window
+/*!
+    \file include/cpaf/gui/button.h
+    \brief cpaf::gui::Button declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_GUI_BUTTON_H

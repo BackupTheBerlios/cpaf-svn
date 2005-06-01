@@ -1,5 +1,7 @@
-/*
-Wrapper for api::gui::button
+/*!
+    \file src/cpaf/gui/button.cpp
+    \brief Implementation of cpaf::gui::Button
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/gui/button.h>

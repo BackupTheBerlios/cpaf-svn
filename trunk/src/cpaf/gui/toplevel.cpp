@@ -1,5 +1,7 @@
-/*
-Wrapper for api::gui::TopLevel
+/*!
+    \file src/cpaf/gui/toplevel.cpp
+    \brief Implementation of cpaf::gui::TopLevel
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/gui/toplevel.h>

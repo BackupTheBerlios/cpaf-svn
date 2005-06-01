@@ -1,5 +1,7 @@
-/*
-win32 factory implementation
+/*!
+    \file src/cpaf/win32/factory.cpp
+    \brief Implementation of win32 widget factories
+    \date Created: 2005-04-07
 */
 
 #include <cpaf/private/factory.h>

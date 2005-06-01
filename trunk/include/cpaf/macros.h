@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/macros.h
  * \brief Various macros
- * \date 2005-04-07
+ * \date Created: 2005-04-07
  */
 
 #ifndef CPAF_MACROS_H

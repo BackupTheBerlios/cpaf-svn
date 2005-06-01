@@ -1,5 +1,7 @@
-/*
-    cpaf event system declarations
+/*!
+    \file include/cpaf/event/event.h
+    \brief Declarations for the event system
+    \date Created: 2005-05-29
 */
 
 #ifndef CPAF_EVENT_H

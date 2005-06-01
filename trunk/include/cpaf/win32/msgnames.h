@@ -1,3 +1,8 @@
+/*!
+    \file include/cpaf/win32/msgnames.h
+    \brief Conversion from Win32 message values into their names
+    \date Created: 2004-05-04
+
 namespace cpaf {
     namespace win32 {
 

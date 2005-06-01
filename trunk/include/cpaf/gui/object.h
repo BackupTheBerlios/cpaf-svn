@@ -1,5 +1,7 @@
-/*
-Client wrapper for api::gui::Object
+/*!
+    \file include/cpaf/gui/object.h
+    \brief cpaf::gui::Object declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_GUI_OBJECT_H

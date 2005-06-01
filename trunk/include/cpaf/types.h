@@ -1,5 +1,7 @@
-/*
-Declaration of basic cpaf types
+/*!
+    \file include/cpaf/types.h
+    \brief Basic cpaf types
+    \date Crated: 2005-04-05
 */
 
 #ifndef CPAF_TYPES_H

@@ -1,5 +1,8 @@
-/*
-This file implements cpaf::gui::App::run() for win32
+/*!
+    \file src/cpaf/win32/app.cpp
+    \brief Implementation file for the parts of cpaf::gui::App which are implemenation specific,
+    those being gui_init() and run().
+    \date Created: 2005-04-07
 */
 
 #include <cpaf/win32/win.h>

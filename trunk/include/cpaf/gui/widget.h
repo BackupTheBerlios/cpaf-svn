@@ -1,6 +1,7 @@
-/*
-Client wrapper for api::gui::Widget
-this object is not createable by client code
+/*!
+    \file include/cpaf/gui/widget.h
+    \brief cpaf::gui::Widget declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_GUI_WIDGET_H

@@ -1,12 +1,13 @@
 /*!
 	\page glossary Glossary of Terms
 
-	- \ref g_child Child
-	- \ref g_parent Parent
-	- \ref g_subwindow Subwindow
-	- \ref g_tlw TLW
-	- \ref g_widget Widget
-	- \ref g_window Window
+	\section glossary
+	- \ref g_child
+	- \ref g_parent
+	- \ref g_subwindow
+	- \ref g_tlw
+	- \ref g_widget
+	- \ref g_window
 
 	\subsection g_child Child
 		A Child is a widget that is not wholey contained within its \ref g_parent Parent widget. If a Child's

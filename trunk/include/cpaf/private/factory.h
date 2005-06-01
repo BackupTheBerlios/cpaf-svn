@@ -1,5 +1,7 @@
-/*
-Factory functions
+/*!
+    \file include/cpaf/private/factory.h
+    \brief Widget factory declarations
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_PRIVATE_FACTORY_H

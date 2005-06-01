@@ -1,5 +1,7 @@
-/*
-cpaf::win32::gui::Widget implementation
+/*!
+    \file src/cpaf/win32/widget.cpp
+    \brief Implementation of cpaf::win32::gui::Widget
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/win32/gui/widget.h>

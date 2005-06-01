@@ -1,5 +1,7 @@
-/*
-win32 version of api::Widget
+/*!
+    \file include/cpaf/win32/widget.h
+    \brief win32 version of cpaf::api::gui::Widget
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_WIN32_GUI_WIDGET_H

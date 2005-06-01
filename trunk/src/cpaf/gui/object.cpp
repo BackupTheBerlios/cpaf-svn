@@ -1,5 +1,7 @@
-/*
-Wrapper for api::gui::Object
+/*!
+    \file src/cpaf/gui/object.cpp
+    \brief Implementation of cpaf::gui::Object
+    \date Created: 2004-04-05
 */
 
 #include <cpaf/gui/object.h>

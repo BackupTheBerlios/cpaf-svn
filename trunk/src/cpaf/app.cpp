@@ -1,5 +1,7 @@
-/*
-cpaf::App implementation
+/*!
+    \file src/cpaf/app.cpp
+    \brief Implementation of cpaf::App
+    \date Created: 2005-04-07
 */
 
 #include <cpaf/app.h>

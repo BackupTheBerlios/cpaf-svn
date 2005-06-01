@@ -1,6 +1,7 @@
-/*
-Client wrapper for api::gui::TopLevel
-this object is not createable by client code
+/*!
+    \file include/cpaf/gui/toplevel.h
+    \brief cpaf::gui::TopLevel declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_GUI_TOPLEVEL_H

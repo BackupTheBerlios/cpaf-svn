@@ -1,8 +1,8 @@
-/*
-Header file which declares the cpaf::main() entry function.
-
-This file also declares the platform specific entry function. This function
-is a wrapper for cpaf::entry which is implemented within the library.
+/*!
+    \file include/cpaf/main.h
+    \brief Declaration of the cpaf::main() entry function and the platform specific entry function.
+    The entry function is a wrapper for cpaf::entry which is implemented within the library.
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_MAIN_H

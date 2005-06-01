@@ -1,5 +1,7 @@
-/*
-    Event system implementation
+/*!
+    \file src/cpaf/event/event.cpp
+    \brief Implementation of the event system
+    \date Created: 2005-05-29
 */
 
 #include <cpaf/event/event.h>

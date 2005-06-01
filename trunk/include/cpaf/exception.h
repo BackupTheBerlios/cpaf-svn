@@ -1,5 +1,7 @@
-/*
-cpaf::Exception definition. The base class for any exception thrown by cpaf
+/*!
+    \file include/cpaf/exception.h
+    \brief cpaf::Exception declaration.
+    \date Created: 2005-04-24
 */
 
 #ifndef CPAF_EXCEPTION_H
@@ -38,7 +40,7 @@ public:
 
     /*!
         \return An english ansi description of the error
-        //! \todo Once we figure out unicode, this function should be localized
+        \todo Once we figure out unicode, this function should be localized
     */
     virtual const char *get_message();
 

@@ -1,5 +1,7 @@
-/*
-common header for win32 implementation
+/*!
+    \file include/cpaf/win32/win.h
+    \brief Declarations for various win32 port stuff
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_WIN32_WIN_H

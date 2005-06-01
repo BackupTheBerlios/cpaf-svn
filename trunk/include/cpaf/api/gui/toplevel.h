@@ -1,5 +1,7 @@
-/*
-TopLevel interface definition
+/*!
+    \file include/cpaf/api/gui/toplevel.h
+    \brief TopLevel interface declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_API_GUI_TOPLEVEL_H

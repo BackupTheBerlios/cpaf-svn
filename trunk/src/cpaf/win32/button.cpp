@@ -1,5 +1,7 @@
-/*
-cpaf::win32::gui::Button implementation
+/*!
+    \file src/cpaf/win32/button.cpp
+    \brief Implementation of cpaf::win32::gui::Button
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/win32/gui/button.h>

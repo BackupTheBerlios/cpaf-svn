@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/gtk2/gui/window.h
- * \brief Gtk2 version of api::Window
- * \date 2005-04-05
+ * \brief Gtk2 version of cpaf::api::gui::Window
+ * \date Created: 2005-04-05
  */
 
 #ifndef CPAF_GTK2_GUI_WINDOW_H

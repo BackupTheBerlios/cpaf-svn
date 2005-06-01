@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/cocoa/factory.h
  * \brief Cocoa factories
- * \date 2005-04-29
+ * \date Created: 2005-04-29
  */
 
 #ifndef CPAF_COCOA_FACTORY_H

@@ -1,5 +1,7 @@
-/*
-Implementation for common win32 implementation functions
+/*!
+    \file src/cpaf/win32/win.cpp
+    \brief Implementation of various things for the win32 port
+    \date Created: 2005-04-07
 */
 
 #include <cpaf/win32/win.h>
@@ -9,9 +11,10 @@ Implementation for common win32 implementation functions
 
 using cpaf::win32::gui::WidgetMap;
 
-static const char * const MessageTypeNames[WM_USER + 1];
-
-static cpaf::win32::gui::WidgetMap widget_map;
+namespace {
+    const char * const MessageTypeNames[WM_USER + 1];
+    cpaf::win32::gui::WidgetMap widget_map;
+}
 
 void cpaf::win32::gui::widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
 {
@@ -71,7 +74,7 @@ LRESULT CALLBACK cpaf::win32::gui::widget_wndproc(HWND hwnd, UINT msg, WPARAM w_
     DBG_MSG_2("widget_wndproc failed to proceess a message: %s", cpaf::win32::MessageTypeNames[msg]);
     // call the default window procedure if we get this far
     // this will happen if the first message sent to a window is not WM_NCCREATE,
-    // which is the case for overlapped (toplevel) windows: they get WM_MINMAXINFO first
+    // which is the case for overlapped (toplevel) windows; they get WM_MINMAXINFO first
     return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
 

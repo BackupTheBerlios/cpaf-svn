@@ -1,5 +1,7 @@
-/*
-gui window wrapper
+/*!
+    \file src/cpaf/gui/window.cpp
+    \brief Implementation of cpaf::gui::Window
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/gui/window.h>

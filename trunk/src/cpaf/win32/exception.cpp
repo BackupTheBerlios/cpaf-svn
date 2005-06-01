@@ -1,5 +1,7 @@
-/*
-win32::Exception implementation
+/*!
+    \file src/cpaf/win32/exception.cpp
+    \brief Implementation of cpaf::win32::Exception
+    \date Created: 2005-04-24
 */
 
 #include <cpaf/win32/exception.h>

@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/cocoa/gui/button.h
  * \brief Cocoa version of api::Button
- * \date 2005-04-29
+ * \date Created: 2005-04-29
  */
 
 #ifndef CPAF_COCOA_GUI_BUTTON_H

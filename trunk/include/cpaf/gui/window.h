@@ -1,5 +1,7 @@
-/*
-Client wrapper for api::gui::Window
+/*!
+    \file include/cpaf/gui/window.h
+    \brief cpaf::gui::Window declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_GUI_WINDOW_H

@@ -1,5 +1,7 @@
-/*
-cpaf::App base application class
+/*!
+    \file include/cpaf/app.h
+    \brief cpaf::App declaration
+    \date Created: 2004-04-07
 */
 
 /*

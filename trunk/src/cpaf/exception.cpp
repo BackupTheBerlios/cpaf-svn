@@ -1,5 +1,7 @@
-/*
-cpaf::Exception implementation
+/*!
+    \file src/cpaf/exception.cpp
+    \brief Implementation of cpaf::Exception
+    \date Created: 2005-04-24
 */
 
 #include <cpaf/exception.h>

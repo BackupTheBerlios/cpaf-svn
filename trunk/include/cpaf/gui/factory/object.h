@@ -1,5 +1,7 @@
-/*
-Object initializer factory
+/*!
+    \file include/cpaf/gui/factory/object.h
+    \brief Factory initializer for cpaf::gui::Object
+    \date Created: 2005-05-07
 */
 
 #ifndef CPAF_GUI_FACTORY_OBJECT_H

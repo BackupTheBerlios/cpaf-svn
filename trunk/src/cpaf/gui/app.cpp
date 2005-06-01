@@ -1,5 +1,7 @@
-/*
-Implementation for cpaf::gui::App
+/*!
+    \file src/cpaf/gui/app.cpp
+    \brief Implementation of cpaf::gui::App
+    \date Created: 2005-04-07
 */
 
 #include <cpaf/gui/app.h>

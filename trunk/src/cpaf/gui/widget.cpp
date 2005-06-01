@@ -1,5 +1,7 @@
-/*
-Wrapper for api::gui::widget
+/*!
+    \file src/cpaf/gui/widget.cpp
+    \brief Implementation of cpaf::gui::Widget
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/gui/widget.h>

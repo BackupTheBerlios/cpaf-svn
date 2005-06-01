@@ -1,5 +1,7 @@
-/*
-Object interface definition
+/*!
+    \file include\cpaf\gui\api\object.h
+    \brief Object interface declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_API_GUI_OBJECT_H

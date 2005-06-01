@@ -1,5 +1,7 @@
-/*
-Sizer interface definition
+/*!
+    \file include/cpaf/api/gui/sizer.h
+    \brief Sizer interface declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_API_GUI_SIZER_H

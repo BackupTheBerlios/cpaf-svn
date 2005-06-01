@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/gtk2/gui/widget.h
- * \brief Gtk2 version of api::Widget
- * \date 2005-04-05
+ * \brief Gtk2 version of cpaf::api::gui::Widget
+ * \date Created: 2005-04-05
  */
 
 #ifndef CPAF_GTK2_GUI_WIDGET_H

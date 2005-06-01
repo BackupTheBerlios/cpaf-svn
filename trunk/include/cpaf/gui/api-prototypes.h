@@ -1,5 +1,7 @@
-/*
-cpaf::api::gui namespace prototypes for use by gui::foo headers
+/*!
+    \file include/cpaf/gui/api-prototypes.h
+    \brief cpaf::api::gui namespace prototypes for use by gui::foo headers
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_GUI_API_PROTOTYPES_H

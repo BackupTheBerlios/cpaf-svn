@@ -1,5 +1,7 @@
-/*
-Defines for __declspec(dllexport) and __declspec(dllimport)
+/*!
+    \file include/cpaf/dllimpexp.h
+    \brief Contains helper macros for exporting and importing symbols from cpaf dynamic library builds
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_DLLIMPEXP_H

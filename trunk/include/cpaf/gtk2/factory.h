@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/gtk2/factory.h
  * \brief gtk2 factories
- * \date 2005-04-05
+ * \date Created: 2005-04-05
  */
 
 #ifndef CPAF_GTK2_FACTORY_H

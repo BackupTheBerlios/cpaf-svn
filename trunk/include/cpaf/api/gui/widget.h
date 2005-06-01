@@ -1,5 +1,7 @@
-/*
-Widget interface definition
+/*!
+    \file include/cpaf/api/gui/widget.h
+    \brief Widget interface declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_API_GUI_WIDGET_H

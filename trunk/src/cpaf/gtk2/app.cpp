@@ -8,8 +8,10 @@
 
 #include <gtk/gtk.h>
 
-static int s_argc;
-static char **s_argv;
+namespace {
+    int s_argc;
+    char **s_argv;
+}
 
 void register_argc_argv(int argc, char *argv[])
 {

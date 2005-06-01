@@ -1,7 +1,7 @@
 /**
  * \file include/cpaf/gtk2/gui/button.h
- * \brief Gtk2 version of api::Button
- * \date 2005-04-14
+ * \brief Gtk2 version of cpaf::api::gui::Button
+ * \date Created: 2005-04-14
  */
 
 #ifndef CPAF_GTK2_GUI_BUTTON_H

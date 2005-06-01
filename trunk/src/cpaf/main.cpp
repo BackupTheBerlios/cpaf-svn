@@ -1,5 +1,7 @@
-/*
-win32 entry function implementation
+/*!
+    \file src/cpaf/main.cpp
+    \brief Implementation of the entry function
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/main.h>
@@ -9,7 +11,7 @@ win32 entry function implementation
 #include <exception>
 
 namespace {
-    cpaf::App *the_app; // point to the application instance
+    cpaf::App *the_app; // pointer to the application instance
 }
 
 #ifdef CPAF_WIN32

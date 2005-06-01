@@ -1,5 +1,7 @@
-/*
-cpaf::win32::Exception class
+/*!
+    \file include/cpaf/win32/exception.h
+    \brief cpaf::win32::Exception declaration
+    \date Created: 2005-04-24
 */
 
 #ifndef CPAF_WIN32_EXCEPTION_H

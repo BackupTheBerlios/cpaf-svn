@@ -1,5 +1,7 @@
-/*
-win32 factories
+/*!
+    \file include/cpaf/win32/factory.h
+    \brief win32 factories
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_WIN32_FACTORY_H

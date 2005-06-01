@@ -1,5 +1,7 @@
-/*
-Factory function implementations
+/*!
+    \file src/cpaf/gui/factory.cpp
+    \brief Implementation for things in the cpaf::gui::factory namespace
+    \date Created: 2005-04-05
 */
 
 #include <cpaf/private/factory.h>

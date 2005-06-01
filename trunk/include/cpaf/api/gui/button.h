@@ -1,11 +1,12 @@
-/*
-Button interface definition
+/*!
+    \file include/cpaf/api/gui/button.h
+    \brief Button interface declaration
+    \date Created: 2005-04-05
 */
 
 #ifndef CPAF_API_GUI_BUTTON_H
 #define CPAF_API_GUI_BUTTON_H
 
-//! \todo "Controls" need a common base (checkboxes, radio, ...)
 #include <cpaf/api/gui/widget.h>
 
 #include <string>
@@ -16,6 +17,7 @@ namespace cpaf {
 
 class Button : public virtual Widget
 {
+    //! \todo "Controls" need a common base (checkboxes, radio, ...)
 public:
     static int factory_key;
 
