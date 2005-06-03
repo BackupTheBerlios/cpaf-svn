@@ -28,6 +28,9 @@ void cpaf::gtk2::gui::Button::create(const cpaf::gui::factory::ButtonData &param
     }
     else
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
+
+    if (params.m_label)
+        set_label(m_label);
 }
 
 void cpaf::gtk2::gui::Button::set_label(const std::string &label)
