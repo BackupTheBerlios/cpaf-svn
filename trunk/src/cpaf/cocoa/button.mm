@@ -11,6 +11,8 @@
 */
 
 cpaf::cocoa::gui::Button::Button()
+{
+}
     /*: Widget(params, [[NSButton alloc] init])
 {
     [m_view setButtonType:NSToggleButton];

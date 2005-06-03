@@ -6,8 +6,6 @@
 	objectVersion = 39;
 	objects = {
 		014CEA440018CDF011CA2923 = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -22,8 +20,6 @@
 			name = Development;
 		};
 		014CEA450018CDF011CA2923 = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -101,8 +97,7 @@
 			sourceTree = "<group>";
 		};
 		0867D69BFE84028FC02AAC07 = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Foundation.framework;
 			path = /System/Library/Frameworks/Foundation.framework;
@@ -110,8 +105,7 @@
 			sourceTree = "<absolute>";
 		};
 		0867D6A5FE840307C02AAC07 = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = AppKit.framework;
 			path = /System/Library/Frameworks/AppKit.framework;
@@ -166,8 +160,7 @@
 			sourceTree = "<group>";
 		};
 		1058C7B1FEA5585E11CA2CBB = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Cocoa.framework;
 			path = /System/Library/Frameworks/Cocoa.framework;
@@ -208,6 +201,7 @@
 			children = (
 				6EDF4B7D082E048300957C63,
 				6EDF4BBD082E059400957C63,
+				E231DB36084B9CEC00DD0EEA,
 				6EDF4C26082E07EE00957C63,
 				6EDF4C7E082E07EF00957C63,
 				6EDF4BA6082E051400957C63,
@@ -744,6 +738,7 @@
 				6EDF4D2A082E08F600957C63,
 				6EDF4D2B082E08F600957C63,
 				6EDF4D59082E08F700957C63,
+				E29B7ECC0850218800170856,
 				6EDF4D5A082E08F700957C63,
 				6EDF4D8D082E08F700957C63,
 				6EDF4D8E082E08F700957C63,
@@ -1068,13 +1063,14 @@
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = "CPAF_COCOA CPAF_BUILDING CPAF_DLL";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = include;
+				HEADER_SEARCH_PATHS = "include /sw/include";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
@@ -1127,6 +1123,7 @@
 				6EDF4CD3082E07EF00957C63,
 				6EDF4CD4082E07EF00957C63,
 				6EDF4CDE082E07EF00957C63,
+				E231DB38084B9CED00DD0EEA,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1166,6 +1163,7 @@
 				6EDF4DDC082E08F700957C63,
 				6EDF4DDD082E08F700957C63,
 				6EDF4DDE082E08F700957C63,
+				E29B7ECE0850218800170856,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1206,6 +1204,64 @@
 			path = cpaf.framework;
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+//8D0
+//8D1
+//8D2
+//8D3
+//8D4
+//E20
+//E21
+//E22
+//E23
+//E24
+		E231DB36084B9CEC00DD0EEA = {
+			children = (
+				E231DB37084B9CEC00DD0EEA,
+			);
+			isa = PBXGroup;
+			name = event;
+			path = include/cpaf/event;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		E231DB37084B9CEC00DD0EEA = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = event.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		E231DB38084B9CED00DD0EEA = {
+			fileRef = E231DB37084B9CEC00DD0EEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		E29B7ECC0850218800170856 = {
+			children = (
+				E29B7ECD0850218800170856,
+			);
+			isa = PBXGroup;
+			name = event;
+			path = src/cpaf/event;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		E29B7ECD0850218800170856 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = event.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		E29B7ECE0850218800170856 = {
+			fileRef = E29B7ECD0850218800170856;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 	};
 	rootObject = 0867D690FE84028FC02AAC07;

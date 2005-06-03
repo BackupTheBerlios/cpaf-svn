@@ -9,22 +9,38 @@
 
 using namespace cpaf::cocoa::utils;
 
-/*
-    Please move all object construction related code into the empty create method below
-*/
-
-cpaf::cocoa::gui::Window::Window(const cpaf::gui::factory::WindowData &params)
-    /*: m_window([[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 400, 300) styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) backing:NSBackingStoreBuffered defer:YES])
+cpaf::cocoa::gui::Window::Window()
 {
-    //! \todo Is there some default size?
-    set_position(cpaf::Point(0, 0));
-    set_title(params.m_title);
-    //! \todo if (parent) { }
-}*/
+}
 
 void cpaf::cocoa::gui::Window::create(const cpaf::gui::factory::WindowData &params)
 {
+    double x = params.m_pos.x, y = params.m_pos.y;
+    double w = params.m_size.width, h = params.m_size.height;
 
+    m_window = [[NSWindow alloc] initWithContentRect:NSMakeRect(x, y, w, h)
+        styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask)
+        backing:NSBackingStoreBuffered defer:YES];
+    [m_window setReleasedWhenClosed:NO];
+
+    if (params.m_default_size)
+        set_size(cpaf::Size(400.0, 300.0));
+    else
+        set_size(params.m_size);
+
+    if (params.m_default_position)
+        set_position(cpaf::Point(0.0, 0.0));
+    else
+        set_position(params.m_pos);
+
+    set_min_size(params.m_min_size);
+    set_max_size(params.m_max_size);
+
+    set_title(params.m_title);
+
+    //! \todo params.m_parent, params.m_enable
+
+    show(params.m_show, params.m_activate);
 }
 
 void cpaf::cocoa::gui::Window::set_size(const cpaf::Size &s)
@@ -42,7 +58,8 @@ void cpaf::cocoa::gui::Window::set_min_size(const cpaf::Size &s)
 
 void cpaf::cocoa::gui::Window::set_max_size(const cpaf::Size &s)
 {
-    [m_window setMaxSize:NSMakeSize(s.width, s.height)];
+    // FLT_MAX means "no limit"
+    [m_window setMaxSize:NSMakeSize(s.width?s.width:FLT_MAX, s.height?s.height:FLT_MAX)];
 }
 
 void cpaf::cocoa::gui::Window::set_position(const cpaf::Point &p)
@@ -78,8 +95,13 @@ cpaf::Point cpaf::cocoa::gui::Window::get_position()
 
 void cpaf::cocoa::gui::Window::show(bool show, bool activate)
 {
-    //! \todo show, activate
-    [m_window makeKeyAndOrderFront:nil];
+    if (show)
+        if (activate)
+            [m_window makeKeyAndOrderFront:nil];
+        else
+            [m_window orderFront:nil]; // is this correct behaviour?
+    else
+        [m_window close];
 }
 
 void cpaf::cocoa::gui::Window::set_title(const std::string &t)
@@ -94,15 +116,27 @@ std::string cpaf::cocoa::gui::Window::get_title()
 
 void cpaf::cocoa::gui::Window::set_client_size(const cpaf::Size &s)
 {
-    set_size(s);
+    NSRect cf = [[m_window contentView] frame];
+    NSRect wf = [m_window frame];
+    
+    // we have to do some math here because [[m_window contentView] setFrame:] doesn't resize the window
+
+    NSSize delta = NSMakeSize(wf.size.width - cf.size.width, wf.size.height - cf.size.height);
+    NSSize newSize = NSMakeSize(delta.width + s.width, delta.height + s.height);
+    
+    wf.origin.y += wf.size.height - newSize.height;
+    wf.size.width = newSize.width;
+    wf.size.height = newSize.height;
+    
+    [m_window setFrame:wf display:YES];
 }
 
 cpaf::Size cpaf::cocoa::gui::Window::get_client_size()
 {
-    return cpaf::Size();
+    return cpaf::Size(); //! \todo
 }
 
 cpaf::Point cpaf::cocoa::gui::Window::get_client_position()
 {
-    return cpaf::Point();
+    return cpaf::Point(); //! \todo
 }
