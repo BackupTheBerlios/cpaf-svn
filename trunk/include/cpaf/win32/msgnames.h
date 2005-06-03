@@ -2,11 +2,11 @@
     \file include/cpaf/win32/msgnames.h
     \brief Conversion from Win32 message values into their names
     \date Created: 2004-05-04
-
+*/
 namespace cpaf {
     namespace win32 {
 
-static const char * const MessageTypeNames[WM_USER + 1] =
+const char * const MessageTypeNames[WM_USER + 1] =
 {
     "WM_NULL",
     "WM_CREATE",

@@ -12,7 +12,6 @@
 using cpaf::win32::gui::WidgetMap;
 
 namespace {
-    const char * const MessageTypeNames[WM_USER + 1];
     cpaf::win32::gui::WidgetMap widget_map;
 }
 

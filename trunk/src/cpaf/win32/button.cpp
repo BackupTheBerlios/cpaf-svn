@@ -24,6 +24,11 @@ void cpaf::win32::gui::Button::create(const cpaf::gui::factory::ButtonData &para
     int x = params.m_pos.x, y = params.m_pos.y;
     int w = params.m_size.width, h = params.m_size.height;
 
+    if( params.m_default_position )
+        x = CW_USEDEFAULT;
+    if( params.m_default_size )
+        w = CW_USEDEFAULT;
+
     {
         CreationHook hook; // hook WM_CREATE for initialization stuff
 

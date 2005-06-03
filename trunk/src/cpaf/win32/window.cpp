@@ -64,9 +64,9 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::factory::WindowData &para
     int x = params.m_pos.x, y = params.m_pos.y;
     int w = params.m_size.width, h = params.m_size.height;
 
-    if( x == cpaf::DEFAULT_VALUE )
+    if( params.m_default_position )
         x = CW_USEDEFAULT;
-    if( w == cpaf::DEFAULT_VALUE )
+    if( params.m_default_size )
         w = CW_USEDEFAULT;
 
     m_hwnd = ::CreateWindowEx(0, CLASSNAME, params.m_title.c_str(), WS_OVERLAPPEDWINDOW,

@@ -220,9 +220,11 @@ struct CPAF_API Rect
 };
 
 // default position and size constants
+/*
 const float DEFAULT_VALUE(-1);
 const Point DEFAULT_POS(DEFAULT_VALUE, DEFAULT_VALUE);
 const Size DEFAULT_SIZE(DEFAULT_VALUE, DEFAULT_VALUE);
+*/
 
 } // namespace cpaf
 
