@@ -13,12 +13,36 @@ namespace cpaf {
     namespace gui {
         namespace factory {
 
+/*!
+    \brief Data objcet for Object creation. This class contains the
+    initialization parameters which are passed from the widget factories
+    to the object being created. This allows you to specify the objects
+    initial state during creation time without needing to call set_foo()
+    methods after creation.
+*/
 struct ObjectData
 {
     //! \todo We need a special value to indicate "no maximum size." -1?
-    cpaf::Size m_size, m_min_size, m_max_size;
+
+    //! The size of the object
+    cpaf::Size m_size;
+
+    //! The minimum allowable size of the object
+    cpaf::Size m_min_size;
+
+    //! The maximum allowable size of the object. A size of (0,0) means there is no maximum
+    cpaf::Size m_max_size;
+
+    //! The position of the object
     cpaf::Point m_pos;
-    bool m_default_size, m_default_position;
+
+    //! If true, the value of m_sizemust be ignored, and an acceptible size
+    //! must be chosen automatically.
+    bool m_default_size;
+
+    //! If true, the value of m_pos must be ignored and an acceptible position
+    //! must be chosen automatically
+    bool m_default_position;
 
     /*!
         Default constructor which initializes data members to DEFAULT_* values

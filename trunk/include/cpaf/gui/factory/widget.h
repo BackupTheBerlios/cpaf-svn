@@ -14,10 +14,26 @@ namespace cpaf {
         class Widget; // prototype
         namespace factory {
 
+/*!
+    \brief Data objcet for Widget creation. This class contains the
+    initialization parameters which are passed from the widget factories
+    to the object being created. This allows you to specify the objects
+    initial state during creation time without needing to call set_foo()
+    methods after creation.
+*/
 struct WidgetData : public ObjectData
 {
+    //! The parent of this widget.
     cpaf::gui::Widget *m_parent;
-    bool m_show, m_activate, m_enable;
+
+    //! Specifies if the widget should be initially visible
+    bool m_show;
+
+    //! Specifies if the widget should recieve input focus upon creation
+    bool m_activate;
+
+    //! Specifies if the widget is enabled or disabled
+    bool m_enable;
 
     WidgetData()
         : m_parent(NULL),

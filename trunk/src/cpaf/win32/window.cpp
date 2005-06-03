@@ -44,6 +44,7 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::factory::WindowData &para
 {
     //! \todo remove duplicated code from window and button create methods
 
+    //! \todo handle client_size from the factory
     static bool registered = false;
 
     // register the window class

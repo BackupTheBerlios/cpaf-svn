@@ -70,9 +70,9 @@ bool MyApp::init()
     */
     cpaf::gui::Window *wnd = cpaf::gui::Window::Factory()
         .title("Cpaf")
+        .client_size(cpaf::Size(400,400))
         .show()
         .create();
-    wnd->set_client_size(cpaf::Size(400,400));
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.
