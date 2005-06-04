@@ -23,7 +23,9 @@ void cpaf::cocoa::gui::Window::create(const cpaf::gui::factory::WindowData &para
         backing:NSBackingStoreBuffered defer:YES];
     [m_window setReleasedWhenClosed:NO];
 
-    if (params.m_default_size)
+    if (params.m_use_client_size)
+        set_client_size(params.m_client_size);
+    else if (params.m_default_size)
         set_size(cpaf::Size(400.0, 300.0));
     else
         set_size(params.m_size);

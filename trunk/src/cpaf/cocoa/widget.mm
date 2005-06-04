@@ -17,16 +17,29 @@ using namespace cpaf::cocoa::utils;
     something with this one to work with the create() methods in other classes.
 */
 
-
-cpaf::cocoa::gui::Widget::Widget(const cpaf::gui::factory::WidgetData &params, id widget)
-    : m_view(widget)
+void cpaf::cocoa::gui::Widget::create(const cpaf::gui::factory::WidgetData &params, id widget)
 {
-    cpaf::gui::Widget *parent = params.m_parent;
+    cpaf::gui::Widget *parent;
+
+    //! \todo m_show, m_activate, m_enable
+    //! \todo m_min_size, m_max_size
+
+    m_view = widget;    
+    parent = params.m_parent;
+
     if (parent)
     {
         //! \todo Check if the parent is a window or so
         [[(id)parent->get_handle() contentView] addSubview:m_view];
-        set_position(cpaf::Point(0, 0));
+        if (params.m_default_position)
+            set_position(cpaf::Point(0.0, 0.0));
+        else
+            set_position(params.m_pos);
+
+        if (params.m_default_size)
+            set_size(cpaf::Size(50.0, 50.0));
+        else
+            set_size(params.m_size);
     }
     
     // The widget shouldn't move when we resize the window
@@ -35,6 +48,7 @@ cpaf::cocoa::gui::Widget::Widget(const cpaf::gui::factory::WidgetData &params, i
 
 cpaf::cocoa::gui::Widget::~Widget()
 {
+    //! \todo release the widget
     // delete our wrapper object safely
     cpaf::gui::factory::delete_implementation_wrapper(this);
 }

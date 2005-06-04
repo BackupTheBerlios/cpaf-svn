@@ -13,17 +13,17 @@
 cpaf::cocoa::gui::Button::Button()
 {
 }
-    /*: Widget(params, [[NSButton alloc] init])
-{
-    [m_view setButtonType:NSToggleButton];
-    [(NSButton*)m_view setBezelStyle:NSRegularSquareBezelStyle];
-    set_label(params.m_label);
-    //[m_view setAction:@selector(:)];
-}*/
 
 void cpaf::cocoa::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
 {
-
+    cpaf::cocoa::gui::Widget::create(params, [[NSButton alloc] init]);
+    
+    [m_view setButtonType:NSToggleButton];
+    [(NSButton*)m_view setBezelStyle:NSRegularSquareBezelStyle];
+    
+    set_label(params.m_label);
+    
+    // [m_view setAction:@selector(:)];
 }
 
 void cpaf::cocoa::gui::Button::set_label(const std::string &label)
