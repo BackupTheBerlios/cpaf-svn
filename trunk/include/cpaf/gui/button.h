@@ -55,8 +55,8 @@ protected:
 public:
     operator cpaf::api::gui::Button *();
 
-    virtual void set_label(const std::string &label);
-    virtual std::string get_label();
+    void set_label(const std::string &label);
+    std::string get_label();
 };
 
     } // gui

@@ -26,17 +26,17 @@ protected:
     Widget();
 
 public:
-    virtual ~Widget();
+    ~Widget();
 
     operator cpaf::api::gui::Widget *();
 
-    virtual void *get_handle();
-    virtual void enable(bool e);
-    virtual void disable();
-    virtual void show(bool show = true, bool focus = false);
-    virtual void hide();
-    virtual bool is_enabled();
-    virtual bool is_shown();
+    void *get_handle();
+    void enable(bool e);
+    void disable();
+    void show(bool show = true, bool focus = false);
+    void hide();
+    bool is_enabled();
+    bool is_shown();
     int get_id();
 
 };

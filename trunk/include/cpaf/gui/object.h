@@ -30,14 +30,14 @@ public:
 
     operator cpaf::api::gui::Object *();
 
-    virtual void set_size(const cpaf::Size &s);
-    virtual void set_min_size(const cpaf::Size &s);
-    virtual void set_max_size(const cpaf::Size &s);
-    virtual void set_position(const cpaf::Point &p);
-    virtual cpaf::Size get_size();
-    virtual cpaf::Size get_min_size();
-    virtual cpaf::Size get_max_size();
-    virtual cpaf::Point get_position();
+    void set_size(const cpaf::Size &s);
+    void set_min_size(const cpaf::Size &s);
+    void set_max_size(const cpaf::Size &s);
+    void set_position(const cpaf::Point &p);
+    cpaf::Size get_size();
+    cpaf::Size get_min_size();
+    cpaf::Size get_max_size();
+    cpaf::Point get_position();
 };
     } // gui
 } // cpaf

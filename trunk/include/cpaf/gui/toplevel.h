@@ -29,18 +29,18 @@ protected:
     void set_impl(cpaf::api::gui::TopLevel *impl);
 
 public:
-    virtual ~TopLevel();
+    ~TopLevel();
 
     operator cpaf::api::gui::TopLevel *();
 
-    virtual void show(bool show = true, bool focus = true);
+    void show(bool show = true, bool focus = true);
 
-    virtual void set_title(const std::string &t);
-    virtual std::string get_title();
+    void set_title(const std::string &t);
+    std::string get_title();
 
-    virtual void set_client_size(const cpaf::Size &s);
-    virtual cpaf::Size get_client_size();
-    virtual cpaf::Point get_client_position();
+    void set_client_size(const cpaf::Size &s);
+    cpaf::Size get_client_size();
+    cpaf::Point get_client_position();
 };
 
     } // gui
