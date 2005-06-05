@@ -14,6 +14,7 @@ using namespace cpaf::cocoa::utils;
 
 void cpaf::cocoa::gui::Widget::create(const cpaf::gui::factory::WidgetData &params, id widget)
 {
+	m_wrapper = params.m_wrapper;
     cpaf::gui::Widget *parent;
 
     //! \todo m_show, m_activate, m_enable
@@ -45,7 +46,10 @@ cpaf::cocoa::gui::Widget::~Widget()
 {
     //! \todo release the widget
     // delete our wrapper object safely
-    cpaf::gui::factory::delete_implementation_wrapper(this);
+    //cpaf::gui::factory::delete_implementation_wrapper(this);
+    
+    // delete our wrapper
+    delete m_wrapper;
 }
 
 void cpaf::cocoa::gui::Widget::set_size(const cpaf::Size& s)

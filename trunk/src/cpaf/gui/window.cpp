@@ -30,8 +30,10 @@ cpaf::gui::Window::Factory::Factory()
 
 cpaf::gui::Window *cpaf::gui::Window::Factory::create(cpaf::gui::Window *wrapper) const
 {
+    //! \todo Do something to avoid duplicating this code in every factory::create function
     try
     {
+        m_data->m_wrapper = wrapper;
         cpaf::gui::factory::window_functor_ptr creator = cpaf::gui::factory::create_window();
         wrapper->set_impl(creator->create());
         creator->initialize(*m_data);

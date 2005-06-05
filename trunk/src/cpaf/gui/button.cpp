@@ -43,6 +43,7 @@ cpaf::gui::Button *cpaf::gui::Button::Factory::create(cpaf::gui::Button *wrapper
     //! \todo Do something to avoid duplicating this code in every factory::create function
     try
     {
+        m_data->m_wrapper = wrapper;
         cpaf::gui::factory::button_functor_ptr creator = cpaf::gui::factory::create_button();
         wrapper->set_impl(creator->create());
         creator->initialize(*m_data);

@@ -21,13 +21,19 @@ void cpaf::gui::Widget::set_impl(cpaf::api::gui::Widget *impl)
     m_impl = impl;
 
     // add the wrapper / implementation pair to the map
-    cpaf::gui::factory::add_implementation_wrapper(m_impl, this);
+    //cpaf::gui::factory::add_implementation_wrapper(m_impl, this);
 }
 
 cpaf::gui::Widget::~Widget()
 {
     // delete the implementation safely
-    cpaf::gui::factory::delete_widget_implementation(m_impl);
+    //cpaf::gui::factory::delete_widget_implementation(m_impl);
+}
+
+void cpaf::gui::Widget::destroy()
+{
+    // delete our implementation, which in turn deletes 'this'.
+    delete m_impl;
 }
 
 cpaf::gui::Widget::operator cpaf::api::gui::Widget *()

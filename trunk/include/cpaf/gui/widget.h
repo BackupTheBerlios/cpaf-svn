@@ -31,6 +31,8 @@ public:
 
     operator cpaf::api::gui::Widget *();
 
+    void destroy();
+
     void set_size(const cpaf::Size &s);
     void set_min_size(const cpaf::Size &s);
     void set_max_size(const cpaf::Size &s);

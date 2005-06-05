@@ -26,7 +26,10 @@ cpaf::gtk2::gui::Widget::~Widget()
         gtk_widget_destroy(m_widget);
 
     // delete our wrapper object safely
-    cpaf::gui::factory::delete_implementation_wrapper(this);
+    //cpaf::gui::factory::delete_implementation_wrapper(this);
+
+    // delete our wrapper
+    delete m_wrapper;
 }
 
 void cpaf::gtk2::gui::Widget::set_size(const cpaf::Size& s)

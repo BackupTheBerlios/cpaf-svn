@@ -74,12 +74,8 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::factory::WindowData &para
         x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
         &info);
 
-    if( !m_hwnd )
-        throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
-
-    // show the window if necessary
-    if( params.m_show )
-        show(true, params.m_activate);
+    // the rest of the creation
+    cpaf::win32::gui::Widget::create(params);
 }
 
 std::string cpaf::win32::gui::Window::get_title()

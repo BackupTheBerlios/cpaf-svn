@@ -15,6 +15,9 @@ cpaf::gtk2::gui::Window::Window()
 
 void cpaf::gtk2::gui::Window::create(const cpaf::gui::factory::WindowData &params)
 {
+    //! \todo It would be more convenient to initialize this member within the Widget base
+    m_wrapper = params.m_wrapper;
+
     //! \todo Use factory params
     cpaf::gtk2::gui::Widget::create(gtk_window_new(GTK_WINDOW_TOPLEVEL));
 

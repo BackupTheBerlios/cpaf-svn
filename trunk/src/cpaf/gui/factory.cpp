@@ -4,6 +4,7 @@
     \date Created: 2005-04-05
 */
 
+/*
 #include <cpaf/private/factory.h>
 
 // include this because a full declaration of api::gui::Widget is required
@@ -67,3 +68,4 @@ void cpaf::gui::factory::delete_implementation_wrapper(cpaf::api::gui::Widget *i
         delete wrapper;
     }
 }
+*/

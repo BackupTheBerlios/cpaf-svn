@@ -16,7 +16,7 @@ namespace cpaf {
         namespace factory {
 
 /*!
-    \brief Data objcet for Window creation. This class contains the
+    \brief Data object for Window creation. This class contains the
     initialization parameters which are passed from the widget factories
     to the object being created. This allows you to specify the objects
     initial state during creation time without needing to call set_foo()

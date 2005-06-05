@@ -26,12 +26,15 @@ private:
     bool m_delete;
 
 protected:
+    cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
     HWND m_hwnd; // native window handle
     WNDPROC m_old_proc; // old window procedure
 
     cpaf::Size m_min_size, m_max_size;
 
     Widget();
+
+    void create(const cpaf::gui::factory::WidgetData &params);
 
 public:
     void set_old_proc(WNDPROC proc) { m_old_proc = proc; }

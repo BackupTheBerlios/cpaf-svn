@@ -20,10 +20,10 @@ namespace cpaf {
 class Widget : public virtual cpaf::api::gui::Widget
 {
 protected:
+    cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
     id m_view;
-    //Widget(const cpaf::gui::factory::WidgetData &, id);
     void create(const cpaf::gui::factory::WidgetData &params, id widget);
-    Widget() { }
+    Widget() : m_wrapper(NULL) { }
 
 public:
     virtual ~Widget();

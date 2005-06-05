@@ -5,17 +5,30 @@
 */
 
 #include <cpaf/win32/gui/widget.h>
-#include <cpaf/win32/gui/window.h>
+#include <cpaf/win32/exception.h>
 // for delete_implementation_wrapper
-#include <cpaf/private/factory.h>
+//#include <cpaf/private/factory.h>
 
 cpaf::win32::gui::Widget::Widget()
     : m_delete(true),
+    m_wrapper(NULL),
     m_hwnd(0),
     m_old_proc(0),
     m_max_size(-1,-1),
     m_min_size(-1,-1)
 { }
+
+void cpaf::win32::gui::Widget::create(const cpaf::gui::factory::WidgetData &params)
+{
+    m_wrapper = params.m_wrapper;
+
+    if( !m_hwnd )
+        throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
+
+    // show the window if necessary
+    if( params.m_show )
+        show(true, params.m_activate);
+}
 
 cpaf::win32::gui::Widget::~Widget()
 {
@@ -30,7 +43,10 @@ cpaf::win32::gui::Widget::~Widget()
     }
 
     // delete our wrapper safely
-    cpaf::gui::factory::delete_implementation_wrapper(this);
+    //cpaf::gui::factory::delete_implementation_wrapper(this);
+
+    // delete our wrapper
+    delete m_wrapper;
 }
 
 int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)

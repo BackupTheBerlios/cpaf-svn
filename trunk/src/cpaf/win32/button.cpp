@@ -37,12 +37,8 @@ void cpaf::win32::gui::Button::create(const cpaf::gui::factory::ButtonData &para
             &info);
     }
 
-    if( !m_hwnd )
-        throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
-
-    // show the window if necessary
-    if( params.m_show )
-        show(true, params.m_activate);
+    // the rest of the creation
+    cpaf::win32::gui::Widget::create(params);
 }
 
 void cpaf::win32::gui::Button::set_label(const std::string &label)

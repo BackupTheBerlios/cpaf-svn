@@ -22,8 +22,9 @@ namespace cpaf {
 class Widget : public virtual cpaf::api::gui::Widget
 {
 protected:
+    cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
     GtkWidget * m_widget;
-    Widget() { }
+    Widget() : m_wrapper(NULL) { }
     void create(GtkWidget *);
 
 public:

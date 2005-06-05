@@ -15,7 +15,7 @@ namespace cpaf {
         namespace factory {
 
 /*!
-    \brief Data objcet for Widget creation. This class contains the
+    \brief Data object for Widget creation. This class contains the
     initialization parameters which are passed from the widget factories
     to the object being created. This allows you to specify the objects
     initial state during creation time without needing to call set_foo()
@@ -23,6 +23,9 @@ namespace cpaf {
 */
 struct WidgetData : public ObjectData
 {
+    //! The wrapper for this implementation object
+    cpaf::gui::Widget *m_wrapper;
+
     //! The parent of this widget.
     cpaf::gui::Widget *m_parent;
 
@@ -36,7 +39,8 @@ struct WidgetData : public ObjectData
     bool m_enable;
 
     WidgetData()
-        : m_parent(NULL),
+        : m_wrapper(NULL),
+        m_parent(NULL),
         m_show(false),
         m_activate(false),
         m_enable(true)
