@@ -1,3 +1,7 @@
+WRAPPER CREATION IN A GLANCE (SUMMARY)
+-Before the "widget_created" event is recieved, the Wrapper object is gaurenteed to not be wrapping an Impl object, and any function that works on the Impl object must not be called.
+-After the "widget_created" event is recieved, and during processing of this event, the Wrapper object is gaurenteed to be initialized and wrapping the Impl object.
+
 This technote describes how cpaf::gui::Objects are created. From here on, Wrapper refers to any cpaf::gui::Object or derivative, and Impl refers to any cpaf::impl::gui::Object.
 
 The process of creating a Wrapper.
@@ -51,7 +55,3 @@ Lets look at the process we use to actually create MyWrapper.
 7	The now initialized Wrapper object is returned.
 
 During step 2, MyWrapper is created and MyWrapper::MyWrapper is called. This connects the "widget_created" event listener. During step 4, Impl is created. This invokes Impl::Impl which doesn't actually create a native widget. Because Impl::Impl doesn't do anything (except member initialization), the "m_impl is NULL" problem explained above doesn't occur. Step 5 initializes MyWrapper::m_impl. Step 6 actually tells Impl to create its native widget. At this point, all the pieces are in place. MyWrapper has been able to connect its events and m_impl was initialized properly. Impl can now go ahead and create its native widget and send "widget_created" once that creation is done, either before Impl::create() returns, or at a later time when the X server notifies the application that the widget was created.
-
-WRAPPER CREATION IN A GLANCE (SUMMARY)
--Before the "widget_created" event is recieved, the Wrapper object is gaurenteed to not be wrapping an Impl object, and any function that works on the Impl object must not be called.
--After the "widget_created" event is recieved, and during processing of this event, the Wrapper object is gaurenteed to be initialized and wrapping the Impl object.
