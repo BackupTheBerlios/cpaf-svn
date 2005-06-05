@@ -1,0 +1,57 @@
+This technote describes how cpaf::gui::Objects are created. From here on, Wrapper refers to any cpaf::gui::Object or derivative, and Impl refers to any cpaf::impl::gui::Object.
+
+The process of creating a Wrapper.
+
+1	Wrapper::Factory::create() is invoked.
+2	New is used to create the Wrapper object. This invokes the default (protected) constructor for the Wrapper object.
+3	The widget factory is asked for a functor object capable of creating and initializing an Impl.
+4	This functor is used to create a new native widget, invoking that Impl's default constructor.
+5	The Wrapper object is told to wrap the Impl object with Wrapper::set_impl.
+6	The functor is told to initialize the Impl and provided with initialization parameters from the Factory object.
+7	The now initialized Wrapper object is returned.
+
+Why all this effort? The construct/initialize method was chosen to abstract away the differences in widget creation on native platforms. Depending on the platform, native widget creation may actually be asynchronous (X11 gui's) or synchronous (win32 for example). This difference in backend would cause problems for naively designed code.
+
+In order to understand these problems, lets assume that the constructor for Wrappers as one argument, which is an Impl it should wrap, and the constructor for Impl would initialize and create its native widget. Also consider that we are creating a derivative of Wrapper, called MyWrapper, which connects event listeners for the "widget_created" event in its constructor.
+
+What happens during wrapper creation now? On gtk, this happens
+
+1	Wrapper::Factory::create() is invoked.
+2	New is used to create the Impl object.
+3	Impl::Impl is called which creates the native widget (asynchronously because this is gtk which is X based).
+4	New is used to create a MyWrapper object.
+5	MyWrapper::MyWrapper is called and provided with an Impl to wrap.
+5a	Before calling the Wrapper::Wrapper ctor, MyWrapper connects the "widget_created" event.
+6	The Wrapper object is returned.
+
+Lets look at this more carefully. During step 2, the native widget was constructed. Because GTK was asynchronous, the widget didn't actually finish construction until sometime after wrapper creation completed. At that time, "widget_created" was sent. This is ok, "widget_created" would be recieved by MyWrapper because MyWrapper had time to construct and connect its events before X finished the asynchronous widget creation.
+
+But look what happens during wrapper creation on win32.
+
+1	Wrapper::Factory::create() is invoked.
+2	New is used to create the Impl object.
+3	Impl::Impl is called which creates the native widget (synchronously this time because this is win32).
+4	New is used to create a MyWrapper object.
+5	MyWrapper::MyWrapper is called and provided with an Impl to wrap.
+5a	Before calling the Wrapper::Wrapper ctor, MyWrapper connects the "widget_created" event.
+6	The Wrapper object is returned.
+
+Looks similar, except for step 3, which is the key difference. The widget is created synchronously. That means that before Impl::Impl returns, the native widget is fully constructed, and the "widget_created" event was sent. But wait, MyWrapper is not event constructed when step 3 occurs, so how could it have gotten a chance to connect the "widget_created" event? The simple answer is, it didn't. The "widget_created" event is lost, and will never be recieved. This is a problem.
+
+Even though thats a bad enough problem, its not the only one. Lets pretend that somehow, MyWrapper managed to connect the "widget_created" event before Impl was created. Great, we should be ok now right? Wrong. At the time when Impl::Impl is called, the address of Impl is unknown to MyWrapper. MyWrapper::m_impl is NULL. This is because the code that initialized m_impl,lets say its: m_impl = new Impl(data);, is still executing new. m_impl won't be set until new returns, which is after Impl::Impl returns. This presents a problem, because Impl::Impl will send the "widget_created" event, which MyWrapper recieves. When MyWrapper recieves this, it assumes that the widget is fully constructed and can be used freely. Wrong! If MyWrapper calls any function that uses m_impl, the program will crash, because m_impl is still NULL.
+
+Lets look at the process we use to actually create MyWrapper.
+
+1	MyWrapper::Factory::create() is invoked.
+2	New is used to create the MyWrapper object. This invokes the default (protected) constructor for the MyWrapper object.
+3	The widget factory is asked for a functor object capable of creating and initializing an Impl.
+4	This functor is used to create a new native widget, invoking that Impl's default constructor.
+5	The MyWrapper object is told to wrap the Impl object with Wrapper::set_impl.
+6	The functor is told to initialize the Impl and provided with initialization parameters from the Factory object.
+7	The now initialized Wrapper object is returned.
+
+During step 2, MyWrapper is created and MyWrapper::MyWrapper is called. This connects the "widget_created" event listener. During step 4, Impl is created. This invokes Impl::Impl which doesn't actually create a native widget. Because Impl::Impl doesn't do anything (except member initialization), the "m_impl is NULL" problem explained above doesn't occur. Step 5 initializes MyWrapper::m_impl. Step 6 actually tells Impl to create its native widget. At this point, all the pieces are in place. MyWrapper has been able to connect its events and m_impl was initialized properly. Impl can now go ahead and create its native widget and send "widget_created" once that creation is done, either before Impl::create() returns, or at a later time when the X server notifies the application that the widget was created.
+
+WRAPPER CREATION IN A GLANCE (SUMMARY)
+-Before the "widget_created" event is recieved, the Wrapper object is gaurenteed to not be wrapping an Impl object, and any function that works on the Impl object must not be called.
+-After the "widget_created" event is recieved, and during processing of this event, the Wrapper object is gaurenteed to be initialized and wrapping the Impl object.
