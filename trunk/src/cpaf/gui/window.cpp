@@ -41,8 +41,8 @@ cpaf::gui::Window *cpaf::gui::Window::Factory::create(cpaf::gui::Window *wrapper
     }
     catch(cpaf::Exception &e)
     {
-        // delete the gui wrapper which will delete its implementation
-        // because something went wrong
+        // at least try to clean up, delete the wrapper
+        //! \todo consider what else we can do in this case
         delete wrapper;
 
         // rethrow so other exception handlers can know that something happened
