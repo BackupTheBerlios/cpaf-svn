@@ -1,8 +1,8 @@
+This technote describes how cpaf::gui::Objects are created. From here on, Wrapper refers to any cpaf::gui::Object or derivative, and Impl refers to any cpaf::impl::gui::Object.
+
 WRAPPER CREATION IN A GLANCE (SUMMARY)
 -Before the "widget_created" event is recieved, the Wrapper object is gaurenteed to not be wrapping an Impl object, and any function that works on the Impl object must not be called.
 -After the "widget_created" event is recieved, and during processing of this event, the Wrapper object is gaurenteed to be initialized and wrapping the Impl object.
-
-This technote describes how cpaf::gui::Objects are created. From here on, Wrapper refers to any cpaf::gui::Object or derivative, and Impl refers to any cpaf::impl::gui::Object.
 
 The process of creating a Wrapper.
 

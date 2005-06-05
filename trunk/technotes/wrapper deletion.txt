@@ -1,9 +1,9 @@
+This technote describes how cpaf::gui::Objects are destroyed. From here on, Wrapper refers to any cpaf::gui::Object or derivative, and Impl refers to any cpaf::impl::gui::Object.
+
 OBJECT DELETION IN A GLANCE (SUMMARY)
 -Never use delete on Wrappers, only Wrapper::destroy.
 -While processing the "widget_destroyed" event, the Impl object and all of its children (and their Wrappers) are gauranteed to exist.
 -After the "widget_destroyed" event is processed (this includes during connect_after() event processing) the Impl objet and all of its children (including their Wrappers) are gauranteed to have been destroyed.
-
-This technote describes how cpaf::gui::Objects are destroyed. From here on, Wrapper refers to any cpaf::gui::Object or derivative, and Impl refers to any cpaf::impl::gui::Object.
 
 Similar to object creation, object deletion in cpaf is done in several steps. Lets say you want to delete a Window with no children (hereby referred to as Wrapper).
 
@@ -38,6 +38,4 @@ So why can't you use delete directly on Wrappers? Well, how is an implementation
 
 Another problem that arrises with deleting Impl from Wrapper::~Wrapper is when you derive from Wrapper. Lets say we created MyWrapper, which connected an event listener for "widget_destroyed". Now, delete MyWrapper. What happens first, is that MyWrapper is fully destructed. The base class dtor, Wrapper::~Wrapper, executes which deletes Impl. Impl::~Impl sends "widget_destroyed". Wait, the object that was listening for this event was already destructed! If the event listener MyWrapper connected accesses any member variables, game over, you just crashed.
 
-For these reasons, the deletion of Wrappers must be done only via Wrapper::destroy(), never by delete. Note that there is one exception to this, and that is when deriving from Wrapper. If you're derived class destructor calls destroy(), you will be fine so long as nothing ever calls destroy but your destructor.
-
-Even if you do directly invoke delete on a Wrapper, nothing will happen! Most Wrapper dtors are empty, and the Impl object won't be cleaned up unless you use Wrapper::destroy().
+For these reasons, the deletion of Wrappers must be done only via Wrapper::destroy(), never by delete. Even if you do directly invoke delete on a Wrapper, nothing will happen! Most Wrapper dtors are empty, and the Impl object won't be cleaned up unless you use Wrapper::destroy().
