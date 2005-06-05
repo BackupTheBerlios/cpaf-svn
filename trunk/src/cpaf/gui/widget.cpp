@@ -19,7 +19,6 @@ cpaf::gui::Widget::Widget()
 void cpaf::gui::Widget::set_impl(cpaf::api::gui::Widget *impl)
 {
     m_impl = impl;
-    cpaf::gui::Object::set_impl(impl);
 
     // add the wrapper / implementation pair to the map
     cpaf::gui::factory::add_implementation_wrapper(m_impl, this);
@@ -34,6 +33,46 @@ cpaf::gui::Widget::~Widget()
 cpaf::gui::Widget::operator cpaf::api::gui::Widget *()
 {
     return m_impl;
+}
+
+void cpaf::gui::Widget::set_size(const cpaf::Size &s)
+{
+    m_impl->set_size(s);
+}
+
+void cpaf::gui::Widget::set_min_size(const cpaf::Size &s)
+{
+    m_impl->set_min_size(s);
+}
+
+void cpaf::gui::Widget::set_max_size(const cpaf::Size &s)
+{
+    m_impl->set_max_size(s);
+}
+
+void cpaf::gui::Widget::set_position(const cpaf::Point &p)
+{
+    m_impl->set_position(p);
+}
+
+cpaf::Size cpaf::gui::Widget::get_size()
+{
+    return m_impl->get_size();
+}
+
+cpaf::Size cpaf::gui::Widget::get_min_size()
+{
+    return m_impl->get_min_size();
+}
+
+cpaf::Size cpaf::gui::Widget::get_max_size()
+{
+    return m_impl->get_max_size();
+}
+
+cpaf::Point cpaf::gui::Widget::get_position()
+{
+    return m_impl->get_position();
 }
 
 void *cpaf::gui::Widget::get_handle()

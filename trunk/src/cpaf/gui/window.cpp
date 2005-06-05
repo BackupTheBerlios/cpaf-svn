@@ -7,6 +7,7 @@
 #include <cpaf/gui/window.h>
 #include <cpaf/api/gui/window.h>
 #include <cpaf/private/factory.h>
+#include <cpaf/exception.h>
 
 cpaf::gui::Window::Window()
     : m_impl(NULL)
@@ -27,14 +28,14 @@ cpaf::gui::Window::Factory::Factory()
     : cpaf::gui::factory::Window<Factory>(new cpaf::gui::factory::WindowData)
 { }
 
-cpaf::gui::Window *cpaf::gui::Window::Factory::create(cpaf::gui::Window *w) const
+cpaf::gui::Window *cpaf::gui::Window::Factory::create(cpaf::gui::Window *wrapper) const
 {
     try
     {
-        cpaf::gui::factory::window_functor_ptr window = cpaf::gui::factory::create_window();
-        w->set_impl(window->create());
-        window->initialize(*m_data);
-        return w;
+        cpaf::gui::factory::window_functor_ptr creator = cpaf::gui::factory::create_window();
+        wrapper->set_impl(creator->create());
+        creator->initialize(*m_data);
+        return wrapper;
     }
     catch(cpaf::Exception &e)
     {

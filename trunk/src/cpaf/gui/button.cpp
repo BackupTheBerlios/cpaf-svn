@@ -7,6 +7,7 @@
 #include <cpaf/gui/button.h>
 #include <cpaf/api/gui/button.h>
 #include <cpaf/private/factory.h>
+#include <cpaf/exception.h>
 
 cpaf::gui::Button::Button()
     : m_impl(NULL)

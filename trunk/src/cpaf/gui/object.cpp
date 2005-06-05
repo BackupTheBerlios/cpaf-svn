@@ -3,7 +3,7 @@
     \brief Implementation of cpaf::gui::Object
     \date Created: 2004-04-05
 */
-
+/*
 #include <cpaf/gui/object.h>
 #include <cpaf/api/gui/object.h>
 
@@ -62,3 +62,4 @@ cpaf::Point cpaf::gui::Object::get_position()
 {
     return m_impl->get_position();
 }
+*/

@@ -6,7 +6,7 @@
 
 #ifndef CPAF_GUI_OBJECT_H
 #define CPAF_GUI_OBJECT_H
-
+/*
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/types.h>
@@ -39,6 +39,7 @@ public:
     cpaf::Size get_max_size();
     cpaf::Point get_position();
 };
+*/
     } // gui
 } // cpaf
 
