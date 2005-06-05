@@ -29,8 +29,20 @@ cpaf::gui::Window::Factory::Factory()
 
 cpaf::gui::Window *cpaf::gui::Window::Factory::create(cpaf::gui::Window *w) const
 {
-    cpaf::gui::factory::window_functor_ptr window = cpaf::gui::factory::create_window();
-    w->set_impl(window->create());
-    window->initialize(*m_data);
-    return w;
+    try
+    {
+        cpaf::gui::factory::window_functor_ptr window = cpaf::gui::factory::create_window();
+        w->set_impl(window->create());
+        window->initialize(*m_data);
+        return w;
+    }
+    catch(cpaf::Exception &e)
+    {
+        // delete the gui wrapper which will delete its implementation
+        // because something went wrong
+        delete wrapper;
+
+        // rethrow so other exception handlers can know that something happened
+        throw;
+    }
 }

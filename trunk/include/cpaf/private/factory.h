@@ -45,6 +45,13 @@ public:
     typedef std::auto_ptr<name##_functor> name##_functor_ptr;                                       \
     name##_functor_ptr create_##name();                                                             \
 
+/*!
+    \brief Helper macro for implementing widget factory functions.
+
+    \param type Name of the api widget class that will be constructed. "Button"
+    \param name Name of the api widget class being constructed in lower case. "button"
+    \param port Port implementing this factory. "win32"
+*/
 #define IMPLEMENT_WIDGET_FACTORY(type, name, port)                      \
 namespace {                                                             \
 class name##_functor_impl : public cpaf::gui::factory::name##_functor   \

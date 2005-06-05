@@ -37,10 +37,23 @@ cpaf::gui::Button::Factory::Factory()
     : cpaf::gui::factory::Button<Factory>(new cpaf::gui::factory::ButtonData)
 { }
 
-cpaf::gui::Button *cpaf::gui::Button::Factory::create(cpaf::gui::Button *w) const
+cpaf::gui::Button *cpaf::gui::Button::Factory::create(cpaf::gui::Button *wrapper) const
 {
-    cpaf::gui::factory::button_functor_ptr button = cpaf::gui::factory::create_button();
-    w->set_impl(button->create());
-    button->initialize(*m_data);
-    return w;
+    //! \todo Do something to avoid duplicating this code in every factory::create function
+    try
+    {
+        cpaf::gui::factory::button_functor_ptr creator = cpaf::gui::factory::create_button();
+        wrapper->set_impl(creator->create());
+        creator->initialize(*m_data);
+        return wrapper;
+    }
+    catch(cpaf::Exception &e)
+    {
+        // delete the gui wrapper which will delete its implementation
+        // because something went wrong
+        delete wrapper;
+
+        // rethrow so other exception handlers can know that something happened
+        throw;
+    }
 }
