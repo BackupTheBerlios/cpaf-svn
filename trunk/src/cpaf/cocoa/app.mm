@@ -1,7 +1,7 @@
 /**
  * \file src/cpaf/cocoa/app.mm
  * \brief Implementation of cpaf::gui::App::run() for Cocoa
- * \date 2005-04-29
+ * \date Created: 2005-04-29
  */
 
 #include <cpaf/gui/app.h>

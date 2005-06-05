@@ -1,7 +1,7 @@
 /**
  * \file src/cpaf/cocoa/widget.mm
  * \brief Implementation of Cocoa widget
- * \date 2005-04-29
+ * \date Created: 2005-04-29
  */
 
 #include <cpaf/cocoa/gui/widget.h>

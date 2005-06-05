@@ -1,7 +1,7 @@
 /**
  * \file src/cpaf/cocoa/factory.mm
  * \brief Implementation of Cocoa factory
- * \date 2005-04-29
+ * \date Created: 2005-04-29
  */
 
 #include <cpaf/private/factory.h>

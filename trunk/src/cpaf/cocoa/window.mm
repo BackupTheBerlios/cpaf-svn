@@ -1,7 +1,7 @@
 /**
  * \file src/cpaf/cocoa/window.mm
  * \brief Implementation of Cocoa window
- * \date 2005-04-29
+ * \date Created: 2005-04-29
  */
 
 #include <cpaf/cocoa/gui/window.h>

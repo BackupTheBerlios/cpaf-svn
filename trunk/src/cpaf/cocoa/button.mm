@@ -1,7 +1,7 @@
 /**
  * \file src/cpaf/cocoa/button.mm
  * \brief Implementation of Cocoa button
- * \date 2005-04-29
+ * \date Created: 2005-04-29
  */
 
 #include <cpaf/cocoa/gui/button.h>
