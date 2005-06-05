@@ -23,21 +23,23 @@ void cpaf::cocoa::gui::Widget::create(const cpaf::gui::factory::WidgetData &para
     m_view = widget;    
     parent = params.m_parent;
 
+    if (params.m_default_size)
+        set_size(cpaf::Size(50.0, 50.0));
+    else
+        set_size(params.m_size);
+
+    //! \todo What's if we're adding the widget later to a container?
     if (parent)
     {
         //! \todo Check if the parent is a window or so
         [[(id)parent->get_handle() contentView] addSubview:m_view];
+
         if (params.m_default_position)
             set_position(cpaf::Point(0.0, 0.0));
         else
             set_position(params.m_pos);
-
-        if (params.m_default_size)
-            set_size(cpaf::Size(50.0, 50.0));
-        else
-            set_size(params.m_size);
     }
-    
+
     // The widget shouldn't move when we resize the window
     [m_view setAutoresizingMask:NSViewMinYMargin];
 }

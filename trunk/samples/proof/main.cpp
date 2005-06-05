@@ -18,6 +18,9 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #   include <crtdbg.h>
 #   define DBG_MSG(s)      _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", s ## "\n");
 #   define DBG_MSG_2(f, s) _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
+#elif defined(__APPLE__) && defined(_DEBUG)
+#   include <stdio.h>
+#   define DBG_MSG(s)      printf("%s:%d %s\n", __FILE__, __LINE__, s)
 #else
 #   define DBG_MSG(s)
 #   define DBG_MSG_2(f,s)
