@@ -5,10 +5,7 @@
  */
 
 #include <cpaf/cocoa/gui/button.h>
-
-/*
-    Please move all object construction related code into the empty create method below.
-*/
+#include <cpaf/exception.h>
 
 cpaf::cocoa::gui::Button::Button()
 {
@@ -16,6 +13,9 @@ cpaf::cocoa::gui::Button::Button()
 
 void cpaf::cocoa::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
 {
+	if( !params.m_parent )
+		throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
+		
     cpaf::cocoa::gui::Widget::create(params, [[NSButton alloc] init]);
     
     [m_view setButtonType:NSToggleButton];

@@ -12,11 +12,6 @@
 
 using namespace cpaf::cocoa::utils;
 
-/*
-    There is an inlined default constructor in the header file, you will need to do
-    something with this one to work with the create() methods in other classes.
-*/
-
 void cpaf::cocoa::gui::Widget::create(const cpaf::gui::factory::WidgetData &params, id widget)
 {
     cpaf::gui::Widget *parent;
