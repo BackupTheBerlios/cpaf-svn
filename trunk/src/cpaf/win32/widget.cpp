@@ -191,11 +191,6 @@ bool cpaf::win32::gui::Widget::is_enabled()
     return ::IsWindowEnabled(m_hwnd) != 0;
 }
 
-int cpaf::win32::gui::Widget::get_id()
-{
-    return GetWindowLong(m_hwnd, GWL_ID);
-}
-
 /**********************************************
 
   Implementation specific functions

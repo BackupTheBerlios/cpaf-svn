@@ -22,6 +22,11 @@ namespace cpaf {
         class Widget;
         namespace factory {
 
+/*
+    \return An object identifier unique throughout the application
+*/
+int get_unique_object_id();
+
 template<typename Api, typename Data> class widget_functor
 {
 public:

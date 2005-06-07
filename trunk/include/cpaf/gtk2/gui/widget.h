@@ -42,7 +42,6 @@ public:
 
     // widget interface
     virtual void *get_handle() { return (void*)m_widget; }
-    virtual int get_id() { return 0; } //! \todo No unique id's for gtk+ port yet. Why do we need them?
     virtual void enable(bool sensitive);
     virtual void show(bool show, bool activate);
     virtual bool is_enabled();

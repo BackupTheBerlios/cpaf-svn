@@ -13,7 +13,8 @@
 using namespace cpaf::api::gui;
 
 cpaf::gui::Widget::Widget()
-    : m_impl(NULL)
+    : m_id(cpaf::gui::factory::get_unique_object_id()),
+    m_impl(NULL)
 { }
 
 void cpaf::gui::Widget::set_impl(cpaf::api::gui::Widget *impl)
@@ -118,5 +119,5 @@ bool cpaf::gui::Widget::is_shown()
 
 int cpaf::gui::Widget::get_id()
 {
-    return m_impl->get_id();
+    return m_id;
 }

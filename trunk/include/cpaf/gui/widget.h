@@ -20,6 +20,9 @@ namespace cpaf {
 
 class CPAF_API Widget
 {
+private:
+    int m_id;
+
 protected:
     cpaf::api::gui::Widget *m_impl;
     void set_impl(cpaf::api::gui::Widget *impl);

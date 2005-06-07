@@ -65,7 +65,6 @@ public:
     virtual void show(bool show, bool focus);
     virtual bool is_enabled();
     virtual bool is_shown();
-    int get_id();
 
 protected:
     // implementation specific functions

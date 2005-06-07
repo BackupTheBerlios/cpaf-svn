@@ -4,9 +4,15 @@
     \date Created: 2005-04-05
 */
 
-/*
 #include <cpaf/private/factory.h>
 
+int cpaf::gui::factory::get_unique_object_id()
+{
+    static int next;
+    return ++next;
+}
+
+/*
 // include this because a full declaration of api::gui::Widget is required
 // to call the proper destructors by delete_widget_implementation
 #include <cpaf/api/gui/widget.h>
