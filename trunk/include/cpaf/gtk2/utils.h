@@ -9,14 +9,23 @@
 
 #include <cpaf/gtk2/gtk.h>
 
+/*
 #define CPAF_EXTENT_LEFT   0
 #define CPAF_EXTENT_RIGHT  1
 #define CPAF_EXTENT_TOP    2
 #define CPAF_EXTENT_BOTTOM 3
+*/
 
 namespace cpaf {
     namespace gtk2 {
         namespace utils {
+            enum extents_index {
+                LEFT,
+                RIGHT,
+                TOP,
+                BOTTOM,
+            };
+
             /*!
                 \brief The returned array must be freed with XFree.
                 \return An array of type long where starting from the first

@@ -47,8 +47,8 @@ void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
 
         if ( (extents = cpaf::gtk2::utils::get_extents(m_widget)) != NULL )
         {
-            w = extents[CPAF_EXTENT_LEFT] + extents[CPAF_EXTENT_RIGHT];
-            h = extents[CPAF_EXTENT_TOP] + extents[CPAF_EXTENT_BOTTOM];
+            w = extents[cpaf::gtk2::utils::LEFT] + extents[cpaf::gtk2::utils::RIGHT];
+            h = extents[cpaf::gtk2::utils::TOP] + extents[cpaf::gtk2::utils::BOTTOM];
             XFree(extents);
         }
 
@@ -212,8 +212,8 @@ cpaf::Point cpaf::gtk2::gui::Window::get_client_position()
     long * extents;
     if ( (extents = cpaf::gtk2::utils::get_extents(m_widget)) != NULL )
     {
-        x = extents[CPAF_EXTENT_LEFT];
-        y = extents[CPAF_EXTENT_TOP];
+        x = extents[cpaf::gtk2::utils::LEFT];
+        y = extents[cpaf::gtk2::utils::TOP];
         XFree(extents);
     }
 
