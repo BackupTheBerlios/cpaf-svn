@@ -356,15 +356,6 @@
 				Name="cocoa"
 				Filter="">
 				<File
-					RelativePath=".\include\cpaf\cocoa\gui\button.h">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath=".\include\cpaf\cocoa\factory.h">
 					<FileConfiguration
 						Name="debug dll|Win32"
@@ -374,23 +365,39 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\include\cpaf\cocoa\gui\widget.h">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
+					RelativePath=".\include\cpaf\cocoa\utils.h">
 				</File>
-				<File
-					RelativePath=".\include\cpaf\cocoa\gui\window.h">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
+				<Filter
+					Name="gui"
+					Filter="">
+					<File
+						RelativePath=".\include\cpaf\cocoa\gui\button.h">
+						<FileConfiguration
+							Name="debug dll|Win32"
+							ExcludedFromBuild="TRUE">
+							<Tool
+								Name="VCCustomBuildTool"/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\cpaf\cocoa\gui\widget.h">
+						<FileConfiguration
+							Name="debug dll|Win32"
+							ExcludedFromBuild="TRUE">
+							<Tool
+								Name="VCCustomBuildTool"/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\cpaf\cocoa\gui\window.h">
+						<FileConfiguration
+							Name="debug dll|Win32"
+							ExcludedFromBuild="TRUE">
+							<Tool
+								Name="VCCustomBuildTool"/>
+						</FileConfiguration>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="event"
@@ -812,6 +819,10 @@
 						<Tool
 							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\utils.mm"
+					FileType="0">
 				</File>
 				<File
 					RelativePath=".\src\cpaf\cocoa\widget.mm"

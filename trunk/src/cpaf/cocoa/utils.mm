@@ -1,3 +1,9 @@
+/**
+ * \file include/cpaf/cocoa/utils.mm
+ * \brief Cocoa utilities
+ * \date Created: 2005-05-05
+ */
+ 
 #include <cpaf/cocoa/utils.h>
 
 //! \todo test that on a dual-screen.
