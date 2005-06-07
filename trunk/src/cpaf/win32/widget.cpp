@@ -21,6 +21,7 @@ cpaf::win32::gui::Widget::Widget()
 void cpaf::win32::gui::Widget::create(const cpaf::gui::factory::WidgetData &params)
 {
     m_wrapper = params.m_wrapper;
+    m_id = m_wrapper->get_id();
 
     if( !m_hwnd )
         throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);

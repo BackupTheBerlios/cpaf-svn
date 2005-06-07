@@ -27,6 +27,7 @@ private:
 
 protected:
     cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
+    int m_id; // unique id for the wrapper object, we send events from this
     HWND m_hwnd; // native window handle
     WNDPROC m_old_proc; // old window procedure
 
