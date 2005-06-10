@@ -28,13 +28,15 @@ class Manager;
 int get_unique_id();
 
 //! Helper macro for the declaration of event ids in header files
-#define CPAF_DECLARE_EVENT(name)    CPAF_API extern const int name;
+#define CPAF_DECLARE_EXPORTED_EVENT(name)    CPAF_API extern const int name;
 
 //! Helper macro for implementing event ids in source files
-#define CPAF_IMPLEMENT_EVENT(name)  const int name = cpaf::event::get_unique_id();
+#define CPAF_IMPLEMENT_EXPORTED_EVENT(name)  const int name = cpaf::event::get_unique_id();
 
-
-CPAF_DECLARE_EVENT(foo);
+// event declarations
+CPAF_DECLARE_EXPORTED_EVENT(widget_create);
+CPAF_DECLARE_EXPORTED_EVENT(widget_destroy);
+CPAF_DECLARE_EXPORTED_EVENT(button_click);
 
 //! \todo decide wether we use addresses or object id's here
 typedef int object_id; // value specifying which object sent the event
@@ -48,13 +50,14 @@ class CPAF_API Event
 {
 private:
     event_id m_id;
+    object_id m_obj_id;
     bool m_continue;
 
 public:
     /*!
-        Construct an event with the given event_id \a id
+        Construct an event with the given event_id \a id being sent from the object \a obj
     */
-    Event(event_id id);
+    Event(event_id id, object_id obj);
 
     virtual ~Event() { }
 
@@ -62,6 +65,11 @@ public:
         \return The id of this event
     */
     event_id get_id() { return m_id; }
+
+    /*!
+        \return The id of the object sending this event
+    */
+    object_id get_object_id() { return m_obj_id; }
 
     /*!
         Specify wether or not processing of this event continue to further links in the event chain.
@@ -210,7 +218,7 @@ public:
     /*!
         Sends an event
     */
-    void send_event(object_id from, Event &e);
+    void send_event(Event &e);
 
     /*!
         Templated wrapper around the create_event_chain function used

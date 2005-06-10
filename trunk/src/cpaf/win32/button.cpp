@@ -20,6 +20,9 @@ void cpaf::win32::gui::Button::create(const cpaf::gui::factory::ButtonData &para
     else
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
+    m_wrapper = params.m_wrapper;
+    m_id = m_wrapper->get_id();
+
     CreationInfo info(this);
     int x = params.m_pos.x, y = params.m_pos.y;
     int w = params.m_size.width, h = params.m_size.height;

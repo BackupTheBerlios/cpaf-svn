@@ -13,7 +13,7 @@ cpaf::gui::App::App()
     gui_init();
 }
 
-cpaf::event::Manager &cpaf::gui::App::get_events_manager()
+cpaf::event::Manager &cpaf::gui::App::get_event_manager()
 {
-    return m_events_manager;
+    return m_event_manager;
 }

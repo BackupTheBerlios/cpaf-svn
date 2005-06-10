@@ -6,6 +6,9 @@
 
 #include <cpaf/win32/gui/widget.h>
 #include <cpaf/win32/exception.h>
+#include <cpaf/event/event.h>
+#include <cpaf/gui/app.h>
+
 // for delete_implementation_wrapper
 //#include <cpaf/private/factory.h>
 
@@ -20,9 +23,6 @@ cpaf::win32::gui::Widget::Widget()
 
 void cpaf::win32::gui::Widget::create(const cpaf::gui::factory::WidgetData &params)
 {
-    m_wrapper = params.m_wrapper;
-    m_id = m_wrapper->get_id();
-
     if( !m_hwnd )
         throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
 
@@ -64,10 +64,13 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
             // lpCreateParams of CREATESTRUCT specifies the address of a CreationInfo struct.
             // This struct currently contains a pointer to the object creating this window.
 
-            //! \todo Send create event
             LPCREATESTRUCT create = (LPCREATESTRUCT)l_param;
             CreationInfo *info = (CreationInfo*)create->lpCreateParams;
             widget_map_add_hwnd(hwnd, info->wnd);
+
+            // send the creation event
+            cpaf::event::Event event(cpaf::event::widget_create, m_id);
+            cpaf::get_app<cpaf::gui::App>().get_event_manager().send_event(event);
             break;
         }
 

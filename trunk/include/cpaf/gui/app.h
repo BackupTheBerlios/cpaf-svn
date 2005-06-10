@@ -28,7 +28,7 @@ private:
     */
     void gui_init();
 
-    cpaf::event::Manager m_events_manager; //!< events manager for the application's main thread
+    cpaf::event::Manager m_event_manager; //!< events manager for the application's main thread
 
 public:
     virtual bool init() = 0;
@@ -38,7 +38,7 @@ public:
     */
     int run();
 
-    cpaf::event::Manager &get_events_manager();
+    cpaf::event::Manager &get_event_manager();
 };
 
     } // gui

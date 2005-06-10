@@ -60,6 +60,9 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::factory::WindowData &para
     else
         hparent = ::GetDesktopWindow();
 
+    m_wrapper = params.m_wrapper;
+    m_id = m_wrapper->get_id();
+
     // initialize creation info
     CreationInfo info(this);
     int x = params.m_pos.x, y = params.m_pos.y;

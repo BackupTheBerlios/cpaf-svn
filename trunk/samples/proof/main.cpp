@@ -33,16 +33,6 @@ class MyApp : public cpaf::gui::App
 {
 public:
     bool init();
-
-    void event_listener(cpaf::event::Event &e)
-    {
-        DBG_MSG("event_listener");
-    }
-
-    void event_listener_2(cpaf::event::Event &e)
-    {
-        DBG_MSG("event_listener_2");
-    }
 };
 
 /*
@@ -54,6 +44,18 @@ public:
     MyButton()
     {
         DBG_MSG("MyButton::Ctor");
+        cpaf::get_app<MyApp>().get_event_manager().connect<cpaf::event::Event>(get_id(), cpaf::event::widget_create, *this, &MyButton::on_create);
+        cpaf::get_app<MyApp>().get_event_manager().connect<cpaf::event::Event>(get_id(), cpaf::event::widget_destroy, *this, &MyButton::on_destroy);
+    }
+
+    void on_create(cpaf::event::Event &event)
+    {
+        DBG_MSG("MyButton::on_create");
+    }
+
+    void on_destroy(cpaf::event::Event &event)
+    {
+        DBG_MSG("MyButton::on_destroy");
     }
 };
 
@@ -94,12 +96,6 @@ bool MyApp::init()
         .position(cpaf::Point(100,100))
         .show()
         .create<MyButton>();
-
-    // events testing
-    get_events_manager().create_event_chain<cpaf::event::Event>(cpaf::event::OBJECT_ID_ANY, 1).connect(*this, &MyApp::event_listener).connect(*this, &MyApp::event_listener_2);
-    get_events_manager().connect_after<cpaf::event::Event>(1, 1, *this, &MyApp::event_listener);
-    cpaf::event::Event event(1);
-    get_events_manager().send_event(2, event);
 
     return true;
 }

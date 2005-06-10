@@ -8,10 +8,12 @@
 
 using namespace cpaf::event;
 
-const int Manager::BEFORE_MAP = 0;
-const int Manager::AFTER_MAP = 1;
+const int cpaf::event::Manager::BEFORE_MAP = 0;
+const int cpaf::event::Manager::AFTER_MAP = 1;
 
-CPAF_IMPLEMENT_EVENT(cpaf::event::foo)
+CPAF_IMPLEMENT_EXPORTED_EVENT(cpaf::event::widget_create);
+CPAF_IMPLEMENT_EXPORTED_EVENT(cpaf::event::widget_destroy);
+CPAF_IMPLEMENT_EXPORTED_EVENT(cpaf::event::button_click);
 
 int cpaf::event::get_unique_id()
 {
@@ -40,10 +42,11 @@ EventChain &cpaf::event::Manager::create_event_chain(object_id from, event_id id
     return *chain;
 }
 
-void cpaf::event::Manager::send_event(object_id from, Event &e)
+void cpaf::event::Manager::send_event(Event &e)
 {
     // send the event through all the maps
-    int id = e.get_id();
+    event_id id = e.get_id();
+    object_id from = e.get_object_id();
 
     // regular maps
     send_event(m_obj_evt_map[BEFORE_MAP][from][id], e); // {object, event} map
@@ -100,7 +103,8 @@ void cpaf::event::EventChain::process_event(Event &e)
 /*
 cpaf::event::Event
 */
-cpaf::event::Event::Event(event_id id)
+cpaf::event::Event::Event(event_id id, object_id obj)
     : m_id(id),
+    m_obj_id(obj),
     m_continue(false)
 { }
