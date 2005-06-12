@@ -61,14 +61,14 @@ public:
     T &title(const std::string &s)
     {
         m_data->m_title = s;
-         return *dynamic_cast<T*>(this);
+         return dynamic_cast<T&>(*this);
     }
 
     T &client_size(const cpaf::Size &s)
     {
         m_data->m_client_size = s;
         m_data->m_use_client_size = true;
-         return *dynamic_cast<T*>(this);
+         return dynamic_cast<T&>(*this);
     }
 
     std::string get_title() const { return m_data->m_title; }

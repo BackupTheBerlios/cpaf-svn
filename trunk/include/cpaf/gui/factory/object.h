@@ -69,26 +69,26 @@ public:
     {
         m_data->m_size = s;
         m_data->m_default_size = false;
-        return *dynamic_cast<T*>(this);
+        return dynamic_cast<T&>(*this);
     }
 
     T &min_size(const cpaf::Size &s)
     {
         m_data->m_min_size = s;
-        return *dynamic_cast<T*>(this);
+        return dynamic_cast<T&>(*this);
     }
 
     T &max_size(const cpaf::Size &s)
     {
         m_data->m_max_size = s;
-        return *dynamic_cast<T*>(this);
+        return dynamic_cast<T&>(*this);
     }
 
     T &position(const cpaf::Point &p)
     {
         m_data->m_pos = p;
         m_data->m_default_position = false;
-        return *dynamic_cast<T*>(this);
+        return dynamic_cast<T&>(*this);
     }
 
     cpaf::Size get_min_size() const { return m_data->m_min_size; }

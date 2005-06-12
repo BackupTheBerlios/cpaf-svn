@@ -34,7 +34,7 @@ public:
     T &label(const std::string &s)
     {
         m_data->m_label = s;
-        return *dynamic_cast<T*>(this);
+        return dynamic_cast<T&>(*this);
     }
 
     std::string get_label() const { return m_data->m_label; }
