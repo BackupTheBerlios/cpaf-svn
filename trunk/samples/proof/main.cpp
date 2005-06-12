@@ -71,12 +71,12 @@ bool MyApp::init()
         size and position. If the system is not capable of doing this, the implementation
         must chose reasonable values.
 
-        This window will be visible without calling wnd->show().
+        This window will be visible without calling wnd->show() if .show() isn't commented out below.
     */
     cpaf::gui::Window *wnd = cpaf::gui::Window::Factory()
         .title("Cpaf")
         .client_size(cpaf::Size(400,400))
-        .show()
+        //.show()
         .create();
 
     /*
@@ -96,6 +96,9 @@ bool MyApp::init()
         .position(cpaf::Point(100,100))
         .show()
         .create<MyButton>();
+
+    // Show the toplevel last for proper visual appearance
+    wnd->show();
 
     return true;
 }
