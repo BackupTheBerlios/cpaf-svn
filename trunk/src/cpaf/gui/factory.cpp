@@ -49,7 +49,7 @@ void cpaf::gui::factory::delete_widget_implementation(cpaf::api::gui::Widget *im
     {
         // remove it
         widget_impl_map.erase(i);
-        
+
         // and delete the implementation
         delete impl;
     }
@@ -69,7 +69,7 @@ void cpaf::gui::factory::delete_implementation_wrapper(cpaf::api::gui::Widget *i
 
         // remove it
         widget_impl_map.erase(i);
-        
+
         // and delete the wrapper
         delete wrapper;
     }

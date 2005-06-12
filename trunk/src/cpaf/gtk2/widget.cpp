@@ -11,13 +11,37 @@
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
-void cpaf::gtk2::gui::Widget::create(GtkWidget * widget)
+cpaf::gtk2::gui::Widget::Widget()
+    : m_wrapper(NULL),
+      m_widget(NULL)
 {
+}
+
+void cpaf::gtk2::gui::Widget::create(const cpaf::gui::factory::WidgetData &params, GtkWidget * widget)
+{
+    m_wrapper = params.m_wrapper;
     m_widget = widget;
 
     // Set m_widget to NULL when gtk+ internally destroys the widget
     g_signal_connect_after(m_widget, "destroy",
                            G_CALLBACK (gtk_widget_destroyed), &m_widget);
+
+    if (!params.m_default_size)
+        set_size(params.m_size);
+
+    //! \todo Uncomment after all set_{min,max}_size methods are aware of the DEFAULT_* values
+    //set_min_size(params.m_min_size);
+    //set_max_size(params.m_max_size);
+
+    if (!params.m_default_position)
+        set_position(params.m_pos);
+
+    enable(params.m_enable);
+
+    /*!
+        \todo Make sure nothing above realizes the control, and change order appropriately
+        if something does. E.g show() is in all derived class create()'s instead of here.
+     */
 }
 
 cpaf::gtk2::gui::Widget::~Widget()
@@ -46,6 +70,8 @@ void cpaf::gtk2::gui::Widget::set_size(const cpaf::Size& s)
         "natural" size request of the widget will be used instead." - gtk manual
     */
     // Do we want to enforce allocation instead?
+
+    //! \todo Deal with DEFAULT_* values
     gtk_widget_set_size_request(m_widget, s.width, s.height);
     gtk_widget_queue_resize(m_widget);
 }

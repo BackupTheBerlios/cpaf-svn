@@ -31,8 +31,12 @@ Dirs=
 Files=window.h/widget.h/button.h
 
 [Dir include/cpaf/gui]
-Dirs=
+Dirs=factory
 Files=toplevel.h/widget.h/window.h/app.h/object.h/api-prototypes.h/button.h
+
+[Dir include/cpaf/gui/factory]
+Dirs=
+Files=button.h/object.h/widget.h/window.h
 
 [Dir include/cpaf/private]
 Dirs=

@@ -18,8 +18,11 @@ void cpaf::gtk2::gui::Window::create(const cpaf::gui::factory::WindowData &param
     //! \todo It would be more convenient to initialize this member within the Widget base
     m_wrapper = params.m_wrapper;
 
-    //! \todo Use factory params
-    cpaf::gtk2::gui::Widget::create(gtk_window_new(GTK_WINDOW_TOPLEVEL));
+    cpaf::gtk2::gui::Widget::create(params, gtk_window_new(GTK_WINDOW_TOPLEVEL));
+
+    //! \todo Based on docs in factory/window.h header, the logic needs to be more complex
+    if (params.m_use_client_size)
+        set_client_size(params.m_client_size);
 
     cpaf::gui::Widget *parent = params.m_parent;
     if (parent)
@@ -32,8 +35,16 @@ void cpaf::gtk2::gui::Window::create(const cpaf::gui::factory::WindowData &param
     // Quit the application for now when the toplevel is closed
     g_signal_connect_swapped(m_widget, "delete-event",
                              G_CALLBACK (gtk_main_quit), NULL);
+
+    /*!
+        \note Show is always last - it might realize the widget (if params.m_show == true),
+        and we don't want that to happen before all other data is set.
+     */
+    if (params.m_show)
+        show(params.m_show, params.m_activate);
 }
 
+//! \todo Deal with DEFAULT_* values
 void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
 {
     int w, h;
@@ -66,6 +77,7 @@ void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
     gtk_window_resize(GTK_WINDOW(m_widget), w, h);
 }
 
+//! \todo Deal with DEFAULT_* values
 void cpaf::gtk2::gui::Window::set_min_size(const cpaf::Size &s)
 {
     GdkGeometry hints;
@@ -77,6 +89,7 @@ void cpaf::gtk2::gui::Window::set_min_size(const cpaf::Size &s)
                                   GDK_HINT_MIN_SIZE);
 }
 
+//! \todo Deal with DEFAULT_* values
 void cpaf::gtk2::gui::Window::set_max_size(const cpaf::Size &s)
 {
     GdkGeometry hints;
@@ -88,6 +101,7 @@ void cpaf::gtk2::gui::Window::set_max_size(const cpaf::Size &s)
                                   GDK_HINT_MAX_SIZE);
 }
 
+//! \todo Deal with DEFAULT_* values
 void cpaf::gtk2::gui::Window::set_position(const cpaf::Point &p)
 {
     gtk_window_move(GTK_WINDOW(m_widget), p.x, p.y);
@@ -184,6 +198,7 @@ std::string cpaf::gtk2::gui::Window::get_title()
     return gtk_window_get_title(GTK_WINDOW(m_widget));
 }
 
+//! \todo Deal with DEFAULT_* values
 void cpaf::gtk2::gui::Window::set_client_size(const cpaf::Size &s)
 {
     /*!
@@ -192,6 +207,7 @@ void cpaf::gtk2::gui::Window::set_client_size(const cpaf::Size &s)
         just set the size of the widget, that inside the container that is equal to the client
         area, with gdk_window_resize.
      */
+    g_message("Resizing %s window to %f %f\n", GTK_WIDGET_MAPPED(m_widget) ? "shown" : "hidden", s.width, s.height);
     gtk_window_resize(GTK_WINDOW(m_widget), s.width, s.height);
 }
 

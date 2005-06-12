@@ -21,12 +21,6 @@ namespace cpaf {
 
 class Widget : public virtual cpaf::api::gui::Widget
 {
-protected:
-    cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
-    GtkWidget * m_widget;
-    Widget() : m_wrapper(NULL) { }
-    void create(GtkWidget *);
-
 public:
     virtual ~Widget();
 
@@ -46,6 +40,13 @@ public:
     virtual void show(bool show, bool activate);
     virtual bool is_enabled();
     virtual bool is_shown();
+
+protected:
+    Widget();
+    void create(const cpaf::gui::factory::WidgetData&, GtkWidget *);
+
+    cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
+    GtkWidget * m_widget;
 };
 
         } // gui
