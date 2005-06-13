@@ -75,9 +75,20 @@ int cpaf::entry(cpaf::main_ptr main, int argc, char *argv[])
         app->init();
         return app->run();
     }
+    catch(cpaf::Exception &e)
+    {
+        printf("%s: %s\n", e.get_file(), e.get_message());
+        return 1;
+    }
+    catch(std::exception &e)
+    {
+        printf("Exception: %s\n", e.what());
+        return 1;
+    }
     catch(...)
     {
-        return 1; // erroneous termination
+        printf("An unknown exception has been encountered.\n");
+        return 1; // errornous termination
     }
 }
 
