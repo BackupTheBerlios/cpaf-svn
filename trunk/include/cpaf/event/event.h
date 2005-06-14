@@ -21,6 +21,7 @@ class ListenerFunctorBase;
 class EventChain;
 template<typename E> class EventChainWrapper;
 class Manager;
+
 /*!
     This function generates a unique event id.
     \return A unique event id
@@ -176,11 +177,15 @@ public:
     EventChain &connect(ListenerFunctorBase *func);
 };
 
+
+
 /*!
     Main event system object. Manages sending events and connecting listeners which form chains.
 */
 class CPAF_API Manager
 {
+    template<typename Event, bool After, typename Listener> friend EventChainWrapper<Event> connect(event_id event, object_id object, Listener &l, typename ListenerFunctor<Listener, Event>::ptr_type function);
+
 private:
     // storage related typedefs
     typedef std::vector<event_chain_ptr> event_chain_vector;
@@ -202,6 +207,8 @@ private:
     object_vector_map m_obj_map[2];
 
 public:
+    Manager();
+
     /*!
         Creates an EventChain object to connect event listeners to.
 
@@ -219,57 +226,6 @@ public:
         Sends an event
     */
     void send_event(Event &e);
-
-    /*!
-        Templated wrapper around the create_event_chain function used
-        to create an EventChain wrapped in a templated wrapper to allow
-        for convenient type safety in the events system.
-    */
-    template<typename E> EventChainWrapper<E> create_event_chain(object_id from, event_id id, bool after = false)
-    {
-        return EventChainWrapper<E>(create_event_chain(from, id));
-    }
-
-    /*!
-        This is a convenience function which allows you to more easliy create an event chain with only
-        one listener.
-
-        Template params:
-        L   Object connecting the event
-        E   Event type being connected
-
-        \param from Object to recieve events from
-        \param id   ID of the event to recieve
-        \param l Listening object connecting this event
-        \param function The listening function
-
-    */
-    template<typename E, typename L> void connect(object_id from, event_id id, L &l, typename ListenerFunctor<L, E>::ptr_type function)
-    {
-        EventChain &chain = create_event_chain(from, id, false);
-        ListenerFunctor<L,E> *functor = new ListenerFunctor<L,E>(l, function);
-        chain.connect(functor);
-    }
-
-    /*!
-        This is a convenience function which allows you to more easliy create an event chain with only
-        one listener. It creates a "post processing" event chain.
-
-        Template params:
-        L   Object connecting the event
-        E   Event type being connected
-
-        \param from Object to recieve events from
-        \param id   ID of the event to recieve
-        \param l Listening object connecting this event
-        \param function The listening function
-    */
-    template<typename E, typename L> void connect_after(object_id from, event_id id, L &l, typename ListenerFunctor<L, E>::ptr_type function)
-    {
-        EventChain &chain = create_event_chain(from, id, true);
-        ListenerFunctor<L,E> *functor = new ListenerFunctor<L,E>(l, function);
-        chain.connect(functor);
-    }
 
 private:
     void send_event(event_chain_vector &chain, Event &e);
@@ -305,11 +261,34 @@ public:
     */
     template<typename L> EventChainWrapper<E> &connect(L &l, typename ListenerFunctor<L, E>::ptr_type function)
     {
-        ListenerFunctor<L,E> *functor = new ListenerFunctor<L,E>(l, function);
-        m_chain.connect(functor);
+        m_chain.connect(new ListenerFunctor<L,E>(l, function));
         return *this;
     }
 };
+
+/*!
+    Return an reference to the main threads Manager object
+*/
+CPAF_API cpaf::event::Manager &get_manager();
+
+/*!
+    This is a convenience function which allows you to more easliy connect events.
+
+    Template parameters:
+    Event       Event type being connected
+    After       True if you want to recieve the event after it has been processed by the normal event listeners
+    Listener    The Object connecting the event
+
+    \param l Listening object connecting this event
+    \param event Id of the event
+    \param object The object to recieve events from
+    \param function The listening function
+*/
+template<typename Event, bool After, typename Listener> EventChainWrapper<Event> connect(event_id event, object_id object, Listener &l, typename ListenerFunctor<Listener, Event>::ptr_type function)
+{
+    ListenerFunctor<Listener, Event> *functor = new ListenerFunctor<Listener, Event>(l, function);
+    return EventChainWrapper<Event>(cpaf::event::get_manager().create_event_chain(object, event, After).connect(functor));
+}
 
     } // event
 } // cpaf

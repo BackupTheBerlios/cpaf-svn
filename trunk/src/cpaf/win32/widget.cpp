@@ -70,13 +70,15 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
 
             // send the creation event
             cpaf::event::Event event(cpaf::event::widget_create, m_id);
-            cpaf::get_app<cpaf::gui::App>().get_event_manager().send_event(event);
+            cpaf::event::get_manager().send_event(event);
             break;
         }
 
         case WM_DESTROY:
         {
-            //! \todo send destroy event
+            // send destroy event
+            cpaf::event::Event event(cpaf::event::widget_destroy, m_id);
+            cpaf::event::get_manager().send_event(event);
 
             // process native event first, because m_old_proc will be invalid once
             // 'delete this' is executed

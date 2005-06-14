@@ -44,8 +44,10 @@ public:
     MyButton()
     {
         DBG_MSG("MyButton::Ctor");
-        cpaf::get_app<MyApp>().get_event_manager().connect<cpaf::event::Event>(get_id(), cpaf::event::widget_create, *this, &MyButton::on_create);
-        cpaf::get_app<MyApp>().get_event_manager().connect<cpaf::event::Event>(get_id(), cpaf::event::widget_destroy, *this, &MyButton::on_destroy);
+
+        using namespace cpaf::event;
+        connect<cpaf::event::Event, false>(cpaf::event::widget_create, get_id(), *this, &MyButton::on_create).connect(*this, &MyButton::on_create);
+        connect<cpaf::event::Event, false>(cpaf::event::widget_destroy, get_id(), *this, &MyButton::on_destroy);
     }
 
     void on_create(cpaf::event::Event &event)

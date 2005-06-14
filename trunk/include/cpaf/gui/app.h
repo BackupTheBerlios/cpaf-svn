@@ -28,8 +28,6 @@ private:
     */
     void gui_init();
 
-    cpaf::event::Manager m_event_manager; //!< events manager for the application's main thread
-
 public:
     virtual bool init() = 0;
 
@@ -37,8 +35,6 @@ public:
         This function must be implemented by an implementation (win32, gtk2, ...).
     */
     int run();
-
-    cpaf::event::Manager &get_event_manager();
 };
 
     } // gui

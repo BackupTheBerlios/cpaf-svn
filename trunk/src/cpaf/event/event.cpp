@@ -8,6 +8,17 @@
 
 using namespace cpaf::event;
 
+namespace {
+    // pointer to the cpaf::App's event object
+    // initialized via Manager ctor
+    cpaf::event::Manager *manager;
+}
+
+cpaf::event::Manager &cpaf::event::get_manager()
+{
+    return *manager;
+}
+
 const int cpaf::event::Manager::BEFORE_MAP = 0;
 const int cpaf::event::Manager::AFTER_MAP = 1;
 
@@ -24,6 +35,12 @@ int cpaf::event::get_unique_id()
 /*
 cpaf::event::Manager
 */
+cpaf::event::Manager::Manager()
+{
+    // initialize the private pointer
+    manager = this;
+}
+
 EventChain &cpaf::event::Manager::create_event_chain(object_id from, event_id id, bool after)
 {
     // create the event chain

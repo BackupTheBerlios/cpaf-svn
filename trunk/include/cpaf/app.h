@@ -36,6 +36,7 @@ cpaf::App::init()
 #endif
 
 #include <cpaf/dllimpexp.h>
+#include <cpaf/event/event.h>
 
 #include <vector>
 #include <string>
@@ -52,6 +53,7 @@ public:
 
 private:
     cmd_line m_cmd;
+    cpaf::event::Manager m_manager; // construct the singleton event manager class
 
 public:
     //! \todo Should I make this not an inilined dtor?
