@@ -19,7 +19,6 @@
 
 namespace cpaf {
     namespace gui {
-        class Widget;
         namespace factory {
 
 /*
@@ -37,6 +36,23 @@ public:
     virtual void initialize(const data_type &params) = 0;
 
     virtual ~widget_functor() { }
+};
+
+template<typename Impl, typename Base> class widget_functor_impl : public widget_functor<typename Base::api_type, typename Base::data_type>
+{
+private:
+    typedef Impl impl_type;
+    impl_type *m_i;
+
+public:
+    api_type *create()
+    {
+        return m_i = new impl_type;
+    }
+    void initialize(const data_type &params)
+    {
+        m_i->create(params);
+    }
 };
 
 /*!
@@ -57,28 +73,9 @@ public:
     \param name Name of the api widget class being constructed in lower case. "button"
     \param port Port implementing this factory. "win32"
 */
-#define IMPLEMENT_WIDGET_FACTORY(type, name, port)                      \
-namespace {                                                             \
-class name##_functor_impl : public cpaf::gui::factory::name##_functor   \
-{                                                                       \
-private:                                                                \
-    typedef cpaf::port::gui::type impl_type;                            \
-    impl_type *m_i;                                                     \
-public:                                                                 \
-    api_type *create()                                                  \
-    {                                                                   \
-        m_i = new impl_type;                                            \
-        return m_i;                                                     \
-    }                                                                   \
-    void initialize(const data_type &params)                            \
-    {                                                                   \
-        m_i->create(params);                                            \
-    }                                                                   \
-};                                                                      \
-}                                                                       \
-cpaf::gui::factory::name##_functor_ptr cpaf::gui::factory::create_##name() \
-{ return name##_functor_ptr(new name##_functor_impl); }                 \
-
+#define IMPLEMENT_WIDGET_FACTORY(type, name, port)                          \
+cpaf::gui::factory::name##_functor_ptr cpaf::gui::factory::create_##name()  \
+{ return name##_functor_ptr(new widget_functor_impl<cpaf::port::gui::type, name##_functor/*::api_type, name##_functor::data_type*/>); } \
 
 /*
     Widget factory function prototypes
