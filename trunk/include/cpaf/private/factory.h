@@ -45,11 +45,11 @@ private:
     impl_type *m_i;
 
 public:
-    api_type *create()
+    typename Base::api_type *create()
     {
         return m_i = new impl_type;
     }
-    void initialize(const data_type &params)
+    void initialize(const typename Base::data_type &params)
     {
         m_i->create(params);
     }
