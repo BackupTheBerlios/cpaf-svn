@@ -14,7 +14,7 @@ namespace cpaf {
 /*!
     \brief Factory function to create cpaf::gui objects.
 */
-template<typename Widget> Widget *create_widget(typename const Widget::Initializer &initializer)
+template<typename Widget> Widget *create_widget(typename Widget::Initializer const &initializer)
 {
     Widget *wrapper = new Widget;
 

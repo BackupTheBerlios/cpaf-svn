@@ -8,5 +8,5 @@
 #include <cpaf/cocoa/gui/window.h>
 #include <cpaf/cocoa/gui/button.h>
 
-IMPLEMENT_WIDGET_FACTORY(Window, window, cocoa)
-IMPLEMENT_WIDGET_FACTORY(Button, button, cocoa)
+IMPLEMENT_WIDGET_FACTORY(Window, cocoa)
+IMPLEMENT_WIDGET_FACTORY(Button, cocoa)

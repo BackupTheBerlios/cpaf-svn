@@ -25,7 +25,7 @@ namespace cpaf {
     This template is left undefined in this header. Implementations are responsible for
     implementing template specializations for all constructable types.
 */
-template<typename Api> CPAF_API Api *create_widget_implementation();
+template<typename Api> Api *create_widget_implementation();
 
 /*
     \return An object identifier unique throughout the application
@@ -39,10 +39,14 @@ int get_unique_object_id();
     \param port Port implementing this factory. "win32"
 */
 #define IMPLEMENT_WIDGET_FACTORY(type, port) \
-    template<> CPAF_API cpaf::api::gui::type *cpaf::gui::factory::create_widget_implementation<cpaf::api::gui::type>() \
-    { return new cpaf::port::gui::type; }
-
-
+namespace cpaf { \
+    namespace gui { \
+        namespace factory { \
+            template<> cpaf::api::gui::type *create_widget_implementation<cpaf::api::gui::type>() \
+            { return new cpaf::port::gui::type; } \
+        } \
+    } \
+}
 
 //These functions are currently unused, see "technotes/widget destruction.txt"
 /*

@@ -39,7 +39,7 @@ protected:
 
 public:
     operator cpaf::api::gui::Window *();
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename const Widget::Initializer &);
+    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 
     } // gui

@@ -9,6 +9,8 @@
 
 #include <memory> // for std::auto_ptr
 
+#include <cpaf/types.h>
+
 namespace cpaf {
     namespace gui {
         namespace initializer {
