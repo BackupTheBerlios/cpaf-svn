@@ -5,6 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpaf", "cpaf.vcproj", "{0D1
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Proof", "samples\proof\proof.vcproj", "{31050E6C-C549-47BA-93A0-563F30A15812}"
 	ProjectSection(ProjectDependencies) = postProject
+		{0D192004-77CE-4E79-81F6-E126E712CFE9} = {0D192004-77CE-4E79-81F6-E126E712CFE9}
 	EndProjectSection
 EndProject
 Global

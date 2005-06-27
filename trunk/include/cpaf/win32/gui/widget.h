@@ -35,8 +35,6 @@ protected:
 
     Widget();
 
-    void create(const cpaf::gui::factory::WidgetData &params);
-
 public:
     void set_old_proc(WNDPROC proc) { m_old_proc = proc; }
 
@@ -49,6 +47,8 @@ public:
     virtual int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
     virtual ~Widget();
+
+    virtual void create(const cpaf::gui::initializer::WidgetData &params);
 
     // object interface
     virtual void set_size(const cpaf::Size &s);
@@ -66,6 +66,7 @@ public:
     virtual void show(bool show, bool focus);
     virtual bool is_enabled();
     virtual bool is_shown();
+    virtual void destroy();
 
 protected:
     // implementation specific functions

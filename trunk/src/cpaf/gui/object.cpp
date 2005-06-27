@@ -11,12 +11,9 @@ cpaf::gui::Object::Object()
     : m_impl(NULL)
 { }
 
-cpaf::gui::Object::~Object() { }
-
-void cpaf::gui::Object::set_impl(cpaf::api::gui::Object *impl)
-{
-    m_impl = impl;
-}
+cpaf::gui::Object::~Object(cpaf::api::gui::Object *impl)
+    : m_impl(impl)
+{ }
 
 cpaf::gui::Object::operator cpaf::api::gui::Object *()
 {

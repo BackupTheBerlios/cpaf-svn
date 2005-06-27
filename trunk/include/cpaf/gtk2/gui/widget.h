@@ -35,6 +35,7 @@ public:
     virtual cpaf::Point get_position() { return cpaf::Point(); }
 
     // widget interface
+    virtual void destroy();
     virtual void *get_handle() { return (void*)m_widget; }
     virtual void enable(bool sensitive);
     virtual void show(bool show, bool activate);
@@ -43,7 +44,7 @@ public:
 
 protected:
     Widget();
-    void create(const cpaf::gui::factory::WidgetData&, GtkWidget *);
+    void create(const cpaf::gui::initializer::WidgetData&, GtkWidget *);
 
     cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
     GtkWidget * m_widget;

@@ -10,53 +10,33 @@
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/widget.h>
-#include <cpaf/gui/factory/button.h>
+#include <cpaf/gui/initializer/button.h>
+
+#include <cpaf/private/factory.h>
 
 namespace cpaf {
     namespace gui {
 
 class CPAF_API Button : public Widget
 {
+    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename const Widget::Initializer &);
+
 public:
-    /*!
-        Factory for creating button objects
-    */
-    class CPAF_API Factory : public cpaf::gui::factory::Button<Factory>
-    {
-    public:
-        Factory();
+    typedef cpaf::api::gui::Button api_type;
 
-        template <typename T> T *create() const
-        {
-            return dynamic_cast<T*>(create(new T));
-        }
+    typedef ButtonInitializer Initializer;
 
-        Button *create() const
-        {
-            return create(new Button);
-        }
+    void set_label(const std::string &label);
+    std::string get_label();
 
-    protected:
-        /*!
-            This function creates a native widget and uses \a w to wrap it.
-
-            \return The initialized wrapper w.
-        */
-        cpaf::gui::Button *create(cpaf::gui::Button *w) const;
-    };
+    operator cpaf::api::gui::Button *();
 
 private:
     cpaf::api::gui::Button *m_impl;
 
 protected:
-    Button();
-    void set_impl(cpaf::api::gui::Button *impl);
-
-public:
-    operator cpaf::api::gui::Button *();
-
-    void set_label(const std::string &label);
-    std::string get_label();
+    Button(cpaf::api::gui::Button *impl);
+    void create(const Initializer::data_type &params);
 };
 
     } // gui

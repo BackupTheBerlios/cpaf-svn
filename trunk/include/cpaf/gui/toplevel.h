@@ -19,14 +19,16 @@ namespace cpaf {
 
 class CPAF_API TopLevel : public Widget
 {
+public:
+    typedef cpaf::api::gui::TopLevel api_type;
+
 private:
     // not shared_ptr because this object will never be responsible for deleting this pointer
     // it only serves to save extraneous casting in source
     cpaf::api::gui::TopLevel *m_impl;
 
 protected:
-    TopLevel();
-    void set_impl(cpaf::api::gui::TopLevel *impl);
+    TopLevel(cpaf::api::gui::TopLevel *impl);
 
 public:
     ~TopLevel();

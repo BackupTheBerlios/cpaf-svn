@@ -1,24 +1,20 @@
 /*!
-    \file include/cpaf/gui/factory/object.h
-    \brief Factory initializer for cpaf::gui::Object
+    \file include/cpaf/gui/initializer/object.h
+    \brief Initializer classes for cpaf::gui::Object
     \date Created: 2005-05-07
 */
 
-#ifndef CPAF_GUI_FACTORY_OBJECT_H
-#define CPAF_GUI_FACTORY_OBJECT_H
+#ifndef CPAF_GUI_INITIALIZER_OBJECT_H
+#define CPAF_GUI_INITIALIZER_OBJECT_H
 
 #include <memory> // for std::auto_ptr
 
 namespace cpaf {
     namespace gui {
-        namespace factory {
+        namespace initializer {
 
 /*!
-    \brief Data object for Object creation. This class contains the
-    initialization parameters which are passed from the widget factories
-    to the object being created. This allows you to specify the objects
-    initial state during creation time without needing to call set_foo()
-    methods after creation.
+    \brief Initializer data for Object creation.
 */
 struct ObjectData
 {
@@ -55,12 +51,18 @@ struct ObjectData
     virtual ~ObjectData() { }
 };
 
+/*!
+    \brief Initializer class for Object creation.
+*/
 template<class T> class Object
 {
-protected:
-    std::auto_ptr<ObjectData> m_data;
+public:
+    typedef ObjectData data_type;
 
-    Object(ObjectData *data)
+protected:
+    std::auto_ptr<data_type> m_data;
+
+    Object(data_type *data)
         : m_data(data)
     { }
 
@@ -97,10 +99,15 @@ public:
     cpaf::Point get_pos() const { return m_data->m_pos; }
 
     virtual ~Object() { }
+
+    // non copyable and non assignable
+private:
+    Object(const Object<T> &) { }
+    Object<T> &operator= (const Object<T> &) { return *this; }
 };
 
-        } // factory
+        } // initializer
     } // gui
 } // cpaf
 
-#endif
+#endif // CPAF_GUI_INITIALIZER_OBJECT_H

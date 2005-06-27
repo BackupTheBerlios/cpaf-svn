@@ -22,7 +22,7 @@ class Widget : public virtual cpaf::api::gui::Widget
 protected:
     cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
     id m_view;
-    void create(const cpaf::gui::factory::WidgetData &params, id widget);
+    void create(const cpaf::gui::initializer::WidgetData &params, id widget);
     Widget() : m_wrapper(NULL) { }
 
 public:
@@ -39,6 +39,7 @@ public:
     virtual cpaf::Point get_position() { return cpaf::Point(); }
 
     // widget interface
+    virtual void destroy();
     virtual id get_handle() { return m_view; }
     virtual void enable(bool sensitive);
     virtual void show(bool show, bool activate);

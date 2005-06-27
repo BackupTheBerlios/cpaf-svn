@@ -9,15 +9,10 @@
 
 #include <gtk/gtk.h>
 
-cpaf::gtk2::gui::Window::Window()
-{
-}
+cpaf::gtk2::gui::Window::Window() { }
 
-void cpaf::gtk2::gui::Window::create(const cpaf::gui::factory::WindowData &params)
+void cpaf::gtk2::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
 {
-    //! \todo It would be more convenient to initialize this member within the Widget base
-    m_wrapper = params.m_wrapper;
-
     cpaf::gtk2::gui::Widget::create(params, gtk_window_new(GTK_WINDOW_TOPLEVEL));
 
     //! \todo Based on docs in factory/window.h header, the logic needs to be more complex

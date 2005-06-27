@@ -24,7 +24,7 @@ class Window : public virtual cpaf::win32::gui::Widget, public virtual cpaf::api
 public:
     Window() { }
     
-    void create(const cpaf::gui::factory::WindowData &params);
+    void create(const cpaf::gui::initializer::WindowData &params);
 
     // toplevel interface
     virtual void set_title(const std::string &t);

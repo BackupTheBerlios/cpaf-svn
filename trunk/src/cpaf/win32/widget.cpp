@@ -21,7 +21,7 @@ cpaf::win32::gui::Widget::Widget()
     m_min_size(-1,-1)
 { }
 
-void cpaf::win32::gui::Widget::create(const cpaf::gui::factory::WidgetData &params)
+void cpaf::win32::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params)
 {
     if( !m_hwnd )
         throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
@@ -31,17 +31,16 @@ void cpaf::win32::gui::Widget::create(const cpaf::gui::factory::WidgetData &para
         show(true, params.m_activate);
 }
 
+void cpaf::win32::gui::Widget::destroy()
+{
+    // destroy our native widget to start the deletion process
+    ::DestroyWindow(m_hwnd);
+}
+
 cpaf::win32::gui::Widget::~Widget()
 {
     // remove our HWND from the widget map
     cpaf::win32::gui::widget_map_remove_hwnd(m_hwnd);
-
-    // destroy our native window if we need to
-    if( m_delete )
-    {
-        m_delete = false;
-        ::DestroyWindow(m_hwnd);
-    }
 
     // delete our wrapper safely
     //cpaf::gui::factory::delete_implementation_wrapper(this);
@@ -69,7 +68,7 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
             widget_map_add_hwnd(hwnd, info->wnd);
 
             // send the creation event
-            cpaf::event::Event event(cpaf::event::widget_create, m_id);
+            cpaf::event::Event event(cpaf::event::WIDGET_CREATE, m_id);
             cpaf::event::get_manager().send_event(event);
             break;
         }
@@ -77,7 +76,7 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
         case WM_DESTROY:
         {
             // send destroy event
-            cpaf::event::Event event(cpaf::event::widget_destroy, m_id);
+            cpaf::event::Event event(cpaf::event::WIDGET_DESTROY, m_id);
             cpaf::event::get_manager().send_event(event);
 
             // process native event first, because m_old_proc will be invalid once
@@ -88,12 +87,8 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
             else
                 ret = ::DefWindowProc(hwnd, msg, w_param, l_param);
 
-            // destroy the widget instance if we need to
-            if( m_delete )
-            {
-                m_delete = false;
-                delete this;
-            }
+            // delete ourself (and our wrapper)
+            delete this;
 
             //! \todo Decide when to terminate an application
             PostQuitMessage(0);

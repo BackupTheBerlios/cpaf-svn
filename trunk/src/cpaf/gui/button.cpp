@@ -9,14 +9,14 @@
 #include <cpaf/private/factory.h>
 #include <cpaf/exception.h>
 
-cpaf::gui::Button::Button()
-    : m_impl(NULL)
+cpaf::gui::Button::Button(cpaf::api::gui::Button *impl)
+    : Widget(impl),
+    m_impl(impl)
 { }
 
-void cpaf::gui::Button::set_impl(cpaf::api::gui::Button *impl)
+void cpaf::gui::Button::create(const Initializer::data_type &params)
 {
-    m_impl = impl;
-    cpaf::gui::Widget::set_impl(impl);
+    m_impl->create(params);
 }
 
 cpaf::gui::Button::operator cpaf::api::gui::Button *()
@@ -32,30 +32,4 @@ void cpaf::gui::Button::set_label(const std::string &label)
 std::string cpaf::gui::Button::get_label()
 {
     return m_impl->get_label();
-}
-
-cpaf::gui::Button::Factory::Factory()
-    : cpaf::gui::factory::Button<Factory>(new cpaf::gui::factory::ButtonData)
-{ }
-
-cpaf::gui::Button *cpaf::gui::Button::Factory::create(cpaf::gui::Button *wrapper) const
-{
-    //! \todo Do something to avoid duplicating this code in every factory::create function
-    try
-    {
-        m_data->m_wrapper = wrapper;
-        cpaf::gui::factory::button_functor_ptr creator = cpaf::gui::factory::create_button();
-        wrapper->set_impl(creator->create());
-        creator->initialize(*m_data);
-        return wrapper;
-    }
-    catch(cpaf::Exception &e)
-    {
-        // at least try to clean up, delete the wrapper
-        //! \todo consider what else we can do in this case
-        delete wrapper;
-
-        // rethrow so other exception handlers can know that something happened
-        throw;
-    }
 }

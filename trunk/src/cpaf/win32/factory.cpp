@@ -8,5 +8,5 @@
 #include <cpaf/win32/gui/window.h>
 #include <cpaf/win32/gui/button.h>
 
-IMPLEMENT_WIDGET_FACTORY(Window, window, win32)
-IMPLEMENT_WIDGET_FACTORY(Button, button, win32)
+IMPLEMENT_WIDGET_FACTORY(Window, win32)
+IMPLEMENT_WIDGET_FACTORY(Button, win32)

@@ -40,7 +40,7 @@ LRESULT CALLBACK window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_pa
     } // win32
 } // cpaf
 
-void cpaf::win32::gui::Window::create(const cpaf::gui::factory::WindowData &params)
+void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
 {
     //! \todo remove duplicated code from window and button create methods
 

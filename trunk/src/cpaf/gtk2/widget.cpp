@@ -14,17 +14,16 @@
 cpaf::gtk2::gui::Widget::Widget()
     : m_wrapper(NULL),
       m_widget(NULL)
-{
-}
+{ }
 
-void cpaf::gtk2::gui::Widget::create(const cpaf::gui::factory::WidgetData &params, GtkWidget * widget)
+void cpaf::gtk2::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, GtkWidget * widget)
 {
     m_wrapper = params.m_wrapper;
     m_widget = widget;
 
     // Set m_widget to NULL when gtk+ internally destroys the widget
     g_signal_connect_after(m_widget, "destroy",
-                           G_CALLBACK (gtk_widget_destroyed), &m_widget);
+                           G_CALLBACK (gtk_WIDGET_DESTROYed), &m_widget);
 
     if (!params.m_default_size)
         set_size(params.m_size);
@@ -44,10 +43,15 @@ void cpaf::gtk2::gui::Widget::create(const cpaf::gui::factory::WidgetData &param
      */
 }
 
+void cpaf::gtk2::gui::Widget::destroy()
+{
+    //! \todo Add whatever is needed here.
+}
+
 cpaf::gtk2::gui::Widget::~Widget()
 {
     if (m_widget)
-        gtk_widget_destroy(m_widget);
+        gtk_WIDGET_DESTROY(m_widget);
 
     // delete our wrapper object safely
     //cpaf::gui::factory::delete_implementation_wrapper(this);

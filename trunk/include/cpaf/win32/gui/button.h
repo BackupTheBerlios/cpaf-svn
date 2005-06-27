@@ -22,7 +22,7 @@ class Button : public virtual cpaf::win32::gui::Widget, public virtual cpaf::api
 public:
     Button() { }
 
-    void create(const cpaf::gui::factory::ButtonData &params);
+    void create(const cpaf::gui::initializer::ButtonData &params);
 
     virtual void set_label(const std::string &label);
     virtual std::string get_label();

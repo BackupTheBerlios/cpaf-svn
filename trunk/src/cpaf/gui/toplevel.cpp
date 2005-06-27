@@ -10,20 +10,10 @@
 
 using namespace cpaf::api::gui;
 
-cpaf::gui::TopLevel::TopLevel()
-    : m_impl(NULL)
+cpaf::gui::TopLevel::TopLevel(cpaf::api::gui::TopLevel *impl)
+    : Widget(impl),
+    m_impl(impl)
 { }
-
-void cpaf::gui::TopLevel::set_impl(cpaf::api::gui::TopLevel *impl)
-{
-    m_impl = m_impl = impl;
-    cpaf::gui::Widget::set_impl(impl);
-
-    // because TopLevel widget derivatives are allowed to be on the stack,
-    // their implementation objects must not be allowed to delete them,
-    // so remove ourselves from the wrapper -> implementation map
-    //cpaf::gui::factory::remove_implementation_wrapper(m_impl);
-}
 
 cpaf::gui::TopLevel::~TopLevel()
 {

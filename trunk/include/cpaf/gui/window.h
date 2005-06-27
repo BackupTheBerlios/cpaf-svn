@@ -10,7 +10,9 @@
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/toplevel.h>
-#include <cpaf/gui/factory/window.h>
+#include <cpaf/gui/initializer/window.h>
+
+#include <cpaf/private/factory.h>
 
 namespace cpaf {
     namespace gui {
@@ -21,33 +23,12 @@ namespace cpaf {
 */
 class CPAF_API Window : public TopLevel
 {
+    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename const Widget::Initializer &);
+
 public:
-    /*!
-        Factory for creating window objects
-    */
-    class CPAF_API Factory : public cpaf::gui::factory::Window<Factory>
-    {
-    public:
-        Factory();
+    typedef cpaf::api::gui::Window api_type;
 
-        template <typename T> T *create() const
-        {
-            return dynamic_cast<T*>(create(new T));
-        }
-
-        Window *create() const
-        {
-            return create(new Window);
-        }
-
-    protected:
-        /*!
-            This function creates a native widget and uses \a w to wrap it.
-
-            \return The initialized wrapper w.
-        */
-        cpaf::gui::Window *create(cpaf::gui::Window *w) const;
-    };
+    typedef WindowInitializer Initializer;
 
 private:
     // not shared_ptr because this object will never be responsible for deleting this pointer
@@ -55,8 +36,8 @@ private:
     cpaf::api::gui::Window *m_impl;
 
 protected:
-    Window();
-    void set_impl(cpaf::api::gui::Window *impl);
+    Window(cpaf::api::gui::Window *impl);
+    void create(const Initializer::data_type &params);
 
 public:
     operator cpaf::api::gui::Window *();

@@ -30,7 +30,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"
-				DisableSpecificWarnings="4251; 4244"/>
+				DisableSpecificWarnings="4251; 4244;4250"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -80,7 +80,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="3"
-				DisableSpecificWarnings="4251; 4244"/>
+				DisableSpecificWarnings="4251; 4244;4250"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -133,7 +133,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"
-				DisableSpecificWarnings="4251; 4244"/>
+				DisableSpecificWarnings="4251; 4244;4250"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -176,7 +176,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="0"
-				DisableSpecificWarnings="4251; 4244"/>
+				DisableSpecificWarnings="4251; 4244;4250"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -281,76 +281,28 @@
 					RelativePath=".\include\cpaf\gui\window.h">
 				</File>
 				<Filter
-					Name="factory"
+					Name="initializer"
 					Filter="">
 					<File
-						RelativePath=".\include\cpaf\gui\factory\button.h">
+						RelativePath=".\include\cpaf\gui\initializer\button.h">
 					</File>
 					<File
-						RelativePath=".\include\cpaf\gui\factory\object.h">
+						RelativePath=".\include\cpaf\gui\initializer\object.h">
 					</File>
 					<File
-						RelativePath=".\include\cpaf\gui\factory\widget.h">
+						RelativePath=".\include\cpaf\gui\initializer\widget.h">
 					</File>
 					<File
-						RelativePath=".\include\cpaf\gui\factory\window.h">
+						RelativePath=".\include\cpaf\gui\initializer\window.h">
 					</File>
 				</Filter>
 			</Filter>
 			<Filter
-				Name="win32"
+				Name="event"
 				Filter="">
 				<File
-					RelativePath=".\include\cpaf\win32\exception.h">
+					RelativePath=".\include\cpaf\event\event.h">
 				</File>
-				<File
-					RelativePath=".\include\cpaf\win32\factory.h">
-				</File>
-				<File
-					RelativePath=".\include\cpaf\win32\msgnames.h">
-				</File>
-				<File
-					RelativePath=".\include\cpaf\win32\win.h">
-				</File>
-				<Filter
-					Name="gui"
-					Filter="">
-					<File
-						RelativePath=".\include\cpaf\win32\gui\button.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\win32\gui\widget.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\win32\gui\window.h">
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="gtk2"
-				Filter="">
-				<File
-					RelativePath=".\include\cpaf\gtk2\factory.h">
-				</File>
-				<File
-					RelativePath=".\include\cpaf\gtk2\gtk.h">
-				</File>
-				<File
-					RelativePath=".\include\cpaf\gtk2\utils.h">
-				</File>
-				<Filter
-					Name="gui"
-					Filter="">
-					<File
-						RelativePath=".\include\cpaf\gtk2\gui\button.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\gtk2\gui\widget.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\gtk2\gui\window.h">
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
 				Name="cocoa"
@@ -400,11 +352,59 @@
 				</Filter>
 			</Filter>
 			<Filter
-				Name="event"
+				Name="gtk2"
 				Filter="">
 				<File
-					RelativePath=".\include\cpaf\event\event.h">
+					RelativePath=".\include\cpaf\gtk2\factory.h">
 				</File>
+				<File
+					RelativePath=".\include\cpaf\gtk2\gtk.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\gtk2\utils.h">
+				</File>
+				<Filter
+					Name="gui"
+					Filter="">
+					<File
+						RelativePath=".\include\cpaf\gtk2\gui\button.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\gtk2\gui\widget.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\gtk2\gui\window.h">
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="win32"
+				Filter="">
+				<File
+					RelativePath=".\include\cpaf\win32\exception.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\win32\factory.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\win32\msgnames.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\win32\win.h">
+				</File>
+				<Filter
+					Name="gui"
+					Filter="">
+					<File
+						RelativePath=".\include\cpaf\win32\gui\button.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\win32\gui\widget.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\win32\gui\window.h">
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -566,486 +566,6 @@
 						ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 				</FileConfiguration>
 			</File>
-			<Filter
-				Name="win32"
-				Filter="">
-				<File
-					RelativePath=".\src\cpaf\win32\app.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\win32\button.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\win32\exception.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\win32\factory.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\win32\widget.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\win32\win.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\win32\window.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-				</File>
-			</Filter>
-			<Filter
-				Name="cocoa"
-				Filter="mm">
-				<File
-					RelativePath=".\src\cpaf\cocoa\app.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\button.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\factory.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\utils.mm"
-					FileType="0">
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\widget.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\cocoa\window.mm"
-					FileType="0">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-			</Filter>
-			<Filter
-				Name="event"
-				Filter="">
-				<File
-					RelativePath=".\src\cpaf\event\event.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-				</File>
-			</Filter>
-			<Filter
-				Name="gtk2"
-				Filter="">
-				<File
-					RelativePath=".\src\cpaf\gtk2\app.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\gtk2\button.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\gtk2\factory.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\gtk2\utils.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\gtk2\widget.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\src\cpaf\gtk2\window.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"/>
-					</FileConfiguration>
-				</File>
-			</Filter>
 			<Filter
 				Name="gui"
 				Filter="">
@@ -1237,6 +757,486 @@
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\window.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="event"
+				Filter="">
+				<File
+					RelativePath=".\src\cpaf\event\event.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="cocoa"
+				Filter="mm">
+				<File
+					RelativePath=".\src\cpaf\cocoa\app.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\button.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\factory.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\utils.mm"
+					FileType="0">
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\widget.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\window.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="gtk2"
+				Filter="">
+				<File
+					RelativePath=".\src\cpaf\gtk2\app.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gtk2\button.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gtk2\factory.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gtk2\utils.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gtk2\widget.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gtk2\window.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="win32"
+				Filter="">
+				<File
+					RelativePath=".\src\cpaf\win32\app.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\button.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\exception.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\factory.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\widget.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\win.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\window.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32">
 						<Tool

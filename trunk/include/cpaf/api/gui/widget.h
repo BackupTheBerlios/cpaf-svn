@@ -7,10 +7,10 @@
 #ifndef CPAF_API_GUI_WIDGET_H
 #define CPAF_API_GUI_WIDGET_H
 
+#include <cpaf/gui/initializer/widget.h>
 #include <cpaf/api/gui/object.h>
 
 namespace cpaf {
-    namespace gui { class Widget; } // prototype
     namespace api {
         namespace gui {
 
@@ -21,6 +21,8 @@ namespace cpaf {
 class Widget : public virtual Object
 {
 public:
+    typedef cpaf::gui::initializer::WidgetData data_type; //!< Initialization data used for Widgets.
+
     /*!
         \return A native handle for the widget. This value is returned as a void*, and how you use this value
             is dependant on the port you are working with. For win32, simply casting the return value to a HWND
@@ -51,6 +53,11 @@ public:
         but if the widget would otherwise be drawn, this function returns true.
     */
     virtual bool is_shown() = 0;
+
+    /*!
+        \brief Destroys this widget freeing all resources.
+    */
+    virtual void destroy() = 0;
 
     // commented until they are needed
     /*

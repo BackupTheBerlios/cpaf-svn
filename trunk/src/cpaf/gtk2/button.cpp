@@ -10,14 +10,10 @@
 
 cpaf::gtk2::gui::Button::Button()
     : m_label(NULL)
-{
-}
+{ }
 
-void cpaf::gtk2::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
+void cpaf::gtk2::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
-    //! \todo It would be more convenient to initialize this member within the Widget base
-    m_wrapper = params.m_wrapper;
-
     //! \todo Use factory params
     cpaf::gtk2::gui::Widget::create(params, gtk_button_new());
 

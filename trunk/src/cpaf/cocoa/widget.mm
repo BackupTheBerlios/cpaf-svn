@@ -12,7 +12,7 @@
 
 using namespace cpaf::cocoa::utils;
 
-void cpaf::cocoa::gui::Widget::create(const cpaf::gui::factory::WidgetData &params, id widget)
+void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
 {
 	m_wrapper = params.m_wrapper;
     cpaf::gui::Widget *parent;
@@ -42,6 +42,11 @@ void cpaf::cocoa::gui::Widget::create(const cpaf::gui::factory::WidgetData &para
 
     // The widget shouldn't move when we resize the window
     [m_view setAutoresizingMask:NSViewMinYMargin];
+}
+
+void cpaf::cocoa::gui::Widget::destroy()
+{
+	//! \todo Add necessary stuff here
 }
 
 cpaf::cocoa::gui::Widget::~Widget()

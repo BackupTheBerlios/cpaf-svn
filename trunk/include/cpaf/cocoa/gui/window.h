@@ -17,14 +17,17 @@ namespace cpaf {
     namespace cocoa {
         namespace gui {
 
-class Window : public /*cpaf::cocoa::gui::Widget, */cpaf::api::gui::Window
+/*!
+    \todo Why is multiple inheritance commented out for this class?
+*/
+class Window : /*public virtual cpaf::cocoa::gui::Widget, */public virtual cpaf::api::gui::Window
 {
 private:
     NSWindow *m_window;
 public:
     Window();
 
-    void create(const cpaf::gui::factory::WindowData &params);
+    void create(const cpaf::gui::initializer::WindowData &params);
 
     // object interface
     virtual void set_size(const cpaf::Size&);

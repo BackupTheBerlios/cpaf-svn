@@ -18,12 +18,13 @@ namespace cpaf {
 class CPAF_API Object
 {
 public:
+    typedef cpaf::api::gui::Object api_type;
+
+private:
+    cpaf::api::gui::Object *m_impl;
 
 protected:
-    cpaf::api::gui::Object *m_impl;
-    void set_impl(cpaf::api::gui::Object *impl);
-
-    Object();
+    Object(cpaf::api::gui::Object *impl);
 
 public:
     virtual ~Object();

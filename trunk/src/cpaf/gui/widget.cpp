@@ -12,15 +12,10 @@
 
 using namespace cpaf::api::gui;
 
-cpaf::gui::Widget::Widget()
+cpaf::gui::Widget::Widget(cpaf::api::gui::Widget *impl)
     : m_id(cpaf::gui::factory::get_unique_object_id()),
-    m_impl(NULL)
-{ }
-
-void cpaf::gui::Widget::set_impl(cpaf::api::gui::Widget *impl)
+    m_impl(impl)
 {
-    m_impl = impl;
-
     // add the wrapper / implementation pair to the map
     //cpaf::gui::factory::add_implementation_wrapper(m_impl, this);
 }
@@ -33,8 +28,7 @@ cpaf::gui::Widget::~Widget()
 
 void cpaf::gui::Widget::destroy()
 {
-    // delete our implementation, which in turn deletes 'this'.
-    delete m_impl;
+    m_impl->destroy();
 }
 
 cpaf::gui::Widget::operator cpaf::api::gui::Widget *()

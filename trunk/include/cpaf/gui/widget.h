@@ -11,23 +11,23 @@
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/types.h>
 //#include <cpaf/gui/object.h>
-#include <cpaf/gui/factory/widget.h>
+#include <cpaf/gui/initializer/widget.h>
 
 namespace cpaf {
     namespace gui {
 
-        class App;
-
 class CPAF_API Widget
 {
+public:
+    typedef cpaf::api::gui::Widget api_type;
+
 private:
     int m_id;
 
-protected:
     cpaf::api::gui::Widget *m_impl;
-    void set_impl(cpaf::api::gui::Widget *impl);
 
-    Widget();
+protected:
+    Widget(cpaf::api::gui::Widget *impl);
 
 public:
     virtual ~Widget();

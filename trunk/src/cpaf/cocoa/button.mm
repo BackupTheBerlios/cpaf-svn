@@ -11,7 +11,7 @@ cpaf::cocoa::gui::Button::Button()
 {
 }
 
-void cpaf::cocoa::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
+void cpaf::cocoa::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
 	if( !params.m_parent )
 		throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);

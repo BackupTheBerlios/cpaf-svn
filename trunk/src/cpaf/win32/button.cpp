@@ -9,7 +9,7 @@
 #include <cpaf/win32/exception.h>
 #include <cpaf/gui/button.h>
 
-void cpaf::win32::gui::Button::create(const cpaf::gui::factory::ButtonData &params)
+void cpaf::win32::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
     // this needs to go before the wnd_proc_replaced bit or I get an access violation from VC
     // for what ever stupid reason if the parent is null

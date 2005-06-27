@@ -13,7 +13,7 @@ cpaf::cocoa::gui::Window::Window()
 {
 }
 
-void cpaf::cocoa::gui::Window::create(const cpaf::gui::factory::WindowData &params)
+void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
 {
     double x = params.m_pos.x, y = params.m_pos.y;
     double w = params.m_size.width, h = params.m_size.height;

@@ -32,11 +32,6 @@ public:
     */
     virtual std::string get_title() = 0;
 
-    /*
-    virtual void maximize() = 0;
-    virtual void minimize() = 0;
-    */
-
     /*!
         \brief Sets the client size of the widget.
     */
@@ -53,7 +48,6 @@ public:
         the position of the client area will be moved down to make room.
     */
     virtual cpaf::Point get_client_position() = 0;
-
 };
 
         } // gui

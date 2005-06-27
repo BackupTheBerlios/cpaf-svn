@@ -7,6 +7,7 @@
 #ifndef CPAF_API_GUI_BUTTON_H
 #define CPAF_API_GUI_BUTTON_H
 
+#include <cpaf/gui/initializer/button.h>
 #include <cpaf/api/gui/widget.h>
 
 #include <string>
@@ -19,7 +20,12 @@ class Button : public virtual Widget
 {
     //! \todo "Controls" need a common base (checkboxes, radio, ...)
 public:
-    static int factory_key;
+    typedef cpaf::gui::initializer::ButtonData data_type; //!< Initialization data used for Buttons
+
+    /*!
+        \brief Constructs the native widget using the given initialization data
+    */
+    virtual void create(const data_type &init_params) = 0;
 
     /*!
         \brief Sets the label of the button

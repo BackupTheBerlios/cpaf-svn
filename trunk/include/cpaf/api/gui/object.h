@@ -1,5 +1,5 @@
 /*!
-    \file include\cpaf\gui\api\object.h
+    \file include/cpaf/gui/api/object.h
     \brief Object interface declaration
     \date Created: 2005-04-05
 */
@@ -7,11 +7,10 @@
 #ifndef CPAF_API_GUI_OBJECT_H
 #define CPAF_API_GUI_OBJECT_H
 
+#include <cpaf/gui/initializer/object.h>
+#include <cpaf/types.h>
+
 namespace cpaf {
-
-    struct Size;
-    struct Point;
-
     namespace api {
         namespace gui {
 
@@ -22,6 +21,8 @@ namespace cpaf {
 class Object
 {
 public:
+    typedef cpaf::gui::initializer::ObjectData data_Type; //!< initialization data used for Objects
+
     // virtual dtor ensuring that all gui objects are properly destructed
     virtual ~Object();
 

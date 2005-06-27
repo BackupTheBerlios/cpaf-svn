@@ -35,9 +35,9 @@ int get_unique_id();
 #define CPAF_IMPLEMENT_EXPORTED_EVENT(name)  const int name = cpaf::event::get_unique_id();
 
 // event declarations
-CPAF_DECLARE_EXPORTED_EVENT(widget_create);
-CPAF_DECLARE_EXPORTED_EVENT(widget_destroy);
-CPAF_DECLARE_EXPORTED_EVENT(button_click);
+CPAF_DECLARE_EXPORTED_EVENT(WIDGET_CREATE);
+CPAF_DECLARE_EXPORTED_EVENT(WIDGET_DESTROY);
+CPAF_DECLARE_EXPORTED_EVENT(BUTTON_CLICK);
 
 //! \todo decide wether we use addresses or object id's here
 typedef int object_id; // value specifying which object sent the event

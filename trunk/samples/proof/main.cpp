@@ -26,6 +26,8 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #   define DBG_MSG_2(f,s)
 #endif
 
+using cpaf::gui::factory::create_widget;
+
 /*
     Our derived application class
 */
@@ -41,13 +43,14 @@ public:
 class MyButton : public cpaf::gui::Button
 {
 public:
-    MyButton()
+    MyButton(cpaf::api::gui::Button *impl)
+        : Button(impl)
     {
         DBG_MSG("MyButton::Ctor");
 
         using namespace cpaf::event;
-        connect<cpaf::event::Event, false>(cpaf::event::widget_create, get_id(), *this, &MyButton::on_create).connect(*this, &MyButton::on_create);
-        connect<cpaf::event::Event, false>(cpaf::event::widget_destroy, get_id(), *this, &MyButton::on_destroy);
+        connect<Event, false>(WIDGET_CREATE, get_id(), *this, &MyButton::on_create).connect(*this, &MyButton::on_create);
+        connect<Event, false>(WIDGET_CREATE, get_id(), *this, &MyButton::on_destroy);
     }
 
     void on_create(cpaf::event::Event &event)
@@ -75,31 +78,32 @@ bool MyApp::init()
 
         This window will be visible without calling wnd->show() if .show() isn't commented out below.
     */
-    cpaf::gui::Window *wnd = cpaf::gui::Window::Factory()
+    cpaf::gui::Window *wnd = create_widget<cpaf::gui::Window>(
+        cpaf::gui::Window::Initializer()
         .title("Cpaf")
         .client_size(cpaf::Size(400,400))
         //.show()
-        .create();
+        );
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.
         One of these buttons is a derived button.
+        We also reuse the data initializer object to create these buttons.
     */
-    cpaf::gui::Button::Factory fact_btn;
-    cpaf::gui::Button *btn = fact_btn
-        .label("Hello world!")
+    cpaf::gui::Button::Initializer btn_init;
+    cpaf::gui::Button *btn = create_widget<cpaf::gui::Button>(btn_init
         .parent(wnd)
+        .label("Hello world!")
         .size(cpaf::Size(100,20))
         .position(cpaf::Point(50,50))
         .show()
-        .create();
-    MyButton *my_btn = fact_btn
+        );
+    MyButton *my_btn = create_widget<MyButton>(btn_init
         .label("MyButton!")
         .position(cpaf::Point(100,100))
-        .show()
-        .create<MyButton>();
+        );
 
-    // Show the toplevel last for proper visual appearance
+    // Show the window last for proper visual appearance
     wnd->show();
 
     return true;

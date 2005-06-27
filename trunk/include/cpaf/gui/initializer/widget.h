@@ -1,25 +1,21 @@
 /*!
-    \file include/cpaf/gui/factory/widget.h
-    \brief Factory initializer for cpaf::gui::Widget
+    \file include/cpaf/gui/initializer/widget.h
+    \brief Initializer classes for cpaf::gui::Widget
     \date Created: 2005-05-07
 */
 
-#ifndef CPAF_GUI_FACTORY_WIDGET_H
-#define CPAF_GUI_FACTORY_WIDGET_H
+#ifndef CPAF_GUI_INITIALIZER_WIDGET_H
+#define CPAF_GUI_INITIALIZER_WIDGET_H
 
-#include <cpaf/gui/factory/object.h>
+#include <cpaf/gui/initializer/object.h>
 
 namespace cpaf {
     namespace gui {
-        class Widget; // prototype
-        namespace factory {
+        class Widget;
+        namespace initializer {
 
 /*!
-    \brief Data object for Widget creation. This class contains the
-    initialization parameters which are passed from the widget factories
-    to the object being created. This allows you to specify the objects
-    initial state during creation time without needing to call set_foo()
-    methods after creation.
+    \brief initialization data for Widget creation.
 */
 struct WidgetData : public ObjectData
 {
@@ -47,12 +43,18 @@ struct WidgetData : public ObjectData
     { }
 };
 
+/*!
+    \brief Initializer class for Widget creation.
+*/
 template<class T> class Widget : public Object<T>
 {
-protected:
-    WidgetData *m_data;
+public:
+    typedef WidgetData data_type;
 
-    Widget(WidgetData *data)
+protected:
+    data_type *m_data;
+
+    Widget(data_type *data)
         : Object<T>(data),
         m_data(data)
     { }
@@ -94,13 +96,15 @@ public:
         return dynamic_cast<T&>(*this);
     }
 
+    void set_wrapper(cpaf::gui::Widget *w) { m_data->m_wrapper = w; }
+
     cpaf::gui::Widget *get_parent() const { return m_data->m_parent; }
     bool get_show() const { return m_data->m_show; }
     bool get_enable() const { return m_data->m_enable; }
 };
 
-        } // factory
+        } // initializer
     } // gui
 } // cpaf
 
-#endif
+#endif // CPAF_GUI_INITIALIZER_WIDGET_H

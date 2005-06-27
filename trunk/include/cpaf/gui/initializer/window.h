@@ -1,26 +1,21 @@
 /*!
-    \file include/cpaf/gui/factory/window.h
-    \brief Factory initializer for cpaf::gui::Window
+    \file include/cpaf/gui/initializer/window.h
+    \brief Initializer classes for cpaf::gui::Window
     \date Created: 2005-05-07
 */
 
-#ifndef CPAF_GUI_FACTORY_WINDOW_H
-#define CPAF_GUI_FACTORY_WINDOW_H
+#ifndef CPAF_GUI_INITIALIZER_WINDOW_H
+#define CPAF_GUI_INITIALIZER_WINDOW_H
 
-#include <cpaf/gui/factory/widget.h>
-
+#include <cpaf/gui/initializer/widget.h>
 #include <string>
 
 namespace cpaf {
     namespace gui {
-        namespace factory {
+        namespace initializer {
 
 /*!
-    \brief Data object for Window creation. This class contains the
-    initialization parameters which are passed from the widget factories
-    to the object being created. This allows you to specify the objects
-    initial state during creation time without needing to call set_foo()
-    methods after creation.
+    \brief Initialization data for Window creation.
 */
 struct WindowData : public WidgetData
 {
@@ -47,12 +42,18 @@ struct WindowData : public WidgetData
     }
 };
 
+/*!
+    \brief Initializer class for Window creation.
+*/
 template <typename T> class Window : public Widget<T>
 {
-protected:
-    WindowData *m_data;
+public:
+    typedef WindowData data_type;
 
-    Window(WindowData *data)
+protected:
+    data_type *m_data;
+
+    Window(data_type *data)
         : Widget<T>(data),
         m_data(data)
     { }
@@ -75,9 +76,25 @@ public:
     cpaf::Size get_client_size() const { return m_data->m_client_size; }
 };
 
-        } // factory
+        } // initializer
+
+/*!
+    \brief A concrete initializer class for Window creation
+*/
+class WindowInitializer : public cpaf::gui::initializer::Window<WindowInitializer>
+{
+public:
+    WindowInitializer()
+        : cpaf::gui::initializer::Window<WindowInitializer>(new cpaf::gui::initializer::WindowData)
+    { }
+
+    operator cpaf::gui::initializer::WindowData () const
+    {
+        return *m_data;
+    }
+};
+
     } // gui
 } // cpaf
 
-#endif
-
+#endif // CPAF_GUI_INITIALIZER_WINDOW_H
