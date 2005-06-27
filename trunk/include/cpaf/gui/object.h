@@ -20,16 +20,8 @@ class CPAF_API Object
 public:
     typedef cpaf::api::gui::Object api_type;
 
-private:
-    cpaf::api::gui::Object *m_impl;
-
-protected:
-    Object(cpaf::api::gui::Object *impl);
-
 public:
     virtual ~Object();
-
-    operator cpaf::api::gui::Object *();
 
     void set_size(const cpaf::Size &s);
     void set_min_size(const cpaf::Size &s);
@@ -39,6 +31,15 @@ public:
     cpaf::Size get_min_size();
     cpaf::Size get_max_size();
     cpaf::Point get_position();
+
+private:
+    cpaf::api::gui::Object *m_impl;
+
+protected:
+    Object(cpaf::api::gui::Object *impl);
+
+public:
+    operator cpaf::api::gui::Object *();
 };
 */
     } // gui

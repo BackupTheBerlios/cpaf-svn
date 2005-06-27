@@ -21,19 +21,6 @@ class CPAF_API Widget
 public:
     typedef cpaf::api::gui::Widget api_type;
 
-private:
-    int m_id;
-
-    cpaf::api::gui::Widget *m_impl;
-
-protected:
-    Widget(cpaf::api::gui::Widget *impl);
-
-public:
-    virtual ~Widget();
-
-    operator cpaf::api::gui::Widget *();
-
     void destroy();
 
     void set_size(const cpaf::Size &s);
@@ -53,6 +40,24 @@ public:
     bool is_enabled();
     bool is_shown();
     int get_id();
+
+    virtual ~Widget();
+
+private:
+    int m_id;
+
+    cpaf::api::gui::Widget *m_impl;
+
+protected:
+    Widget(cpaf::api::gui::Widget *impl);
+
+    template<typename T> T *get_impl()
+    {
+        return dynamic_cast<T*>(m_impl);
+    }
+
+public:
+    operator cpaf::api::gui::Widget *();
 };
 
     } // gui

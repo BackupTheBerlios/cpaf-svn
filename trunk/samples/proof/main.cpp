@@ -43,8 +43,7 @@ public:
 class MyButton : public cpaf::gui::Button
 {
 public:
-    MyButton(cpaf::api::gui::Button *impl)
-        : Button(impl)
+    MyButton()
     {
         DBG_MSG("MyButton::Ctor");
 

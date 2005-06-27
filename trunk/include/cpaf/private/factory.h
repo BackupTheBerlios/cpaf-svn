@@ -1,6 +1,6 @@
 /*!
     \file include/cpaf/private/factory.h
-    \brief Widget factory declarations
+    \brief Private widget factory declarations
     \date Created: 2005-04-05
 */
 
@@ -26,39 +26,6 @@ namespace cpaf {
     implementing template specializations for all constructable types.
 */
 template<typename Api> CPAF_API Api *create_widget_implementation();
-
-/*!
-    \brief Factory function for cpaf::gui widgets.
-*/
-template<typename Widget> Widget *create_widget(typename const Widget::Initializer &initializer)
-{
-    typename Widget::api_type *impl = NULL;
-    Widget *wrapper = NULL;
-
-    try
-    {
-        impl = create_widget_implementation<typename Widget::api_type>();
-        wrapper = new Widget(impl);
-
-        // get the initialization data out of the initializer (actually a copy of it) using cast operator
-        typename Widget::Initializer::data_type data = initializer;
-
-        // initialize the data
-        data.m_wrapper = wrapper;
-
-        // create the native widget
-        wrapper->create(data);
-
-        return wrapper;
-    }
-    catch(...)
-    {
-        // if anything goes wrong, cleanup then rethrow
-        delete impl;
-        delete wrapper;
-        throw;
-    }
-}
 
 /*
     \return An object identifier unique throughout the application

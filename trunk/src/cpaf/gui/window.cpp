@@ -9,13 +9,20 @@
 #include <cpaf/private/factory.h>
 #include <cpaf/exception.h>
 
+cpaf::gui::Window::Window()
+    : TopLevel(cpaf::gui::factory::create_widget_implementation<api_type>())
+{
+    m_impl = get_impl<api_type>();
+}
+
 cpaf::gui::Window::Window(cpaf::api::gui::Window *impl)
     : TopLevel(impl),
     m_impl(impl)
 { }
 
-void cpaf::gui::Window::create(const Initializer::data_type &params)
+void cpaf::gui::Window::create(Initializer::data_type params)
 {
+    params.m_wrapper = this;
     m_impl->create(params);
 }
 

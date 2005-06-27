@@ -266,7 +266,7 @@
 					RelativePath=".\include\cpaf\gui\button.h">
 				</File>
 				<File
-					RelativePath=".\include\cpaf\private\factory.h">
+					RelativePath=".\include\cpaf\gui\factory.h">
 				</File>
 				<File
 					RelativePath=".\include\cpaf\gui\object.h">
@@ -308,15 +308,6 @@
 				Name="cocoa"
 				Filter="">
 				<File
-					RelativePath=".\include\cpaf\cocoa\factory.h">
-					<FileConfiguration
-						Name="debug dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCustomBuildTool"/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath=".\include\cpaf\cocoa\utils.h">
 				</File>
 				<Filter
@@ -355,9 +346,6 @@
 				Name="gtk2"
 				Filter="">
 				<File
-					RelativePath=".\include\cpaf\gtk2\factory.h">
-				</File>
-				<File
 					RelativePath=".\include\cpaf\gtk2\gtk.h">
 				</File>
 				<File
@@ -384,9 +372,6 @@
 					RelativePath=".\include\cpaf\win32\exception.h">
 				</File>
 				<File
-					RelativePath=".\include\cpaf\win32\factory.h">
-				</File>
-				<File
 					RelativePath=".\include\cpaf\win32\msgnames.h">
 				</File>
 				<File
@@ -405,6 +390,13 @@
 						RelativePath=".\include\cpaf\win32\gui\window.h">
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="private"
+				Filter="">
+				<File
+					RelativePath=".\include\cpaf\private\factory.h">
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

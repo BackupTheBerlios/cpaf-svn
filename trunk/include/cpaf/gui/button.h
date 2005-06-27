@@ -12,31 +12,31 @@
 #include <cpaf/gui/widget.h>
 #include <cpaf/gui/initializer/button.h>
 
-#include <cpaf/private/factory.h>
+#include <cpaf/gui/factory.h>
 
 namespace cpaf {
     namespace gui {
 
 class CPAF_API Button : public Widget
 {
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename const Widget::Initializer &);
-
 public:
     typedef cpaf::api::gui::Button api_type;
-
     typedef ButtonInitializer Initializer;
 
     void set_label(const std::string &label);
     std::string get_label();
 
-    operator cpaf::api::gui::Button *();
-
 private:
     cpaf::api::gui::Button *m_impl;
 
 protected:
+    Button();
     Button(cpaf::api::gui::Button *impl);
-    void create(const Initializer::data_type &params);
+    void create(Initializer::data_type params);
+
+public:
+    operator cpaf::api::gui::Button *();
+    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename const Widget::Initializer &);
 };
 
     } // gui

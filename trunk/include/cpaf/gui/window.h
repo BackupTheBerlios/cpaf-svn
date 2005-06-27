@@ -12,7 +12,7 @@
 #include <cpaf/gui/toplevel.h>
 #include <cpaf/gui/initializer/window.h>
 
-#include <cpaf/private/factory.h>
+#include <cpaf/gui/factory.h>
 
 namespace cpaf {
     namespace gui {
@@ -23,11 +23,8 @@ namespace cpaf {
 */
 class CPAF_API Window : public TopLevel
 {
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename const Widget::Initializer &);
-
 public:
     typedef cpaf::api::gui::Window api_type;
-
     typedef WindowInitializer Initializer;
 
 private:
@@ -36,11 +33,13 @@ private:
     cpaf::api::gui::Window *m_impl;
 
 protected:
+    Window();
     Window(cpaf::api::gui::Window *impl);
-    void create(const Initializer::data_type &params);
+    void create(Initializer::data_type params);
 
 public:
     operator cpaf::api::gui::Window *();
+    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename const Widget::Initializer &);
 };
 
     } // gui
