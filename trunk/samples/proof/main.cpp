@@ -49,7 +49,7 @@ public:
 
         using namespace cpaf::event;
         connect<Event, false>(WIDGET_CREATE, get_id(), *this, &MyButton::on_create).connect(*this, &MyButton::on_create);
-        connect<Event, false>(WIDGET_CREATE, get_id(), *this, &MyButton::on_destroy);
+        connect<Event, false>(WIDGET_DESTROY, get_id(), *this, &MyButton::on_destroy);
     }
 
     void on_create(cpaf::event::Event &event)
