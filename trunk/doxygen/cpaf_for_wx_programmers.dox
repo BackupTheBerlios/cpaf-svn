@@ -1,0 +1,13 @@
+/*!
+	\page page_cfwp CPAF for wxWidgets programmers
+
+	\section cfwp_overview Overview
+
+	This document is intended for programmers coming to CPAF with wxWidgets programming experience. Key differences between CPAF and wxWidgets will be pointed out, and you will also find coding style guidelines to break you from your wxHabits so that you may fully embrace the CPAF way of doing things.
+
+	\section cfwp_intro Introduction
+
+	\section cfwp_widget_creation Creating widgets
+
+	\section cfwp_events Events
+*/
