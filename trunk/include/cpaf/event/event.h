@@ -19,8 +19,15 @@ namespace cpaf {
 // prototypes
 class ListenerFunctorBase;
 class EventChain;
-template<typename E> class EventChainWrapper;
 class Manager;
+
+template<typename E> class EventChainWrapper;
+template<typename L, typename E> class ListenerFunctor;
+
+/*!
+    Return an reference to the main threads Manager object
+*/
+CPAF_API cpaf::event::Manager &get_manager();
 
 /*!
     This function generates a unique event id.
@@ -105,35 +112,6 @@ public:
 };
 
 /*!
-    Templated specialization of the base functor class for type safety
-*/
-template<typename L, typename E> class ListenerFunctor : public ListenerFunctorBase
-{
-public:
-    typedef void(L::*ptr_type)(Event &e); // the function pointer for this functor
-    typedef Event event_type; // the type of event that this functor works with
-
-private:
-    ptr_type m_ptr;
-    L &m_listener;
-
-public:
-    ListenerFunctor(L &listener, ptr_type function)
-        : m_ptr(function),
-        m_listener(listener)
-    { }
-
-    /*!
-        Invokes the event listener function via the function pointer.
-        Type safety is gaurenteed via dynamic_cast.
-    */
-    void operator() (Event &e)
-    {
-        (m_listener.*m_ptr)(dynamic_cast<E&>(e));
-    }
-};
-
-/*!
     Represents a chain of event listeners
 */
 class CPAF_API EventChain
@@ -184,28 +162,6 @@ public:
 */
 class CPAF_API Manager
 {
-    template<typename Event, bool After, typename Listener> friend EventChainWrapper<Event> connect(event_id event, object_id object, Listener &l, typename ListenerFunctor<Listener, Event>::ptr_type function);
-
-private:
-    // storage related typedefs
-    typedef std::vector<event_chain_ptr> event_chain_vector;
-    typedef std::map<event_id, event_chain_vector> event_vector_map;
-    typedef std::map<object_id, event_chain_vector> object_vector_map;
-    typedef std::map<object_id, event_vector_map> object_event_vector_map;
-
-    // there are two of each map, one for regular event chains, and one for "post processing" chains
-    static const int BEFORE_MAP;
-    static const int AFTER_MAP;
-
-    // {object, event, chain} map
-    object_event_vector_map m_obj_evt_map[2];
-
-    // {[any], event, chain} map
-    event_vector_map m_evt_map[2];
-
-    // {object, [any], chain} map
-    object_vector_map m_obj_map[2];
-
 public:
     Manager();
 
@@ -228,8 +184,51 @@ public:
     void send_event(Event &e);
 
 private:
+    // storage related typedefs
+    typedef std::vector<event_chain_ptr> event_chain_vector;
+    typedef std::map<event_id, event_chain_vector> event_vector_map;
+    typedef std::map<object_id, event_chain_vector> object_vector_map;
+    typedef std::map<object_id, event_vector_map> object_event_vector_map;
+
+    // there are two of each map, one for regular event chains, and one for "post processing" chains
+    static const int BEFORE_MAP;
+    static const int AFTER_MAP;
+
+    // {object, event, chain} map
+    object_event_vector_map m_obj_evt_map[2];
+
+    // {event, chain} map
+    event_vector_map m_evt_map[2];
+
+    // {object, chain} map
+    object_vector_map m_obj_map[2];
+
     void send_event(event_chain_vector &chain, Event &e);
 };
+
+/*!
+    This is a convenience function which allows you to more easliy connect events. The purpose of this
+    function is to create a templated wrapper around an EventChain object which you use to add
+    event listeners forming a chain. Example usage:
+
+    // connect one listener
+    connect<Event, false>(WIDGET_CREATE, OBJECT_ID_ANY) (*this, &Foo::on_create);
+
+    // connect two listeners
+    connect<Event, false>(WIDGET_CREATE, OBJECT_ID_ANY) (*this, &Foo::on_create) (*this, &Foo::on_create2);
+
+    Template parameters:
+    Event       Event type being connected
+    After       True if you want to recieve the event after it has been processed by the normal event listeners
+
+    \param event    Id of the event
+    \param object   The object to recieve events from
+    \param manager  An event manager to connect to
+*/
+template<typename Event, bool After> EventChainWrapper<Event> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
+{
+    return EventChainWrapper<Event>(manager.create_event_chain(object, event, After));
+}
 
 /*!
     A templated wrapper around the EventChain class to allow for clean, typesafe code
@@ -259,7 +258,7 @@ public:
         \param l Listening object connecting this event
         \param function The listening function
     */
-    template<typename L> EventChainWrapper<E> &connect(L &l, typename ListenerFunctor<L, E>::ptr_type function)
+    template<typename L> EventChainWrapper<E> &operator()(typename ListenerFunctor<L, E>::ptr_type function, L &l)
     {
         m_chain.connect(new ListenerFunctor<L,E>(l, function));
         return *this;
@@ -267,28 +266,33 @@ public:
 };
 
 /*!
-    Return an reference to the main threads Manager object
+    Templated specialization of the base functor class for type safety
 */
-CPAF_API cpaf::event::Manager &get_manager();
-
-/*!
-    This is a convenience function which allows you to more easliy connect events.
-
-    Template parameters:
-    Event       Event type being connected
-    After       True if you want to recieve the event after it has been processed by the normal event listeners
-    Listener    The Object connecting the event
-
-    \param l Listening object connecting this event
-    \param event Id of the event
-    \param object The object to recieve events from
-    \param function The listening function
-*/
-template<typename Event, bool After, typename Listener> EventChainWrapper<Event> connect(event_id event, object_id object, Listener &l, typename ListenerFunctor<Listener, Event>::ptr_type function)
+template<typename L, typename E> class ListenerFunctor : public ListenerFunctorBase
 {
-    ListenerFunctor<Listener, Event> *functor = new ListenerFunctor<Listener, Event>(l, function);
-    return EventChainWrapper<Event>(cpaf::event::get_manager().create_event_chain(object, event, After).connect(functor));
-}
+public:
+    typedef void(L::*ptr_type)(Event &e); // the function pointer for this functor
+    typedef Event event_type; // the type of event that this functor works with
+
+private:
+    ptr_type m_ptr;
+    L &m_listener;
+
+public:
+    ListenerFunctor(L &listener, ptr_type function)
+        : m_ptr(function),
+        m_listener(listener)
+    { }
+
+    /*!
+        Invokes the event listener function via the function pointer.
+        Type safety is gaurenteed via dynamic_cast.
+    */
+    void operator() (Event &e)
+    {
+        (m_listener.*m_ptr)(dynamic_cast<E&>(e));
+    }
+};
 
     } // event
 } // cpaf

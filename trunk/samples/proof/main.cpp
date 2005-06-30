@@ -48,18 +48,47 @@ public:
         DBG_MSG("MyButton::Ctor");
 
         using namespace cpaf::event;
-        connect<Event, false>(WIDGET_CREATE, get_id(), *this, &MyButton::on_create).connect(*this, &MyButton::on_create);
-        connect<Event, false>(WIDGET_DESTROY, get_id(), *this, &MyButton::on_destroy);
+
+        // connected one event listener
+        connect<Event, false>(WIDGET_DESTROY, get_id()) (&MyButton::on_destroy, *this);
+
+        // connecting multiple event listeners into a chain
+        // also store the event chain object for later use
+        EventChainWrapper<Event> w = connect<Event, false>(WIDGET_CREATE, get_id())
+            (&MyButton::on_create, *this)
+            (&MyButton::on_create, *this);
+
+        // connect another listener
+        w(&MyButton::on_create, *this);
     }
 
     void on_create(cpaf::event::Event &event)
     {
         DBG_MSG("MyButton::on_create");
+
+        // let the other listeners in the chain process
+        event.continue_processing();
     }
 
-    void on_destroy(cpaf::event::Event &event)
+    virtual void on_destroy(cpaf::event::Event &event)
     {
         DBG_MSG("MyButton::on_destroy");
+    }
+};
+
+/*
+    Another derived class demonstration the use of virtual event listener functions
+*/
+class MyButton2 : public MyButton
+{
+public:
+
+    MyButton2() { }
+
+    // override the base event listener
+    void on_destroy(cpaf::event::Event &event)
+    {
+        DBG_MSG("MyButton2::on_destroy");
     }
 };
 
@@ -97,7 +126,7 @@ bool MyApp::init()
         .position(cpaf::Point(50,50))
         .show()
         );
-    MyButton *my_btn = create_widget<MyButton>(btn_init
+    MyButton2 *my_btn = create_widget<MyButton2>(btn_init
         .label("MyButton!")
         .position(cpaf::Point(100,100))
         );
