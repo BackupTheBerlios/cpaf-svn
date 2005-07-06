@@ -5,6 +5,7 @@
  */
 
 #include <cpaf/cocoa/gui/widget.h>
+#include <cpaf/gui/widget.h>
 #include <cpaf/cocoa/utils.h>
 
 // for delete_implementation_wrapper
