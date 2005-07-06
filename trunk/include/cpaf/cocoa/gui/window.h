@@ -40,11 +40,12 @@ public:
     virtual cpaf::Point get_position();
 
     // widget interface
-    virtual id get_handle() { return m_window; }
+    virtual void *get_handle() { return m_window; }
     virtual int get_id() { return 0; } //! \todo No unique id's for Cocoa port yet.
     virtual void enable(bool sensitive) { }
     virtual bool is_enabled() { return false; }
     virtual bool is_shown() { return false; }
+    virtual void destroy() { return; }
 
     // Do we need to override Widget::Show in Cocoa?
     virtual void show(bool show, bool activate);

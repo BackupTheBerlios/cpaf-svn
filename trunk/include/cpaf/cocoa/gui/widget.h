@@ -40,7 +40,7 @@ public:
 
     // widget interface
     virtual void destroy();
-    virtual id get_handle() { return m_view; }
+    virtual void *get_handle() { return m_view; }
     virtual void enable(bool sensitive);
     virtual void show(bool show, bool activate);
     virtual bool is_enabled();
