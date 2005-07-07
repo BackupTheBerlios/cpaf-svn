@@ -8,6 +8,7 @@
 #define CPAF_EVENT_H
 
 #include <cpaf/dllimpexp.h>
+#include <cpaf/event/id.h>
 
 #include <map>
 #include <vector>
@@ -29,30 +30,12 @@ template<typename L, typename E> class ListenerFunctor;
 */
 CPAF_API cpaf::event::Manager &get_manager();
 
-/*!
-    This function generates a unique event id.
-    \return A unique event id
-*/
-int get_unique_id();
-
-//! Helper macro for the declaration of event ids in header files
-#define CPAF_DECLARE_EXPORTED_EVENT(name)    CPAF_API extern const int name;
-
-//! Helper macro for implementing event ids in source files
-#define CPAF_IMPLEMENT_EXPORTED_EVENT(name)  const int name = cpaf::event::get_unique_id();
-
-// event declarations
-CPAF_DECLARE_EXPORTED_EVENT(WIDGET_CREATE);
-CPAF_DECLARE_EXPORTED_EVENT(WIDGET_DESTROY);
-CPAF_DECLARE_EXPORTED_EVENT(BUTTON_CLICK);
-
 //! \todo decide wether we use addresses or object id's here
 typedef int object_id; // value specifying which object sent the event
-typedef int event_id; // event identifier
 typedef boost::shared_ptr<EventChain> event_chain_ptr;
 
-const event_id EVENT_ID_ANY     = 0;
-const object_id OBJECT_ID_ANY   = 0;
+const event_id EVENT_ID_ANY = 0;
+const object_id OBJECT_ID_ANY = 0;
 
 class CPAF_API Event
 {

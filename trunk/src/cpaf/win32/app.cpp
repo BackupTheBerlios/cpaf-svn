@@ -1,6 +1,6 @@
 /*!
     \file src/cpaf/win32/app.cpp
-    \brief Implementation file for the parts of cpaf::gui::App which are implemenation specific,
+    \brief Implementation of the parts of cpaf::gui::App which are implementation specific,
     those being gui_init() and run().
     \date Created: 2005-04-07
 */

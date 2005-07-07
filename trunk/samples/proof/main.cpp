@@ -12,6 +12,8 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/app.h>
 #include <cpaf/gui/window.h>
 #include <cpaf/gui/button.h>
+#include <cpaf/gui/textbox.h>
+
 #include <cpaf/exception.h>
 
 #if defined(_MSC_VER) && defined(_DEBUG)
@@ -129,6 +131,17 @@ bool MyApp::init()
     MyButton2 *my_btn = create_widget<MyButton2>(btn_init
         .label("MyButton!")
         .position(cpaf::Point(100,100))
+        );
+
+    /*
+        Create a textbox
+    */
+    cpaf::gui::TextBox *text = create_widget<cpaf::gui::TextBox>(cpaf::gui::TextBox::Initializer()
+        .parent(wnd)
+        .text("I'm a text box!")
+        .position(cpaf::Point(0,0))
+        .size(cpaf::Size(200,30))
+        .show()
         );
 
     // Show the window last for proper visual appearance

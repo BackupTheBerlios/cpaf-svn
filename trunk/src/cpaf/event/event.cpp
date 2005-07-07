@@ -22,16 +22,6 @@ cpaf::event::Manager &cpaf::event::get_manager()
 const int cpaf::event::Manager::BEFORE_MAP = 0;
 const int cpaf::event::Manager::AFTER_MAP = 1;
 
-CPAF_IMPLEMENT_EXPORTED_EVENT(cpaf::event::WIDGET_CREATE);
-CPAF_IMPLEMENT_EXPORTED_EVENT(cpaf::event::WIDGET_DESTROY);
-CPAF_IMPLEMENT_EXPORTED_EVENT(cpaf::event::BUTTON_CLICK);
-
-int cpaf::event::get_unique_id()
-{
-    static int next = 0;
-    return ++next;
-}
-
 /*
 cpaf::event::Manager
 */

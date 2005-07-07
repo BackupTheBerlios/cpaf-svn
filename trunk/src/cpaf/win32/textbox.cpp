@@ -1,13 +1,13 @@
 /*!
-    \file src/cpaf/win32/button.cpp
-    \brief Implementation of cpaf::win32::gui::Button
-    \date Created: 2005-04-05
+    \file src/cpaf/win32/textbox.cpp
+    \brief Implementation of cpaf::win32::gui::TextBox
+    \date Created: 2005-07-07
 */
 
-#include <cpaf/win32/gui/button.h>
+#include <cpaf/win32/gui/textbox.h>
 #include <cpaf/win32/exception.h>
 
-void cpaf::win32::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
+void cpaf::win32::gui::TextBox::create(const cpaf::gui::initializer::TextBoxData &params)
 {
     HWND hparent;
     cpaf::gui::Widget *parent = params.m_parent;
@@ -31,7 +31,7 @@ void cpaf::win32::gui::Button::create(const cpaf::gui::initializer::ButtonData &
     {
         CreationHook hook; // hook WM_CREATE for initialization stuff
 
-        m_hwnd = ::CreateWindowEx(0, TEXT("BUTTON"), params.m_label.c_str(), WS_CHILD | BS_PUSHBUTTON,
+        m_hwnd = ::CreateWindowEx(0, TEXT("EDIT"), params.m_text.c_str(), WS_CHILD | WS_BORDER,
             x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
             &info);
     }
@@ -40,12 +40,12 @@ void cpaf::win32::gui::Button::create(const cpaf::gui::initializer::ButtonData &
     cpaf::win32::gui::Widget::create(params);
 }
 
-void cpaf::win32::gui::Button::set_label(const std::string &label)
+void cpaf::win32::gui::TextBox::set_text(const std::string &s)
 {
-    set_window_text(label);
+    set_window_text(s);
 }
 
-std::string cpaf::win32::gui::Button::get_label()
+std::string cpaf::win32::gui::TextBox::get_text()
 {
     return get_window_text();
 }

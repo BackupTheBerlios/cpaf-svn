@@ -243,6 +243,9 @@
 						RelativePath=".\include\cpaf\api\gui\sizer.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\api\gui\textbox.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\api\gui\toplevel.h">
 					</File>
 					<File
@@ -272,6 +275,9 @@
 					RelativePath=".\include\cpaf\gui\object.h">
 				</File>
 				<File
+					RelativePath=".\include\cpaf\gui\textbox.h">
+				</File>
+				<File
 					RelativePath=".\include\cpaf\gui\toplevel.h">
 				</File>
 				<File
@@ -290,6 +296,9 @@
 						RelativePath=".\include\cpaf\gui\initializer\object.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\gui\initializer\textbox.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\gui\initializer\widget.h">
 					</File>
 					<File
@@ -303,6 +312,68 @@
 				<File
 					RelativePath=".\include\cpaf\event\event.h">
 				</File>
+				<File
+					RelativePath=".\include\cpaf\event\id.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="gtk2"
+				Filter="">
+				<File
+					RelativePath=".\include\cpaf\gtk2\gtk.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\gtk2\utils.h">
+				</File>
+				<Filter
+					Name="gui"
+					Filter="">
+					<File
+						RelativePath=".\include\cpaf\gtk2\gui\button.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\gtk2\gui\widget.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\gtk2\gui\window.h">
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="private"
+				Filter="">
+				<File
+					RelativePath=".\include\cpaf\private\factory.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="win32"
+				Filter="">
+				<File
+					RelativePath=".\include\cpaf\win32\exception.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\win32\msgnames.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\win32\win.h">
+				</File>
+				<Filter
+					Name="gui"
+					Filter="">
+					<File
+						RelativePath=".\include\cpaf\win32\gui\button.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\win32\gui\textbox.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\win32\gui\widget.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\win32\gui\window.h">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="cocoa"
@@ -341,62 +412,6 @@
 						</FileConfiguration>
 					</File>
 				</Filter>
-			</Filter>
-			<Filter
-				Name="gtk2"
-				Filter="">
-				<File
-					RelativePath=".\include\cpaf\gtk2\gtk.h">
-				</File>
-				<File
-					RelativePath=".\include\cpaf\gtk2\utils.h">
-				</File>
-				<Filter
-					Name="gui"
-					Filter="">
-					<File
-						RelativePath=".\include\cpaf\gtk2\gui\button.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\gtk2\gui\widget.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\gtk2\gui\window.h">
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="win32"
-				Filter="">
-				<File
-					RelativePath=".\include\cpaf\win32\exception.h">
-				</File>
-				<File
-					RelativePath=".\include\cpaf\win32\msgnames.h">
-				</File>
-				<File
-					RelativePath=".\include\cpaf\win32\win.h">
-				</File>
-				<Filter
-					Name="gui"
-					Filter="">
-					<File
-						RelativePath=".\include\cpaf\win32\gui\button.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\win32\gui\widget.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\win32\gui\window.h">
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="private"
-				Filter="">
-				<File
-					RelativePath=".\include\cpaf\private\factory.h">
-				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -686,6 +701,9 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\src\cpaf\gui\textbox.cpp">
+				</File>
+				<File
 					RelativePath=".\src\cpaf\gui\toplevel.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32">
@@ -812,6 +830,9 @@
 							ObjectFile="$(IntDir)/$(SafeParentName)/"
 							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\event\id.cpp">
 				</File>
 			</Filter>
 			<Filter
@@ -1163,6 +1184,33 @@
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)/$(SafeParentName)/"
 							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\textbox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 					</FileConfiguration>
 				</File>
 				<File

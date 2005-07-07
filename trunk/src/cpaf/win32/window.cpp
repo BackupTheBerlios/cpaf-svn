@@ -1,6 +1,6 @@
 /*!
     \file src/cpaf/win32/window.cpp
-    \brief Implementation file for cpaf::win32::gui::Window
+    \brief Implementation of cpaf::win32::gui::Window
     \date Created: 2005-04-05
 */
 

@@ -7,6 +7,8 @@
 #include <cpaf/private/factory.h>
 #include <cpaf/gtk2/gui/window.h>
 #include <cpaf/gtk2/gui/button.h>
+#include <cpaf/gtk2/gui/textbox.h>
 
 IMPLEMENT_WIDGET_FACTORY(Window, gtk2)
 IMPLEMENT_WIDGET_FACTORY(Button, gtk2)
+IMPLEMENT_WIDGET_FACTORY(TextBox, gtk2)

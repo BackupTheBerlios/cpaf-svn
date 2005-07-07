@@ -7,8 +7,6 @@
 #ifndef CPAF_GUI_BUTTON_H
 #define CPAF_GUI_BUTTON_H
 
-#include <cpaf/dllimpexp.h>
-#include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/widget.h>
 #include <cpaf/gui/initializer/button.h>
 

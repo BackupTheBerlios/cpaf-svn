@@ -7,7 +7,6 @@
 #include <cpaf/gui/button.h>
 #include <cpaf/api/gui/button.h>
 #include <cpaf/private/factory.h>
-#include <cpaf/exception.h>
 
 cpaf::gui::Button::Button()
     : Widget(cpaf::gui::factory::create_widget_implementation<api_type>())

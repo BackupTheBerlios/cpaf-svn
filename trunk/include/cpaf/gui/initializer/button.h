@@ -24,7 +24,7 @@ struct ButtonData : public WidgetData
 };
 
 /*!
-    \brief Initializer class template for Buttons creation
+    \brief Initializer class template for Button creation
 */
 template<class T> class Button : public Widget<T>
 {
