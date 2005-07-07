@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'proof' target in the 'proof' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
