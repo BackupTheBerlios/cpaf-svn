@@ -1,7 +1,7 @@
 /**
  * \file src/cpaf/gtk2/button.cpp
- * \brief Implementation of gtk2 button
- * \date 2005-04-14
+ * \brief Implementation of cpaf::gtk2::gui::Button
+ * \date Created: 2005-04-14
  */
 
 #include <cpaf/gtk2/gui/button.h>

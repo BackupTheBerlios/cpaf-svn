@@ -16,7 +16,7 @@ Files=
 
 [Dir include/cpaf/api/gui]
 Dirs=
-Files=sizer.h/toplevel.h/widget.h/window.h/object.h/button.h
+Files=sizer.h/toplevel.h/widget.h/window.h/object.h/button.h/textbox.h
 
 [Dir include/cpaf/event]
 Dirs=
@@ -31,12 +31,16 @@ Dirs=
 Files=window.h/widget.h/button.h
 
 [Dir include/cpaf/gui]
-Dirs=factory
-Files=toplevel.h/widget.h/window.h/app.h/object.h/api-prototypes.h/button.h
+Dirs=initializer
+Files=toplevel.h/widget.h/window.h/app.h/object.h/api-prototypes.h/button.h/factory.h/textbox.h
 
 [Dir include/cpaf/gui/factory]
 Dirs=
-Files=button.h/object.h/widget.h/window.h
+Files=
+
+[Dir include/cpaf/gui/initializer]
+Dirs=
+Files=button.h/object.h/textbox.h/widget.h/window.h
 
 [Dir include/cpaf/private]
 Dirs=
@@ -64,7 +68,7 @@ Files=app.cpp/main.cpp/api.cpp/exception.cpp/types.cpp
 
 [Dir src/cpaf/event]
 Dirs=
-Files=event.cpp
+Files=event.cpp/id.cpp
 
 [Dir src/cpaf/gtk2]
 Dirs=
@@ -72,11 +76,11 @@ Files=factory.cpp/window.cpp/utils.cpp/app.cpp/widget.cpp/button.cpp
 
 [Dir src/cpaf/gui]
 Dirs=
-Files=factory.cpp/toplevel.cpp/widget.cpp/window.cpp/app.cpp/object.cpp/button.cpp
+Files=factory.cpp/toplevel.cpp/widget.cpp/window.cpp/app.cpp/object.cpp/button.cpp/textbox.cpp
 
 [Dir technotes]
 Dirs=
-Files=deletion.txt/events.txt/metrics.txt/mi.txt/grid.txt/strings.txt
+Files=deletion.txt/events.txt/metrics.txt/mi.txt/grid.txt/strings.txt/wrapper creation.txt/wrapper deletion.txt
 
 [Project Dir]
 Dirs=include/samples/src/doxygen/technotes
