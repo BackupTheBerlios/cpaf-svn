@@ -51,6 +51,18 @@
 		6EDF4DDE082E08F700957C63 /* types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D8E082E08F700957C63 /* types.cpp */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		E2055F26087E34DD000B7316 /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F25087E34DD000B7316 /* id.h */; };
+		E2055F2D087E3517000B7316 /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F28087E3517000B7316 /* button.h */; };
+		E2055F2E087E3517000B7316 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F29087E3517000B7316 /* object.h */; };
+		E2055F2F087E3517000B7316 /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F2A087E3517000B7316 /* textbox.h */; };
+		E2055F30087E3517000B7316 /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F2B087E3517000B7316 /* widget.h */; };
+		E2055F31087E3517000B7316 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F2C087E3517000B7316 /* window.h */; };
+		E2055F34087E353C000B7316 /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F32087E353C000B7316 /* factory.h */; };
+		E2055F35087E353C000B7316 /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F33087E353C000B7316 /* textbox.h */; };
+		E2055F42087E3595000B7316 /* textbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2055F41087E3595000B7316 /* textbox.cpp */; };
+		E2055F44087E3611000B7316 /* textbox.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2055F43087E3611000B7316 /* textbox.mm */; };
+		E2055F54087EAE23000B7316 /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F53087EAE23000B7316 /* textbox.h */; };
+		E2055F67087EB187000B7316 /* id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2055F66087EB187000B7316 /* id.cpp */; };
 		E231DB38084B9CED00DD0EEA /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = E231DB37084B9CEC00DD0EEA /* event.h */; };
 		E29B7ECE0850218800170856 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29B7ECD0850218800170856 /* event.cpp */; };
 /* End PBXBuildFile section */
@@ -130,6 +142,18 @@
 		6EDF4D8E082E08F700957C63 /* types.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = types.cpp; path = src/cpaf/types.cpp; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* cpaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = cpaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2055F25087E34DD000B7316 /* id.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = id.h; sourceTree = "<group>"; };
+		E2055F28087E3517000B7316 /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
+		E2055F29087E3517000B7316 /* object.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
+		E2055F2A087E3517000B7316 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
+		E2055F2B087E3517000B7316 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
+		E2055F2C087E3517000B7316 /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		E2055F32087E353C000B7316 /* factory.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = factory.h; sourceTree = "<group>"; };
+		E2055F33087E353C000B7316 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
+		E2055F41087E3595000B7316 /* textbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = textbox.cpp; sourceTree = "<group>"; };
+		E2055F43087E3611000B7316 /* textbox.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = textbox.mm; sourceTree = "<group>"; };
+		E2055F53087EAE23000B7316 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
+		E2055F66087EB187000B7316 /* id.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = id.cpp; sourceTree = "<group>"; };
 		E231DB37084B9CEC00DD0EEA /* event.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
 		E29B7ECD0850218800170856 /* event.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -263,6 +287,7 @@
 				6EDF4BEF082E05CB00957C63 /* button.h */,
 				6EDF4BF0082E05CB00957C63 /* widget.h */,
 				6EDF4BF1082E05CB00957C63 /* window.h */,
+				E2055F53087EAE23000B7316 /* textbox.h */,
 			);
 			name = gui;
 			path = include/cpaf/cocoa/gui;
@@ -271,10 +296,12 @@
 		6EDF4C26082E07EE00957C63 /* gui */ = {
 			isa = PBXGroup;
 			children = (
+				E2055F32087E353C000B7316 /* factory.h */,
+				E2055F33087E353C000B7316 /* textbox.h */,
+				E2055F27087E3517000B7316 /* initializer */,
 				6EDF4C52082E07EE00957C63 /* api-prototypes.h */,
 				6EDF4C53082E07EE00957C63 /* app.h */,
 				6EDF4C54082E07EE00957C63 /* button.h */,
-				6EDF4C55082E07EE00957C63 /* factory */,
 				6EDF4C7A082E07EF00957C63 /* object.h */,
 				6EDF4C7B082E07EF00957C63 /* toplevel.h */,
 				6EDF4C7C082E07EF00957C63 /* widget.h */,
@@ -282,13 +309,6 @@
 			);
 			name = gui;
 			path = include/cpaf/gui;
-			sourceTree = "<group>";
-		};
-		6EDF4C55082E07EE00957C63 /* factory */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = factory;
 			sourceTree = "<group>";
 		};
 		6EDF4C7E082E07EF00957C63 /* private */ = {
@@ -329,6 +349,7 @@
 				6EDF4D53082E08F700957C63 /* app.mm */,
 				6EDF4D54082E08F700957C63 /* button.mm */,
 				6EDF4D55082E08F700957C63 /* factory.mm */,
+				E2055F43087E3611000B7316 /* textbox.mm */,
 				6EDF4D56082E08F700957C63 /* utils.mm */,
 				6EDF4D57082E08F700957C63 /* widget.mm */,
 				6EDF4D58082E08F700957C63 /* window.mm */,
@@ -340,6 +361,7 @@
 		6EDF4D5A082E08F700957C63 /* gui */ = {
 			isa = PBXGroup;
 			children = (
+				E2055F41087E3595000B7316 /* textbox.cpp */,
 				6EDF4D86082E08F700957C63 /* app.cpp */,
 				6EDF4D87082E08F700957C63 /* button.cpp */,
 				6EDF4D88082E08F700957C63 /* factory.cpp */,
@@ -352,9 +374,22 @@
 			path = src/cpaf/gui;
 			sourceTree = "<group>";
 		};
+		E2055F27087E3517000B7316 /* initializer */ = {
+			isa = PBXGroup;
+			children = (
+				E2055F28087E3517000B7316 /* button.h */,
+				E2055F29087E3517000B7316 /* object.h */,
+				E2055F2A087E3517000B7316 /* textbox.h */,
+				E2055F2B087E3517000B7316 /* widget.h */,
+				E2055F2C087E3517000B7316 /* window.h */,
+			);
+			path = initializer;
+			sourceTree = "<group>";
+		};
 		E231DB36084B9CEC00DD0EEA /* event */ = {
 			isa = PBXGroup;
 			children = (
+				E2055F25087E34DD000B7316 /* id.h */,
 				E231DB37084B9CEC00DD0EEA /* event.h */,
 			);
 			name = event;
@@ -364,6 +399,7 @@
 		E29B7ECC0850218800170856 /* event */ = {
 			isa = PBXGroup;
 			children = (
+				E2055F66087EB187000B7316 /* id.cpp */,
 				E29B7ECD0850218800170856 /* event.cpp */,
 			);
 			name = event;
@@ -402,6 +438,15 @@
 				6EDF4CD4082E07EF00957C63 /* window.h in Headers */,
 				6EDF4CDE082E07EF00957C63 /* factory.h in Headers */,
 				E231DB38084B9CED00DD0EEA /* event.h in Headers */,
+				E2055F26087E34DD000B7316 /* id.h in Headers */,
+				E2055F2D087E3517000B7316 /* button.h in Headers */,
+				E2055F2E087E3517000B7316 /* object.h in Headers */,
+				E2055F2F087E3517000B7316 /* textbox.h in Headers */,
+				E2055F30087E3517000B7316 /* widget.h in Headers */,
+				E2055F31087E3517000B7316 /* window.h in Headers */,
+				E2055F34087E353C000B7316 /* factory.h in Headers */,
+				E2055F35087E353C000B7316 /* textbox.h in Headers */,
+				E2055F54087EAE23000B7316 /* textbox.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +577,9 @@
 				6EDF4DDD082E08F700957C63 /* main.cpp in Sources */,
 				6EDF4DDE082E08F700957C63 /* types.cpp in Sources */,
 				E29B7ECE0850218800170856 /* event.cpp in Sources */,
+				E2055F42087E3595000B7316 /* textbox.cpp in Sources */,
+				E2055F44087E3611000B7316 /* textbox.mm in Sources */,
+				E2055F67087EB187000B7316 /* id.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
