@@ -12,6 +12,9 @@
 
 namespace cpaf {
 
+//! \todo decide wether we use addresses or object id's here
+typedef int object_id; // value specifying which object sent the event
+
 /*!
     \brief Data structure representing a size using floating point values.
 */

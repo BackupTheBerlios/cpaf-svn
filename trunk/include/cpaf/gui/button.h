@@ -21,7 +21,18 @@ public:
     typedef cpaf::api::gui::Button api_type;
     typedef ButtonInitializer Initializer;
 
+    /*!
+        \brief Sets the label of the button
+
+        \todo Move this to the common base
+    */
     void set_label(const std::string &label);
+
+    /*!
+        \return The button label
+
+        \todo Move this to the common base
+    */
     std::string get_label();
 
 private:
@@ -30,6 +41,10 @@ private:
 protected:
     Button();
     Button(cpaf::api::gui::Button *impl);
+
+    /*!
+        \brief Constructs the native widget using the given initialization data
+    */
     void create(Initializer::data_type params);
 
 public:

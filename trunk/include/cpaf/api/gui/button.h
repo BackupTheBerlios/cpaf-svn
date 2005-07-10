@@ -22,23 +22,8 @@ class Button : public virtual Widget
 public:
     typedef cpaf::gui::initializer::ButtonData data_type; //!< Initialization data used for Buttons
 
-    /*!
-        \brief Constructs the native widget using the given initialization data
-    */
     virtual void create(const data_type &init_params) = 0;
-
-    /*!
-        \brief Sets the label of the button
-
-        \todo Move this to the common base
-    */
     virtual void set_label(const std::string &label) = 0;
-
-    /*!
-        \return The button label
-
-        \todo Move this to the common base
-    */
     virtual std::string get_label() = 0;
 };
 

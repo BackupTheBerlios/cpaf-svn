@@ -9,6 +9,7 @@
 
 #include <cpaf/dllimpexp.h>
 #include <cpaf/event/id.h>
+#include <cpaf/types.h>
 
 #include <map>
 #include <vector>
@@ -30,8 +31,6 @@ template<typename L, typename E> class ListenerFunctor;
 */
 CPAF_API cpaf::event::Manager &get_manager();
 
-//! \todo decide wether we use addresses or object id's here
-typedef int object_id; // value specifying which object sent the event
 typedef boost::shared_ptr<EventChain> event_chain_ptr;
 
 const event_id EVENT_ID_ANY = 0;

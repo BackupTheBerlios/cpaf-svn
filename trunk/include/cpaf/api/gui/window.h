@@ -14,17 +14,11 @@ namespace cpaf {
     namespace api {
         namespace gui {
 
-/*!
-    \brief A Window is a top level widget which has a title bar and contains subwindows
-*/
 class Window : public virtual TopLevel
 {
 public:
     typedef cpaf::gui::initializer::WindowData data_type; //!< Initialization data used for Windows
 
-    /*!
-        \brief Constructs the native widget using the given initialization data
-    */
     virtual void create(const data_type &init_params) = 0;
 };
 

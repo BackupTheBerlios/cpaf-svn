@@ -111,7 +111,7 @@ bool cpaf::gui::Widget::is_shown()
     return m_impl->is_shown();
 }
 
-int cpaf::gui::Widget::get_id()
+object_id cpaf::gui::Widget::get_id()
 {
     return m_id;
 }

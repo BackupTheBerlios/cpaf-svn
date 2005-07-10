@@ -18,8 +18,7 @@ namespace cpaf {
     namespace gui {
 
 /*!
-    \brief A Window is a top level widget that contains a title bar, min max and close buttons,
-    and contains subwindows.
+    \brief A Window is a top level widget which has a title bar and contains subwindows
 */
 class CPAF_API Window : public TopLevel
 {
@@ -35,6 +34,10 @@ private:
 protected:
     Window();
     Window(cpaf::api::gui::Window *impl);
+
+    /*!
+        \brief Constructs the native widget using the given initialization data
+    */
     void create(Initializer::data_type params);
 
 public:

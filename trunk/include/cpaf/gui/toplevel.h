@@ -24,16 +24,34 @@ public:
 
     void show(bool show = true, bool focus = true);
 
+    /*!
+        \brief Sets the title of the widgets caption.
+    */
     void set_title(const std::string &t);
+
+    /*!
+        \return The title of the widgets caption.
+    */
     std::string get_title();
 
+    /*!
+        \brief Sets the client size of the widget.
+    */
     void set_client_size(const cpaf::Size &s);
+
+    /*!
+        \return The client size of the widget.
+    */
     cpaf::Size get_client_size();
+
+    /*!
+        \return The position of the client area of a widget relative to the top-left corner
+        of the frame extents. If the widget is managing a menubar and/or toolbar,
+        the position of the client area will be moved down to make room.
+    */
     cpaf::Point get_client_position();
 
 private:
-    // not shared_ptr because this object will never be responsible for deleting this pointer
-    // it only serves to save extraneous casting in source
     cpaf::api::gui::TopLevel *m_impl;
 
 protected:

@@ -21,12 +21,23 @@ public:
     typedef cpaf::api::gui::TextBox api_type;
     typedef TextBoxInitializer Initializer;
 
+    /*!
+        Sets the text of the TextBox
+    */
     void set_text(const std::string &s);
+
+    /*!
+        \return The text contained in the TextBox
+    */
     std::string get_text();
 
 protected:
     TextBox();
     TextBox(cpaf::api::gui::TextBox *impl);
+
+    /*!
+        \brief Constructs the native widget using the given initialization data
+    */
     void create(Initializer::data_type params);
 
 private:
