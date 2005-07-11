@@ -48,7 +48,8 @@ void cpaf::win32::gui::Widget::create(const CreationInfo &info, const cpaf::gui:
         CreationHook hook; // hook WM_CREATE for initialization stuff
         CreationInfo info(this);
 
-        m_hwnd = ::CreateWindowEx(styles_ex, class_name, window_name, styles,
+        // I don't set m_hwnd here because process_message() sets it for me
+        ::CreateWindowEx(styles_ex, class_name, window_name, styles,
             x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
             &info);
     }
@@ -88,10 +89,13 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
         {
             // lpCreateParams of CREATESTRUCT specifies the address of a CreationInfo struct.
             // This struct currently contains a pointer to the object creating this window.
-
             LPCREATESTRUCT create = (LPCREATESTRUCT)l_param;
             CreationInfo *info = (CreationInfo*)create->lpCreateParams;
             widget_map_add_hwnd(hwnd, info->wnd);
+
+            // make sure we initialize all necessary members before sending WIDGET_CREATE
+            // like m_hwnd
+            m_hwnd = hwnd;
 
             // send the creation event
             cpaf::event::Event event(cpaf::event::WIDGET_CREATE, m_id);
@@ -114,6 +118,11 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
                 ret = ::DefWindowProc(hwnd, msg, w_param, l_param);
 
             // delete ourself (and our wrapper)
+            /*!
+                \todo I cannot delete myself here because I have not recieved WM_DESTROY events
+                for child windows yet. I will not be able to recieve child WM_DESTROY events
+                until the next message loop iteration so I must que the deletion of this object
+            */
             delete this;
 
             //! \todo Decide when to terminate an application

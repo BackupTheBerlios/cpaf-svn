@@ -73,7 +73,7 @@ namespace {
 cpaf::win32::gui::CreationHook::CreationHook()
 {
     // create the hook
-    m_hook = ::SetWindowsHookEx(WH_CBT, cpaf::win32::gui::CreationHook::hook_proc,NULL, ::GetCurrentThreadId());
+    m_hook = ::SetWindowsHookEx(WH_CBT, cpaf::win32::gui::CreationHook::hook_proc, NULL, ::GetCurrentThreadId());
 
     if( !m_hook )
         throw cpaf::win32::Exception(cpaf::win32::Exception::HOOK, ::GetLastError(), __LINE__, __FILE__);
@@ -83,8 +83,8 @@ cpaf::win32::gui::CreationHook::~CreationHook()
 {
     // unhook
     //! \todo destructors really shouldn't throw...
-    if( !::UnhookWindowsHookEx(m_hook) )
-        throw cpaf::win32::Exception(cpaf::win32::Exception::UNHOOK, ::GetLastError(), __LINE__, __FILE__);
+    //if( !::UnhookWindowsHookEx(m_hook) )
+        //throw cpaf::win32::Exception(cpaf::win32::Exception::UNHOOK, ::GetLastError(), __LINE__, __FILE__);
 }
 
 LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_param, LPARAM l_param)
@@ -101,6 +101,11 @@ LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_pa
 
             // subclass the window
             info->wnd->set_old_proc((WNDPROC)(LONG_PTR)::SetWindowLongPtr(hwnd, GWL_WNDPROC, (LONG_PTR)cpaf::win32::gui::widget_wndproc));
+
+            // unhook now
+            if( !::UnhookWindowsHookEx(m_hook) )
+                throw cpaf::win32::Exception(cpaf::win32::Exception::UNHOOK, ::GetLastError(), __LINE__, __FILE__);
+
             return 0;
         }
     }

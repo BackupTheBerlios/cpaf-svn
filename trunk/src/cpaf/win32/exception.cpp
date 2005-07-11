@@ -19,6 +19,10 @@ const char *cpaf::win32::Exception::get_message()
         {
         case WIDGET_INIT:
             return "The widget implementation class failed to initialize internally";
+        case HOOK:
+            return "There was an error hooking WM_CREATE";
+        case UNHOOK:
+            return "There was an error unhooking the WM_CREATE hook";
         default:
             return "Unknown error encountered";
         };
