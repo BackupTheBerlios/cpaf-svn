@@ -38,7 +38,7 @@ protected:
 public:
     void set_old_proc(WNDPROC proc) { m_old_proc = proc; }
 
-    /*
+    /*!
         Instead of subclassing window procedures to simulate inheritance, there is only
         one window procedure, which is widget_wndproc. This function calls process_message
         which does all message processing. process_message is responsible for knowing wether or
@@ -48,7 +48,19 @@ public:
 
     virtual ~Widget();
 
-    virtual void create(const cpaf::gui::initializer::WidgetData &params);
+    /*!
+        Creates the native widget using CreateWindowEx.
+
+        \param info         CretionInfo struct passed to the window procedure via WM_CREATE (or WM_NCCREATE)
+        \param params       Initializer arguments for position, size, visibility and enabled states.
+        \param parent_required If true and params.m_parent is NULL, an exception is thrown
+        \param class_name   Class name passed to CreateWindowEx
+        \param window_name  Window name passed to CreateWindowEx
+        \param styles       Window styles
+        \param styles_ex    Extended window styles
+    */
+    virtual void create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
+        bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex = 0);
 
     // object interface
     virtual void set_size(const cpaf::Size &s);

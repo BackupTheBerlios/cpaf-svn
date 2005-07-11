@@ -9,35 +9,9 @@
 
 void cpaf::win32::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
-    HWND hparent;
-    cpaf::gui::Widget *parent = params.m_parent;
-    if( parent )
-        hparent = (HWND)parent->get_handle();
-    else
-        throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
-
-    m_wrapper = params.m_wrapper;
-    m_id = m_wrapper->get_id();
-
-    CreationInfo info(this);
-    int x = params.m_pos.x, y = params.m_pos.y;
-    int w = params.m_size.width, h = params.m_size.height;
-
-    if( params.m_default_position )
-        x = CW_USEDEFAULT;
-    if( params.m_default_size )
-        w = CW_USEDEFAULT;
-
-    {
-        CreationHook hook; // hook WM_CREATE for initialization stuff
-
-        m_hwnd = ::CreateWindowEx(0, TEXT("BUTTON"), params.m_label.c_str(), WS_CHILD | BS_PUSHBUTTON,
-            x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
-            &info);
-    }
-
-    // the rest of the creation
-    cpaf::win32::gui::Widget::create(params);
+    // create a button
+    cpaf::win32::gui::Widget::create(CreationInfo(this), params, true, TEXT("BUTTON"), params.m_label.c_str(),
+        WS_CHILD | BS_PUSHBUTTON);
 }
 
 void cpaf::win32::gui::Button::set_label(const std::string &label)

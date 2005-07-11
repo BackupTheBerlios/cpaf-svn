@@ -11,6 +11,7 @@
 #include <cpaf/private/factory.h>
 
 using namespace cpaf::api::gui;
+using cpaf::object_id;
 
 cpaf::gui::Widget::Widget(cpaf::api::gui::Widget *impl)
     : m_id(cpaf::gui::factory::get_unique_object_id()),

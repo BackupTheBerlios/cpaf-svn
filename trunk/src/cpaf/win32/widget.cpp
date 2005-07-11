@@ -9,6 +9,8 @@
 #include <cpaf/event/event.h>
 #include <cpaf/gui/app.h>
 
+#include <cpaf/win32/msgnames.h>
+
 // for delete_implementation_wrapper
 //#include <cpaf/private/factory.h>
 
@@ -21,8 +23,36 @@ cpaf::win32::gui::Widget::Widget()
     m_min_size(-1,-1)
 { }
 
-void cpaf::win32::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params)
+void cpaf::win32::gui::Widget::create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
+        bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex)
 {
+    m_wrapper = params.m_wrapper;
+    m_id = m_wrapper->get_id();
+
+    HWND hparent = NULL;
+    cpaf::gui::Widget *parent = params.m_parent;
+    if( parent )
+        hparent = (HWND)parent->get_handle();
+    else if( parent_required )
+        throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
+
+    int x = params.m_pos.x, y = params.m_pos.y;
+    int w = params.m_size.width, h = params.m_size.height;
+
+    if( params.m_default_position )
+        x = CW_USEDEFAULT;
+    if( params.m_default_size )
+        w = CW_USEDEFAULT;
+
+    {
+        CreationHook hook; // hook WM_CREATE for initialization stuff
+        CreationInfo info(this);
+
+        m_hwnd = ::CreateWindowEx(styles_ex, class_name, window_name, styles,
+            x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
+            &info);
+    }
+
     if( !m_hwnd )
         throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
 
@@ -51,13 +81,9 @@ cpaf::win32::gui::Widget::~Widget()
 
 int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
+    //DBG_MSG_2("cpaf::win32::gui::Widget::process_message: %s", cpaf::win32::MessageTypeNames[msg]);
     switch(msg)
     {
-        case WM_NCCREATE:
-        {
-            break;
-        }
-
         case WM_CREATE:
         {
             // lpCreateParams of CREATESTRUCT specifies the address of a CreationInfo struct.

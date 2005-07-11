@@ -22,9 +22,9 @@ public:
 
     virtual void *get_handle() = 0;
     virtual void enable(bool e) = 0;
-    virtual void show(bool show, bool focus) = 0
-    virtual bool is_enabled() = 0
-    virtual bool is_shown() = 0
+    virtual void show(bool show, bool focus) = 0;
+    virtual bool is_enabled() = 0;
+    virtual bool is_shown() = 0;
     virtual void destroy() = 0;
 
     // commented until they are needed

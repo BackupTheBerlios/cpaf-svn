@@ -21,8 +21,8 @@ class TextBox : public virtual Widget
 public:
     typedef cpaf::gui::initializer::TextBoxData data_type; //!< Initialization data used for TextBoxes.
 
-    virtual void create(const data_type &init_params) = 0
-    virtual void set_text(const std::string &) = 0
+    virtual void create(const data_type &init_params) = 0;
+    virtual void set_text(const std::string &) = 0;
     virtual std::string get_text() = 0;
 };
 

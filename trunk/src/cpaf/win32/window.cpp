@@ -6,6 +6,8 @@
 
 #include <cpaf/win32/gui/window.h>
 #include <cpaf/win32/exception.h>
+#include <cpaf/win32/msgnames.h>
+
 
 namespace {
 
@@ -27,18 +29,12 @@ WNDCLASSEX wnd_class = {
 
 } // unnamed namespace
 
-namespace cpaf {
-    namespace win32 {
-        namespace gui {
 
-LRESULT CALLBACK window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+LRESULT CALLBACK cpaf::win32::gui::window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-    return cpaf::win32::gui::widget_wndproc(hwnd, msg, w_param, l_param);
+    //DBG_MSG_2("cpaf::win32::gui::window_wndproc: %s", cpaf::win32::MessageTypeNames[msg]);
+    return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
-
-        } // gui
-    } // win32
-} // cpaf
 
 void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
 {
@@ -53,32 +49,9 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
     if( !registered )
         ::RegisterClassEx(&wnd_class);
 
-    HWND hparent;
-    cpaf::gui::Widget *parent = params.m_parent;
-    if( parent )
-        hparent = (HWND)parent->get_handle();
-    else
-        hparent = ::GetDesktopWindow();
-
-    m_wrapper = params.m_wrapper;
-    m_id = m_wrapper->get_id();
-
-    // initialize creation info
-    CreationInfo info(this);
-    int x = params.m_pos.x, y = params.m_pos.y;
-    int w = params.m_size.width, h = params.m_size.height;
-
-    if( params.m_default_position )
-        x = CW_USEDEFAULT;
-    if( params.m_default_size )
-        w = CW_USEDEFAULT;
-
-    m_hwnd = ::CreateWindowEx(0, CLASSNAME, params.m_title.c_str(), WS_OVERLAPPEDWINDOW,
-        x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
-        &info);
-
-    // the rest of the creation
-    cpaf::win32::gui::Widget::create(params);
+    // create a window
+    cpaf::win32::gui::Widget::create(CreationInfo(this), params, false, CLASSNAME, params.m_title.c_str(),
+        WS_OVERLAPPEDWINDOW);
 }
 
 std::string cpaf::win32::gui::Window::get_title()

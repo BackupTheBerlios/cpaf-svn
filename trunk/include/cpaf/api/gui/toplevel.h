@@ -19,10 +19,10 @@ class TopLevel : public virtual Widget
 {
 public:
 
-    virtual void set_title(const std::string &t) = 0
-    virtual std::string get_title() = 0
-    virtual void set_client_size(const cpaf::Size &s) = 0
-    virtual cpaf::Size get_client_size() = 0
+    virtual void set_title(const std::string &t) = 0;
+    virtual std::string get_title() = 0;
+    virtual void set_client_size(const cpaf::Size &s) = 0;
+    virtual cpaf::Size get_client_size() = 0;
     virtual cpaf::Point get_client_position() = 0;
 };
 

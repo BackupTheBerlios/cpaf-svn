@@ -47,33 +47,15 @@ cpaf::win32::gui::CreationInfo::CreationInfo(cpaf::win32::gui::Widget *w)
 
 LRESULT CALLBACK cpaf::win32::gui::widget_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
+    //DBG_MSG_2("cpaf::win32::gui::widget_wndproc: %s", cpaf::win32::MessageTypeNames[msg]);
     Widget *wnd = get_widget_from_hwnd(hwnd);
 
     // once we can find our widget class, use it to process messages
     if( wnd )
         return wnd->process_message(hwnd, msg, w_param, l_param);
 
-    // we can't find the widget class yet, look for WM_NCCREATE, which should always be the first
-    // message sent to a window (usually, top levels get WM_MINMAXINFO first), and add the widget
-    // class for this hwnd to the map
-    switch(msg)
-    {
-        case WM_NCCREATE:
-            // lpCreateParams of CREATESTRUCT specifies the address of a CreationInfo struct.
-            // This struct currently contains a (properly casted) pointer to the object
-            // creating this window.
-            LPCREATESTRUCT create = (LPCREATESTRUCT)l_param;
-            CreationInfo *info = (CreationInfo*)create->lpCreateParams;
-            widget_map_add_hwnd(hwnd, info->wnd);
-            
-            // let the widget process everything we possibly can, even WM_NCCREATE
-            return info->wnd->process_message(hwnd, msg, w_param, l_param);
-    }
-
     DBG_MSG_2("widget_wndproc failed to proceess a message: %s", cpaf::win32::MessageTypeNames[msg]);
-    // call the default window procedure if we get this far
-    // this will happen if the first message sent to a window is not WM_NCCREATE,
-    // which is the case for overlapped (toplevel) windows; they get WM_MINMAXINFO first
+
     return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
 
@@ -112,11 +94,15 @@ LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_pa
         HWND hwnd = (HWND)w_param;
         LPCREATESTRUCT create = ((LPCBT_CREATEWND)l_param)->lpcs;
         CreationInfo *info = (CreationInfo*)create->lpCreateParams;
-        widget_map_add_hwnd(hwnd, info->wnd);
 
-        // subclass the window
-        info->wnd->set_old_proc((WNDPROC)(LONG_PTR)::SetWindowLongPtr(hwnd, GWL_WNDPROC, (LONG_PTR)cpaf::win32::gui::widget_wndproc));
-        return 0;
+        if( info )
+        {
+            widget_map_add_hwnd(hwnd, info->wnd);
+
+            // subclass the window
+            info->wnd->set_old_proc((WNDPROC)(LONG_PTR)::SetWindowLongPtr(hwnd, GWL_WNDPROC, (LONG_PTR)cpaf::win32::gui::widget_wndproc));
+            return 0;
+        }
     }
 
     return CallNextHookEx(m_hook, code, w_param, l_param);
