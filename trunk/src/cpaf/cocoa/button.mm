@@ -6,32 +6,32 @@
 
 #include <cpaf/cocoa/gui/button.h>
 #include <cpaf/exception.h>
+#include <cpaf/gui/widget.h>
 
-cpaf::cocoa::gui::Button::Button()
-{
-}
+CPAF_COCOA_INTERFACE(Button)
+CPAF_COCOA_IMPLEMENTATION(Button)
 
 void cpaf::cocoa::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
 	if( !params.m_parent )
 		throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 		
-    cpaf::cocoa::gui::Widget::create(params, [[NSButton alloc] init]);
+    cpaf::cocoa::gui::Widget::create(params, [[CpafButton alloc] init]);
     
-    [m_view setButtonType:NSToggleButton];
-    [(NSButton*)m_view setBezelStyle:NSRegularSquareBezelStyle];
-    
+    [m_object setButtonType:NSToggleButton];
+    [(NSButton*)m_object setBezelStyle:NSRegularSquareBezelStyle];
+    //! \todo Button events: [m_object setAction:@selector(buttonClicked:)];
     set_label(params.m_label);
     
-    // [m_view setAction:@selector(:)];
+    send_event(cpaf::event::WIDGET_CREATE);
 }
 
 void cpaf::cocoa::gui::Button::set_label(const std::string &label)
 {
-    [m_view setTitle:[NSString stringWithUTF8String:label.c_str()]];
+    [m_object setTitle:[NSString stringWithUTF8String:label.c_str()]];
 }
 
 std::string cpaf::cocoa::gui::Button::get_label()
 {
-    return [[m_view title] UTF8String];
+    return [[m_object title] UTF8String];
 }

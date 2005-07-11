@@ -111,7 +111,7 @@
 		6EDF4BAA082E051400957C63 /* main.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = main.h; path = include/cpaf/main.h; sourceTree = "<group>"; };
 		6EDF4BAB082E051400957C63 /* types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = types.h; path = include/cpaf/types.h; sourceTree = "<group>"; };
 		6EDF4BEF082E05CB00957C63 /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
-		6EDF4BF0082E05CB00957C63 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
+		6EDF4BF0082E05CB00957C63 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = widget.h; sourceTree = "<group>"; };
 		6EDF4BF1082E05CB00957C63 /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = window.h; sourceTree = "<group>"; };
 		6EDF4BF2082E05CB00957C63 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = utils.h; path = include/cpaf/cocoa/utils.h; sourceTree = "<group>"; };
 		6EDF4C52082E07EE00957C63 /* api-prototypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "api-prototypes.h"; sourceTree = "<group>"; };
@@ -119,16 +119,16 @@
 		6EDF4C54082E07EE00957C63 /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
 		6EDF4C7A082E07EF00957C63 /* object.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 		6EDF4C7B082E07EF00957C63 /* toplevel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = toplevel.h; sourceTree = "<group>"; };
-		6EDF4C7C082E07EF00957C63 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
+		6EDF4C7C082E07EF00957C63 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = widget.h; sourceTree = "<group>"; };
 		6EDF4C7D082E07EF00957C63 /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		6EDF4C92082E07EF00957C63 /* factory.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = factory.h; sourceTree = "<group>"; };
 		6EDF4D29082E08F600957C63 /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = api.cpp; path = src/cpaf/api.cpp; sourceTree = "<group>"; };
 		6EDF4D2A082E08F600957C63 /* app.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = app.cpp; path = src/cpaf/app.cpp; sourceTree = "<group>"; };
 		6EDF4D53082E08F700957C63 /* app.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = app.mm; sourceTree = "<group>"; };
-		6EDF4D54082E08F700957C63 /* button.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = button.mm; sourceTree = "<group>"; };
+		6EDF4D54082E08F700957C63 /* button.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = button.mm; sourceTree = "<group>"; };
 		6EDF4D55082E08F700957C63 /* factory.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = factory.mm; sourceTree = "<group>"; };
 		6EDF4D56082E08F700957C63 /* utils.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = utils.mm; sourceTree = "<group>"; };
-		6EDF4D57082E08F700957C63 /* widget.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = widget.mm; sourceTree = "<group>"; };
+		6EDF4D57082E08F700957C63 /* widget.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = widget.mm; sourceTree = "<group>"; };
 		6EDF4D58082E08F700957C63 /* window.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = window.mm; sourceTree = "<group>"; };
 		6EDF4D59082E08F700957C63 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = exception.cpp; path = src/cpaf/exception.cpp; sourceTree = "<group>"; };
 		6EDF4D86082E08F700957C63 /* app.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };

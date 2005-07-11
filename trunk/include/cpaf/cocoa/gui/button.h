@@ -18,7 +18,7 @@ namespace cpaf {
 class Button : public virtual cpaf::cocoa::gui::Widget, public virtual cpaf::api::gui::Button
 {
 public:
-    Button();
+    Button() { };
     void create(const cpaf::gui::initializer::ButtonData &params);
 
     virtual void set_label(const std::string &label);
