@@ -62,6 +62,9 @@ public:
 
         // connect another listener
         w(&MyButton::on_create, *this);
+        
+        // connect the click-event
+        connect<Event, false>(BUTTON_CLICK, get_id()) (&MyButton::on_btn_click, *this);
     }
 
     void on_create(cpaf::event::Event &event)
@@ -70,6 +73,12 @@ public:
 
         // let the other listeners in the chain process
         event.continue_processing();
+    }
+
+    virtual void on_btn_click(cpaf::event::Event &event)
+    {
+        DBG_MSG("MyButton::on_btn_click");
+        this->set_label("Thank you!");
     }
 
     virtual void on_destroy(cpaf::event::Event &event)
@@ -124,12 +133,12 @@ bool MyApp::init()
     cpaf::gui::Button *btn = create_widget<cpaf::gui::Button>(btn_init
         .parent(wnd)
         .label("Hello world!")
-        .size(cpaf::Size(100,20))
+        .size(cpaf::Size(200,40))
         .position(cpaf::Point(50,50))
         .show()
         );
     MyButton2 *my_btn = create_widget<MyButton2>(btn_init
-        .label("MyButton!")
+        .label("Click me!")
         .position(cpaf::Point(100,100))
         );
 

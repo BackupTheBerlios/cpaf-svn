@@ -11,6 +11,16 @@
 CPAF_COCOA_INTERFACE(Button)
 CPAF_COCOA_IMPLEMENTATION(Button)
 
+@interface CpafButton (Cpaf)
+- (void)cpafButtonClickEvent;
+@end
+@implementation CpafButton (Cpaf)
+- (void)cpafButtonClickEvent
+{
+    [self cpafSendEvent:cpaf::event::BUTTON_CLICK];
+}
+@end
+
 void cpaf::cocoa::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
 	if( !params.m_parent )
@@ -20,7 +30,11 @@ void cpaf::cocoa::gui::Button::create(const cpaf::gui::initializer::ButtonData &
     
     [m_object setButtonType:NSToggleButton];
     [(NSButton*)m_object setBezelStyle:NSRegularSquareBezelStyle];
-    //! \todo Button events: [m_object setAction:@selector(buttonClicked:)];
+    
+    // Click event
+    [m_object setTarget:m_object];
+    [m_object setAction:@selector(cpafButtonClickEvent)];
+    
     set_label(params.m_label);
     
     send_event(cpaf::event::WIDGET_CREATE);
