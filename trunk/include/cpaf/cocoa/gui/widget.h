@@ -22,7 +22,6 @@
   { \
     cpaf::gui::Widget *m_cpaf_widget; \
   } \
-  - (id)init; \
   - (void)setCpafWidget:(cpaf::gui::Widget *)widget; \
   - (cpaf::gui::Widget *)cpafWidget; \
   - (void)cpafSendEvent:(cpaf::event::event_id)event_id; \
@@ -31,15 +30,13 @@
 
 #define CPAF_COCOA_IMPLEMENTATION(type) \
   @implementation Cpaf ## type \
-  - (id)init \
+  - (void)setCpafWidget:(cpaf::gui::Widget *)widget \
   { \
-    self = [super init]; \
-    if (self) \
+    if (!m_cpaf_widget) \
       /* Add an observer so the WIDGET_DESTROY-event is called when the application is terminated */ \
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cpafWillTerminate:) name:NSApplicationWillTerminateNotification object:nil]; \
-    return self; \
+    m_cpaf_widget = widget; \
   } \
-  - (void)setCpafWidget:(cpaf::gui::Widget *)widget { m_cpaf_widget = widget; } \
   - (cpaf::gui::Widget *)cpafWidget { return m_cpaf_widget; } \
   - (void)cpafWillTerminate:(NSNotification *)n \
   { \
@@ -56,7 +53,8 @@
   - (void)dealloc \
   { \
     /* Remove the observer */ \
-    [[NSNotificationCenter defaultCenter] removeObserver:self]; \
+    if (m_cpaf_widget) \
+      [[NSNotificationCenter defaultCenter] removeObserver:self]; \
     [self cpafSendEvent:cpaf::event::WIDGET_DESTROY]; \
     [super dealloc]; \
   } \

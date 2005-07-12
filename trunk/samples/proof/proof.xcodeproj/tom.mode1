@@ -219,6 +219,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -262,12 +264,12 @@
 								<string>1058C7A0FEA54F0111CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
-								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>0</integer>
+									<integer>16</integer>
+									<integer>15</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -290,7 +292,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>508 283 791 535 0 0 1280 832 </string>
+						<string>481 297 791 535 0 0 1280 832 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -301,8 +303,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -320,7 +320,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>E20564A80882A943000B7316</string>
+										<string>E205659D08838DFE000B7316</string>
 										<key>history</key>
 										<array>
 											<string>E205626108813BA7000B7316</string>
@@ -344,7 +344,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {583, 314}}</string>
 								<key>RubberWindowFrame</key>
-								<string>508 283 791 535 0 0 1280 832 </string>
+								<string>481 297 791 535 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -364,7 +364,7 @@
 								<key>Frame</key>
 								<string>{{0, 319}, {583, 175}}</string>
 								<key>RubberWindowFrame</key>
-								<string>508 283 791 535 0 0 1280 832 </string>
+								<string>481 297 791 535 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -535,7 +535,7 @@
 		<string>/Users/tom/Projects/cpaf/samples/proof/proof.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>508 283 791 535 0 0 1280 832 </string>
+	<string>481 297 791 535 0 0 1280 832 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -756,8 +756,6 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>

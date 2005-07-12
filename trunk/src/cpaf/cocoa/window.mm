@@ -22,9 +22,9 @@ void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &
         styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask)
         backing:NSBackingStoreBuffered defer:YES];
     [m_object setReleasedWhenClosed:NO];
-
-    cpaf::event::Event event(cpaf::event::WIDGET_CREATE, params.m_wrapper->get_id());
-    cpaf::event::get_manager().send_event(event);
+    
+    if ([m_object respondsToSelector:@selector(setCpafWidget:)])
+        [m_object performSelector:@selector(setCpafWidget:) withObject:(id)params.m_wrapper];
 
     if (params.m_use_client_size)
         set_client_size(params.m_client_size);
