@@ -9,13 +9,13 @@
 #include <cpaf/private/factory.h>
 
 cpaf::gui::TextBox::TextBox()
-    : Widget(cpaf::gui::factory::create_widget_implementation<api_type>())
+    : TextWidget(cpaf::gui::factory::create_widget_implementation<api_type>())
 {
     m_impl = get_impl<api_type>();
 }
 
 cpaf::gui::TextBox::TextBox(cpaf::api::gui::TextBox *impl)
-    : Widget(impl),
+    : TextWidget(impl),
     m_impl(impl)
 { }
 
@@ -28,14 +28,4 @@ void cpaf::gui::TextBox::create(Initializer::data_type params)
 cpaf::gui::TextBox::operator cpaf::api::gui::TextBox *()
 {
     return m_impl;
-}
-
-void cpaf::gui::TextBox::set_text(const std::string &s)
-{
-    m_impl->set_text(s);
-}
-
-std::string cpaf::gui::TextBox::get_text()
-{
-    return m_impl->get_text();
 }

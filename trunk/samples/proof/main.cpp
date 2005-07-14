@@ -12,6 +12,7 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/app.h>
 #include <cpaf/gui/window.h>
 #include <cpaf/gui/button.h>
+#include <cpaf/gui/entrybox.h>
 #include <cpaf/gui/textbox.h>
 
 #include <cpaf/exception.h>
@@ -143,13 +144,24 @@ bool MyApp::init()
         );
 
     /*
-        Create a textbox
+        Create an EntryBox
+    */
+    cpaf::gui::EntryBox *entry = create_widget<cpaf::gui::EntryBox>(cpaf::gui::EntryBox::Initializer()
+        .parent(wnd)
+        .text("I'm an entry box!")
+        .position(cpaf::Point(10,150))
+        .size(cpaf::Size(200,30))
+        .show()
+        );
+
+    /*
+        Create a TextBox
     */
     cpaf::gui::TextBox *text = create_widget<cpaf::gui::TextBox>(cpaf::gui::TextBox::Initializer()
         .parent(wnd)
-        .text("I'm a text box!")
-        .position(cpaf::Point(0,0))
-        .size(cpaf::Size(200,30))
+        .text("I'm a multline text box!\nHere's the second line\n\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
+        .position(cpaf::Point(10,200))
+        .size(cpaf::Size(300,100))
         .show()
         );
 

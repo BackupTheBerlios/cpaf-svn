@@ -7,7 +7,7 @@
 #ifndef CPAF_GUI_TEXTBOX_H
 #define CPAF_GUI_TEXTBOX_H
 
-#include <cpaf/gui/widget.h>
+#include <cpaf/gui/textwidget.h>
 #include <cpaf/gui/initializer/textbox.h>
 
 #include <cpaf/gui/factory.h>
@@ -15,21 +15,11 @@
 namespace cpaf {
     namespace gui {
 
-class CPAF_API TextBox : public Widget
+class CPAF_API TextBox : public TextWidget
 {
 public:
     typedef cpaf::api::gui::TextBox api_type;
     typedef TextBoxInitializer Initializer;
-
-    /*!
-        Sets the text of the TextBox
-    */
-    void set_text(const std::string &s);
-
-    /*!
-        \return The text contained in the TextBox
-    */
-    std::string get_text();
 
 protected:
     TextBox();
@@ -45,7 +35,7 @@ private:
 
 public:
     operator cpaf::api::gui::TextBox *();
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
+    template<typename TextWidget> friend TextWidget *cpaf::gui::factory::create_widget(typename TextWidget::Initializer const &);
 };
 
     } // gui

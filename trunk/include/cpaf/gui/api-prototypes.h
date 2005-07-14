@@ -18,6 +18,8 @@ namespace cpaf {
             class Window;
             class Sizer;
             class Button;
+            class TextWidget;
+            class EntryBox;
             class TextBox;
         } // gui
     } // api

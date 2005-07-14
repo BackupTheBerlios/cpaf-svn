@@ -113,16 +113,17 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 142864477;
-			PBXWorkspaceStateSaveDate = 142864477;
+			PBXPerProjectTemplateStateSaveDate = 143041232;
+			PBXWorkspaceStateSaveDate = 143041232;
 		};
 		perUserProjectItems = {
-			E205626108813BA7000B7316 = E205626108813BA7000B7316 /* PBXTextBookmark */;
-			E205626208813BA7000B7316 = E205626208813BA7000B7316 /* PBXTextBookmark */;
-			E205626308813BA7000B7316 = E205626308813BA7000B7316 /* PBXBookmark */;
-			E205626408813BA7000B7316 = E205626408813BA7000B7316 /* PBXTextBookmark */;
-			E205626508813BA7000B7316 = E205626508813BA7000B7316 /* PBXTextBookmark */;
-			E205659D08838DFE000B7316 = E205659D08838DFE000B7316 /* PBXTextBookmark */;
+			E205626208813BA7000B7316 /* PBXTextBookmark */ = E205626208813BA7000B7316 /* PBXTextBookmark */;
+			E205626408813BA7000B7316 /* PBXTextBookmark */ = E205626408813BA7000B7316 /* PBXTextBookmark */;
+			E205626508813BA7000B7316 /* PBXTextBookmark */ = E205626508813BA7000B7316 /* PBXTextBookmark */;
+			E2442A830884CD3E00F4E714 /* PBXTextBookmark */ = E2442A830884CD3E00F4E714 /* PBXTextBookmark */;
+			E2442A840884CD3E00F4E714 /* PBXTextBookmark */ = E2442A840884CD3E00F4E714 /* PBXTextBookmark */;
+			E2EBBC6B0886A9A4000A6728 /* PBXTextBookmark */ = E2EBBC6B0886A9A4000A6728 /* PBXTextBookmark */;
+			E2EBBC6C0886A9A4000A6728 /* PBXTextBookmark */ = E2EBBC6C0886A9A4000A6728 /* PBXTextBookmark */;
 		};
 		sourceControlManager = E2FF0792084C1F8D00DDE7B7 /* Source Control */;
 		userBuildSettings = {
@@ -130,10 +131,10 @@
 	};
 	6EAF8C2A0822C052006031F2 /* main.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {740, 2240}}";
-			sepNavSelRange = "{1325, 0}";
-			sepNavVisRect = "{{0, 673}, {740, 180}}";
-			sepNavWindowFrame = "{{456, 43}, {673, 789}}";
+			sepNavIntBoundsRect = "{{0, 0}, {800, 2534}}";
+			sepNavSelRange = "{1916, 0}";
+			sepNavVisRect = "{{0, 1505}, {542, 282}}";
+			sepNavWindowFrame = "{{518, 43}, {673, 789}}";
 		};
 	};
 	8D1107260486CEB800E47090 /* proof */ = {
@@ -150,16 +151,6 @@
 			sepNavWindowFrame = "{{15, 38}, {916, 789}}";
 		};
 	};
-	E205626108813BA7000B7316 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: 112";
-		rLen = 0;
-		rLoc = 3334;
-		rType = 0;
-		vrLen = 131;
-		vrLoc = 1946;
-	};
 	E205626208813BA7000B7316 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 089C165DFE840E0CC02AAC07 /* English */;
@@ -170,16 +161,12 @@
 		vrLen = 249;
 		vrLoc = 0;
 	};
-	E205626308813BA7000B7316 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
-	};
 	E205626408813BA7000B7316 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
 		name = "main.cpp: 112";
 		rLen = 0;
-		rLoc = 3334;
+		rLoc = 3366;
 		rType = 0;
 		vrLen = 131;
 		vrLoc = 1946;
@@ -194,7 +181,17 @@
 		vrLen = 249;
 		vrLoc = 0;
 	};
-	E205659D08838DFE000B7316 /* PBXTextBookmark */ = {
+	E2442A830884CD3E00F4E714 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		name = "Info.plist: 1";
+		rLen = 542;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 542;
+		vrLoc = 0;
+	};
+	E2442A840884CD3E00F4E714 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
 		name = "Info.plist: 1";
@@ -209,6 +206,26 @@
 		name = "Project Breakpoints";
 		objects = (
 		);
+	};
+	E2EBBC6B0886A9A4000A6728 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
+		name = "main.cpp: MyButton";
+		rLen = 0;
+		rLoc = 1916;
+		rType = 0;
+		vrLen = 600;
+		vrLoc = 1704;
+	};
+	E2EBBC6C0886A9A4000A6728 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
+		name = "main.cpp: MyButton";
+		rLen = 0;
+		rLoc = 1916;
+		rType = 0;
+		vrLen = 784;
+		vrLoc = 2719;
 	};
 	E2FF0787084C1F8A00DDE7B7 /* proof */ = {
 		isa = PBXExecutable;

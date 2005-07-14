@@ -7,7 +7,7 @@
 #ifndef CPAF_COCOA_GUI_TEXTBOX_H
 #define CPAF_COCOA_GUI_TEXTBOX_H
 
-#include <cpaf/cocoa/gui/widget.h>
+#include <cpaf/cocoa/gui/textwidget.h>
 #include <cpaf/api/gui/textbox.h>
 #include <cpaf/gui/textbox.h>
 
@@ -17,15 +17,12 @@ namespace cpaf {
     namespace cocoa {
         namespace gui {
 
-class TextBox : public virtual cpaf::cocoa::gui::Widget, public virtual cpaf::api::gui::TextBox
+class TextBox : public virtual cpaf::cocoa::gui::TextWidget, public virtual cpaf::api::gui::TextBox
 {
 public:
     TextBox() { }
 
     void create(const cpaf::gui::initializer::TextBoxData &params);
-
-    virtual void set_text(const std::string &s);
-    virtual std::string get_text();
 };
 
         } // gui

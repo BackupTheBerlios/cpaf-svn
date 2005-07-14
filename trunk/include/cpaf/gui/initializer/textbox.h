@@ -16,15 +16,14 @@ namespace cpaf {
 /*!
     \brief initialization data for Widget creation.
 */
-struct TextBoxData : WidgetData
+struct TextBoxData : TextWidgetData
 {
-    std::string m_text;
 };
 
 /*!
     \brief Initializer class template for TextBox creation
 */
-template<class T> class TextBox : public Widget<T>
+template<class T> class TextBox : public TextWidget<T>
 {
 public:
     typedef TextBoxData data_type;
@@ -33,18 +32,9 @@ protected:
     data_type *m_data;
 
     TextBox(data_type *data)
-        : Widget<T>(data),
+        : TextWidget<T>(data),
         m_data(data)
     { }
-
-public:
-    T &text(const std::string &s)
-    {
-        m_data->m_text = s;
-        return dynamic_cast<T&>(*this);
-    }
-
-    std::string get_text() const { return m_data->m_text; }
 };
 
         } // initializer
