@@ -7,17 +7,18 @@
 #ifndef CPAF_GUI_INITIALIZER_TEXTBOX_H
 #define CPAF_GUI_INITIALIZER_TEXTBOX_H
 
-#include <string>
+#include <cpaf/gui/initializer/textwidget.h>
 
 namespace cpaf {
     namespace gui {
         namespace initializer {
 
 /*!
-    \brief initialization data for Widget creation.
+    \brief initialization data for TextBox creation.
 */
 struct TextBoxData : TextWidgetData
 {
+
 };
 
 /*!

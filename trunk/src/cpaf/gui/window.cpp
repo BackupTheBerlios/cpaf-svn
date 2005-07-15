@@ -15,7 +15,7 @@ cpaf::gui::Window::Window()
     m_impl = get_impl<api_type>();
 }
 
-cpaf::gui::Window::Window(cpaf::api::gui::Window *impl)
+cpaf::gui::Window::Window(api_type *impl)
     : TopLevel(impl),
     m_impl(impl)
 { }
@@ -26,7 +26,7 @@ void cpaf::gui::Window::create(Initializer::data_type params)
     m_impl->create(params);
 }
 
-cpaf::gui::Window::operator cpaf::api::gui::Window *()
+cpaf::gui::Window::operator api_type *()
 {
     return m_impl;
 }

@@ -36,11 +36,11 @@ public:
     std::string get_label();
 
 private:
-    cpaf::api::gui::Button *m_impl;
+    api_type *m_impl;
 
 protected:
     Button();
-    Button(cpaf::api::gui::Button *impl);
+    Button(api_type *impl);
 
     /*!
         \brief Constructs the native widget using the given initialization data
@@ -48,7 +48,7 @@ protected:
     void create(Initializer::data_type params);
 
 public:
-    operator cpaf::api::gui::Button *();
+    operator api_type *();
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 

@@ -118,10 +118,10 @@ public:
 private:
     int m_id;
 
-    cpaf::api::gui::Widget *m_impl;
+    api_type *m_impl;
 
 protected:
-    Widget(cpaf::api::gui::Widget *impl);
+    Widget(api_type *impl);
 
     template<typename T> T *get_impl()
     {
@@ -129,7 +129,7 @@ protected:
     }
 
 public:
-    operator cpaf::api::gui::Widget *();
+    operator api_type *();
 };
 
     } // gui

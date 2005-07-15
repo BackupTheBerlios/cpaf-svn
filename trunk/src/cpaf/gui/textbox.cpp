@@ -14,7 +14,7 @@ cpaf::gui::TextBox::TextBox()
     m_impl = get_impl<api_type>();
 }
 
-cpaf::gui::TextBox::TextBox(cpaf::api::gui::TextBox *impl)
+cpaf::gui::TextBox::TextBox(api_type *impl)
     : TextWidget(impl),
     m_impl(impl)
 { }
@@ -25,7 +25,7 @@ void cpaf::gui::TextBox::create(Initializer::data_type params)
     m_impl->create(params);
 }
 
-cpaf::gui::TextBox::operator cpaf::api::gui::TextBox *()
+cpaf::gui::TextBox::operator api_type *()
 {
     return m_impl;
 }

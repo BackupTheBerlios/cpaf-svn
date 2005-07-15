@@ -21,6 +21,7 @@ namespace cpaf {
             class TextWidget;
             class EntryBox;
             class TextBox;
+            class RichTextBox;
         } // gui
     } // api
 } // cpaf

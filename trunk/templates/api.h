@@ -1,0 +1,29 @@
+/*!
+    \file include/cpaf/api/gui/$(NAME_LOWER).h
+    \brief $(NAME) interface declaration
+    \date Created: 2005-07-13
+*/
+
+#ifndef CPAF_API_GUI_$(NAME_UPPER)_H
+#define CPAF_API_GUI_$(NAME_UPPER)_H
+
+#include <cpaf/gui/initializer/$(NAME_LOWER).h>
+#include <cpaf/api/gui/$(BASE_LOWER).h>
+
+namespace cpaf {
+    namespace api {
+        namespace gui {
+
+class $(NAME) : public virtual $(BASE)
+{
+public:
+    typedef cpaf::gui::initializer::$(NAME)Data data_type; //!< Initialization data used for $(NAME).
+
+    virtual void create(const data_type &init_params) = 0;
+};
+
+        } // gui
+    } // api
+} // cpaf
+
+#endif

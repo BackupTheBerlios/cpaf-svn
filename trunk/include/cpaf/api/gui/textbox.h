@@ -10,8 +10,6 @@
 #include <cpaf/gui/initializer/textbox.h>
 #include <cpaf/api/gui/textwidget.h>
 
-#include <string>
-
 namespace cpaf {
     namespace api {
         namespace gui {

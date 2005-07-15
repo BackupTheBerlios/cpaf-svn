@@ -8,9 +8,7 @@
 #include <cpaf/api/gui/toplevel.h>
 #include <cpaf/private/factory.h>
 
-using namespace cpaf::api::gui;
-
-cpaf::gui::TopLevel::TopLevel(cpaf::api::gui::TopLevel *impl)
+cpaf::gui::TopLevel::TopLevel(api_type *impl)
     : Widget(impl),
     m_impl(impl)
 { }
@@ -21,7 +19,7 @@ cpaf::gui::TopLevel::~TopLevel()
     //delete m_impl;
 }
 
-cpaf::gui::TopLevel::operator cpaf::api::gui::TopLevel *()
+cpaf::gui::TopLevel::operator api_type *()
 {
     return m_impl;
 }

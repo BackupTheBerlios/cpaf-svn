@@ -52,14 +52,14 @@ public:
     cpaf::Point get_client_position();
 
 private:
-    cpaf::api::gui::TopLevel *m_impl;
+    api_type *m_impl;
 
 protected:
-    TopLevel(cpaf::api::gui::TopLevel *impl);
+    TopLevel(api_type *impl);
 
 public:
     ~TopLevel();
-    operator cpaf::api::gui::TopLevel *();
+    operator api_type *();
 };
 
     } // gui

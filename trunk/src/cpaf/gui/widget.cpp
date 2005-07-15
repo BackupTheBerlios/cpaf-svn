@@ -10,10 +10,9 @@
 // for delete_widget_implementation
 #include <cpaf/private/factory.h>
 
-using namespace cpaf::api::gui;
 using cpaf::object_id;
 
-cpaf::gui::Widget::Widget(cpaf::api::gui::Widget *impl)
+cpaf::gui::Widget::Widget(api_type *impl)
     : m_id(cpaf::gui::factory::get_unique_object_id()),
     m_impl(impl)
 {
@@ -32,7 +31,7 @@ void cpaf::gui::Widget::destroy()
     m_impl->destroy();
 }
 
-cpaf::gui::Widget::operator cpaf::api::gui::Widget *()
+cpaf::gui::Widget::operator api_type *()
 {
     return m_impl;
 }

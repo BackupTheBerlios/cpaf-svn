@@ -31,10 +31,10 @@ protected:
     void create(Initializer::data_type params);
 
 private:
-    cpaf::api::gui::TextBox *m_impl;
+    api_type *m_impl;
 
 public:
-    operator cpaf::api::gui::TextBox *();
+    operator api_type *();
     template<typename TextWidget> friend TextWidget *cpaf::gui::factory::create_widget(typename TextWidget::Initializer const &);
 };
 
