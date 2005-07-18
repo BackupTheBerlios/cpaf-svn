@@ -7,6 +7,7 @@
 #ifndef CPAF_GUI_INITIALIZER_TEXTWIDGET_H
 #define CPAF_GUI_INITIALIZER_TEXTWIDGET_H
 
+#include <cpaf/gui/initializer/widget.h>
 #include <string>
 
 namespace cpaf {

@@ -32,14 +32,13 @@ public:
     std::string get_text();
 
 protected:
-    TextWidget();
-    TextWidget(cpaf::api::gui::TextWidget *impl);
+    TextWidget(api_type *impl);
 
 private:
-    cpaf::api::gui::TextWidget *m_impl;
+    api_type *m_impl;
 
 public:
-    operator cpaf::api::gui::TextWidget *();
+    operator api_type *();
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 

@@ -8,18 +8,12 @@
 #include <cpaf/api/gui/textwidget.h>
 #include <cpaf/private/factory.h>
 
-cpaf::gui::TextWidget::TextWidget()
-    : Widget(cpaf::gui::factory::create_widget_implementation<api_type>())
-{
-    m_impl = get_impl<api_type>();
-}
-
-cpaf::gui::TextWidget::TextWidget(cpaf::api::gui::TextWidget *impl)
+cpaf::gui::TextWidget::TextWidget(api_type *impl)
     : Widget(impl),
     m_impl(impl)
 { }
 
-cpaf::gui::TextWidget::operator cpaf::api::gui::TextWidget *()
+cpaf::gui::TextWidget::operator api_type *()
 {
     return m_impl;
 }

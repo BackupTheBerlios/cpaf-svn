@@ -305,6 +305,9 @@
 						RelativePath=".\include\cpaf\gui\initializer\button.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\gui\initializer\entrybox.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\gui\initializer\object.h">
 					</File>
 					<File
@@ -384,6 +387,9 @@
 					</File>
 					<File
 						RelativePath=".\include\cpaf\win32\gui\textbox.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\win32\gui\textwidget.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\win32\gui\widget.h">
@@ -1149,6 +1155,33 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\src\cpaf\win32\entrybox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\src\cpaf\win32\exception.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32">
@@ -1212,6 +1245,33 @@
 				</File>
 				<File
 					RelativePath=".\src\cpaf\win32\textbox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\textwidget.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32">
 						<Tool
