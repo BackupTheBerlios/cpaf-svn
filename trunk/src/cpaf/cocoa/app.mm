@@ -1,6 +1,6 @@
 /**
  * \file src/cpaf/cocoa/app.mm
- * \brief Implementation of cpaf::gui::App::run() for Cocoa
+ * \brief Implementation of cpaf::gui::App for Cocoa
  * \date Created: 2005-04-29
  */
 
@@ -9,9 +9,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-static int s_argc;
-static char **s_argv;
-static NSAutoreleasePool *pool;
+namespace {
+	int s_argc;
+	char **s_argv;
+	NSAutoreleasePool *pool;
+} // anon namespace
 
 void register_argc_argv(int argc, char *argv[])
 {
