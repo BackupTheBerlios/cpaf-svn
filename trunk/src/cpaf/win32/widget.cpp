@@ -4,7 +4,7 @@
     \date Created: 2005-04-05
 */
 
-#include <cpaf/win32/gui/widget.h>
+#include <cpaf/win32/gui/button.h>
 #include <cpaf/win32/exception.h>
 #include <cpaf/event/event.h>
 #include <cpaf/gui/app.h>
@@ -85,14 +85,8 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
     //DBG_MSG_2("cpaf::win32::gui::Widget::process_message: %s", cpaf::win32::MessageTypeNames[msg]);
     switch(msg)
     {
-        case WM_CREATE:
+    case WM_CREATE:
         {
-            // lpCreateParams of CREATESTRUCT specifies the address of a CreationInfo struct.
-            // This struct currently contains a pointer to the object creating this window.
-            LPCREATESTRUCT create = (LPCREATESTRUCT)l_param;
-            CreationInfo *info = (CreationInfo*)create->lpCreateParams;
-            widget_map_add_hwnd(hwnd, info->wnd);
-
             // make sure we initialize all necessary members before sending WIDGET_CREATE
             // like m_hwnd
             m_hwnd = hwnd;
@@ -103,7 +97,7 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
             break;
         }
 
-        case WM_DESTROY:
+    case WM_DESTROY:
         {
             // send destroy event
             cpaf::event::Event event(cpaf::event::WIDGET_DESTROY, m_id);
@@ -123,14 +117,15 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
                 for child windows yet. I will not be able to recieve child WM_DESTROY events
                 until the next message loop iteration so I must que the deletion of this object
             */
-            delete this;
 
-            //! \todo Decide when to terminate an application
-            PostQuitMessage(0);
+            // queue ourselves for deletion
+            cpaf::win32::gui::widget_deletion_stack_push(this);
+
+            
             return ret;
         }
 
-        case WM_GETMINMAXINFO:
+    case WM_GETMINMAXINFO:
         {
             MINMAXINFO *info = (MINMAXINFO*)l_param;
             if( m_max_size.width != -1 )
@@ -142,6 +137,23 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
             if( m_min_size.height != -1 )
                 info->ptMinTrackSize.y = m_min_size.height;
             return 0;
+        }
+
+    case WM_COMMAND:
+        {
+            int command = HIWORD(w_param);
+
+            switch(command)
+            {
+            case BN_CLICKED:
+                {
+                    Button *btn = get_widget_from_hwnd<Button>((HWND)l_param);
+                    cpaf::event::Event click_event(cpaf::event::BUTTON_CLICK, btn->get_id());
+                    cpaf::event::get_manager().send_event(click_event);
+                    return 0;
+                }
+            }
+
         }
 
     }

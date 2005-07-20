@@ -13,6 +13,7 @@ using cpaf::win32::gui::WidgetMap;
 
 namespace {
     cpaf::win32::gui::WidgetMap widget_map;
+    cpaf::win32::gui::WidgetDeletionStack widget_deletion_stack;
 }
 
 void cpaf::win32::gui::widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
@@ -39,6 +40,27 @@ cpaf::win32::gui::Widget *cpaf::win32::gui::get_widget_from_hwnd(HWND h)
         return i->second;
     else
         return NULL;
+}
+
+bool cpaf::win32::gui::widget_map_empty()
+{
+    return widget_map.empty();
+}
+
+void cpaf::win32::gui::widget_deletion_stack_push(Widget *w)
+{
+    widget_deletion_stack.push(w);
+}
+
+void cpaf::win32::gui::widget_deletion_stack_pop()
+{
+    delete widget_deletion_stack.top();
+    widget_deletion_stack.pop();
+}
+
+bool cpaf::win32::gui::widget_deletion_stack_waiting()
+{
+    return !widget_deletion_stack.empty();
 }
 
 cpaf::win32::gui::CreationInfo::CreationInfo(cpaf::win32::gui::Widget *w)
@@ -110,5 +132,5 @@ LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_pa
         }
     }
 
-    return CallNextHookEx(m_hook, code, w_param, l_param);
+    return ::CallNextHookEx(m_hook, code, w_param, l_param);
 }

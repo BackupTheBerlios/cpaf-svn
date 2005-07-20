@@ -19,11 +19,37 @@ int cpaf::gui::App::run()
     // the win32 message loop
     MSG msg;
 
-    // getmessage could return -1....who cares
-    while( GetMessage( &msg, NULL, 0, 0 ) )
+    while( true )
     {
-        TranslateMessage(&msg); 
-        DispatchMessage(&msg); 
+        // if no widgets exist, terminate the application
+        if( cpaf::win32::gui::widget_map_empty() )
+            ::PostQuitMessage(0);
+
+        // use peekmessage to check for waiting messages
+        if( !::PeekMessage(&msg, 0, 0, 0, PM_REMOVE) )
+        {
+            // no messages waiting, check the widget deletion stack
+            if( cpaf::win32::gui::widget_deletion_stack_waiting() )
+            {
+                // delete the widget and check for more messages
+                cpaf::win32::gui::widget_deletion_stack_pop();
+                continue;
+            }
+            else
+                // wait for a message
+                //! \todo Throw if GetMessage returns -1
+                if( ::GetMessage(&msg, 0, 0, 0) == -1 )
+                    break;
+        }
+
+        // process the message
+        if( msg.message == WM_QUIT )
+            break;
+        else
+        {
+            ::TranslateMessage(&msg);
+            ::DispatchMessage(&msg);
+        }
     }
 
     //! \todo return the exit code value instead of 0

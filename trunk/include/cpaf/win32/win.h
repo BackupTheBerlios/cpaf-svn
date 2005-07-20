@@ -10,6 +10,7 @@
 #include <windows.h>
 
 #include <map>
+#include <stack>
 
 #if defined(_MSC_VER) && defined(_DEBUG)
 #   include <crtdbg.h>
@@ -26,15 +27,45 @@ namespace cpaf {
 
 class Widget;
 
-typedef std::map<HWND, cpaf::win32::gui::Widget *> WidgetMap;
+typedef std::map<HWND, Widget *> WidgetMap;
 
-//extern WidgetMap widget_map;
+Widget *get_widget_from_hwnd(HWND h);
+template <typename T> T *get_widget_from_hwnd(HWND h)
+{
+    return dynamic_cast<T*>(get_widget_from_hwnd(h));
+}
+/*!
+    Adds a HWND, Widget pair to the map
+*/
+void widget_map_add_hwnd(HWND h, Widget *wnd);
 
-//template <typename T> T *get_widget_from_hwnd(HWND h)
-cpaf::win32::gui::Widget *get_widget_from_hwnd(HWND h);
-
-void widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd);
+/*!
+    Removes a HWND, Widget pair from the map
+*/
 void widget_map_remove_hwnd(HWND h);
+
+/*!
+    Returns true if the map is empty.
+    This is used to determine when an application should terminate.
+*/
+bool widget_map_empty();
+
+typedef std::stack<Widget*> WidgetDeletionStack;
+
+/*!
+    Adds a widget to the deletion stack
+*/
+void widget_deletion_stack_push(Widget *w);
+
+/*!
+    Deletes the widget on the top of the stack
+*/
+void widget_deletion_stack_pop();
+
+/*!
+    Returns true if there are widgets in the deletion stack
+*/
+bool widget_deletion_stack_waiting();
 
 /*!
     Structure containing information passed to the window procedure through WM_CREATE.
@@ -61,7 +92,7 @@ LRESULT CALLBACK widget_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_pa
 /*!
     This class wraps hooking the WM_CREATE message and is used for cpaf native widget creation.
 
-    It hooks during ctor, and de-hooks during dtor.
+    It hooks during ctor.
 
     \warning Implementation of this class is not thread safe.
 */

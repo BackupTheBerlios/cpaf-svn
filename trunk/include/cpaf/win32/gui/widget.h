@@ -62,6 +62,8 @@ public:
     virtual void create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
         bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex = 0);
 
+    cpaf::object_id get_id() { return m_id; }
+
     // object interface
     virtual void set_size(const cpaf::Size &s);
     virtual void set_min_size(const cpaf::Size &s);
