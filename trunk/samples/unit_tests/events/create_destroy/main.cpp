@@ -11,7 +11,7 @@ MyButton::ctor
 MyButton::on_create
 MyWindow::on_destroy
 MyButton::on_destroy        * Note: These two functions can be invoked in any order. They both connect to the same
-MyWindow::on_btn_destroy    * from the same object and the order in which the slots are invoked is undefined.
+MyWindow::on_btn_destroy    * event from the same object and the order in which the slots are invoked is undefined.
 MyButton::dtor
 MyWindow::dtor
 The program '[2204] create_destroy.exe: Native' has exited with code 0 (0x0).
