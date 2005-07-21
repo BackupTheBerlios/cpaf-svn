@@ -12,7 +12,7 @@
 const char USAGE_STR[] =\
 "USAGE\n\
 class_template [class] [base] [constructable=true,false]";
-std::time_put
+
 struct upper { };
 struct lower { };
 
@@ -206,9 +206,52 @@ parser_object_ptr parser_factory(const std::string &command, const symbol_map &s
         throw std::runtime_error(std::string("Unknown command: ") + command);
 };
 
-void output_templates(std::string name, std::string base, bool constructable)
+void parse_template(template_files_vector::iterator i, std::ifstream &input, std::ofstream &output, const symbol_map &symbols)
 {
     std::string line;
+    parser_vector parsers;
+    parsers.push_back(parser_object_ptr(new symbol_parser(symbols, parsers, input, output)));
+
+    input.open(i->first.c_str(), std::ios::in | std::ios::binary);
+    string_pair &out_file = i->second;
+    output.open(std::string(out_file.first + symbols.find("NAME_LOWER")->second + out_file.second).c_str(),
+        std::ios::out | std::ios::trunc);
+
+    if( !input.is_open() )
+        throw std::runtime_error("Failed to open template file");
+    if( !output.is_open() )
+        throw std::runtime_error("Failed to open output file");
+
+    std::string buff;
+
+    // read and write line by line
+    while(true)
+    {
+        symbol_parser::m_should_output = true;
+
+        std::getline(input, line);
+        buff = line;
+
+        if( input.eof() )
+            break;
+
+        if( !input.good() || !output.good() )
+            throw std::runtime_error("Input or Output error!");
+
+        for( parser_vector::reverse_iterator i = parsers.rbegin(), end = parsers.rend(); i != end; ++i )
+            if( (**i)(buff) )
+                break;
+    }
+
+    input.close();
+    output.close();
+    input.clear();
+    output.clear();
+}
+
+
+void output_templates(std::string name, std::string base, bool constructable)
+{
     std::locale loc;
     std::ifstream input;
     std::ofstream output;
@@ -221,57 +264,55 @@ void output_templates(std::string name, std::string base, bool constructable)
     symbols["NAME_LOWER"] = conv_str_case<lower>(name, loc);
     symbols["BASE_UPPER"] = conv_str_case<upper>(base, loc);
     symbols["BASE_LOWER"] = conv_str_case<lower>(base, loc);
+    symbols["H_EXT"] = "h";
+    symbols["SRC_EXT"] = "cpp";
+    symbols["DATE"] = "";
+
     if( constructable )
         symbols["CONSTRUCTABLE"] = "";
 
     // build input and output file vector
     template_files_vector files;
-    files.push_back(template_file("templates/gui.h", string_pair("include/cpaf/gui/", ".h")));
-    files.push_back(template_file("templates/initializer.h", string_pair("include/cpaf/gui/initializer/", ".h")));
-    files.push_back(template_file("templates/api.h", string_pair("include/cpaf/api/gui/", ".h")));
-    files.push_back(template_file("templates/gui.cpp", string_pair("src/cpaf/gui/", ".cpp")));
-
-    parser_vector parsers;
-    parsers.push_back(parser_object_ptr(new symbol_parser(symbols, parsers, input, output)));
+    files.push_back(template_file("templates/gui.h", string_pair("include/cpaf/gui/", symbols["H_EXT"])));
+    files.push_back(template_file("templates/initializer.h", string_pair("include/cpaf/gui/initializer/", symbols["H_EXT"])));
+    files.push_back(template_file("templates/api.h", string_pair("include/cpaf/api/gui/", symbols["H_EXT"])));
+    files.push_back(template_file("templates/gui.cpp", string_pair("src/cpaf/gui/", symbols["SRC_EXT"])));
 
     // parse and output template files
     for( template_files_vector::iterator i = files.begin(), end = files.end(); i != end; ++i )
     {
-        input.open(i->first.c_str(), std::ios::in | std::ios::binary);
-        string_pair &out_file = i->second;
-        output.open(std::string(out_file.first + symbols["NAME_LOWER"] + out_file.second).c_str(),
-            std::ios::out | std::ios::trunc);
+        parse_template(i, input, output, symbols);
+    }
 
-        if( !input.is_open() )
-            throw std::runtime_error("Failed to open template file");
-        if( !output.is_open() )
-            throw std::runtime_error("Failed to open output file");
+    typedef std::vector<std::string> str_vector;
+    str_vector ports;
+    ports.push_back("win32");
+    ports.push_back("gtk2");
+    ports.push_back("cocoa");
 
-        std::string buff;
+    for( str_vector::iterator i = ports.begin(), end = ports.end(); i != end; ++i )
+    {
+        std::string port = *i;
+        symbols["PORT"] = port;
+        symbols["PORT_UPPER"] = conv_str_case<upper>(port, loc);
+        symbols["PORT_LOWER"] = conv_str_case<lower>(port, loc);
 
-        // read and write line by line
-        while(true)
+        if( symbols["PORT_LOWER"] == "cocoa" )
+            symbols["IMPL_SRC_EXT"] = "mm";
+        else
+            symbols["IMPL_SRC_EXT"] = "cpp";
+
+        files.clear();
+        files.push_back(template_file("templates/impl.h",
+            string_pair("include/cpaf/" + symbols["PORT_LOWER"] + "/gui/", "." + symbols["H_EXT"])));
+        files.push_back(template_file("templates/impl.cpp",
+            string_pair("src/cpaf/" + symbols["PORT_LOWER"] + "/", "." + symbols["IMPL_SRC_EXT"])));
+
+        // parse and output template files
+        for( template_files_vector::iterator i = files.begin(), end = files.end(); i != end; ++i )
         {
-            symbol_parser::m_should_output = true;
-
-            std::getline(input, line);
-            buff = line;
-
-            if( input.eof() )
-                break;
-
-            if( !input.good() || !output.good() )
-                throw std::runtime_error("Input or Output error!");
-
-            for( parser_vector::reverse_iterator i = parsers.rbegin(), end = parsers.rend(); i != end; ++i )
-                if( (**i)(buff) )
-                    break;
+            parse_template(i, input, output, symbols);
         }
-
-        input.close();
-        output.close();
-        input.clear();
-        output.clear();
     }
 }
 
@@ -293,3 +334,4 @@ int main(int argc, char *argv[])
         std::cin.get();
     }
 }
+
