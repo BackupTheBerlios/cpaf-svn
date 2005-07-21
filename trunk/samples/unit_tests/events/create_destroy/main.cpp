@@ -50,7 +50,8 @@ public:
     bool init();
 };
 
-cpaf::gui::Window *parent;
+class MyWindow;
+MyWindow *parent;
 
 /*
     A derived button
@@ -79,6 +80,9 @@ public:
     void on_destroy(Event &event)
     {
         DBG_MSG("MyButton::on_destroy");
+
+        // the parent widget must not be freed yet so this is ok
+        void *data = parent->my_data;
     }
 };
 
@@ -91,6 +95,8 @@ private:
     MyButton *m_btn;
 
 public:
+    void *my_data = 0;
+
     MyWindow()
     {
         DBG_MSG("MyWindow::ctor");
