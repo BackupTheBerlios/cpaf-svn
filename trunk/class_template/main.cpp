@@ -144,7 +144,7 @@ public:
         }
 
         if( m_should_output )
-            output << line;
+            output << line << "\n";
 
         return true;
     }
@@ -212,7 +212,7 @@ void parse_template(template_files_vector::iterator i, std::ifstream &input, std
     parser_vector parsers;
     parsers.push_back(parser_object_ptr(new symbol_parser(symbols, parsers, input, output)));
 
-    input.open(i->first.c_str(), std::ios::in | std::ios::binary);
+    input.open(i->first.c_str(), std::ios::in);
     string_pair &out_file = i->second;
     output.open(std::string(out_file.first + symbols.find("NAME_LOWER")->second + out_file.second).c_str(),
         std::ios::out | std::ios::trunc);
