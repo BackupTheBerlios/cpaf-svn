@@ -77,13 +77,7 @@ public:
         DBG_MSG("MyButton::on_create");
     }
 
-    void on_destroy(Event &event)
-    {
-        DBG_MSG("MyButton::on_destroy");
-
-        // the parent widget must not be freed yet so this is ok
-        void *data = parent->my_data;
-    }
+    void on_destroy(Event &event);
 };
 
 /*
@@ -95,7 +89,7 @@ private:
     MyButton *m_btn;
 
 public:
-    void *my_data = 0;
+    void *my_data;
 
     MyWindow()
     {
@@ -105,6 +99,7 @@ public:
         connect<Event, false>(WIDGET_CREATE, get_id())(&MyWindow::on_create, *this);
 
         parent = this;
+        my_data = 0;
     }
 
     ~MyWindow()
@@ -145,6 +140,15 @@ public:
         m_btn->set_size(cpaf::Size(100,100));
     }
 };
+
+// We need to implement that here
+void MyButton::on_destroy(Event &event)
+{
+    DBG_MSG("MyButton::on_destroy");
+    
+    // the parent widget must not be freed yet so this is ok
+    parent->my_data;
+}
 
 /*
     Initialization function for our application class
