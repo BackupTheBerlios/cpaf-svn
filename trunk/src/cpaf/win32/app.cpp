@@ -36,7 +36,7 @@ int cpaf::gui::App::run()
                 continue;
             }
             else
-                // wait for a message
+                // nothing to delete, wait for a message
                 //! \todo Throw if GetMessage returns -1
                 if( ::GetMessage(&msg, 0, 0, 0) == -1 )
                     break;

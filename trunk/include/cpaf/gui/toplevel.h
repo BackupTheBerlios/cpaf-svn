@@ -7,11 +7,8 @@
 #ifndef CPAF_GUI_TOPLEVEL_H
 #define CPAF_GUI_TOPLEVEL_H
 
-#include <cpaf/dllimpexp.h>
-#include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/widget.h>
 
-// would rather not need this but no way around it right now
 #include <string>
 
 namespace cpaf {

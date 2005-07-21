@@ -23,7 +23,7 @@ public:
 
 protected:
     TextBox();
-    TextBox(cpaf::api::gui::TextBox *impl);
+    TextBox(api_type *impl);
 
     /*!
         \brief Constructs the native widget using the given initialization data
@@ -35,7 +35,7 @@ private:
 
 public:
     operator api_type *();
-    template<typename TextWidget> friend TextWidget *cpaf::gui::factory::create_widget(typename TextWidget::Initializer const &);
+    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 
     } // gui

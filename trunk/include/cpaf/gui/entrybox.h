@@ -23,7 +23,7 @@ public:
 
 protected:
     EntryBox();
-    EntryBox(cpaf::api::gui::EntryBox *impl);
+    EntryBox(api_type *impl);
 
     /*!
         \brief Constructs the native widget using the given initialization data
@@ -31,11 +31,11 @@ protected:
     void create(Initializer::data_type params);
 
 private:
-    cpaf::api::gui::EntryBox *m_impl;
+    api_type *m_impl;
 
 public:
-    operator cpaf::api::gui::EntryBox *();
-    template<typename TextWidget> friend TextWidget *cpaf::gui::factory::create_widget(typename TextWidget::Initializer const &);
+    operator api_type *();
+    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 
     } // gui

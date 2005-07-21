@@ -7,8 +7,6 @@
 #ifndef CPAF_GUI_WINDOW_H
 #define CPAF_GUI_WINDOW_H
 
-#include <cpaf/dllimpexp.h>
-#include <cpaf/gui/api-prototypes.h>
 #include <cpaf/gui/toplevel.h>
 #include <cpaf/gui/initializer/window.h>
 

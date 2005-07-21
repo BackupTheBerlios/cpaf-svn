@@ -5,7 +5,6 @@
 */
 
 #include <cpaf/win32/gui/button.h>
-#include <cpaf/win32/exception.h>
 
 void cpaf::win32::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
