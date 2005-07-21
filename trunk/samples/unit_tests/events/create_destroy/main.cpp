@@ -79,9 +79,6 @@ public:
     void on_destroy(Event &event)
     {
         DBG_MSG("MyButton::on_destroy");
-
-        // our parent must exist and be accesible at this point
-        parent->get_position();
     }
 };
 
