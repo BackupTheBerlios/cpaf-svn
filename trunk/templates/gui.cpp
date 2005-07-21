@@ -1,7 +1,7 @@
 /*!
-    \file src/cpaf/gui/$(NAME_LOWER).cpp
+    \file src/cpaf/gui/$(NAME_LOWER).$(SRC_EXT)
     \brief Implementation of cpaf::gui::$(NAME)
-    \date Created: 2005-07-13
+    \date Created: $(DATE)
 */
 
 #include <cpaf/gui/$(NAME_LOWER).h>

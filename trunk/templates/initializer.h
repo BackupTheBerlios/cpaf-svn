@@ -1,7 +1,7 @@
 /*!
-    \file include/cpaf/gui/initializer/$(NAME_LOWER).h
+    \file include/cpaf/gui/initializer/$(NAME_LOWER).$(H_EXT)
     \brief Initializer classes for cpaf::gui::$(NAME)
-    \date Created: 2005-07-07
+    \date Created: $(DATE)
 */
 
 #ifndef CPAF_GUI_INITIALIZER_$(NAME_UPPER)_H
@@ -61,4 +61,4 @@ $(END)
     } // gui
 } // cpaf
 
-#endif
+#endif // CPAF_GUI_INITIALIZER_$(NAME_UPPER)_H

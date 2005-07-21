@@ -1,7 +1,7 @@
 /*!
-    \file include/cpaf/api/gui/$(NAME_LOWER).h
+    \file include/cpaf/api/gui/$(NAME_LOWER).$(H_EXT)
     \brief $(NAME) interface declaration
-    \date Created: 2005-07-13
+    \date Created: $(DATE)
 */
 
 #ifndef CPAF_API_GUI_$(NAME_UPPER)_H
@@ -26,4 +26,4 @@ public:
     } // api
 } // cpaf
 
-#endif
+#endif // CPAF_API_GUI_$(NAME_UPPER)_H

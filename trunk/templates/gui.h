@@ -1,15 +1,17 @@
 /*!
-    \file include/cpaf/gui/$(NAME_LOWER).h
+    \file include/cpaf/gui/$(NAME_LOWER).$(H_EXT)
     \brief cpaf::gui::$(NAME) declaration
-    \date Created: 2005-07-13
+    \date Created: $(DATE)
 */
 
 #ifndef CPAF_GUI_$(NAME_UPPER)_H
 #define CPAF_GUI_$(NAME_UPPER)_H
 
 #include <cpaf/gui/$(BASE_LOWER).h>
+#include <cpaf/gui/initializer/$(NAME_LOWER).h>
+
 $(IF CONSTRUCTABLE)
-#include <cpaf/private/factory.h>
+#include <cpaf/gui/factory.h>
 $(END)
 
 namespace cpaf {
@@ -47,4 +49,4 @@ $(END)
     } // gui
 } // cpaf
 
-#endif
+#endif // CPAF_GUI_$(NAME_UPPER)_H
