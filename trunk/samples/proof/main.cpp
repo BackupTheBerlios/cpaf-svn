@@ -78,7 +78,8 @@ public:
     virtual void on_btn_click(cpaf::event::Event &event)
     {
         DBG_MSG("MyButton::on_btn_click");
-        this->set_label("Thank you!");
+        set_label("Thank you!");
+        cpaf::get_app().quit();
     }
 
     virtual void on_destroy(cpaf::event::Event &event)

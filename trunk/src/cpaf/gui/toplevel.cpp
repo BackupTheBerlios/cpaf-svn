@@ -7,16 +7,20 @@
 #include <cpaf/gui/toplevel.h>
 #include <cpaf/api/gui/toplevel.h>
 #include <cpaf/private/factory.h>
+#include <cpaf/gui/app.h>
 
 cpaf::gui::TopLevel::TopLevel(api_type *impl)
     : Widget(impl),
     m_impl(impl)
-{ }
+{
+    // add ourselves to the TopLevel widget list
+    cpaf::gui::App::add_top_level(this);
+}
 
 cpaf::gui::TopLevel::~TopLevel()
 {
-    // delete out implementation unconditionally
-    //delete m_impl;
+    // remove ourselves from the TopLevel widget list
+    cpaf::gui::App::remove_top_level(this);
 }
 
 cpaf::gui::TopLevel::operator api_type *()

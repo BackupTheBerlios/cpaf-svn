@@ -59,8 +59,20 @@ public:
     //! \todo Should I make this not an inilined dtor?
     virtual ~App() { }
 
+    /*!
+        Initialize the application.
+    */
     virtual bool init() = 0;
+
+    /*!
+        Run the application.
+    */
     virtual int run() = 0;
+
+    /*!
+        Quit the application.
+    */
+    virtual void quit() = 0;
 
     /*!
         \return Command line used to launch the application

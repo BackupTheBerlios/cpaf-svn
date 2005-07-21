@@ -1,13 +1,12 @@
 /*!
     \file src/cpaf/win32/app.cpp
-    \brief Implementation of the parts of cpaf::gui::App which are implementation specific,
-    those being gui_init() and run().
+    \brief Implementation of the parts of cpaf::gui::App which are implementation specific.
     \date Created: 2005-04-07
 */
 
 #include <cpaf/win32/win.h>
 #include <cpaf/gui/app.h>
-#include <cpaf/exception.h>
+#include <cpaf/win32/exception.h>
 
 void cpaf::gui::App::gui_init()
 {
@@ -54,4 +53,9 @@ int cpaf::gui::App::run()
 
     //! \todo return the exit code value instead of 0
     return 0;
+}
+
+void cpaf::gui::App::_quit()
+{
+
 }
