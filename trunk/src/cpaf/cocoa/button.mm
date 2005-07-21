@@ -14,6 +14,7 @@ CPAF_COCOA_IMPLEMENTATION(Button)
 @interface CpafButton (Cpaf)
 - (void)cpafButtonClickEvent;
 @end
+
 @implementation CpafButton (Cpaf)
 - (void)cpafButtonClickEvent
 {

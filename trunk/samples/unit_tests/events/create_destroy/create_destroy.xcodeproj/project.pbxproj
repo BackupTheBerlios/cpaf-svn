@@ -47,7 +47,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* create_destroy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = create_destroy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E205656D08838A21000B7316 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E205656D08838A21000B7316 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = main.cpp; sourceTree = "<group>"; };
 		E205657D08838B4D000B7316 /* cpaf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = cpaf.framework; path = ../../../../build/Development/cpaf.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 

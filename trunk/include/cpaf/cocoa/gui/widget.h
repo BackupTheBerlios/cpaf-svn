@@ -15,48 +15,33 @@
 
 #import <Cocoa/Cocoa.h>
 
-// Two macros which create a subclass of a widget that sends the WIDGET_DESTROY-event
+// Two macros which create a subclass of a widget, so we
+// can store the implementation object in the widget
 
 #define CPAF_COCOA_INTERFACE(type) \
   @interface Cpaf ## type : NS ## type \
   { \
-    cpaf::gui::Widget *m_cpaf_widget; \
+    cpaf::cocoa::gui::Widget *m_cpaf_widget; \
   } \
-  - (void)setCpafWidget:(cpaf::gui::Widget *)widget; \
-  - (cpaf::gui::Widget *)cpafWidget; \
+  - (void)setCpafWidget:(cpaf::cocoa::gui::Widget *)widget; \
+  - (cpaf::cocoa::gui::Widget *)cpafWidget; \
   - (void)cpafSendEvent:(cpaf::event::event_id)event_id; \
-  - (void)dealloc; \
   @end
 
 #define CPAF_COCOA_IMPLEMENTATION(type) \
   @implementation Cpaf ## type \
-  - (void)setCpafWidget:(cpaf::gui::Widget *)widget \
+  - (void)setCpafWidget:(cpaf::cocoa::gui::Widget *)widget \
   { \
-    if (!m_cpaf_widget) \
-      /* Add an observer so the WIDGET_DESTROY-event is called when the application is terminated */ \
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cpafWillTerminate:) name:NSApplicationWillTerminateNotification object:nil]; \
     m_cpaf_widget = widget; \
   } \
-  - (cpaf::gui::Widget *)cpafWidget { return m_cpaf_widget; } \
-  - (void)cpafWillTerminate:(NSNotification *)n \
-  { \
-    [self cpafSendEvent:cpaf::event::WIDGET_DESTROY]; \
-  } \
+  - (cpaf::cocoa::gui::Widget *)cpafWidget { return m_cpaf_widget; } \
   - (void)cpafSendEvent:(cpaf::event::event_id)event_id \
   { \
     if (m_cpaf_widget) \
     { \
-      cpaf::event::Event event(event_id, m_cpaf_widget->get_id()); \
+      cpaf::event::Event event(event_id, m_cpaf_widget->m_wrapper->get_id()); \
       cpaf::event::get_manager().send_event(event); \
     } \
-  } \
-  - (void)dealloc \
-  { \
-    /* Remove the observer */ \
-    if (m_cpaf_widget) \
-      [[NSNotificationCenter defaultCenter] removeObserver:self]; \
-    [self cpafSendEvent:cpaf::event::WIDGET_DESTROY]; \
-    [super dealloc]; \
   } \
   @end
 
@@ -66,9 +51,12 @@ namespace cpaf {
 
 class Widget : public virtual cpaf::api::gui::Widget
 {
-protected:
+public:
+    // Those are public, because we need to access them from the native object
     cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
     id m_object;
+
+protected:
     void send_event(cpaf::event::event_id event_id); // cocoa specific
     void create(const cpaf::gui::initializer::WidgetData &params, id widget);
     Widget() : m_wrapper(NULL) { }

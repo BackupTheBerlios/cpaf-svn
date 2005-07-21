@@ -14,16 +14,20 @@
 
 using namespace cpaf::cocoa::utils;
 
+// So we don't get compiler warnings
+@interface NSObject (CpafObject)
+- (void)setCpafWidget:(cpaf::cocoa::gui::Widget *)widget;
+- (cpaf::cocoa::gui::Widget *)cpafWidget;
+@end
+
+
 void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
 {
 	m_wrapper = params.m_wrapper;
     cpaf::gui::Widget *parent;
     
     if ([widget respondsToSelector:@selector(setCpafWidget:)])
-        [widget performSelector:@selector(setCpafWidget:) withObject:(id)params.m_wrapper];
-        
-        // The following line would give a compiler warning
-        //[widget setCpafWidget:params.m_wrapper];
+        [widget setCpafWidget:this];        
 
     //! \todo m_show, m_activate, m_enable
     //! \todo m_min_size, m_max_size
@@ -50,30 +54,57 @@ void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &
 
     // The widget shouldn't move when we resize the window
     [m_object setAutoresizingMask:NSViewMinYMargin];
-    
+
     // Don't send a WIDGET_CREATE-event here, every subclass has to do that
 }
 
 void cpaf::cocoa::gui::Widget::send_event(cpaf::event::event_id event_id) // cocoa specific
 {
-    if ([m_object respondsToSelector:@selector(cpafSendEvent:)])
-        [m_object performSelector:@selector(cpafSendEvent:) withObject:(id)event_id];
+    cpaf::event::Event event(event_id, m_wrapper->get_id());
+    cpaf::event::get_manager().send_event(event);
 }
 
 void cpaf::cocoa::gui::Widget::destroy()
 {
     if (m_object)
     {
+        NSArray *subviews = nil;
+        
+        // Send the destroy-event
+        send_event(cpaf::event::WIDGET_DESTROY);
+
+        if ([m_object isKindOfClass:[NSView class]])
+            subviews = [m_object subviews];
+        if ([m_object isKindOfClass:[NSWindow class]])
+            subviews = [[m_object contentView] subviews];
+
+        // Release the children
+        if (subviews)
+        {
+            NSEnumerator *e = [subviews objectEnumerator];
+            NSView *view;
+            
+            // Loop through the children
+            while ((view = [e nextObject]) != nil)
+            {
+                cpaf::cocoa::gui::Widget *widget;
+                
+                // Is there an implementation object available? 
+                if ([view respondsToSelector:@selector(cpafWidget)])
+                {
+                    widget = [view cpafWidget];
+                    widget->destroy(); // Destroy it
+                }
+            }
+        }
         [m_object release];
         m_object = nil;
     }
+    delete this;
 }
 
 cpaf::cocoa::gui::Widget::~Widget()
 {
-    if (m_object)
-        [m_object release];
-    
     // delete our wrapper
     delete m_wrapper;
 }

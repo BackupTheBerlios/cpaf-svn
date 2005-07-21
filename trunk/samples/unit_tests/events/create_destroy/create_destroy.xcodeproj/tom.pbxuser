@@ -70,8 +70,14 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 142838056;
-			PBXWorkspaceStateSaveDate = 142838056;
+			PBXPerProjectTemplateStateSaveDate = 143665821;
+			PBXWorkspaceStateSaveDate = 143665821;
+		};
+		perUserProjectItems = {
+			E22409EC08903CCC004FABE1 /* PBXTextBookmark */ = E22409EC08903CCC004FABE1 /* PBXTextBookmark */;
+			E22409F508903D0F004FABE1 /* PBXTextBookmark */ = E22409F508903D0F004FABE1 /* PBXTextBookmark */;
+			E28156A60890089B0065A66F = E28156A60890089B0065A66F /* PBXBookmark */;
+			E28156D6089019170065A66F = E28156D6089019170065A66F /* PBXTextBookmark */;
 		};
 		sourceControlManager = E205656108838947000B7316 /* Source Control */;
 		userBuildSettings = {
@@ -118,6 +124,8 @@
 		executableUserSymbolLevel = 0;
 		libgmallocEnabled = 0;
 		name = create_destroy;
+		savedGlobals = {
+		};
 		sourceDirectories = (
 		);
 	};
@@ -135,10 +143,42 @@
 	};
 	E205656D08838A21000B7316 /* main.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {877, 1610}}";
-			sepNavSelRange = "{1247, 10}";
+			sepNavIntBoundsRect = "{{0, 0}, {877, 2408}}";
+			sepNavSelRange = "{3516, 0}";
 			sepNavVisRect = "{{0, 0}, {877, 676}}";
-			sepNavWindowFrame = "{{15, 38}, {916, 789}}";
+			sepNavWindowFrame = "{{23, 43}, {916, 789}}";
 		};
+	};
+	E22409EC08903CCC004FABE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: unused variable 'data'";
+		fRef = E205656D08838A21000B7316 /* main.cpp */;
+		rLen = 1;
+		rLoc = 149;
+		rType = 1;
+	};
+	E22409F508903D0F004FABE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E205656D08838A21000B7316 /* main.cpp */;
+		name = "main.cpp: 148";
+		rLen = 0;
+		rLoc = 3516;
+		rType = 0;
+		vrLen = 1133;
+		vrLoc = 2855;
+	};
+	E28156A60890089B0065A66F /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = E205656D08838A21000B7316 /* main.cpp */;
+	};
+	E28156D6089019170065A66F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E205656D08838A21000B7316 /* main.cpp */;
+		name = "main.cpp: 119";
+		rLen = 0;
+		rLoc = 2574;
+		rType = 0;
+		vrLen = 1306;
+		vrLoc = 2190;
 	};
 }

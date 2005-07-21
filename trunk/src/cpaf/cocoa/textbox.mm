@@ -7,8 +7,10 @@
 #include <cpaf/cocoa/gui/textbox.h>
 #include <cpaf/exception.h>
 
+//! \todo Use TextView instead of TextField
+//CPAF_COCOA_INTERFACE(TextView)
+//CPAF_COCOA_IMPLEMENTATION(TextView)
 CPAF_COCOA_INTERFACE(TextField)
-//CPAF_COCOA_IMPLEMENTATION(TextField)
 
 void cpaf::cocoa::gui::TextBox::create(const cpaf::gui::initializer::TextBoxData &params)
 {

@@ -18,13 +18,15 @@ void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &
     double x = params.m_pos.x, y = params.m_pos.y;
     double w = params.m_size.width, h = params.m_size.height;
 
+	m_wrapper = params.m_wrapper;
+
     m_object = [[CpafWindow alloc] initWithContentRect:NSMakeRect(x, y, w, h)
         styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask)
         backing:NSBackingStoreBuffered defer:YES];
     [m_object setReleasedWhenClosed:NO];
-    
+
     if ([m_object respondsToSelector:@selector(setCpafWidget:)])
-        [m_object performSelector:@selector(setCpafWidget:) withObject:(id)params.m_wrapper];
+        [m_object setCpafWidget:this];
 
     if (params.m_use_client_size)
         set_client_size(params.m_client_size);
@@ -46,7 +48,7 @@ void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &
     //! \todo params.m_parent, params.m_enable
 
     show(params.m_show, params.m_activate);
-    
+
     send_event(cpaf::event::WIDGET_CREATE);
 }
 

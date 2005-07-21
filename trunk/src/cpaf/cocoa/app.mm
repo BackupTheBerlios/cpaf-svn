@@ -65,8 +65,8 @@ static void set_up_menubar()
     [menuBar addItem:appleMenuItem];
 
     //! \todo Localization
-    appleMenuServicesItem = [[[NSMenuItem alloc] initWithTitle:@"Services" action:@selector(terminate:) keyEquivalent:@""] autorelease];
-    appleMenuQuitItem = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Quit %@", getApplicationName()] action:@selector(terminate:) keyEquivalent:@"q"] autorelease];
+    appleMenuServicesItem = [[[NSMenuItem alloc] initWithTitle:@"Services" action:nil keyEquivalent:@""] autorelease];
+    appleMenuQuitItem = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Quit %@", getApplicationName()] action:@selector(cpafTerminate:) keyEquivalent:@"q"] autorelease];
     appleMenuHideItem = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Hide %@", getApplicationName()] action:@selector(hide:) keyEquivalent:@"h"] autorelease];
     appleMenuHideOthersItem = [[[NSMenuItem alloc] initWithTitle:@"Hide Others" action:@selector(hideOtherApplications:) keyEquivalent:@"h"] autorelease];
     [appleMenuHideOthersItem setKeyEquivalentModifierMask:(NSAlternateKeyMask|NSCommandKeyMask)];
@@ -87,12 +87,24 @@ static void set_up_menubar()
     [NSApp setServicesMenu:servicesMenu];
 }
 
+@interface CpafApplicationDelegate : NSObject
+@end
+
+@implementation CpafApplicationDelegate
+- (void)cpafTerminate:(id)sender
+{
+    // Quit the application
+    cpaf::get_app().quit();
+}
+@end
+
 void cpaf::gui::App::gui_init()
 {
     pool = [[NSAutoreleasePool alloc] init];
 
     // Initialize the application
     [NSApplication sharedApplication];
+    [NSApp setDelegate:[CpafApplicationDelegate new]];
     
     // Set up an initial menu bar, because the default one doesn't work as expected
     set_up_menubar();
@@ -105,4 +117,9 @@ int cpaf::gui::App::run()
     [NSApp run]; // Run the application
     
     return 0;
+}
+
+void cpaf::gui::App::_quit()
+{
+    [NSApp terminate:nil];
 }
