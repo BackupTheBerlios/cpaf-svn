@@ -14,8 +14,7 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/button.h>
 #include <cpaf/gui/entrybox.h>
 #include <cpaf/gui/textbox.h>
-
-#include <cpaf/exception.h>
+#include <cpaf/gui/passwordbox.h>
 
 #if defined(_MSC_VER) && defined(_DEBUG)
 #   include <crtdbg.h>
@@ -162,6 +161,17 @@ bool MyApp::init()
         .text("I'm a multline text box!\nHere's the second line\n\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
         .position(cpaf::Point(10,200))
         .size(cpaf::Size(300,100))
+        .show()
+        );
+
+    /*
+        Create a PasswordBox
+    */
+    cpaf::gui::PasswordBox *pw = create_widget<cpaf::gui::PasswordBox>(cpaf::gui::PasswordBox::Initializer()
+        .parent(wnd)
+        .text("I'm a password box!")
+        .position(cpaf::Point(0,0))
+        .size(cpaf::Size(200,30))
         .show()
         );
 

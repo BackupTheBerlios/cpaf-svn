@@ -243,6 +243,9 @@
 						RelativePath=".\include\cpaf\api\gui\object.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\api\gui\passwordbox.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\api\gui\sizer.h">
 					</File>
 					<File
@@ -284,6 +287,9 @@
 					RelativePath=".\include\cpaf\gui\object.h">
 				</File>
 				<File
+					RelativePath=".\include\cpaf\gui\passwordbox.h">
+				</File>
+				<File
 					RelativePath=".\include\cpaf\gui\textbox.h">
 				</File>
 				<File
@@ -309,6 +315,9 @@
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gui\initializer\object.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\gui\initializer\passwordbox.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gui\initializer\textbox.h">
@@ -350,6 +359,9 @@
 						RelativePath=".\include\cpaf\gtk2\gui\button.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\gtk2\gui\passwordbox.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\gtk2\gui\widget.h">
 					</File>
 					<File
@@ -386,6 +398,9 @@
 						RelativePath=".\include\cpaf\win32\gui\entrybox.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\win32\gui\passwordbox.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\win32\gui\textbox.h">
 					</File>
 					<File
@@ -416,6 +431,9 @@
 							<Tool
 								Name="VCCustomBuildTool"/>
 						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\cpaf\cocoa\gui\passwordbox.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\cocoa\gui\widget.h">
@@ -728,6 +746,33 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\src\cpaf\gui\passwordbox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\src\cpaf\gui\textbox.cpp">
 				</File>
 				<File
@@ -899,8 +944,24 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\src\cpaf\cocoa\passwordbox.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\src\cpaf\cocoa\utils.mm"
 					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\src\cpaf\cocoa\widget.mm"
@@ -1005,6 +1066,34 @@
 						ExcludedFromBuild="TRUE">
 						<Tool
 							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gtk2\passwordbox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 					</FileConfiguration>
 				</File>
 				<File
@@ -1242,6 +1331,9 @@
 							ObjectFile="$(IntDir)/$(SafeParentName)/"
 							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\passwordbox.cpp">
 				</File>
 				<File
 					RelativePath=".\src\cpaf\win32\textbox.cpp">
