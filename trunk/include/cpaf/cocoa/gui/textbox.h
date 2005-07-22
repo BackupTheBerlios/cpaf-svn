@@ -19,10 +19,16 @@ namespace cpaf {
 
 class TextBox : public virtual cpaf::cocoa::gui::TextWidget, public virtual cpaf::api::gui::TextBox
 {
+private:
+    NSTextView *m_textview; // the NSTextView (m_object is the NSScrollView that encloses it)
+
 public:
     TextBox() { }
 
     void create(const cpaf::gui::initializer::TextBoxData &params);
+
+    void set_text(const std::string &s);
+    std::string get_text();
 };
 
         } // gui

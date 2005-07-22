@@ -53,6 +53,12 @@
 		E2055F31087E3517000B7316 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F2C087E3517000B7316 /* window.h */; };
 		E2055F34087E353C000B7316 /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F32087E353C000B7316 /* factory.h */; };
 		E2055F67087EB187000B7316 /* id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2055F66087EB187000B7316 /* id.cpp */; };
+		E2240A8D0890435D004FABE1 /* passwordbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2240A8C0890435D004FABE1 /* passwordbox.h */; };
+		E2240A8F08904367004FABE1 /* passwordbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2240A8E08904367004FABE1 /* passwordbox.h */; };
+		E2240A9208904380004FABE1 /* passwordbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2240A9108904380004FABE1 /* passwordbox.h */; };
+		E2240A940890438A004FABE1 /* passwordbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2240A930890438A004FABE1 /* passwordbox.h */; };
+		E2240A960890441A004FABE1 /* passwordbox.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2240A950890441A004FABE1 /* passwordbox.mm */; };
+		E2240A9D08904469004FABE1 /* passwordbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2240A9C08904469004FABE1 /* passwordbox.cpp */; };
 		E231DB38084B9CED00DD0EEA /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = E231DB37084B9CEC00DD0EEA /* event.h */; };
 		E29B7ECE0850218800170856 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29B7ECD0850218800170856 /* event.cpp */; };
 		E2EBBACE08869989000A6728 /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBACD08869989000A6728 /* textwidget.h */; };
@@ -157,6 +163,12 @@
 		E2055F2C087E3517000B7316 /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		E2055F32087E353C000B7316 /* factory.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = factory.h; sourceTree = "<group>"; };
 		E2055F66087EB187000B7316 /* id.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = id.cpp; sourceTree = "<group>"; };
+		E2240A8C0890435D004FABE1 /* passwordbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = passwordbox.h; sourceTree = "<group>"; };
+		E2240A8E08904367004FABE1 /* passwordbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = passwordbox.h; sourceTree = "<group>"; };
+		E2240A9108904380004FABE1 /* passwordbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = passwordbox.h; sourceTree = "<group>"; };
+		E2240A930890438A004FABE1 /* passwordbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = passwordbox.h; sourceTree = "<group>"; };
+		E2240A950890441A004FABE1 /* passwordbox.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = passwordbox.mm; sourceTree = "<group>"; };
+		E2240A9C08904469004FABE1 /* passwordbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = passwordbox.cpp; sourceTree = "<group>"; };
 		E231DB37084B9CEC00DD0EEA /* event.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
 		E29B7ECD0850218800170856 /* event.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
 		E2EBBACD08869989000A6728 /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
@@ -288,11 +300,12 @@
 		6EDF4B81082E048800957C63 /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				E2EBBC2E0886A3E4000A6728 /* textbox.h */,
 				E2EBBB8C08869F05000A6728 /* button.h */,
 				E2EBBB8D08869F05000A6728 /* entrybox.h */,
 				E2EBBB8E08869F05000A6728 /* object.h */,
+				E2240A8C0890435D004FABE1 /* passwordbox.h */,
 				E2EBBB8F08869F05000A6728 /* sizer.h */,
+				E2EBBC2E0886A3E4000A6728 /* textbox.h */,
 				E2EBBB9008869F05000A6728 /* textwidget.h */,
 				E2EBBB9108869F05000A6728 /* toplevel.h */,
 				E2EBBB9208869F05000A6728 /* widget.h */,
@@ -314,12 +327,13 @@
 		6EDF4BD3082E05CB00957C63 /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				E2EBBC370886A4E9000A6728 /* textbox.h */,
-				E2EBBBA708869F89000A6728 /* entrybox.h */,
 				6EDF4BEF082E05CB00957C63 /* button.h */,
+				E2EBBBA708869F89000A6728 /* entrybox.h */,
+				E2240A8E08904367004FABE1 /* passwordbox.h */,
+				E2EBBC370886A4E9000A6728 /* textbox.h */,
+				E2EBBAED08869AE0000A6728 /* textwidget.h */,
 				6EDF4BF0082E05CB00957C63 /* widget.h */,
 				6EDF4BF1082E05CB00957C63 /* window.h */,
-				E2EBBAED08869AE0000A6728 /* textwidget.h */,
 			);
 			name = gui;
 			path = include/cpaf/cocoa/gui;
@@ -328,18 +342,19 @@
 		6EDF4C26082E07EE00957C63 /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				E2EBBC500886A824000A6728 /* textbox.h */,
 				E2055F27087E3517000B7316 /* initializer */,
-				E2EBBBB60886A0B7000A6728 /* entrybox.h */,
-				E2055F32087E353C000B7316 /* factory.h */,
 				6EDF4C52082E07EE00957C63 /* api-prototypes.h */,
 				6EDF4C53082E07EE00957C63 /* app.h */,
 				6EDF4C54082E07EE00957C63 /* button.h */,
+				E2EBBBB60886A0B7000A6728 /* entrybox.h */,
+				E2055F32087E353C000B7316 /* factory.h */,
 				6EDF4C7A082E07EF00957C63 /* object.h */,
+				E2240A9108904380004FABE1 /* passwordbox.h */,
+				E2EBBC500886A824000A6728 /* textbox.h */,
+				E2EBBAF108869B27000A6728 /* textwidget.h */,
 				6EDF4C7B082E07EF00957C63 /* toplevel.h */,
 				6EDF4C7C082E07EF00957C63 /* widget.h */,
 				6EDF4C7D082E07EF00957C63 /* window.h */,
-				E2EBBAF108869B27000A6728 /* textwidget.h */,
 			);
 			name = gui;
 			path = include/cpaf/gui;
@@ -380,6 +395,7 @@
 		6EDF4D2B082E08F600957C63 /* cocoa */ = {
 			isa = PBXGroup;
 			children = (
+				E2240A950890441A004FABE1 /* passwordbox.mm */,
 				E2EBBC430886A6E5000A6728 /* textbox.mm */,
 				E2EBBBEA0886A1FF000A6728 /* entrybox.mm */,
 				6EDF4D53082E08F700957C63 /* app.mm */,
@@ -397,6 +413,7 @@
 		6EDF4D5A082E08F700957C63 /* gui */ = {
 			isa = PBXGroup;
 			children = (
+				E2240A9C08904469004FABE1 /* passwordbox.cpp */,
 				E2EBBC490886A783000A6728 /* textbox.cpp */,
 				E2EBBBEE0886A253000A6728 /* entrybox.cpp */,
 				6EDF4D86082E08F700957C63 /* app.cpp */,
@@ -415,13 +432,14 @@
 		E2055F27087E3517000B7316 /* initializer */ = {
 			isa = PBXGroup;
 			children = (
-				E2EBBBAC08869FD1000A6728 /* entrybox.h */,
 				E2055F28087E3517000B7316 /* button.h */,
+				E2EBBBAC08869FD1000A6728 /* entrybox.h */,
 				E2055F29087E3517000B7316 /* object.h */,
+				E2240A930890438A004FABE1 /* passwordbox.h */,
 				E2055F2A087E3517000B7316 /* textbox.h */,
+				E2EBBACD08869989000A6728 /* textwidget.h */,
 				E2055F2B087E3517000B7316 /* widget.h */,
 				E2055F2C087E3517000B7316 /* window.h */,
-				E2EBBACD08869989000A6728 /* textwidget.h */,
 			);
 			path = initializer;
 			sourceTree = "<group>";
@@ -429,8 +447,8 @@
 		E231DB36084B9CEC00DD0EEA /* event */ = {
 			isa = PBXGroup;
 			children = (
-				E2055F25087E34DD000B7316 /* id.h */,
 				E231DB37084B9CEC00DD0EEA /* event.h */,
+				E2055F25087E34DD000B7316 /* id.h */,
 			);
 			name = event;
 			path = include/cpaf/event;
@@ -439,8 +457,8 @@
 		E29B7ECC0850218800170856 /* event */ = {
 			isa = PBXGroup;
 			children = (
-				E2055F66087EB187000B7316 /* id.cpp */,
 				E29B7ECD0850218800170856 /* event.cpp */,
+				E2055F66087EB187000B7316 /* id.cpp */,
 			);
 			name = event;
 			path = src/cpaf/event;
@@ -496,6 +514,10 @@
 				E2EBBC2F0886A3E4000A6728 /* textbox.h in Headers */,
 				E2EBBC380886A4E9000A6728 /* textbox.h in Headers */,
 				E2EBBC510886A824000A6728 /* textbox.h in Headers */,
+				E2240A8D0890435D004FABE1 /* passwordbox.h in Headers */,
+				E2240A8F08904367004FABE1 /* passwordbox.h in Headers */,
+				E2240A9208904380004FABE1 /* passwordbox.h in Headers */,
+				E2240A940890438A004FABE1 /* passwordbox.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +655,8 @@
 				E2EBBBEF0886A253000A6728 /* entrybox.cpp in Sources */,
 				E2EBBC440886A6E5000A6728 /* textbox.mm in Sources */,
 				E2EBBC4A0886A783000A6728 /* textbox.cpp in Sources */,
+				E2240A960890441A004FABE1 /* passwordbox.mm in Sources */,
+				E2240A9D08904469004FABE1 /* passwordbox.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

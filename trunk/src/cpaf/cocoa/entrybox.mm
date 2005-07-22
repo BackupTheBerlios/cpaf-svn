@@ -12,11 +12,12 @@ CPAF_COCOA_IMPLEMENTATION(TextField)
 
 void cpaf::cocoa::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxData &params)
 {
-	if( !params.m_parent )
-		throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
-		
+    if( !params.m_parent )
+        throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
+
     cpaf::cocoa::gui::TextWidget::create(params, [[CpafTextField alloc] init]);
     [[m_object cell] setScrollable:YES];
-    
+    [[m_object cell] setWraps:NO];
+
     send_event(cpaf::event::WIDGET_CREATE);
 }
