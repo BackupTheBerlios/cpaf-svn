@@ -20,6 +20,9 @@ class CPAF_API EntryBox : public TextWidget
 public:
     typedef cpaf::api::gui::EntryBox api_type;
     typedef EntryBoxInitializer Initializer;
+    
+    void set_password_mode(bool mode);
+    bool in_password_mode();
 
 protected:
     EntryBox();
@@ -29,8 +32,6 @@ protected:
         \brief Constructs the native widget using the given initialization data
     */
     void create(Initializer::data_type params);
-    
-    void set_password_mode(bool mode);
 
 private:
     api_type *m_impl;

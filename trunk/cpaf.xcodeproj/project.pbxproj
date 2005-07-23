@@ -176,7 +176,7 @@
 		E2EBBBAC08869FD1000A6728 /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
 		E2EBBBB60886A0B7000A6728 /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
 		E2EBBBEA0886A1FF000A6728 /* entrybox.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = entrybox.mm; sourceTree = "<group>"; };
-		E2EBBBEE0886A253000A6728 /* entrybox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = entrybox.cpp; sourceTree = "<group>"; };
+		E2EBBBEE0886A253000A6728 /* entrybox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = entrybox.cpp; sourceTree = "<group>"; };
 		E2EBBC2E0886A3E4000A6728 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = textbox.h; sourceTree = "<group>"; };
 		E2EBBC370886A4E9000A6728 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
 		E2EBBC430886A6E5000A6728 /* textbox.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = textbox.mm; sourceTree = "<group>"; };

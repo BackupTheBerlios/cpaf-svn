@@ -20,6 +20,7 @@ void cpaf::cocoa::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxDa
     if( !params.m_parent )
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
+    // Create a password field or a text field?
     if (params.m_in_password_mode)
         widget = [[CpafSecureTextField alloc] init];
     else
@@ -34,5 +35,35 @@ void cpaf::cocoa::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxDa
 
 void cpaf::cocoa::gui::EntryBox::set_password_mode(bool mode)
 {
-    NSLog(@"todo");
+    if (mode == in_password_mode())
+        return; // Don't have to change anything
+
+    NSTextField *old_object = m_object;
+    
+    if (mode)
+        m_object = [[CpafSecureTextField alloc] init];
+    else
+        m_object = [[CpafTextField alloc] init];
+
+    // Set the properties (Is there a better way to do that?)
+    // We need to update that when we change properties that are not listed here
+    [[m_object cell] setScrollable:[[old_object cell] isScrollable]];
+    [[m_object cell] setWraps:[[old_object cell] wraps]];
+	[m_object setStringValue:[old_object stringValue]];
+	[m_object setFrame:[old_object frame]];
+    
+    // Set the cpaf widget
+    [m_object setCpafWidget:this];
+
+    // Add the new text field
+    [[old_object superview] addSubview:m_object];
+
+    // Remove the old field from its superview and release it
+    [old_object removeFromSuperview];
+    [old_object release];
+}
+
+bool cpaf::cocoa::gui::EntryBox::in_password_mode()
+{
+    return [m_object isKindOfClass:[NSSecureTextField class]];
 }

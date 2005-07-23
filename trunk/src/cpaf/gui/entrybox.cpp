@@ -34,3 +34,8 @@ void cpaf::gui::EntryBox::set_password_mode(bool mode)
 {
     m_impl->set_password_mode(mode);
 }
+
+bool cpaf::gui::EntryBox::in_password_mode()
+{
+    return m_impl->in_password_mode();
+}

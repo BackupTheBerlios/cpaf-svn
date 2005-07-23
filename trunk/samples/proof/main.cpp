@@ -28,6 +28,7 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #endif
 
 using cpaf::gui::factory::create_widget;
+using namespace cpaf::event;
 
 /*
     Our derived application class
@@ -35,7 +36,10 @@ using cpaf::gui::factory::create_widget;
 class MyApp : public cpaf::gui::App
 {
 public:
+    cpaf::gui::EntryBox *pw; // The password box
+
     bool init();
+    void toggle_password_mode(Event &event);
 };
 
 /*
@@ -47,8 +51,6 @@ public:
     MyButton()
     {
         DBG_MSG("MyButton::Ctor");
-
-        using namespace cpaf::event;
 
         // connected one event listener
         connect<Event, false>(WIDGET_DESTROY, get_id()) (&MyButton::on_destroy, *this);
@@ -76,9 +78,12 @@ public:
 
     virtual void on_btn_click(cpaf::event::Event &event)
     {
+        static int status = 0;
         DBG_MSG("MyButton::on_btn_click");
-        set_label("Thank you!");
-        cpaf::get_app().quit();
+        if (status++ == 0)
+            set_label("Thank you! Click again to quit!");
+        else
+            cpaf::get_app().quit();
     }
 
     virtual void on_destroy(cpaf::event::Event &event)
@@ -102,6 +107,12 @@ public:
         DBG_MSG("MyButton2::on_destroy");
     }
 };
+
+void MyApp::toggle_password_mode(Event &event)
+{
+    DBG_MSG("MyApp::toggle_password_mode");
+    pw->set_password_mode(!pw->in_password_mode());
+}
 
 /*
     Initialization function for our application class
@@ -132,11 +143,13 @@ bool MyApp::init()
     cpaf::gui::Button::Initializer btn_init;
     cpaf::gui::Button *btn = create_widget<cpaf::gui::Button>(btn_init
         .parent(wnd)
-        .label("Hello world!")
+        .label("Toggle password mode")
         .size(cpaf::Size(200,40))
         .position(cpaf::Point(50,50))
         .show()
         );
+    connect<Event, false>(BUTTON_CLICK, btn->get_id()) (&MyApp::toggle_password_mode, *this);
+    
     MyButton2 *my_btn = create_widget<MyButton2>(btn_init
         .label("Click me!")
         .position(cpaf::Point(100,100))
@@ -167,10 +180,10 @@ bool MyApp::init()
     /*
         Create a EntryBox for passwords
     */
-    cpaf::gui::EntryBox *pw = create_widget<cpaf::gui::EntryBox>(cpaf::gui::EntryBox::Initializer()
+    pw = create_widget<cpaf::gui::EntryBox>(cpaf::gui::EntryBox::Initializer()
         .parent(wnd)
         .text("I'm a password box!")
-        .position(cpaf::Point(0,0))
+        .position(cpaf::Point(10,10))
         .size(cpaf::Size(200,30))
         .password_mode()
         .show()

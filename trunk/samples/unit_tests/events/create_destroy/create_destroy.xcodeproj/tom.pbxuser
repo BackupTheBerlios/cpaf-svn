@@ -142,9 +142,9 @@
 	E205656D08838A21000B7316 /* main.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {877, 2408}}";
-			sepNavSelRange = "{129, 0}";
-			sepNavVisRect = "{{0, 674}, {877, 676}}";
-			sepNavWindowFrame = "{{664, 43}, {916, 789}}";
+			sepNavSelRange = "{289, 7}";
+			sepNavVisRect = "{{0, 0}, {877, 676}}";
+			sepNavWindowFrame = "{{171, 43}, {916, 789}}";
 		};
 	};
 	E2240A1408903EFE004FABE1 /* PBXBookmark */ = {
