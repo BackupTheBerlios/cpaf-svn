@@ -23,6 +23,7 @@ public:
     EntryBox() { }
 
     void create(const cpaf::gui::initializer::EntryBoxData &params);
+    void set_password_mode(bool mode);
 };
 
         } // gui

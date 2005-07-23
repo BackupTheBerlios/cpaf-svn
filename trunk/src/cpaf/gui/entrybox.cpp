@@ -29,3 +29,8 @@ cpaf::gui::EntryBox::operator cpaf::api::gui::EntryBox *()
 {
     return m_impl;
 }
+
+void cpaf::gui::EntryBox::set_password_mode(bool mode)
+{
+    m_impl->set_password_mode(mode);
+}

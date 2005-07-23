@@ -22,6 +22,7 @@ public:
     typedef cpaf::gui::initializer::EntryBoxData data_type; //!< Initialization data used for EntryBoxes.
 
     virtual void create(const data_type &init_params) = 0;
+    virtual void set_password_mode(bool mode) = 0;
 };
 
         } // gui

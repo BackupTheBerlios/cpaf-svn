@@ -74,10 +74,8 @@
 			PBXWorkspaceStateSaveDate = 143665821;
 		};
 		perUserProjectItems = {
-			E22409EC08903CCC004FABE1 /* PBXTextBookmark */ = E22409EC08903CCC004FABE1 /* PBXTextBookmark */;
-			E22409F508903D0F004FABE1 /* PBXTextBookmark */ = E22409F508903D0F004FABE1 /* PBXTextBookmark */;
-			E28156A60890089B0065A66F = E28156A60890089B0065A66F /* PBXBookmark */;
-			E28156D6089019170065A66F = E28156D6089019170065A66F /* PBXTextBookmark */;
+			E2240A1408903EFE004FABE1 /* PBXBookmark */ = E2240A1408903EFE004FABE1 /* PBXBookmark */;
+			E2240CC108919797004FABE1 /* PBXTextBookmark */ = E2240CC108919797004FABE1 /* PBXTextBookmark */;
 		};
 		sourceControlManager = E205656108838947000B7316 /* Source Control */;
 		userBuildSettings = {
@@ -144,41 +142,23 @@
 	E205656D08838A21000B7316 /* main.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {877, 2408}}";
-			sepNavSelRange = "{3516, 0}";
-			sepNavVisRect = "{{0, 0}, {877, 676}}";
-			sepNavWindowFrame = "{{23, 43}, {916, 789}}";
+			sepNavSelRange = "{129, 0}";
+			sepNavVisRect = "{{0, 674}, {877, 676}}";
+			sepNavWindowFrame = "{{664, 43}, {916, 789}}";
 		};
 	};
-	E22409EC08903CCC004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "warning: unused variable 'data'";
-		fRef = E205656D08838A21000B7316 /* main.cpp */;
-		rLen = 1;
-		rLoc = 149;
-		rType = 1;
-	};
-	E22409F508903D0F004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E205656D08838A21000B7316 /* main.cpp */;
-		name = "main.cpp: 148";
-		rLen = 0;
-		rLoc = 3516;
-		rType = 0;
-		vrLen = 1133;
-		vrLoc = 2855;
-	};
-	E28156A60890089B0065A66F /* PBXBookmark */ = {
+	E2240A1408903EFE004FABE1 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = E205656D08838A21000B7316 /* main.cpp */;
 	};
-	E28156D6089019170065A66F /* PBXTextBookmark */ = {
+	E2240CC108919797004FABE1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = E205656D08838A21000B7316 /* main.cpp */;
-		name = "main.cpp: 119";
+		name = "main.cpp: 9";
 		rLen = 0;
-		rLoc = 2574;
+		rLoc = 129;
 		rType = 0;
-		vrLen = 1306;
-		vrLoc = 2190;
+		vrLen = 790;
+		vrLoc = 1347;
 	};
 }

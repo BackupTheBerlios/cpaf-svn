@@ -29,6 +29,8 @@ protected:
         \brief Constructs the native widget using the given initialization data
     */
     void create(Initializer::data_type params);
+    
+    void set_password_mode(bool mode);
 
 private:
     api_type *m_impl;

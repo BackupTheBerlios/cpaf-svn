@@ -22,7 +22,6 @@ namespace cpaf {
             class EntryBox;
             class TextBox;
             class RichTextBox;
-            class PasswordBox;
         } // gui
     } // api
 } // cpaf
