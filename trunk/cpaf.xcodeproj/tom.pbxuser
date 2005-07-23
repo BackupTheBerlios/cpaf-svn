@@ -317,6 +317,12 @@
 			E2240E7D0892A927004FABE1 /* PBXTextBookmark */ = E2240E7D0892A927004FABE1 /* PBXTextBookmark */;
 			E2240E7E0892A927004FABE1 /* PBXTextBookmark */ = E2240E7E0892A927004FABE1 /* PBXTextBookmark */;
 			E2240E7F0892A927004FABE1 /* PBXTextBookmark */ = E2240E7F0892A927004FABE1 /* PBXTextBookmark */;
+			E2240E860892AE43004FABE1 /* PBXTextBookmark */ = E2240E860892AE43004FABE1 /* PBXTextBookmark */;
+			E2240E870892AE43004FABE1 /* PBXTextBookmark */ = E2240E870892AE43004FABE1 /* PBXTextBookmark */;
+			E2240E880892AE48004FABE1 /* PBXTextBookmark */ = E2240E880892AE48004FABE1 /* PBXTextBookmark */;
+			E2240E890892AE48004FABE1 /* PBXTextBookmark */ = E2240E890892AE48004FABE1 /* PBXTextBookmark */;
+			E2240E8A0892AE48004FABE1 /* PBXTextBookmark */ = E2240E8A0892AE48004FABE1 /* PBXTextBookmark */;
+			E2240E8B0892AE48004FABE1 /* PBXTextBookmark */ = E2240E8B0892AE48004FABE1 /* PBXTextBookmark */;
 			E2442A9B0885377B00F4E714 = E2442A9B0885377B00F4E714 /* PBXTextBookmark */;
 			E2442A9D0885377B00F4E714 = E2442A9D0885377B00F4E714 /* PBXTextBookmark */;
 			E2754B9A088AAE1F00E6A468 = E2754B9A088AAE1F00E6A468 /* PBXTextBookmark */;
@@ -1656,7 +1662,7 @@
 		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
 		name = "entrybox.mm: 15";
 		rLen = 0;
-		rLoc = 473;
+		rLoc = 895;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -1676,7 +1682,7 @@
 		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
 		name = "entrybox.mm: 15";
 		rLen = 0;
-		rLoc = 473;
+		rLoc = 895;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -2136,7 +2142,7 @@
 		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
 		name = "entrybox.mm: cocoa";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 2379;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 441;
@@ -2193,7 +2199,7 @@
 		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
 		name = "entrybox.mm: cocoa";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 2379;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 441;
@@ -2519,7 +2525,7 @@
 		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
 		name = "entrybox.mm: 55";
 		rLen = 0;
-		rLoc = 1674;
+		rLoc = 2096;
 		rType = 0;
 		vrLen = 1318;
 		vrLoc = 722;
@@ -3149,7 +3155,7 @@
 		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
 		name = "entrybox.mm: 55";
 		rLen = 0;
-		rLoc = 1674;
+		rLoc = 2096;
 		rType = 0;
 		vrLen = 1318;
 		vrLoc = 722;
@@ -3162,6 +3168,66 @@
 		rLoc = 222;
 		rType = 0;
 		vrLen = 909;
+		vrLoc = 0;
+	};
+	E2240E860892AE43004FABE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6EDF4D55082E08F700957C63 /* factory.mm */;
+		name = "factory.mm: 10";
+		rLen = 0;
+		rLoc = 266;
+		rType = 0;
+		vrLen = 557;
+		vrLoc = 0;
+	};
+	E2240E870892AE43004FABE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E2EBBBEE0886A253000A6728 /* entrybox.cpp */;
+		name = "entrybox.cpp: 41";
+		rLen = 0;
+		rLoc = 909;
+		rType = 0;
+		vrLen = 518;
+		vrLoc = 391;
+	};
+	E2240E880892AE48004FABE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E2EBBBEE0886A253000A6728 /* entrybox.cpp */;
+		name = "entrybox.cpp: 9";
+		rLen = 0;
+		rLoc = 222;
+		rType = 0;
+		vrLen = 909;
+		vrLoc = 0;
+	};
+	E2240E890892AE48004FABE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
+		name = "entrybox.mm: 55";
+		rLen = 0;
+		rLoc = 2096;
+		rType = 0;
+		vrLen = 1317;
+		vrLoc = 722;
+	};
+	E2240E8A0892AE48004FABE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E2EBBBEE0886A253000A6728 /* entrybox.cpp */;
+		name = "entrybox.cpp: 9";
+		rLen = 0;
+		rLoc = 222;
+		rType = 0;
+		vrLen = 909;
+		vrLoc = 0;
+	};
+	E2240E8B0892AE48004FABE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
+		name = "entrybox.mm: 15";
+		rLen = 0;
+		rLoc = 346;
+		rType = 0;
+		vrLen = 1196;
 		vrLoc = 0;
 	};
 	E231DB22084B8F0800DD0EEA /* Source Control */ = {
@@ -3949,9 +4015,9 @@
 	};
 	E2EBBBEA0886A1FF000A6728 /* entrybox.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {660, 966}}";
-			sepNavSelRange = "{1674, 0}";
-			sepNavVisRect = "{{0, 375}, {660, 587}}";
+			sepNavIntBoundsRect = "{{0, 0}, {660, 1162}}";
+			sepNavSelRange = "{346, 0}";
+			sepNavVisRect = "{{0, 0}, {660, 587}}";
 			sepNavWindowFrame = "{{335, 139}, {867, 587}}";
 		};
 	};
@@ -4028,7 +4094,7 @@
 		fRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */;
 		name = WIDGET;
 		rLen = 6;
-		rLoc = 537;
+		rLoc = 959;
 		rType = 0;
 		vrLen = 638;
 		vrLoc = 0;

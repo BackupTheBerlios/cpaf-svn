@@ -13,6 +13,20 @@ CPAF_COCOA_IMPLEMENTATION(TextField)
 CPAF_COCOA_INTERFACE(SecureTextField)
 CPAF_COCOA_IMPLEMENTATION(SecureTextField)
 
+//! \todo This is a hack that fixes rendering bugs. There should be a better way to fix them,
+//        because the bug doesn't occur in password fields created with Interface Builder
+@interface CpafSecureTextField (RenderingHack)
+- (void)textDidChange:(NSNotification *)n;
+@end
+
+@implementation CpafSecureTextField (RenderingHack)
+- (void)textDidChange:(NSNotification *)n
+{
+    [[n object] display];
+}
+@end
+// end hack
+
 void cpaf::cocoa::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxData &params)
 {
     id widget = nil;
