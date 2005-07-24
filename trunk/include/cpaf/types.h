@@ -246,12 +246,12 @@ struct CPAF_API Rect
     -1:  "hell|o"
     -2:  "hel|lo"
 
-    The same applies for selected ranges of text. (| is the selection position, || is the cursor position)
-    (0, END):  "|hello||"
-    (END, 0):  "||hello|"
+    The same applies for selected ranges of text. (| is the beginning of the selection, || is the end)
+    (0, -2):  "|hel||lo"
+    (1, END):  "h|ello||"
     (-2, END): "hel|lo||"
-    (END, -2): "hel||lo|"
-    (1, -1):   "h|ell||o"
+    (-1, END): "hell|o||"
+    (-3, -1):   "he|ll||o"
 */
 typedef int text_range_t;
 struct TextRange : std::pair<text_range_t, text_range_t>
