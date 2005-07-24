@@ -9,6 +9,10 @@
 
 #include <windows.h>
 
+// undefine some junk that windows.h gives us
+#undef max
+#undef min
+
 #include <map>
 #include <stack>
 

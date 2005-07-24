@@ -27,3 +27,68 @@ std::string cpaf::gui::TextWidget::get_text()
 {
     return m_impl->get_text();
 }
+
+std::string cpaf::gui::TextWidget::get_text(const cpaf::TextRange &range)
+{
+    return m_impl->get_text(range);
+}
+
+cpaf::text_range_t cpaf::gui::TextWidget::get_length()
+{
+    return m_impl->get_length();
+}
+
+cpaf::TextRange cpaf::gui::TextWidget::get_selection_range()
+{
+    return m_impl->get_selection_range();
+}
+
+void cpaf::gui::TextWidget::set_selection_range(const cpaf::TextRange &range)
+{
+    m_impl->set_selection_range(range);
+}
+
+bool cpaf::gui::TextWidget::get_selection_bounds(cpaf::TextRange &range)
+{
+    return m_impl->get_selection_bounds(range);
+}
+
+void cpaf::gui::TextWidget::set_selection_bounds(const cpaf::TextRange &range)
+{
+    m_impl->set_selection_bounds(range);
+}
+
+cpaf::text_range_t cpaf::gui::TextWidget::get_insertion_point()
+{
+    return m_impl->get_insertion_point();
+}
+
+void cpaf::gui::TextWidget::set_insertion_point(cpaf::text_range_t pos)
+{
+    m_impl->set_insertion_point(pos);
+}
+
+void cpaf::gui::TextWidget::delete_range(const cpaf::TextRange &range)
+{
+    m_impl->delete_range(range);
+}
+
+void cpaf::gui::TextWidget::insert_text(cpaf::text_range_t pos, const std::string &str)
+{
+    m_impl->insert_text(pos, str);
+}
+
+void cpaf::gui::TextWidget::set_max_length(cpaf::text_range_t len)
+{
+    m_impl->set_max_length(len);
+}
+
+void cpaf::gui::TextWidget::set_read_only(bool b)
+{
+    m_impl->set_read_only(b);
+}
+
+bool cpaf::gui::TextWidget::is_read_only()
+{
+    return m_impl->is_read_only();
+}

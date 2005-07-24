@@ -7,7 +7,9 @@
 #ifndef CPAF_TYPES_H
 #define CPAF_TYPES_H
 
-#include <stddef.h>
+#include <stddef.h> // for NULL =(
+#include <utility>
+#include <limits>
 #include <cpaf/dllimpexp.h>
 
 namespace cpaf {
@@ -220,6 +222,73 @@ struct CPAF_API Rect
 
     friend Point CPAF_API operator+(const Point &l, const Point &r);
     friend Point CPAF_API operator-(const Point &l, const Point &r);
+};
+
+/*!
+    Specifies a range of text in a TextWidget.
+
+    Members:
+    'first' specifies the beginning of the selection unless documented otherwise in a given function
+    'second' specifies the the end of the selection unless documented otherwise in a given function
+
+    Any function that returns a TextRange object will return a normalized object unless documented otherwise
+    in a given function. Any function that accepts a TextRange argument will normalize() that argument
+    before using it, so you do not need to normalize the TextRange yourself. Note however that calling
+    many range functions with an TextRange that is not normalized will be less efficient that if you normalize
+    the range before hand.
+
+    If either first or second is negative, indexing will be carried out from the end of the control instead of the front.
+    Consider this art identifying cursor positions for given index values in a string:
+    0:   "|hello"
+    1:   "h|ello"
+    2:   "he|llo"
+    END: "hello|"
+    -1:  "hell|o"
+    -2:  "hel|lo"
+
+    The same applies for selected ranges of text. (| is the selection position, || is the cursor position)
+    (0, END):  "|hello||"
+    (END, 0):  "||hello|"
+    (-2, END): "hel|lo||"
+    (END, -2): "hel||lo|"
+    (1, -1):   "h|ell||o"
+*/
+typedef int text_range_t;
+struct TextRange : std::pair<text_range_t, text_range_t>
+{
+    typedef std::pair<text_range_t, text_range_t> base;
+    static const text_range_t END = std::numeric_limits<text_range_t>::max();
+
+    TextRange()
+        : base(0, 0)
+    { }
+
+    TextRange(text_range_t begin, text_range_t end = END)
+        : base(begin, end)
+    { }
+
+    /*!
+        \brief Normalizes the TextRange so that first is less than second
+    */
+    void normalize()
+    {
+        if( first > second )
+        {
+            text_range_t temp = first;
+            first = second;
+            second = temp;
+        }
+    }
+
+    /*!
+        \brief Returns a normalized version of this TextRange
+    */
+    TextRange normalize() const
+    {
+        TextRange r = *this;
+        r.normalize();
+        return r;
+    }
 };
 
 // default position and size constants
