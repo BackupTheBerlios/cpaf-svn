@@ -11,22 +11,22 @@ void cpaf::win32::gui::TextWidget::set_text(const std::string &s)
     set_window_text(s);
 }
 
-std::string cpaf::win32::gui::TextWidget::get_text()
+std::string cpaf::win32::gui::TextWidget::get_text() const
 {
     return get_window_text();
 }
 
-std::string cpaf::win32::gui::TextWidget::get_text(const cpaf::TextRange &range)
+std::string cpaf::win32::gui::TextWidget::get_text(const cpaf::TextRange &range) const
 {
     return "";
 }
 
-cpaf::text_range_t cpaf::win32::gui::TextWidget::get_length()
+cpaf::text_range_t cpaf::win32::gui::TextWidget::get_length() const
 {
     return 0;
 }
 
-cpaf::TextRange cpaf::win32::gui::TextWidget::get_selection_range()
+cpaf::TextRange cpaf::win32::gui::TextWidget::get_selection_range() const
 {
     return 0;
 }
@@ -36,7 +36,7 @@ void cpaf::win32::gui::TextWidget::set_selection_range(const cpaf::TextRange &ra
 
 }
 
-bool cpaf::win32::gui::TextWidget::get_selection_bounds(cpaf::TextRange &range)
+bool cpaf::win32::gui::TextWidget::get_selection_bounds(cpaf::TextRange &range) const
 {
     return false;
 }
@@ -46,7 +46,7 @@ void cpaf::win32::gui::TextWidget::set_selection_bounds(const cpaf::TextRange &r
 
 }
 
-cpaf::text_range_t cpaf::win32::gui::TextWidget::get_insertion_point()
+cpaf::text_range_t cpaf::win32::gui::TextWidget::get_insertion_point() const
 {
     return 0;
 }
@@ -76,7 +76,7 @@ void cpaf::win32::gui::TextWidget::set_read_only(bool b)
 
 }
 
-bool cpaf::win32::gui::TextWidget::is_read_only()
+bool cpaf::win32::gui::TextWidget::is_read_only() const
 {
     return false;
 }

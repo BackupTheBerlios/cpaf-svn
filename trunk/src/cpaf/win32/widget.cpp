@@ -251,7 +251,7 @@ void cpaf::win32::gui::Widget::set_window_text(const std::string &str)
     ::SetWindowText(m_hwnd, str.c_str());
 }
 
-std::string cpaf::win32::gui::Widget::get_window_text()
+std::string cpaf::win32::gui::Widget::get_window_text() const
 {
     //! \todo Clean this function when we figure out what we are doing with strings
     int len = ::GetWindowTextLength(m_hwnd) + 1; //GetWindowTextLength doesn't include the terminating NULL char

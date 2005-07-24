@@ -89,7 +89,7 @@ protected:
         Sets the text of this widget using SetWindowText
     */
     void set_window_text(const std::string &str);
-    std::string get_window_text();
+    std::string get_window_text() const;
 };
 
         } // gui

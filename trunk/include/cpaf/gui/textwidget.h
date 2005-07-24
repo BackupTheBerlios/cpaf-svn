@@ -29,12 +29,12 @@ public:
     /*!
         \return The text contained in the TextWidget.
     */
-    std::string get_text();
+    std::string get_text() const;
 
     /*!
         \return The text in the requested range.
     */
-    std::string get_text(const cpaf::TextRange &range);
+    std::string get_text(const cpaf::TextRange &range) const;
 
     /*!
         \return The range of text that is currently selected.
@@ -49,7 +49,7 @@ public:
             not TextRange::END. If you had selected a range of text using negative ranges,
             their positive equivilants will be returned by this function.
     */
-    cpaf::TextRange get_selection_range();
+    cpaf::TextRange get_selection_range() const;
 
     /*!
         \brief Selects a range of text within the widget.
@@ -79,7 +79,7 @@ public:
 
         \return True if there was a selection, false if not.
     */
-    bool get_selection_bounds(cpaf::TextRange &range);
+    bool get_selection_bounds(cpaf::TextRange &range) const;
 
     /*!
         \brief Selects a range of text within the widget. The insertion point will
@@ -95,7 +95,7 @@ public:
     /*!
         \return The insertion point (Cursor position).
     */
-    cpaf::text_range_t get_insertion_point();
+    cpaf::text_range_t get_insertion_point() const;
 
     /*!
         \brief Sets the insertion point (Cursor position).
@@ -117,7 +117,7 @@ public:
     /*!
         \brief Returns the number of characters in the widget.
     */
-    cpaf::text_range_t get_length();
+    cpaf::text_range_t get_length() const;
 
     /*!
         \brief Sets the maximum text length. Specify a value of -1 to indicate that
@@ -134,7 +134,7 @@ public:
     /*!
         \return Whether this TextWidget is in read only mode
     */
-    bool is_read_only();
+    bool is_read_only() const;
 
 protected:
     TextWidget(api_type *impl);
