@@ -8,9 +8,12 @@
 #include <cpaf/gui/app.h>
 #include <cpaf/win32/exception.h>
 
+#include <commctrl.h>
+
 void cpaf::gui::App::gui_init()
 {
-    // dont need to do anything for win32 yet...
+    // initialize common controls
+    ::InitCommonControls();
 }
 
 int cpaf::gui::App::run()

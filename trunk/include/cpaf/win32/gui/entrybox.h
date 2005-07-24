@@ -19,6 +19,8 @@ class EntryBox : public virtual cpaf::win32::gui::TextWidget, public virtual cpa
 {
 public:
     void create(const cpaf::gui::initializer::EntryBoxData &params);
+	void set_password_mode(bool mode);
+    bool get_password_mode();
 };
 
         } // gui

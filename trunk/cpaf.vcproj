@@ -20,7 +20,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;CPAF_EXPORTS"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;ISOLATION_AWARE_ENABLED;_DEBUG"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -35,6 +35,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="ComCtl32.lib"
 				OutputFile="$(OutDir)/cpaf-gui-win32d.dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="TRUE"
@@ -71,7 +72,7 @@
 			CharacterSet="0">
 			<Tool
 				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;CPAF_EXPORTS"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;ISOLATION_AWARE_ENABLED"
 				StringPooling="TRUE"
 				MinimalRebuild="FALSE"
 				RuntimeLibrary="2"
@@ -85,6 +86,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="ComCtl32.lib"
 				OutputFile="$(OutDir)/cpaf-gui-win32.dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="TRUE"
@@ -123,7 +125,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;WIN32;_DEBUG;_WINDOWS;"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;_DEBUG"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -138,6 +140,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
+				AdditionalDependencies="ComCtl32.lib"
 				OutputFile="$(OutDir)/cpaf-gui-win32d.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -167,7 +170,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;WIN32;_WINDOWS;"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING"
 				StringPooling="TRUE"
 				MinimalRebuild="FALSE"
 				RuntimeLibrary="2"
@@ -181,6 +184,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
+				AdditionalDependencies="ComCtl32.lib"
 				OutputFile="$(OutDir)/cpaf-gui-win32d.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -225,6 +229,9 @@
 				RelativePath=".\include\cpaf\main.h">
 			</File>
 			<File
+				RelativePath=".\resource.h">
+			</File>
+			<File
 				RelativePath=".\include\cpaf\types.h">
 			</File>
 			<Filter
@@ -241,9 +248,6 @@
 					</File>
 					<File
 						RelativePath=".\include\cpaf\api\gui\object.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\api\gui\passwordbox.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\api\gui\sizer.h">
@@ -287,9 +291,6 @@
 					RelativePath=".\include\cpaf\gui\object.h">
 				</File>
 				<File
-					RelativePath=".\include\cpaf\gui\passwordbox.h">
-				</File>
-				<File
 					RelativePath=".\include\cpaf\gui\textbox.h">
 				</File>
 				<File
@@ -315,9 +316,6 @@
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gui\initializer\object.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\gui\initializer\passwordbox.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gui\initializer\textbox.h">
@@ -398,9 +396,6 @@
 						RelativePath=".\include\cpaf\win32\gui\entrybox.h">
 					</File>
 					<File
-						RelativePath=".\include\cpaf\win32\gui\passwordbox.h">
-					</File>
-					<File
 						RelativePath=".\include\cpaf\win32\gui\textbox.h">
 					</File>
 					<File
@@ -433,7 +428,13 @@
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath=".\include\cpaf\cocoa\gui\passwordbox.h">
+						RelativePath=".\include\cpaf\cocoa\gui\entrybox.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\cocoa\gui\textbox.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\cocoa\gui\textwidget.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\cocoa\gui\widget.h">
@@ -746,33 +747,6 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\src\cpaf\gui\passwordbox.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)2.obj"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)2.obj"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)2.obj"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)2.obj"/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath=".\src\cpaf\gui\textbox.cpp">
 				</File>
 				<File
@@ -922,12 +896,76 @@
 						<Tool
 							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\src\cpaf\cocoa\button.mm"
 					FileType="0">
 					<FileConfiguration
 						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\entrybox.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
 						ExcludedFromBuild="TRUE">
 						<Tool
 							Name="VCCustomBuildTool"/>
@@ -942,12 +980,76 @@
 						<Tool
 							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\src\cpaf\cocoa\passwordbox.mm"
+					RelativePath=".\src\cpaf\cocoa\textbox.mm"
 					FileType="0">
 					<FileConfiguration
 						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\cocoa\textwidget.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
 						ExcludedFromBuild="TRUE">
 						<Tool
 							Name="VCCustomBuildTool"/>
@@ -962,6 +1064,24 @@
 						<Tool
 							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\src\cpaf\cocoa\widget.mm"
@@ -972,12 +1092,48 @@
 						<Tool
 							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\src\cpaf\cocoa\window.mm"
 					FileType="0">
 					<FileConfiguration
 						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32"
 						ExcludedFromBuild="TRUE">
 						<Tool
 							Name="VCCustomBuildTool"/>
@@ -1078,19 +1234,22 @@
 							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="release dll|Win32">
+						Name="release dll|Win32"
+						ExcludedFromBuild="TRUE">
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="debug static lib|Win32">
+						Name="debug static lib|Win32"
+						ExcludedFromBuild="TRUE">
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
 					</FileConfiguration>
 					<FileConfiguration
-						Name="release static lib|Win32">
+						Name="release static lib|Win32"
+						ExcludedFromBuild="TRUE">
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
@@ -1333,9 +1492,6 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\src\cpaf\win32\passwordbox.cpp">
-				</File>
-				<File
 					RelativePath=".\src\cpaf\win32\textbox.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32">
@@ -1488,6 +1644,32 @@
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
+			<File
+				RelativePath=".\include\cpaf\win32\cpaf.manifest">
+			</File>
+			<File
+				RelativePath=".\include\cpaf\win32\cpaf.rc">
+				<FileConfiguration
+					Name="debug dll|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="release dll|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="debug static lib|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="release static lib|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"/>
+				</FileConfiguration>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

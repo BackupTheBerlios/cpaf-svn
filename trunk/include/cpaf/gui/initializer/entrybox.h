@@ -18,7 +18,7 @@ namespace cpaf {
 */
 struct EntryBoxData : TextWidgetData
 {
-    bool m_in_password_mode;
+    bool m_get_password_mode;
 };
 
 /*!
@@ -40,11 +40,11 @@ protected:
 public:
     T &password_mode(bool mode = true)
     {
-        m_data->m_in_password_mode = mode;
+        m_data->m_get_password_mode = mode;
         return dynamic_cast<T&>(*this);
     }
 
-    bool get_password_mode() const { return m_data->m_in_password_mode; }
+    bool get_password_mode() const { return m_data->m_get_password_mode; }
 };
 
         } // initializer

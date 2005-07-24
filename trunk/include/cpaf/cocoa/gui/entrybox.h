@@ -24,7 +24,7 @@ public:
 
     void create(const cpaf::gui::initializer::EntryBoxData &params);
     void set_password_mode(bool mode);
-    bool in_password_mode();
+    bool get_password_mode();
 };
 
         } // gui

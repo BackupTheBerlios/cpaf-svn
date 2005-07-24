@@ -22,7 +22,7 @@ public:
     typedef EntryBoxInitializer Initializer;
     
     void set_password_mode(bool mode);
-    bool in_password_mode();
+    bool get_password_mode();
 
 protected:
     EntryBox();

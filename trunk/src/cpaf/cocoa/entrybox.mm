@@ -77,7 +77,7 @@ void cpaf::cocoa::gui::EntryBox::set_password_mode(bool mode)
     [old_object release];
 }
 
-bool cpaf::cocoa::gui::EntryBox::in_password_mode()
+bool cpaf::cocoa::gui::EntryBox::get_password_mode()
 {
     return [m_object isKindOfClass:[NSSecureTextField class]];
 }

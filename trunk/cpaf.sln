@@ -60,6 +60,9 @@ Global
 		{42309784-3EBE-4A47-B92A-A188B156F66E}.release static lib.ActiveCfg = Release|Win32
 		{42309784-3EBE-4A47-B92A-A188B156F66E}.release static lib.Build.0 = Release|Win32
 	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		include\cpaf\win32\cpaf.rc = include\cpaf\win32\cpaf.rc
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
 	GlobalSection(ExtensibilityAddIns) = postSolution

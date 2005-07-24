@@ -111,7 +111,7 @@ public:
 void MyApp::toggle_password_mode(Event &event)
 {
     DBG_MSG("MyApp::toggle_password_mode");
-    pw->set_password_mode(!pw->in_password_mode());
+    pw->set_password_mode(!pw->get_password_mode());
 }
 
 /*
