@@ -9,6 +9,8 @@
 using cpaf::Size;
 using cpaf::Point;
 
+const cpaf::text_range_t cpaf::TextRange::END = std::numeric_limits<text_range_t>::max();
+
 Size cpaf::operator+(const Size &l, const Size &r)
 {
     return Size(l.width + r.width, l.height + r.height);

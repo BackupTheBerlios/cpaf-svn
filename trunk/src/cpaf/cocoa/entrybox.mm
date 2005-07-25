@@ -35,7 +35,7 @@ void cpaf::cocoa::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxDa
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     // Create a password field or a text field?
-    if (params.m_in_password_mode)
+    if (params.m_get_password_mode)
         widget = [[CpafSecureTextField alloc] init];
     else
         widget = [[CpafTextField alloc] init];
@@ -49,7 +49,7 @@ void cpaf::cocoa::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxDa
 
 void cpaf::cocoa::gui::EntryBox::set_password_mode(bool mode)
 {
-    if (mode == in_password_mode())
+    if (mode == get_password_mode())
         return; // Don't have to change anything
 
     NSTextField *old_object = m_object;

@@ -257,7 +257,7 @@ typedef int text_range_t;
 struct TextRange : std::pair<text_range_t, text_range_t>
 {
     typedef std::pair<text_range_t, text_range_t> base;
-    static const text_range_t END = std::numeric_limits<text_range_t>::max();
+    static const text_range_t END;
 
     TextRange()
         : base(0, 0)

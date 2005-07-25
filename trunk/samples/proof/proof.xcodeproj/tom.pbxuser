@@ -113,35 +113,17 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 143803033;
-			PBXWorkspaceStateSaveDate = 143803033;
+			PBXPerProjectTemplateStateSaveDate = 143976096;
+			PBXWorkspaceStateSaveDate = 143976096;
 		};
 		perUserProjectItems = {
 			E205626208813BA7000B7316 = E205626208813BA7000B7316 /* PBXTextBookmark */;
-			E205626408813BA7000B7316 = E205626408813BA7000B7316 /* PBXTextBookmark */;
 			E205626508813BA7000B7316 = E205626508813BA7000B7316 /* PBXTextBookmark */;
-			E2240CBC08919796004FABE1 = E2240CBC08919796004FABE1 /* PBXTextBookmark */;
-			E2240D980892A287004FABE1 /* PBXTextBookmark */ = E2240D980892A287004FABE1 /* PBXTextBookmark */;
-			E2240DC50892A3DD004FABE1 /* PBXTextBookmark */ = E2240DC50892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DC60892A3DD004FABE1 /* PBXTextBookmark */ = E2240DC60892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DC70892A3DD004FABE1 /* PBXTextBookmark */ = E2240DC70892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DC90892A3DD004FABE1 /* PBXTextBookmark */ = E2240DC90892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DCA0892A3DD004FABE1 /* PBXTextBookmark */ = E2240DCA0892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DCB0892A3DD004FABE1 /* PBXTextBookmark */ = E2240DCB0892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DCC0892A3DD004FABE1 /* PBXTextBookmark */ = E2240DCC0892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DCD0892A3DD004FABE1 /* PBXTextBookmark */ = E2240DCD0892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DCE0892A3DD004FABE1 /* PBXTextBookmark */ = E2240DCE0892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DCF0892A3DD004FABE1 /* PBXTextBookmark */ = E2240DCF0892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DD00892A3DD004FABE1 /* PBXTextBookmark */ = E2240DD00892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DD10892A3DD004FABE1 /* PBXTextBookmark */ = E2240DD10892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DD20892A3DD004FABE1 /* PBXTextBookmark */ = E2240DD20892A3DD004FABE1 /* PBXTextBookmark */;
-			E2240DD70892A3DE004FABE1 /* PBXTextBookmark */ = E2240DD70892A3DE004FABE1 /* PBXTextBookmark */;
-			E2240DF20892A70E004FABE1 /* PBXTextBookmark */ = E2240DF20892A70E004FABE1 /* PBXTextBookmark */;
-			E2240E050892A7F5004FABE1 /* PBXTextBookmark */ = E2240E050892A7F5004FABE1 /* PBXTextBookmark */;
-			E2240E080892A7F6004FABE1 /* PBXTextBookmark */ = E2240E080892A7F6004FABE1 /* PBXTextBookmark */;
+			E2240DC90892A3DD004FABE1 = E2240DC90892A3DD004FABE1 /* PBXTextBookmark */;
+			E2240E920892B75D004FABE1 = E2240E920892B75D004FABE1 /* PBXTextBookmark */;
 			E2442A830884CD3E00F4E714 = E2442A830884CD3E00F4E714 /* PBXTextBookmark */;
 			E2442A840884CD3E00F4E714 = E2442A840884CD3E00F4E714 /* PBXTextBookmark */;
-			E2754B8B088AAE0A00E6A468 = E2754B8B088AAE0A00E6A468 /* PBXTextBookmark */;
+			E2ADD76E0892C0F300B93B66 = E2ADD76E0892C0F300B93B66 /* PBXTextBookmark */;
 		};
 		sourceControlManager = E2FF0792084C1F8D00DDE7B7 /* Source Control */;
 		userBuildSettings = {
@@ -149,10 +131,10 @@
 	};
 	6EAF8C2A0822C052006031F2 /* main.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {800, 2828}}";
-			sepNavSelRange = "{1139, 0}";
-			sepNavVisRect = "{{0, 175}, {759, 676}}";
-			sepNavWindowFrame = "{{289, 43}, {798, 789}}";
+			sepNavIntBoundsRect = "{{0, 0}, {800, 2870}}";
+			sepNavSelRange = "{2994, 0}";
+			sepNavVisRect = "{{0, 1288}, {542, 282}}";
+			sepNavWindowFrame = "{{482, 43}, {798, 789}}";
 		};
 	};
 	8D1107260486CEB800E47090 /* proof */ = {
@@ -179,16 +161,6 @@
 		vrLen = 249;
 		vrLoc = 0;
 	};
-	E205626408813BA7000B7316 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: 112";
-		rLen = 0;
-		rLoc = 3663;
-		rType = 0;
-		vrLen = 131;
-		vrLoc = 1946;
-	};
 	E205626508813BA7000B7316 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 089C165DFE840E0CC02AAC07 /* English */;
@@ -198,84 +170,6 @@
 		rType = 0;
 		vrLen = 249;
 		vrLoc = 0;
-	};
-	E2240CBC08919796004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: 81";
-		rLen = 0;
-		rLoc = 2370;
-		rType = 0;
-		vrLen = 631;
-		vrLoc = 0;
-	};
-	E2240D8608929525004FABE1 /* event.h */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.h;
-		name = event.h;
-		path = /Users/tom/Projects/cpaf/include/cpaf/event/event.h;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {998, 3962}}";
-			sepNavSelRange = "{5777, 165}";
-			sepNavVisRect = "{{0, 2595}, {759, 676}}";
-			sepNavWindowFrame = "{{15, 38}, {798, 789}}";
-		};
-	};
-	E2240D980892A287004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: request for member 'set_password_mode' in '((MyApp*)this)->MyApp::entry', which is of non-class type 'cpaf::gui::EntryBox*'";
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		rLen = 1;
-		rLoc = 113;
-		rType = 1;
-	};
-	E2240D9B0892A294004FABE1 /* entrybox.h */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.h;
-		name = entrybox.h;
-		path = /Users/tom/Projects/cpaf/samples/proof/../../include/cpaf/gui/entrybox.h;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {722, 672}}";
-			sepNavSelRange = "{743, 0}";
-			sepNavVisRect = "{{0, 314}, {542, 282}}";
-			sepNavWindowFrame = "{{355, 43}, {798, 789}}";
-		};
-	};
-	E2240DC50892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E2240D8608929525004FABE1 /* event.h */;
-		name = "template<typename L> EventChainWrapper<E> &operator()(typename ListenerFunctor<L, E>::ptr_type function, L &l)";
-		rLen = 116;
-		rLoc = 6771;
-		rType = 0;
-		vrLen = 769;
-		vrLoc = 6392;
-	};
-	E2240DC60892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: 111";
-		rLen = 0;
-		rLoc = 2994;
-		rType = 0;
-		vrLen = 527;
-		vrLoc = 2624;
-	};
-	E2240DC70892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: 'void cpaf::gui::EntryBox::set_password_mode(bool)' is protected";
-		fRef = E2240DC80892A3DD004FABE1 /* entrybox.h */;
-		rLen = 0;
-		rLoc = 34;
-		rType = 1;
-	};
-	E2240DC80892A3DD004FABE1 /* entrybox.h */ = {
-		isa = PBXFileReference;
-		name = entrybox.h;
-		path = /Users/tom/Projects/cpaf/samples/proof/../../include/cpaf/gui/entrybox.h;
-		sourceTree = "<absolute>";
 	};
 	E2240DC90892A3DD004FABE1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -287,133 +181,15 @@
 		vrLen = 693;
 		vrLoc = 3695;
 	};
-	E2240DCA0892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E2240D8608929525004FABE1 /* event.h */;
-		name = "template<typename L> EventChainWrapper<E> &operator()(typename ListenerFunctor<L, E>::ptr_type function, L &l)";
-		rLen = 116;
-		rLoc = 6771;
-		rType = 0;
-		vrLen = 769;
-		vrLoc = 6392;
-	};
-	E2240DCB0892A3DD004FABE1 /* PBXTextBookmark */ = {
+	E2240E920892B75D004FABE1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "connect<Event, false>(BUTTON_CLICK, btn->get_id()) (&MyApp::change_passwordbox, *btn);";
-		rLen = 94;
-		rLoc = 4338;
-		rType = 0;
-		vrLen = 746;
-		vrLoc = 3746;
-	};
-	E2240DCC0892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E2240D8608929525004FABE1 /* event.h */;
-		name = "template<typename L> EventChainWrapper<E> &operator()(typename ListenerFunctor<L, E>::ptr_type function, L &l)";
-		rLen = 116;
-		rLoc = 6771;
-		rType = 0;
-		vrLen = 769;
-		vrLoc = 6392;
-	};
-	E2240DCD0892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "connect<Event, false>(BUTTON_CLICK, btn->get_id()) (&MyApp::change_passwordbox, *btn);";
-		rLen = 94;
-		rLoc = 4338;
-		rType = 0;
-		vrLen = 746;
-		vrLoc = 3746;
-	};
-	E2240DCE0892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E2240D8608929525004FABE1 /* event.h */;
-		name = "template<typename L> EventChainWrapper<E> &operator()(typename ListenerFunctor<L, E>::ptr_type function, L &l)";
-		rLen = 116;
-		rLoc = 6771;
-		rType = 0;
-		vrLen = 769;
-		vrLoc = 6392;
-	};
-	E2240DCF0892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: 145";
-		rLen = 0;
-		rLoc = 4342;
-		rType = 0;
-		vrLen = 746;
-		vrLoc = 3746;
-	};
-	E2240DD00892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E2240D8608929525004FABE1 /* event.h */;
-		name = "template<typename L> EventChainWrapper<E> &operator()(typename ListenerFunctor<L, E>::ptr_type function, L &l)";
-		rLen = 116;
-		rLoc = 6771;
-		rType = 0;
-		vrLen = 769;
-		vrLoc = 6392;
-	};
-	E2240DD10892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: 111";
+		name = "main.cpp: 114";
 		rLen = 0;
 		rLoc = 2994;
 		rType = 0;
-		vrLen = 527;
-		vrLoc = 2624;
-	};
-	E2240DD20892A3DD004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E2240D9B0892A294004FABE1 /* entrybox.h */;
-		name = "entrybox.h: 35";
-		rLen = 0;
-		rLoc = 743;
-		rType = 0;
-		vrLen = 465;
-		vrLoc = 468;
-	};
-	E2240DD70892A3DE004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: toggle_password_mode";
-		rLen = 0;
-		rLoc = 2925;
-		rType = 0;
-		vrLen = 1092;
-		vrLoc = 2002;
-	};
-	E2240DF20892A70E004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: 'toggle_password_mode' is not a member of 'MyApp'";
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		rLen = 1;
-		rLoc = 150;
-		rType = 1;
-	};
-	E2240E050892A7F5004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = E2240D9B0892A294004FABE1 /* entrybox.h */;
-		name = "entrybox.h: 35";
-		rLen = 0;
-		rLoc = 743;
-		rType = 0;
-		vrLen = 465;
-		vrLoc = 468;
-	};
-	E2240E080892A7F6004FABE1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: toggle_password_mode";
-		rLen = 0;
-		rLoc = 1156;
-		rType = 0;
-		vrLen = 1373;
-		vrLoc = 316;
+		vrLen = 461;
+		vrLoc = 2582;
 	};
 	E2442A830884CD3E00F4E714 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -441,15 +217,15 @@
 		objects = (
 		);
 	};
-	E2754B8B088AAE0A00E6A468 /* PBXTextBookmark */ = {
+	E2ADD76E0892C0F300B93B66 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 6EAF8C2A0822C052006031F2 /* main.cpp */;
-		name = "main.cpp: MyButton";
+		name = "main.cpp: 113";
 		rLen = 0;
-		rLoc = 1965;
+		rLoc = 2994;
 		rType = 0;
-		vrLen = 722;
-		vrLoc = 3281;
+		vrLen = 419;
+		vrLoc = 2579;
 	};
 	E2FF0787084C1F8A00DDE7B7 /* proof */ = {
 		isa = PBXExecutable;
