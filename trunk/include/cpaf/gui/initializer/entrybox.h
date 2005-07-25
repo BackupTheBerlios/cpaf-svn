@@ -19,6 +19,10 @@ namespace cpaf {
 struct EntryBoxData : TextWidgetData
 {
     bool m_get_password_mode;
+    
+    EntryBoxData()
+        : m_get_password_mode(false)
+    { }
 };
 
 /*!

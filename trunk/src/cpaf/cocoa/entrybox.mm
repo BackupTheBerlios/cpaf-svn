@@ -65,6 +65,7 @@ void cpaf::cocoa::gui::EntryBox::set_password_mode(bool mode)
     [[m_object cell] setWraps:[[old_object cell] wraps]];
 	[m_object setStringValue:[old_object stringValue]];
 	[m_object setFrame:[old_object frame]];
+    [m_object setAutoresizingMask:[old_object autoresizingMask]];
     
     // Set the cpaf widget
     [m_object setCpafWidget:this];
