@@ -37,9 +37,11 @@ class MyApp : public cpaf::gui::App
 {
 public:
     cpaf::gui::EntryBox *pw; // The password box
+    cpaf::gui::Button *destroy_btn;
 
     bool init();
     void toggle_password_mode(Event &event);
+    void destroy_button(Event &event);
 };
 
 /*
@@ -114,6 +116,12 @@ void MyApp::toggle_password_mode(Event &event)
     pw->set_password_mode(!pw->get_password_mode());
 }
 
+void MyApp::destroy_button(Event &event)
+{
+    DBG_MSG("MyApp::destroy_button");
+    destroy_btn->destroy();
+}
+
 /*
     Initialization function for our application class
 */
@@ -154,6 +162,15 @@ bool MyApp::init()
         .label("Click me!")
         .position(cpaf::Point(100,100))
         );
+
+    destroy_btn = create_widget<cpaf::gui::Button>(btn_init
+        .parent(wnd)
+        .label("Click to destroy me")
+        .size(cpaf::Size(200,30))
+        .position(cpaf::Point(50, 320))
+        .show()
+        );
+    connect<Event, false>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
 
     /*
         Create an EntryBox

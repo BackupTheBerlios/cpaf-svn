@@ -97,6 +97,10 @@ void cpaf::cocoa::gui::Widget::destroy()
                 }
             }
         }
+
+        if ([m_object isKindOfClass:[NSView class]] && [m_object superview])
+            [m_object removeFromSuperview];
+
         [m_object release];
         m_object = nil;
     }
