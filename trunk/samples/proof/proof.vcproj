@@ -19,6 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="$(CPAF_DIR)/include"
 				PreprocessorDefinitions="CPAF_WIN32;CPAF_DLL;WIN32;_WINDOWS;_DEBUG"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
@@ -32,6 +33,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cpaf-gui-win32d-dll.lib"
+				AdditionalLibraryDirectories="$(CPAF_DIR)/lib"
 				GenerateDebugInformation="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -71,7 +73,8 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cpaf-gui-win32-dll.lib"/>
+				AdditionalDependencies="cpaf-gui-win32-dll.lib"
+				AdditionalLibraryDirectories="$(CPAF_DIR)/lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -113,7 +116,8 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cpaf-gui-win32d.lib comctl32.lib"
+				AdditionalDependencies="cpaf-gui-win32d.lib"
+				AdditionalLibraryDirectories="$(CPAF_DIR)/lib"
 				GenerateDebugInformation="TRUE"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -153,7 +157,8 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cpaf-gui-win32.lib"/>
+				AdditionalDependencies="cpaf-gui-win32.lib"
+				AdditionalLibraryDirectories="$(CPAF_DIR)/lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -197,7 +202,31 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
 			<File
-				RelativePath="..\..\include\cpaf\win32\cpaf.rc">
+				RelativePath=".\cpaf.rc">
+				<FileConfiguration
+					Name="debug dll|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"
+						AdditionalIncludeDirectories="$(CPAF_DIR)/include"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="release dll|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"
+						AdditionalIncludeDirectories="$(CPAF_DIR)/include"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="debug static lib|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"
+						AdditionalIncludeDirectories="$(CPAF_DIR)/include"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="release static lib|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"
+						AdditionalIncludeDirectories="$(CPAF_DIR)/include"/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 	</Files>
