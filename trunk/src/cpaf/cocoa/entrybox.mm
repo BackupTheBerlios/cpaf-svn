@@ -82,3 +82,111 @@ bool cpaf::cocoa::gui::EntryBox::get_password_mode()
 {
     return [m_object isKindOfClass:[NSSecureTextField class]];
 }
+
+void cpaf::cocoa::gui::EntryBox::set_text(const std::string &s)
+{
+    [m_object setStringValue:[NSString stringWithUTF8String:s.c_str()]];
+}
+
+std::string cpaf::cocoa::gui::EntryBox::get_text() const
+{
+    return [[m_object stringValue] UTF8String];
+}
+
+std::string cpaf::cocoa::gui::EntryBox::get_text(const cpaf::TextRange &range) const
+{
+    return "";
+}
+
+cpaf::text_range_t cpaf::cocoa::gui::EntryBox::get_length() const
+{
+    return get_text().length();
+}
+
+cpaf::TextRange cpaf::cocoa::gui::EntryBox::get_selection_range() const
+{
+    NSResponder *firstResponder = [[m_object window] firstResponder];
+
+    // There's only a selection, when the EntryBox is focused
+    if (firstResponder && [firstResponder isKindOfClass:[NSText class]])
+    {
+        if ([(NSText *)firstResponder delegate] == m_object)
+        {
+            NSRange range = [(NSText *)firstResponder selectedRange];
+
+            // The insertion point is at the beginning of the selection
+            return cpaf::TextRange(range.location+range.length, range.location);
+        }
+    }
+    return cpaf::TextRange();
+}
+
+void cpaf::cocoa::gui::EntryBox::set_selection_range(const cpaf::TextRange &range)
+{
+}
+
+bool cpaf::cocoa::gui::EntryBox::get_selection_bounds(cpaf::TextRange &range) const
+{
+    range = get_selection_range();
+    range.normalize();
+    return range.first != range.second;
+}
+
+void cpaf::cocoa::gui::EntryBox::set_selection_bounds(const cpaf::TextRange &range)
+{
+
+}
+
+cpaf::text_range_t cpaf::cocoa::gui::EntryBox::get_insertion_point() const
+{
+    return get_selection_range().second;
+}
+
+void cpaf::cocoa::gui::EntryBox::set_insertion_point(cpaf::text_range_t pos)
+{
+
+}
+
+void cpaf::cocoa::gui::EntryBox::delete_range(const cpaf::TextRange &range)
+{
+
+}
+
+void cpaf::cocoa::gui::EntryBox::insert_text(cpaf::text_range_t pos, const std::string &str)
+{
+
+}
+
+void cpaf::cocoa::gui::EntryBox::set_max_length(cpaf::text_range_t len)
+{
+
+}
+
+void cpaf::cocoa::gui::EntryBox::set_read_only(bool b)
+{
+    [m_object setEditable:!b];
+    
+    // If the widget will be read only, make sure it isn't focused anymore
+    if (b)
+    {
+        // \todo Remove duplicate code
+
+        NSResponder *firstResponder = [[m_object window] firstResponder];
+
+        if (firstResponder && [firstResponder isKindOfClass:[NSText class]])
+        {
+            if ([(NSText *)firstResponder delegate] == m_object)
+            {
+                // Focus the next responder
+                [[m_object window] makeFirstResponder:[m_object nextResponder]];
+            }
+        }
+    }
+    [m_object display]; // Cocoa doesn't redisplay the entry box, do that here
+}
+
+bool cpaf::cocoa::gui::EntryBox::is_read_only() const
+{
+    return ![m_object isEditable];
+}
+

@@ -49,7 +49,72 @@ void cpaf::cocoa::gui::TextBox::set_text(const std::string &s)
     [m_textview setString:[NSString stringWithUTF8String:s.c_str()]];
 }
 
-std::string cpaf::cocoa::gui::TextBox::get_text()
+std::string cpaf::cocoa::gui::TextBox::get_text() const
 {
     return [[m_textview string] UTF8String];
+}
+
+std::string cpaf::cocoa::gui::TextBox::get_text(const cpaf::TextRange &range) const
+{
+    return "";
+}
+
+cpaf::text_range_t cpaf::cocoa::gui::TextBox::get_length() const
+{
+    return 0;
+}
+
+cpaf::TextRange cpaf::cocoa::gui::TextBox::get_selection_range() const
+{
+    return 0;
+}
+
+void cpaf::cocoa::gui::TextBox::set_selection_range(const cpaf::TextRange &range)
+{
+
+}
+
+bool cpaf::cocoa::gui::TextBox::get_selection_bounds(cpaf::TextRange &range) const
+{
+    return false;
+}
+
+void cpaf::cocoa::gui::TextBox::set_selection_bounds(const cpaf::TextRange &range)
+{
+
+}
+
+cpaf::text_range_t cpaf::cocoa::gui::TextBox::get_insertion_point() const
+{
+    return 0;
+}
+
+void cpaf::cocoa::gui::TextBox::set_insertion_point(cpaf::text_range_t pos)
+{
+
+}
+
+void cpaf::cocoa::gui::TextBox::delete_range(const cpaf::TextRange &range)
+{
+
+}
+
+void cpaf::cocoa::gui::TextBox::insert_text(cpaf::text_range_t pos, const std::string &str)
+{
+
+}
+
+void cpaf::cocoa::gui::TextBox::set_max_length(cpaf::text_range_t len)
+{
+
+}
+
+void cpaf::cocoa::gui::TextBox::set_read_only(bool b)
+{
+
+}
+
+bool cpaf::cocoa::gui::TextBox::is_read_only() const
+{
+    return false;
 }

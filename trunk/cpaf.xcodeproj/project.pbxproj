@@ -362,12 +362,12 @@
 		6EDF4D24082E08D800957C63 /* cpaf */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4D29082E08F600957C63 /* api.cpp */,
-				6EDF4D2A082E08F600957C63 /* app.cpp */,
 				6EDF4D2B082E08F600957C63 /* cocoa */,
-				6EDF4D59082E08F700957C63 /* exception.cpp */,
 				E29B7ECC0850218800170856 /* event */,
 				6EDF4D5A082E08F700957C63 /* gui */,
+				6EDF4D29082E08F600957C63 /* api.cpp */,
+				6EDF4D2A082E08F600957C63 /* app.cpp */,
+				6EDF4D59082E08F700957C63 /* exception.cpp */,
 				6EDF4D8D082E08F700957C63 /* main.cpp */,
 				6EDF4D8E082E08F700957C63 /* types.cpp */,
 			);
@@ -377,15 +377,15 @@
 		6EDF4D2B082E08F600957C63 /* cocoa */ = {
 			isa = PBXGroup;
 			children = (
-				E2EBBC430886A6E5000A6728 /* textbox.mm */,
-				E2EBBBEA0886A1FF000A6728 /* entrybox.mm */,
 				6EDF4D53082E08F700957C63 /* app.mm */,
 				6EDF4D54082E08F700957C63 /* button.mm */,
+				E2EBBBEA0886A1FF000A6728 /* entrybox.mm */,
 				6EDF4D55082E08F700957C63 /* factory.mm */,
+				E2EBBC430886A6E5000A6728 /* textbox.mm */,
+				E2EBBAF508869BE9000A6728 /* textwidget.mm */,
 				6EDF4D56082E08F700957C63 /* utils.mm */,
 				6EDF4D57082E08F700957C63 /* widget.mm */,
 				6EDF4D58082E08F700957C63 /* window.mm */,
-				E2EBBAF508869BE9000A6728 /* textwidget.mm */,
 			);
 			name = cocoa;
 			path = src/cpaf/cocoa;

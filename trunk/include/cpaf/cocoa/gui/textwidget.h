@@ -24,26 +24,26 @@ public:
 
     void create(const cpaf::gui::initializer::TextWidgetData &params, id widget);
 
-    virtual void set_text(const std::string &s);
-    virtual std::string get_text() const;
-    virtual std::string get_text(const cpaf::TextRange &range) const;
-    virtual cpaf::text_range_t get_length() const;
+    virtual void set_text(const std::string &s) = 0;
+    virtual std::string get_text() const = 0;
+    virtual std::string get_text(const cpaf::TextRange &range) const = 0;
+    virtual cpaf::text_range_t get_length() const = 0;
 
-    virtual cpaf::TextRange get_selection_range() const;
-    virtual void set_selection_range(const cpaf::TextRange &range);
-    virtual bool get_selection_bounds(cpaf::TextRange &range) const;
-    virtual void set_selection_bounds(const cpaf::TextRange &range);
+    virtual cpaf::TextRange get_selection_range() const = 0;
+    virtual void set_selection_range(const cpaf::TextRange &range) = 0;
+    virtual bool get_selection_bounds(cpaf::TextRange &range) const = 0;
+    virtual void set_selection_bounds(const cpaf::TextRange &range) = 0;
 
-    virtual cpaf::text_range_t get_insertion_point() const;
-    virtual void set_insertion_point(cpaf::text_range_t pos);
+    virtual cpaf::text_range_t get_insertion_point() const = 0;
+    virtual void set_insertion_point(cpaf::text_range_t pos) = 0;
 
-    virtual void delete_range(const cpaf::TextRange &range);
-    virtual void insert_text(cpaf::text_range_t pos, const std::string &str);
+    virtual void delete_range(const cpaf::TextRange &range) = 0;
+    virtual void insert_text(cpaf::text_range_t pos, const std::string &str) = 0;
 
-    virtual void set_max_length(cpaf::text_range_t len);
+    virtual void set_max_length(cpaf::text_range_t len) = 0;
 
-    virtual void set_read_only(bool b);
-    virtual bool is_read_only() const;
+    virtual void set_read_only(bool b) = 0;
+    virtual bool is_read_only() const = 0;
 };
 
         } // gui

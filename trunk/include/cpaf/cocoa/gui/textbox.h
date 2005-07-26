@@ -28,7 +28,25 @@ public:
     void create(const cpaf::gui::initializer::TextBoxData &params);
 
     void set_text(const std::string &s);
-    std::string get_text();
+    std::string get_text() const;
+    std::string get_text(const cpaf::TextRange &range) const;
+    cpaf::text_range_t get_length() const;
+
+    cpaf::TextRange get_selection_range() const;
+    void set_selection_range(const cpaf::TextRange &range);
+    bool get_selection_bounds(cpaf::TextRange &range) const;
+    void set_selection_bounds(const cpaf::TextRange &range);
+
+    cpaf::text_range_t get_insertion_point() const;
+    void set_insertion_point(cpaf::text_range_t pos);
+
+    void delete_range(const cpaf::TextRange &range);
+    void insert_text(cpaf::text_range_t pos, const std::string &str);
+
+    void set_max_length(cpaf::text_range_t len);
+
+    void set_read_only(bool b);
+    bool is_read_only() const;
 };
 
         } // gui
