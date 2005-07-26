@@ -137,7 +137,7 @@ bool MyApp::init()
         );
     connect<Event, false>(BUTTON_CLICK, set_selection_bounds->get_id()) (&MyApp::set_selection_bounds, *this);
     Button *set_insertion_point = create_widget<Button>(btn_init
-        .label("Set insertion cpaf::Point")
+        .label("Set insertion point")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(170,100))
         .show()
