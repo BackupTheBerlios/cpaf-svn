@@ -104,19 +104,19 @@ function AddConfig(proj, strProjectName)
 		
 		var config = proj.Object.Configurations('debug dll');
 		debug.CopyTo(config);
-		AddCompilerConfig(proj, config, true, true);
+		add_config(proj, config, true, true);
 		
 		config = proj.Object.Configurations('debug static lib');
 		debug.CopyTo(config);
-		AddCompilerConfig(proj, config, false, true);
+		add_config(proj, config, false, true);
 		
 		config = proj.Object.Configurations('release dll');
 		release.CopyTo(config);
-		AddCompilerConfig(proj, config, true, false);
+		add_config(proj, config, true, false);
 		
 		config = proj.Object.Configurations('release static lib');
 		release.CopyTo(config);
-		AddCompilerConfig(proj, config, false, false);
+		add_config(proj, config, false, false);
 
 		proj.Object.RemoveConfiguration(debug);
 		proj.Object.RemoveConfiguration(release);
@@ -127,7 +127,7 @@ function AddConfig(proj, strProjectName)
 	}
 }
 
-function AddCompilerConfig(proj, config, dll, debug)
+function add_config(proj, config, dll, debug)
 {
 	config.IntermediateDirectory = '$(ConfigurationName)';
 	config.OutputDirectory = '$(ConfigurationName)';
@@ -135,9 +135,17 @@ function AddCompilerConfig(proj, config, dll, debug)
 	if( dll )
 		config.DebugSettings.WorkingDirectory = '$(CPAF_DIR)\\lib';
 
+	/*
+		Compiler tool settings
+	*/
 	var compiler_tool = config.Tools('VCCLCompilerTool');
+	
 	compiler_tool.RuntimeTypeInfo = true;
 	compiler_tool.Warninglevel = warninglevelOption.warningLevel_3;
+	compiler_tool.AdditionalIncludeDirectories = '$(CPAF_DIR)/include';
+	
+	if( debug )
+		compiler_tool.Optimization = optimizeOption.optimizeDisabled;
 
 	var pp = 'CPAF_WIN32\;WIN32\;_WINDOWS\;';
 	if( debug )
@@ -162,7 +170,12 @@ function AddCompilerConfig(proj, config, dll, debug)
 	if( debug )
 		compiler_tool.DebugInformationFormat = debugOption.debugEditAndContinue;
 	
-	var linker_tool = config.Tools('VCLinkerTool');
+	/*
+		Linker tool settings
+	*/
+	var link_tool = config.Tools('VCLinkerTool');
+	
+	link_tool.AdditionalLibraryDirectories = '$(CPAF_DIR)/lib';
 	
 	var input = 'cpaf-gui-win32';
 	if( debug )
@@ -170,10 +183,16 @@ function AddCompilerConfig(proj, config, dll, debug)
 	if( dll )
 		input += '-dll';
 	input += '.lib';
-	linker_tool.AdditionalDependencies = input;
+	link_tool.AdditionalDependencies = input;
 	
 	if( debug )
-		linker_tool.GenerateDebugInformation = true;
+		link_tool.GenerateDebugInformation = true;
+		
+	/*
+		Resource compiler tool settings
+	*/
+	var rc_tool = config.Tools('VCResourceCompilerTool');
+	rc_tool.AdditionalIncludeDirectories = '$(CPAF_DIR)/include';
 }
 
 function PchSettings(proj)

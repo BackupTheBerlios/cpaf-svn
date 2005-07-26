@@ -6,13 +6,25 @@ EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
+		debug dll = debug dll
+		debug static lib = debug static lib
 		Release = Release
+		release dll = release dll
+		release static lib = release static lib
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{9669422D-0A32-439D-8060-B41849593B1F}.Debug.ActiveCfg = Debug|Win32
 		{9669422D-0A32-439D-8060-B41849593B1F}.Debug.Build.0 = Debug|Win32
+		{9669422D-0A32-439D-8060-B41849593B1F}.debug dll.ActiveCfg = Debug|Win32
+		{9669422D-0A32-439D-8060-B41849593B1F}.debug dll.Build.0 = Debug|Win32
+		{9669422D-0A32-439D-8060-B41849593B1F}.debug static lib.ActiveCfg = Debug|Win32
+		{9669422D-0A32-439D-8060-B41849593B1F}.debug static lib.Build.0 = Debug|Win32
 		{9669422D-0A32-439D-8060-B41849593B1F}.Release.ActiveCfg = Release|Win32
 		{9669422D-0A32-439D-8060-B41849593B1F}.Release.Build.0 = Release|Win32
+		{9669422D-0A32-439D-8060-B41849593B1F}.release dll.ActiveCfg = Release|Win32
+		{9669422D-0A32-439D-8060-B41849593B1F}.release dll.Build.0 = Release|Win32
+		{9669422D-0A32-439D-8060-B41849593B1F}.release static lib.ActiveCfg = Release|Win32
+		{9669422D-0A32-439D-8060-B41849593B1F}.release static lib.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
