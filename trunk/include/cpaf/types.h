@@ -14,7 +14,7 @@
 
 namespace cpaf {
 
-//! \todo decide wether we use addresses or object id's here
+//! \todo decide whether we use addresses or object id's here
 typedef int object_id; // value specifying which object sent the event
 
 /*!

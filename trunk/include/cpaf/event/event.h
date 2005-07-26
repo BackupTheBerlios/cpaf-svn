@@ -62,14 +62,14 @@ public:
     object_id get_object_id() { return m_obj_id; }
 
     /*!
-        Specify wether or not processing of this event continue to further links in the event chain.
+        Specify whether or not processing of this event continue to further links in the event chain.
         If you do not wish an event to be processed further, you do not need to do anything. To allow
         further links in the chain to process the event, specify true to this function.
     */
     void continue_processing(bool c = true) { m_continue = c; }
 
     /*!
-        \return Wether or not processing of this event will continue down the event chain
+        \return Whether or not processing of this event will continue down the event chain
     */
     bool should_continue() { return m_continue; }
 };

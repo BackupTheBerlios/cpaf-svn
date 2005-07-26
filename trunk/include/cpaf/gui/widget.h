@@ -91,7 +91,7 @@ public:
     void hide();
 
     /*!
-        This function determines wether or not the widget is enabled. If any of a widget's parents
+        This function determines whether or not the widget is enabled. If any of a widget's parents
         are disabled, the widget is considered disabled. If all of the parents are enabled and the widget
         is also enabled, it is not disabled.
     */

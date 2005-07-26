@@ -66,7 +66,7 @@ public:
     void set_selection_range(const cpaf::TextRange &range);
 
     /*!
-        \brief Returns the selected range of text and wether or not there was a selection.
+        \brief Returns the selected range of text and whether or not there was a selection.
 
         \param range [out] The selected range of text is returned through this parameter.
 
@@ -126,7 +126,7 @@ public:
     void set_max_length(cpaf::text_range_t len);
 
     /*!
-        \brief Specifies wether or not this TextWidget is read only. Users cannot modify the contents
+        \brief Specifies whether or not this TextWidget is read only. Users cannot modify the contents
             of read only TextWidgets.
     */
     void set_read_only(bool b);
