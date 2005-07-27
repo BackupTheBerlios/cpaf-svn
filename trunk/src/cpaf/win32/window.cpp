@@ -22,7 +22,7 @@ WNDCLASSEX wnd_class = {
     GetModuleHandle(NULL),
     NULL,
     LoadCursor(NULL, IDC_ARROW),
-    (HBRUSH)COLOR_BACKGROUND,
+    (HBRUSH)(COLOR_BTNFACE+1),
     NULL,
     CLASSNAME
 };
@@ -49,9 +49,25 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
     if( !registered )
         ::RegisterClassEx(&wnd_class);
 
+    // get non const initialization params
+    cpaf::gui::initializer::WindowData init_params = params;
+
+    int style = WS_OVERLAPPEDWINDOW, style_ex = 0;
+    // handle client size
+    if( init_params.m_use_client_size )
+    {
+        RECT rect = {0};
+        rect.right = init_params.m_client_size.width;
+        rect.bottom = init_params.m_client_size.height;
+
+        ::AdjustWindowRectEx(&rect, style, false, style_ex);
+        init_params.m_size.width = rect.right - rect.left;
+        init_params.m_size.height = rect.bottom - rect.top;
+    }
+
     // create a window
-    cpaf::win32::gui::Widget::create(CreationInfo(this), params, false, CLASSNAME, params.m_title.c_str(),
-        WS_OVERLAPPEDWINDOW);
+    cpaf::win32::gui::Widget::create(CreationInfo(this), init_params, false, CLASSNAME, params.m_title.c_str(),
+        style, style_ex);
 }
 
 std::string cpaf::win32::gui::Window::get_title()

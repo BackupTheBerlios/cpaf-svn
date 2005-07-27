@@ -14,6 +14,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpaf_proj_wiz", "msvc\cpaf_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "textwidget", "samples\unit_tests\textwidget\textwidget.vcproj", "{A45011F8-12CD-4F89-ABC5-F381DDE1579E}"
 	ProjectSection(ProjectDependencies) = postProject
+		{0D192004-77CE-4E79-81F6-E126E712CFE9} = {0D192004-77CE-4E79-81F6-E126E712CFE9}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "create_destroy", "samples\unit_tests\events\create_destroy\create_destroy.vcproj", "{84D3FA38-3823-4F1C-ABB7-B875B3546216}"

@@ -57,6 +57,9 @@ void cpaf::win32::gui::Widget::create(const CreationInfo &info, const cpaf::gui:
     if( !m_hwnd )
         throw cpaf::win32::Exception(cpaf::Exception::NATIVE_HANDLE, ::GetLastError(), __LINE__, __FILE__);
 
+    // set the default font to what it should be
+    ::SendMessage(m_hwnd, WM_SETFONT, (WPARAM)::GetStockObject(DEFAULT_GUI_FONT), 0);
+
     // show the window if necessary
     if( params.m_show )
         show(true, params.m_activate);

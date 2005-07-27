@@ -69,6 +69,7 @@ public:
     {
         m_data->m_client_size = s;
         m_data->m_use_client_size = true;
+        m_data->m_default_size = false;
          return dynamic_cast<T&>(*this);
     }
 
