@@ -51,32 +51,33 @@ public:
     /*!
         \return Absolute size of the widget
     */
-    cpaf::Size get_size();
+    cpaf::Size get_size() const;
 
     /*!
         \return Minimum size of the widget. A value of -1 for width or height
         indicates that there is no minimum size in that direction.
     */
-    cpaf::Size get_min_size();
+    cpaf::Size get_min_size() const;
 
     /*!
         \return Maximum size of the widget. A value of -1 for width or height
         indicates that there is no maximum size in that direction.
     */
-    cpaf::Size get_max_size();
+    cpaf::Size get_max_size() const;
 
     /*!
         \return Position of the widget. If the widget is a \ref g_tlw TLW, the position is in
         screen coordinates. Otherwise, the position is in client coordinates.
     */
-    cpaf::Point get_position();
+    cpaf::Point get_position() const;
 
     /*!
         \return A native handle for the widget. This value is returned as a void*, and how you use this value
             is dependant on the port you are working with. For win32, simply casting the return value to a HWND
             is sufficient.
+        \todo Casting a pointer type to a type that isn't a pointer may not work under all circumstances
     */
-    void *get_handle();
+    void *get_handle() const;
 
     /*!
         \brief Enables or disables the widget. Disabled widgets cannot recieve user input.
@@ -95,14 +96,14 @@ public:
         are disabled, the widget is considered disabled. If all of the parents are enabled and the widget
         is also enabled, it is not disabled.
     */
-    bool is_enabled();
+    bool is_enabled() const;
 
     /*!
         \return True if the widget is shown and none of its parents are hidden, false otherwise. A widget
         is shown if it would be drawn by the system. A widget may be completely obscured by another widget,
         but if the widget would otherwise be drawn, this function returns true.
     */
-    bool is_shown();
+    bool is_shown() const;
 
     /*!
         \brief Destroys this widget freeing all resources.
@@ -112,7 +113,7 @@ public:
     /*!
         \return This objects unique identifier
     */
-    object_id get_id();
+    object_id get_id() const;
 
     virtual ~Widget();
 
@@ -130,7 +131,7 @@ protected:
     }
 
 public:
-    operator api_type *();
+    operator api_type *() const;
 };
 
     } // gui

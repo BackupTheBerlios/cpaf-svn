@@ -19,13 +19,14 @@ cpaf::gui::TextBox::TextBox(api_type *impl)
     m_impl(impl)
 { }
 
-void cpaf::gui::TextBox::create(Initializer::data_type params)
+void cpaf::gui::TextBox::create(const Initializer &initializer)
 {
-    params.m_wrapper = this;
+    Initializer::data_type params = initializer.get_data();
+    params.set_wrapper(this);
     m_impl->create(params);
 }
 
-cpaf::gui::TextBox::operator api_type *()
+cpaf::gui::TextBox::operator api_type *() const
 {
     return m_impl;
 }

@@ -18,9 +18,14 @@ namespace cpaf {
 /*!
     \brief Initialization data for Button creation.
 */
-struct ButtonData : public WidgetData
+struct CPAF_API ButtonData : public WidgetData
 {
+protected:
     std::string m_label;
+
+public:
+    void set_label(const std::string &str);
+    std::string get_label() const;
 };
 
 /*!
@@ -42,29 +47,27 @@ protected:
 public:
     T &label(const std::string &s)
     {
-        m_data->m_label = s;
+        m_data->set_label(s);
         return dynamic_cast<T&>(*this);
     }
 
-    std::string get_label() const { return m_data->m_label; }
+    std::string get_label() const { return m_data->get_label(); }
 };
 
         } // initializer
 
+class Button;
 /*!
     \brief A concrete initializer class for Button creation.
 */
-class ButtonInitializer : public cpaf::gui::initializer::Button<ButtonInitializer>
+class CPAF_API ButtonInitializer : public cpaf::gui::initializer::Button<ButtonInitializer>
 {
+    friend class cpaf::gui::Button;
 public:
-    ButtonInitializer()
-        : cpaf::gui::initializer::Button<ButtonInitializer>(new cpaf::gui::initializer::ButtonData)
-    { }
+    ButtonInitializer();
 
-    operator cpaf::gui::initializer::ButtonData () const
-    {
-        return *m_data;
-    }
+private:
+    data_type get_data() const;
 };
 
     } // gui

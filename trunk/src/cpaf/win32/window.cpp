@@ -54,19 +54,22 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
 
     int style = WS_OVERLAPPEDWINDOW, style_ex = 0;
     // handle client size
-    if( init_params.m_use_client_size )
+    if( init_params.use_client_size() )
     {
         RECT rect = {0};
-        rect.right = init_params.m_client_size.width;
-        rect.bottom = init_params.m_client_size.height;
+        cpaf::Size client_size = init_params.get_client_size();
+        rect.right = client_size.width;
+        rect.bottom = client_size.height;
 
         ::AdjustWindowRectEx(&rect, style, false, style_ex);
-        init_params.m_size.width = rect.right - rect.left;
-        init_params.m_size.height = rect.bottom - rect.top;
+
+        client_size.width = rect.right - rect.left;
+        client_size.height = rect.bottom - rect.top;
+        init_params.set_size(client_size);
     }
 
     // create a window
-    cpaf::win32::gui::Widget::create(CreationInfo(this), init_params, false, CLASSNAME, params.m_title.c_str(),
+    cpaf::win32::gui::Widget::create(CreationInfo(this), init_params, false, CLASSNAME, params.get_title().c_str(),
         style, style_ex);
 }
 

@@ -7,6 +7,7 @@
 #ifndef CPAF_GUI_INITIALIZER_ENTRYBOX_H
 #define CPAF_GUI_INITIALIZER_ENTRYBOX_H
 
+#include <cpaf/gui/initializer/textwidget.h>
 #include <string>
 
 namespace cpaf {
@@ -16,13 +17,16 @@ namespace cpaf {
 /*!
     \brief initialization data for Widget creation.
 */
-struct EntryBoxData : TextWidgetData
+struct CPAF_API EntryBoxData : TextWidgetData
 {
-    bool m_get_password_mode;
+protected:
+    bool m_password_mode;
     
-    EntryBoxData()
-        : m_get_password_mode(false)
-    { }
+public:
+    EntryBoxData();
+
+    void set_password_mode(bool b);
+    bool get_password_mode() const;
 };
 
 /*!
@@ -44,29 +48,28 @@ protected:
 public:
     T &password_mode(bool mode = true)
     {
-        m_data->m_get_password_mode = mode;
+        m_data->set_password_mode(mode);
         return dynamic_cast<T&>(*this);
     }
 
-    bool get_password_mode() const { return m_data->m_get_password_mode; }
+    bool get_password_mode() const { return m_data->get_password_mode(); }
 };
 
         } // initializer
 
+class EntryBox;
 /*!
     \brief A concrete initializer class for EntryBox creation.
 */
-class EntryBoxInitializer : public cpaf::gui::initializer::EntryBox<EntryBoxInitializer>
+class CPAF_API EntryBoxInitializer : public cpaf::gui::initializer::EntryBox<EntryBoxInitializer>
 {
-public:
-    EntryBoxInitializer()
-        : cpaf::gui::initializer::EntryBox<EntryBoxInitializer>(new cpaf::gui::initializer::EntryBoxData)
-    { }
+    friend class cpaf::gui::EntryBox;
 
-    operator cpaf::gui::initializer::EntryBoxData () const
-    {
-        return *m_data;
-    }
+public:
+    EntryBoxInitializer();
+
+private:
+    data_type get_data() const;
 };
 
     } // gui

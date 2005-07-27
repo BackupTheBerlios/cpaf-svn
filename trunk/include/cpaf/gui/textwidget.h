@@ -19,7 +19,6 @@ class CPAF_API TextWidget : public Widget
 {
 public:
     typedef cpaf::api::gui::TextWidget api_type;
-    typedef TextWidgetInitializer Initializer;
 
     /*!
         Sets the text of the TextWidget.
@@ -143,7 +142,7 @@ private:
     api_type *m_impl;
 
 public:
-    operator api_type *();
+    operator api_type *() const;
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 

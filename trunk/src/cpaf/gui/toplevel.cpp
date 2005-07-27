@@ -23,7 +23,7 @@ cpaf::gui::TopLevel::~TopLevel()
     cpaf::gui::App::remove_top_level(this);
 }
 
-cpaf::gui::TopLevel::operator api_type *()
+cpaf::gui::TopLevel::operator api_type *() const
 {
     return m_impl;
 }
@@ -38,7 +38,7 @@ void cpaf::gui::TopLevel::set_title(const std::string &t)
     m_impl->set_title(t);
 }
 
-std::string cpaf::gui::TopLevel::get_title()
+std::string cpaf::gui::TopLevel::get_title() const
 {
     return m_impl->get_title();
 }
@@ -48,12 +48,12 @@ void cpaf::gui::TopLevel::set_client_size(const cpaf::Size &s)
     m_impl->set_client_size(s);
 }
 
-cpaf::Size cpaf::gui::TopLevel::get_client_size()
+cpaf::Size cpaf::gui::TopLevel::get_client_size() const
 {
     return m_impl->get_client_size();
 }
 
-cpaf::Point cpaf::gui::TopLevel::get_client_position()
+cpaf::Point cpaf::gui::TopLevel::get_client_position() const
 {
     return m_impl->get_client_position();
 }

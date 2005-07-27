@@ -29,7 +29,7 @@ public:
     /*!
         \return The title of the widgets caption.
     */
-    std::string get_title();
+    std::string get_title() const;
 
     /*!
         \brief Sets the client size of the widget.
@@ -39,14 +39,14 @@ public:
     /*!
         \return The client size of the widget.
     */
-    cpaf::Size get_client_size();
+    cpaf::Size get_client_size() const;
 
     /*!
         \return The position of the client area of a widget relative to the top-left corner
         of the frame extents. If the widget is managing a menubar and/or toolbar,
         the position of the client area will be moved down to make room.
     */
-    cpaf::Point get_client_position();
+    cpaf::Point get_client_position() const;
 
 private:
     api_type *m_impl;
@@ -56,7 +56,7 @@ protected:
 
 public:
     ~TopLevel();
-    operator api_type *();
+    operator api_type *() const;
 };
 
     } // gui

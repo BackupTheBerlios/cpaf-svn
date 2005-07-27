@@ -9,7 +9,7 @@
 void cpaf::win32::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxData &params)
 {
     // create an entry box
-    cpaf::win32::gui::Widget::create(CreationInfo(this), params, true, TEXT("EDIT"), params.m_text.c_str(),
+    cpaf::win32::gui::Widget::create(CreationInfo(this), params, true, TEXT("EDIT"), params.get_text().c_str(),
         WS_CHILD, WS_EX_CLIENTEDGE);
     //::SendMessage(m_hwnd, WM_SETFONT, (WPARAM)::GetStockObject(DEFAULT_GUI_FONT), 1);
 }

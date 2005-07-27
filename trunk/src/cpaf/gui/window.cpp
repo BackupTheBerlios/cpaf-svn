@@ -20,13 +20,14 @@ cpaf::gui::Window::Window(api_type *impl)
     m_impl(impl)
 { }
 
-void cpaf::gui::Window::create(Initializer::data_type params)
+void cpaf::gui::Window::create(const Initializer &initializer)
 {
-    params.m_wrapper = this;
+    Initializer::data_type params = initializer.get_data();
+    params.set_wrapper(this);
     m_impl->create(params);
 }
 
-cpaf::gui::Window::operator api_type *()
+cpaf::gui::Window::operator api_type *() const
 {
     return m_impl;
 }

@@ -17,9 +17,14 @@ namespace cpaf {
 /*!
     \brief initialization data for Widget creation.
 */
-struct TextWidgetData : WidgetData
+struct CPAF_API TextWidgetData : WidgetData
 {
+protected:
     std::string m_text;
+
+public:
+    void set_text(const std::string &str);
+    std::string get_text() const;
 };
 
 /*!
@@ -41,31 +46,14 @@ protected:
 public:
     T &text(const std::string &s)
     {
-        m_data->m_text = s;
+        m_data->set_text(s);
         return dynamic_cast<T&>(*this);
     }
 
-    std::string get_text() const { return m_data->m_text; }
+    std::string get_text() const { return m_data->get_text(); }
 };
 
         } // initializer
-
-/*!
-    \brief A concrete initializer class for TextWidget creation.
-*/
-class TextWidgetInitializer : public cpaf::gui::initializer::TextWidget<TextWidgetInitializer>
-{
-public:
-    TextWidgetInitializer()
-        : cpaf::gui::initializer::TextWidget<TextWidgetInitializer>(new cpaf::gui::initializer::TextWidgetData)
-    { }
-
-    operator cpaf::gui::initializer::TextWidgetData () const
-    {
-        return *m_data;
-    }
-};
-
     } // gui
 } // cpaf
 

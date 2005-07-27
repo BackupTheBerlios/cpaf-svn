@@ -22,22 +22,22 @@ public:
     typedef EntryBoxInitializer Initializer;
     
     void set_password_mode(bool mode);
-    bool get_password_mode();
+    bool get_password_mode() const;
 
 protected:
     EntryBox();
     EntryBox(api_type *impl);
 
     /*!
-        \brief Constructs the native widget using the given initialization data
+        \brief Constructs the native widget using the given initializer
     */
-    void create(Initializer::data_type params);
+    void create(const Initializer &initializer);
 
 private:
     api_type *m_impl;
 
 public:
-    operator api_type *();
+    operator api_type *() const;
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 

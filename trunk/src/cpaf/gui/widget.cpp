@@ -31,7 +31,7 @@ void cpaf::gui::Widget::destroy()
     m_impl->destroy();
 }
 
-cpaf::gui::Widget::operator api_type *()
+cpaf::gui::Widget::operator api_type *() const
 {
     return m_impl;
 }
@@ -56,27 +56,27 @@ void cpaf::gui::Widget::set_position(const cpaf::Point &p)
     m_impl->set_position(p);
 }
 
-cpaf::Size cpaf::gui::Widget::get_size()
+cpaf::Size cpaf::gui::Widget::get_size() const
 {
     return m_impl->get_size();
 }
 
-cpaf::Size cpaf::gui::Widget::get_min_size()
+cpaf::Size cpaf::gui::Widget::get_min_size() const
 {
     return m_impl->get_min_size();
 }
 
-cpaf::Size cpaf::gui::Widget::get_max_size()
+cpaf::Size cpaf::gui::Widget::get_max_size() const
 {
     return m_impl->get_max_size();
 }
 
-cpaf::Point cpaf::gui::Widget::get_position()
+cpaf::Point cpaf::gui::Widget::get_position() const
 {
     return m_impl->get_position();
 }
 
-void *cpaf::gui::Widget::get_handle()
+void *cpaf::gui::Widget::get_handle() const
 {
     return m_impl->get_handle();
 }
@@ -101,17 +101,17 @@ void cpaf::gui::Widget::hide()
     m_impl->show(false, false);
 }
 
-bool cpaf::gui::Widget::is_enabled()
+bool cpaf::gui::Widget::is_enabled() const
 {
     return m_impl->is_enabled();
 }
 
-bool cpaf::gui::Widget::is_shown()
+bool cpaf::gui::Widget::is_shown() const
 {
     return m_impl->is_shown();
 }
 
-object_id cpaf::gui::Widget::get_id()
+object_id cpaf::gui::Widget::get_id() const
 {
     return m_id;
 }

@@ -17,8 +17,9 @@ namespace cpaf {
 /*!
     \brief Initialization data for Window creation.
 */
-struct WindowData : public WidgetData
+struct CPAF_API WindowData : public WidgetData
 {
+protected:
     //! The title of the window. This will appear on the Windows caption
     std::string m_title;
 
@@ -34,12 +35,15 @@ struct WindowData : public WidgetData
     */
     bool m_use_client_size;
 
-    WindowData()
-        : m_use_client_size(false)
-    {
-        // windows should be activated when shown by default
-        WidgetData::m_activate = true;
-    }
+public:
+    WindowData();
+
+    void set_title(const std::string &str);
+    std::string get_title() const;
+    void set_client_size(const cpaf::Size &s);
+    cpaf::Size get_client_size() const;
+    
+    bool use_client_size() const;
 };
 
 /*!
@@ -61,38 +65,35 @@ protected:
 public:
     T &title(const std::string &s)
     {
-        m_data->m_title = s;
-         return dynamic_cast<T&>(*this);
+        m_data->set_title(s);
+        return dynamic_cast<T&>(*this);
     }
 
     T &client_size(const cpaf::Size &s)
     {
-        m_data->m_client_size = s;
-        m_data->m_use_client_size = true;
-        m_data->m_default_size = false;
-         return dynamic_cast<T&>(*this);
+        m_data->set_client_size(s);
+        return dynamic_cast<T&>(*this);
     }
 
-    std::string get_title() const { return m_data->m_title; }
-    cpaf::Size get_client_size() const { return m_data->m_client_size; }
+    std::string get_title() const { return m_data->get_title(); }
+    cpaf::Size get_client_size() const { return m_data->get_client_size(); }
 };
 
         } // initializer
 
+class Window;
 /*!
     \brief A concrete initializer class for Window creation
 */
-class WindowInitializer : public cpaf::gui::initializer::Window<WindowInitializer>
+class CPAF_API WindowInitializer : public cpaf::gui::initializer::Window<WindowInitializer>
 {
-public:
-    WindowInitializer()
-        : cpaf::gui::initializer::Window<WindowInitializer>(new cpaf::gui::initializer::WindowData)
-    { }
+    friend class cpaf::gui::Window;
 
-    operator cpaf::gui::initializer::WindowData () const
-    {
-        return *m_data;
-    }
+public:
+    WindowInitializer();
+
+private:
+    data_type get_data() const;
 };
 
     } // gui

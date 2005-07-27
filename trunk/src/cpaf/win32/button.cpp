@@ -9,7 +9,7 @@
 void cpaf::win32::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
     // create a button
-    cpaf::win32::gui::Widget::create(CreationInfo(this), params, true, TEXT("BUTTON"), params.m_label.c_str(),
+    cpaf::win32::gui::Widget::create(CreationInfo(this), params, true, TEXT("BUTTON"), params.get_label().c_str(),
         WS_CHILD | BS_PUSHBUTTON);
 }
 

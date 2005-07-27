@@ -17,8 +17,9 @@ namespace cpaf {
 /*!
     \brief initialization data for Widget creation.
 */
-struct WidgetData : public ObjectData
+struct CPAF_API WidgetData : public ObjectData
 {
+protected:
     //! The wrapper for this implementation object
     cpaf::gui::Widget *m_wrapper;
 
@@ -34,13 +35,19 @@ struct WidgetData : public ObjectData
     //! Specifies if the widget is enabled or disabled
     bool m_enable;
 
-    WidgetData()
-        : m_wrapper(NULL),
-        m_parent(NULL),
-        m_show(false),
-        m_activate(false),
-        m_enable(true)
-    { }
+public:
+    WidgetData();
+
+    void set_wrapper(cpaf::gui::Widget *w);
+    cpaf::gui::Widget *get_wrapper() const;
+    void set_parent(cpaf::gui::Widget *w);
+    cpaf::gui::Widget *get_parent() const;
+    void set_show(bool b);
+    bool get_show() const;
+    void set_activate(bool b);
+    bool get_activate() const;
+    void set_enable(bool b);
+    bool get_enable() const;
 };
 
 /*!
@@ -62,45 +69,44 @@ protected:
 public:
     T &parent(cpaf::gui::Widget *p)
     {
-        m_data->m_parent = p;
+        m_data->set_parent(p);
         return dynamic_cast<T&>(*this);
     }
 
     T &show(bool s = true)
     {
-        m_data->m_show = s;
+        m_data->set_show(s);
         return dynamic_cast<T&>(*this);
     }
 
     T &activate(bool a = true)
     {
-        m_data->m_activate = a;
+        m_data->set_activate(a);
         return dynamic_cast<T&>(*this);
     }
 
     T &hide()
     {
-        m_data->m_show = false;
+        m_data->set_show(false);
         return dynamic_cast<T&>(*this);
     }
 
     T &enable(bool s = true)
     {
-        m_data->m_enable = s;
+        m_data->set_enable(s);
         return dynamic_cast<T&>(*this);
     }
 
     T &disable()
     {
-        m_data->m_enable = false;
+        m_data->set_enable(false);
         return dynamic_cast<T&>(*this);
     }
 
-    void set_wrapper(cpaf::gui::Widget *w) { m_data->m_wrapper = w; }
-
-    cpaf::gui::Widget *get_parent() const { return m_data->m_parent; }
-    bool get_show() const { return m_data->m_show; }
-    bool get_enable() const { return m_data->m_enable; }
+    cpaf::gui::Widget *get_parent() const { return m_data->get_parent(); }
+    bool get_show() const { return m_data->get_show(); }
+    bool get_enable() const { return m_data->get_enable(); }
+    bool get_activate() const { return m_data->get_activate(); }
 };
 
         } // initializer

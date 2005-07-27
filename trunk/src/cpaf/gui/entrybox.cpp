@@ -19,13 +19,14 @@ cpaf::gui::EntryBox::EntryBox(cpaf::api::gui::EntryBox *impl)
     m_impl(impl)
 { }
 
-void cpaf::gui::EntryBox::create(Initializer::data_type params)
+void cpaf::gui::EntryBox::create(const Initializer &initializer)
 {
-    params.m_wrapper = this;
+    Initializer::data_type params = initializer.get_data();
+    params.set_wrapper(this);
     m_impl->create(params);
 }
 
-cpaf::gui::EntryBox::operator cpaf::api::gui::EntryBox *()
+cpaf::gui::EntryBox::operator api_type *() const
 {
     return m_impl;
 }
@@ -35,7 +36,7 @@ void cpaf::gui::EntryBox::set_password_mode(bool mode)
     m_impl->set_password_mode(mode);
 }
 
-bool cpaf::gui::EntryBox::get_password_mode()
+bool cpaf::gui::EntryBox::get_password_mode() const
 {
     return m_impl->get_password_mode();
 }

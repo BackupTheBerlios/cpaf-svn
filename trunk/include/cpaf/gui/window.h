@@ -34,10 +34,10 @@ protected:
     /*!
         \brief Constructs the native widget using the given initialization data
     */
-    void create(Initializer::data_type params);
+    void create(const Initializer &initializer);
 
 public:
-    operator api_type *();
+    operator api_type *() const;
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 

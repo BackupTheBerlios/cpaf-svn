@@ -26,22 +26,22 @@ cpaf::win32::gui::Widget::Widget()
 void cpaf::win32::gui::Widget::create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
         bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex)
 {
-    m_wrapper = params.m_wrapper;
+    m_wrapper = params.get_wrapper();
     m_id = m_wrapper->get_id();
 
     HWND hparent = NULL;
-    cpaf::gui::Widget *parent = params.m_parent;
+    cpaf::gui::Widget *parent = params.get_parent();
     if( parent )
         hparent = (HWND)parent->get_handle();
     else if( parent_required )
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
-    int x = params.m_pos.x, y = params.m_pos.y;
-    int w = params.m_size.width, h = params.m_size.height;
+    int x = params.get_pos().x, y = params.get_pos().y;
+    int w = params.get_size().width, h = params.get_size().height;
 
-    if( params.m_default_position )
+    if( params.use_default_pos() )
         x = CW_USEDEFAULT;
-    if( params.m_default_size )
+    if( params.use_default_size() )
         w = CW_USEDEFAULT;
 
     {
@@ -61,8 +61,8 @@ void cpaf::win32::gui::Widget::create(const CreationInfo &info, const cpaf::gui:
     ::SendMessage(m_hwnd, WM_SETFONT, (WPARAM)::GetStockObject(DEFAULT_GUI_FONT), 0);
 
     // show the window if necessary
-    if( params.m_show )
-        show(true, params.m_activate);
+    if( params.get_show() )
+        show(true, params.get_activate());
 }
 
 void cpaf::win32::gui::Widget::destroy()

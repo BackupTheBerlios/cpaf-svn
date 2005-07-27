@@ -16,7 +16,7 @@ namespace cpaf {
 /*!
     \brief initialization data for TextBox creation.
 */
-struct TextBoxData : TextWidgetData
+struct CPAF_API TextBoxData : TextWidgetData
 {
 
 };
@@ -40,20 +40,19 @@ protected:
 
         } // initializer
 
+class TextBox;
 /*!
     \brief A concrete initializer class for TextBox creation.
 */
-class TextBoxInitializer : public cpaf::gui::initializer::TextBox<TextBoxInitializer>
+class CPAF_API TextBoxInitializer : public cpaf::gui::initializer::TextBox<TextBoxInitializer>
 {
-public:
-    TextBoxInitializer()
-        : cpaf::gui::initializer::TextBox<TextBoxInitializer>(new cpaf::gui::initializer::TextBoxData)
-    { }
+    friend class cpaf::gui::TextBox;
 
-    operator cpaf::gui::initializer::TextBoxData () const
-    {
-        return *m_data;
-    }
+public:
+    TextBoxInitializer();
+
+private:
+    data_type get_data() const;
 };
 
     } // gui

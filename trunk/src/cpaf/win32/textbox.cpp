@@ -9,6 +9,6 @@
 void cpaf::win32::gui::TextBox::create(const cpaf::gui::initializer::TextBoxData &params)
 {
     // create a textbox
-    cpaf::win32::gui::Widget::create(CreationInfo(this), params, true, TEXT("EDIT"), params.m_text.c_str(),
+    cpaf::win32::gui::Widget::create(CreationInfo(this), params, true, TEXT("EDIT"), params.get_text().c_str(),
         WS_CHILD | ES_MULTILINE | WS_VSCROLL, WS_EX_CLIENTEDGE);
 }
