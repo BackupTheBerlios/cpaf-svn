@@ -275,6 +275,7 @@ void output_templates(std::string name, std::string base, bool constructable)
     template_files_vector files;
     files.push_back(template_file("templates/gui.h", string_pair("include/cpaf/gui/", "." + symbols["H_EXT"])));
     files.push_back(template_file("templates/initializer.h", string_pair("include/cpaf/gui/initializer/", "." + symbols["H_EXT"])));
+    files.push_back(template_file("templates/initializer.cpp", string_pair("src/cpaf/gui/initializer/", "." + symbols["SRC_EXT"])));
     files.push_back(template_file("templates/api.h", string_pair("include/cpaf/api/gui/", "." + symbols["H_EXT"])));
     files.push_back(template_file("templates/gui.cpp", string_pair("src/cpaf/gui/", "." + symbols["SRC_EXT"])));
 

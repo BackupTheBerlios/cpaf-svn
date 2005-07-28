@@ -34,13 +34,13 @@ $(END)
 
 $(IF CONSTRUCTABLE)
     /*!
-        \brief Constructs the native widget using the given initialization data
+        \brief Constructs the native widget using the given initializer
     */
-    void create(Initializer::data_type params);
+    void create(const Initializer &initializer);
 $(END)
 
 public:
-    operator api_type *();
+    operator api_type *() const;
 $(IF CONSTRUCTABLE)
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 $(END)

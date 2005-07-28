@@ -41,20 +41,18 @@ protected:
         } // initializer
 $(IF CONSTRUCTABLE)
 
+class $(NAME);
 /*!
     \brief A concrete initializer class for $(NAME) creation.
 */
 class $(NAME)Initializer : public cpaf::gui::initializer::$(NAME)<$(NAME)Initializer>
 {
+    friend class cpaf::gui::$(NAME);
 public:
-    $(NAME)Initializer()
-        : cpaf::gui::initializer::$(NAME)<$(NAME)Initializer>(new cpaf::gui::initializer::$(NAME)Data)
-    { }
+    $(NAME)Initializer();
 
-    operator cpaf::gui::initializer::$(NAME)Data () const
-    {
-        return *m_data;
-    }
+private:
+    data_type get_data() const;
 };
 
 $(END)

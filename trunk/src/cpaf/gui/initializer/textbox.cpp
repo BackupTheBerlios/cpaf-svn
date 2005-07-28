@@ -7,7 +7,7 @@
 #include <cpaf/gui/initializer/textbox.h>
 
 cpaf::gui::TextBoxInitializer::TextBoxInitializer()
-    : cpaf::gui::initializer::TextBox<TextBoxInitializer>(new cpaf::gui::initializer::TextBoxData)
+    : cpaf::gui::initializer::TextBox<TextBoxInitializer>(new data_type)
 { }
 
 cpaf::gui::TextBoxInitializer::data_type cpaf::gui::TextBoxInitializer::get_data() const
