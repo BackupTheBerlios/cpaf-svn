@@ -21,13 +21,17 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(CPAF_DIR)/include"
-				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;ISOLATION_AWARE_ENABLED;_DEBUG"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;ISOLATION_AWARE_ENABLED;_DEBUG;STRICT"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				DisableLanguageExtensions="FALSE"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
+				ObjectFile="$(IntDir)/$(SafeParentName)/"
+				ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"
@@ -74,12 +78,16 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="$(CPAF_DIR)/include"
-				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;ISOLATION_AWARE_ENABLED"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;CPAF_DLL;ISOLATION_AWARE_ENABLED;STRICT"
 				StringPooling="TRUE"
 				MinimalRebuild="FALSE"
 				RuntimeLibrary="2"
+				DisableLanguageExtensions="FALSE"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="0"
+				ObjectFile="$(IntDir)/$(SafeParentName)/"
+				ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="3"
@@ -128,13 +136,17 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(CPAF_DIR)/include"
-				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;_DEBUG"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;_DEBUG;STRICT;"
 				StringPooling="TRUE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				DisableLanguageExtensions="FALSE"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
+				ObjectFile="$(IntDir)/$(SafeParentName)/"
+				ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"
@@ -174,12 +186,16 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="$(CPAF_DIR)/include"
-				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING"
+				PreprocessorDefinitions="CPAF_WIN32;CPAF_BUILDING;STRICT"
 				StringPooling="TRUE"
 				MinimalRebuild="FALSE"
 				RuntimeLibrary="2"
+				DisableLanguageExtensions="FALSE"
+				ForceConformanceInForLoopScope="TRUE"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
+				ObjectFile="$(IntDir)/$(SafeParentName)/"
+				ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="0"
@@ -687,6 +703,34 @@
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\entrybox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\factory.cpp">
@@ -752,9 +796,65 @@
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\textbox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\textwidget.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\toplevel.cpp">
@@ -858,25 +958,29 @@
 							Name="debug dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="debug static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 					</File>
 					<File
@@ -885,29 +989,61 @@
 							Name="debug dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="debug static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\src\cpaf\gui\initializer\object.cpp">
+						<FileConfiguration
+							Name="debug dll|Win32">
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="release dll|Win32">
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="debug static lib|Win32">
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="release static lib|Win32">
+							<Tool
+								Name="VCCLCompilerTool"
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+						</FileConfiguration>
 					</File>
 					<File
 						RelativePath=".\src\cpaf\gui\initializer\textbox.cpp">
@@ -915,25 +1051,29 @@
 							Name="debug dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="debug static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 					</File>
 					<File
@@ -942,25 +1082,29 @@
 							Name="debug dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="debug static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)2.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 					</File>
 					<File
@@ -969,25 +1113,29 @@
 							Name="debug dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="debug static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 					</File>
 					<File
@@ -996,25 +1144,29 @@
 							Name="debug dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release dll|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="debug static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="release static lib|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+								ObjectFile="$(IntDir)/$(SafeParentName)/"
+								ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 						</FileConfiguration>
 					</File>
 				</Filter>
@@ -1055,6 +1207,34 @@
 				</File>
 				<File
 					RelativePath=".\src\cpaf\event\id.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
 				</File>
 			</Filter>
 			<Filter
@@ -1581,25 +1761,29 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 				</File>
 				<File
@@ -1670,25 +1854,29 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 				</File>
 				<File
@@ -1697,25 +1885,29 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="debug static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
 				</File>
 				<File
