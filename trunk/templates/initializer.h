@@ -7,7 +7,7 @@
 #ifndef CPAF_GUI_INITIALIZER_$(NAME_UPPER)_H
 #define CPAF_GUI_INITIALIZER_$(NAME_UPPER)_H
 
-#include <cpaf/gui/initializer/$(NAME_LOWER).h>
+#include <cpaf/gui/initializer/$(BASE_LOWER).h>
 
 namespace cpaf {
     namespace gui {
@@ -45,7 +45,7 @@ class $(NAME);
 /*!
     \brief A concrete initializer class for $(NAME) creation.
 */
-class $(NAME)Initializer : public cpaf::gui::initializer::$(NAME)<$(NAME)Initializer>
+class CPAF_API $(NAME)Initializer : public cpaf::gui::initializer::$(NAME)<$(NAME)Initializer>
 {
     friend class cpaf::gui::$(NAME);
 public:
