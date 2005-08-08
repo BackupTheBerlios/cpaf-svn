@@ -16,10 +16,10 @@ void cpaf::gtk2::gui::Window::create(const cpaf::gui::initializer::WindowData &p
     cpaf::gtk2::gui::Widget::create(params, gtk_window_new(GTK_WINDOW_TOPLEVEL));
 
     //! \todo Based on docs in factory/window.h header, the logic needs to be more complex
-    if (params.m_use_client_size)
-        set_client_size(params.m_client_size);
+    if (params.use_client_size())
+        set_client_size(params.get_client_size());
 
-    cpaf::gui::Widget *parent = params.m_parent;
+    cpaf::gui::Widget *parent = params.get_parent();
     if (parent)
         gtk_window_set_transient_for(GTK_WINDOW(m_widget),
                                      GTK_WINDOW(parent->get_handle()));
@@ -35,8 +35,8 @@ void cpaf::gtk2::gui::Window::create(const cpaf::gui::initializer::WindowData &p
         \note Show is always last - it might realize the widget (if params.m_show == true),
         and we don't want that to happen before all other data is set.
      */
-    if (params.m_show)
-        show(params.m_show, params.m_activate);
+    if (params.get_show())
+        show(true, params.get_activate());
 }
 
 //! \todo Deal with DEFAULT_* values

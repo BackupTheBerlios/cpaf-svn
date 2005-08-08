@@ -35,3 +35,8 @@ int cpaf::gui::App::run()
     //! \todo return the exit code value instead of 0
     return 0;
 }
+
+void cpaf::gui::App::_quit()
+{
+
+}

@@ -18,24 +18,24 @@ cpaf::gtk2::gui::Widget::Widget()
 
 void cpaf::gtk2::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, GtkWidget * widget)
 {
-    m_wrapper = params.m_wrapper;
+    m_wrapper = params.get_wrapper();
     m_widget = widget;
 
     // Set m_widget to NULL when gtk+ internally destroys the widget
     g_signal_connect_after(m_widget, "destroy",
                            G_CALLBACK (gtk_widget_destroyed), &m_widget);
 
-    if (!params.m_default_size)
-        set_size(params.m_size);
+    if (!params.use_default_size())
+        set_size(params.get_size());
 
     //! \todo Uncomment after all set_{min,max}_size methods are aware of the DEFAULT_* values
     //set_min_size(params.m_min_size);
     //set_max_size(params.m_max_size);
 
-    if (!params.m_default_position)
-        set_position(params.m_pos);
+    if (!params.use_default_pos())
+        set_position(params.get_pos());
 
-    enable(params.m_enable);
+    enable(params.get_enable());
 
     /*!
         \todo Make sure nothing above realizes the control, and change order appropriately
