@@ -9,8 +9,10 @@
 #include <cpaf/gtk2/gui/button.h>
 #include <cpaf/gtk2/gui/entrybox.h>
 #include <cpaf/gtk2/gui/textbox.h>
+#include <cpaf/gtk2/gui/panel.h>
 
 IMPLEMENT_WIDGET_FACTORY(Window, gtk2)
 IMPLEMENT_WIDGET_FACTORY(Button, gtk2)
 IMPLEMENT_WIDGET_FACTORY(EntryBox, gtk2)
 IMPLEMENT_WIDGET_FACTORY(TextBox, gtk2)
+IMPLEMENT_WIDGET_FACTORY(Panel, gtk2)
