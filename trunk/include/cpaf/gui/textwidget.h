@@ -101,6 +101,7 @@ public:
 
         \post The TextWidget is now focused
     */
+    //! \todo MR: I'm not so sure about the focus postconditions reasonability
     void set_insertion_point(cpaf::text_range_t pos);
 
     /*!

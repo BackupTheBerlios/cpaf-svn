@@ -269,15 +269,22 @@ struct TextRange : std::pair<text_range_t, text_range_t>
     { }
 
     /*!
-        \brief Normalizes the TextRange so that first is less than second
+        \brief Normalizes the TextRange so that first is less than second, and
+        negative values are made positive based on the length value
     */
-    void normalize()
+    //! \todo Should the length have a default value?
+    void normalize(text_range_t length = 0)
     {
+        if( first < 0 )
+            first += length;
+        if( second < 0 )
+            second += length;
+
         if( first > second )
         {
-            text_range_t temp = first;
-            first = second;
-            second = temp;
+            first = first ^ second;
+            second = first ^ second;
+            first = first ^ second;
         }
     }
 
