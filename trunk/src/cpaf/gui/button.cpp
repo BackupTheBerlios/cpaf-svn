@@ -11,7 +11,7 @@
 cpaf::gui::Button::Button()
     : Widget(cpaf::gui::factory::create_widget_implementation<api_type>())
 {
-    m_impl = get_impl<api_type>();
+    m_impl = cpaf::gui::Widget::get_impl<api_type>();
 }
 
 cpaf::gui::Button::Button(cpaf::api::gui::Button *impl)
@@ -26,7 +26,7 @@ void cpaf::gui::Button::create(const Initializer &initializer)
     m_impl->create(params);
 }
 
-cpaf::gui::Button::operator api_type *() const
+cpaf::gui::Button::api_type *cpaf::gui::Button::get_impl() const
 {
     return m_impl;
 }

@@ -72,7 +72,7 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
     HWND w = 0;
     if( params.get_content_panel() )
     {
-        m_root_panel = dynamic_cast<cpaf::win32::gui::Panel*>(static_cast<cpaf::gui::Panel::api_type*>(*(params.get_content_panel())));
+        m_root_panel = dynamic_cast<cpaf::win32::gui::Panel*>(params.get_content_panel()->get_impl());
         w = (HWND)m_root_panel->get_handle();
     }
     

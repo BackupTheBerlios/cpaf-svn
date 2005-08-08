@@ -11,7 +11,7 @@
 cpaf::gui::Panel::Panel()
     : Widget(cpaf::gui::factory::create_widget_implementation<api_type>())
 {
-    m_impl = get_impl<api_type>();
+    m_impl = cpaf::gui::Widget::get_impl<api_type>();
 }
 
 cpaf::gui::Panel::Panel(api_type *impl)
@@ -26,7 +26,7 @@ void cpaf::gui::Panel::create(const Initializer &initializer)
     m_impl->create(params);
 }
 
-cpaf::gui::Panel::operator api_type *() const
+cpaf::gui::Panel::api_type *cpaf::gui::Panel::get_impl() const
 {
     return m_impl;
 }

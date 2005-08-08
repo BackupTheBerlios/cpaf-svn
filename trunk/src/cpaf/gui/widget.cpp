@@ -31,7 +31,7 @@ void cpaf::gui::Widget::destroy()
     m_impl->destroy();
 }
 
-cpaf::gui::Widget::operator api_type *() const
+cpaf::gui::Widget::api_type *cpaf::gui::Widget::get_impl() const
 {
     return m_impl;
 }

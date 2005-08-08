@@ -40,7 +40,7 @@ $(IF CONSTRUCTABLE)
 $(END)
 
 public:
-    operator api_type *() const;
+    api_type *get_impl() const;
 $(IF CONSTRUCTABLE)
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 $(END)

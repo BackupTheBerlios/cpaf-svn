@@ -23,7 +23,7 @@ cpaf::gui::TopLevel::~TopLevel()
     cpaf::gui::App::remove_top_level(this);
 }
 
-cpaf::gui::TopLevel::operator api_type *() const
+cpaf::gui::TopLevel::api_type *cpaf::gui::TopLevel::get_impl() const
 {
     return m_impl;
 }

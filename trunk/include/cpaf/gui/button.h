@@ -48,7 +48,7 @@ protected:
     void create(const Initializer &initializer);
 
 public:
-    operator api_type *() const;
+    api_type *get_impl() const;
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 

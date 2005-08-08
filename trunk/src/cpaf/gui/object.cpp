@@ -15,7 +15,7 @@ cpaf::gui::Object::~Object(cpaf::api::gui::Object *impl)
     : m_impl(impl)
 { }
 
-cpaf::gui::Object::operator cpaf::api::gui::Object *()
+cpaf::gui::Object::api_type *get_impl() const
 {
     return m_impl;
 }

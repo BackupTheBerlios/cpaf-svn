@@ -56,7 +56,7 @@ protected:
 
 public:
     ~TopLevel();
-    operator api_type *() const;
+    api_type *get_impl() const;
 };
 
     } // gui

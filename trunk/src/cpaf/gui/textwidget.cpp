@@ -13,7 +13,7 @@ cpaf::gui::TextWidget::TextWidget(api_type *impl)
     m_impl(impl)
 { }
 
-cpaf::gui::TextWidget::operator api_type *() const
+cpaf::gui::TextWidget::api_type *cpaf::gui::TextWidget::get_impl() const
 {
     return m_impl;
 }

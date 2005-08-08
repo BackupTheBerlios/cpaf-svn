@@ -39,7 +39,7 @@ protected:
     Object(cpaf::api::gui::Object *impl);
 
 public:
-    operator cpaf::api::gui::Object *();
+    api_type *get_impl() const;
 };
 */
     } // gui

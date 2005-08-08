@@ -11,7 +11,7 @@
 cpaf::gui::TextBox::TextBox()
     : TextWidget(cpaf::gui::factory::create_widget_implementation<api_type>())
 {
-    m_impl = get_impl<api_type>();
+    m_impl = cpaf::gui::Widget::get_impl<api_type>();
 }
 
 cpaf::gui::TextBox::TextBox(api_type *impl)
@@ -26,7 +26,7 @@ void cpaf::gui::TextBox::create(const Initializer &initializer)
     m_impl->create(params);
 }
 
-cpaf::gui::TextBox::operator api_type *() const
+cpaf::gui::TextBox::api_type *cpaf::gui::TextBox::get_impl() const
 {
     return m_impl;
 }

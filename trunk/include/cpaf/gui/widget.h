@@ -143,7 +143,7 @@ protected:
 
 public:
     virtual ~Widget();
-    operator api_type *() const;
+    api_type *get_impl() const;
 };
 
     } // gui

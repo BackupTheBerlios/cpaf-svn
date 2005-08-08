@@ -11,7 +11,7 @@
 cpaf::gui::EntryBox::EntryBox()
     : TextWidget(cpaf::gui::factory::create_widget_implementation<api_type>())
 {
-    m_impl = get_impl<api_type>();
+    m_impl = cpaf::gui::Widget::get_impl<api_type>();
 }
 
 cpaf::gui::EntryBox::EntryBox(cpaf::api::gui::EntryBox *impl)
@@ -26,7 +26,7 @@ void cpaf::gui::EntryBox::create(const Initializer &initializer)
     m_impl->create(params);
 }
 
-cpaf::gui::EntryBox::operator api_type *() const
+cpaf::gui::EntryBox::api_type *cpaf::gui::EntryBox::get_impl() const
 {
     return m_impl;
 }

@@ -11,7 +11,7 @@
 cpaf::gui::$(NAME)::$(NAME)()
     : $(BASE)(cpaf::gui::factory::create_widget_implementation<api_type>())
 {
-    m_impl = get_impl<api_type>();
+    m_impl = cpaf::gui::Widget::get_impl<api_type>();
 }
 
 cpaf::gui::$(NAME)::$(NAME)(api_type *impl)
@@ -26,7 +26,7 @@ void cpaf::gui::$(NAME)::create(const Initializer &initializer)
     m_impl->create(params);
 }
 
-cpaf::gui::$(NAME)::operator api_type *() const
+cpaf::gui::$(NAME)::api_type *cpaf::gui::$(NAME)::get_impl() const
 {
     return m_impl;
 }

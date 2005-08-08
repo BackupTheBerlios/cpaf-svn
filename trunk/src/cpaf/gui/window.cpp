@@ -13,7 +13,7 @@
 cpaf::gui::Window::Window()
     : TopLevel(cpaf::gui::factory::create_widget_implementation<api_type>())
 {
-    m_impl = get_impl<api_type>();
+    m_impl = cpaf::gui::Widget::get_impl<api_type>();
 }
 
 cpaf::gui::Window::Window(api_type *impl)
@@ -28,14 +28,14 @@ void cpaf::gui::Window::create(const Initializer &initializer)
     m_impl->create(params);
 }
 
-cpaf::gui::Window::operator api_type *() const
+cpaf::gui::Window::api_type *cpaf::gui::Window::get_impl() const
 {
     return m_impl;
 }
 
 void cpaf::gui::Window::set_content_panel(cpaf::gui::Panel *p)
 {
-    m_impl->set_content_panel(*p);
+    m_impl->set_content_panel(p->get_impl());
 }
 
 cpaf::gui::Panel *cpaf::gui::Window::get_content_panel() const
