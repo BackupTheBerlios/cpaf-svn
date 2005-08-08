@@ -14,6 +14,7 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/button.h>
 #include <cpaf/gui/entrybox.h>
 #include <cpaf/gui/textbox.h>
+#include <cpaf/gui/panel.h>
 
 #if defined(_MSC_VER) && defined(_DEBUG)
 #   include <crtdbg.h>
@@ -127,21 +128,7 @@ void MyApp::destroy_button(Event &event)
 */
 bool MyApp::init()
 {
-    /*
-        Construct a window with a default position and a default size.
-        The factory object initializes its members to specify "default values"
-        which instruct an implementation to let the system determine an appropriate
-        size and position. If the system is not capable of doing this, the implementation
-        must chose reasonable values.
-
-        This window will be visible without calling wnd->show() if .show() isn't commented out below.
-    */
-    cpaf::gui::Window *wnd = create_widget<cpaf::gui::Window>(
-        cpaf::gui::Window::Initializer()
-        .title("Cpaf")
-        .client_size(cpaf::Size(400,400))
-        //.show()
-        );
+    cpaf::gui::Panel *panel = create_widget<cpaf::gui::Panel>(cpaf::gui::Panel::Initializer());
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.
@@ -150,7 +137,7 @@ bool MyApp::init()
     */
     cpaf::gui::Button::Initializer btn_init;
     cpaf::gui::Button *btn = create_widget<cpaf::gui::Button>(btn_init
-        .parent(wnd)
+        .parent(panel)
         .label("Toggle password mode")
         .size(cpaf::Size(200,40))
         .position(cpaf::Point(50,50))
@@ -164,7 +151,7 @@ bool MyApp::init()
         );
 
     destroy_btn = create_widget<cpaf::gui::Button>(btn_init
-        .parent(wnd)
+        .parent(panel)
         .label("Click to destroy me")
         .size(cpaf::Size(200,30))
         .position(cpaf::Point(50, 320))
@@ -176,7 +163,7 @@ bool MyApp::init()
         Create an EntryBox
     */
     cpaf::gui::EntryBox *entry = create_widget<cpaf::gui::EntryBox>(cpaf::gui::EntryBox::Initializer()
-        .parent(wnd)
+        .parent(panel)
         .text("I'm an entry box!")
         .position(cpaf::Point(10,150))
         .size(cpaf::Size(200,30))
@@ -187,7 +174,7 @@ bool MyApp::init()
         Create a TextBox
     */
     cpaf::gui::TextBox *text = create_widget<cpaf::gui::TextBox>(cpaf::gui::TextBox::Initializer()
-        .parent(wnd)
+        .parent(panel)
         .text("I'm a multline text box!\nHere's the second line\n\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
         .position(cpaf::Point(10,200))
         .size(cpaf::Size(300,100))
@@ -198,7 +185,7 @@ bool MyApp::init()
         Create a EntryBox for passwords
     */
     pw = create_widget<cpaf::gui::EntryBox>(cpaf::gui::EntryBox::Initializer()
-        .parent(wnd)
+        .parent(panel)
         .text("I'm a password box!")
         .position(cpaf::Point(10,10))
         .size(cpaf::Size(200,30))
@@ -206,7 +193,28 @@ bool MyApp::init()
         .show()
         );
 
-    // Show the window last for proper visual appearance
+    // test get_parent(). This should not change the value of panel
+    panel = text->get_parent();
+
+    /*
+        Construct a window with a default position and a default size.
+        The factory object initializes its members to specify "default values"
+        which instruct an implementation to let the system determine an appropriate
+        size and position. If the system is not capable of doing this, the implementation
+        must chose reasonable values.
+
+        This window will be visible without calling wnd->show() if .show() isn't commented out below.
+    */
+    cpaf::gui::Window *wnd = create_widget<cpaf::gui::Window>(
+        cpaf::gui::Window::Initializer()
+        .content_panel(panel)
+        .title("Cpaf")
+        .client_size(cpaf::Size(400,400))
+        //.show()
+        );
+    
+    // test get_parent_window. This should not change the value of wnd
+    wnd = pw->get_parent_window();
     wnd->show();
 
     return true;

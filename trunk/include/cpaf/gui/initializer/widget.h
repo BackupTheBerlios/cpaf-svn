@@ -11,6 +11,7 @@
 
 namespace cpaf {
     namespace gui {
+        class Panel;
         class Widget;
         namespace initializer {
 
@@ -24,7 +25,7 @@ protected:
     cpaf::gui::Widget *m_wrapper;
 
     //! The parent of this widget.
-    cpaf::gui::Widget *m_parent;
+    cpaf::gui::Panel *m_parent;
 
     //! Specifies if the widget should be initially visible
     bool m_show;
@@ -38,10 +39,10 @@ protected:
 public:
     WidgetData();
 
-    void set_wrapper(cpaf::gui::Widget *w);
+    void set_wrapper(cpaf::gui::Widget *p);
     cpaf::gui::Widget *get_wrapper() const;
-    void set_parent(cpaf::gui::Widget *w);
-    cpaf::gui::Widget *get_parent() const;
+    void set_parent(cpaf::gui::Panel *p);
+    cpaf::gui::Panel *get_parent() const;
     void set_show(bool b);
     bool get_show() const;
     void set_activate(bool b);
@@ -67,7 +68,7 @@ protected:
     { }
 
 public:
-    T &parent(cpaf::gui::Widget *p)
+    T &parent(cpaf::gui::Panel *p)
     {
         m_data->set_parent(p);
         return dynamic_cast<T&>(*this);
@@ -103,7 +104,7 @@ public:
         return dynamic_cast<T&>(*this);
     }
 
-    cpaf::gui::Widget *get_parent() const { return m_data->get_parent(); }
+    cpaf::gui::Panel *get_parent() const { return m_data->get_parent(); }
     bool get_show() const { return m_data->get_show(); }
     bool get_enable() const { return m_data->get_enable(); }
     bool get_activate() const { return m_data->get_activate(); }

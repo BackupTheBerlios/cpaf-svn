@@ -62,25 +62,28 @@ public:
     virtual void create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
         bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex = 0);
 
-    cpaf::object_id get_id() { return m_id; }
+    cpaf::object_id get_id() const { return m_id; }
+    template<typename T> T *get_wrapper() const { return dynamic_cast<T*>(m_wrapper); }
 
     // object interface
     virtual void set_size(const cpaf::Size &s);
     virtual void set_min_size(const cpaf::Size &s);
     virtual void set_max_size(const cpaf::Size &s);
     virtual void set_position(const cpaf::Point &p);
-    virtual cpaf::Size get_size();
-    virtual cpaf::Size get_min_size();
-    virtual cpaf::Size get_max_size();
-    virtual cpaf::Point get_position();
+    virtual cpaf::Size get_size() const;
+    virtual cpaf::Size get_min_size() const;
+    virtual cpaf::Size get_max_size() const;
+    virtual cpaf::Point get_position() const;
 
     // widget interface
-    virtual void *get_handle() { return m_hwnd; }
+    virtual void *get_handle() const { return m_hwnd; }
     virtual void enable(bool e);
     virtual void show(bool show, bool focus);
-    virtual bool is_enabled();
-    virtual bool is_shown();
+    virtual bool is_enabled() const;
+    virtual bool is_shown() const;
     virtual void destroy();
+    virtual cpaf::gui::Panel *get_parent() const;
+    virtual cpaf::gui::Window *get_parent_window() const;
 
 protected:
     // implementation specific functions

@@ -5,6 +5,7 @@
 */
 
 #include <cpaf/gui/window.h>
+#include <cpaf/gui/panel.h>
 #include <cpaf/api/gui/window.h>
 #include <cpaf/private/factory.h>
 #include <cpaf/exception.h>
@@ -30,4 +31,14 @@ void cpaf::gui::Window::create(const Initializer &initializer)
 cpaf::gui::Window::operator api_type *() const
 {
     return m_impl;
+}
+
+void cpaf::gui::Window::set_content_panel(cpaf::gui::Panel *p)
+{
+    m_impl->set_content_panel(*p);
+}
+
+cpaf::gui::Panel *cpaf::gui::Window::get_content_panel() const
+{
+    return m_impl->get_content_panel();
 }

@@ -37,6 +37,10 @@ protected:
     void create(const Initializer &initializer);
 
 public:
+    void set_content_panel(cpaf::gui::Panel *p);
+    cpaf::gui::Panel *get_content_panel() const;
+
+public:
     operator api_type *() const;
     template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };

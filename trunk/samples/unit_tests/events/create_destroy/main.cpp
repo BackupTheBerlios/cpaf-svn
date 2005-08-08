@@ -10,6 +10,7 @@ MyWindow::on_create
 MyButton::ctor
 MyButton::on_create
 MyWindow::on_destroy
+MyWindow::on_panel_destroy
 MyButton::on_destroy        * Note: These two functions can be invoked in any order. They both connect to the same
 MyWindow::on_btn_destroy    * event from the same object and the order in which the slots are invoked is undefined.
 MyButton::dtor
@@ -22,6 +23,7 @@ The program '[2204] create_destroy.exe: Native' has exited with code 0 (0x0).
 #include <cpaf/gui/window.h>
 #include <cpaf/gui/button.h>
 #include <cpaf/gui/textbox.h>
+#include <cpaf/gui/panel.h>
 
 #include <cpaf/exception.h>
 
@@ -87,6 +89,7 @@ class MyWindow : public Window
 {
 private:
     MyButton *m_btn;
+    Panel *m_panel;
 
 public:
     void *my_data;
@@ -95,8 +98,13 @@ public:
     {
         DBG_MSG("MyWindow::ctor");
 
+        // create the root panel
+        m_panel = create_widget<Panel>(Panel::Initializer());
+
+        // connect events
         connect<Event, false>(WIDGET_DESTROY, get_id())(&MyWindow::on_destroy, *this);
         connect<Event, false>(WIDGET_CREATE, get_id())(&MyWindow::on_create, *this);
+        connect<Event, false>(WIDGET_DESTROY, m_panel->get_id())(&MyWindow::on_panel_destroy, *this);
 
         parent = this;
         my_data = 0;
@@ -113,8 +121,11 @@ public:
     {
         DBG_MSG("MyWindow::on_create");
 
+        // set our content panel
+        set_content_panel(m_panel);
+
         // create our button child
-        m_btn = create_widget<MyButton>(MyButton::Initializer().parent(this));
+        m_btn = create_widget<MyButton>(MyButton::Initializer().parent(m_panel));
 
         // listen for button destruction event
         connect<Event, false>(WIDGET_DESTROY, m_btn->get_id())(&MyWindow::on_btn_destroy, *this);
@@ -138,6 +149,11 @@ public:
         m_btn->get_label();
         m_btn->get_position();
         m_btn->set_size(cpaf::Size(100,100));
+    }
+
+    void on_panel_destroy(Event &event)
+    {
+        DBG_MSG("MyWindow::on_panel_destroy");
     }
 };
 

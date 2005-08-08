@@ -17,6 +17,9 @@
 namespace cpaf {
     namespace gui {
 
+class Panel;
+class Window;
+
 /*!
     \brief Serves as the base class for all Widgets
 */
@@ -111,11 +114,19 @@ public:
     void destroy();
 
     /*!
+        \return The parent of this widget
+    */
+    cpaf::gui::Panel *get_parent() const;
+
+    /*!
+        \return The Window which contains this widget
+    */
+    cpaf::gui::Window *get_parent_window() const;
+
+    /*!
         \return This objects unique identifier
     */
     object_id get_id() const;
-
-    virtual ~Widget();
 
 private:
     int m_id;
@@ -125,12 +136,13 @@ private:
 protected:
     Widget(api_type *impl);
 
-    template<typename T> T *get_impl()
+    template<typename T> T *get_impl() const
     {
         return dynamic_cast<T*>(m_impl);
     }
 
 public:
+    virtual ~Widget();
     operator api_type *() const;
 };
 

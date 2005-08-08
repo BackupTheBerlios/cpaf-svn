@@ -4,6 +4,7 @@
     \date Created: 2005-04-05
 */
 
+#include <cpaf/win32/gui/panel.h>
 #include <cpaf/win32/gui/button.h>
 #include <cpaf/win32/exception.h>
 #include <cpaf/event/event.h>
@@ -13,6 +14,9 @@
 
 // for delete_implementation_wrapper
 //#include <cpaf/private/factory.h>
+
+#include <cpaf/gui/panel.h>
+#include <cpaf/gui/window.h>
 
 cpaf::win32::gui::Widget::Widget()
     : m_delete(true),
@@ -30,11 +34,13 @@ void cpaf::win32::gui::Widget::create(const CreationInfo &info, const cpaf::gui:
     m_id = m_wrapper->get_id();
 
     HWND hparent = NULL;
-    cpaf::gui::Widget *parent = params.get_parent();
+    cpaf::gui::Panel *parent = params.get_parent();
     if( parent )
         hparent = (HWND)parent->get_handle();
     else if( parent_required )
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
+    else
+        hparent = ::GetDesktopWindow();
 
     int x = params.get_pos().x, y = params.get_pos().y;
     int w = params.get_size().width, h = params.get_size().height;
@@ -106,26 +112,10 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
             cpaf::event::Event event(cpaf::event::WIDGET_DESTROY, m_id);
             cpaf::event::get_manager().send_event(event);
 
-            // process native event first, because m_old_proc will be invalid once
-            // 'delete this' is executed
-            int ret;
-            if( m_old_proc )
-                ret = ::CallWindowProc(m_old_proc, hwnd, msg, w_param, l_param);
-            else
-                ret = ::DefWindowProc(hwnd, msg, w_param, l_param);
-
-            // delete ourself (and our wrapper)
-            /*!
-                \todo I cannot delete myself here because I have not recieved WM_DESTROY events
-                for child windows yet. I will not be able to recieve child WM_DESTROY events
-                until the next message loop iteration so I must que the deletion of this object
-            */
-
             // queue ourselves for deletion
             cpaf::win32::gui::widget_deletion_stack_push(this);
 
-            
-            return ret;
+            break;
         }
 
     case WM_GETMINMAXINFO:
@@ -172,7 +162,7 @@ void cpaf::win32::gui::Widget::set_size(const cpaf::Size &s)
     ::SetWindowPos(m_hwnd, NULL, 0, 0, s.width, s.height, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 }
 
-cpaf::Size cpaf::win32::gui::Widget::get_size()
+cpaf::Size cpaf::win32::gui::Widget::get_size() const
 {
     RECT rect;
     ::GetWindowRect(m_hwnd, &rect);
@@ -189,12 +179,12 @@ void cpaf::win32::gui::Widget::set_max_size(const cpaf::Size &s)
     m_max_size = s;
 }
 
-cpaf::Size cpaf::win32::gui::Widget::get_min_size()
+cpaf::Size cpaf::win32::gui::Widget::get_min_size() const
 {
     return m_min_size;
 }
 
-cpaf::Size cpaf::win32::gui::Widget::get_max_size()
+cpaf::Size cpaf::win32::gui::Widget::get_max_size() const
 {
     return m_max_size;
 }
@@ -204,7 +194,7 @@ void cpaf::win32::gui::Widget::set_position(const cpaf::Point &p)
     ::SetWindowPos(m_hwnd, NULL, p.x, p.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 }
 
-cpaf::Point cpaf::win32::gui::Widget::get_position()
+cpaf::Point cpaf::win32::gui::Widget::get_position() const
 {
     RECT rect;
     ::GetWindowRect(m_hwnd, &rect);
@@ -225,7 +215,7 @@ void cpaf::win32::gui::Widget::show(bool show, bool focus)
     ::ShowWindow(m_hwnd, cmd);
 }
 
-bool cpaf::win32::gui::Widget::is_shown()
+bool cpaf::win32::gui::Widget::is_shown() const
 {
     // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
     return ::IsWindowVisible(m_hwnd) != 0;
@@ -236,10 +226,30 @@ void cpaf::win32::gui::Widget::enable(bool e)
     ::EnableWindow(m_hwnd, e);
 }
 
-bool cpaf::win32::gui::Widget::is_enabled()
+bool cpaf::win32::gui::Widget::is_enabled() const
 {
     // comparing against 0 removes the "forcing int to bool, performance warning" warnings of VC
     return ::IsWindowEnabled(m_hwnd) != 0;
+}
+
+cpaf::gui::Panel *cpaf::win32::gui::Widget::get_parent() const
+{
+    cpaf::win32::gui::Widget *w = cpaf::win32::gui::get_widget_from_hwnd(::GetParent(m_hwnd));
+    if( w )
+        return w->get_wrapper<cpaf::gui::Panel>();
+    else
+        return 0;
+}
+
+cpaf::gui::Window *cpaf::win32::gui::Widget::get_parent_window() const
+{
+    cpaf::win32::gui::Widget *w = cpaf::win32::gui::get_widget_from_hwnd(::GetAncestor(m_hwnd, GA_ROOT));
+    if( w )
+        return w->get_wrapper<cpaf::gui::Window>();
+    else
+        DBG_MSG("Bad parent_window HWND");
+
+    return 0;
 }
 
 /**********************************************

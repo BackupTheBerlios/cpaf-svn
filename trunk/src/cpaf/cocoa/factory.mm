@@ -10,8 +10,10 @@
 #include <cpaf/cocoa/gui/textwidget.h>
 #include <cpaf/cocoa/gui/entrybox.h>
 #include <cpaf/cocoa/gui/textbox.h>
+#include <cpaf/cocoa/gui/panel.h>
 
 IMPLEMENT_WIDGET_FACTORY(Window, cocoa)
 IMPLEMENT_WIDGET_FACTORY(Button, cocoa)
 IMPLEMENT_WIDGET_FACTORY(EntryBox, cocoa)
 IMPLEMENT_WIDGET_FACTORY(TextBox, cocoa)
+IMPLEMENT_WIDGET_FACTORY(Panel, cocoa)

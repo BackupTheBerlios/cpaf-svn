@@ -16,7 +16,7 @@ namespace cpaf {
             class Widget;
             class TopLevel;
             class Window;
-            class Sizer;
+            class Panel;
             class Button;
             class TextWidget;
             class EntryBox;

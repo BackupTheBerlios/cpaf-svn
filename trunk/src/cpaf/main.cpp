@@ -15,6 +15,8 @@ namespace {
 }
 
 #ifdef CPAF_WIN32
+#include <crtdbg.h>
+#include <cpaf/win32/exception.h>
 
 //! \todo Construct the command line vector and pass it to main()
 //! \todo Find some way to prevent common code duplication between functions
@@ -35,6 +37,11 @@ int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstanc
         app->set_cmd_line(cmd);
         app->init();
         return app->run();
+    }
+    catch(cpaf::win32::Exception &e)
+    {
+        ::_CrtDbgReport(_CRT_ERROR, e.get_file(), e.get_line(), 0, "Exception: %s, Win32 code: %d", e.get_message(), e.get_win32_error());
+        return 1;
     }
     catch(cpaf::Exception &e)
     {

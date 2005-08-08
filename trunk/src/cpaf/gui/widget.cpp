@@ -115,3 +115,13 @@ object_id cpaf::gui::Widget::get_id() const
 {
     return m_id;
 }
+
+cpaf::gui::Panel *cpaf::gui::Widget::get_parent() const
+{
+    return m_impl->get_parent();
+}
+
+cpaf::gui::Window *cpaf::gui::Widget::get_parent_window() const
+{
+    return m_impl->get_parent_window();
+}

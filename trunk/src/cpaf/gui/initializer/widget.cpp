@@ -24,12 +24,12 @@ cpaf::gui::Widget *cpaf::gui::initializer::WidgetData::get_wrapper() const
     return m_wrapper;
 }
 
-void cpaf::gui::initializer::WidgetData::set_parent(cpaf::gui::Widget *w)
+void cpaf::gui::initializer::WidgetData::set_parent(cpaf::gui::Panel *p)
 {
-    m_parent = w;
+    m_parent = p;
 }
 
-cpaf::gui::Widget *cpaf::gui::initializer::WidgetData::get_parent() const
+cpaf::gui::Panel *cpaf::gui::initializer::WidgetData::get_parent() const
 {
     return m_parent;
 }

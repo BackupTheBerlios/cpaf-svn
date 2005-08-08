@@ -9,8 +9,10 @@
 #include <cpaf/win32/gui/button.h>
 #include <cpaf/win32/gui/textbox.h>
 #include <cpaf/win32/gui/entrybox.h>
+#include <cpaf/win32/gui/panel.h>
 
 IMPLEMENT_WIDGET_FACTORY(Window, win32)
 IMPLEMENT_WIDGET_FACTORY(Button, win32)
 IMPLEMENT_WIDGET_FACTORY(TextBox, win32)
 IMPLEMENT_WIDGET_FACTORY(EntryBox, win32)
+IMPLEMENT_WIDGET_FACTORY(Panel, win32)

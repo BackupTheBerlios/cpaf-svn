@@ -11,6 +11,7 @@
 #include <cpaf/api/gui/toplevel.h>
 
 namespace cpaf {
+    namespace gui { class Panel; }
     namespace api {
         namespace gui {
 
@@ -20,6 +21,9 @@ public:
     typedef cpaf::gui::initializer::WindowData data_type; //!< Initialization data used for Windows
 
     virtual void create(const data_type &init_params) = 0;
+
+    virtual void set_content_panel(cpaf::api::gui::Panel *p) = 0;
+    virtual cpaf::gui::Panel *get_content_panel() const = 0;
 };
 
         } // gui

@@ -35,6 +35,9 @@ protected:
     */
     bool m_use_client_size;
 
+    //! The content panel for the window
+    cpaf::gui::Panel *m_content_panel;
+
 public:
     WindowData();
 
@@ -42,6 +45,8 @@ public:
     std::string get_title() const;
     void set_client_size(const cpaf::Size &s);
     cpaf::Size get_client_size() const;
+    void set_content_panel(cpaf::gui::Panel *p);
+    cpaf::gui::Panel *get_content_panel() const;
     
     bool use_client_size() const;
 };
@@ -75,8 +80,15 @@ public:
         return dynamic_cast<T&>(*this);
     }
 
+    T &content_panel(cpaf::gui::Panel *p)
+    {
+        m_data->set_content_panel(p);
+        return dynamic_cast<T&>(*this);
+    }
+
     std::string get_title() const { return m_data->get_title(); }
     cpaf::Size get_client_size() const { return m_data->get_client_size(); }
+    cpaf::gui::Panel *get_content_panel() const { return m_data->get_content_panel(); }
 };
 
         } // initializer

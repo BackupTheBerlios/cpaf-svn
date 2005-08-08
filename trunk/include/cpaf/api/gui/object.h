@@ -29,10 +29,10 @@ public:
     virtual void set_min_size(const cpaf::Size &s) = 0;
     virtual void set_max_size(const cpaf::Size &s) = 0;
     virtual void set_position(const cpaf::Point &p) = 0;
-    virtual cpaf::Size get_size() = 0;
-    virtual cpaf::Size get_min_size() = 0;
-    virtual cpaf::Size get_max_size() = 0;
-    virtual cpaf::Point get_position() = 0;
+    virtual cpaf::Size get_size() const = 0;
+    virtual cpaf::Size get_min_size() const = 0;
+    virtual cpaf::Size get_max_size() const = 0;
+    virtual cpaf::Point get_position() const = 0;
 
 };
 

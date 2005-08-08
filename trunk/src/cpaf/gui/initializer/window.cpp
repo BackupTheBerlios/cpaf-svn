@@ -7,7 +7,8 @@
 #include <cpaf/gui/initializer/window.h>
 
 cpaf::gui::initializer::WindowData::WindowData()
-    : m_use_client_size(false)
+    : m_use_client_size(false),
+    m_content_panel(0)
 {
     // windows should be activated when shown by default
     WidgetData::m_activate = true;
@@ -38,6 +39,16 @@ cpaf::Size cpaf::gui::initializer::WindowData::get_client_size() const
 bool cpaf::gui::initializer::WindowData::use_client_size() const
 {
     return m_use_client_size;
+}
+
+void cpaf::gui::initializer::WindowData::set_content_panel(cpaf::gui::Panel *p)
+{
+    m_content_panel = p;
+}
+
+cpaf::gui::Panel *cpaf::gui::initializer::WindowData::get_content_panel() const
+{
+    return m_content_panel;
 }
 
 cpaf::gui::WindowInitializer::WindowInitializer()

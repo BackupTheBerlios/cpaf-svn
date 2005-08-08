@@ -39,7 +39,8 @@ int cpaf::gui::App::run()
             }
             else
                 // nothing to delete, wait for a message
-                //! \todo Throw if GetMessage returns -1
+                // we could use WaitMessage here
+                //! \todo Do something if GetMessage returns -1
                 if( ::GetMessage(&msg, 0, 0, 0) == -1 )
                     break;
         }
@@ -60,5 +61,5 @@ int cpaf::gui::App::run()
 
 void cpaf::gui::App::_quit()
 {
-
+    ::PostQuitMessage(0);
 }

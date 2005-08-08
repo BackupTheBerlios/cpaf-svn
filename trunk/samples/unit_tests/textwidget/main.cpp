@@ -6,6 +6,7 @@
 #include <cpaf/gui/button.h>
 #include <cpaf/gui/entrybox.h>
 #include <cpaf/gui/textbox.h>
+#include <cpaf/gui/panel.h>
 #include <iostream>
 
 #if defined(_MSC_VER) && defined(_DEBUG)
@@ -59,16 +60,20 @@ private:
 */
 bool MyApp::init()
 {
-   Window *wnd = create_widget<Window>(
-       Window::Initializer()
+    Panel *panel = create_widget<Panel>(Panel::Initializer());
+
+    Window *wnd = create_widget<Window>(Window::Initializer()
+        //.content_panel(panel)
         .title("Cpaf")
         .client_size(cpaf::Size(450,450))
         );
 
+    wnd->set_content_panel(panel);
+
     Button::Initializer btn_init;
     EntryBox::Initializer entry_init;
-    btn_init.parent(wnd);
-    entry_init.parent(wnd);
+    btn_init.parent(panel);
+    entry_init.parent(panel);
 
     Button *get_text = create_widget<Button>(btn_init
         .label("Get text")
@@ -188,7 +193,7 @@ bool MyApp::init()
         Create an EntryBox
     */
     entry = create_widget<EntryBox>(EntryBox::Initializer()
-        .parent(wnd)
+        .parent(panel)
         .text("I'm an entry box!")
         .position(cpaf::Point(10,260))
         .size(cpaf::Size(200,30))
@@ -199,14 +204,13 @@ bool MyApp::init()
         Create a TextBox
     */
     text = create_widget<TextBox>(TextBox::Initializer()
-        .parent(wnd)
+        .parent(panel)
         .text("I'm a multline text box!\nHere's the second line\n\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
         .position(cpaf::Point(10,300))
         .size(cpaf::Size(300,130))
         .show()
         );
 
-    // Show the window last for proper visual appearance
     wnd->show();
 
     return true;

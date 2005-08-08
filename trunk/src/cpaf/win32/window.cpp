@@ -22,13 +22,12 @@ WNDCLASSEX wnd_class = {
     GetModuleHandle(NULL),
     NULL,
     LoadCursor(NULL, IDC_ARROW),
-    (HBRUSH)(COLOR_BTNFACE+1),
+    (HBRUSH)(COLOR_BACKGROUND+1),
     NULL,
     CLASSNAME
 };
 
 } // unnamed namespace
-
 
 LRESULT CALLBACK cpaf::win32::gui::window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
@@ -52,7 +51,8 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
     // get non const initialization params
     cpaf::gui::initializer::WindowData init_params = params;
 
-    int style = WS_OVERLAPPEDWINDOW, style_ex = 0;
+    int style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN, style_ex = 0;
+
     // handle client size
     if( init_params.use_client_size() )
     {
@@ -68,9 +68,35 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
         init_params.set_size(client_size);
     }
 
+    // set the content panel
+    HWND w = 0;
+    if( params.get_content_panel() )
+    {
+        m_root_panel = dynamic_cast<cpaf::win32::gui::Panel*>(static_cast<cpaf::gui::Panel::api_type*>(*(params.get_content_panel())));
+        w = (HWND)m_root_panel->get_handle();
+    }
+    
     // create a window
     cpaf::win32::gui::Widget::create(CreationInfo(this), init_params, false, CLASSNAME, params.get_title().c_str(),
         style, style_ex);
+
+    if( params.get_content_panel() )
+    {
+        ::SetParent(w, m_hwnd);
+        m_root_panel->show(true, false);
+    }
+}
+
+int cpaf::win32::gui::Window::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+{
+    switch(msg)
+    {
+    case WM_SIZE:
+        if( m_root_panel )
+            m_root_panel->set_size(cpaf::Size(LOWORD(l_param), HIWORD(l_param)));
+    }
+
+    return cpaf::win32::gui::Widget::process_message(hwnd, msg, w_param, l_param);
 }
 
 std::string cpaf::win32::gui::Window::get_title()
@@ -81,6 +107,21 @@ std::string cpaf::win32::gui::Window::get_title()
 void cpaf::win32::gui::Window::set_title(const std::string &t)
 {
     set_window_text(t);
+}
+
+void cpaf::win32::gui::Window::set_content_panel(cpaf::api::gui::Panel *p)
+{
+    //! \todo size the root panel
+    m_root_panel = dynamic_cast<cpaf::win32::gui::Panel*>(p);
+    ::SetParent((HWND)m_root_panel->get_handle(), m_hwnd);
+
+    // make sure the panel is shown
+    m_root_panel->show(true, false);
+}
+
+cpaf::gui::Panel *cpaf::win32::gui::Window::get_content_panel() const
+{
+    return m_root_panel->get_wrapper<cpaf::gui::Panel>();
 }
 
 void cpaf::win32::gui::Window::set_client_size(const cpaf::Size &s)
