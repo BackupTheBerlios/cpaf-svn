@@ -80,7 +80,7 @@ void cpaf::gtk2::gui::Widget::set_size(const cpaf::Size& s)
     gtk_widget_queue_resize(m_widget);
 }
 
-cpaf::Size cpaf::gtk2::gui::Widget::get_size()
+cpaf::Size cpaf::gtk2::gui::Widget::get_size() const
 {
     // Is this correct? Maybe use gdk_window_get_frame_extents instead?
     return cpaf::Size(m_widget->allocation.width, m_widget->allocation.height);
@@ -103,12 +103,24 @@ void cpaf::gtk2::gui::Widget::show(bool show, bool activate)
         gtk_widget_hide(m_widget);
 }
 
-bool cpaf::gtk2::gui::Widget::is_enabled()
+bool cpaf::gtk2::gui::Widget::is_enabled() const
 {
     return GTK_WIDGET_IS_SENSITIVE(m_widget);
 }
 
-bool cpaf::gtk2::gui::Widget::is_shown()
+bool cpaf::gtk2::gui::Widget::is_shown() const
 {
     return GTK_WIDGET_VISIBLE(m_widget);
+}
+
+cpaf::gui::Panel * cpaf::gtk2::gui::Widget::get_parent() const
+{
+    //! \todo IMPLEMENT
+    return (cpaf::gui::Panel*)NULL;
+}
+
+cpaf::gui::Window * cpaf::gtk2::gui::Widget::get_parent_window() const
+{
+    //! \todo IMPLEMENT
+    return (cpaf::gui::Window*)NULL;
 }

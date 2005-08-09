@@ -15,6 +15,8 @@ namespace cpaf {
     namespace api {
         namespace gui {
 
+class Panel;
+
 class Window : public virtual TopLevel
 {
 public:

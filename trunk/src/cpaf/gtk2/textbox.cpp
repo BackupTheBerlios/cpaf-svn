@@ -19,6 +19,7 @@ cpaf::gtk2::gui::TextBox::create (const cpaf::gui::initializer::TextBoxData &par
                                          GTK_SHADOW_IN);
 
     m_text = gtk_text_view_new ();
+    gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (m_text), GTK_WRAP_WORD_CHAR);
     m_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (m_text));
 
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (m_widget),
@@ -30,7 +31,7 @@ cpaf::gtk2::gui::TextBox::create (const cpaf::gui::initializer::TextBoxData &par
     gtk_widget_show (m_text);
 
     GtkWidget * hparent;
-    cpaf::gui::Widget *parent = params.get_parent();
+    cpaf::gui::Widget *parent = NULL; //params.get_parent();
     if (parent)
     {
         hparent = GTK_WIDGET (parent->get_handle());

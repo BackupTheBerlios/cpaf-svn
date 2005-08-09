@@ -29,18 +29,21 @@ public:
     virtual void set_min_size(const cpaf::Size&) { }
     virtual void set_max_size(const cpaf::Size&) { }
     virtual void set_position(const cpaf::Point&) { }
-    virtual cpaf::Size get_size();
-    virtual cpaf::Size get_min_size() { return cpaf::Size(); }
-    virtual cpaf::Size get_max_size() { return cpaf::Size(); }
-    virtual cpaf::Point get_position() { return cpaf::Point(); }
+    virtual cpaf::Size get_size() const;
+    virtual cpaf::Size get_min_size() const { return cpaf::Size(); }
+    virtual cpaf::Size get_max_size() const { return cpaf::Size(); }
+    virtual cpaf::Point get_position() const { return cpaf::Point(); }
 
     // widget interface
     virtual void destroy();
-    virtual void *get_handle() { return (void*)m_widget; }
+    virtual void *get_handle() const { return (void*)m_widget; }
     virtual void enable(bool sensitive);
     virtual void show(bool show, bool activate);
-    virtual bool is_enabled();
-    virtual bool is_shown();
+    virtual bool is_enabled() const;
+    virtual bool is_shown() const;
+
+    virtual cpaf::gui::Panel *get_parent() const;
+    virtual cpaf::gui::Window *get_parent_window() const;
 
 protected:
     Widget();

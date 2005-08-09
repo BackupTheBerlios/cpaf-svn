@@ -14,6 +14,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gui/toplevel.o   \
 	$(OBJ_DIR)/gui/factory.o    \
 	$(OBJ_DIR)/gui/window.o     \
+	$(OBJ_DIR)/gui/panel.o      \
 	$(OBJ_DIR)/gui/button.o     \
 	$(OBJ_DIR)/gui/textwidget.o \
 	$(OBJ_DIR)/gui/entrybox.o   \
@@ -21,6 +22,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gui/initializer/object.o     \
 	$(OBJ_DIR)/gui/initializer/widget.o     \
 	$(OBJ_DIR)/gui/initializer/window.o     \
+	$(OBJ_DIR)/gui/initializer/panel.o      \
 	$(OBJ_DIR)/gui/initializer/button.o     \
 	$(OBJ_DIR)/gui/initializer/textwidget.o \
 	$(OBJ_DIR)/gui/initializer/entrybox.o   \
@@ -31,6 +33,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gtk2/factory.o   \
 	$(OBJ_DIR)/gtk2/widget.o    \
 	$(OBJ_DIR)/gtk2/window.o    \
+	$(OBJ_DIR)/gtk2/panel.o    \
 	$(OBJ_DIR)/gtk2/button.o    \
 	$(OBJ_DIR)/gtk2/entrybox.o  \
 	$(OBJ_DIR)/gtk2/textbox.o   \
@@ -94,6 +97,9 @@ $(OBJ_DIR)/gui/factory.o: src/cpaf/gui/factory.cpp
 $(OBJ_DIR)/gui/window.o: src/cpaf/gui/window.cpp
 	$(compile_source)
 
+$(OBJ_DIR)/gui/panel.o: src/cpaf/gui/panel.cpp
+	$(compile_source)
+
 $(OBJ_DIR)/gui/button.o: src/cpaf/gui/button.cpp
 	$(compile_source)
 
@@ -119,6 +125,9 @@ $(OBJ_DIR)/gui/initializer/factory.o: src/cpaf/gui/initializer/factory.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gui/initializer/window.o: src/cpaf/gui/initializer/window.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/panel.o: src/cpaf/gui/initializer/panel.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gui/initializer/button.o: src/cpaf/gui/initializer/button.cpp
@@ -149,6 +158,9 @@ $(OBJ_DIR)/gtk2/widget.o: src/cpaf/gtk2/widget.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/window.o: src/cpaf/gtk2/window.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gtk2/panel.o: src/cpaf/gtk2/panel.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/button.o: src/cpaf/gtk2/button.cpp

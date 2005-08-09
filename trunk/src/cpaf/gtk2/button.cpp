@@ -18,7 +18,8 @@ void cpaf::gtk2::gui::Button::create(const cpaf::gui::initializer::ButtonData &p
     cpaf::gtk2::gui::Widget::create(params, gtk_button_new());
 
     GtkWidget * hparent;
-    cpaf::gui::Widget *parent = params.get_parent();
+    //! \todo IMPLEMENT
+    cpaf::gui::Widget *parent = NULL; //params.get_parent();
     if( parent )
     {
         hparent = GTK_WIDGET(parent->get_handle());

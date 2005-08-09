@@ -16,7 +16,7 @@ Files=
 
 [Dir include/cpaf/api/gui]
 Dirs=
-Files=sizer.h/toplevel.h/widget.h/window.h/object.h/button.h/textbox.h/entrybox.h/textwidget.h/passwordbox.h
+Files=sizer.h/toplevel.h/widget.h/window.h/object.h/button.h/textbox.h/entrybox.h/textwidget.h/passwordbox.h/panel.h
 
 [Dir include/cpaf/event]
 Dirs=
@@ -28,11 +28,11 @@ Files=factory.h/gtk.h/utils.h
 
 [Dir include/cpaf/gtk2/gui]
 Dirs=
-Files=window.h/widget.h/button.h/textbox.h/entrybox.h
+Files=window.h/widget.h/button.h/textbox.h/entrybox.h/panel.h
 
 [Dir include/cpaf/gui]
 Dirs=initializer
-Files=toplevel.h/widget.h/window.h/app.h/object.h/api-prototypes.h/button.h/factory.h/textbox.h/entrybox.h/textwidget.h
+Files=toplevel.h/widget.h/window.h/app.h/object.h/api-prototypes.h/button.h/factory.h/textbox.h/entrybox.h/textwidget.h/panel.h
 
 [Dir include/cpaf/gui/factory]
 Dirs=
@@ -40,7 +40,7 @@ Files=
 
 [Dir include/cpaf/gui/initializer]
 Dirs=
-Files=button.h/object.h/textbox.h/widget.h/window.h/entrybox.h/textwidget.h/passwordbox.h
+Files=button.h/object.h/textbox.h/widget.h/window.h/entrybox.h/textwidget.h/passwordbox.h/panel.h
 
 [Dir include/cpaf/private]
 Dirs=
@@ -59,7 +59,7 @@ Dirs=
 Files=main.cpp
 
 [Dir samples/unit_tests]
-Dirs=events
+Dirs=events/textwidget
 Files=
 
 [Dir samples/unit_tests/events]
@@ -67,6 +67,10 @@ Dirs=create_destroy
 Files=
 
 [Dir samples/unit_tests/events/create_destroy]
+Dirs=
+Files=main.cpp
+
+[Dir samples/unit_tests/textwidget]
 Dirs=
 Files=main.cpp
 
@@ -84,15 +88,15 @@ Files=event.cpp/id.cpp
 
 [Dir src/cpaf/gtk2]
 Dirs=
-Files=factory.cpp/window.cpp/utils.cpp/app.cpp/widget.cpp/button.cpp/textbox.cpp/entrybox.cpp
+Files=factory.cpp/window.cpp/utils.cpp/app.cpp/widget.cpp/button.cpp/textbox.cpp/entrybox.cpp/panel.cpp
 
 [Dir src/cpaf/gui]
 Dirs=initializer
-Files=factory.cpp/toplevel.cpp/widget.cpp/window.cpp/app.cpp/object.cpp/button.cpp/textbox.cpp/entrybox.cpp/textwidget.cpp
+Files=factory.cpp/toplevel.cpp/widget.cpp/window.cpp/app.cpp/object.cpp/button.cpp/textbox.cpp/entrybox.cpp/textwidget.cpp/panel.cpp
 
 [Dir src/cpaf/gui/initializer]
 Dirs=
-Files=button.cpp/entrybox.cpp/object.cpp/textbox.cpp/textwidget.cpp/widget.cpp/window.cpp
+Files=button.cpp/entrybox.cpp/object.cpp/textbox.cpp/textwidget.cpp/widget.cpp/window.cpp/panel.cpp
 
 [Dir technotes]
 Dirs=

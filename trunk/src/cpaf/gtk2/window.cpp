@@ -19,7 +19,7 @@ void cpaf::gtk2::gui::Window::create(const cpaf::gui::initializer::WindowData &p
     if (params.use_client_size())
         set_client_size(params.get_client_size());
 
-    cpaf::gui::Widget *parent = params.get_parent();
+    cpaf::gui::Widget *parent = NULL; //params.get_parent();
     if (parent)
         gtk_window_set_transient_for(GTK_WINDOW(m_widget),
                                      GTK_WINDOW(parent->get_handle()));
@@ -102,7 +102,7 @@ void cpaf::gtk2::gui::Window::set_position(const cpaf::Point &p)
     gtk_window_move(GTK_WINDOW(m_widget), p.x, p.y);
 }
 
-cpaf::Size cpaf::gtk2::gui::Window::get_size()
+cpaf::Size cpaf::gtk2::gui::Window::get_size() const
 {
     if(GTK_WIDGET_REALIZED(m_widget))
     {
@@ -140,7 +140,7 @@ struct _GtkWindowGeometryInfo
     // We don't care what the remaining fields are.
 };
 
-cpaf::Size cpaf::gtk2::gui::Window::get_min_size()
+cpaf::Size cpaf::gtk2::gui::Window::get_min_size() const
 {
     GtkWindowGeometryInfo *info = GTK_WINDOW(m_widget)->geometry_info;
     if (!info)
@@ -151,7 +151,7 @@ cpaf::Size cpaf::gtk2::gui::Window::get_min_size()
     return cpaf::Size(info->geometry.min_width, info->geometry.min_height);
 }
 
-cpaf::Size cpaf::gtk2::gui::Window::get_max_size()
+cpaf::Size cpaf::gtk2::gui::Window::get_max_size() const
 {
     GtkWindowGeometryInfo *info = GTK_WINDOW(m_widget)->geometry_info;
     if (!info)
@@ -162,7 +162,7 @@ cpaf::Size cpaf::gtk2::gui::Window::get_max_size()
     return cpaf::Size(info->geometry.max_width, info->geometry.max_height);
 }
 
-cpaf::Point cpaf::gtk2::gui::Window::get_position()
+cpaf::Point cpaf::gtk2::gui::Window::get_position() const
 {
     gint root_x, root_y;
     gtk_window_get_position(GTK_WINDOW(m_widget), &root_x, &root_y);
@@ -230,4 +230,13 @@ cpaf::Point cpaf::gtk2::gui::Window::get_client_position()
 
     //! \todo Add menubar/attached toolbar height.
     return cpaf::Point(x, y);
+}
+
+void cpaf::gtk2::gui::Window::set_content_panel(cpaf::api::gui::Panel *p)
+{
+}
+
+cpaf::gui::Panel * cpaf::gtk2::gui::Window::get_content_panel() const
+{
+    return (cpaf::gui::Panel*)NULL;
 }
