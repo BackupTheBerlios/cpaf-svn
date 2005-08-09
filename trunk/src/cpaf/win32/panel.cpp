@@ -6,6 +6,8 @@
 
 #include <cpaf/win32/gui/panel.h>
 
+using namespace cpaf::win32::gui;
+
 namespace {
 
 const TCHAR CLASSNAME[] = TEXT("cpaf::Panel");
@@ -32,7 +34,7 @@ LRESULT CALLBACK cpaf::win32::gui::panel_wndproc(HWND hwnd, UINT msg, WPARAM w_p
     return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
 
-void cpaf::win32::gui::Panel::create(const cpaf::gui::initializer::PanelData &params)
+void Panel::create(const cpaf::gui::initializer::PanelData &params)
 {
     static bool registered = false;
 
@@ -44,7 +46,7 @@ void cpaf::win32::gui::Panel::create(const cpaf::gui::initializer::PanelData &pa
         WS_CHILD | WS_CLIPCHILDREN | WS_CLIPSIBLINGS, WS_EX_CONTROLPARENT);
 }
 
-int cpaf::win32::gui::Panel::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+int Panel::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
     return cpaf::win32::gui::Widget::process_message(hwnd, msg, w_param, l_param);
 }

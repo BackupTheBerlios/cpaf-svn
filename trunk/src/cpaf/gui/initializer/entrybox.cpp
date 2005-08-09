@@ -6,16 +6,18 @@
 
 #include <cpaf/gui/initializer/entrybox.h>
 
-cpaf::gui::initializer::EntryBoxData::EntryBoxData()
+using namespace cpaf::gui::initializer;
+
+EntryBoxData::EntryBoxData()
     : m_password_mode(false)
 { }
 
-void cpaf::gui::initializer::EntryBoxData::set_password_mode(bool b)
+void EntryBoxData::set_password_mode(bool b)
 {
     m_password_mode = b;
 }
 
-bool cpaf::gui::initializer::EntryBoxData::get_password_mode() const
+bool EntryBoxData::get_password_mode() const
 {
     return m_password_mode;
 }

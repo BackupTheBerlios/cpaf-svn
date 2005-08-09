@@ -6,14 +6,16 @@
 
 #include <cpaf/win32/gui/entrybox.h>
 
-void cpaf::win32::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxData &params)
+using namespace cpaf::win32::gui;
+
+void EntryBox::create(const cpaf::gui::initializer::EntryBoxData &params)
 {
     // create an entry box
-    cpaf::win32::gui::Widget::create(CreationInfo(this), params, true, TEXT("EDIT"), params.get_text().c_str(),
+    Widget::create(CreationInfo(this), params, true, TEXT("EDIT"), params.get_text().c_str(),
         WS_CHILD | WS_TABSTOP, WS_EX_CLIENTEDGE);
 }
 
-int cpaf::win32::gui::EntryBox::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+int EntryBox::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
     switch(msg)
     {
@@ -23,16 +25,16 @@ int cpaf::win32::gui::EntryBox::process_message(HWND hwnd, UINT msg, WPARAM w_pa
         return DLGC_HASSETSEL | DLGC_WANTCHARS | DLGC_WANTARROWS;
     }
 
-    return cpaf::win32::gui::TextWidget::process_message(hwnd, msg, w_param, l_param);
+    return TextWidget::process_message(hwnd, msg, w_param, l_param);
 }
 
-void cpaf::win32::gui::EntryBox::set_password_mode(bool mode)
+void EntryBox::set_password_mode(bool mode)
 {
     ::SendMessage(m_hwnd, EM_SETPASSWORDCHAR, (mode) ? '*' : 0, 0);
     ::RedrawWindow(m_hwnd, 0, 0, RDW_INVALIDATE);
 }
 
-bool cpaf::win32::gui::EntryBox::get_password_mode()
+bool EntryBox::get_password_mode()
 {
     return ::SendMessage(m_hwnd, EM_GETPASSWORDCHAR, 0, 0) != 0;
 }

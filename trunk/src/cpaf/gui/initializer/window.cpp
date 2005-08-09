@@ -6,7 +6,9 @@
 
 #include <cpaf/gui/initializer/window.h>
 
-cpaf::gui::initializer::WindowData::WindowData()
+using namespace cpaf::gui::initializer;
+
+WindowData::WindowData()
     : m_use_client_size(false),
     m_content_panel(0)
 {
@@ -14,39 +16,39 @@ cpaf::gui::initializer::WindowData::WindowData()
     WidgetData::m_activate = true;
 }
 
-void cpaf::gui::initializer::WindowData::set_title(const std::string &str)
+void WindowData::set_title(const std::string &str)
 {
     m_title = str;
 }
 
-std::string cpaf::gui::initializer::WindowData::get_title() const
+std::string WindowData::get_title() const
 {
     return m_title;
 }
 
-void cpaf::gui::initializer::WindowData::set_client_size(const cpaf::Size &s)
+void WindowData::set_client_size(const cpaf::Size &s)
 {
     m_client_size = s;
     m_default_size = false;
     m_use_client_size = true;
 }
 
-cpaf::Size cpaf::gui::initializer::WindowData::get_client_size() const
+cpaf::Size WindowData::get_client_size() const
 {
     return m_client_size;
 }
 
-bool cpaf::gui::initializer::WindowData::use_client_size() const
+bool WindowData::use_client_size() const
 {
     return m_use_client_size;
 }
 
-void cpaf::gui::initializer::WindowData::set_content_panel(cpaf::gui::Panel *p)
+void WindowData::set_content_panel(cpaf::gui::Panel *p)
 {
     m_content_panel = p;
 }
 
-cpaf::gui::Panel *cpaf::gui::initializer::WindowData::get_content_panel() const
+cpaf::gui::Panel *WindowData::get_content_panel() const
 {
     return m_content_panel;
 }

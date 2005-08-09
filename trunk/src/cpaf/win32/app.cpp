@@ -10,6 +10,8 @@
 
 #include <commctrl.h>
 
+using namespace cpaf::win32::gui;
+
 void cpaf::gui::App::gui_init()
 {
     // initialize common controls
@@ -24,17 +26,17 @@ int cpaf::gui::App::run()
     while( true )
     {
         // if no widgets exist, terminate the application
-        if( cpaf::win32::gui::widget_map_empty() )
+        if( widget_map_empty() )
             ::PostQuitMessage(0);
 
         // use peekmessage to check for waiting messages
         if( !::PeekMessage(&msg, 0, 0, 0, PM_REMOVE) )
         {
             // no messages waiting, check the widget deletion stack
-            if( cpaf::win32::gui::widget_deletion_stack_waiting() )
+            if( widget_deletion_stack_waiting() )
             {
                 // delete the widget and check for more messages
-                cpaf::win32::gui::widget_deletion_stack_pop();
+                widget_deletion_stack_pop();
                 continue;
             }
             else

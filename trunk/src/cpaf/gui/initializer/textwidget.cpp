@@ -6,12 +6,14 @@
 
 #include <cpaf/gui/initializer/textwidget.h>
 
-void cpaf::gui::initializer::TextWidgetData::set_text(const std::string &str)
+using namespace cpaf::gui::initializer;
+
+void TextWidgetData::set_text(const std::string &str)
 {
     m_text = str;
 }
 
-std::string cpaf::gui::initializer::TextWidgetData::get_text() const
+std::string TextWidgetData::get_text() const
 {
     return m_text;
 }

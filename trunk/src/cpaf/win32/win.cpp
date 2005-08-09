@@ -9,11 +9,11 @@
 #include <cpaf/win32/exception.h>
 #include <cpaf/win32/msgnames.h>
 
-using cpaf::win32::gui::WidgetMap;
+using namespace cpaf::win32::gui;
 
 namespace {
-    cpaf::win32::gui::WidgetMap widget_map;
-    cpaf::win32::gui::WidgetDeletionStack widget_deletion_stack;
+    WidgetMap widget_map;
+    WidgetDeletionStack widget_deletion_stack;
 }
 
 void cpaf::win32::gui::widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
@@ -33,7 +33,7 @@ void cpaf::win32::gui::widget_map_remove_hwnd(HWND h)
     // discovered...
 }
 
-cpaf::win32::gui::Widget *cpaf::win32::gui::get_widget_from_hwnd(HWND h)
+Widget *cpaf::win32::gui::get_widget_from_hwnd(HWND h)
 {
     WidgetMap::iterator i = widget_map.find(h);
     if( i != widget_map.end() )
@@ -63,7 +63,7 @@ bool cpaf::win32::gui::widget_deletion_stack_waiting()
     return !widget_deletion_stack.empty();
 }
 
-cpaf::win32::gui::CreationInfo::CreationInfo(cpaf::win32::gui::Widget *w)
+CreationInfo::CreationInfo(Widget *w)
     : wnd(w)
 { }
 
@@ -92,16 +92,16 @@ namespace {
     HHOOK m_hook; // hook procedure handle
 }
 
-cpaf::win32::gui::CreationHook::CreationHook()
+CreationHook::CreationHook()
 {
     // create the hook
-    m_hook = ::SetWindowsHookEx(WH_CBT, cpaf::win32::gui::CreationHook::hook_proc, NULL, ::GetCurrentThreadId());
+    m_hook = ::SetWindowsHookEx(WH_CBT, CreationHook::hook_proc, NULL, ::GetCurrentThreadId());
 
     if( !m_hook )
         throw cpaf::win32::Exception(cpaf::win32::Exception::HOOK, ::GetLastError(), __LINE__, __FILE__);
 }
 
-cpaf::win32::gui::CreationHook::~CreationHook()
+CreationHook::~CreationHook()
 {
     // unhook
     //! \todo destructors really shouldn't throw...
@@ -122,7 +122,7 @@ LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_pa
             widget_map_add_hwnd(hwnd, info->wnd);
 
             // subclass the window
-            info->wnd->set_old_proc((WNDPROC)(LONG_PTR)::SetWindowLongPtr(hwnd, GWL_WNDPROC, (LONG_PTR)cpaf::win32::gui::widget_wndproc));
+            info->wnd->set_old_proc((WNDPROC)(LONG_PTR)::SetWindowLongPtr(hwnd, GWL_WNDPROC, (LONG_PTR)widget_wndproc));
 
             // unhook now
             if( !::UnhookWindowsHookEx(m_hook) )

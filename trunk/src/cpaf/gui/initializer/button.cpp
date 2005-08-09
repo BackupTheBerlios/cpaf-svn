@@ -6,12 +6,14 @@
 
 #include <cpaf/gui/initializer/button.h>
 
-void cpaf::gui::initializer::ButtonData::set_label(const std::string &str)
+using namespace cpaf::gui::initializer;
+
+void ButtonData::set_label(const std::string &str)
 {
     m_label = str;
 }
 
-std::string cpaf::gui::initializer::ButtonData::get_label() const
+std::string ButtonData::get_label() const
 {
     return m_label;
 }

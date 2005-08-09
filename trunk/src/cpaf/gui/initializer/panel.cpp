@@ -6,6 +6,8 @@
 
 #include <cpaf/gui/initializer/panel.h>
 
+using namespace cpaf::gui::initializer;
+
 cpaf::gui::PanelInitializer::PanelInitializer()
     : cpaf::gui::initializer::Panel<PanelInitializer>(new data_type)
 { }

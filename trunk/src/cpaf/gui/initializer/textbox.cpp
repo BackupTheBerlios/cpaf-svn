@@ -6,6 +6,8 @@
 
 #include <cpaf/gui/initializer/textbox.h>
 
+using namespace cpaf::gui::initializer;
+
 cpaf::gui::TextBoxInitializer::TextBoxInitializer()
     : cpaf::gui::initializer::TextBox<TextBoxInitializer>(new data_type)
 { }

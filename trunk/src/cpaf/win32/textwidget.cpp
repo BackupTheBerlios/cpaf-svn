@@ -7,7 +7,9 @@
 #include <cpaf/win32/gui/textwidget.h>
 #include <cpaf/win32/gui/entrybox.h>
 
-int cpaf::win32::gui::TextWidget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+using namespace cpaf::win32::gui;
+
+int TextWidget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
     switch(msg)
     {
@@ -17,80 +19,80 @@ int cpaf::win32::gui::TextWidget::process_message(HWND hwnd, UINT msg, WPARAM w_
         return DLGC_WANTCHARS | DLGC_WANTARROWS | DLGC_WANTALLKEYS;
     }
 
-    return cpaf::win32::gui::Widget::process_message(hwnd, msg, w_param, l_param);
+    return Widget::process_message(hwnd, msg, w_param, l_param);
 }
 
-void cpaf::win32::gui::TextWidget::set_text(const std::string &s)
+void TextWidget::set_text(const std::string &s)
 {
     set_window_text(s);
 }
 
-std::string cpaf::win32::gui::TextWidget::get_text() const
+std::string TextWidget::get_text() const
 {
     return get_window_text();
 }
 
-std::string cpaf::win32::gui::TextWidget::get_text(const cpaf::TextRange &range) const
+std::string TextWidget::get_text(const cpaf::TextRange &range) const
 {
     return "";
 }
 
-cpaf::text_range_t cpaf::win32::gui::TextWidget::get_length() const
+cpaf::text_range_t TextWidget::get_length() const
 {
     return 0;
 }
 
-cpaf::TextRange cpaf::win32::gui::TextWidget::get_selection_range() const
+cpaf::TextRange TextWidget::get_selection_range() const
 {
     return 0;
 }
 
-void cpaf::win32::gui::TextWidget::set_selection_range(const cpaf::TextRange &range)
+void TextWidget::set_selection_range(const cpaf::TextRange &range)
 {
 
 }
 
-bool cpaf::win32::gui::TextWidget::get_selection_bounds(cpaf::TextRange &range) const
+bool TextWidget::get_selection_bounds(cpaf::TextRange &range) const
 {
     return false;
 }
 
-void cpaf::win32::gui::TextWidget::set_selection_bounds(const cpaf::TextRange &range)
+void TextWidget::set_selection_bounds(const cpaf::TextRange &range)
 {
 
 }
 
-cpaf::text_range_t cpaf::win32::gui::TextWidget::get_insertion_point() const
+cpaf::text_range_t TextWidget::get_insertion_point() const
 {
     return 0;
 }
 
-void cpaf::win32::gui::TextWidget::set_insertion_point(cpaf::text_range_t pos)
+void TextWidget::set_insertion_point(cpaf::text_range_t pos)
 {
 
 }
 
-void cpaf::win32::gui::TextWidget::delete_range(const cpaf::TextRange &range)
+void TextWidget::delete_range(const cpaf::TextRange &range)
 {
 
 }
 
-void cpaf::win32::gui::TextWidget::insert_text(cpaf::text_range_t pos, const std::string &str)
+void TextWidget::insert_text(cpaf::text_range_t pos, const std::string &str)
 {
 
 }
 
-void cpaf::win32::gui::TextWidget::set_max_length(cpaf::text_range_t len)
+void TextWidget::set_max_length(cpaf::text_range_t len)
 {
 
 }
 
-void cpaf::win32::gui::TextWidget::set_read_only(bool b)
+void TextWidget::set_read_only(bool b)
 {
 
 }
 
-bool cpaf::win32::gui::TextWidget::is_read_only() const
+bool TextWidget::is_read_only() const
 {
     return false;
 }

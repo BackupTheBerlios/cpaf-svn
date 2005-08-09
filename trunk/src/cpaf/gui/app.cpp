@@ -7,17 +7,19 @@
 #include <cpaf/gui/app.h>
 #include <cpaf/gui/toplevel.h>
 
+using namespace cpaf::gui;
+
 namespace {
-    cpaf::gui::TopLevelList top_level_widgets;
+    TopLevelList top_level_widgets;
 }
 
-cpaf::gui::App::App()
+App::App()
 {
     // implementation specific gui initialization
     gui_init();
 }
 
-void cpaf::gui::App::quit()
+void App::quit()
 {
     //! \todo send APP_QUIT
 
@@ -38,12 +40,12 @@ void cpaf::gui::App::quit()
     _quit();
 }
 
-const cpaf::gui::TopLevelList &cpaf::gui::App::get_top_level_widgets()
+const TopLevelList &App::get_top_level_widgets()
 {
     return top_level_widgets;
 }
 
-void cpaf::gui::App::add_top_level(TopLevel *t)
+void App::add_top_level(TopLevel *t)
 {
     top_level_widgets.push_back(t);
 }
@@ -63,7 +65,7 @@ public:
     }
 };
 
-void cpaf::gui::App::remove_top_level(TopLevel *t)
+void App::remove_top_level(TopLevel *t)
 {
     top_level_widgets.remove_if(equals<TopLevel*>(t));
 }

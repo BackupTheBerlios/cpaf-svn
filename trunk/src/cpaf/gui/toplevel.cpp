@@ -9,51 +9,53 @@
 #include <cpaf/private/factory.h>
 #include <cpaf/gui/app.h>
 
-cpaf::gui::TopLevel::TopLevel(api_type *impl)
+using namespace cpaf::gui;
+
+TopLevel::TopLevel(api_type *impl)
     : Widget(impl),
     m_impl(impl)
 {
     // add ourselves to the TopLevel widget list
-    cpaf::gui::App::add_top_level(this);
+    App::add_top_level(this);
 }
 
-cpaf::gui::TopLevel::~TopLevel()
+TopLevel::~TopLevel()
 {
     // remove ourselves from the TopLevel widget list
-    cpaf::gui::App::remove_top_level(this);
+    App::remove_top_level(this);
 }
 
-cpaf::gui::TopLevel::api_type *cpaf::gui::TopLevel::get_impl() const
+TopLevel::api_type *TopLevel::get_impl() const
 {
     return m_impl;
 }
 
-void cpaf::gui::TopLevel::show(bool show, bool focus)
+void TopLevel::show(bool show, bool focus)
 {
     m_impl->show(show, focus);
 }
 
-void cpaf::gui::TopLevel::set_title(const std::string &t)
+void TopLevel::set_title(const std::string &t)
 {
     m_impl->set_title(t);
 }
 
-std::string cpaf::gui::TopLevel::get_title() const
+std::string TopLevel::get_title() const
 {
     return m_impl->get_title();
 }
 
-void cpaf::gui::TopLevel::set_client_size(const cpaf::Size &s)
+void TopLevel::set_client_size(const cpaf::Size &s)
 {
     m_impl->set_client_size(s);
 }
 
-cpaf::Size cpaf::gui::TopLevel::get_client_size() const
+cpaf::Size TopLevel::get_client_size() const
 {
     return m_impl->get_client_size();
 }
 
-cpaf::Point cpaf::gui::TopLevel::get_client_position() const
+cpaf::Point TopLevel::get_client_position() const
 {
     return m_impl->get_client_position();
 }

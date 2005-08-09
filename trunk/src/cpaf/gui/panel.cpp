@@ -8,25 +8,27 @@
 #include <cpaf/api/gui/panel.h>
 #include <cpaf/private/factory.h>
 
-cpaf::gui::Panel::Panel()
-    : Widget(cpaf::gui::factory::create_widget_implementation<api_type>())
+using namespace cpaf::gui;
+
+Panel::Panel()
+    : Widget(factory::create_widget_implementation<api_type>())
 {
-    m_impl = cpaf::gui::Widget::get_impl<api_type>();
+    m_impl = Widget::get_impl<api_type>();
 }
 
-cpaf::gui::Panel::Panel(api_type *impl)
+Panel::Panel(api_type *impl)
     : Widget(impl),
     m_impl(impl)
 { }
 
-void cpaf::gui::Panel::create(const Initializer &initializer)
+void Panel::create(const Initializer &initializer)
 {
     Initializer::data_type params = initializer.get_data();
     params.set_wrapper(this);
     m_impl->create(params);
 }
 
-cpaf::gui::Panel::api_type *cpaf::gui::Panel::get_impl() const
+Panel::api_type *Panel::get_impl() const
 {
     return m_impl;
 }

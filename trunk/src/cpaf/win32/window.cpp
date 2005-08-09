@@ -8,6 +8,7 @@
 #include <cpaf/win32/exception.h>
 #include <cpaf/win32/msgnames.h>
 
+using namespace cpaf::win32::gui;
 
 namespace {
 
@@ -35,7 +36,7 @@ LRESULT CALLBACK cpaf::win32::gui::window_wndproc(HWND hwnd, UINT msg, WPARAM w_
     return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
 
-void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
+void Window::create(const cpaf::gui::initializer::WindowData &params)
 {
     //! \todo remove duplicated code from window and button create methods
 
@@ -72,12 +73,12 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
     HWND w = 0;
     if( params.get_content_panel() )
     {
-        m_root_panel = dynamic_cast<cpaf::win32::gui::Panel*>(params.get_content_panel()->get_impl());
+        m_root_panel = dynamic_cast<Panel*>(params.get_content_panel()->get_impl());
         w = (HWND)m_root_panel->get_handle();
     }
     
     // create a window
-    cpaf::win32::gui::Widget::create(CreationInfo(this), init_params, false, CLASSNAME, params.get_title().c_str(),
+    Widget::create(CreationInfo(this), init_params, false, CLASSNAME, params.get_title().c_str(),
         style, style_ex);
 
     if( params.get_content_panel() )
@@ -87,7 +88,7 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
     }
 }
 
-int cpaf::win32::gui::Window::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+int Window::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
     switch(msg)
     {
@@ -96,35 +97,35 @@ int cpaf::win32::gui::Window::process_message(HWND hwnd, UINT msg, WPARAM w_para
             m_root_panel->set_size(cpaf::Size(LOWORD(l_param), HIWORD(l_param)));
     }
 
-    return cpaf::win32::gui::Widget::process_message(hwnd, msg, w_param, l_param);
+    return Widget::process_message(hwnd, msg, w_param, l_param);
 }
 
-std::string cpaf::win32::gui::Window::get_title()
+std::string Window::get_title()
 {
     return get_window_text();
 }
 
-void cpaf::win32::gui::Window::set_title(const std::string &t)
+void Window::set_title(const std::string &t)
 {
     set_window_text(t);
 }
 
-void cpaf::win32::gui::Window::set_content_panel(cpaf::api::gui::Panel *p)
+void Window::set_content_panel(cpaf::api::gui::Panel *p)
 {
     //! \todo size the root panel
-    m_root_panel = dynamic_cast<cpaf::win32::gui::Panel*>(p);
+    m_root_panel = dynamic_cast<Panel*>(p);
     ::SetParent((HWND)m_root_panel->get_handle(), m_hwnd);
 
     // make sure the panel is shown
     m_root_panel->show(true, false);
 }
 
-cpaf::gui::Panel *cpaf::win32::gui::Window::get_content_panel() const
+cpaf::gui::Panel *Window::get_content_panel() const
 {
     return m_root_panel->get_wrapper<cpaf::gui::Panel>();
 }
 
-void cpaf::win32::gui::Window::set_client_size(const cpaf::Size &s)
+void Window::set_client_size(const cpaf::Size &s)
 {
     // the desired client size
     RECT client_rect = {0};
