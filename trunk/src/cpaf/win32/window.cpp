@@ -18,7 +18,7 @@ WNDCLASSEX wnd_class = {
     CS_DBLCLKS,
     (WNDPROC)cpaf::win32::gui::window_wndproc,
     0,
-    0,
+    DLGWINDOWEXTRA,
     GetModuleHandle(NULL),
     NULL,
     LoadCursor(NULL, IDC_ARROW),
@@ -51,7 +51,7 @@ void cpaf::win32::gui::Window::create(const cpaf::gui::initializer::WindowData &
     // get non const initialization params
     cpaf::gui::initializer::WindowData init_params = params;
 
-    int style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN, style_ex = 0;
+    int style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN, style_ex = WS_EX_CONTROLPARENT;
 
     // handle client size
     if( init_params.use_client_size() )

@@ -320,6 +320,9 @@
 					RelativePath=".\include\cpaf\gui\textbox.h">
 				</File>
 				<File
+					RelativePath=".\include\cpaf\gui\initializer\textwidget.h">
+				</File>
+				<File
 					RelativePath=".\include\cpaf\gui\textwidget.h">
 				</File>
 				<File
@@ -348,9 +351,6 @@
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gui\initializer\textbox.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\gui\initializer\textwidget.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gui\initializer\widget.h">

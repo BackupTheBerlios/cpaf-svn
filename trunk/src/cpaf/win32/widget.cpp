@@ -55,7 +55,7 @@ void cpaf::win32::gui::Widget::create(const CreationInfo &info, const cpaf::gui:
         CreationInfo info(this);
 
         // I don't set m_hwnd here because process_message() sets it for me
-        ::CreateWindowEx(styles_ex, class_name, window_name, styles,
+        m_hwnd = ::CreateWindowEx(styles_ex, class_name, window_name, styles,
             x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
             &info);
     }
@@ -141,8 +141,11 @@ int cpaf::win32::gui::Widget::process_message(HWND hwnd, UINT msg, WPARAM w_para
             case BN_CLICKED:
                 {
                     Button *btn = get_widget_from_hwnd<Button>((HWND)l_param);
-                    cpaf::event::Event click_event(cpaf::event::BUTTON_CLICK, btn->get_id());
-                    cpaf::event::get_manager().send_event(click_event);
+                    if( btn )
+                    {
+                        cpaf::event::Event click_event(cpaf::event::BUTTON_CLICK, btn->get_id());
+                        cpaf::event::get_manager().send_event(click_event);
+                    }
                     return 0;
                 }
             }

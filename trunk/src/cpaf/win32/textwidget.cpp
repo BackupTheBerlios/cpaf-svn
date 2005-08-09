@@ -5,6 +5,20 @@
 */
 
 #include <cpaf/win32/gui/textwidget.h>
+#include <cpaf/win32/gui/entrybox.h>
+
+int cpaf::win32::gui::TextWidget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+{
+    switch(msg)
+    {
+    case WM_GETDLGCODE:
+        // don't tab navigate out of a textwidget and don't
+        // select all of the text when navigating into one
+        return DLGC_WANTCHARS | DLGC_WANTARROWS | DLGC_WANTALLKEYS;
+    }
+
+    return cpaf::win32::gui::Widget::process_message(hwnd, msg, w_param, l_param);
+}
 
 void cpaf::win32::gui::TextWidget::set_text(const std::string &s)
 {

@@ -21,6 +21,8 @@ class Panel : public virtual cpaf::win32::gui::Widget, public virtual cpaf::api:
 
 public:
     void create(const cpaf::gui::initializer::PanelData &params);
+
+    int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 };
 
         } // gui

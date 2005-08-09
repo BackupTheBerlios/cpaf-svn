@@ -24,6 +24,8 @@ public:
 
     void create(const cpaf::gui::initializer::ButtonData &params);
 
+    int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
+
     virtual void set_label(const std::string &label);
     virtual std::string get_label();
 };

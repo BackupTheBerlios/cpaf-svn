@@ -15,7 +15,7 @@ WNDCLASSEX wnd_class = {
     CS_DBLCLKS,
     (WNDPROC)cpaf::win32::gui::panel_wndproc,
     0,
-    0,
+    DLGWINDOWEXTRA,
     GetModuleHandle(NULL),
     NULL,
     LoadCursor(NULL, IDC_ARROW),
@@ -42,4 +42,9 @@ void cpaf::win32::gui::Panel::create(const cpaf::gui::initializer::PanelData &pa
     // Create a panel
     cpaf::win32::gui::Widget::create(CreationInfo(this), params, false, CLASSNAME, 0,
         WS_CHILD | WS_CLIPCHILDREN | WS_CLIPSIBLINGS, WS_EX_CONTROLPARENT);
+}
+
+int cpaf::win32::gui::Panel::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+{
+    return cpaf::win32::gui::Widget::process_message(hwnd, msg, w_param, l_param);
 }

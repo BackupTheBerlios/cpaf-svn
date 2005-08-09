@@ -20,6 +20,8 @@ namespace cpaf {
 class TextWidget : public virtual cpaf::win32::gui::Widget, public virtual cpaf::api::gui::TextWidget
 {
 public:
+    int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
+
     virtual void set_text(const std::string &s);
     virtual std::string get_text() const;
     virtual std::string get_text(const cpaf::TextRange &range) const;

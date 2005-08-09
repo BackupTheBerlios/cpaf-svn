@@ -53,11 +53,11 @@ int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstanc
         ::MessageBoxA(0, e.what(), "A bad cast was encountered", MB_ICONERROR);
         return 1;
     }
-    catch(...)
+    /*catch(...)
     {
         ::MessageBoxA(0, "An unknown exception has been encountered.", 0, MB_ICONERROR);
         return 1; // errornous termination
-    }
+    }*/
 }
 
 #else // !CPAF_WIN32

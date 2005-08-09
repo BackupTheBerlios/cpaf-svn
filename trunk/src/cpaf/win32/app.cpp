@@ -50,8 +50,16 @@ int cpaf::gui::App::run()
             break;
         else
         {
-            ::TranslateMessage(&msg);
-            ::DispatchMessage(&msg);
+            // allow tab traversal in panels
+            // a widgets parent is either a panel, or a window (the root panel)
+            // so we can always use GetParent here
+            if( !::IsDialogMessage(::GetParent(msg.hwnd), &msg) )
+            {
+                ::TranslateMessage(&msg);
+                ::DispatchMessage(&msg);
+            }
+            //else
+                //DBG_MSG("IsDialogMessage processed");
         }
     }
 
