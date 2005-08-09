@@ -97,57 +97,69 @@ cpaf::gtk2::gui::EntryBox::set_selection_bounds (const cpaf::TextRange &range)
 cpaf::text_range_t
 cpaf::gtk2::gui::EntryBox::get_insertion_point () const
 {
-    //! \todo IMPLEMENT
-    return 0;
+    return gtk_editable_get_position (GTK_EDITABLE (m_widget));
 }
 
 void
 cpaf::gtk2::gui::EntryBox::set_insertion_point (cpaf::text_range_t pos)
 {
-    //! \todo IMPLEMENT
+    //! \todo Negativity consideration?
+    if (pos == END)
+        pos = -1;
+
+    gtk_editable_set_position (GTK_EDITABLE (m_widget), pos);
 }
 
 void
 cpaf::gtk2::gui::EntryBox::delete_range (const cpaf::TextRange &range)
 {
-    //! \todo IMPLEMENT
+    cpaf::TextRange r(range);
+    r.normalize();
+    gtk_editable_delete_text (GTK_EDITABLE (m_widget),
+                              r.first,
+                              (r.second == cpaf::TextRange::END) ? -1 : r.second);
 }
 
-void
-cpaf::gtk2::gui::EntryBox::insert_text (cpaf::text_range_t pos,
+text_range_t
+cpaf::gtk2::gui::EntryBox::insert_text (cpaf::text_range_t p,
                                         const std::string &str)
 {
-    //! \todo IMPLEMENT
+    text_range_t pos = p;
+    //! \todo std::string -> UTF8
+    gtk_editable_insert_text (GTK_EDITABLE (m_widget),
+                              str.c_str(),
+                              str.length(),
+                              &pos);
+    return pos;
 }
 
 void
 cpaf::gtk2::gui::EntryBox::set_max_length (cpaf::text_range_t len)
 {
-    //! \todo IMPLEMENT
+    //! \todo -1 is supposed to be converted to 0 - unless we change the docs
+    gtk_entry_set_max_length (GTK_ENTRY (m_widget), len);
 }
 
 void
 cpaf::gtk2::gui::EntryBox::set_read_only (bool b)
 {
-    //! \todo IMPLEMENT
+    gtk_editable_set_editable (GTK_EDITABLE (m_widget), !b);
 }
 
 bool
 cpaf::gtk2::gui::EntryBox::is_read_only () const
 {
-    //! \todo IMPLEMENT
-    return false;
+    return !gtk_editable_get_editable (GTK_EDITABLE (m_widget));
 }
 
 void
 cpaf::gtk2::gui::EntryBox::set_password_mode (bool mode)
 {
-    //! \todo IMPLEMENT
+    gtk_entry_set_visibility (GTK_ENTRY (m_widget), !mode);
 }
 
 bool
 cpaf::gtk2::gui::EntryBox::get_password_mode ()
 {
-    //! \todo IMPLEMENT
-    return false;
+    return !gtk_entry_get_visibility (GTK_ENTRY (m_widget));
 }
