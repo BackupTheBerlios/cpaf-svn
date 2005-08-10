@@ -9,11 +9,13 @@
 
 #include <gtk/gtk.h>
 
-cpaf::gtk2::gui::Window::Window() { }
+using namespace cpaf::gtk2::gui;
 
-void cpaf::gtk2::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
+Window::Window() { }
+
+void Window::create(const cpaf::gui::initializer::WindowData &params)
 {
-    cpaf::gtk2::gui::Widget::create(params, gtk_window_new(GTK_WINDOW_TOPLEVEL));
+    Widget::create(params, gtk_window_new(GTK_WINDOW_TOPLEVEL));
 
     //! \todo Based on docs in factory/window.h header, the logic needs to be more complex
     if (params.use_client_size())
@@ -40,7 +42,7 @@ void cpaf::gtk2::gui::Window::create(const cpaf::gui::initializer::WindowData &p
 }
 
 //! \todo Deal with DEFAULT_* values
-void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
+void Window::set_size(const cpaf::Size &s)
 {
     int w, h;
 
@@ -73,7 +75,7 @@ void cpaf::gtk2::gui::Window::set_size(const cpaf::Size &s)
 }
 
 //! \todo Deal with DEFAULT_* values
-void cpaf::gtk2::gui::Window::set_min_size(const cpaf::Size &s)
+void Window::set_min_size(const cpaf::Size &s)
 {
     GdkGeometry hints;
     hints.min_width = s.width;
@@ -85,7 +87,7 @@ void cpaf::gtk2::gui::Window::set_min_size(const cpaf::Size &s)
 }
 
 //! \todo Deal with DEFAULT_* values
-void cpaf::gtk2::gui::Window::set_max_size(const cpaf::Size &s)
+void Window::set_max_size(const cpaf::Size &s)
 {
     GdkGeometry hints;
     hints.max_width = s.width;
@@ -97,12 +99,12 @@ void cpaf::gtk2::gui::Window::set_max_size(const cpaf::Size &s)
 }
 
 //! \todo Deal with DEFAULT_* values
-void cpaf::gtk2::gui::Window::set_position(const cpaf::Point &p)
+void Window::set_position(const cpaf::Point &p)
 {
     gtk_window_move(GTK_WINDOW(m_widget), p.x, p.y);
 }
 
-cpaf::Size cpaf::gtk2::gui::Window::get_size() const
+cpaf::Size Window::get_size() const
 {
     if(GTK_WIDGET_REALIZED(m_widget))
     {
@@ -140,7 +142,7 @@ struct _GtkWindowGeometryInfo
     // We don't care what the remaining fields are.
 };
 
-cpaf::Size cpaf::gtk2::gui::Window::get_min_size() const
+cpaf::Size Window::get_min_size() const
 {
     GtkWindowGeometryInfo *info = GTK_WINDOW(m_widget)->geometry_info;
     if (!info)
@@ -151,7 +153,7 @@ cpaf::Size cpaf::gtk2::gui::Window::get_min_size() const
     return cpaf::Size(info->geometry.min_width, info->geometry.min_height);
 }
 
-cpaf::Size cpaf::gtk2::gui::Window::get_max_size() const
+cpaf::Size Window::get_max_size() const
 {
     GtkWindowGeometryInfo *info = GTK_WINDOW(m_widget)->geometry_info;
     if (!info)
@@ -162,14 +164,14 @@ cpaf::Size cpaf::gtk2::gui::Window::get_max_size() const
     return cpaf::Size(info->geometry.max_width, info->geometry.max_height);
 }
 
-cpaf::Point cpaf::gtk2::gui::Window::get_position() const
+cpaf::Point Window::get_position() const
 {
     gint root_x, root_y;
     gtk_window_get_position(GTK_WINDOW(m_widget), &root_x, &root_y);
     return cpaf::Point(root_x, root_y);
 }
 
-void cpaf::gtk2::gui::Window::show(bool show, bool activate)
+void Window::show(bool show, bool activate)
 {
     if (show)
     {
@@ -181,20 +183,20 @@ void cpaf::gtk2::gui::Window::show(bool show, bool activate)
         gtk_widget_hide(m_widget);
 }
 
-void cpaf::gtk2::gui::Window::set_title(const std::string &t)
+void Window::set_title(const std::string &t)
 {
     //! \todo std::string -> UTF8
     gtk_window_set_title(GTK_WINDOW(m_widget), t.c_str());
 }
 
-std::string cpaf::gtk2::gui::Window::get_title()
+std::string Window::get_title()
 {
     //! \todo UTF8 -> std::string
     return gtk_window_get_title(GTK_WINDOW(m_widget));
 }
 
 //! \todo Deal with DEFAULT_* values
-void cpaf::gtk2::gui::Window::set_client_size(const cpaf::Size &s)
+void Window::set_client_size(const cpaf::Size &s)
 {
     /*!
         \todo Add visible size of the menubar/statusbar, and similar non-drawable portions in the
@@ -206,7 +208,7 @@ void cpaf::gtk2::gui::Window::set_client_size(const cpaf::Size &s)
     gtk_window_resize(GTK_WINDOW(m_widget), s.width, s.height);
 }
 
-cpaf::Size cpaf::gtk2::gui::Window::get_client_size()
+cpaf::Size Window::get_client_size()
 {
     gint width, height;
     //! \todo subtract menubar/toolbar/statusbar etc in a cross-platform manner
@@ -215,7 +217,7 @@ cpaf::Size cpaf::gtk2::gui::Window::get_client_size()
     return cpaf::Size(width, height);
 }
 
-cpaf::Point cpaf::gtk2::gui::Window::get_client_position()
+cpaf::Point Window::get_client_position()
 {
     //! \todo What's the best estimation for these?
     int x = 5, y = 21;
@@ -232,11 +234,11 @@ cpaf::Point cpaf::gtk2::gui::Window::get_client_position()
     return cpaf::Point(x, y);
 }
 
-void cpaf::gtk2::gui::Window::set_content_panel(cpaf::api::gui::Panel *p)
+void Window::set_content_panel(cpaf::api::gui::Panel *p)
 {
 }
 
-cpaf::gui::Panel * cpaf::gtk2::gui::Window::get_content_panel() const
+cpaf::gui::Panel * Window::get_content_panel() const
 {
     return (cpaf::gui::Panel*)NULL;
 }

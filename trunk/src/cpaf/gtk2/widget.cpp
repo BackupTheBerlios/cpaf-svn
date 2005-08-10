@@ -11,12 +11,14 @@
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
-cpaf::gtk2::gui::Widget::Widget()
+using namespace cpaf::gtk2::gui;
+
+Widget::Widget()
     : m_wrapper(NULL),
       m_widget(NULL)
 { }
 
-void cpaf::gtk2::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, GtkWidget * widget)
+void Widget::create(const cpaf::gui::initializer::WidgetData &params, GtkWidget * widget)
 {
     m_wrapper = params.get_wrapper();
     m_widget = widget;
@@ -43,12 +45,12 @@ void cpaf::gtk2::gui::Widget::create(const cpaf::gui::initializer::WidgetData &p
      */
 }
 
-void cpaf::gtk2::gui::Widget::destroy()
+void Widget::destroy()
 {
     //! \todo Add whatever is needed here.
 }
 
-cpaf::gtk2::gui::Widget::~Widget()
+Widget::~Widget()
 {
     if (m_widget)
         gtk_widget_destroy(m_widget);
@@ -60,7 +62,7 @@ cpaf::gtk2::gui::Widget::~Widget()
     delete m_wrapper;
 }
 
-void cpaf::gtk2::gui::Widget::set_size(const cpaf::Size& s)
+void Widget::set_size(const cpaf::Size& s)
 {
     // Sets the size request
     /*
@@ -80,18 +82,18 @@ void cpaf::gtk2::gui::Widget::set_size(const cpaf::Size& s)
     gtk_widget_queue_resize(m_widget);
 }
 
-cpaf::Size cpaf::gtk2::gui::Widget::get_size() const
+cpaf::Size Widget::get_size() const
 {
     // Is this correct? Maybe use gdk_window_get_frame_extents instead?
     return cpaf::Size(m_widget->allocation.width, m_widget->allocation.height);
 }
 
-void cpaf::gtk2::gui::Widget::enable(bool e)
+void Widget::enable(bool e)
 {
     gtk_widget_set_sensitive(m_widget, e);
 }
 
-void cpaf::gtk2::gui::Widget::show(bool show, bool activate)
+void Widget::show(bool show, bool activate)
 {
     if (show)
     {
@@ -103,23 +105,23 @@ void cpaf::gtk2::gui::Widget::show(bool show, bool activate)
         gtk_widget_hide(m_widget);
 }
 
-bool cpaf::gtk2::gui::Widget::is_enabled() const
+bool Widget::is_enabled() const
 {
     return GTK_WIDGET_IS_SENSITIVE(m_widget);
 }
 
-bool cpaf::gtk2::gui::Widget::is_shown() const
+bool Widget::is_shown() const
 {
     return GTK_WIDGET_VISIBLE(m_widget);
 }
 
-cpaf::gui::Panel * cpaf::gtk2::gui::Widget::get_parent() const
+cpaf::gui::Panel * Widget::get_parent() const
 {
     //! \todo IMPLEMENT
     return (cpaf::gui::Panel*)NULL;
 }
 
-cpaf::gui::Window * cpaf::gtk2::gui::Widget::get_parent_window() const
+cpaf::gui::Window * Widget::get_parent_window() const
 {
     //! \todo IMPLEMENT
     return (cpaf::gui::Window*)NULL;

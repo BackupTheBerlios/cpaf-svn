@@ -8,11 +8,13 @@
 #include <cpaf/exception.h>
 #include <gtk/gtk.h>
 
+using namespace cpaf::gtk2::gui;
+
 void
-cpaf::gtk2::gui::TextBox::create (const cpaf::gui::initializer::TextBoxData &params)
+TextBox::create (const cpaf::gui::initializer::TextBoxData &params)
 {
     //! \todo Use factory params
-    cpaf::gtk2::gui::Widget::create (params, gtk_scrolled_window_new (NULL, NULL));
+    Widget::create (params, gtk_scrolled_window_new (NULL, NULL));
 
     //! \todo Use correct border
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (m_widget),
@@ -56,14 +58,14 @@ cpaf::gtk2::gui::TextBox::create (const cpaf::gui::initializer::TextBoxData &par
 }
 
 void
-cpaf::gtk2::gui::TextBox::set_text (const std::string &str)
+TextBox::set_text (const std::string &str)
 {
     //! \todo std::string -> UTF8
     gtk_text_buffer_set_text (m_buffer, str.c_str(), str.length());
 }
 
 std::string
-cpaf::gtk2::gui::TextBox::get_text () const
+TextBox::get_text () const
 {
     GtkTextIter start, end;
     gtk_text_buffer_get_bounds (m_buffer, &start, &end);
@@ -76,7 +78,7 @@ cpaf::gtk2::gui::TextBox::get_text () const
 }
 
 std::string
-cpaf::gtk2::gui::TextBox::get_text (const cpaf::TextRange &r) const
+TextBox::get_text (const cpaf::TextRange &r) const
 {
     cpaf::TextRange range(r);
     range.normalize (gtk_text_buffer_get_char_count (m_buffer));
@@ -100,13 +102,13 @@ cpaf::gtk2::gui::TextBox::get_text (const cpaf::TextRange &r) const
 }
 
 cpaf::text_range_t
-cpaf::gtk2::gui::TextBox::get_length () const
+TextBox::get_length () const
 {
     return gtk_text_buffer_get_char_count (m_buffer);
 }
 
 cpaf::TextRange
-cpaf::gtk2::gui::TextBox::get_selection_range () const
+TextBox::get_selection_range () const
 {
     GtkTextIter select_pos, insert_pos;
 
@@ -121,7 +123,7 @@ cpaf::gtk2::gui::TextBox::get_selection_range () const
 }
 
 void
-cpaf::gtk2::gui::TextBox::set_selection_range (const cpaf::TextRange &range)
+TextBox::set_selection_range (const cpaf::TextRange &range)
 {
     GtkTextIter select_pos, insert_pos;
 
@@ -133,7 +135,7 @@ cpaf::gtk2::gui::TextBox::set_selection_range (const cpaf::TextRange &range)
 }
 
 bool
-cpaf::gtk2::gui::TextBox::get_selection_bounds (cpaf::TextRange &range) const
+TextBox::get_selection_bounds (cpaf::TextRange &range) const
 {
     GtkTextIter start, end;
     bool ret;
@@ -145,7 +147,7 @@ cpaf::gtk2::gui::TextBox::get_selection_bounds (cpaf::TextRange &range) const
 }
 
 void
-cpaf::gtk2::gui::TextBox::set_selection_bounds (const cpaf::TextRange &range)
+TextBox::set_selection_bounds (const cpaf::TextRange &range)
 {
     //! \todo Do we need to normalize?
 
@@ -153,7 +155,7 @@ cpaf::gtk2::gui::TextBox::set_selection_bounds (const cpaf::TextRange &range)
 }
 
 cpaf::text_range_t
-cpaf::gtk2::gui::TextBox::get_insertion_point () const
+TextBox::get_insertion_point () const
 {
     GtkTextIter insert_pos;
     gtk_text_buffer_get_iter_at_mark (m_buffer,
@@ -163,7 +165,7 @@ cpaf::gtk2::gui::TextBox::get_insertion_point () const
 }
 
 void
-cpaf::gtk2::gui::TextBox::set_insertion_point (cpaf::text_range_t pos)
+TextBox::set_insertion_point (cpaf::text_range_t pos)
 {
     GtkTextIter where;
     //! \todo Should the focusing postcondition remain in effect?
@@ -173,7 +175,7 @@ cpaf::gtk2::gui::TextBox::set_insertion_point (cpaf::text_range_t pos)
 }
 
 void
-cpaf::gtk2::gui::TextBox::delete_range (const cpaf::TextRange &r)
+TextBox::delete_range (const cpaf::TextRange &r)
 {
     cpaf::TextRange range(r);
     range.normalize (gtk_text_buffer_get_char_count (m_buffer));
@@ -192,8 +194,8 @@ cpaf::gtk2::gui::TextBox::delete_range (const cpaf::TextRange &r)
 }
 
 cpaf::text_range_t
-cpaf::gtk2::gui::TextBox::insert_text (const std::string &str,
-                                       cpaf::text_range_t pos)
+TextBox::insert_text (const std::string &str,
+                      cpaf::text_range_t pos)
 {
     //! \todo Do we allow negative positions? If not, remove the if block
     if (pos < 0)
@@ -214,25 +216,26 @@ cpaf::gtk2::gui::TextBox::insert_text (const std::string &str,
 }
 
 cpaf::text_range_t
-cpaf::gtk2::gui::TextBox::insert_text (const std::string &str)
+TextBox::insert_text (const std::string &str)
+{
+    //! \todo IMPLEMENT
+    return 0;
+}
+
+void
+TextBox::set_max_length (cpaf::text_range_t len)
 {
     //! \todo IMPLEMENT
 }
 
 void
-cpaf::gtk2::gui::TextBox::set_max_length (cpaf::text_range_t len)
-{
-    //! \todo IMPLEMENT
-}
-
-void
-cpaf::gtk2::gui::TextBox::set_read_only (bool b)
+TextBox::set_read_only (bool b)
 {
     gtk_text_view_set_editable (GTK_TEXT_VIEW (m_widget), !b);
 }
 
 bool
-cpaf::gtk2::gui::TextBox::is_read_only () const
+TextBox::is_read_only () const
 {
     return !gtk_text_view_get_editable (GTK_TEXT_VIEW (m_widget));
 }

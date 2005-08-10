@@ -6,7 +6,9 @@
 
 #include <cpaf/gtk2/gui/panel.h>
 
-void cpaf::gtk2::gui::Panel::create(const cpaf::gui::initializer::PanelData &params)
+using namespace cpaf::gtk2::gui;
+
+void Panel::create(const cpaf::gui::initializer::PanelData &params)
 {
 
 }

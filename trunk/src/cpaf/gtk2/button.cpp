@@ -8,14 +8,16 @@
 #include <cpaf/exception.h>
 #include <gtk/gtk.h>
 
-cpaf::gtk2::gui::Button::Button()
+using namespace cpaf::gtk2::gui;
+
+Button::Button()
     : m_label(NULL)
 { }
 
-void cpaf::gtk2::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
+void Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
     //! \todo Use factory params
-    cpaf::gtk2::gui::Widget::create(params, gtk_button_new());
+    Widget::create(params, gtk_button_new());
 
     GtkWidget * hparent;
     //! \todo IMPLEMENT
@@ -41,7 +43,7 @@ void cpaf::gtk2::gui::Button::create(const cpaf::gui::initializer::ButtonData &p
         show(true, params.get_activate());
 }
 
-void cpaf::gtk2::gui::Button::set_label(const std::string &label)
+void Button::set_label(const std::string &label)
 {
     //! \todo std::string -> UTF8
     if (!m_label)
@@ -54,7 +56,7 @@ void cpaf::gtk2::gui::Button::set_label(const std::string &label)
         gtk_label_set_text(GTK_LABEL(m_label), label.c_str());
 }
 
-std::string cpaf::gtk2::gui::Button::get_label()
+std::string Button::get_label()
 {
     if(!m_label)
         return "";
