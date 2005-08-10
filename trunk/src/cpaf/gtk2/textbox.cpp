@@ -191,9 +191,9 @@ cpaf::gtk2::gui::TextBox::delete_range (const cpaf::TextRange &r)
     gtk_text_buffer_delete (m_buffer, &start, &end);
 }
 
-void
-cpaf::gtk2::gui::TextBox::insert_text (cpaf::text_range_t pos,
-                                       const std::string &str)
+cpaf::text_range_t
+cpaf::gtk2::gui::TextBox::insert_text (const std::string &str,
+                                       cpaf::text_range_t pos)
 {
     //! \todo Do we allow negative positions? If not, remove the if block
     if (pos < 0)
@@ -208,6 +208,15 @@ cpaf::gtk2::gui::TextBox::insert_text (cpaf::text_range_t pos,
 
     //! \todo std::string -> UTF8
     gtk_text_buffer_insert (m_buffer, &iter, str.c_str(), str.length());
+
+    //! \todo return new pos
+    return 0;
+}
+
+cpaf::text_range_t
+cpaf::gtk2::gui::TextBox::insert_text (const std::string &str)
+{
+    //! \todo IMPLEMENT
 }
 
 void

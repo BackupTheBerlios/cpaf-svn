@@ -111,8 +111,15 @@ public:
 
     /*!
         \brief Inserts text at the specified position.
+        \return The end point of the insertion, allowing for insert chaining.
     */
-    void insert_text(cpaf::text_range_t pos, const std::string &str);
+    cpaf::text_range_t insert_text(const std::string &str, cpaf::text_range_t pos);
+
+    /*!
+        \brief Inserts text at the insertion point.
+        \return The new location of the insertion point.
+     */
+    cpaf::text_range_t insert_text(const std::string &str);
 
     /*!
         \brief Returns the number of characters in the widget.

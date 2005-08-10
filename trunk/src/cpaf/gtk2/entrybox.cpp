@@ -104,7 +104,7 @@ void
 cpaf::gtk2::gui::EntryBox::set_insertion_point (cpaf::text_range_t pos)
 {
     //! \todo Negativity consideration?
-    if (pos == END)
+    if (pos == cpaf::TextRange::END)
         pos = -1;
 
     gtk_editable_set_position (GTK_EDITABLE (m_widget), pos);
@@ -120,9 +120,9 @@ cpaf::gtk2::gui::EntryBox::delete_range (const cpaf::TextRange &range)
                               (r.second == cpaf::TextRange::END) ? -1 : r.second);
 }
 
-text_range_t
-cpaf::gtk2::gui::EntryBox::insert_text (cpaf::text_range_t p,
-                                        const std::string &str)
+cpaf::text_range_t
+cpaf::gtk2::gui::EntryBox::insert_text (const std::string &str,
+                                        cpaf::text_range_t p)
 {
     text_range_t pos = p;
     //! \todo std::string -> UTF8
@@ -131,6 +131,12 @@ cpaf::gtk2::gui::EntryBox::insert_text (cpaf::text_range_t p,
                               str.length(),
                               &pos);
     return pos;
+}
+
+cpaf::text_range_t
+cpaf::gtk2::gui::EntryBox::insert_text (const std::string &str)
+{
+    //! \todo IMPLEMENT
 }
 
 void

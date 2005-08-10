@@ -40,7 +40,8 @@ public:
     virtual void set_insertion_point(cpaf::text_range_t);
 
     virtual void delete_range(const cpaf::TextRange&);
-    virtual void insert_text(cpaf::text_range_t pos, const std::string&);
+    virtual cpaf::text_range_t insert_text(const std::string&, cpaf::text_range_t);
+    virtual cpaf::text_range_t insert_text(const std::string&);
 
     virtual void set_max_length(cpaf::text_range_t);
 

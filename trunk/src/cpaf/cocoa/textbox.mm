@@ -99,9 +99,14 @@ void cpaf::cocoa::gui::TextBox::delete_range(const cpaf::TextRange &range)
 
 }
 
-void cpaf::cocoa::gui::TextBox::insert_text(cpaf::text_range_t pos, const std::string &str)
+cpaf::text_range_t cpaf::cocoa::gui::TextBox::insert_text(const std::string &str, cpaf::text_range_t pos)
 {
+    return 0;
+}
 
+cpaf::text_range_t cpaf::cocoa::gui::TextBox::insert_text(const std::string &str)
+{
+    return 0;
 }
 
 void cpaf::cocoa::gui::TextBox::set_max_length(cpaf::text_range_t len)

@@ -75,9 +75,14 @@ void TextWidget::delete_range(const cpaf::TextRange &range)
     m_impl->delete_range(range);
 }
 
-void TextWidget::insert_text(cpaf::text_range_t pos, const std::string &str)
+cpaf::text_range_t TextWidget::insert_text(const std::string &str, cpaf::text_range_t pos)
 {
-    m_impl->insert_text(pos, str);
+    return m_impl->insert_text(str, pos);
+}
+
+cpaf::text_range_t TextWidget::insert_text(const std::string &str)
+{
+    return m_impl->insert_text(str);
 }
 
 void TextWidget::set_max_length(cpaf::text_range_t len)
