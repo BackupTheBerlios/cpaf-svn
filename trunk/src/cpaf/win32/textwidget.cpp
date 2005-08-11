@@ -32,39 +32,51 @@ std::string TextWidget::get_text() const
     return get_window_text();
 }
 
-std::string TextWidget::get_text(const cpaf::TextRange &range) const
-{
-    return "";
-}
-
 cpaf::text_range_t TextWidget::get_length() const
 {
-    return 0;
+    return ::GetWindowTextLength(m_hwnd);
 }
 
 cpaf::TextRange TextWidget::get_selection_range() const
 {
-    return 0;
+    TextRange r;
+    ::SendMessage(m_hwnd, EM_GETSEL, (WPARAM)&r.first, (LPARAM)&r.second);
+    return r;
 }
 
 void TextWidget::set_selection_range(const cpaf::TextRange &range)
 {
-
+    int len = ::GetWindowTextLength(m_hwnd);
+    TextRange r = range;
+    if( r.first < 0 )
+        r.first += len;
+    else if( r.first == r.END )
+        r.first = len;
+    if( r.second < 0 )
+        r.second += len;
+    else if( r.second == r.END )
+        r.second = len;
+        
+    ::SendMessage(m_hwnd, EM_SETSEL, r.first, r.second);
 }
 
 bool TextWidget::get_selection_bounds(cpaf::TextRange &range) const
 {
-    return false;
+    ::SendMessage(m_hwnd, EM_GETSEL, (WPARAM)&range.first, (LPARAM)&range.second);
+    return range.first != range.second;
 }
 
 void TextWidget::set_selection_bounds(const cpaf::TextRange &range)
 {
-
+    TextRange r = range.normalize(::GetWindowTextLength(m_hwnd));
+    ::SendMessage(m_hwnd, EM_SETSEL, r.first, r.second);
 }
 
 cpaf::text_range_t TextWidget::get_insertion_point() const
 {
-    return 0;
+    cpaf::text_range_t p;
+    ::SendMessage(m_hwnd, EM_GETSEL, (WPARAM)&p, 0);
+    return p;
 }
 
 void TextWidget::set_insertion_point(cpaf::text_range_t pos)
@@ -89,15 +101,16 @@ cpaf::text_range_t TextWidget::insert_text(const std::string &str)
 
 void TextWidget::set_max_length(cpaf::text_range_t len)
 {
-
+    //! \todo override this for RichEdits because the value 0 means 64,000 and not "no limit"
+    ::SendMessage(m_hwnd, EM_SETLIMITTEXT, len, 0);
 }
 
 void TextWidget::set_read_only(bool b)
 {
-
+    
 }
 
 bool TextWidget::is_read_only() const
 {
-    return false;
+    return ((int)::GetWindowLong(m_hwnd, GWL_STYLE)) & ES_READONLY;
 }

@@ -50,22 +50,7 @@ void App::add_top_level(TopLevel *t)
     top_level_widgets.push_back(t);
 }
 
-template<class T> class equals
-{
-private:
-    T _t;
-public:
-    equals(T t)
-        : _t(t)
-    { }
-
-    bool operator() (T t)
-    {
-        return _t == t;
-    }
-};
-
 void App::remove_top_level(TopLevel *t)
 {
-    top_level_widgets.remove_if(equals<TopLevel*>(t));
+    top_level_widgets.remove(t);
 }

@@ -277,8 +277,12 @@ struct TextRange : std::pair<text_range_t, text_range_t>
     {
         if( first < 0 )
             first += length;
+        else if( first == END )
+            first = length;
         if( second < 0 )
             second += length;
+        else if( second == END )
+            second = length;
 
         if( first > second )
         {
@@ -291,10 +295,10 @@ struct TextRange : std::pair<text_range_t, text_range_t>
     /*!
         \brief Returns a normalized version of this TextRange
     */
-    TextRange normalize() const
+    TextRange normalize(text_range_t length = 0) const
     {
         TextRange r = *this;
-        r.normalize();
+        r.normalize(length);
         return r;
     }
 };

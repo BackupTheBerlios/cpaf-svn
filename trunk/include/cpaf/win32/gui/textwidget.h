@@ -24,7 +24,6 @@ public:
 
     virtual void set_text(const std::string &s);
     virtual std::string get_text() const;
-    virtual std::string get_text(const cpaf::TextRange &range) const;
     virtual cpaf::text_range_t get_length() const;
 
     virtual cpaf::TextRange get_selection_range() const;

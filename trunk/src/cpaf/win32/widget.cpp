@@ -56,7 +56,6 @@ void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::Widg
         CreationHook hook; // hook WM_CREATE for initialization stuff
         CreationInfo info(this);
 
-        // I don't set m_hwnd here because process_message() sets it for me
         m_hwnd = ::CreateWindowEx(styles_ex, class_name, window_name, styles,
             x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
             &info);

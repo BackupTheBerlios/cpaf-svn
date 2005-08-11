@@ -25,6 +25,11 @@ using cpaf::gui::factory::create_widget;
 using namespace cpaf::event;
 using namespace cpaf::gui;
 
+#ifdef CPAF_WIN32
+// redirect std::cout to a console for a win32 gui app
+void RedirectIOToConsole();
+#endif
+
 /*
     Our derived application class
 */
@@ -60,6 +65,11 @@ private:
 */
 bool MyApp::init()
 {
+#ifdef CPAF_WIN32
+    // give win32 a console to output to
+    RedirectIOToConsole();
+#endif
+
     Panel *panel = create_widget<Panel>(Panel::Initializer());
 
     Window *wnd = create_widget<Window>(Window::Initializer()
@@ -226,7 +236,7 @@ cpaf::TextRange MyApp::get_range()
 
 void MyApp::get_text(Event &event)
 {
-    std::cout << "entry: " << entry->get_text() << "\n";
+    std::cout << "entry:\t" << entry->get_text() << "\n";
     std::cout << "text:\n" << text->get_text() << "\n\n";
 }
 
@@ -234,8 +244,8 @@ void MyApp::get_selection_range(Event &event)
 {
     cpaf::TextRange e = entry->get_selection_range();
     cpaf::TextRange t = text->get_selection_range();
-    std::cout << "entry: " << e.first << " " << e.second << "\n";
-    std::cout << "text: " << t.first << " " << t.second << "\n\n";
+    std::cout << "entry:\t" << e.first << " " << e.second << "\n";
+    std::cout << "text:\t" << t.first << " " << t.second << "\n\n";
 }
 
 void MyApp::get_selection_bounds(Event &event)
@@ -243,20 +253,20 @@ void MyApp::get_selection_bounds(Event &event)
     cpaf::TextRange e, t;
     bool e_ret = entry->get_selection_bounds(e);
     bool t_ret = text->get_selection_bounds(t);
-    std::cout << "entry: " << e.first << " " << e.second << " return value: "<< e_ret << "\n";
-    std::cout << "text: " << t.first << " " << t.second << " return value: " << t_ret << "\n\n";
+    std::cout << "entry:\t" << e.first << " " << e.second << " return value: "<< e_ret << "\n";
+    std::cout << "text:\t" << t.first << " " << t.second << " return value: " << t_ret << "\n\n";
 }
 
 void MyApp::get_insertion_point(Event &event)
 {
-    std::cout << "entry: " << entry->get_insertion_point() << "\n";
-    std::cout << "text: " << text->get_insertion_point() << "\n\n";
+    std::cout << "entry:\t" << entry->get_insertion_point() << "\n";
+    std::cout << "text:\t" << text->get_insertion_point() << "\n\n";
 }
 
 void MyApp::get_length(Event &event)
 {
-    std::cout << "entry: " << entry->get_length() << "\n";
-    std::cout << "text: " << text->get_length() << "\n\n";
+    std::cout << "entry:\t" << entry->get_length() << "\n";
+    std::cout << "text:\t" << text->get_length() << "\n\n";
 }
 
 void MyApp::toggle_read_only(Event &event)
@@ -268,8 +278,8 @@ void MyApp::toggle_read_only(Event &event)
 
 void MyApp::get_text_in_range(Event &event)
 {
-    std::cout << "entry: " << entry->get_text(get_range()) << "\n";
-    std::cout << "text:\n" << text->get_text(get_range()) << "\n\n";
+    std::cout << "entry:\t" << entry->get_text(get_range()) << "\n";
+    std::cout << "text:\t" << text->get_text(get_range()) << "\n\n";
 }
 
 void MyApp::set_selection_range(Event &event)
@@ -310,8 +320,8 @@ void MyApp::delete_range(Event &event)
 void MyApp::insert(Event &event)
 {
     std::cout << "inserting text" << "\n\n";
-    entry->insert_text(get_range().first, insert_text->get_text());
-    text->insert_text(get_range().first, insert_text->get_text());
+    entry->insert_text(insert_text->get_text(), get_range().first);
+    text->insert_text(insert_text->get_text(), get_range().first);
 }
 
 
@@ -323,3 +333,50 @@ cpaf::App *cpaf::main(const cpaf::App::cmd_line &cmd)
 {
     return new MyApp;
 }
+
+#ifdef CPAF_WIN32
+#include <stdio.h>
+#include <fcntl.h>
+#include <io.h>
+
+void RedirectIOToConsole()
+{
+    int hConHandle;
+    long lStdHandle;
+    CONSOLE_SCREEN_BUFFER_INFO coninfo;
+    FILE *fp;
+
+    // allocate a console for this app
+    AllocConsole();
+
+    // set the screen buffer to be big enough to let us scroll text
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
+    coninfo.dwSize.Y = 500;
+    SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
+
+    // redirect unbuffered STDOUT to the console
+    lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
+    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+    fp = _fdopen( hConHandle, "w" );
+    *stdout = *fp;
+    setvbuf( stdout, NULL, _IONBF, 0 );
+
+    // redirect unbuffered STDIN to the console
+    lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
+    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+    fp = _fdopen( hConHandle, "r" );
+    *stdin = *fp;
+    setvbuf( stdin, NULL, _IONBF, 0 );
+
+    // redirect unbuffered STDERR to the console
+    lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
+    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+    fp = _fdopen( hConHandle, "w" );
+    *stderr = *fp;
+    setvbuf( stderr, NULL, _IONBF, 0 );
+
+    // make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
+    // point to console as well
+    std::ios::sync_with_stdio();
+}
+#endif

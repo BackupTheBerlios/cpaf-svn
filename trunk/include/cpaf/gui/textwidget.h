@@ -44,6 +44,10 @@ public:
         than second. In that case, it means that the insertion point is closer to the beginning
         of the text than the selection position.
 
+        \note This function only performs as described on platforms that support this behavior.
+            On platforms that don't support this behavior, this function is identicle to
+            get_selection_bounds().
+
         \remarks If the end of the text is selected, the value of length will be returned,
             not TextRange::END. If you had selected a range of text using negative ranges,
             their positive equivilants will be returned by this function.

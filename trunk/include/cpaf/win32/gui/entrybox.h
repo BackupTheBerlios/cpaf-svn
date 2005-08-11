@@ -24,6 +24,8 @@ public:
 
 	void set_password_mode(bool mode);
     bool get_password_mode();
+
+    std::string get_text(const cpaf::TextRange &range) const;
 };
 
         } // gui

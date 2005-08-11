@@ -19,6 +19,8 @@ class TextBox : public virtual cpaf::win32::gui::TextWidget, public virtual cpaf
 {
 public:
     void create(const cpaf::gui::initializer::TextBoxData &params);
+
+    std::string get_text(const cpaf::TextRange &range) const;
 };
 
         } // gui
