@@ -20,9 +20,10 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #   include <crtdbg.h>
 #   define DBG_MSG(s)      _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", s ## "\n");
 #   define DBG_MSG_2(f, s) _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
-#elif defined(__APPLE__) && defined(_DEBUG)
+#elif defined(__GNUG__) && defined(_DEBUG)
 #   include <stdio.h>
-#   define DBG_MSG(s)      printf("%s:%d %s\n", __FILE__, __LINE__, s)
+#   define DBG_MSG(s)      printf("%s:%d: %s\n", __FILE__, __LINE__, s)
+#   define DBG_MSG_2(f,s)  printf("%s:%d: " f "\n", __FILE__, __LINE__, s);
 #else
 #   define DBG_MSG(s)
 #   define DBG_MSG_2(f,s)
@@ -66,7 +67,7 @@ public:
 
         // connect another listener
         w(&MyButton::on_create, *this);
-        
+
         // connect the click-event
         connect<Event, false>(BUTTON_CLICK, get_id()) (&MyButton::on_btn_click, *this);
     }
@@ -128,7 +129,8 @@ void MyApp::destroy_button(Event &event)
 */
 bool MyApp::init()
 {
-    cpaf::gui::Panel *panel = create_widget<cpaf::gui::Panel>(cpaf::gui::Panel::Initializer());
+    cpaf::gui::Panel::Initializer panel_init; // initializer copy ctor is private now...
+    cpaf::gui::Panel *panel = create_widget<cpaf::gui::Panel>(panel_init);
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.
@@ -144,7 +146,7 @@ bool MyApp::init()
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, btn->get_id()) (&MyApp::toggle_password_mode, *this);
-    
+
     MyButton2 *my_btn = create_widget<MyButton2>(btn_init
         .label("Click me!")
         .position(cpaf::Point(100,100))
@@ -194,7 +196,9 @@ bool MyApp::init()
         );
 
     // test get_parent(). This should not change the value of panel
+    DBG_MSG_2("panel before == %ld", (long)panel);
     panel = text->get_parent();
+    DBG_MSG_2("panel after  == %ld", (long)panel);
 
     /*
         Construct a window with a default position and a default size.
@@ -212,9 +216,11 @@ bool MyApp::init()
         .client_size(cpaf::Size(400,400))
         //.show()
         );
-    
+
     // test get_parent_window. This should not change the value of wnd
+    DBG_MSG_2("Window before == %ld", (long)wnd);
     wnd = pw->get_parent_window();
+    DBG_MSG_2("Window after  == %ld", (long)wnd);
     wnd->show();
 
     return true;

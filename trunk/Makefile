@@ -4,7 +4,7 @@ OBJ_DIR = build
 OUTPUT_DIR = lib
 TARGET = libcpaf_gui_gtk2d.so
 INCLUDE_DIRS = -I include -I .
-CXXFLAGS = -pipe -DCPAF_GTK2 -DCPAF_BUILDING -DCPAF_DLL `pkg-config --cflags gtk+-2.0` -ggdb -Wall -fvisibility-inlines-hidden -fvisibility=hidden
+CXXFLAGS = -pipe -DCPAF_GTK2 -DCPAF_BUILDING -DCPAF_DLL `pkg-config --cflags gtk+-2.0` -ggdb -Wall #-fvisibility-inlines-hidden -fvisibility=hidden
 LD_FLAGS = -shared -fpic -Wl,-O1 `pkg-config --libs gtk+-2.0`
 
 SRC_OBJS =                      \

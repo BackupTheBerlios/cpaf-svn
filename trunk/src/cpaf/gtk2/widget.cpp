@@ -5,6 +5,8 @@
  */
 
 #include <cpaf/gtk2/gui/widget.h>
+#include <cpaf/gui/panel.h>
+#include <cpaf/gui/window.h>
 
 #include <gtk/gtk.h>
 
@@ -22,6 +24,8 @@ void Widget::create(const cpaf::gui::initializer::WidgetData &params, GtkWidget 
 {
     m_wrapper = params.get_wrapper();
     m_widget = widget;
+
+    g_object_set_data (G_OBJECT (m_widget), "cpaf_wrapper", this);
 
     // Set m_widget to NULL when gtk+ internally destroys the widget
     g_signal_connect_after(m_widget, "destroy",
@@ -117,12 +121,16 @@ bool Widget::is_shown() const
 
 cpaf::gui::Panel * Widget::get_parent() const
 {
-    //! \todo IMPLEMENT
-    return (cpaf::gui::Panel*)NULL;
+    return ((Widget*)g_object_get_data (
+                        G_OBJECT (gtk_widget_get_parent (m_widget)),
+                        "cpaf_wrapper")
+           )->get_wrapper<cpaf::gui::Panel>();
 }
 
 cpaf::gui::Window * Widget::get_parent_window() const
 {
-    //! \todo IMPLEMENT
-    return (cpaf::gui::Window*)NULL;
+    return ((Widget*)g_object_get_data (
+                        G_OBJECT (gtk_widget_get_toplevel (m_widget)),
+                        "cpaf_wrapper")
+           )->get_wrapper<cpaf::gui::Window>();
 }

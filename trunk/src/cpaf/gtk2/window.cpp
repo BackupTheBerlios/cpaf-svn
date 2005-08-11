@@ -5,6 +5,7 @@
  */
 
 #include <cpaf/gtk2/gui/window.h>
+#include <cpaf/gtk2/gui/panel.h>
 #include <cpaf/gtk2/utils.h>
 
 #include <gtk/gtk.h>
@@ -21,13 +22,18 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
     if (params.use_client_size())
         set_client_size(params.get_client_size());
 
-    cpaf::gui::Widget *parent = NULL; //params.get_parent();
+    cpaf::gui::Widget *parent = params.get_parent();
     if (parent)
         gtk_window_set_transient_for(GTK_WINDOW(m_widget),
                                      GTK_WINDOW(parent->get_handle()));
 
-    gtk_container_add(GTK_CONTAINER(m_widget), gtk_fixed_new());
-    gtk_widget_show(gtk_bin_get_child(GTK_BIN(m_widget)));
+    if (params.get_content_panel())
+    {
+        Panel * root_panel = dynamic_cast<Panel*>(params.get_content_panel()->get_impl());
+        gtk_container_add (GTK_CONTAINER (m_widget),
+                           GTK_WIDGET (root_panel->get_handle()));
+        params.get_content_panel()->show(true, false);
+    }
 
     // Quit the application for now when the toplevel is closed
     g_signal_connect_swapped(m_widget, "delete-event",

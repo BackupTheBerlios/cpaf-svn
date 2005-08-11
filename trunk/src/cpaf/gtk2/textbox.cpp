@@ -5,6 +5,7 @@
 */
 
 #include <cpaf/gtk2/gui/textbox.h>
+#include <cpaf/gtk2/gui/panel.h>
 #include <cpaf/exception.h>
 #include <gtk/gtk.h>
 
@@ -32,13 +33,11 @@ TextBox::create (const cpaf::gui::initializer::TextBoxData &params)
 
     gtk_widget_show (m_text);
 
-    GtkWidget * hparent;
-    cpaf::gui::Widget *parent = NULL; //params.get_parent();
+    cpaf::gui::Panel *parent = params.get_parent();
     if (parent)
     {
-        hparent = GTK_WIDGET (parent->get_handle());
-        //! \todo Figure out a better way to use the GtkFixed inside toplevels
-        gtk_fixed_put (GTK_FIXED (gtk_bin_get_child (GTK_BIN (hparent))),
+        GtkFixed * hparent = GTK_FIXED (parent->get_handle());
+        gtk_fixed_put (hparent,
                        m_widget,
                        params.get_pos().x,
                        params.get_pos().y);

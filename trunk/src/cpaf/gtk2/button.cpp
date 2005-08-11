@@ -5,6 +5,7 @@
  */
 
 #include <cpaf/gtk2/gui/button.h>
+#include <cpaf/gtk2/gui/panel.h>
 #include <cpaf/exception.h>
 #include <gtk/gtk.h>
 
@@ -14,26 +15,28 @@ Button::Button()
     : m_label(NULL)
 { }
 
-void Button::create(const cpaf::gui::initializer::ButtonData &params)
+void
+Button::create (const cpaf::gui::initializer::ButtonData &params)
 {
     //! \todo Use factory params
-    Widget::create(params, gtk_button_new());
+    Widget::create(params, gtk_button_new ());
 
-    GtkWidget * hparent;
     //! \todo IMPLEMENT
-    cpaf::gui::Widget *parent = NULL; //params.get_parent();
+    cpaf::gui::Panel *parent = params.get_parent();
     if( parent )
     {
-        hparent = GTK_WIDGET(parent->get_handle());
-        //! \todo Figure out a better way to use the GtkFixed inside toplevels
-        gtk_fixed_put(GTK_FIXED(gtk_bin_get_child(GTK_BIN(hparent))), m_widget, params.get_pos().x, params.get_pos().y);
+        GtkFixed * hparent = GTK_FIXED (parent->get_handle());
+        gtk_fixed_put (hparent,
+                       m_widget,
+                       params.get_pos().x,
+                       params.get_pos().y);
     }
     else
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     //! \todo Check in set_label instead, for delayed creation on set_label("") too?
     if (!params.get_label().empty())
-        set_label(params.get_label());
+        set_label (params.get_label());
 
     /*!
         \note Show is always last - it might realize the widget (if params.m_show == true),

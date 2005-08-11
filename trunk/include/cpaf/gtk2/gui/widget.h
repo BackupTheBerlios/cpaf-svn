@@ -44,6 +44,7 @@ public:
 
     virtual cpaf::gui::Panel *get_parent() const;
     virtual cpaf::gui::Window *get_parent_window() const;
+    template<typename T> T *get_wrapper() const { return dynamic_cast<T*>(m_wrapper); }
 
 protected:
     Widget();
