@@ -107,10 +107,10 @@ public:
 
     virtual ~Object() { }
 
-    // non copyable and non assignable
 private:
-    Object(const Object<T> &) { }
-    Object<T> &operator= (const Object<T> &) { return *this; }
+    // non copyable and non assignable
+    Object(const Object<T> &);
+    Object<T> &operator= (const Object<T> &);
 };
 
         } // initializer

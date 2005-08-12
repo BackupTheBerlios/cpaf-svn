@@ -129,7 +129,7 @@ void MyApp::destroy_button(Event &event)
 */
 bool MyApp::init()
 {
-    cpaf::gui::Panel *panel = create_widget<cpaf::gui::Panel>(cpaf::gui::Panel::Initializer().show());
+    cpaf::gui::Panel *panel = create_widget<cpaf::gui::Panel>(cpaf::gui::Panel::Initializer());
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.

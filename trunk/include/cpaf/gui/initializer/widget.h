@@ -108,6 +108,11 @@ public:
     bool get_show() const { return m_data->get_show(); }
     bool get_enable() const { return m_data->get_enable(); }
     bool get_activate() const { return m_data->get_activate(); }
+
+private:
+    // non copyable and non assignable
+    Widget(const Widget<T> &);
+    Widget<T> &operator= (const Widget<T> &);
 };
 
         } // initializer

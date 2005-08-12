@@ -36,6 +36,11 @@ protected:
         : Widget<T>(data),
         m_data(data)
     { }
+
+private:
+    // non copyable and non assignable
+    Panel(const Panel<T> &);
+    Panel<T> &operator= (const Panel<T> &);
 };
 
         } // initializer

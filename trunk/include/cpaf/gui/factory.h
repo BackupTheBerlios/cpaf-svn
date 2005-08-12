@@ -18,7 +18,7 @@ template<typename Widget> Widget *create_widget(typename Widget::Initializer con
 {
     Widget *wrapper = new Widget;
 
-    // create the native widget passing it a copy of the data contained in the initializer
+    // create the native widget with this initialization data
     wrapper->create(initializer);
 
     return wrapper;
