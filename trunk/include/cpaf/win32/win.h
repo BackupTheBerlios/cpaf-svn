@@ -31,8 +31,6 @@ namespace cpaf {
 
 class Widget;
 
-typedef std::map<HWND, Widget *> WidgetMap;
-
 Widget *get_widget_from_hwnd(HWND h);
 template <typename T> T *get_widget_from_hwnd(HWND h)
 {

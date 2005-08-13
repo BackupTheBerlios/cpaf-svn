@@ -80,9 +80,6 @@ void Widget::destroy()
 
 Widget::~Widget()
 {
-    // remove our HWND from the widget map
-    widget_map_remove_hwnd(m_hwnd);
-
     // delete our wrapper safely
     //cpaf::gui::factory::delete_implementation_wrapper(this);
 
@@ -112,6 +109,9 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
             // send destroy event
             cpaf::event::Event event(cpaf::event::WIDGET_DESTROY, m_id);
             cpaf::event::get_manager().send_event(event);
+
+            // remove our widget window property
+            widget_map_remove_hwnd(m_hwnd);
 
             // queue ourselves for deletion
             widget_deletion_stack_push(this);
