@@ -40,7 +40,7 @@ Files=
 
 [Dir include/cpaf/gui/initializer]
 Dirs=
-Files=button.h/object.h/textbox.h/widget.h/window.h/entrybox.h/textwidget.h/passwordbox.h/panel.h
+Files=button.h/object.h/textbox.h/widget.h/window.h/entrybox.h/textwidget.h/panel.h
 
 [Dir include/cpaf/private]
 Dirs=
