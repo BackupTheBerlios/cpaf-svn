@@ -20,7 +20,9 @@ Widget::Widget()
       m_widget(NULL)
 { }
 
-void Widget::create(const cpaf::gui::initializer::WidgetData &params, GtkWidget * widget)
+void
+Widget::create (const cpaf::gui::initializer::WidgetData &params,
+                GtkWidget * widget)
 {
     m_wrapper = params.get_wrapper();
     m_widget = widget;
@@ -29,19 +31,20 @@ void Widget::create(const cpaf::gui::initializer::WidgetData &params, GtkWidget 
 
     // Set m_widget to NULL when gtk+ internally destroys the widget
     g_signal_connect_after(m_widget, "destroy",
-                           G_CALLBACK (gtk_widget_destroyed), &m_widget);
+                           G_CALLBACK (gtk_widget_destroyed),
+                           &m_widget);
 
     if (!params.use_default_size())
-        set_size(params.get_size());
+        set_size (params.get_size());
 
     //! \todo Uncomment after all set_{min,max}_size methods are aware of the DEFAULT_* values
     //set_min_size(params.m_min_size);
     //set_max_size(params.m_max_size);
 
     if (!params.use_default_pos())
-        set_position(params.get_pos());
+        set_position (params.get_pos());
 
-    enable(params.get_enable());
+    enable (params.get_enable());
 
     /*!
         \todo Make sure nothing above realizes the control, and change order appropriately
@@ -49,7 +52,8 @@ void Widget::create(const cpaf::gui::initializer::WidgetData &params, GtkWidget 
      */
 }
 
-void Widget::destroy()
+void
+Widget::destroy()
 {
     //! \todo Add whatever is needed here.
 }
@@ -57,7 +61,7 @@ void Widget::destroy()
 Widget::~Widget()
 {
     if (m_widget)
-        gtk_widget_destroy(m_widget);
+        gtk_widget_destroy (m_widget);
 
     // delete our wrapper object safely
     //cpaf::gui::factory::delete_implementation_wrapper(this);
@@ -66,7 +70,8 @@ Widget::~Widget()
     delete m_wrapper;
 }
 
-void Widget::set_size(const cpaf::Size& s)
+void
+Widget::set_size (const cpaf::Size& s)
 {
     // Sets the size request
     /*
@@ -82,44 +87,59 @@ void Widget::set_size(const cpaf::Size& s)
     // Do we want to enforce allocation instead?
 
     //! \todo Deal with DEFAULT_* values
-    gtk_widget_set_size_request(m_widget, s.width, s.height);
-    gtk_widget_queue_resize(m_widget);
+    gtk_widget_set_size_request (m_widget, s.width, s.height);
+    gtk_widget_queue_resize (m_widget);
 }
 
-cpaf::Size Widget::get_size() const
+void
+Widget::set_position (const cpaf::Point& pos)
+{
+    gtk_fixed_move (GTK_FIXED (gtk_widget_get_parent (m_widget)),
+                    m_widget,
+                    pos.x,
+                    pos.y);
+}
+
+cpaf::Size
+Widget::get_size() const
 {
     // Is this correct? Maybe use gdk_window_get_frame_extents instead?
-    return cpaf::Size(m_widget->allocation.width, m_widget->allocation.height);
+    return cpaf::Size (m_widget->allocation.width, m_widget->allocation.height);
 }
 
-void Widget::enable(bool e)
+void
+Widget::enable (bool e)
 {
-    gtk_widget_set_sensitive(m_widget, e);
+    gtk_widget_set_sensitive (m_widget, e);
 }
 
-void Widget::show(bool show, bool activate)
+void
+Widget::show (bool show, bool activate)
 {
     if (show)
     {
-        gtk_widget_show(m_widget);
-        if (activate && GTK_WIDGET_CAN_FOCUS(m_widget))
-            gtk_widget_grab_focus(m_widget);
+        gtk_widget_show (m_widget);
+        if (activate && GTK_WIDGET_CAN_FOCUS (m_widget))
+            gtk_widget_grab_focus (m_widget);
     }
     else
-        gtk_widget_hide(m_widget);
+        gtk_widget_hide (m_widget);
 }
 
-bool Widget::is_enabled() const
+bool
+Widget::is_enabled() const
 {
-    return GTK_WIDGET_IS_SENSITIVE(m_widget);
+    return GTK_WIDGET_IS_SENSITIVE (m_widget);
 }
 
-bool Widget::is_shown() const
+bool
+Widget::is_shown() const
 {
-    return GTK_WIDGET_VISIBLE(m_widget);
+    return GTK_WIDGET_VISIBLE (m_widget);
 }
 
-cpaf::gui::Panel * Widget::get_parent() const
+cpaf::gui::Panel *
+Widget::get_parent() const
 {
     return ((Widget*)g_object_get_data (
                         G_OBJECT (gtk_widget_get_parent (m_widget)),
@@ -127,7 +147,8 @@ cpaf::gui::Panel * Widget::get_parent() const
            )->get_wrapper<cpaf::gui::Panel>();
 }
 
-cpaf::gui::Window * Widget::get_parent_window() const
+cpaf::gui::Window *
+Widget::get_parent_window() const
 {
     return ((Widget*)g_object_get_data (
                         G_OBJECT (gtk_widget_get_toplevel (m_widget)),
