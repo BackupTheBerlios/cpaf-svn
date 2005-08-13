@@ -36,11 +36,6 @@ protected:
         : TextWidget<T>(data),
         m_data(data)
     { }
-
-private:
-    // non copyable and non assignable
-    TextBox(const TextBox<T> &);
-    TextBox<T> &operator= (const TextBox<T> &);
 };
 
         } // initializer

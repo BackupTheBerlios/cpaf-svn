@@ -7,7 +7,7 @@
 #ifndef CPAF_GUI_INITIALIZER_OBJECT_H
 #define CPAF_GUI_INITIALIZER_OBJECT_H
 
-#include <memory> // for std::auto_ptr
+#include <boost/shared_ptr.hpp>
 #include <cpaf/dllimpexp.h>
 #include <cpaf/types.h>
 
@@ -69,7 +69,7 @@ public:
     typedef ObjectData data_type;
 
 protected:
-    std::auto_ptr<data_type> m_data;
+    boost::shared_ptr<data_type> m_data;
 
     Object(data_type *data)
         : m_data(data)
@@ -108,8 +108,7 @@ public:
     virtual ~Object() { }
 
 private:
-    // non copyable and non assignable
-    Object(const Object<T> &);
+    // non assignable
     Object<T> &operator= (const Object<T> &);
 };
 

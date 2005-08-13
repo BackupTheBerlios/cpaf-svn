@@ -89,11 +89,6 @@ public:
     std::string get_title() const { return m_data->get_title(); }
     cpaf::Size get_client_size() const { return m_data->get_client_size(); }
     cpaf::gui::Panel *get_content_panel() const { return m_data->get_content_panel(); }
-
-private:
-    // non copyable and non assignable
-    Window(const Window<T> &);
-    Window<T> &operator= (const Window<T> &);
 };
 
         } // initializer

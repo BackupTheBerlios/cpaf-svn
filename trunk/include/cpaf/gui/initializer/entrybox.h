@@ -53,11 +53,6 @@ public:
     }
 
     bool get_password_mode() const { return m_data->get_password_mode(); }
-
-private:
-    // non copyable and non assignable
-    EntryBox(const EntryBox<T> &);
-    EntryBox<T> &operator= (const EntryBox<T> &);
 };
 
         } // initializer

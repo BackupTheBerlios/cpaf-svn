@@ -52,11 +52,6 @@ public:
     }
 
     std::string get_label() const { return m_data->get_label(); }
-
-private:
-    // non copyable and non assignable
-    Button(const Button<T> &);
-    Button<T> &operator= (const Button<T> &);
 };
 
         } // initializer

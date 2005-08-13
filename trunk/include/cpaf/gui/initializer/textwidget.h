@@ -51,11 +51,6 @@ public:
     }
 
     std::string get_text() const { return m_data->get_text(); }
-
-private:
-    // non copyable and non assignable
-    TextWidget(const TextWidget<T> &);
-    TextWidget<T> &operator= (const TextWidget<T> &);
 };
 
         } // initializer
