@@ -237,6 +237,9 @@
 				RelativePath=".\include\cpaf\app.h">
 			</File>
 			<File
+				RelativePath=".\include\cpaf\debug.h">
+			</File>
+			<File
 				RelativePath=".\include\cpaf\dllimpexp.h">
 			</File>
 			<File
@@ -247,9 +250,6 @@
 			</File>
 			<File
 				RelativePath=".\include\cpaf\main.h">
-			</File>
-			<File
-				RelativePath=".\resource.h">
 			</File>
 			<File
 				RelativePath=".\include\cpaf\types.h">

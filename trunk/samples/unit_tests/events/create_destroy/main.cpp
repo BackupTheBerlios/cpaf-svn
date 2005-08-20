@@ -25,19 +25,7 @@ The program '[2204] create_destroy.exe: Native' has exited with code 0 (0x0).
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
 
-#include <cpaf/exception.h>
-
-#if defined(_MSC_VER) && defined(_DEBUG)
-#   include <crtdbg.h>
-#   define DBG_MSG(s)      _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", s ## "\n");
-#   define DBG_MSG_2(f, s) _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
-#elif defined(__APPLE__) && defined(_DEBUG)
-#   include <stdio.h>
-#   define DBG_MSG(s)      printf("%s:%d %s\n", __FILE__, __LINE__, s)
-#else
-#   define DBG_MSG(s)
-#   define DBG_MSG_2(f,s)
-#endif
+#include <cpaf/debug.h>
 
 using namespace cpaf::gui;
 using namespace cpaf::event;
@@ -63,7 +51,7 @@ class MyButton : public Button
 public:
     MyButton()
     {
-        DBG_MSG("MyButton::ctor");
+        cpaf::DebugReport() << "MyButton::ctor";
         
         connect<Event, false>(WIDGET_DESTROY, get_id())(&MyButton::on_destroy, *this);
         connect<Event, false>(WIDGET_CREATE, get_id())(&MyButton::on_create, *this);
@@ -71,12 +59,12 @@ public:
 
     ~MyButton()
     {
-        DBG_MSG("MyButton::dtor");
+        cpaf::DebugReport() << "MyButton::dtor";
     }
 
     void on_create(Event &event)
     {
-        DBG_MSG("MyButton::on_create");
+        cpaf::DebugReport() << "MyButton::on_create";
     }
 
     void on_destroy(Event &event);
@@ -96,7 +84,7 @@ public:
 
     MyWindow()
     {
-        DBG_MSG("MyWindow::ctor");
+        cpaf::DebugReport() << "MyWindow::ctor";
 
         // create the root panel
         m_panel = create_widget<Panel>(Panel::Initializer());
@@ -112,14 +100,14 @@ public:
 
     ~MyWindow()
     {
-        DBG_MSG("MyWindow::dtor");
+        cpaf::DebugReport() << "MyWindow::dtor";
 
         parent = NULL;
     }
 
     void on_create(Event &event)
     {
-        DBG_MSG("MyWindow::on_create");
+        cpaf::DebugReport() << "MyWindow::on_create";
 
         // set our content panel
         set_content_panel(m_panel);
@@ -133,7 +121,7 @@ public:
 
     void on_destroy(Event &event)
     {
-        DBG_MSG("MyWindow::on_destroy");
+        cpaf::DebugReport() << "MyWindow::on_destroy";
 
         // the button must exist at this point so accessing it shouldn't crash
         m_btn->get_label();
@@ -143,7 +131,7 @@ public:
 
     void on_btn_destroy(Event &event)
     {
-        DBG_MSG("MyWindow::on_btn_destroy");
+        cpaf::DebugReport() << "MyWindow::on_btn_destroy";
 
         // the button must exist at this point so accessing it shouldn't crash
         m_btn->get_label();
@@ -153,14 +141,14 @@ public:
 
     void on_panel_destroy(Event &event)
     {
-        DBG_MSG("MyWindow::on_panel_destroy");
+        cpaf::DebugReport() << "MyWindow::on_panel_destroy";
     }
 };
 
 // We need to implement that here
 void MyButton::on_destroy(Event &event)
 {
-    DBG_MSG("MyButton::on_destroy");
+    cpaf::DebugReport() << "MyButton::on_destroy";
     
     // the parent widget must not be freed yet so this is ok
     parent->my_data;

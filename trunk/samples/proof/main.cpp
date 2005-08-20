@@ -8,6 +8,7 @@ In order to do things like throwing across dll boundaries and std::string cleanu
 playing nice through dll boundaries, a dynamically linked run time library MUST BE USED
 */
 
+#include <cpaf/debug.h>
 #include <cpaf/main.h>
 #include <cpaf/gui/app.h>
 #include <cpaf/gui/window.h>
@@ -15,19 +16,6 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/entrybox.h>
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
-
-#if defined(_MSC_VER) && defined(_DEBUG)
-#   include <crtdbg.h>
-#   define DBG_MSG(s)      _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", s ## "\n");
-#   define DBG_MSG_2(f, s) _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
-#elif defined(__GNUG__) && defined(_DEBUG)
-#   include <stdio.h>
-#   define DBG_MSG(s)      printf("%s:%d: %s\n", __FILE__, __LINE__, s)
-#   define DBG_MSG_2(f,s)  printf("%s:%d: " f "\n", __FILE__, __LINE__, s);
-#else
-#   define DBG_MSG(s)
-#   define DBG_MSG_2(f,s)
-#endif
 
 using cpaf::gui::factory::create_widget;
 using namespace cpaf::event;
@@ -54,7 +42,7 @@ class MyButton : public cpaf::gui::Button
 public:
     MyButton()
     {
-        DBG_MSG("MyButton::Ctor");
+        cpaf::DebugReport() << "MyButton::Ctor";
 
         // connected one event listener
         connect<Event, false>(WIDGET_DESTROY, get_id()) (&MyButton::on_destroy, *this);
@@ -74,7 +62,7 @@ public:
 
     void on_create(cpaf::event::Event &event)
     {
-        DBG_MSG("MyButton::on_create");
+        cpaf::DebugReport() << "MyButton::on_create";
 
         // let the other listeners in the chain process
         event.continue_processing();
@@ -83,7 +71,9 @@ public:
     virtual void on_btn_click(cpaf::event::Event &event)
     {
         static int status = 0;
-        DBG_MSG("MyButton::on_btn_click");
+
+        cpaf::DebugReport() << "MyButton::on_btn_click";
+
         if (status++ == 0)
             set_label("Thank you! Click again to quit!");
         else
@@ -92,7 +82,7 @@ public:
 
     virtual void on_destroy(cpaf::event::Event &event)
     {
-        DBG_MSG("MyButton::on_destroy");
+        cpaf::DebugReport() << "MyButton::on_destroy";
     }
 };
 
@@ -108,19 +98,19 @@ public:
     // override the base event listener
     void on_destroy(cpaf::event::Event &event)
     {
-        DBG_MSG("MyButton2::on_destroy");
+        cpaf::DebugReport() << "MyButton2::on_destroy";
     }
 };
 
 void MyApp::toggle_password_mode(Event &event)
 {
-    DBG_MSG("MyApp::toggle_password_mode");
+    cpaf::DebugReport() << "MyApp::toggle_password_mode";
     pw->set_password_mode(!pw->get_password_mode());
 }
 
 void MyApp::destroy_button(Event &event)
 {
-    DBG_MSG("MyApp::destroy_button");
+    cpaf::DebugReport() << "MyApp::destroy_button";
     destroy_btn->destroy();
 }
 
@@ -195,9 +185,9 @@ bool MyApp::init()
         );
 
     // test get_parent(). This should not change the value of panel
-    DBG_MSG_2("panel before == %ld", (long)panel);
+    cpaf::DebugReport() << "panel before:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
     panel = text->get_parent();
-    DBG_MSG_2("panel after  == %ld", (long)panel);
+    cpaf::DebugReport() << "panel after:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
 
     /*
         Construct a window with a default position and a default size.
@@ -217,9 +207,9 @@ bool MyApp::init()
         );
 
     // test get_parent_window. This should not change the value of wnd
-    DBG_MSG_2("Window before == %ld", (long)wnd);
+    cpaf::DebugReport() << "Window before:\t" << std::hex << std::setfill('0') << std::setw(8) << wnd;
     wnd = pw->get_parent_window();
-    DBG_MSG_2("Window after  == %ld", (long)wnd);
+    cpaf::DebugReport() << "Window after:\t" << std::hex << std::setfill('0') << std::setw(8) << wnd;
     wnd->show();
 
     return true;

@@ -7,23 +7,13 @@
 #ifndef CPAF_WIN32_WIN_H
 #define CPAF_WIN32_WIN_H
 
+#define NOMINMAX
 #include <windows.h>
 
-// undefine some junk that windows.h gives us
-#undef max
-#undef min
+#include <cpaf/debug.h>
 
 #include <map>
 #include <stack>
-
-#if defined(_MSC_VER) && defined(_DEBUG)
-#   include <crtdbg.h>
-#   define DBG_MSG(s)      _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", s ## "\n");
-#   define DBG_MSG_2(f, s) _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
-#else
-#   define DBG_MSG(s)
-#   define DBG_MSG_2(f,s)
-#endif
 
 namespace cpaf {
     namespace win32 {

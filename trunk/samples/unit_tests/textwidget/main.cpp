@@ -7,28 +7,11 @@
 #include <cpaf/gui/entrybox.h>
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
-#include <iostream>
-
-#if defined(_MSC_VER) && defined(_DEBUG)
-#   include <crtdbg.h>
-#   define DBG_MSG(s)      _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", s ## "\n");
-#   define DBG_MSG_2(f, s) _CrtDbgReport(_CRT_WARN, __FILE__, __LINE__, "", f ## "\n", s);
-#elif defined(__APPLE__) && defined(_DEBUG)
-#   include <stdio.h>
-#   define DBG_MSG(s)      printf("%s:%d %s\n", __FILE__, __LINE__, s)
-#else
-#   define DBG_MSG(s)
-#   define DBG_MSG_2(f,s)
-#endif
+#include <cpaf/debug.h>
 
 using cpaf::gui::factory::create_widget;
 using namespace cpaf::event;
 using namespace cpaf::gui;
-
-#ifdef CPAF_WIN32
-// redirect std::cout to a console for a win32 gui app
-void RedirectIOToConsole();
-#endif
 
 /*
     Our derived application class
@@ -65,11 +48,6 @@ private:
 */
 bool MyApp::init()
 {
-#ifdef CPAF_WIN32
-    // give win32 a console to output to
-    RedirectIOToConsole();
-#endif
-
     Panel *panel = create_widget<Panel>(Panel::Initializer());
 
     Window *wnd = create_widget<Window>(Window::Initializer()
@@ -215,7 +193,7 @@ bool MyApp::init()
     */
     text = create_widget<TextBox>(TextBox::Initializer()
         .parent(panel)
-        .text("I'm a multline text box!\nHere's the second line\n\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
+        .text("I'm a multline text box!\nHere's the second line\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
         .position(cpaf::Point(10,300))
         .size(cpaf::Size(300,130))
         .show()
@@ -236,16 +214,18 @@ cpaf::TextRange MyApp::get_range()
 
 void MyApp::get_text(Event &event)
 {
-    std::cout << "entry:\t" << entry->get_text() << "\n";
-    std::cout << "text:\n" << text->get_text() << "\n\n";
+    cpaf::DebugReport() << "Get Text:";
+    cpaf::DebugReport() << "entry:\t" << entry->get_text();
+    cpaf::DebugReport() << "text:\n" << text->get_text() << "\n";
 }
 
 void MyApp::get_selection_range(Event &event)
 {
     cpaf::TextRange e = entry->get_selection_range();
     cpaf::TextRange t = text->get_selection_range();
-    std::cout << "entry:\t" << e.first << " " << e.second << "\n";
-    std::cout << "text:\t" << t.first << " " << t.second << "\n\n";
+    cpaf::DebugReport() << "Get Selection Range:";
+    cpaf::DebugReport() << "entry:\t" << e.first << " " << e.second;
+    cpaf::DebugReport() << "text:\t" << t.first << " " << t.second << "\n";
 }
 
 void MyApp::get_selection_bounds(Event &event)
@@ -253,78 +233,80 @@ void MyApp::get_selection_bounds(Event &event)
     cpaf::TextRange e, t;
     bool e_ret = entry->get_selection_bounds(e);
     bool t_ret = text->get_selection_bounds(t);
-    std::cout << "entry:\t" << e.first << " " << e.second << " return value: "<< e_ret << "\n";
-    std::cout << "text:\t" << t.first << " " << t.second << " return value: " << t_ret << "\n\n";
+    cpaf::DebugReport() << "Get Selection Bounds:";
+    cpaf::DebugReport() << "entry:\t" << e.first << " " << e.second << " return value: "<< e_ret;
+    cpaf::DebugReport() << "text:\t" << t.first << " " << t.second << " return value: " << t_ret << "\n";
 }
 
 void MyApp::get_insertion_point(Event &event)
 {
-    std::cout << "entry:\t" << entry->get_insertion_point() << "\n";
-    std::cout << "text:\t" << text->get_insertion_point() << "\n\n";
+    cpaf::DebugReport() << "Get Insertion Point:";
+    cpaf::DebugReport() << "entry:\t" << entry->get_insertion_point();
+    cpaf::DebugReport() << "text:\t" << text->get_insertion_point() << "\n";
 }
 
 void MyApp::get_length(Event &event)
 {
-    std::cout << "entry:\t" << entry->get_length() << "\n";
-    std::cout << "text:\t" << text->get_length() << "\n\n";
+    cpaf::DebugReport() << "Get Length";
+    cpaf::DebugReport() << "entry:\t" << entry->get_length();
+    cpaf::DebugReport() << "text:\t" << text->get_length() << "\n";
 }
 
 void MyApp::toggle_read_only(Event &event)
 {
-    std::cout << "toggling read only" << "\n\n";
+    cpaf::DebugReport() << "Toggle read only" << "\n";
     entry->set_read_only(!entry->is_read_only());
     text->set_read_only(!text->is_read_only());
 }
 
 void MyApp::get_text_in_range(Event &event)
 {
-    std::cout << "entry:\t" << entry->get_text(get_range()) << "\n";
-    std::cout << "text:\t" << text->get_text(get_range()) << "\n\n";
+    cpaf::DebugReport() << "Get Text In Range:";
+    cpaf::DebugReport() << "entry:\t" << entry->get_text(get_range());
+    cpaf::DebugReport() << "text:\t" << text->get_text(get_range()) << "\n";
 }
 
 void MyApp::set_selection_range(Event &event)
 {
-    std::cout << "setting selection range" << "\n\n";
+    cpaf::DebugReport() << "Set Selection Range" << "\n";
     entry->set_selection_range(get_range());
     text->set_selection_range(get_range());
 }
 
 void MyApp::set_selection_bounds(Event &event)
 {
-    std::cout << "setting selection bounds" << "\n\n";
+    cpaf::DebugReport() << "Set Selection Bounds" << "\n";
     entry->set_selection_bounds(get_range());
     text->set_selection_bounds(get_range());
 }
 
 void MyApp::set_max_length(Event &event)
 {
-    std::cout << "setting max length" << "\n\n";
+    cpaf::DebugReport() << "Set Max Length" << "\n";
     entry->set_max_length(get_range().first);
     text->set_max_length(get_range().first);
 }
 
 void MyApp::set_insertion_point(Event &event)
 {
-    std::cout << "setting insertion point" << "\n\n";
+    cpaf::DebugReport() << "Set Isertion Point" << "\n";
     entry->set_insertion_point(get_range().first);
     text->set_insertion_point(get_range().first);
 }
 
 void MyApp::delete_range(Event &event)
 {
-    std::cout << "deleting range" << "\n\n";
+    cpaf::DebugReport() << "Delete Range" << "\n";
     entry->delete_range(get_range());
     text->delete_range(get_range());
 }
 
 void MyApp::insert(Event &event)
 {
-    std::cout << "inserting text" << "\n\n";
+    cpaf::DebugReport() << "Insert Text" << "\n";
     entry->insert_text(insert_text->get_text(), get_range().first);
     text->insert_text(insert_text->get_text(), get_range().first);
 }
-
-
 
 /*
     Entry cpaf::Point for the application which returns an instance of the application object to use
@@ -333,50 +315,3 @@ cpaf::App *cpaf::main(const cpaf::App::cmd_line &cmd)
 {
     return new MyApp;
 }
-
-#ifdef CPAF_WIN32
-#include <stdio.h>
-#include <fcntl.h>
-#include <io.h>
-
-void RedirectIOToConsole()
-{
-    int hConHandle;
-    long lStdHandle;
-    CONSOLE_SCREEN_BUFFER_INFO coninfo;
-    FILE *fp;
-
-    // allocate a console for this app
-    AllocConsole();
-
-    // set the screen buffer to be big enough to let us scroll text
-    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
-    coninfo.dwSize.Y = 500;
-    SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
-
-    // redirect unbuffered STDOUT to the console
-    lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
-    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-    fp = _fdopen( hConHandle, "w" );
-    *stdout = *fp;
-    setvbuf( stdout, NULL, _IONBF, 0 );
-
-    // redirect unbuffered STDIN to the console
-    lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
-    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-    fp = _fdopen( hConHandle, "r" );
-    *stdin = *fp;
-    setvbuf( stdin, NULL, _IONBF, 0 );
-
-    // redirect unbuffered STDERR to the console
-    lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
-    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-    fp = _fdopen( hConHandle, "w" );
-    *stderr = *fp;
-    setvbuf( stderr, NULL, _IONBF, 0 );
-
-    // make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
-    // point to console as well
-    std::ios::sync_with_stdio();
-}
-#endif

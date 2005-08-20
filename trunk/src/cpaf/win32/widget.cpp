@@ -251,7 +251,7 @@ cpaf::gui::Window *Widget::get_parent_window() const
     if( w )
         return w->get_wrapper<cpaf::gui::Window>();
     else
-        DBG_MSG("Bad parent_window HWND");
+        cpaf::DebugReport() << "Bad parent_window HWND";
 
     return 0;
 }
