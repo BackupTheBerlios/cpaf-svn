@@ -9,6 +9,8 @@
 #include <cpaf/gui/panel.h>
 #include <cpaf/debug.h>
 
+#include <sstream>
+
 using cpaf::gui::factory::create_widget;
 using namespace cpaf::event;
 using namespace cpaf::gui;
@@ -207,8 +209,23 @@ bool MyApp::init()
 cpaf::TextRange MyApp::get_range()
 {
     cpaf::text_range_t begin, end;
-    begin = atoi(range_begin->get_text().c_str());
-    end = atoi(range_end->get_text().c_str());
+
+    std::stringstream ss;
+
+    // begin
+    ss.str(range_begin->get_text());
+    if( ss.str() == "END" )
+        begin = cpaf::TextRange::END;
+    else
+        ss >> begin;
+
+    // end
+    ss.str(range_end->get_text());
+    if( ss.str() == "END" )
+        end = cpaf::TextRange::END;
+    else
+        ss >> end;
+
     return cpaf::TextRange(begin, end);
 }
 
@@ -304,8 +321,8 @@ void MyApp::delete_range(Event &event)
 void MyApp::insert(Event &event)
 {
     cpaf::DebugReport() << "Insert Text" << "\n";
-    entry->insert_text(insert_text->get_text(), get_range().first);
-    text->insert_text(insert_text->get_text(), get_range().first);
+    entry->insert_text(insert_text->get_text());
+    text->insert_text(insert_text->get_text());
 }
 
 /*

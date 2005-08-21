@@ -255,7 +255,7 @@ typedef int text_range_t;
     (-1, END): "hell|o||"
     (-3, -1):   "he|ll||o"
 */
-struct TextRange : std::pair<text_range_t, text_range_t>
+struct CPAF_API TextRange : std::pair<text_range_t, text_range_t>
 {
     typedef std::pair<text_range_t, text_range_t> base;
     static const text_range_t END;

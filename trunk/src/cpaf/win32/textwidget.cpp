@@ -39,6 +39,9 @@ cpaf::text_range_t TextWidget::get_length() const
 
 cpaf::TextRange TextWidget::get_selection_range() const
 {
+    // unfortunately, the win32 api returns a normalized ranged.
+    // in other words, we cannot find out where the caret is in relation
+    // to the end of the selection. At least not for EntryBox and TextBox
     TextRange r;
     ::SendMessage(m_hwnd, EM_GETSEL, (WPARAM)&r.first, (LPARAM)&r.second);
     return r;
@@ -81,21 +84,68 @@ cpaf::text_range_t TextWidget::get_insertion_point() const
 
 void TextWidget::set_insertion_point(cpaf::text_range_t pos)
 {
-
+    ::SendMessage(m_hwnd, EM_SETSEL, pos, pos);
 }
 
 void TextWidget::delete_range(const cpaf::TextRange &range)
 {
+    //! \todo Prevent the sending of spurious messages
 
+    // store the current selection
+    cpaf::TextRange cur_sel = get_selection_range();
+
+    cpaf::TextRange r = range.normalize(::GetWindowTextLength(m_hwnd));
+
+    // select the range to delete
+    ::SendMessage(m_hwnd, EM_SETSEL, r.first, r.second);
+    // replace the range with "" to delete it
+    //! \todo Should this operation be undo-able?
+    ::SendMessage(m_hwnd, EM_REPLACESEL, false, (LPARAM)"");
+
+    // restore the old selection
+    set_selection_range(cur_sel);
 }
 
 cpaf::text_range_t TextWidget::insert_text(const std::string &str, cpaf::text_range_t pos)
 {
-    return 0;
+    //! \todo Prevent the sending of spurious messages
+
+    // store the current selection
+    cpaf::TextRange cur_sel = get_selection_range();
+
+    // move the insertion point
+    ::SendMessage(m_hwnd, EM_SETSEL, pos, pos);
+
+    // insert text
+    //! \todo Should this operation be undo-able?
+    ::SendMessage(m_hwnd, EM_REPLACESEL, false, (LPARAM)str.c_str());
+
+    // if the insertion point was before any existing selection, move the selection
+    // so that it still selects the same text
+    if( pos < cur_sel.first )
+    {
+        cur_sel.first += str.length();
+        cur_sel.second += str.length();
+    }
+
+    // restore the previous selection
+    set_selection_range(cur_sel);
+
+    // return the position just after the newly inserted text
+    return pos + str.length();
 }
 
 cpaf::text_range_t TextWidget::insert_text(const std::string &str)
 {
+    //! \todo Prevent the sending of spurious messages
+
+    //! \todo Figure out what to do if there is already a selection
+
+    // insert text
+    //! \todo Should this operation be undo-able?
+    ::SendMessage(m_hwnd, EM_REPLACESEL, false, (LPARAM)str.c_str());
+
+
     return 0;
 }
 
@@ -107,10 +157,10 @@ void TextWidget::set_max_length(cpaf::text_range_t len)
 
 void TextWidget::set_read_only(bool b)
 {
-    
+    ::SendMessage(m_hwnd, EM_SETREADONLY, b, 0);
 }
 
 bool TextWidget::is_read_only() const
 {
-    return ((int)::GetWindowLong(m_hwnd, GWL_STYLE)) & ES_READONLY;
+    return (::GetWindowLong(m_hwnd, GWL_STYLE) & ES_READONLY) != 0;
 }
