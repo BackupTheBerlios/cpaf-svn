@@ -94,7 +94,7 @@ LRESULT CALLBACK cpaf::win32::gui::widget_wndproc(HWND hwnd, UINT msg, WPARAM w_
     if( wnd )
         return wnd->process_message(hwnd, msg, w_param, l_param);
 
-    DBG_MSG_2("widget_wndproc failed to proceess a message: %s", cpaf::win32::MessageTypeNames[msg]);
+    DebugReport() << "widget_wndproc failed to proceess a message: " << cpaf::win32::MessageTypeNames[msg];
 
     return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
