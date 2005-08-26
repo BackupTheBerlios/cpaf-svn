@@ -42,7 +42,7 @@ public:
         \return An english ansi description of the error
         \todo Once we figure out unicode, this function should be localized
     */
-    virtual const char *get_message();
+    virtual const char *what();
 
     /*!
         \return An ansi description of the file throwing the exception

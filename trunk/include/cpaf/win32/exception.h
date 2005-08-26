@@ -32,7 +32,7 @@ private:
 public:
     Exception(int error, int win32, int line, const char *file);
 
-    const char *get_message();
+    const char *what();
 
     /*!
         \return The win32 error code

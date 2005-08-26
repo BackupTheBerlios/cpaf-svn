@@ -9,6 +9,7 @@
 #include <memory> // for auto_ptr
 #include <cpaf/exception.h>
 #include <exception>
+#include <cpaf/debug.h>
 
 namespace {
     cpaf::App *the_app; // pointer to the application instance
@@ -40,17 +41,17 @@ int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstanc
     }
     catch(cpaf::win32::Exception &e)
     {
-        ::_CrtDbgReport(_CRT_ERROR, e.get_file(), e.get_line(), 0, "Exception: %s, Win32 code: %d", e.get_message(), e.get_win32_error());
+        cpaf::DebugReport(cpaf::DebugReport::ERROR, e.get_file(), e.get_line()) << "Exception: " << e.what() << "\nWin32 code: " << e.get_win32_error();
         return 1;
     }
     catch(cpaf::Exception &e)
     {
-        ::MessageBoxA(0, e.get_message(), e.get_file(), MB_ICONERROR);
+        cpaf::DebugReport(cpaf::DebugReport::ERROR, e.get_file(), e.get_line()) << "Exception: " << e.what();
         return 1;
     }
-    catch(bad_cast e)
+    catch(std::exception &e)
     {
-        ::MessageBoxA(0, e.what(), "A bad cast was encountered", MB_ICONERROR);
+        cpaf::DebugReport(cpaf::DebugReport::ERROR) << "Exception: " << e.what();
         return 1;
     }
     /*catch(...)
@@ -84,12 +85,12 @@ int cpaf::entry(cpaf::main_ptr main, int argc, char *argv[])
     }
     catch(cpaf::Exception &e)
     {
-        printf("%s: %s\n", e.get_file(), e.get_message());
+        cpaf::DebugReport(cpaf::DebugReport::ERROR, e.get_file(), e.get_line()) << "Exception: " << e.what();
         return 1;
     }
     catch(std::exception &e)
     {
-        printf("Exception: %s\n", e.what());
+        cpaf::DebugReport(cpaf::DebugReport::ERROR) << "Exception: " << e.what();
         return 1;
     }
     catch(...)

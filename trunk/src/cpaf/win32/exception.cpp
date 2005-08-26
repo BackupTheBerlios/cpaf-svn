@@ -11,7 +11,7 @@ cpaf::win32::Exception::Exception(int error, int win32, int line, const char *fi
     m_win32_error(win32)
 { }
 
-const char *cpaf::win32::Exception::get_message()
+const char *cpaf::win32::Exception::what()
 {
     if( CPAF_WIN32_EXCEPTION_IN_RANGE(m_code) )
     {
@@ -28,7 +28,7 @@ const char *cpaf::win32::Exception::get_message()
         };
     }
     else
-        return cpaf::Exception::get_message();
+        return cpaf::Exception::what();
 }
 
 int cpaf::win32::Exception::get_win32_error()

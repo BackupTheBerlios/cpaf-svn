@@ -29,7 +29,7 @@ int cpaf::Exception::get_code()
     return m_code;
 }
 
-const char *cpaf::Exception::get_message()
+const char *cpaf::Exception::what()
 {
     if( CPAF_EXCEPTION_IN_RANGE(m_code) )
     {
