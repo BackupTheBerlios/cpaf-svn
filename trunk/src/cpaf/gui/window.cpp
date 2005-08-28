@@ -23,7 +23,14 @@ Window::Window(api_type *impl)
     m_impl(impl)
 { }
 
-void Window::create(const Initializer &initializer)
+Window *Window::create(const Initializer &initializer)
+{
+    Window *wrapper = new Window;
+    wrapper->initialize(initializer);
+    return wrapper;
+}
+
+void Window::initialize(const Initializer &initializer)
 {
     Initializer::data_type params = initializer.get_data();
     params.set_wrapper(this);

@@ -10,8 +10,6 @@
 #include <cpaf/gui/toplevel.h>
 #include <cpaf/gui/initializer/window.h>
 
-#include <cpaf/gui/factory.h>
-
 namespace cpaf {
     namespace gui {
 
@@ -24,6 +22,21 @@ public:
     typedef cpaf::api::gui::Window api_type;
     typedef WindowInitializer Initializer;
 
+    /*!
+        Creates a Window
+    */
+    static Window *create(const Initializer &initializer);
+
+    /*!
+        Sets the content panel for this window
+    */
+    void set_content_panel(cpaf::gui::Panel *p);
+
+    /*!
+        \return This window's content panel
+    */
+    cpaf::gui::Panel *get_content_panel() const;
+
 private:
     api_type *m_impl;
 
@@ -34,18 +47,15 @@ protected:
     /*!
         \brief Constructs the native widget using the given initialization data
     */
-    void create(const Initializer &initializer);
-
-public:
-    void set_content_panel(cpaf::gui::Panel *p);
-    cpaf::gui::Panel *get_content_panel() const;
+    void initialize(const Initializer &initializer);
 
 public:
     api_type *get_impl() const;
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 
     } // gui
 } // cpaf
+
+
 
 #endif // CPAF_GUI_WINDOW_H

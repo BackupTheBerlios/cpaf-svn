@@ -17,17 +17,17 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
 
-using cpaf::gui::factory::create_widget;
 using namespace cpaf::event;
+using namespace cpaf::gui;
 
 /*
     Our derived application class
 */
-class MyApp : public cpaf::gui::App
+class MyApp : public App
 {
 public:
-    cpaf::gui::EntryBox *pw; // The password box
-    cpaf::gui::Button *destroy_btn;
+    EntryBox *pw; // The password box
+    Button *destroy_btn;
 
     bool init();
     void toggle_password_mode(Event &event);
@@ -37,9 +37,17 @@ public:
 /*
     A derived button
 */
-class MyButton : public cpaf::gui::Button
+class MyButton : public Button
 {
 public:
+    static MyButton *create(const Initializer &initializer)
+    {
+        MyButton *wrapper = new MyButton;
+        wrapper->initialize(initializer);
+        return wrapper;
+    }
+
+protected:
     MyButton()
     {
         cpaf::DebugReport() << "MyButton::Ctor";
@@ -92,7 +100,14 @@ public:
 class MyButton2 : public MyButton
 {
 public:
+    static MyButton2 *create(const Initializer &initializer)
+    {
+        MyButton2 *wrapper = new MyButton2;
+        wrapper->initialize(initializer);
+        return wrapper;
+    }
 
+protected:
     MyButton2() { }
 
     // override the base event listener
@@ -119,15 +134,15 @@ void MyApp::destroy_button(Event &event)
 */
 bool MyApp::init()
 {
-    cpaf::gui::Panel *panel = create_widget<cpaf::gui::Panel>(cpaf::gui::Panel::Initializer());
+    Panel *panel = Panel::create(Panel::Initializer());
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.
         One of these buttons is a derived button.
         We also reuse the data initializer object to create these buttons.
     */
-    cpaf::gui::Button::Initializer btn_init;
-    cpaf::gui::Button *btn = create_widget<cpaf::gui::Button>(btn_init
+    Button::Initializer btn_init;
+    Button *btn = Button::create(btn_init
         .parent(panel)
         .label("Toggle password mode")
         .size(cpaf::Size(200,40))
@@ -136,12 +151,12 @@ bool MyApp::init()
         );
     connect<Event, false>(BUTTON_CLICK, btn->get_id()) (&MyApp::toggle_password_mode, *this);
 
-    MyButton2 *my_btn = create_widget<MyButton2>(btn_init
+    MyButton2 *my_btn = MyButton2::create(btn_init
         .label("Click me!")
         .position(cpaf::Point(100,100))
         );
 
-    destroy_btn = create_widget<cpaf::gui::Button>(btn_init
+    destroy_btn = Button::create(btn_init
         .parent(panel)
         .label("Click to destroy me")
         .size(cpaf::Size(200,30))
@@ -153,7 +168,7 @@ bool MyApp::init()
     /*
         Create an EntryBox
     */
-    cpaf::gui::EntryBox *entry = create_widget<cpaf::gui::EntryBox>(cpaf::gui::EntryBox::Initializer()
+    EntryBox *entry = EntryBox::create(EntryBox::Initializer()
         .parent(panel)
         .text("I'm an entry box!")
         .position(cpaf::Point(10,150))
@@ -164,7 +179,7 @@ bool MyApp::init()
     /*
         Create a TextBox
     */
-    cpaf::gui::TextBox *text = create_widget<cpaf::gui::TextBox>(cpaf::gui::TextBox::Initializer()
+    TextBox *text = TextBox::create(TextBox::Initializer()
         .parent(panel)
         .text("I'm a multline text box!\nHere's the second line\n\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
         .position(cpaf::Point(10,200))
@@ -175,7 +190,7 @@ bool MyApp::init()
     /*
         Create a EntryBox for passwords
     */
-    pw = create_widget<cpaf::gui::EntryBox>(cpaf::gui::EntryBox::Initializer()
+    pw = EntryBox::create(EntryBox::Initializer()
         .parent(panel)
         .text("I'm a password box!")
         .position(cpaf::Point(10,10))
@@ -198,8 +213,7 @@ bool MyApp::init()
 
         This window will be visible without calling wnd->show() if .show() isn't commented out below.
     */
-    cpaf::gui::Window *wnd = create_widget<cpaf::gui::Window>(
-        cpaf::gui::Window::Initializer()
+    Window *wnd = Window::create(Window::Initializer()
         .content_panel(panel)
         .title("Cpaf")
         .client_size(cpaf::Size(400,400))

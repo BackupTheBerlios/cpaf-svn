@@ -21,7 +21,14 @@ Panel::Panel(api_type *impl)
     m_impl(impl)
 { }
 
-void Panel::create(const Initializer &initializer)
+Panel *Panel::create(const Initializer &initializer)
+{
+    Panel *wrapper = new Panel;
+    wrapper->initialize(initializer);
+    return wrapper;
+}
+
+void Panel::initialize(const Initializer &initializer)
 {
     Initializer::data_type params = initializer.get_data();
     params.set_wrapper(this);

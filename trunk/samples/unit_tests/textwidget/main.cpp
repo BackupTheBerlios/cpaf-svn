@@ -2,16 +2,16 @@
 
 #include <cpaf/main.h>
 #include <cpaf/gui/app.h>
-#include <cpaf/gui/window.h>
 #include <cpaf/gui/button.h>
 #include <cpaf/gui/entrybox.h>
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
+#include <cpaf/gui/window.h>
 #include <cpaf/debug.h>
+#include <cpaf/gui/layout_manager.h>
 
 #include <sstream>
 
-using cpaf::gui::factory::create_widget;
 using namespace cpaf::event;
 using namespace cpaf::gui;
 
@@ -50,9 +50,9 @@ private:
 */
 bool MyApp::init()
 {
-    Panel *panel = create_widget<Panel>(Panel::Initializer());
+    Panel *panel = Panel::create(Panel::Initializer());
 
-    Window *wnd = create_widget<Window>(Window::Initializer()
+    Window *wnd = Window::create(Window::Initializer()
         //.content_panel(panel)
         .title("Cpaf")
         .client_size(cpaf::Size(450,450))
@@ -65,21 +65,21 @@ bool MyApp::init()
     btn_init.parent(panel);
     entry_init.parent(panel);
 
-    Button *get_text = create_widget<Button>(btn_init
+    Button *get_text = Button::create(btn_init
         .label("Get text")
         .size(cpaf::Size(100,30))
         .position(cpaf::Point(10,10))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_text->get_id()) (&MyApp::get_text, *this);
-    Button *get_selection_range = create_widget<Button>(btn_init
+    Button *get_selection_range = Button::create(btn_init
         .label("Get selection range")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(120,10))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_selection_range->get_id()) (&MyApp::get_selection_range, *this);
-    Button *get_selection_bounds = create_widget<Button>(btn_init
+    Button *get_selection_bounds = Button::create(btn_init
         .label("Get selection bounds")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(280,10))
@@ -87,21 +87,21 @@ bool MyApp::init()
         );
     connect<Event, false>(BUTTON_CLICK, get_selection_bounds->get_id()) (&MyApp::get_selection_bounds, *this);
 
-    Button *get_insertion_point = create_widget<Button>(btn_init
+    Button *get_insertion_point = Button::create(btn_init
         .label("Get insertion point")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(10,45))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_insertion_point->get_id()) (&MyApp::get_insertion_point, *this);
-    Button *get_length = create_widget<Button>(btn_init
+    Button *get_length = Button::create(btn_init
         .label("Get length")
         .size(cpaf::Size(100,30))
         .position(cpaf::Point(170,45))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_length->get_id()) (&MyApp::get_length, *this);
-    Button *toggle_read_only = create_widget<Button>(btn_init
+    Button *toggle_read_only = Button::create(btn_init
         .label("Toggle read only")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(280,45))
@@ -110,49 +110,49 @@ bool MyApp::init()
     connect<Event, false>(BUTTON_CLICK, toggle_read_only->get_id()) (&MyApp::toggle_read_only, *this);
 
 
-    Button *get_text_in_range = create_widget<Button>(btn_init
+    Button *get_text_in_range = Button::create(btn_init
         .label("Get text in range")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(10,100))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_text_in_range->get_id()) (&MyApp::get_text_in_range, *this);
-    Button *set_selection_range = create_widget<Button>(btn_init
+    Button *set_selection_range = Button::create(btn_init
         .label("Set selection range")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(10,135))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_selection_range->get_id()) (&MyApp::set_selection_range, *this);
-    Button *set_selection_bounds = create_widget<Button>(btn_init
+    Button *set_selection_bounds = Button::create(btn_init
         .label("Set selection bounds")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(10,170))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_selection_bounds->get_id()) (&MyApp::set_selection_bounds, *this);
-    Button *set_insertion_point = create_widget<Button>(btn_init
+    Button *set_insertion_point = Button::create(btn_init
         .label("Set insertion point")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(170,100))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_insertion_point->get_id()) (&MyApp::set_insertion_point, *this);
-    Button *delete_range = create_widget<Button>(btn_init
+    Button *delete_range = Button::create(btn_init
         .label("Delete range")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(170,135))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, delete_range->get_id()) (&MyApp::delete_range, *this);
-    Button *insert = create_widget<Button>(btn_init
+    Button *insert = Button::create(btn_init
         .label("Insert")
         .size(cpaf::Size(75,30))
         .position(cpaf::Point(170,170))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, insert->get_id()) (&MyApp::insert, *this);
-    Button *set_max_length = create_widget<Button>(btn_init
+    Button *set_max_length = Button::create(btn_init
         .label("Set max length")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(10,205))
@@ -160,19 +160,19 @@ bool MyApp::init()
         );
     connect<Event, false>(BUTTON_CLICK, set_max_length->get_id()) (&MyApp::set_max_length, *this);
 
-    range_begin = create_widget<EntryBox>(entry_init
+    range_begin = EntryBox::create(entry_init
         .text("3")
         .position(cpaf::Point(330,100))
         .size(cpaf::Size(50,30))
         .show()
         );
-    range_end = create_widget<EntryBox>(entry_init
+    range_end = EntryBox::create(entry_init
         .text("5")
         .position(cpaf::Point(390,100))
         .show()
         );
 
-    insert_text = create_widget<EntryBox>(entry_init
+    insert_text = EntryBox::create(entry_init
         .text("Text to insert")
         .position(cpaf::Point(255, 170))
         .size(cpaf::Size(185,30))
@@ -182,7 +182,7 @@ bool MyApp::init()
     /*
         Create an EntryBox
     */
-    entry = create_widget<EntryBox>(EntryBox::Initializer()
+    entry = EntryBox::create(EntryBox::Initializer()
         .parent(panel)
         .text("I'm an entry box!")
         .position(cpaf::Point(10,260))
@@ -193,7 +193,7 @@ bool MyApp::init()
     /*
         Create a TextBox
     */
-    text = create_widget<TextBox>(TextBox::Initializer()
+    text = TextBox::create(TextBox::Initializer()
         .parent(panel)
         .text("I'm a multline text box!\nHere's the second line\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
         .position(cpaf::Point(10,300))
@@ -208,7 +208,7 @@ bool MyApp::init()
 
 cpaf::TextRange MyApp::get_range()
 {
-    cpaf::text_range_t begin, end;
+    cpaf::text_range_t begin = 0, end = 0;
 
     std::stringstream ss;
 
@@ -218,6 +218,8 @@ cpaf::TextRange MyApp::get_range()
         begin = cpaf::TextRange::END;
     else
         ss >> begin;
+
+    ss.clear();
 
     // end
     ss.str(range_end->get_text());

@@ -308,9 +308,6 @@
 					RelativePath=".\include\cpaf\gui\entrybox.h">
 				</File>
 				<File
-					RelativePath=".\include\cpaf\gui\factory.h">
-				</File>
-				<File
 					RelativePath=".\include\cpaf\gui\layout_manager.h">
 				</File>
 				<File

@@ -21,7 +21,14 @@ TextBox::TextBox(api_type *impl)
     m_impl(impl)
 { }
 
-void TextBox::create(const Initializer &initializer)
+TextBox *TextBox::create(const Initializer &initializer)
+{
+    TextBox *wrapper = new TextBox;
+    wrapper->initialize(initializer);
+    return wrapper;
+}
+
+void TextBox::initialize(const Initializer &initializer)
 {
     Initializer::data_type params = initializer.get_data();
     params.set_wrapper(this);

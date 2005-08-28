@@ -10,8 +10,6 @@
 #include <cpaf/gui/widget.h>
 #include <cpaf/gui/initializer/button.h>
 
-#include <cpaf/gui/factory.h>
-
 namespace cpaf {
     namespace gui {
 
@@ -20,6 +18,8 @@ class CPAF_API Button : public Widget
 public:
     typedef cpaf::api::gui::Button api_type;
     typedef ButtonInitializer Initializer;
+
+    static Button *create(const Initializer &initializer);
 
     /*!
         \brief Sets the label of the button
@@ -45,11 +45,10 @@ protected:
     /*!
         \brief Constructs the native widget using the given initialization data
     */
-    void create(const Initializer &initializer);
+    void initialize(const Initializer &initializer);
 
 public:
     api_type *get_impl() const;
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 
     } // gui

@@ -10,8 +10,6 @@
 #include <cpaf/gui/textwidget.h>
 #include <cpaf/gui/initializer/textbox.h>
 
-#include <cpaf/gui/factory.h>
-
 namespace cpaf {
     namespace gui {
 
@@ -21,6 +19,8 @@ public:
     typedef cpaf::api::gui::TextBox api_type;
     typedef TextBoxInitializer Initializer;
 
+    static TextBox *create(const Initializer &initializer);
+
 protected:
     TextBox();
     TextBox(api_type *impl);
@@ -28,14 +28,13 @@ protected:
     /*!
         \brief Constructs the native widget using the given initialization data
     */
-    void create(const Initializer &initializer);
+    void initialize(const Initializer &initializer);
 
 private:
     api_type *m_impl;
 
 public:
     api_type *get_impl() const;
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 
     } // gui

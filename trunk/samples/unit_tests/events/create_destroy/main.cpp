@@ -29,7 +29,6 @@ The program '[2204] create_destroy.exe: Native' has exited with code 0 (0x0).
 
 using namespace cpaf::gui;
 using namespace cpaf::event;
-using cpaf::gui::factory::create_widget;
 
 /*
     Our derived application class
@@ -49,6 +48,14 @@ MyWindow *parent;
 class MyButton : public Button
 {
 public:
+    static MyButton *create(const Initializer &initializer)
+    {
+        MyButton *wrapper = new MyButton;
+        wrapper->initialize(initializer);
+        return wrapper;
+    }
+
+protected:
     MyButton()
     {
         cpaf::DebugReport() << "MyButton::ctor";
@@ -82,12 +89,20 @@ private:
 public:
     void *my_data;
 
+    static MyWindow *create(const Initializer &initializer)
+    {
+        MyWindow *wrapper = new MyWindow;
+        wrapper->initialize(initializer);
+        return wrapper;
+    }
+
+protected:
     MyWindow()
     {
         cpaf::DebugReport() << "MyWindow::ctor";
 
         // create the root panel
-        m_panel = create_widget<Panel>(Panel::Initializer());
+        m_panel = Panel::create(Panel::Initializer());
 
         // connect events
         connect<Event, false>(WIDGET_DESTROY, get_id())(&MyWindow::on_destroy, *this);
@@ -113,7 +128,7 @@ public:
         set_content_panel(m_panel);
 
         // create our button child
-        m_btn = create_widget<MyButton>(MyButton::Initializer().parent(m_panel));
+        m_btn = MyButton::create(MyButton::Initializer().parent(m_panel));
 
         // listen for button destruction event
         connect<Event, false>(WIDGET_DESTROY, m_btn->get_id())(&MyWindow::on_btn_destroy, *this);
@@ -159,8 +174,8 @@ void MyButton::on_destroy(Event &event)
 */
 bool MyApp::init()
 {
-    create_widget<MyWindow>(
-        MyWindow::Initializer().show()
+    MyWindow::create(MyWindow::Initializer()
+        .show()
         );
 
     return true;

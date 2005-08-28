@@ -10,8 +10,6 @@
 #include <cpaf/gui/widget.h>
 #include <cpaf/gui/initializer/textwidget.h>
 
-#include <cpaf/gui/factory.h>
-
 namespace cpaf {
     namespace gui {
 
@@ -155,7 +153,6 @@ private:
 
 public:
     api_type *get_impl() const;
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 
     } // gui

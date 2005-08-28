@@ -10,8 +10,6 @@
 #include <cpaf/gui/widget.h>
 #include <cpaf/gui/initializer/panel.h>
 
-#include <cpaf/gui/factory.h>
-
 namespace cpaf {
     namespace gui {
 
@@ -20,6 +18,8 @@ class CPAF_API Panel : public Widget
 public:
     typedef cpaf::api::gui::Panel api_type;
     typedef PanelInitializer Initializer;
+
+    static Panel *create(const Initializer &initializer);
 
 private:
     api_type *m_impl;
@@ -31,11 +31,10 @@ protected:
     /*!
         \brief Constructs the native widget using the given initializer
     */
-    void create(const Initializer &initializer);
+    void initialize(const Initializer &initializer);
 
 public:
     api_type *get_impl() const;
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
 };
 
     } // gui

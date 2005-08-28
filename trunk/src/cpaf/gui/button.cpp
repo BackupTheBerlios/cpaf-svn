@@ -21,7 +21,14 @@ Button::Button(cpaf::api::gui::Button *impl)
     m_impl(impl)
 { }
 
-void Button::create(const Initializer &initializer)
+Button *Button::create(const Initializer &initializer)
+{
+    Button *wrapper = new Button;
+    wrapper->initialize(initializer);
+    return wrapper;
+}
+
+void Button::initialize(const Initializer &initializer)
 {
     Initializer::data_type params = initializer.get_data();
     params.set_wrapper(this);

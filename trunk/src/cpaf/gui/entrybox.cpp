@@ -21,7 +21,14 @@ EntryBox::EntryBox(cpaf::api::gui::EntryBox *impl)
     m_impl(impl)
 { }
 
-void EntryBox::create(const Initializer &initializer)
+EntryBox *EntryBox::create(const Initializer &initializer)
+{
+    EntryBox *wrapper = new EntryBox;
+    wrapper->initialize(initializer);
+    return wrapper;
+}
+
+void EntryBox::initialize(const Initializer &initializer)
 {
     Initializer::data_type params = initializer.get_data();
     params.set_wrapper(this);

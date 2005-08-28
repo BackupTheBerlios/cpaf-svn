@@ -10,7 +10,6 @@
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/types.h>
-#include <cpaf/gui/factory/object.h>
 
 namespace cpaf {
     namespace gui {

@@ -312,4 +312,4 @@ const Size DEFAULT_SIZE(DEFAULT_VALUE, DEFAULT_VALUE);
 
 } // namespace cpaf
 
-#endif // CPAF_DEFS_H
+#endif // CPAF_TYPES_H
