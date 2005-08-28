@@ -10,10 +10,6 @@
 #include <cpaf/gui/$(BASE_LOWER).h>
 #include <cpaf/gui/initializer/$(NAME_LOWER).h>
 
-$(IF CONSTRUCTABLE)
-#include <cpaf/gui/factory.h>
-$(END)
-
 namespace cpaf {
     namespace gui {
 
@@ -22,6 +18,10 @@ class CPAF_API $(NAME) : public $(BASE)
 public:
     typedef cpaf::api::gui::$(NAME) api_type;
     typedef $(NAME)Initializer Initializer;
+
+$(IF CONSTRUCTABLE)
+    static $(NAME) *create(const Initializer &initializer);
+$(END)
 
 private:
     api_type *m_impl;
@@ -36,7 +36,7 @@ $(IF CONSTRUCTABLE)
     /*!
         \brief Constructs the native widget using the given initializer
     */
-    void create(const Initializer &initializer);
+    void initialize(const Initializer &initializer);
 $(END)
 
 public:
