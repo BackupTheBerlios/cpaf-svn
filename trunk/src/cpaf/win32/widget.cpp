@@ -17,6 +17,7 @@
 
 #include <cpaf/gui/panel.h>
 #include <cpaf/gui/window.h>
+#include <cpaf/gui/layout_manager.h>
 
 using namespace cpaf::win32::gui;
 

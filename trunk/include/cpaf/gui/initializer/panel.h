@@ -8,6 +8,7 @@
 #define CPAF_GUI_INITIALIZER_PANEL_H
 
 #include <cpaf/gui/initializer/widget.h>
+#include <cpaf/gui/layout_manager.h>
 
 namespace cpaf {
     namespace gui {
@@ -16,9 +17,16 @@ namespace cpaf {
 /*!
     \brief initialization data for Panel creation.
 */
-struct PanelData : WidgetData
+struct CPAF_API PanelData : WidgetData
 {
+protected:
+    cpaf::gui::LayoutManager *m_layout_manager;
 
+public:
+    PanelData();
+
+    void set_layout_manager(cpaf::gui::LayoutManager *manager);
+    cpaf::gui::LayoutManager *get_layout_manager();
 };
 
 /*!
@@ -36,6 +44,14 @@ protected:
         : Widget<T>(data),
         m_data(data)
     { }
+
+    T &layout_manager(cpaf::gui::LayoutManager *manager)
+    {
+        m_data->set_layout_manager(manager);
+        return dynamic_cast<T&>(*this);
+    }
+
+    cpaf::gui::LayoutManager *get_layout_manager() { return m_data->get_layout_manager(); }
 };
 
         } // initializer

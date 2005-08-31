@@ -19,6 +19,16 @@ class CPAF_API TopLevel : public Widget
 public:
     typedef cpaf::api::gui::TopLevel api_type;
 
+    /*!
+        \brief Sets the absolute size of this widget.
+    */
+    void set_size(const cpaf::Size &s);
+
+    /*!
+        \brief Sets the position of a widget in screen coordinates.
+    */
+    void set_position(const cpaf::Point &p);
+
     void show(bool show = true, bool focus = true);
 
     /*!

@@ -19,6 +19,7 @@ namespace cpaf {
 
 class Panel;
 class Window;
+class LayoutManager;
 
 /*!
     \brief Serves as the base class for all Widgets
@@ -27,11 +28,6 @@ class CPAF_API Widget
 {
 public:
     typedef cpaf::api::gui::Widget api_type;
-
-    /*!
-        \brief Sets the absolute size of a widget.
-    */
-    void set_size(const cpaf::Size &s);
 
     /*!
         \brief Sets the minimum size of the widget. A value of -1 for width or height
@@ -44,12 +40,6 @@ public:
         indicates that there is no maximum size in that direction.
     */
     void set_max_size(const cpaf::Size &s);
-
-    /*!
-        \brief Sets the position of a widget. If the widget is a \ref g_tlw TLW, the position is in
-        screen coordinates. Otherwise, the position is in client coordinates.
-    */
-    void set_position(const cpaf::Point &p);
 
     /*!
         \return Absolute size of the widget
@@ -129,6 +119,16 @@ public:
     object_id get_id() const;
 
 private:
+    /*!
+        \brief Sets the absolute size of this widget.
+    */
+    void set_size(const cpaf::Size &s);
+
+    /*!
+        \brief Sets the position of a widget in client coordinates.
+    */
+    void set_position(const cpaf::Point &p);
+
     int m_id;
 
     api_type *m_impl;
@@ -144,6 +144,8 @@ protected:
 public:
     virtual ~Widget();
     api_type *get_impl() const;
+
+    friend LayoutManager;
 };
 
     } // gui
