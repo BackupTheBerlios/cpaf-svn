@@ -23,6 +23,9 @@ public:
     void create(const cpaf::gui::initializer::PanelData &params);
 
     int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
+
+private:
+    cpaf::gui::LayoutManager *m_layout_manager;
 };
 
         } // gui

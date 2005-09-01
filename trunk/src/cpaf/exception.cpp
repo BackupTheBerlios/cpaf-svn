@@ -41,6 +41,8 @@ const char *cpaf::Exception::what()
             return "An error was encountered creating the native widget";
         case GUI_INIT_FAILED:
             return "An error was encountered initializing the GUI";
+        case PANEL_NO_LAYOUT_MANAGER:
+            return "A panel was created without a layout manager";
 
         default:
             return "An unknown error was encountered";

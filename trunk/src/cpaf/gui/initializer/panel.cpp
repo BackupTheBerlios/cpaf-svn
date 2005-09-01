@@ -17,7 +17,7 @@ void PanelData::set_layout_manager(cpaf::gui::LayoutManager *manager)
     m_layout_manager = manager;
 }
 
-cpaf::gui::LayoutManager *PanelData::get_layout_manager()
+cpaf::gui::LayoutManager *PanelData::get_layout_manager() const
 {
     return m_layout_manager;
 }

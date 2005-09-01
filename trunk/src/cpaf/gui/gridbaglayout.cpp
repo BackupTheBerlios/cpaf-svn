@@ -1,38 +1,25 @@
 /*!
-    \file src\cpaf\layout_manager.cpp
+    \file src\cpaf\gridbaglayout.cpp
     \brief Grid Bag Layout Manager implementation
-    \date Created: 2005-08-24
+    \date Created: 2005-08-31
 */
 
-#include <cpaf/gui/layout_manager.h>
-#include <cpaf/gui/widget.h>
+#include <cpaf/gui/gridbaglayout.h>
 
 using namespace cpaf::gui;
 
-LayoutManager::~LayoutManager() { }
-
-void LayoutManager::set_widget_pos(Widget *widget, const cpaf::Point &pos)
-{
-    widget->set_position(pos);
-}
-
-void LayoutManager::set_widget_size(Widget *widget, const cpaf::Size &size)
-{
-    widget->set_size(size);
-}
-
-void GridBagLayoutManager::do_layout()
+void GridBagLayout::do_layout(const cpaf::Size &size)
 {
 
 }
 
-void GridBagLayoutManager::add_widget(Widget *widget, const GridBagLayoutInfo &info)
+void GridBagLayout::add_widget(Widget *widget, const GridBagLayoutInfo &info)
 {
 
 }
 
 GridBagLayoutData::GridBagLayoutData()
-: alignment_info(0),
+: alignment_info(GridBagLayoutInfo::ALIGN_CENTER_H | GridBagLayoutInfo::ALIGN_CENTER_V),
 pad_left(0), pad_top(0), pad_right(0), pad_bottom(0),
 col(0), row(0), col_span(0), row_span(0)
 { }
@@ -78,6 +65,13 @@ GridBagLayoutInfo &GridBagLayoutInfo::align_center_horizontal()
 GridBagLayoutInfo &GridBagLayoutInfo::align_center_vertical()
 {
     m_data->alignment_info |= ALIGN_CENTER_V;
+    return *this;
+}
+
+GridBagLayoutInfo &GridBagLayoutInfo::align_center()
+{
+    m_data->alignment_info |= ALIGN_CENTER_V;
+    m_data->alignment_info |= ALIGN_CENTER_H;
     return *this;
 }
 

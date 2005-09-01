@@ -1,20 +1,18 @@
 /*!
-    \file src\cpaf\layout_manager.h
+    \file src\cpaf\gridbaglayout.h
     \brief Grid Bag Layout Manager declaration
-    \date Created: 2005-08-24
+    \date Created: 2005-08-31
 */
 
-#ifndef CPAF_GUI_LAYOUTMANAGER_H
-#define CPAF_GUI_LAYOUTMANAGER_H
+#ifndef CPAF_GUI_GRIDBAG_H
+#define CPAF_GUI_GRIDBAG_H
 
-#include <cpaf/dllimpexp.h>
+#include <cpaf/gui/layoutmanager.h>
 #include <boost/shared_ptr.hpp>
-#include <cpaf/types.h>
+#include <vector>
 
-namespace cpaf{
-    namespace gui {
-
-        class Widget;
+namespace cpaf {
+    namespace gui { 
 
 class CPAF_API GridBagLayoutData
 {
@@ -37,6 +35,7 @@ public:
     unsigned int col, row, col_span, row_span;
     float weight;
 };
+
 
 /*!
     Layout flags for the grid bag layout manager
@@ -64,6 +63,7 @@ public:
 
     GridBagLayoutInfo &align_center_horizontal();
     GridBagLayoutInfo &align_center_vertical();
+    GridBagLayoutInfo &align_center();
 
     GridBagLayoutInfo &expand_horizontal();
     GridBagLayoutInfo &expand_vertical();
@@ -87,40 +87,13 @@ private:
 };
 
 /*!
-    Base class for layout managers
-    \todo pimpl
-*/
-class CPAF_API LayoutManager
-{
-public:
-    /*!
-        Updates the position and size of all managed widgets
-    */
-    virtual void do_layout() = 0;
-
-protected:
-    /*!
-        Sets the position for a given widget
-    */
-    void set_widget_pos(Widget *widget, const cpaf::Point &pos);
-
-    /*!
-        Sets the size for a given widget
-    */
-    void set_widget_size(Widget *widget, const cpaf::Size &size);
-
-public:
-    virtual ~LayoutManager();
-};
-
-/*!
     A grid bag layout manager
     \todo pimpl
 */
-class CPAF_API GridBagLayoutManager : public LayoutManager
+class CPAF_API GridBagLayout : public LayoutManager
 {
 public:
-    void do_layout();
+    void do_layout(const cpaf::Size &size);
 
     /*!
         Adds a widget to this layout manager with the given layout info.
@@ -136,4 +109,4 @@ public:
     } // gui
 } // cpaf
 
-#endif
+#endif // CPAF_GUI_GRIDBAG_H

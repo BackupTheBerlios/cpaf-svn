@@ -308,7 +308,10 @@
 					RelativePath=".\include\cpaf\gui\entrybox.h">
 				</File>
 				<File
-					RelativePath=".\include\cpaf\gui\layout_manager.h">
+					RelativePath=".\include\cpaf\gui\gridbaglayout.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\gui\layoutmanager.h">
 				</File>
 				<File
 					RelativePath=".\include\cpaf\gui\object.h">
@@ -593,9 +596,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\src\cpaf\gui\layout_manager.cpp">
-			</File>
-			<File
 				RelativePath=".\src\cpaf\main.cpp">
 				<FileConfiguration
 					Name="debug dll|Win32">
@@ -778,6 +778,26 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gui\gridbaglayout.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gui\layoutmanager.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
 							ObjectFile="$(IntDir)/$(SafeParentName)/"

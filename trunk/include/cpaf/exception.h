@@ -27,6 +27,7 @@ public:
         WIDGET_NO_PARENT = LOWEST, //!< An attempt was made to create a widget with no parent, but the widget requires one
         NATIVE_HANDLE, //!< An error was encountered creating the native widget
         GUI_INIT_FAILED, //!< An error was encountered initializing the GUI
+        PANEL_NO_LAYOUT_MANAGER, //!< A panel was created without a layout manager
     };
 
 protected:

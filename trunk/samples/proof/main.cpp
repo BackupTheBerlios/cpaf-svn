@@ -16,6 +16,7 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/entrybox.h>
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
+#include <cpaf/gui/gridbaglayout.h>
 
 using namespace cpaf::event;
 using namespace cpaf::gui;
@@ -134,7 +135,9 @@ void MyApp::destroy_button(Event &event)
 */
 bool MyApp::init()
 {
-    Panel *panel = Panel::create(Panel::Initializer());
+    // panels must have a layout manager
+    GridBagLayout *gblm;
+    Panel *panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout));
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.
@@ -151,6 +154,12 @@ bool MyApp::init()
         );
     connect<Event, false>(BUTTON_CLICK, btn->get_id()) (&MyApp::toggle_password_mode, *this);
 
+    // all children must be added to their parents layout manager
+    GridBagLayoutInfo info;
+    info.expand_both().position(0,0);
+    gblm->add_widget(btn, info);
+
+#if 0
     MyButton2 *my_btn = MyButton2::create(btn_init
         .label("Click me!")
         .position(cpaf::Point(100,100))
@@ -204,6 +213,7 @@ bool MyApp::init()
     panel = text->get_parent();
     cpaf::DebugReport() << "panel after:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
 
+#endif
     /*
         Construct a window with a default position and a default size.
         The factory object initializes its members to specify "default values"
@@ -220,10 +230,13 @@ bool MyApp::init()
         //.show()
         );
 
+#if 0
     // test get_parent_window. This should not change the value of wnd
     cpaf::DebugReport() << "Window before:\t" << std::hex << std::setfill('0') << std::setw(8) << wnd;
     wnd = pw->get_parent_window();
     cpaf::DebugReport() << "Window after:\t" << std::hex << std::setfill('0') << std::setw(8) << wnd;
+#endif
+
     wnd->show();
 
     return true;
