@@ -57,6 +57,11 @@ void Widget::set_position(const cpaf::Point &p)
     m_impl->set_position(p);
 }
 
+void Widget::set_rect(const cpaf::Rect &r)
+{
+    m_impl->set_rect(r);
+}
+
 cpaf::Size Widget::get_size() const
 {
     return m_impl->get_size();
@@ -75,6 +80,11 @@ cpaf::Size Widget::get_max_size() const
 cpaf::Point Widget::get_position() const
 {
     return m_impl->get_position();
+}
+
+cpaf::Rect Widget::get_rect() const
+{
+    return m_impl->get_rect();
 }
 
 void *Widget::get_handle() const

@@ -25,9 +25,14 @@ public:
     void set_size(const cpaf::Size &s);
 
     /*!
-        \brief Sets the position of a widget in screen coordinates.
+        \brief Sets the position of this widget in screen coordinates.
     */
     void set_position(const cpaf::Point &p);
+
+    /*!
+        \brief Sets both the position and the size of the widget in screen coordinates.
+    */
+    void set_rect(const cpaf::Rect &r);
 
     void show(bool show = true, bool focus = true);
 

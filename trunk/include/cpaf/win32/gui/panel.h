@@ -20,6 +20,8 @@ class Panel : public virtual cpaf::win32::gui::Widget, public virtual cpaf::api:
     friend LRESULT CALLBACK panel_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
 public:
+    Panel();
+
     void create(const cpaf::gui::initializer::PanelData &params);
 
     int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);

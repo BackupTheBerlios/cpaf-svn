@@ -73,6 +73,8 @@ public:
     virtual cpaf::Size get_min_size() { return cpaf::Size(); } //! \todo
     virtual cpaf::Size get_max_size() { return cpaf::Size(); } //! \todo
     virtual cpaf::Point get_position() { return cpaf::Point(); } //! \todo
+    virtual void set_rect(const cpaf::Rect&) { };
+    virtual cpaf::Rect get_rect() const { return cpaf::Rect(); }
 
     // widget interface
     virtual void destroy();

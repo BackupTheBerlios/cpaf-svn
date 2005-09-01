@@ -38,6 +38,11 @@ protected:
     */
     void set_widget_size(Widget *widget, const cpaf::Size &size);
 
+    /*!
+        Sets the rect for a given widget
+    */
+    void set_widget_rect(Widget *widget, const cpaf::Rect &rect);
+
 public:
     virtual ~LayoutManager();
 };

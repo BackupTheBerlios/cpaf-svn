@@ -20,3 +20,8 @@ void LayoutManager::set_widget_size(Widget *widget, const cpaf::Size &size)
 {
     widget->set_size(size);
 }
+
+void LayoutManager::set_widget_rect(Widget *widget, const cpaf::Rect &rect)
+{
+    widget->set_rect(rect);
+}

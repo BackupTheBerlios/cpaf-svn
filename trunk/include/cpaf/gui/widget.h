@@ -65,6 +65,11 @@ public:
     cpaf::Point get_position() const;
 
     /*!
+        \return Position and Size of this widget as a rectangle.
+    */
+    cpaf::Rect get_rect() const;
+
+    /*!
         \return A native handle for the widget. This value is returned as a void*, and how you use this value
             is dependant on the port you are working with. For win32, simply casting the return value to a HWND
             is sufficient.
@@ -128,6 +133,11 @@ private:
         \brief Sets the position of a widget in client coordinates.
     */
     void set_position(const cpaf::Point &p);
+
+    /*!
+        \brief Sets both the position and the size of the widget in client coordinates.
+    */
+    void set_rect(const cpaf::Rect &r);
 
     int m_id;
 

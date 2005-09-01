@@ -205,6 +205,18 @@ cpaf::Point Widget::get_position() const
     return cpaf::Point(rect.left, rect.top);
 }
 
+void Widget::set_rect(const cpaf::Rect &r)
+{
+    ::SetWindowPos(m_hwnd, NULL, r.position.x, r.position.y, r.size.width, r.size.height, SWP_NOZORDER);
+}
+
+cpaf::Rect Widget::get_rect() const
+{
+    RECT rect;
+    ::GetWindowRect(m_hwnd, &rect);
+    return cpaf::Rect(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
+}
+
 void Widget::show(bool show, bool focus)
 {
     int cmd;

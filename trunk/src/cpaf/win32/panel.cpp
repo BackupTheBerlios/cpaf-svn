@@ -34,6 +34,10 @@ LRESULT CALLBACK cpaf::win32::gui::panel_wndproc(HWND hwnd, UINT msg, WPARAM w_p
     return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
 
+Panel::Panel()
+: m_layout_manager(0)
+{ }
+
 void Panel::create(const cpaf::gui::initializer::PanelData &params)
 {
     static bool registered = false;
