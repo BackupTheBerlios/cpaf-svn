@@ -155,7 +155,7 @@ public:
     virtual ~Widget();
     api_type *get_impl() const;
 
-    friend LayoutManager;
+    friend class LayoutManager;
 };
 
     } // gui
