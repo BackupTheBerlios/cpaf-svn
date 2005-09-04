@@ -38,6 +38,12 @@ Panel::Panel()
 : m_layout_manager(0)
 { }
 
+Panel::~Panel()
+{
+    // delete the layout manager
+    delete m_layout_manager;
+}
+
 void Panel::create(const cpaf::gui::initializer::PanelData &params)
 {
     static bool registered = false;

@@ -9,6 +9,11 @@
 #include <memory> // for auto_ptr
 #include <cpaf/exception.h>
 #include <exception>
+
+#ifdef _MSC_VER
+#define _CRTDBG_MAP_ALLOC
+#endif
+
 #include <cpaf/debug.h>
 
 namespace {
@@ -16,7 +21,6 @@ namespace {
 }
 
 #ifdef CPAF_WIN32
-#include <crtdbg.h>
 #include <cpaf/win32/exception.h>
 
 //! \todo Construct the command line vector and pass it to main()
@@ -24,6 +28,11 @@ namespace {
 
 int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+#ifdef _MSC_VER
+    // enable memory leak detection
+    _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+#endif
+
     // the end-all exception handling block
     try
     {
