@@ -26,7 +26,7 @@ int cpaf::gui::App::run()
     while( true )
     {
         // if no widgets exist, terminate the application
-        if( widget_map_empty() )
+        if( has_widgets() )
             ::PostQuitMessage(0);
 
         // use peekmessage to check for waiting messages

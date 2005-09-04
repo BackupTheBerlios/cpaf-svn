@@ -111,7 +111,7 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
             cpaf::event::get_manager().send_event(event);
 
             // remove our widget window property
-            widget_map_remove_hwnd(m_hwnd);
+            disassociate_hwnd(m_hwnd);
 
             // queue ourselves for deletion
             widget_deletion_stack_push(this);

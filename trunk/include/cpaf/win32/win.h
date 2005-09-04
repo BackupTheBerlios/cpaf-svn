@@ -27,20 +27,21 @@ template <typename T> T *get_widget_from_hwnd(HWND h)
     return dynamic_cast<T*>(get_widget_from_hwnd(h));
 }
 /*!
-    Adds a HWND, Widget pair to the map
+    Associate a Widget pointer with a HWND
 */
-void widget_map_add_hwnd(HWND h, Widget *wnd);
+void associate_hwnd(HWND h, Widget *wnd);
 
 /*!
-    Removes a HWND, Widget pair from the map
+    Disasociate a Widget pointer from a HWND
 */
-void widget_map_remove_hwnd(HWND h);
+void disassociate_hwnd(HWND h);
 
 /*!
-    Returns true if the map is empty.
+    Returns true if no more widgets exist.
     This is used to determine when an application should terminate.
+    Win32 applications terminate when there are no native widgets.
 */
-bool widget_map_empty();
+bool has_widgets();
 
 typedef std::stack<Widget*> WidgetDeletionStack;
 
@@ -55,7 +56,7 @@ void widget_deletion_stack_push(Widget *w);
 void widget_deletion_stack_pop();
 
 /*!
-    Returns true if there are widgets in the deletion stack
+    Returns true if there are widgets in the deletion stack waiting to be deleted
 */
 bool widget_deletion_stack_waiting();
 

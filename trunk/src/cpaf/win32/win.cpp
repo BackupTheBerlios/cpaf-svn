@@ -18,7 +18,7 @@ namespace {
     WidgetDeletionStack widget_deletion_stack;
 }
 
-void cpaf::win32::gui::widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
+void cpaf::win32::gui::associate_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
 {
     //widget_map[h] = wnd;
 
@@ -32,7 +32,7 @@ void cpaf::win32::gui::widget_map_add_hwnd(HWND h, cpaf::win32::gui::Widget *wnd
         num_widgets++;
 }
 
-void cpaf::win32::gui::widget_map_remove_hwnd(HWND h)
+void cpaf::win32::gui::disassociate_hwnd(HWND h)
 {
     //WidgetMap::iterator i = widget_map.find(h);
 
@@ -58,7 +58,7 @@ Widget *cpaf::win32::gui::get_widget_from_hwnd(HWND h)
     return static_cast<Widget*>(::GetProp(h, "cpaf::widget"));
 }
 
-bool cpaf::win32::gui::widget_map_empty()
+bool cpaf::win32::gui::has_widgets()
 {
     //return widget_map.empty();
     return num_widgets == 0;
@@ -137,7 +137,7 @@ LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_pa
 
         if( info )
         {
-            widget_map_add_hwnd(hwnd, info->wnd);
+            associate_hwnd(hwnd, info->wnd);
 
             // subclass the window
             info->wnd->set_old_proc((WNDPROC)(LONG_PTR)::SetWindowLongPtr(hwnd, GWL_WNDPROC, (LONG_PTR)widget_wndproc));

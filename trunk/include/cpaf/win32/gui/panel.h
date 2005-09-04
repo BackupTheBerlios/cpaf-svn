@@ -21,6 +21,7 @@ class Panel : public virtual cpaf::win32::gui::Widget, public virtual cpaf::api:
 
 public:
     Panel();
+    ~Panel();
 
     void create(const cpaf::gui::initializer::PanelData &params);
 
