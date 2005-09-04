@@ -61,7 +61,8 @@ public:
     /*!
         Print an element to the stream
     */
-    template<typename T> friend DebugReport &operator << (DebugReport &r, const T &t)
+    
+    template<typename T> friend const DebugReport &operator << (const DebugReport &r, const T &t)
     {
 #ifdef _DEBUG
         r.m_ss << t;
@@ -72,7 +73,7 @@ public:
     /*!
         Used to print simple output manipulator objects (std::hex, etc) to the stream
     */
-    friend DebugReport &operator << (DebugReport &r, std::ios_base& (*func)(std::ios_base&))
+    friend const DebugReport &operator << (const DebugReport &r, std::ios_base& (*func)(std::ios_base&))
     {
 #ifdef _DEBUG
         r.m_ss << func;
@@ -83,7 +84,7 @@ public:
     /*!
         Flushes the stream
     */
-    friend DebugReport &operator << (DebugReport &r, std::basic_ostream<char, std::char_traits<char> >& (*func)(std::basic_ostream<char, std::char_traits<char> >&) )
+    friend const DebugReport &operator << (const DebugReport &r, std::basic_ostream<char, std::char_traits<char> >& (*func)(std::basic_ostream<char, std::char_traits<char> >&) )
     {
 #ifdef _DEBUG
         r.flush();
@@ -94,7 +95,7 @@ public:
     /*!
         Flushes the stream (Wide character std::endl version)
     */
-    friend DebugReport &operator << (DebugReport &r, std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& (*func)(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >&) )
+    friend const DebugReport &operator << (const DebugReport &r, std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& (*func)(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >&) )
     {
 #ifdef _DEBUG
         r.flush();
@@ -104,14 +105,14 @@ public:
 
 #ifdef _DEBUG
 private:
-    std::stringstream m_ss;
+    mutable std::stringstream m_ss;
     int m_type, m_line;
     const char *m_file, *m_module;
 
     /*!
         For non visual studio builds, this returns an appropriate ostream
     */
-    std::ostream &get_ostream()
+    std::ostream &get_ostream() const
     {
         switch(m_type)
         {
@@ -127,7 +128,7 @@ private:
     /*!
         Outputs the contents of the buffer to the VS debugger
     */
-    void flush()
+    void flush() const
     {
         if( !m_ss.str().empty() )
         {
@@ -164,7 +165,7 @@ private:
                 out << ": ";
             }
 
-            out << m_ss.str();
+            out << m_ss.str() << "\n";
 
 #endif // _MSC_VER
 
