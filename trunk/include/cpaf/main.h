@@ -72,6 +72,6 @@ Explanation for the following code:
     }
 #endif // CPAF_WIN32
 
-#endif // CPAF_ENTRY_IMPLEMENTED
+#endif // !defined(CPAF_ENTRY_IMPLEMENTED) && !defined(CPAF_BUILDING)
 
 #endif // CPAF_MAIN_H

@@ -173,8 +173,24 @@ private:
         }
     }
 #endif // _DEBUG
+
 public:
-    DebugReport(const DebugReport&) { }
+    /*
+        stringstreams have a private copy ctor, so we need to write
+        our own
+    */
+    DebugReport(const DebugReport &r)
+#ifdef _DEBUG
+        : m_type(r.m_type),
+        m_line(r.m_line),
+        m_file(r.m_file),
+        m_module(r.m_module)
+    {
+        m_ss.str(r.m_ss.str());
+    }
+#else //!_DEBUG
+    { }
+#endif
 };
 
 } // cpaf
