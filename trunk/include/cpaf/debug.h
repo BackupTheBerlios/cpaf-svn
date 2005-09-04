@@ -173,6 +173,8 @@ private:
         }
     }
 #endif // _DEBUG
+public:
+    DebugReport(const DebugReport&) { }
 };
 
 } // cpaf
