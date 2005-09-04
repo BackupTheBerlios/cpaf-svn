@@ -4,7 +4,7 @@ OBJ_DIR = build
 OUTPUT_DIR = lib
 TARGET = libcpaf_gui_gtk2d.so
 INCLUDE_DIRS = -I include -I .
-CXXFLAGS = -pipe -DCPAF_GTK2 -DCPAF_BUILDING -DCPAF_DLL `pkg-config --cflags gtk+-2.0` -ggdb -Wall #-fvisibility-inlines-hidden -fvisibility=hidden
+CXXFLAGS = -pipe -D_DEBUG -DCPAF_GTK2 -DCPAF_BUILDING -DCPAF_DLL `pkg-config --cflags gtk+-2.0` -ggdb -Wall #-fvisibility-inlines-hidden -fvisibility=hidden
 LD_FLAGS = -shared -fpic -Wl,-O1 `pkg-config --libs gtk+-2.0`
 
 SRC_OBJS =                      \
@@ -13,6 +13,8 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gui/widget.o     \
 	$(OBJ_DIR)/gui/toplevel.o   \
 	$(OBJ_DIR)/gui/factory.o    \
+	$(OBJ_DIR)/gui/gridbaglayout.o    \
+	$(OBJ_DIR)/gui/layoutmanager.o    \
 	$(OBJ_DIR)/gui/window.o     \
 	$(OBJ_DIR)/gui/panel.o      \
 	$(OBJ_DIR)/gui/button.o     \
@@ -33,7 +35,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gtk2/factory.o   \
 	$(OBJ_DIR)/gtk2/widget.o    \
 	$(OBJ_DIR)/gtk2/window.o    \
-	$(OBJ_DIR)/gtk2/panel.o    \
+	$(OBJ_DIR)/gtk2/panel.o     \
 	$(OBJ_DIR)/gtk2/button.o    \
 	$(OBJ_DIR)/gtk2/entrybox.o  \
 	$(OBJ_DIR)/gtk2/textbox.o   \
@@ -92,6 +94,12 @@ $(OBJ_DIR)/gui/toplevel.o: src/cpaf/gui/toplevel.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gui/factory.o: src/cpaf/gui/factory.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/gridbaglayout.o: src/cpaf/gui/gridbaglayout.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/layoutmanager.o: src/cpaf/gui/layoutmanager.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gui/window.o: src/cpaf/gui/window.cpp
