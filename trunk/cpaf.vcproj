@@ -790,6 +790,7 @@
 						Name="debug dll|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
+							DisableLanguageExtensions="TRUE"
 							ObjectFile="$(IntDir)/$(SafeParentName)/"
 							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>

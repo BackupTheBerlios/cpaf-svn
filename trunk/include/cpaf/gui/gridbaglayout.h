@@ -9,15 +9,24 @@
 
 #include <cpaf/gui/layoutmanager.h>
 #include <boost/shared_ptr.hpp>
-#include <vector>
+#include <set>
+#include <list>
+#include <map>
 
 namespace cpaf {
     namespace gui { 
+        class Widget;
 
-class CPAF_API GridBagLayoutData
+        /*!
+            Namespace to tuck away the implementation details for the Grid Bag
+            layout manager
+        */
+        namespace gblm {
+
+class LayoutData
 {
 public:
-    GridBagLayoutData();
+    LayoutData();
 
     /*!
         Contains bit flags for expansion and alignment information
@@ -33,12 +42,48 @@ public:
         Placement information
     */
     unsigned int col, row, col_span, row_span;
-    float weight;
 };
 
+struct WidgetInfo
+{
+    //! What widget is this information for
+    Widget *widget;
+    //! The information for this widget
+    LayoutData data;
+
+    WidgetInfo(Widget *w, const LayoutData &d) : widget(w), data(d) { }
+};
+
+typedef std::list<WidgetInfo> Widgets;
+typedef std::map<int, std::map<int, const WidgetInfo * const> > WidgetGroup;
 
 /*!
-    Layout flags for the grid bag layout manager
+    Represents a group of widgets in the same row or column
+*/
+struct Group
+{
+    //! The index of the group
+    int index;
+
+    //! The groups's weight
+    float weight;
+
+    Group(int i, float w) : index(i), weight(w) { }
+
+    bool operator < (const Group &other) const
+    {
+        return index < other.index;
+    }
+};
+
+typedef std::set<Group> Groups;
+
+        } // gblm
+
+/*!
+    Layout flags for the grid bag layout manager. The default flags
+    specify that the widget will be centered both vertically and horizontally
+    within its alloted space and will not be expanded in either direction.
 */
 class CPAF_API GridBagLayoutInfo
 {
@@ -71,7 +116,6 @@ public:
 
     GridBagLayoutInfo &position(unsigned int col, unsigned int row);
     GridBagLayoutInfo &span(unsigned int col, unsigned int row);
-    GridBagLayoutInfo &weight(float weight);
     GridBagLayoutInfo &col_span(unsigned int span);
     GridBagLayoutInfo &row_span(unsigned int span);
 
@@ -83,7 +127,11 @@ public:
     GridBagLayoutInfo &padding_bottom(int pad);
 
 private:
-    boost::shared_ptr<GridBagLayoutData> m_data;
+    boost::shared_ptr<gblm::LayoutData> m_data;
+
+    const gblm::LayoutData &get_data() const;
+
+    friend class GridBagLayout;
 };
 
 /*!
@@ -93,6 +141,8 @@ private:
 class CPAF_API GridBagLayout : public LayoutManager
 {
 public:
+    GridBagLayout();
+
     void do_layout(const cpaf::Size &size);
 
     /*!
@@ -101,9 +151,39 @@ public:
     void add_widget(Widget *widget, const GridBagLayoutInfo &info);
 
     /*!
+        Sets the weight value for a given column
+    */
+    GridBagLayout &set_column_weight(int column, float weight);
+
+    /*!
+        Sets the weight value for a given row
+    */
+    GridBagLayout &set_row_weight(int row, float weight);
+
+    /*!
         Removes a widget from this layout manager
     */
     //void remove_widget(Widget *widget);
+
+private:
+    gblm::Widgets m_widgets;
+    gblm::Groups m_rows, m_columns;
+    gblm::WidgetGroup m_row_widgets, m_col_widgets;
+
+    static const int DEFAULT_WEIGHT = 1;
+
+    /*!
+        \return a reference to the existing column with this index.
+            If a column for this index doesn't exist, it will be created.
+    */
+    gblm::Group &get_column(int index);
+
+    /*!
+        \return a reference to the existing row with this index.
+            If a row for this index doesn't exist, it will be created.
+    */
+    gblm::Group &get_row(int index);
+
 };
 
     } // gui

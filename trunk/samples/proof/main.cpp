@@ -159,11 +159,16 @@ bool MyApp::init()
     info.expand_both().position(0,0);
     gblm->add_widget(btn, info);
 
-#if 0
     MyButton2 *my_btn = MyButton2::create(btn_init
         .label("Click me!")
         .position(cpaf::Point(100,100))
         );
+
+    info.position(1, 0);
+    gblm->add_widget(my_btn, info);
+
+    gblm->set_column_weight(0, 1);
+    gblm->set_column_weight(1, 1);
 
     destroy_btn = Button::create(btn_init
         .parent(panel)
@@ -174,6 +179,10 @@ bool MyApp::init()
         );
     connect<Event, false>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
 
+    info.position(1,1);
+    gblm->add_widget(destroy_btn, info);
+
+#if 0
     /*
         Create an EntryBox
     */
@@ -212,7 +221,6 @@ bool MyApp::init()
     cpaf::DebugReport() << "panel before:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
     panel = text->get_parent();
     cpaf::DebugReport() << "panel after:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
-
 #endif
     /*
         Construct a window with a default position and a default size.
