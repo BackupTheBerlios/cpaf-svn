@@ -55,7 +55,8 @@ struct WidgetInfo
 };
 
 typedef std::list<WidgetInfo> Widgets;
-typedef std::map<int, std::map<int, const WidgetInfo * const> > WidgetGroup;
+typedef std::map<int, const WidgetInfo * const> GroupWidgets;
+typedef std::map<int, GroupWidgets> WidgetGroup;
 
 /*!
     Represents a group of widgets in the same row or column
@@ -77,6 +78,27 @@ struct Group
 };
 
 typedef std::set<Group> Groups;
+
+
+/*!
+    Stores information for each group for processing
+*/
+struct GroupData {
+    GroupWidgets &m_widgets;
+    bool m_done;
+    float m_weight;
+    cpaf::Size m_min_size;
+    cpaf::Size m_max_size;
+    cpaf::Rect m_rect;
+
+    GroupData(GroupWidgets &widgets, float weight) : m_widgets(widgets), m_done(false), m_weight(weight) { }
+
+    /*!
+        \return True if this group is empty (it has no widgets)
+    */
+    bool empty() const { return m_widgets.empty(); }
+};
+typedef std::map<int, GroupData> GroupInfo;
 
         } // gblm
 
@@ -166,6 +188,8 @@ public:
     //void remove_widget(Widget *widget);
 
 private:
+    typedef std::map<cpaf::gui::Widget *, cpaf::Rect> WidgetRects;
+
     gblm::Widgets m_widgets;
     gblm::Groups m_rows, m_columns;
     gblm::WidgetGroup m_row_widgets, m_col_widgets;
@@ -184,6 +208,13 @@ private:
     */
     gblm::Group &get_row(int index);
 
+    /*!
+        Calculates the sizes of widgets for the given group info.
+        The calculations are return within the info.
+
+        \param col Specifies if this is a column or a row
+    */
+    void calc_group_sizes(bool col, int avail, gblm::GroupInfo &info, WidgetRects &rects);
 };
 
     } // gui

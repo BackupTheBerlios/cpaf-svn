@@ -8,7 +8,7 @@
 #include <cpaf/gui/panel.h>
 #include <cpaf/gui/window.h>
 #include <cpaf/debug.h>
-#include <cpaf/gui/layout_manager.h>
+#include <cpaf/gui/gridbaglayout.h>
 
 #include <sstream>
 
@@ -50,7 +50,9 @@ private:
 */
 bool MyApp::init()
 {
-    Panel *panel = Panel::create(Panel::Initializer());
+    cpaf::gui::GridBagLayout *gblm;
+    Panel *panel = Panel::create(Panel::Initializer().layout_manager(gblm = new cpaf::gui::GridBagLayout));
+
 
     Window *wnd = Window::create(Window::Initializer()
         //.content_panel(panel)

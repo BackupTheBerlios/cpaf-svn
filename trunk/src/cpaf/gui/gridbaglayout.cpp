@@ -7,6 +7,7 @@
 #include <cpaf/gui/gridbaglayout.h>
 #include <cpaf/gui/widget.h>
 #include <vector>
+#include <utility>
 
 using namespace cpaf::gui;
 using namespace cpaf::gui::gblm;
@@ -16,66 +17,276 @@ GridBagLayout::GridBagLayout()
 
 }
 
-void GridBagLayout::do_layout(const cpaf::Size &size)
+void reset_group_done_state(GroupInfo::value_type &value)
 {
-    typedef std::map<int, const WidgetInfo * const> GroupWidgets;
-    typedef std::map<cpaf::gui::Widget *, cpaf::Rect> WidgetRects;
-    WidgetRects widget_rects;
-    std::vector<cpaf::Size> min_sizes;
-    cpaf::Size min_size_sum;
-    float weight_sum = 0;
+    value.second.m_done = false;
+}
 
-    // size columns first
+void GridBagLayout::calc_group_sizes(bool col, int avail, GroupInfo &info, WidgetRects &rects)
+{
+    if( info.empty() )
+        return; // nothing to do
 
-    // find the minimum sizes for all columns
-    // sum the weights for each column too
-    for( Groups::iterator col = m_columns.begin(); col != m_columns.end(); ++col )
+    // reset group done flags to 0
+    std::for_each(info.begin(), info.end(), reset_group_done_state);
+
+    // calculate sizes for each column
+    int available_size = avail;
+    bool again;
+    do
     {
-        weight_sum += col->weight;
-        cpaf::Size min_size;
+        again = false;
+        float weight_sum = 0;
 
-        GroupWidgets &widgets = m_col_widgets[col->index];
-        for( GroupWidgets::iterator i = widgets.begin(), end = widgets.end(); i != end; ++i )
+        // current amount of space taken up
+        int current_size = 0;
+
+        // see how much space is left
+        for( GroupInfo::const_iterator i = info.begin(), end = info.end(); i != end; ++i )
         {
-            const WidgetInfo *const info = i->second;
-            cpaf::Size min = info->widget->get_min_size();
+            const GroupData &data = i->second;
 
-            // accound for padding
-            //min.width += info->data.pad_left + info->data.pad_right;
-            //min.height += info->data.pad_top + info->data.pad_bottom;
-
-            if( min.height > min_size.height )
-                min_size.height = min.height;
-            if( min.width > min_size.width )
-                min_size.width = min.width;
+            if( data.m_done)
+                if( col )
+                    current_size += data.m_rect.size.width;
+                else
+                    current_size += data.m_rect.size.height;
+            else
+                weight_sum += data.m_weight;
         }
 
-        min_sizes.push_back(min_size);
-        min_size_sum += min_size;
-    }
+        // distribute evenly for each column, considering minimum width, and starting over when need be
+        int extra_size = available_size - current_size;
 
-    // distribute leftover width
-    int extra_width = size.width - min_size_sum.width;
+        for( GroupInfo::iterator i = info.begin(), end = info.end(); i != end; ++i )
+        {
+            GroupData &data = i->second;
+
+            if( data.m_done )
+                continue;
+
+            cpaf::Rect &rect = data.m_rect;
+            float val = (extra_size * data.m_weight) / weight_sum;
+            float *dest_val, *min_val;
+
+            if( col )
+            {
+                dest_val = &rect.size.width;
+                min_val = &data.m_min_size.width;
+            }
+            else
+            {
+                dest_val = &rect.size.height;
+                min_val = &data.m_min_size.height;
+            }
+
+            *dest_val = (extra_size * data.m_weight) / weight_sum;
+
+            // make sure minimum size is still respected
+            if( *dest_val < *min_val )
+            {
+                *dest_val = *min_val;
+                data.m_done = true; // dont size this anymore
+                again = true; // need to start over
+                break;
+            }
+        }
+    } while(again);
 
     cpaf::Point pos;
 
-    // calculate widget widths
-    for( Groups::iterator col = m_columns.begin(); col != m_columns.end(); ++col )
+    // calculate widget sizes
+    for( GroupInfo::iterator i = info.begin(); i != info.end(); ++i )
     {
-        GroupWidgets &widgets = m_col_widgets[col->index];
-        for( GroupWidgets::iterator i = widgets.begin(), end = widgets.end(); i != end; ++i )
+        GroupData &data = i->second;
+
+        for( GroupWidgets::iterator i = data.m_widgets.begin(), end = data.m_widgets.end(); i != end; ++i )
         {
             const WidgetInfo *const info = i->second;
 
-            cpaf::Rect &rect = widget_rects[info->widget];
-            rect.size.width = extra_width * col->weight / weight_sum;
-            rect.size.height = 30;
-            rect.position = pos;
-            pos.y += rect.size.height;
+            cpaf::Rect &rect = rects[info->widget];
+
+            float *size_dest_val, size_src_val_natural, size_src_val;
+            int pad1, pad2;
+            bool expand;
+
+            if( col )
+            {
+                size_dest_val = &rect.size.width;
+                size_src_val = data.m_rect.size.width;
+                pad1 = info->data.pad_left;
+                pad2 = info->data.pad_right;
+
+                expand = (info->data.alignment_info & GridBagLayoutInfo::EXPAND_HORIZONTAL) == GridBagLayoutInfo::EXPAND_HORIZONTAL;
+            }
+            else
+            {
+                size_dest_val = &rect.size.height;
+                size_src_val = data.m_rect.size.height;
+                pad1 = info->data.pad_top;
+                pad2 = info->data.pad_bottom;
+
+                expand = (info->data.alignment_info & GridBagLayoutInfo::EXPAND_VERTICAL) == GridBagLayoutInfo::EXPAND_VERTICAL;
+            }
+
+            // account for padding
+            size_src_val -= pad1 + pad2;
+
+            if( expand )
+                *size_dest_val = size_src_val;
+            else
+            {
+                cpaf::Size natural_size = info->widget->get_size();
+
+                if( col )
+                    size_src_val_natural = natural_size.width;
+                else
+                    size_src_val_natural = natural_size.height;
+
+                *size_dest_val = size_src_val_natural;
+
+                // make sure the natural size isn't larger than what is available
+                if( *size_dest_val > size_src_val )
+                    *size_dest_val = size_src_val;
+            }
+
+            float *pos_dest_val, pos_src_val;
+
+            if( col )
+            {
+                pos_dest_val = &rect.position.x;
+                pos_src_val = pos.x;
+            }
+            else
+            {
+                pos_dest_val = &rect.position.y;
+                pos_src_val = pos.y;
+            }
+
+            pos_src_val += pad1;
+
+            if( expand )
+                *pos_dest_val = pos_src_val;
+            else
+            {
+                // account for alignment if we aren't expanding
+                bool where; // true for left/top, false for bottom/right
+                bool center;
+
+                if( col )
+                {
+                    where = (info->data.alignment_info & GridBagLayoutInfo::ALIGN_LEFT) == GridBagLayoutInfo::ALIGN_LEFT;
+                    center = (info->data.alignment_info & GridBagLayoutInfo::ALIGN_CENTER_H) == GridBagLayoutInfo::ALIGN_CENTER_H;
+                }
+                else
+                {
+                    where = (info->data.alignment_info & GridBagLayoutInfo::ALIGN_TOP) == GridBagLayoutInfo::ALIGN_TOP;
+                    center = (info->data.alignment_info & GridBagLayoutInfo::ALIGN_CENTER_V) == GridBagLayoutInfo::ALIGN_CENTER_V;
+                }
+
+                // center flags override any other flags, so check them first
+                if( center )
+                    *pos_dest_val = pos_src_val + (size_src_val - size_src_val_natural) / 2;
+                else
+                {
+                    // alignment to a given side
+                    if( where ) // top/left
+                        *pos_dest_val = pos_src_val;
+                    else
+                        *pos_dest_val = pos_src_val + size_src_val - size_src_val_natural - pad2;
+                }
+            }
         }
 
-        pos.y = 0;
-        pos.x += extra_width * col->weight / weight_sum;
+        if( col )
+        {
+            pos.y = 0;
+            pos.x += data.m_rect.size.width;
+        }
+        else
+        {
+            pos.x = 0;
+            pos.y += data.m_rect.size.height;
+        }
+    }
+}
+
+void GridBagLayout::do_layout(const cpaf::Size &size)
+{
+    WidgetRects widget_rects;
+
+    {
+        GroupInfo group_info;
+
+        // size columns first
+
+        // find the minimum sizes for all columns
+        // sum the weights for each column too
+        for( Groups::iterator col = m_columns.begin(); col != m_columns.end(); ++col )
+        {
+            GroupData info(m_col_widgets[col->index], col->weight);
+
+            // skip empty groups
+            if( info.empty() )
+                continue;
+
+            cpaf::Size min_size;
+
+            for( GroupWidgets::iterator i = info.m_widgets.begin(), end = info.m_widgets.end(); i != end; ++i )
+            {
+                const WidgetInfo *const info = i->second;
+                cpaf::Size min = info->widget->get_min_size();
+
+                // accound for padding
+                min.width += info->data.pad_left + info->data.pad_right;
+
+                if( min.width > min_size.width )
+                    min_size.width = min.width;
+            }
+
+            info.m_min_size = min_size;
+
+            group_info.insert(std::make_pair(col->index, info));
+        }
+
+        calc_group_sizes(true, size.width, group_info, widget_rects);
+    }
+
+    {
+        GroupInfo group_info;
+
+        // size columns first
+
+        // find the minimum sizes for all columns
+        // sum the weights for each column too
+        for( Groups::iterator col = m_columns.begin(); col != m_columns.end(); ++col )
+        {
+            GroupData info(m_row_widgets[col->index], col->weight);
+
+            // skip empty groups
+            if( info.empty() )
+                continue;
+
+            cpaf::Size min_size;
+
+            for( GroupWidgets::iterator i = info.m_widgets.begin(), end = info.m_widgets.end(); i != end; ++i )
+            {
+                const WidgetInfo *const info = i->second;
+                cpaf::Size min = info->widget->get_min_size();
+
+                // accound for padding
+                min.height += info->data.pad_top + info->data.pad_left;
+
+                if( min.height > min_size.height )
+                    min_size.height = min.height;
+            }
+
+            info.m_min_size = min_size;
+
+            group_info.insert(std::make_pair(col->index, info));
+        }
+
+        calc_group_sizes(false, size.height, group_info, widget_rects);
     }
 
     // now actually position the widgets
@@ -93,8 +304,8 @@ void GridBagLayout::add_widget(Widget *widget, const GridBagLayoutInfo &info)
     get_column(data.col);
 
     // add this widget to the quick lookup maps
-    m_row_widgets[data.row].insert(std::map<int, const WidgetInfo * const>::value_type(data.col, &m_widgets.back()));
-    m_col_widgets[data.col].insert(std::map<int, const WidgetInfo * const>::value_type(data.row, &m_widgets.back()));
+    m_row_widgets[data.row].insert(std::make_pair(data.col, &m_widgets.back()));
+    m_col_widgets[data.col].insert(std::make_pair(data.row, &m_widgets.back()));
 }
 
 GridBagLayout &GridBagLayout::set_column_weight(int column, float weight)

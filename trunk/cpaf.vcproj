@@ -252,6 +252,9 @@
 				RelativePath=".\include\cpaf\main.h">
 			</File>
 			<File
+				RelativePath=".\include\cpaf\win32\resource.h">
+			</File>
+			<File
 				RelativePath=".\include\cpaf\types.h">
 			</File>
 			<Filter

@@ -153,10 +153,11 @@ bool MyApp::init()
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, btn->get_id()) (&MyApp::toggle_password_mode, *this);
+    btn->set_min_size(cpaf::Size(150,50));
 
     // all children must be added to their parents layout manager
     GridBagLayoutInfo info;
-    info.expand_both().position(0,0);
+    info.position(0,0).padding(5).align_center();
     gblm->add_widget(btn, info);
 
     MyButton2 *my_btn = MyButton2::create(btn_init
@@ -164,11 +165,15 @@ bool MyApp::init()
         .position(cpaf::Point(100,100))
         );
 
-    info.position(1, 0);
+    info.position(1, 0).expand_both();
     gblm->add_widget(my_btn, info);
+    my_btn->set_min_size(cpaf::Size(100,30));
 
     gblm->set_column_weight(0, 1);
-    gblm->set_column_weight(1, 1);
+    gblm->set_column_weight(1, 2);
+    gblm->set_column_weight(2, 1);
+    gblm->set_row_weight(0, 1);
+    gblm->set_row_weight(1, 2);
 
     destroy_btn = Button::create(btn_init
         .parent(panel)
@@ -179,7 +184,7 @@ bool MyApp::init()
         );
     connect<Event, false>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
 
-    info.position(1,1);
+    info.position(2,1);
     gblm->add_widget(destroy_btn, info);
 
 #if 0
