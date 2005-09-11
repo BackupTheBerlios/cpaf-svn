@@ -90,17 +90,6 @@ typedef std::map<int, GroupData> GroupInfo;
 class CPAF_API GridBagLayoutInfo
 {
 public:
-    // bit flags for alignment information
-    static const int ALIGN_LEFT     = 1;
-    static const int ALIGN_RIGHT    = 2;
-    static const int ALIGN_CENTER_H = 3;
-    static const int ALIGN_TOP      = 1 << 2;
-    static const int ALIGN_BOTTOM   = 2 << 2;
-    static const int ALIGN_CENTER_V = 3 << 2;
-    static const int EXPAND_HORIZONTAL  = 1 << 4;
-    static const int EXPAND_VERTICAL    = 2 << 4;
-    static const int EXPAND_BOTH        = 3 << 4;
-
     GridBagLayoutInfo();
 
     GridBagLayoutInfo &align_left();
@@ -115,7 +104,6 @@ public:
     GridBagLayoutInfo &expand_horizontal();
     GridBagLayoutInfo &expand_vertical();
     GridBagLayoutInfo &expand_both();
-    GridBagLayoutInfo &expand_none();
 
     GridBagLayoutInfo &position(unsigned int col, unsigned int row);
     GridBagLayoutInfo &span(unsigned int col, unsigned int row);
@@ -130,6 +118,20 @@ public:
     GridBagLayoutInfo &padding_bottom(int pad);
 
 private:
+    friend class GridBagLayout;
+    friend class gblm::LayoutData;
+
+    // bit flags for alignment information
+    static const int ALIGN_LEFT     = 1;
+    static const int ALIGN_RIGHT    = 2;
+    static const int ALIGN_CENTER_H = 3;
+    static const int ALIGN_TOP      = 1 << 2;
+    static const int ALIGN_BOTTOM   = 2 << 2;
+    static const int ALIGN_CENTER_V = 3 << 2;
+    static const int EXPAND_HORIZONTAL  = 1 << 4;
+    static const int EXPAND_VERTICAL    = 2 << 4;
+    static const int EXPAND_BOTH        = 3 << 4;
+
     boost::shared_ptr<gblm::LayoutData> m_data;
 
     const gblm::LayoutData &get_data() const;

@@ -323,6 +323,7 @@ GridBagLayoutInfo &GridBagLayoutInfo::align_left()
 {
     m_data->alignment_info &= ~ALIGN_CENTER_H;
     m_data->alignment_info |= ALIGN_LEFT;
+    m_data->alignment_info &= ~EXPAND_HORIZONTAL;
     return *this;
 }
 
@@ -330,6 +331,7 @@ GridBagLayoutInfo &GridBagLayoutInfo::align_right()
 {
     m_data->alignment_info &= ~ALIGN_CENTER_H;
     m_data->alignment_info |= ALIGN_RIGHT;
+    m_data->alignment_info &= ~EXPAND_HORIZONTAL;
     return *this;
 }
 
@@ -337,6 +339,7 @@ GridBagLayoutInfo &GridBagLayoutInfo::align_top()
 {
     m_data->alignment_info &= ~ALIGN_CENTER_V;
     m_data->alignment_info |= ALIGN_TOP;
+    m_data->alignment_info &= ~EXPAND_VERTICAL;
     return *this;
 }
 
@@ -344,18 +347,21 @@ GridBagLayoutInfo &GridBagLayoutInfo::align_bottom()
 {
     m_data->alignment_info &= ~ALIGN_CENTER_V;
     m_data->alignment_info |= ALIGN_BOTTOM;
+    m_data->alignment_info &= ~EXPAND_VERTICAL;
     return *this;
 }
 
 GridBagLayoutInfo &GridBagLayoutInfo::align_center_horizontal()
 {
     m_data->alignment_info |= ALIGN_CENTER_H;
+    m_data->alignment_info &= ~EXPAND_HORIZONTAL;
     return *this;
 }
 
 GridBagLayoutInfo &GridBagLayoutInfo::align_center_vertical()
 {
     m_data->alignment_info |= ALIGN_CENTER_V;
+    m_data->alignment_info &= ~EXPAND_VERTICAL;
     return *this;
 }
 
@@ -363,6 +369,7 @@ GridBagLayoutInfo &GridBagLayoutInfo::align_center()
 {
     m_data->alignment_info |= ALIGN_CENTER_V;
     m_data->alignment_info |= ALIGN_CENTER_H;
+    m_data->alignment_info &= ~EXPAND_BOTH;
     return *this;
 }
 
@@ -383,12 +390,6 @@ GridBagLayoutInfo &GridBagLayoutInfo::expand_vertical()
 GridBagLayoutInfo &GridBagLayoutInfo::expand_both()
 {
     m_data->alignment_info |= EXPAND_BOTH;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::expand_none()
-{
-    m_data->alignment_info &= ~EXPAND_BOTH;
     return *this;
 }
 
