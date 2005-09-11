@@ -13,6 +13,8 @@ using namespace cpaf::gui;
 using namespace cpaf::gui::gblm;
 
 GridBagLayout::GridBagLayout()
+    : m_row_gap(0),
+    m_column_gap(0)
 {
 
 }
@@ -70,8 +72,17 @@ void GridBagLayout::calc_group_sizes(bool col, int avail, WidgetRects &rects)
     if( info.empty() )
         return; // nothing to do
 
-    // calculate sizes for each column
+    // calculate sizes for each group accountinig for gaps
     int available_size = avail;
+    int gap;
+
+    if( col )
+        gap = m_column_gap;
+    else
+        gap = m_row_gap;
+
+    available_size -= (info.size() - 1) * gap;
+
     bool again;
     do
     {
@@ -244,12 +255,12 @@ void GridBagLayout::calc_group_sizes(bool col, int avail, WidgetRects &rects)
         if( col )
         {
             pos.y = 0;
-            pos.x += data.m_rect.size.width;
+            pos.x += data.m_rect.size.width + gap;
         }
         else
         {
             pos.x = 0;
-            pos.y += data.m_rect.size.height;
+            pos.y += data.m_rect.size.height + gap;
         }
     }
 }
@@ -292,6 +303,24 @@ GridBagLayout &GridBagLayout::set_row_weight(int row, float weight)
 {
     float &w = get_row_weight(row);
     w = weight;
+    return *this;
+}
+
+GridBagLayout &GridBagLayout::set_column_gap(int gap)
+{
+    m_column_gap = gap;
+    return *this;
+}
+
+GridBagLayout &GridBagLayout::set_row_gap(int gap)
+{
+    m_row_gap = gap;
+    return *this;
+}
+
+GridBagLayout &GridBagLayout::set_gap(int gap)
+{
+    m_row_gap = m_column_gap = gap;
     return *this;
 }
 
@@ -375,6 +404,7 @@ GridBagLayoutInfo &GridBagLayoutInfo::align_center()
 
 GridBagLayoutInfo &GridBagLayoutInfo::expand_horizontal()
 {
+    m_data->alignment_info &= ~ALIGN_CENTER_H;
     m_data->alignment_info &= ~EXPAND_BOTH;
     m_data->alignment_info |= EXPAND_HORIZONTAL;
     return *this;
@@ -382,6 +412,7 @@ GridBagLayoutInfo &GridBagLayoutInfo::expand_horizontal()
 
 GridBagLayoutInfo &GridBagLayoutInfo::expand_vertical()
 {
+    m_data->alignment_info &= ~ALIGN_CENTER_V;
     m_data->alignment_info &= ~EXPAND_BOTH;
     m_data->alignment_info |= EXPAND_VERTICAL;
     return *this;
@@ -389,6 +420,8 @@ GridBagLayoutInfo &GridBagLayoutInfo::expand_vertical()
 
 GridBagLayoutInfo &GridBagLayoutInfo::expand_both()
 {
+    m_data->alignment_info &= ~ALIGN_CENTER_V;
+    m_data->alignment_info &= ~ALIGN_CENTER_H;
     m_data->alignment_info |= EXPAND_BOTH;
     return *this;
 }
@@ -396,6 +429,18 @@ GridBagLayoutInfo &GridBagLayoutInfo::expand_both()
 GridBagLayoutInfo &GridBagLayoutInfo::position(unsigned int col, unsigned int row)
 {
     m_data->col = col;
+    m_data->row = row;
+    return *this;
+}
+
+GridBagLayoutInfo &GridBagLayoutInfo::column(unsigned int col)
+{
+    m_data->col = col;
+    return *this;
+}
+
+GridBagLayoutInfo &GridBagLayoutInfo::row(unsigned int row)
+{
     m_data->row = row;
     return *this;
 }

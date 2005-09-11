@@ -22,29 +22,31 @@ bool MyApp::init()
     Panel *panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout).show());
 
     GridBagLayoutInfo info;
-    info.padding(5);
+    //info.padding(5);
 
     Button::Initializer btn_init;
     btn_init.parent(panel).size(cpaf::Size(25,25)).show();
 
     gblm->add_widget(Button::create(btn_init.label("1")),
-        info.position(1,1).align_top().align_right());
+        info.position(1,1).align_top().align_right().expand_both());
     gblm->add_widget(Button::create(btn_init.label("2")),
-        info.position(2,1).align_top().align_left());
+        info.position(2,1).align_top().align_left().expand_both());
     gblm->add_widget(Button::create(btn_init.label("3")),
-        info.position(3,1).align_bottom().align_right());
+        info.position(3,1).align_bottom().align_right().expand_both());
     gblm->add_widget(Button::create(btn_init.label("4")),
-        info. position(4,1).align_bottom().align_left());
+        info. position(4,1).align_bottom().align_left().expand_both());
 
     gblm->add_widget(Button::create(btn_init.label("5")),
         info.position(1,2).expand_both());
     gblm->add_widget(Button::create(btn_init.label("6")),
         info.position(2,2).expand_horizontal().align_center_vertical());
     gblm->add_widget(Button::create(btn_init.label("7")),
-        info.position(3,2).expand_vertical());
+        info.position(3,2).expand_vertical().align_center_horizontal());
     gblm->add_widget(Button::create(btn_init.label("8")),
-        info.position(4,2).align_center());
+        info.position(4,2).align_center().expand_both());
 
+
+    gblm->set_row_gap(10);
     Window::create(Window::Initializer().content_panel(panel).show());
 
     return true;

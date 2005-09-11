@@ -106,6 +106,8 @@ public:
     GridBagLayoutInfo &expand_both();
 
     GridBagLayoutInfo &position(unsigned int col, unsigned int row);
+    GridBagLayoutInfo &column(unsigned int col);
+    GridBagLayoutInfo &row(unsigned int row);
     GridBagLayoutInfo &span(unsigned int col, unsigned int row);
     GridBagLayoutInfo &col_span(unsigned int span);
     GridBagLayoutInfo &row_span(unsigned int span);
@@ -166,6 +168,21 @@ public:
     GridBagLayout &set_row_weight(int row, float weight);
 
     /*!
+        Specifies the amount of gap inbetween columns
+    */
+    GridBagLayout &set_column_gap(int gap);
+
+    /*!
+        Specifies the amount of gap inbetween rows
+    */
+    GridBagLayout &set_row_gap(int gap);
+
+    /*!
+        Specifies the amount of gap inbetween rows and columns
+    */
+    GridBagLayout &set_gap(int gap);
+
+    /*!
         Removes a widget from this layout manager
     */
     //void remove_widget(Widget *widget);
@@ -176,6 +193,7 @@ private:
     gblm::Widgets m_widgets;
     gblm::Weights m_rows, m_columns;
     gblm::WidgetGroup m_row_widgets, m_col_widgets;
+    int m_row_gap, m_column_gap;
 
     static const int DEFAULT_WEIGHT = 1;
 
