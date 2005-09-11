@@ -22,13 +22,53 @@ void reset_group_done_state(GroupInfo::value_type &value)
     value.second.m_done = false;
 }
 
-void GridBagLayout::calc_group_sizes(bool col, int avail, GroupInfo &info, WidgetRects &rects)
+void GridBagLayout::calc_group_sizes(bool col, int avail, WidgetRects &rects)
 {
+    GroupInfo info;
+
+    // size columns first
+
+    // find the minimum sizes for all columns
+    // sum the weights for each column too
+    for( Weights::iterator group = m_columns.begin(); group != m_columns.end(); ++group )
+    {
+        GroupData data(col ? m_col_widgets[group->first] : m_row_widgets[group->first], group->second);
+
+        // skip empty groups
+        if( data.empty() )
+            continue;
+
+        cpaf::Size min_size;
+
+        for( GroupWidgets::iterator i = data.m_widgets.begin(), end = data.m_widgets.end(); i != end; ++i )
+        {
+            const WidgetInfo *const info = i->second;
+            cpaf::Size min = info->widget->get_min_size();
+
+            // accound for padding
+            if( col )
+            {
+                min.width += info->data.pad_left + info->data.pad_right;
+
+                if( min.width > min_size.width )
+                    min_size.width = min.width;
+            }
+            else
+            {
+                min.height += info->data.pad_top + info->data.pad_left;
+
+                if( min.height > min_size.height )
+                    min_size.height = min.height;
+            }
+        }
+
+        data.m_min_size = min_size;
+
+        info.insert(std::make_pair(group->first, data));
+    }
+
     if( info.empty() )
         return; // nothing to do
-
-    // reset group done flags to 0
-    std::for_each(info.begin(), info.end(), reset_group_done_state);
 
     // calculate sizes for each column
     int available_size = avail;
@@ -147,7 +187,10 @@ void GridBagLayout::calc_group_sizes(bool col, int avail, GroupInfo &info, Widge
 
                 // make sure the natural size isn't larger than what is available
                 if( *size_dest_val > size_src_val )
+                {
                     *size_dest_val = size_src_val;
+                    size_src_val_natural = size_src_val;
+                }
             }
 
             float *pos_dest_val, pos_src_val;
@@ -215,79 +258,9 @@ void GridBagLayout::do_layout(const cpaf::Size &size)
 {
     WidgetRects widget_rects;
 
-    {
-        GroupInfo group_info;
-
-        // size columns first
-
-        // find the minimum sizes for all columns
-        // sum the weights for each column too
-        for( Groups::iterator col = m_columns.begin(); col != m_columns.end(); ++col )
-        {
-            GroupData info(m_col_widgets[col->index], col->weight);
-
-            // skip empty groups
-            if( info.empty() )
-                continue;
-
-            cpaf::Size min_size;
-
-            for( GroupWidgets::iterator i = info.m_widgets.begin(), end = info.m_widgets.end(); i != end; ++i )
-            {
-                const WidgetInfo *const info = i->second;
-                cpaf::Size min = info->widget->get_min_size();
-
-                // accound for padding
-                min.width += info->data.pad_left + info->data.pad_right;
-
-                if( min.width > min_size.width )
-                    min_size.width = min.width;
-            }
-
-            info.m_min_size = min_size;
-
-            group_info.insert(std::make_pair(col->index, info));
-        }
-
-        calc_group_sizes(true, size.width, group_info, widget_rects);
-    }
-
-    {
-        GroupInfo group_info;
-
-        // size columns first
-
-        // find the minimum sizes for all columns
-        // sum the weights for each column too
-        for( Groups::iterator col = m_columns.begin(); col != m_columns.end(); ++col )
-        {
-            GroupData info(m_row_widgets[col->index], col->weight);
-
-            // skip empty groups
-            if( info.empty() )
-                continue;
-
-            cpaf::Size min_size;
-
-            for( GroupWidgets::iterator i = info.m_widgets.begin(), end = info.m_widgets.end(); i != end; ++i )
-            {
-                const WidgetInfo *const info = i->second;
-                cpaf::Size min = info->widget->get_min_size();
-
-                // accound for padding
-                min.height += info->data.pad_top + info->data.pad_left;
-
-                if( min.height > min_size.height )
-                    min_size.height = min.height;
-            }
-
-            info.m_min_size = min_size;
-
-            group_info.insert(std::make_pair(col->index, info));
-        }
-
-        calc_group_sizes(false, size.height, group_info, widget_rects);
-    }
+    // do all calculations for the hozirontal and vertical directions
+    calc_group_sizes(true, size.width, widget_rects);
+    calc_group_sizes(false, size.height, widget_rects);
 
     // now actually position the widgets
     for( WidgetRects::iterator i = widget_rects.begin(), end = widget_rects.end(); i != end; ++i )
@@ -300,8 +273,8 @@ void GridBagLayout::add_widget(Widget *widget, const GridBagLayoutInfo &info)
     m_widgets.push_back(WidgetInfo(widget, data));
 
     // make sure default row and column weights exist
-    get_row(data.row);
-    get_column(data.col);
+    get_row_weight(data.row);
+    get_column_weight(data.col);
 
     // add this widget to the quick lookup maps
     m_row_widgets[data.row].insert(std::make_pair(data.col, &m_widgets.back()));
@@ -310,32 +283,30 @@ void GridBagLayout::add_widget(Widget *widget, const GridBagLayoutInfo &info)
 
 GridBagLayout &GridBagLayout::set_column_weight(int column, float weight)
 {
-    Group &group = get_column(column);
-    group.weight = weight;
+    float &w = get_column_weight(column);
+    w = weight;
     return *this;
 }
 
 GridBagLayout &GridBagLayout::set_row_weight(int row, float weight)
 {
-    Group &group = get_row(row);
-    group.weight = weight;
+    float &w = get_row_weight(row);
+    w = weight;
     return *this;
 }
 
-Group &GridBagLayout::get_column(int index)
+float &GridBagLayout::get_column_weight(int index)
 {
-    Group group(index, DEFAULT_WEIGHT);
     // insert returns a pair whos first member is an iterator pointing to the element
-    // regardless of wether the element existed or not, so just return it
-    return *(m_columns.insert(group).first);
+    // regardless of wether the element existed or not, so just return its weight
+    return m_columns.insert(std::make_pair(index, DEFAULT_WEIGHT)).first->second;
 }
 
-Group &GridBagLayout::get_row(int index)
+float &GridBagLayout::get_row_weight(int index)
 {
-    Group group(index, DEFAULT_WEIGHT);
     // insert returns a pair whos first member is an iterator pointing to the element
-    // regardless of wether the element existed or not, so just return it
-    return *(m_rows.insert(group).first);
+    // regardless of wether the element existed or not, so just return its weight
+    return m_rows.insert(std::make_pair(index, DEFAULT_WEIGHT)).first->second;
 }
 
 LayoutData::LayoutData()
@@ -412,6 +383,12 @@ GridBagLayoutInfo &GridBagLayoutInfo::expand_vertical()
 GridBagLayoutInfo &GridBagLayoutInfo::expand_both()
 {
     m_data->alignment_info |= EXPAND_BOTH;
+    return *this;
+}
+
+GridBagLayoutInfo &GridBagLayoutInfo::expand_none()
+{
+    m_data->alignment_info &= ~EXPAND_BOTH;
     return *this;
 }
 

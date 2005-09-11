@@ -184,7 +184,7 @@ bool MyApp::init()
         );
     connect<Event, false>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
 
-    info.position(2,1);
+    info.position(2,1).padding_bottom(0).padding_right(0);
     gblm->add_widget(destroy_btn, info);
 
 #if 0

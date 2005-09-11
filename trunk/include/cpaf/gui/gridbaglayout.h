@@ -57,27 +57,7 @@ struct WidgetInfo
 typedef std::list<WidgetInfo> Widgets;
 typedef std::map<int, const WidgetInfo * const> GroupWidgets;
 typedef std::map<int, GroupWidgets> WidgetGroup;
-
-/*!
-    Represents a group of widgets in the same row or column
-*/
-struct Group
-{
-    //! The index of the group
-    int index;
-
-    //! The groups's weight
-    float weight;
-
-    Group(int i, float w) : index(i), weight(w) { }
-
-    bool operator < (const Group &other) const
-    {
-        return index < other.index;
-    }
-};
-
-typedef std::set<Group> Groups;
+typedef std::map<int, float> Weights; // represents weights for rows and columns
 
 
 /*!
@@ -135,6 +115,7 @@ public:
     GridBagLayoutInfo &expand_horizontal();
     GridBagLayoutInfo &expand_vertical();
     GridBagLayoutInfo &expand_both();
+    GridBagLayoutInfo &expand_none();
 
     GridBagLayoutInfo &position(unsigned int col, unsigned int row);
     GridBagLayoutInfo &span(unsigned int col, unsigned int row);
@@ -191,7 +172,7 @@ private:
     typedef std::map<cpaf::gui::Widget *, cpaf::Rect> WidgetRects;
 
     gblm::Widgets m_widgets;
-    gblm::Groups m_rows, m_columns;
+    gblm::Weights m_rows, m_columns;
     gblm::WidgetGroup m_row_widgets, m_col_widgets;
 
     static const int DEFAULT_WEIGHT = 1;
@@ -200,13 +181,13 @@ private:
         \return a reference to the existing column with this index.
             If a column for this index doesn't exist, it will be created.
     */
-    gblm::Group &get_column(int index);
+    float &get_column_weight(int index);
 
     /*!
         \return a reference to the existing row with this index.
             If a row for this index doesn't exist, it will be created.
     */
-    gblm::Group &get_row(int index);
+    float &get_row_weight(int index);
 
     /*!
         Calculates the sizes of widgets for the given group info.
@@ -214,7 +195,7 @@ private:
 
         \param col Specifies if this is a column or a row
     */
-    void calc_group_sizes(bool col, int avail, gblm::GroupInfo &info, WidgetRects &rects);
+    void calc_group_sizes(bool col, int avail, WidgetRects &rects);
 };
 
     } // gui
