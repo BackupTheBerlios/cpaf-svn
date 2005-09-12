@@ -137,8 +137,6 @@ private:
     boost::shared_ptr<gblm::LayoutData> m_data;
 
     const gblm::LayoutData &get_data() const;
-
-    friend class GridBagLayout;
 };
 
 /*!
