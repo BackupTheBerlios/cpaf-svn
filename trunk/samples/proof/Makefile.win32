@@ -1,0 +1,40 @@
+CC = gcc
+LD = g++
+CPAF_DIR = ../..
+TARGET = main.exe
+INCLUDE_DIRS = -I $(CPAF_DIR)/include -I C:\boost
+CXXFLAGS = -pipe -DCPAF_DLL -D_DEBUG -DCPAF_WIN32 -ggdb -Wall
+LDFLAGS = -L $(CPAF_DIR)/lib
+LIBS = -lcomctl32 -lgdi32 -lcpaf_gui_win32
+
+SRC_OBJS = main.o cpaf.o
+
+define build_target
+	@echo Creating executable...
+	$(LD) $(LDFLAGS) -o "$(TARGET)" $(SRC_OBJS) $(LIBS)
+endef
+
+define compile_source
+	$(CC) $(CXXFLAGS) $(INCLUDE_DIRS) -c "$<" -o "$@"
+endef
+
+$(TARGET): $(SRC_OBJS)
+	$(build_target)
+
+.PHONY: clean cleanall
+
+install:
+	@echo Installing not yet supported.
+
+cleanall:
+	@echo Deleting intermediate files.
+	-@del /q *.o
+	-@del /q *.exe
+
+clean: cleanall
+
+main.o: main.cpp
+	$(compile_source)
+
+cpaf.o: cpaf.rc
+	windres  $(INCLUDE_DIRS) -o cpaf.o cpaf.rc
