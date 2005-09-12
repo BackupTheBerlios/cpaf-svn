@@ -72,7 +72,7 @@ void GridBagLayout::calc_group_sizes(bool col, int avail, WidgetRects &rects)
     if( info.empty() )
         return; // nothing to do
 
-    // calculate sizes for each group accountinig for gaps
+    // calculate sizes for each group accounting for gaps
     int available_size = avail;
     int gap;
 
@@ -89,7 +89,7 @@ void GridBagLayout::calc_group_sizes(bool col, int avail, WidgetRects &rects)
         again = false;
         float weight_sum = 0;
 
-        // current amount of space taken up
+        // current amount of space that is accounted for
         int current_size = 0;
 
         // see how much space is left

@@ -1,4 +1,14 @@
 /*
 Some definitions for windows resource files.
 */
-#include <Winuser.rh>
+//#include <Winuser.rh>
+#include <winuser.h>
+
+#define IDD_PANEL_TEMPLATE  0x1001
+
+// template definition to use for creating panels with dialog functions so MapDialogRect works
+IDD_PANEL_TEMPLATE DIALOGEX 0, 0, 0, 0, 0
+STYLE WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CHILD | DS_CONTROL
+EXSTYLE WS_EX_CONTROLPARENT
+BEGIN
+END
