@@ -70,10 +70,13 @@ install:
 
 cleanall:
 	@echo Deleting intermediate files.
-	-@if exist "$(OBJ_DIR)" rmdir /s /q "$(OBJ_DIR)"
-	-@mkdir "$(OBJ_DIR)"
 	-@if exist "$(OUTPUT_DIR)" rmdir /s /q "$(OUTPUT_DIR)"
-	-@mkdir "$(OUTPUT_DIR)"
+	-@if exist "$(OBJ_DIR)/gui/initializer" rmdir /s /q "$(OBJ_DIR)/gui/initializer"
+	-@if exist "$(OBJ_DIR)/gui" rmdir /s /q "$(OBJ_DIR)/gui"
+	-@if exist "$(OBJ_DIR)/event" rmdir /s /q "$(OBJ_DIR)/event"
+	-@if exist "$(OBJ_DIR)/win32" rmdir /s /q "$(OBJ_DIR)/win32"
+	-@if exist "$(OBJ_DIR)" del /q "$(OBJ_DIR)"\*.*
+	-@if exist "$(OUTPUT_DIR)" rmdir /s /q "$(OUTPUT_DIR)"
 
 clean: cleanall
 

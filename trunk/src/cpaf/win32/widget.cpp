@@ -25,8 +25,8 @@ Widget::Widget()
     m_wrapper(NULL),
     m_hwnd(0),
     m_old_proc(0),
-    m_max_size(-1,-1),
-    m_min_size(-1,-1)
+    m_min_size(-1,-1),
+    m_max_size(-1,-1)
 { }
 
 void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,

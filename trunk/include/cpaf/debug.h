@@ -50,7 +50,7 @@ public:
 
     DebugReport(REPORT_TYPE report_type = MESSAGE, const char *file = 0, int line = 0, const char *module = 0)
 #ifdef _DEBUG
-        : m_type(report_type), m_file(file), m_line(line), m_module(module)
+        : m_type(report_type), m_line(line), m_file(file), m_module(module)
 #endif
     { }
 
