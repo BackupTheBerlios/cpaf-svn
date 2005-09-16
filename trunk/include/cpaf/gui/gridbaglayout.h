@@ -23,6 +23,11 @@ namespace cpaf {
         */
         namespace gblm {
 
+enum GROUP {
+    COLUMN,
+    ROW,
+};
+
 class LayoutData
 {
 public:
@@ -168,17 +173,17 @@ public:
     /*!
         Specifies the amount of gap inbetween columns
     */
-    GridBagLayout &set_column_gap(int gap);
+    GridBagLayout &set_column_gap(float gap);
 
     /*!
         Specifies the amount of gap inbetween rows
     */
-    GridBagLayout &set_row_gap(int gap);
+    GridBagLayout &set_row_gap(float gap);
 
     /*!
         Specifies the amount of gap inbetween rows and columns
     */
-    GridBagLayout &set_gap(int gap);
+    GridBagLayout &set_gap(float gap);
 
     /*!
         Removes a widget from this layout manager
@@ -191,7 +196,7 @@ private:
     gblm::Widgets m_widgets;
     gblm::Weights m_rows, m_columns;
     gblm::WidgetGroup m_row_widgets, m_col_widgets;
-    int m_row_gap, m_column_gap;
+    float m_row_gap, m_column_gap;
 
     static const int DEFAULT_WEIGHT = 1;
 
@@ -208,12 +213,47 @@ private:
     float &get_row_weight(int index);
 
     /*!
-        Calculates the sizes of widgets for the given group info.
-        The calculations are return within the info.
-
-        \param col Specifies if this is a column or a row
+        Calculates the sizes of the widgets contained in this objects columns or rows
+        based on the template parameter
     */
-    void calc_group_sizes(bool col, int avail, WidgetRects &rects);
+    template<gblm::GROUP> void calc_group_sizes(int avail, WidgetRects &rects);
+
+    /*!
+        \return Weights for the widgets in the given row or column based on the
+            template parameter.
+    */
+    template<gblm::GROUP> gblm::Weights &get_weights();
+
+    /*!
+        \return The widgets indexed by rows or columns based on the template parameter
+    */
+    template<gblm::GROUP> gblm::WidgetGroup &get_widgets();
+
+    /*!
+        \return A reference to the height or width of the given size based on the template parameter
+    */
+    template<gblm::GROUP> float &get_size_value(cpaf::Size &size);
+
+    /*!
+        \return The height of width of the given size based on the template parameter.
+    */
+    template<gblm::GROUP> float get_size_value(const cpaf::Size &size);
+
+    /*!
+        \return A reference to the x or y value of the given position based on the template parameter
+    */
+    template<gblm::GROUP> float &get_pos_value(cpaf::Point &pos);
+
+    /*!
+        Returns either the left and right or top and bottom padding values from the given data
+            based on the template parameter through the pad1 and pad2 arguments.
+    */
+    template<gblm::GROUP> void get_pad_values(const gblm::LayoutData &data, float &pad1, float &pad2);
+
+    /*!
+        \return The gap between rows or columns based on the template parameter
+    */
+    template<gblm::GROUP> float get_gap();
 };
 
     } // gui
