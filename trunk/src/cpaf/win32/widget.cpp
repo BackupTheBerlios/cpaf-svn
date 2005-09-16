@@ -25,8 +25,8 @@ Widget::Widget()
     m_wrapper(NULL),
     m_hwnd(0),
     m_old_proc(0),
-    m_min_size(-1,-1),
-    m_max_size(-1,-1)
+    m_min_size(0,0),
+    m_max_size(0,0)
 { }
 
 void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
@@ -52,6 +52,11 @@ void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::Widg
     if( params.use_default_size() )
         w = CW_USEDEFAULT;
 
+    RECT rect; rect.top = y; rect.left = x; rect.right = rect.left + w; rect.bottom = rect.top + h;
+    ::MapDialogRect(hparent, &rect);
+    cpaf::DebugReport()  << "MapDialogRect: {" << rect.left << ", " << rect.top << ", "
+        << rect.right - rect.left << ", " << rect.top - rect.bottom << "}";
+
     {
         CreationHook hook; // hook WM_CREATE for initialization stuff
         CreationInfo info(this);
@@ -66,6 +71,10 @@ void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::Widg
 
     // set the default font to what it should be
     ::SendMessage(m_hwnd, WM_SETFONT, (WPARAM)::GetStockObject(DEFAULT_GUI_FONT), 0);
+
+    // initialize min and max sizes
+    m_min_size = params.get_min_size();
+    m_max_size = params.get_max_size();
 
     // show the window if necessary
     if( params.get_show() )
@@ -122,13 +131,13 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
     case WM_GETMINMAXINFO:
         {
             MINMAXINFO *info = (MINMAXINFO*)l_param;
-            if( m_max_size.width != -1 )
+            if( m_max_size.width != 0 )
                 info->ptMaxTrackSize.x = m_max_size.width;
-            if( m_max_size.height != -1 )
+            if( m_max_size.height != 0 )
                 info->ptMaxTrackSize.y = m_max_size.height;
-            if( m_min_size.width != -1 )
+            if( m_min_size.width != 0 )
                 info->ptMinTrackSize.x = m_min_size.width;
-            if( m_min_size.height != -1 )
+            if( m_min_size.height != 0 )
                 info->ptMinTrackSize.y = m_min_size.height;
             return 0;
         }
@@ -150,9 +159,14 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
                     return 0;
                 }
             }
-
         }
 
+    case WM_SYSCOLORCHANGE:
+        cpaf::DebugReport() << "WM_SYSCOLORCHANGE";
+        break;
+    case WM_SETTINGCHANGE:
+        cpaf::DebugReport() << "WM_SETTINGCHANGE";
+        break;
     }
 
     if( m_old_proc )

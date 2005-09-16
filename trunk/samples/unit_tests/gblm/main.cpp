@@ -22,10 +22,10 @@ bool MyApp::init()
     Panel *panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout).show());
 
     GridBagLayoutInfo info;
-    //info.padding(5);
+    info.padding(5);
 
     Button::Initializer btn_init;
-    btn_init.parent(panel).size(cpaf::Size(25,25)).show();
+    btn_init.parent(panel).min_size(cpaf::Size(25,25)).show();
 
     gblm->add_widget(Button::create(btn_init.label("1")),
         info.position(1,1).align_top().align_right().expand_both());
@@ -46,7 +46,7 @@ bool MyApp::init()
         info.position(4,2).align_center().expand_both());
 
 
-    gblm->set_row_gap(10);
+    gblm->set_gap(10);
     Window::create(Window::Initializer().content_panel(panel).show());
 
     return true;

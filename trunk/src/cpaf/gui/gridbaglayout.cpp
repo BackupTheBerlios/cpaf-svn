@@ -187,7 +187,7 @@ void GridBagLayout::calc_group_sizes(bool col, int avail, WidgetRects &rects)
                 *size_dest_val = size_src_val;
             else
             {
-                cpaf::Size natural_size = info->widget->get_size();
+                cpaf::Size natural_size = info->widget->get_min_size();
 
                 if( col )
                     size_src_val_natural = natural_size.width;
