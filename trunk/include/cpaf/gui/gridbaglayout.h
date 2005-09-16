@@ -72,8 +72,8 @@ struct GroupData {
     GroupWidgets &m_widgets;
     bool m_done;
     float m_weight;
-    cpaf::Size m_min_size;
-    cpaf::Size m_max_size;
+    float m_min_size;
+    float m_max_size;
     cpaf::Rect m_rect;
 
     GroupData(GroupWidgets &widgets, float weight) : m_widgets(widgets), m_done(false), m_weight(weight) { }

@@ -19,84 +19,84 @@ GridBagLayout::GridBagLayout()
 
 }
 
-void reset_group_done_state(GroupInfo::value_type &value)
+inline void reset_group_done_state(GroupInfo::value_type &value)
 {
     value.second.m_done = false;
 }
 
-template<> gblm::Weights &GridBagLayout::get_weights<ROW>()
+template<> inline gblm::Weights &GridBagLayout::get_weights<ROW>()
 {
     return m_rows;
 }
 
-template<> gblm::Weights &GridBagLayout::get_weights<COLUMN>()
+template<> inline gblm::Weights &GridBagLayout::get_weights<COLUMN>()
 {
     return m_columns;
 }
 
-template<> gblm::WidgetGroup &GridBagLayout::get_widgets<COLUMN>()
+template<> inline gblm::WidgetGroup &GridBagLayout::get_widgets<COLUMN>()
 {
     return m_col_widgets;
 }
 
-template<> gblm::WidgetGroup &GridBagLayout::get_widgets<ROW>()
+template<> inline gblm::WidgetGroup &GridBagLayout::get_widgets<ROW>()
 {
     return m_row_widgets;
 }
 
-template<> float &GridBagLayout::get_size_value<COLUMN>(cpaf::Size &size)
+template<> inline float &GridBagLayout::get_size_value<COLUMN>(cpaf::Size &size)
 {
     return size.width;
 }
 
-template<> float &GridBagLayout::get_size_value<ROW>(cpaf::Size &size)
+template<> inline float &GridBagLayout::get_size_value<ROW>(cpaf::Size &size)
 {
     return size.height;
 }
 
-template<> float GridBagLayout::get_size_value<COLUMN>(const cpaf::Size &size)
+template<> inline float GridBagLayout::get_size_value<COLUMN>(const cpaf::Size &size)
 {
     return size.width;
 }
 
-template<> float GridBagLayout::get_size_value<ROW>(const cpaf::Size &size)
+template<> inline float GridBagLayout::get_size_value<ROW>(const cpaf::Size &size)
 {
     return size.height;
 }
 
-template<> void GridBagLayout::get_pad_values<COLUMN>(const LayoutData &data, float &pad1, float &pad2)
+template<> inline void GridBagLayout::get_pad_values<COLUMN>(const LayoutData &data, float &pad1, float &pad2)
 {
     pad1 = data.pad_left;
     pad2 = data.pad_right;
 }
 
-template<> void GridBagLayout::get_pad_values<ROW>(const LayoutData &data, float &pad1, float &pad2)
+template<> inline void GridBagLayout::get_pad_values<ROW>(const LayoutData &data, float &pad1, float &pad2)
 {
     pad1 = data.pad_top;
     pad2 = data.pad_bottom;
 }
 
-template<> float GridBagLayout::get_gap<COLUMN>()
+template<> inline float GridBagLayout::get_gap<COLUMN>()
 {
     return m_column_gap;
 }
 
-template<> float GridBagLayout::get_gap<ROW>()
+template<> inline float GridBagLayout::get_gap<ROW>()
 {
     return m_row_gap;
 }
 
-template<> float &GridBagLayout::get_pos_value<COLUMN>(cpaf::Point &pos)
+template<> inline float &GridBagLayout::get_pos_value<COLUMN>(cpaf::Point &pos)
 {
     return pos.x;
 }
 
-template<> float &GridBagLayout::get_pos_value<ROW>(cpaf::Point &pos)
+template<> inline float &GridBagLayout::get_pos_value<ROW>(cpaf::Point &pos)
 {
     return pos.y;
 }
 
-template<GROUP group> void GridBagLayout::calc_group_sizes(int avail, WidgetRects &rects)
+template<GROUP group> inline void GridBagLayout::calc_group_sizes(int avail, WidgetRects &rects)
 {
     GroupInfo info;
 
@@ -110,34 +110,30 @@ template<GROUP group> void GridBagLayout::calc_group_sizes(int avail, WidgetRect
         if( data.empty() )
             continue;
 
-        cpaf::Size min_size;
-        cpaf::Size max_size;
-        float &min_val_total = get_size_value<group>(min_size);
-        float &max_val_total = get_size_value<group>(max_size);
+        float &min_val_total = data.m_min_size;
+        float &max_val_total = data.m_max_size;
 
         for( GroupWidgets::iterator i = data.m_widgets.begin(), end = data.m_widgets.end(); i != end; ++i )
         {
             const WidgetInfo *const info = i->second;
-            cpaf::Size min = info->widget->get_min_size();
-            cpaf::Size max = info->widget->get_max_size();
-
-            float &min_val = get_size_value<group>(min);
-            float &max_val = get_size_value<group>(max);
+            float min_val = get_size_value<group>(info->widget->get_min_size());
+            float max_val = get_size_value<group>(info->widget->get_max_size());
             float pad1, pad2;
+
             get_pad_values<group>(info->data, pad1, pad2);
 
             // accound for padding
-            min_val += pad1 + pad2;
-            max_val += pad1 + pad2;
+            if( min_val != 0 )
+                min_val += pad1 + pad2;
+            if( max_val != 0 )
+                max_val += pad1 + pad2;
 
+            // honor mins and maxes
             if( min_val > min_val_total )
                 min_val_total = min_val;
             if( max_val > max_val_total )
                 max_val_total = max_val;
         }
-
-        data.m_min_size = min_size;
-        data.m_max_size = max_size;
 
         info.insert(std::make_pair(gi->first, data));
     }
@@ -183,20 +179,45 @@ template<GROUP group> void GridBagLayout::calc_group_sizes(int avail, WidgetRect
                 continue;
 
             cpaf::Rect &rect = data.m_rect;
-            float val = (extra_size * data.m_weight) / weight_sum;
-            
             float &dest_val = get_size_value<group>(rect.size);
-            float &min_val = get_size_value<group>(data.m_min_size);
+            float min_val = data.m_min_size;
+            float max_val = data.m_max_size;
 
             dest_val = (extra_size * data.m_weight) / weight_sum;
 
-            // make sure minimum size is still respected
-            if( dest_val < min_val )
+            /*
+                A weight value of 0 has special meaning:
+                A group with weight 0 will have a maximal size equal to
+                the largest natural size of its child widgets.
+            */
+            if( data.m_weight == 0 )
             {
                 dest_val = min_val;
-                data.m_done = true; // dont size this anymore
-                again = true; // need to start over
+
+                // done sizing this group, start over
+                data.m_done = again = true;
                 break;
+            }
+            else
+            {
+                // make sure minimum size is still respected
+                if( dest_val < min_val )
+                {
+                    dest_val = min_val;
+
+                    // done sizing this group, start over
+                    data.m_done = again = true;
+                    break;
+                }
+                // make sure maximal size is still respected
+                if( max_val != 0 && dest_val > max_val )
+                {
+                    dest_val = max_val;
+
+                    // done sizing this group, start over
+                    data.m_done = again = true;
+                    break;
+                }
             }
         }
     } while(again);
@@ -289,16 +310,7 @@ template<GROUP group> void GridBagLayout::calc_group_sizes(int avail, WidgetRect
             }
         }
 
-        if( group == COLUMN )
-        {
-            pos.y = 0;
-            pos.x += data.m_rect.size.width + gap;
-        }
-        else
-        {
-            pos.x = 0;
-            pos.y += data.m_rect.size.height + gap;
-        }
+        get_pos_value<group>(pos) += get_size_value<group>(data.m_rect.size) + gap;
     }
 }
 

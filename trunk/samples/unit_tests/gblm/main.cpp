@@ -45,8 +45,17 @@ bool MyApp::init()
     gblm->add_widget(Button::create(btn_init.label("8")),
         info.position(4,2).align_center().expand_both());
 
+    gblm->add_widget(Button::create(btn_init.label("9")),
+        info.position(1,3).expand_both());
+    gblm->add_widget(Button::create(btn_init.label("10")),
+        info.position(2,3));
+    gblm->add_widget(Button::create(btn_init.label("11")),
+        info.position(3,3));
+    gblm->add_widget(Button::create(btn_init.label("12")),
+        info.position(4,3));
 
-    gblm->set_gap(10);
+    gblm->set_gap(10).set_row_weight(1,0).set_row_weight(3,0)
+        .set_column_weight(1,0).set_column_weight(3,2);
     Window::create(Window::Initializer().content_panel(panel).show());
 
     return true;
