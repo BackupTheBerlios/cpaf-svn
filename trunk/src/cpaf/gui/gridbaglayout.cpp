@@ -28,6 +28,10 @@ inline void reset_group_done_state(GroupInfo::value_type &value)
     value.second.m_done = false;
 }
 
+// need namespace declarations for template specializations (by standard)
+namespace cpaf {
+    namespace gui {
+
 template<> inline gblm::Weights &GridBagLayout::get_weights<ROW>()
 {
     return m_rows;
@@ -112,7 +116,10 @@ template<> void GridBagLayout::get_margin_values<ROW>(float &margin1, float &mar
     margin2 = m_margin_bottom;
 }
 
-template<GROUP group> inline void GridBagLayout::calc_group_sizes(int avail, WidgetRects &rects)
+    } // gui
+} // cpaf
+
+template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, WidgetRects &rects)
 {
     GroupInfo info;
 
@@ -172,7 +179,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(int avail, Wid
         float weight_sum = 0;
 
         // current amount of space that is accounted for
-        int current_size = 0;
+        float current_size = 0;
 
         // see how much space is left
         for( GroupInfo::const_iterator i = info.begin(), end = info.end(); i != end; ++i )
@@ -186,7 +193,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(int avail, Wid
         }
 
         // distribute evenly for each column, considering minimum width, and starting over when need be
-        int extra_size = available_size - current_size;
+        float extra_size = available_size - current_size;
 
         for( GroupInfo::iterator i = info.begin(), end = info.end(); i != end; ++i )
         {

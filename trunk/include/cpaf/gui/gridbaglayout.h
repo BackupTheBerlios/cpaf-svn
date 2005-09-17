@@ -253,7 +253,7 @@ private:
         Calculates the sizes of the widgets contained in this objects columns or rows
         based on the template parameter
     */
-    template<gblm::GROUP> void calc_group_sizes(int avail, WidgetRects &rects);
+    template<gblm::GROUP> void calc_group_sizes(float avail, WidgetRects &rects);
 
     /*!
         \return Weights for the widgets in the given row or column based on the
