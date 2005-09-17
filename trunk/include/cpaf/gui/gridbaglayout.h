@@ -76,7 +76,13 @@ struct GroupData {
     float m_max_size;
     cpaf::Rect m_rect;
 
-    GroupData(GroupWidgets &widgets, float weight) : m_widgets(widgets), m_done(false), m_weight(weight) { }
+    GroupData(GroupWidgets &widgets, float weight)
+        : m_widgets(widgets),
+        m_done(false),
+        m_weight(weight),
+        m_min_size(0),
+        m_max_size(0)
+    { }
 
     /*!
         \return True if this group is empty (it has no widgets)
@@ -186,6 +192,36 @@ public:
     GridBagLayout &set_gap(float gap);
 
     /*!
+        Sets the margins for all sides
+    */
+    GridBagLayout &set_margins(float margin);
+
+    /*!
+        Sets the margins for all sides
+    */
+    GridBagLayout &set_margins(float left, float top, float right, float bottom);
+
+    /*!
+        Sets the left margin
+    */
+    GridBagLayout &set_left_margin(float margin);
+
+    /*!
+        Sets the top margin
+    */
+    GridBagLayout &set_top_margin(float margin);
+
+    /*!
+        Sets the right margin
+    */
+    GridBagLayout &set_right_margin(float margin);
+
+    /*!
+        Sets the bottom margin
+    */
+    GridBagLayout &set_bottom_margin(float margin);
+
+    /*!
         Removes a widget from this layout manager
     */
     //void remove_widget(Widget *widget);
@@ -197,6 +233,7 @@ private:
     gblm::Weights m_rows, m_columns;
     gblm::WidgetGroup m_row_widgets, m_col_widgets;
     float m_row_gap, m_column_gap;
+    float m_margin_top, m_margin_left, m_margin_right, m_margin_bottom;
 
     static const int DEFAULT_WEIGHT = 1;
 
@@ -249,6 +286,12 @@ private:
             based on the template parameter through the pad1 and pad2 arguments.
     */
     template<gblm::GROUP> void get_pad_values(const gblm::LayoutData &data, float &pad1, float &pad2);
+
+    /*!
+        Returns either the left and right or top and bottom margin values
+            based on the template parameter through the margin1 and margin2 arguments.
+    */
+    template<gblm::GROUP> void get_margin_values(float &margin1, float &margin2);
 
     /*!
         \return The gap between rows or columns based on the template parameter

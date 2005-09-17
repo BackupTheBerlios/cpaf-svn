@@ -14,7 +14,11 @@ using namespace cpaf::gui::gblm;
 
 GridBagLayout::GridBagLayout()
     : m_row_gap(0),
-    m_column_gap(0)
+    m_column_gap(0),
+    m_margin_top(0),
+    m_margin_left(0),
+    m_margin_right(0),
+    m_margin_bottom(0)
 {
 
 }
@@ -96,6 +100,18 @@ template<> inline float &GridBagLayout::get_pos_value<ROW>(cpaf::Point &pos)
     return pos.y;
 }
 
+template<> void GridBagLayout::get_margin_values<COLUMN>(float &margin1, float &margin2)
+{
+    margin1 = m_margin_left;
+    margin2 = m_margin_right;
+}
+
+template<> void GridBagLayout::get_margin_values<ROW>(float &margin1, float &margin2)
+{
+    margin1 = m_margin_top;
+    margin2 = m_margin_bottom;
+}
+
 template<GROUP group> inline void GridBagLayout::calc_group_sizes(int avail, WidgetRects &rects)
 {
     GroupInfo info;
@@ -142,11 +158,12 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(int avail, Wid
         return; // nothing to do
 
     // calculate sizes for each group accounting for gaps
-    int available_size = avail;
-
+    float margin1, margin2;
+    float available_size = avail;
     float gap = get_gap<group>();
 
-    available_size -= (info.size() - 1) * gap;
+    get_margin_values<group>(margin1, margin2);
+    available_size -= (info.size() - 1) * gap + margin1 + margin2;;
 
     bool again;
     do
@@ -223,6 +240,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(int avail, Wid
     } while(again);
 
     cpaf::Point pos;
+    get_pos_value<group>(pos) = margin1;
 
     // calculate widget sizes
     for( GroupInfo::iterator i = info.begin(); i != info.end(); ++i )
@@ -372,6 +390,49 @@ GridBagLayout &GridBagLayout::set_gap(float gap)
     m_row_gap = m_column_gap = gap;
     return *this;
 }
+
+GridBagLayout &GridBagLayout::set_margins(float margin)
+{
+    m_margin_left =
+    m_margin_top =
+    m_margin_right =
+    m_margin_bottom = margin;
+    return *this;
+}
+
+GridBagLayout &GridBagLayout::set_margins(float left, float top, float right, float bottom)
+{
+    m_margin_left = left;
+    m_margin_top = top;
+    m_margin_right = right;
+    m_margin_bottom = bottom;
+    return *this;
+}
+
+GridBagLayout &GridBagLayout::set_left_margin(float margin)
+{
+    m_margin_left = margin;
+    return *this;
+}
+
+GridBagLayout &GridBagLayout::set_top_margin(float margin)
+{
+    m_margin_top = margin;
+    return *this;
+}
+
+GridBagLayout &GridBagLayout::set_right_margin(float margin)
+{
+    m_margin_right = margin;
+    return *this;
+}
+
+GridBagLayout &GridBagLayout::set_bottom_margin(float margin)
+{
+    m_margin_bottom = margin;
+    return *this;
+}
+
 
 float &GridBagLayout::get_column_weight(int index)
 {
