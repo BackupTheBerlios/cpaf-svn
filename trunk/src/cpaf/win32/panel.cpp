@@ -67,7 +67,7 @@ int Panel::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
     {
     case WM_SIZE:
         /*!
-            \todo Decide wether the layout manager should update its children
+            \todo Decide whether the layout manager should update its children
                 before or after the size event is sent
         */
         // update the layout manager

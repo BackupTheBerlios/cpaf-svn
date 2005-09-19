@@ -444,14 +444,14 @@ GridBagLayout &GridBagLayout::set_bottom_margin(float margin)
 float &GridBagLayout::get_column_weight(int index)
 {
     // insert returns a pair whos first member is an iterator pointing to the element
-    // regardless of wether the element existed or not, so just return its weight
+    // regardless of whether the element existed or not, so just return its weight
     return m_columns.insert(std::make_pair(index, DEFAULT_WEIGHT)).first->second;
 }
 
 float &GridBagLayout::get_row_weight(int index)
 {
     // insert returns a pair whos first member is an iterator pointing to the element
-    // regardless of wether the element existed or not, so just return its weight
+    // regardless of whether the element existed or not, so just return its weight
     return m_rows.insert(std::make_pair(index, DEFAULT_WEIGHT)).first->second;
 }
 

@@ -41,7 +41,7 @@ public:
     /*!
         Instead of subclassing window procedures to simulate inheritance, there is only
         one window procedure, which is widget_wndproc. This function calls process_message
-        which does all message processing. process_message is responsible for knowing wether or
+        which does all message processing. process_message is responsible for knowing whether or
         not to call DefWindowProc, or some other window procedure.
     */
     virtual int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);

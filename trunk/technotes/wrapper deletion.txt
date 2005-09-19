@@ -51,7 +51,7 @@ realized that its native widget was destroyed, sent the "widget_destroyed" event
 and deleted its Wrapper "b" (hence the upward arrows).
 
 So why can't you use delete directly on Wrappers? Well, how is an implementation
-supposed to know wether or not to delete its wrapper? Implementations always
+supposed to know whether or not to delete its wrapper? Implementations always
 delete their wrapper objects. If you delete the Wrapper, and Wrapper::~Wrapper
 deletes Impl, Impl::~Impl will try to delete Wrapper again. Double deletion!
 Thats no good.
