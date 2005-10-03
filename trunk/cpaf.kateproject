@@ -59,7 +59,7 @@ Dirs=
 Files=main.cpp
 
 [Dir samples/unit_tests]
-Dirs=events/textwidget
+Dirs=events/textwidget/gblm
 Files=
 
 [Dir samples/unit_tests/events]
@@ -67,6 +67,10 @@ Dirs=create_destroy
 Files=
 
 [Dir samples/unit_tests/events/create_destroy]
+Dirs=
+Files=main.cpp
+
+[Dir samples/unit_tests/gblm]
 Dirs=
 Files=main.cpp
 
@@ -92,7 +96,7 @@ Files=factory.cpp/window.cpp/utils.cpp/app.cpp/widget.cpp/button.cpp/textbox.cpp
 
 [Dir src/cpaf/gui]
 Dirs=initializer
-Files=factory.cpp/toplevel.cpp/widget.cpp/window.cpp/app.cpp/object.cpp/button.cpp/textbox.cpp/entrybox.cpp/textwidget.cpp/panel.cpp
+Files=factory.cpp/toplevel.cpp/widget.cpp/window.cpp/app.cpp/object.cpp/button.cpp/textbox.cpp/entrybox.cpp/textwidget.cpp/panel.cpp/gridbaglayout.cpp/layoutmanager.cpp
 
 [Dir src/cpaf/gui/initializer]
 Dirs=
