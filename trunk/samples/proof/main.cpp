@@ -33,6 +33,7 @@ public:
     bool init();
     void toggle_password_mode(Event &event);
     void destroy_button(Event &event);
+    void on_text_changed(Event &event);
 };
 
 /*
@@ -130,6 +131,11 @@ void MyApp::destroy_button(Event &event)
     destroy_btn->destroy();
 }
 
+void MyApp::on_text_changed(Event &event)
+{
+    cpaf::DebugReport() << "MyApp::on_text_changed";
+}
+
 /*
     Initialization function for our application class
 */
@@ -209,6 +215,8 @@ bool MyApp::init()
         .size(cpaf::Size(300,100))
         .show()
         );
+
+    connect<Event, false>(TEXT_CHANGED, text->get_id()) (&MyApp::on_text_changed, *this);
 
     /*
         Create a EntryBox for passwords
