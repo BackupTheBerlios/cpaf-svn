@@ -7,9 +7,20 @@
 #include <cpaf/gtk2/gui/button.h>
 #include <cpaf/gtk2/gui/panel.h>
 #include <cpaf/exception.h>
+#include <cpaf/event/event.h>
+
 #include <gtk/gtk.h>
 
 using namespace cpaf::gtk2::gui;
+
+extern "C" {
+static void
+cpaf_button_clicked(GtkButton * gtkbutton,
+                    Button * widget)
+{
+    widget->send_event(cpaf::event::BUTTON_CLICK);
+}
+} // extern "C"
 
 Button::Button()
     : m_label(NULL)
@@ -33,6 +44,10 @@ Button::create (const cpaf::gui::initializer::ButtonData &params)
     }
     else
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
+
+    g_signal_connect(m_widget, "clicked",
+                     G_CALLBACK (cpaf_button_clicked),
+                     this);
 
     //! \todo Check in set_label instead, for delayed creation on set_label("") too?
     if (!params.get_label().empty())
