@@ -32,7 +32,7 @@ Files=window.h/widget.h/button.h/textbox.h/entrybox.h/panel.h
 
 [Dir include/cpaf/gui]
 Dirs=initializer
-Files=toplevel.h/widget.h/window.h/app.h/object.h/api-prototypes.h/button.h/factory.h/textbox.h/entrybox.h/textwidget.h/panel.h
+Files=toplevel.h/widget.h/window.h/app.h/object.h/api-prototypes.h/button.h/factory.h/textbox.h/entrybox.h/textwidget.h/panel.h/gridbaglayout.h/layoutmanager.h
 
 [Dir include/cpaf/gui/factory]
 Dirs=
