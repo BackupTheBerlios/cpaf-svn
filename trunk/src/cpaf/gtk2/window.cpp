@@ -242,9 +242,13 @@ cpaf::Point Window::get_client_position()
 
 void Window::set_content_panel(cpaf::api::gui::Panel *p)
 {
+    //! \todo
+    g_warning("Window::set_content_panel not yet implemented.");
 }
 
 cpaf::gui::Panel * Window::get_content_panel() const
 {
+    //! \todo
+    g_warning("Window::get_content_panel not yet implemented");
     return (cpaf::gui::Panel*)NULL;
 }
