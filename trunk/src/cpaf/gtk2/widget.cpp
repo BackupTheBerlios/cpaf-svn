@@ -38,11 +38,13 @@ Widget::create (const cpaf::gui::initializer::WidgetData &params,
         set_size (params.get_size());
 
     //! \todo Uncomment after all set_{min,max}_size methods are aware of the DEFAULT_* values
-    //set_min_size(params.m_min_size);
-    //set_max_size(params.m_max_size);
+    //set_min_size(params.get_min_size());
+    //set_max_size(params.get_max_size());
 
+#if 0 // FIXME: currently done in real controls because parent isn't associated yet here
     if (!params.use_default_pos())
         set_position (params.get_pos());
+#endif
 
     enable (params.get_enable());
 
@@ -85,6 +87,7 @@ Widget::set_size (const cpaf::Size& s)
         "natural" size request of the widget will be used instead." - gtk manual
     */
     // Do we want to enforce allocation instead?
+    //! \todo Yes.
 
     //! \todo Deal with DEFAULT_* values
     gtk_widget_set_size_request (m_widget, s.width, s.height);
@@ -94,7 +97,7 @@ Widget::set_size (const cpaf::Size& s)
 void
 Widget::set_position (const cpaf::Point& pos)
 {
-    gtk_fixed_move (GTK_FIXED (gtk_widget_get_parent (m_widget)),
+    gtk_fixed_move (GTK_FIXED (get_parent()->get_handle()),
                     m_widget,
                     pos.x,
                     pos.y);
@@ -105,6 +108,19 @@ Widget::get_size() const
 {
     // Is this correct? Maybe use gdk_window_get_frame_extents instead?
     return cpaf::Size (m_widget->allocation.width, m_widget->allocation.height);
+}
+
+void
+Widget::set_rect (const cpaf::Rect& rect)
+{
+    set_position (rect.position);
+    set_size (rect.size);
+}
+
+cpaf::Rect
+Widget::get_rect() const
+{
+    return cpaf::Rect (get_position(), get_size());
 }
 
 void

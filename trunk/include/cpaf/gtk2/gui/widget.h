@@ -33,8 +33,8 @@ public:
     virtual cpaf::Size get_min_size() const { return cpaf::Size(); }
     virtual cpaf::Size get_max_size() const { return cpaf::Size(); }
     virtual cpaf::Point get_position() const { return cpaf::Point(); }
-    virtual void set_rect(const cpaf::Rect&) { }
-    virtual cpaf::Rect get_rect() const { return cpaf::Rect(); }
+    virtual void set_rect(const cpaf::Rect&);
+    virtual cpaf::Rect get_rect() const;
 
     // widget interface
     virtual void destroy();
