@@ -7,6 +7,7 @@
 #include <cpaf/gtk2/gui/widget.h>
 #include <cpaf/gui/panel.h>
 #include <cpaf/gui/window.h>
+#include <cpaf/event/event.h>
 
 #include <gtk/gtk.h>
 
@@ -14,6 +15,22 @@
 #include <cpaf/private/factory.h>
 
 using namespace cpaf::gtk2::gui;
+
+extern "C" {
+static void
+cpaf_widget_realize(GtkWidget * gtkwidget,
+                    Widget * widget)
+{
+    widget->send_event(cpaf::event::WIDGET_CREATE);
+}
+
+static void
+cpaf_widget_destroy(GtkWidget * gtkwidget,
+                    Widget * widget)
+{
+    widget->send_event(cpaf::event::WIDGET_DESTROY);
+}
+} // extern "C"
 
 Widget::Widget()
     : m_wrapper(NULL),
@@ -28,6 +45,14 @@ Widget::create (const cpaf::gui::initializer::WidgetData &params,
     m_widget = widget;
 
     g_object_set_data (G_OBJECT (m_widget), "cpaf_wrapper", this);
+
+    g_signal_connect(m_widget, "realize",
+                     G_CALLBACK (cpaf_widget_realize),
+                     this);
+
+    g_signal_connect(m_widget, "destroy",
+                     G_CALLBACK (cpaf_widget_destroy),
+                     this);
 
     // Set m_widget to NULL when gtk+ internally destroys the widget
     g_signal_connect_after(m_widget, "destroy",
@@ -170,4 +195,11 @@ Widget::get_parent_window() const
                         G_OBJECT (gtk_widget_get_toplevel (m_widget)),
                         "cpaf_wrapper")
            )->get_wrapper<cpaf::gui::Window>();
+}
+
+void
+Widget::send_event(cpaf::event::event_id event_id)
+{
+    cpaf::event::Event event(event_id, m_wrapper->get_id());
+    cpaf::event::get_manager().send_event(event);
 }

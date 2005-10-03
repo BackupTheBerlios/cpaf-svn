@@ -16,6 +16,10 @@
 #include <cpaf/gui/widget.h>
 
 namespace cpaf {
+    namespace event {
+        typedef int event_id;
+    }
+
     namespace gtk2 {
         namespace gui {
 
@@ -47,6 +51,9 @@ public:
     virtual cpaf::gui::Panel *get_parent() const;
     virtual cpaf::gui::Window *get_parent_window() const;
     template<typename T> T *get_wrapper() const { return dynamic_cast<T*>(m_wrapper); }
+
+    // implementation specific
+    void send_event(cpaf::event::event_id);
 
 protected:
     Widget();
