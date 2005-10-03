@@ -187,7 +187,7 @@ bool MyApp::init()
     info.position(2,1).padding_bottom(0).padding_right(0);
     gblm->add_widget(destroy_btn, info);
 
-#if 0
+#ifdef CPAF_GTK2
     /*
         Create an EntryBox
     */
@@ -227,6 +227,7 @@ bool MyApp::init()
     panel = text->get_parent();
     cpaf::DebugReport() << "panel after:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
 #endif
+
     /*
         Construct a window with a default position and a default size.
         The factory object initializes its members to specify "default values"
