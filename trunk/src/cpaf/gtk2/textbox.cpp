@@ -7,9 +7,20 @@
 #include <cpaf/gtk2/gui/textbox.h>
 #include <cpaf/gtk2/gui/panel.h>
 #include <cpaf/exception.h>
+#include <cpaf/event/event.h>
+
 #include <gtk/gtk.h>
 
 using namespace cpaf::gtk2::gui;
+
+extern "C" {
+static void
+cpaf_text_buffer_changed(GtkTextBuffer * gtktextbuffer,
+                         TextBox * widget)
+{
+    widget->send_event(cpaf::event::TEXT_CHANGED);
+}
+} // extern "C"
 
 void
 TextBox::create (const cpaf::gui::initializer::TextBoxData &params)
@@ -24,6 +35,10 @@ TextBox::create (const cpaf::gui::initializer::TextBoxData &params)
     m_text = gtk_text_view_new ();
     gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (m_text), GTK_WRAP_WORD_CHAR);
     m_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (m_text));
+
+    g_signal_connect (m_buffer, "changed",
+                      G_CALLBACK (cpaf_text_buffer_changed),
+                      this);
 
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (m_widget),
                                     GTK_POLICY_AUTOMATIC,

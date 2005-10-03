@@ -7,9 +7,20 @@
 #include <cpaf/gtk2/gui/entrybox.h>
 #include <cpaf/gtk2/gui/panel.h>
 #include <cpaf/exception.h>
+#include <cpaf/event/event.h>
+
 #include <gtk/gtk.h>
 
 using namespace cpaf::gtk2::gui;
+
+extern "C" {
+static void
+cpaf_editable_changed(GtkEditable * gtkeditable,
+                      EntryBox * widget)
+{
+    widget->send_event(cpaf::event::TEXT_CHANGED);
+}
+} // extern "C"
 
 void
 EntryBox::create (const cpaf::gui::initializer::EntryBoxData &params)
@@ -29,6 +40,10 @@ EntryBox::create (const cpaf::gui::initializer::EntryBoxData &params)
     }
     else
         throw cpaf::Exception (cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
+
+    g_signal_connect (m_widget, "changed",
+                      G_CALLBACK (cpaf_editable_changed),
+                      this);
 
     if (!params.get_text().empty())
         set_text (params.get_text());
