@@ -19,7 +19,7 @@ public:
     typedef cpaf::api::gui::TextBox api_type;
     typedef TextBoxInitializer Initializer;
 
-    static TextBox *create(const Initializer &initializer);
+    static boost::shared_ptr<TextBox> create(const Initializer &initializer);
 
 protected:
     TextBox();
@@ -28,7 +28,7 @@ protected:
     /*!
         \brief Constructs the native widget using the given initialization data
     */
-    void initialize(const Initializer &initializer);
+    boost::shared_ptr<TextBox> initialize(const Initializer &initializer);
 
 private:
     api_type *m_impl;

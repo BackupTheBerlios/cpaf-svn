@@ -25,7 +25,7 @@ public:
     /*!
         Creates a Window
     */
-    static Window *create(const Initializer &initializer);
+    static boost::shared_ptr<Window> create(const Initializer &initializer);
 
     /*!
         Sets the content panel for this window
@@ -47,7 +47,7 @@ protected:
     /*!
         \brief Constructs the native widget using the given initialization data
     */
-    void initialize(const Initializer &initializer);
+    boost::shared_ptr<Window> initialize(const Initializer &initializer);
 
 public:
     api_type *get_impl() const;

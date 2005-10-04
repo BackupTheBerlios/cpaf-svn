@@ -23,18 +23,27 @@ Window::Window(api_type *impl)
     m_impl(impl)
 { }
 
-Window *Window::create(const Initializer &initializer)
+boost::shared_ptr<Window> Window::create(const Initializer &initializer)
 {
     Window *wrapper = new Window;
-    wrapper->initialize(initializer);
-    return wrapper;
+    return wrapper->initialize(initializer);
 }
 
-void Window::initialize(const Initializer &initializer)
+boost::shared_ptr<Window> Window::initialize(const Initializer &initializer)
 {
+    // create a shared pointer for this wapper
+    boost::shared_ptr<Window> ptr(this);
+
+    // create the native widget
     Initializer::data_type params = initializer.get_data();
     params.set_wrapper(this);
     m_impl->create(params);
+
+    // store the widget id / shared_ptr pair to retain the wrapper
+    associate_widget_id(get_id(), ptr);
+
+    // lastly, return the wrapper
+    return ptr;
 }
 
 Window::api_type *Window::get_impl() const

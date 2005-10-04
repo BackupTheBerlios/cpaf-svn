@@ -19,7 +19,7 @@ public:
     typedef cpaf::api::gui::Button api_type;
     typedef ButtonInitializer Initializer;
 
-    static Button *create(const Initializer &initializer);
+    static boost::shared_ptr<Button> create(const Initializer &initializer);
 
     /*!
         \brief Sets the label of the button
@@ -45,7 +45,7 @@ protected:
     /*!
         \brief Constructs the native widget using the given initialization data
     */
-    void initialize(const Initializer &initializer);
+    boost::shared_ptr<Button> initialize(const Initializer &initializer);
 
 public:
     api_type *get_impl() const;

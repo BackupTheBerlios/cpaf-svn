@@ -32,14 +32,14 @@ inline void reset_group_done_state(GroupInfo::value_type &value)
 namespace cpaf {
     namespace gui {
 
-template<> inline gblm::Weights &GridBagLayout::get_weights<ROW>()
-{
-    return m_rows;
-}
-
 template<> inline gblm::Weights &GridBagLayout::get_weights<COLUMN>()
 {
     return m_columns;
+}
+
+template<> inline gblm::Weights &GridBagLayout::get_weights<ROW>()
+{
+    return m_rows;
 }
 
 template<> inline gblm::WidgetGroup &GridBagLayout::get_widgets<COLUMN>()
@@ -138,12 +138,12 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
 
         for( GroupWidgets::iterator i = data.m_widgets.begin(), end = data.m_widgets.end(); i != end; ++i )
         {
-            const WidgetInfo *const info = i->second;
-            float min_val = get_size_value<group>(info->widget->get_min_size());
-            float max_val = get_size_value<group>(info->widget->get_max_size());
+            const WidgetInfo &info = *(i->second);
+            float min_val = get_size_value<group>(info.widget->get_min_size());
+            float max_val = get_size_value<group>(info.widget->get_max_size());
             float pad1, pad2;
 
-            get_pad_values<group>(info->data, pad1, pad2);
+            get_pad_values<group>(info.data, pad1, pad2);
 
             // accound for padding
             if( min_val != 0 )
@@ -192,7 +192,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
                 weight_sum += data.m_weight;
         }
 
-        // distribute evenly for each column, considering minimum width, and starting over when need be
+        // distribute evenly for each group, considering mins and maxes, and starting over when need be
         float extra_size = available_size - current_size;
 
         for( GroupInfo::iterator i = info.begin(), end = info.end(); i != end; ++i )
@@ -256,9 +256,9 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
 
         for( GroupWidgets::iterator i = data.m_widgets.begin(), end = data.m_widgets.end(); i != end; ++i )
         {
-            const WidgetInfo *const info = i->second;
+            const WidgetInfo &info = *(i->second);
 
-            cpaf::Rect &rect = rects[info->widget];
+            cpaf::Rect &rect = rects[info.widget];
 
             float &size_dest_val = get_size_value<group>(rect.size);
             float size_src_val_natural = 0;
@@ -266,15 +266,15 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
             float pad1, pad2;
             bool expand;
 
-            get_pad_values<group>(info->data, pad1, pad2);
+            get_pad_values<group>(info.data, pad1, pad2);
 
             if( group == COLUMN )
             {
-                expand = (info->data.alignment_info & GridBagLayoutInfo::EXPAND_HORIZONTAL) == GridBagLayoutInfo::EXPAND_HORIZONTAL;
+                expand = (info.data.alignment_info & GridBagLayoutInfo::EXPAND_HORIZONTAL) == GridBagLayoutInfo::EXPAND_HORIZONTAL;
             }
             else
             {
-                expand = (info->data.alignment_info & GridBagLayoutInfo::EXPAND_VERTICAL) == GridBagLayoutInfo::EXPAND_VERTICAL;
+                expand = (info.data.alignment_info & GridBagLayoutInfo::EXPAND_VERTICAL) == GridBagLayoutInfo::EXPAND_VERTICAL;
             }
 
             // account for padding
@@ -284,9 +284,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
                 size_dest_val = size_src_val;
             else
             {
-                cpaf::Size natural_size = info->widget->get_min_size();
-
-                size_src_val_natural = get_size_value<group>(natural_size);
+                size_src_val_natural = get_size_value<group>(info.widget->get_min_size());
                 size_dest_val = size_src_val_natural;
 
                 // make sure the natural size isn't larger than what is available
@@ -312,13 +310,13 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
 
                 if( group == COLUMN )
                 {
-                    where = (info->data.alignment_info & GridBagLayoutInfo::ALIGN_LEFT) == GridBagLayoutInfo::ALIGN_LEFT;
-                    center = (info->data.alignment_info & GridBagLayoutInfo::ALIGN_CENTER_H) == GridBagLayoutInfo::ALIGN_CENTER_H;
+                    where = (info.data.alignment_info & GridBagLayoutInfo::ALIGN_LEFT) == GridBagLayoutInfo::ALIGN_LEFT;
+                    center = (info.data.alignment_info & GridBagLayoutInfo::ALIGN_CENTER_H) == GridBagLayoutInfo::ALIGN_CENTER_H;
                 }
                 else
                 {
-                    where = (info->data.alignment_info & GridBagLayoutInfo::ALIGN_TOP) == GridBagLayoutInfo::ALIGN_TOP;
-                    center = (info->data.alignment_info & GridBagLayoutInfo::ALIGN_CENTER_V) == GridBagLayoutInfo::ALIGN_CENTER_V;
+                    where = (info.data.alignment_info & GridBagLayoutInfo::ALIGN_TOP) == GridBagLayoutInfo::ALIGN_TOP;
+                    center = (info.data.alignment_info & GridBagLayoutInfo::ALIGN_CENTER_V) == GridBagLayoutInfo::ALIGN_CENTER_V;
                 }
 
                 // center flags override any other flags, so check them first
@@ -329,7 +327,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
                     // alignment to a given side
                     if( where ) // top/left
                         pos_dest_val = pos_src_val;
-                    else
+                    else // bottom/right
                         pos_dest_val = pos_src_val + size_src_val - size_src_val_natural - pad2;
                 }
             }
@@ -352,7 +350,7 @@ void GridBagLayout::do_layout(const cpaf::Size &size)
         set_widget_rect(i->first, i->second);
 }
 
-void GridBagLayout::add_widget(Widget *widget, const GridBagLayoutInfo &info)
+void GridBagLayout::add(Widget *widget, const GridBagLayoutInfo &info)
 {
     LayoutData data = info.get_data();
     m_widgets.push_back(WidgetInfo(widget, data));
@@ -364,6 +362,25 @@ void GridBagLayout::add_widget(Widget *widget, const GridBagLayoutInfo &info)
     // add this widget to the quick lookup maps
     m_row_widgets[data.row].insert(std::make_pair(data.col, &m_widgets.back()));
     m_col_widgets[data.col].insert(std::make_pair(data.row, &m_widgets.back()));
+}
+
+void GridBagLayout::remove(Widget *widget)
+{
+    gblm::Widgets::iterator it;
+
+    // see if this widget is managed by this gblm
+    for( it = m_widgets.begin(); it != m_widgets.end(); ++it )
+        if( it->widget == widget )
+            break;
+
+    // make sure we found something
+    if( it == m_widgets.end() )
+        return;
+
+    // remove what we found from the lookup maps and the list
+    m_row_widgets[it->data.row].erase(it->data.col);
+    m_col_widgets[it->data.col].erase(it->data.row);
+    m_widgets.erase(it);
 }
 
 GridBagLayout &GridBagLayout::set_column_weight(int column, float weight)

@@ -93,7 +93,8 @@ Widget::~Widget()
     //cpaf::gui::factory::delete_implementation_wrapper(this);
 
     // delete our wrapper
-    delete m_wrapper;
+    //delete m_wrapper;
+    cpaf::DebugReport() << "~Widget";
 }
 
 int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
@@ -122,8 +123,11 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
             // remove our widget window property
             disassociate_hwnd(m_hwnd);
 
-            // queue ourselves for deletion
-            widget_deletion_stack_push(this);
+            // remove ourselves from our parents layout manager
+            //get_parent()->get_layout_manager().remove(m_wrapper);
+
+            // we won't remove the ID/Widget pair from the map right now, because
+            // that could deallocate this object and we still need to exist
 
             break;
         }
@@ -169,10 +173,20 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
         break;
     }
 
+    int ret;
+
     if( m_old_proc )
-        return ::CallWindowProc(m_old_proc, hwnd, msg, w_param, l_param);
+        ret = ::CallWindowProc(m_old_proc, hwnd, msg, w_param, l_param);
     else
-        return ::DefWindowProc(hwnd, msg, w_param, l_param);
+        ret = ::DefWindowProc(hwnd, msg, w_param, l_param);
+
+
+    // if we were being destroyed, now we remove the ID/Widget pair from the map
+    if( msg == WM_DESTROY )
+        // remove the {ID, Widget} pair from the widget id map
+        cpaf::gui::disassociate_widget_id(m_id);
+
+    return ret;
 }
 
 void Widget::set_size(const cpaf::Size &s)

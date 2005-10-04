@@ -33,6 +33,9 @@ cpaf_widget_destroy (GtkWidget * gtkwidget,
                      Widget * widget)
 {
     widget->send_event (cpaf::event::WIDGET_DESTROY);
+
+    // remove the {ID, Widget} pair from the widget id map
+    cpaf::gui::disassociate_widget_id(m_wrapper->get_id());
 }
 
 #ifdef CPAF_TRACE_ALLOCATION
@@ -108,19 +111,18 @@ Widget::create (const cpaf::gui::initializer::WidgetData &params,
 void
 Widget::destroy()
 {
-    //! \todo Add whatever is needed here.
+    //! \todo I (RM) blindly changed this, see if it works
+    if (m_widget)
+        gtk_widget_destroy (m_widget);
 }
 
 Widget::~Widget()
 {
-    if (m_widget)
-        gtk_widget_destroy (m_widget);
-
     // delete our wrapper object safely
     //cpaf::gui::factory::delete_implementation_wrapper(this);
 
     // delete our wrapper
-    delete m_wrapper;
+    //delete m_wrapper;
 }
 
 void
@@ -137,8 +139,7 @@ Widget::set_size (const cpaf::Size& s)
         If the size request in a given direction is -1 (unset), then the
         "natural" size request of the widget will be used instead." - gtk manual
     */
-    // Do we want to enforce allocation instead?
-    //! \todo Yes.
+    //! \todo Do we want to enforce allocation instead? Yes.
 
 #ifdef CPAF_TRACE_ALLOCATION
     printf("Widget::set_size called with cpaf::Size(%f, %f) as argument\n", s.width, s.height);

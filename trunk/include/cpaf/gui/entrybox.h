@@ -19,7 +19,7 @@ public:
     typedef cpaf::api::gui::EntryBox api_type;
     typedef EntryBoxInitializer Initializer;
 
-    static EntryBox *create(const Initializer &initializer);
+    static boost::shared_ptr<EntryBox> create(const Initializer &initializer);
 
     void set_password_mode(bool mode);
     bool get_password_mode() const;
@@ -31,7 +31,7 @@ protected:
     /*!
         \brief Constructs the native widget using the given initializer
     */
-    void initialize(const Initializer &initializer);
+    boost::shared_ptr<EntryBox> initialize(const Initializer &initializer);
 
 private:
     api_type *m_impl;

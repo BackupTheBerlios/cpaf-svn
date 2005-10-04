@@ -104,13 +104,15 @@ void cpaf::cocoa::gui::Widget::destroy()
         [m_object release];
         m_object = nil;
     }
-    delete this;
+    
+    // remove the {ID, Widget} pair from the widget id map
+    cpaf::gui::disassociate_widget_id(m_wrapper->get_id());
 }
 
 cpaf::cocoa::gui::Widget::~Widget()
 {
     // delete our wrapper
-    delete m_wrapper;
+    //delete m_wrapper;
 }
 
 void cpaf::cocoa::gui::Widget::set_size(const cpaf::Size& s)

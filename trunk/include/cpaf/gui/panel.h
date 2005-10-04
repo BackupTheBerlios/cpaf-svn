@@ -19,7 +19,7 @@ public:
     typedef cpaf::api::gui::Panel api_type;
     typedef PanelInitializer Initializer;
 
-    static Panel *create(const Initializer &initializer);
+    static boost::shared_ptr<Panel> create(const Initializer &initializer);
 
 private:
     api_type *m_impl;
@@ -31,7 +31,7 @@ protected:
     /*!
         \brief Constructs the native widget using the given initializer
     */
-    void initialize(const Initializer &initializer);
+    boost::shared_ptr<Panel> initialize(const Initializer &initializer);
 
 public:
     api_type *get_impl() const;

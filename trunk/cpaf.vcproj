@@ -276,9 +276,6 @@
 						RelativePath=".\include\cpaf\api\gui\panel.h">
 					</File>
 					<File
-						RelativePath=".\include\cpaf\api\gui\sizer.h">
-					</File>
-					<File
 						RelativePath=".\include\cpaf\api\gui\textbox.h">
 					</File>
 					<File

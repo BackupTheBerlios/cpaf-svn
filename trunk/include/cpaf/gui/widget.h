@@ -10,9 +10,12 @@
 #include <cpaf/dllimpexp.h>
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/types.h>
+#include <boost/shared_ptr.hpp>
 
 //#include <cpaf/gui/object.h>
 #include <cpaf/gui/initializer/widget.h>
+
+#include <map>
 
 namespace cpaf {
     namespace gui {
@@ -141,14 +144,14 @@ private:
 
     int m_id;
 
-    api_type *m_impl;
+    boost::shared_ptr<api_type> m_impl;
 
 protected:
     Widget(api_type *impl);
 
     template<typename T> T *get_impl() const
     {
-        return dynamic_cast<T*>(m_impl);
+        return dynamic_cast<T*>(m_impl.get());
     }
 
 public:
@@ -157,6 +160,21 @@ public:
 
     friend class LayoutManager;
 };
+
+/*!
+    Adds an {ID, Widget} pair to the widget id map
+*/
+void associate_widget_id(cpaf::object_id id, boost::shared_ptr<Widget> ptr);
+
+/*!
+    Removed an {ID, Widget} pair from the id map
+*/
+void disassociate_widget_id(cpaf::object_id id);
+
+/*!
+    Retrieves a shared_ptr to the widget with the given id
+*/
+boost::shared_ptr<Widget> get_widget_from_id(cpaf::object_id id);
 
     } // gui
 } // cpaf

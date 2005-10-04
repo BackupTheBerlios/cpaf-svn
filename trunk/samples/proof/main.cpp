@@ -27,8 +27,8 @@ using namespace cpaf::gui;
 class MyApp : public App
 {
 public:
-    EntryBox *pw; // The password box
-    Button *destroy_btn;
+    boost::shared_ptr<EntryBox> pw; // The password box
+    boost::shared_ptr<Button> destroy_btn;
 
     bool init();
     void toggle_password_mode(Event &event);
@@ -42,11 +42,10 @@ public:
 class MyButton : public Button
 {
 public:
-    static MyButton *create(const Initializer &initializer)
+    static boost::shared_ptr<MyButton> create(const Initializer &initializer)
     {
         MyButton *wrapper = new MyButton;
-        wrapper->initialize(initializer);
-        return wrapper;
+        return boost::dynamic_pointer_cast<MyButton>(wrapper->initialize(initializer));
     }
 
 protected:
@@ -102,11 +101,10 @@ protected:
 class MyButton2 : public MyButton
 {
 public:
-    static MyButton2 *create(const Initializer &initializer)
+    static boost::shared_ptr<MyButton2> create(const Initializer &initializer)
     {
         MyButton2 *wrapper = new MyButton2;
-        wrapper->initialize(initializer);
-        return wrapper;
+        return boost::dynamic_pointer_cast<MyButton2>(wrapper->initialize(initializer));
     }
 
 protected:
@@ -129,6 +127,9 @@ void MyApp::destroy_button(Event &event)
 {
     cpaf::DebugReport() << "MyApp::destroy_button";
     destroy_btn->destroy();
+
+    // we don't need the button reference anymore so allow memory to be reclaimed
+    destroy_btn.reset();
 }
 
 void MyApp::on_text_changed(Event &event)
@@ -143,7 +144,7 @@ bool MyApp::init()
 {
     // panels must have a layout manager
     GridBagLayout *gblm;
-    Panel *panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout));
+    Panel *panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout)).get();
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.
@@ -151,7 +152,7 @@ bool MyApp::init()
         We also reuse the data initializer object to create these buttons.
     */
     Button::Initializer btn_init;
-    Button *btn = Button::create(btn_init
+    boost::shared_ptr<Button> btn = Button::create(btn_init
         .parent(panel)
         .label("Toggle password mode")
         .size(cpaf::Size(200,40))
@@ -164,15 +165,15 @@ bool MyApp::init()
     // all children must be added to their parents layout manager
     GridBagLayoutInfo info;
     info.position(0,0).padding(5).align_center();
-    gblm->add_widget(btn, info);
+    gblm->add(btn.get(), info);
 
-    MyButton2 *my_btn = MyButton2::create(btn_init
+    boost::shared_ptr<MyButton2> my_btn = MyButton2::create(btn_init
         .label("Click me!")
         .position(cpaf::Point(100,100))
         );
 
     info.position(1, 0).expand_both();
-    gblm->add_widget(my_btn, info);
+    gblm->add(my_btn.get(), info);
     my_btn->set_min_size(cpaf::Size(100,30));
 
     gblm->set_column_weight(0, 1);
@@ -191,13 +192,12 @@ bool MyApp::init()
     connect<Event, false>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
 
     info.position(2,1).padding_bottom(0).padding_right(0);
-    gblm->add_widget(destroy_btn, info);
+    gblm->add(destroy_btn.get(), info);
 
-#ifdef CPAF_GTK2
     /*
         Create an EntryBox
     */
-    EntryBox *entry = EntryBox::create(EntryBox::Initializer()
+    boost::shared_ptr<EntryBox> entry = EntryBox::create(EntryBox::Initializer()
         .parent(panel)
         .text("I'm an entry box!")
         .position(cpaf::Point(10,150))
@@ -208,7 +208,7 @@ bool MyApp::init()
     /*
         Create a TextBox
     */
-    TextBox *text = TextBox::create(TextBox::Initializer()
+    boost::shared_ptr<TextBox> text = TextBox::create(TextBox::Initializer()
         .parent(panel)
         .text("I'm a multline text box!\nHere's the second line\n\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
         .position(cpaf::Point(10,200))
@@ -234,7 +234,7 @@ bool MyApp::init()
     cpaf::DebugReport() << "panel before:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
     panel = text->get_parent();
     cpaf::DebugReport() << "panel after:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
-#endif
+
 
     /*
         Construct a window with a default position and a default size.
@@ -245,7 +245,7 @@ bool MyApp::init()
 
         This window will be visible without calling wnd->show() if .show() isn't commented out below.
     */
-    Window *wnd = Window::create(Window::Initializer()
+    boost::shared_ptr<Window> wnd = Window::create(Window::Initializer()
         .content_panel(panel)
         .title("Cpaf")
         .client_size(cpaf::Size(400,400))

@@ -34,7 +34,7 @@ void Widget::destroy()
 
 Widget::api_type *Widget::get_impl() const
 {
-    return m_impl;
+    return m_impl.get();
 }
 
 void Widget::set_size(const cpaf::Size &s)
@@ -135,4 +135,32 @@ Panel *Widget::get_parent() const
 Window *Widget::get_parent_window() const
 {
     return m_impl->get_parent_window();
+}
+
+/*
+    Widget Id Map implementation
+*/
+typedef std::map<cpaf::object_id, boost::shared_ptr<Widget> > WidgetMap;
+
+namespace {
+    WidgetMap widget_map;
+}
+
+void cpaf::gui::associate_widget_id(cpaf::object_id id, boost::shared_ptr<Widget> ptr)
+{
+    widget_map.insert(std::make_pair(id, ptr));
+}
+
+void cpaf::gui::disassociate_widget_id(cpaf::object_id id)
+{
+    widget_map.erase(id);
+}
+
+boost::shared_ptr<Widget> cpaf::gui::get_widget_from_id(cpaf::object_id id)
+{
+    WidgetMap::iterator it= widget_map.find(id);
+
+    //! \todo Decide what to do if the id isn't in the map
+    if( it != widget_map.end() )
+        return it->second;
 }
