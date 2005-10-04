@@ -35,6 +35,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gtk2/factory.o   \
 	$(OBJ_DIR)/gtk2/widget.o    \
 	$(OBJ_DIR)/gtk2/window.o    \
+	$(OBJ_DIR)/gtk2/cpaffixed.o \
 	$(OBJ_DIR)/gtk2/panel.o     \
 	$(OBJ_DIR)/gtk2/button.o    \
 	$(OBJ_DIR)/gtk2/entrybox.o  \
@@ -166,6 +167,9 @@ $(OBJ_DIR)/gtk2/widget.o: src/cpaf/gtk2/widget.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/window.o: src/cpaf/gtk2/window.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gtk2/cpaffixed.o: src/cpaf/gtk2/cpaffixed.c
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/panel.o: src/cpaf/gtk2/panel.cpp
