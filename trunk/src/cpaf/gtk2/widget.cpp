@@ -14,22 +14,39 @@
 // for delete_implementation_wrapper
 #include <cpaf/private/factory.h>
 
+#ifdef CPAF_TRACE_ALLOCATION
+#   include <cpaf/gtk2/gui/button.h>
+#endif
+
 using namespace cpaf::gtk2::gui;
 
 extern "C" {
 static void
-cpaf_widget_realize(GtkWidget * gtkwidget,
-                    Widget * widget)
+cpaf_widget_realize (GtkWidget * gtkwidget,
+                     Widget * widget)
 {
-    widget->send_event(cpaf::event::WIDGET_CREATE);
+    widget->send_event (cpaf::event::WIDGET_CREATE);
 }
 
 static void
-cpaf_widget_destroy(GtkWidget * gtkwidget,
-                    Widget * widget)
+cpaf_widget_destroy (GtkWidget * gtkwidget,
+                     Widget * widget)
 {
-    widget->send_event(cpaf::event::WIDGET_DESTROY);
+    widget->send_event (cpaf::event::WIDGET_DESTROY);
 }
+
+#ifdef CPAF_TRACE_ALLOCATION
+static void
+cpaf_widget_size_allocate (GtkWidget * gtkwidget,
+                           GtkAllocation * alloc,
+                           Widget * widget)
+{
+    if (dynamic_cast<cpaf::gtk2::gui::Button*>(widget))
+        printf("size_allocate was called with %dx%d on a button (label=%s)\n", alloc->width, alloc->height, dynamic_cast<cpaf::gtk2::gui::Button*>(widget)->get_label().c_str());
+    else
+        printf("Calling size_allocate with %dx%d on an unknown control\n", alloc->width, alloc->height);
+}
+#endif
 } // extern "C"
 
 Widget::Widget()
@@ -54,6 +71,12 @@ Widget::create (const cpaf::gui::initializer::WidgetData &params,
                      G_CALLBACK (cpaf_widget_destroy),
                      this);
 
+#ifdef CPAF_TRACE_ALLOCATION
+    g_signal_connect(m_widget, "size-allocate",
+                     G_CALLBACK (cpaf_widget_size_allocate),
+                     this);
+#endif
+
     // Set m_widget to NULL when gtk+ internally destroys the widget
     g_signal_connect_after(m_widget, "destroy",
                            G_CALLBACK (gtk_widget_destroyed),
@@ -62,8 +85,11 @@ Widget::create (const cpaf::gui::initializer::WidgetData &params,
     if (!params.use_default_size())
         set_size (params.get_size());
 
+    //! \todo Fix logic later
+    if (params.get_min_size().width != 0.0 && params.get_min_size().height != 0.0)
+        set_min_size(params.get_min_size());
+
     //! \todo Uncomment after all set_{min,max}_size methods are aware of the DEFAULT_* values
-    //set_min_size(params.get_min_size());
     //set_max_size(params.get_max_size());
 
 #if 0 // FIXME: currently done in real controls because parent isn't associated yet here
@@ -114,8 +140,42 @@ Widget::set_size (const cpaf::Size& s)
     // Do we want to enforce allocation instead?
     //! \todo Yes.
 
+#ifdef CPAF_TRACE_ALLOCATION
+    printf("Widget::set_size called with cpaf::Size(%f, %f) as argument\n", s.width, s.height);
+#endif
+
     //! \todo Deal with DEFAULT_* values
+    GtkAllocation alloc;
+    alloc.x = m_widget->allocation.x;
+    alloc.y = m_widget->allocation.y;
+    alloc.width = m_widget->allocation.width;
+    alloc.height = m_widget->allocation.height;
+
+    if (m_widget->requisition.width < s.width || m_widget->requisition.width == 0)
+        alloc.width = s.width;
+
+    if (m_widget->requisition.height < s.height || m_widget->requisition.height == 0)
+        alloc.height = s.height;
+
+#ifdef CPAF_TRACE_ALLOCATION
+    if (dynamic_cast<cpaf::gtk2::gui::Button*>(this))
+        printf("Calling size_allocate with %dx%d on a button with requisition of %dx%d (label=%s)\n", alloc.width, alloc.height, m_widget->requisition.width, m_widget->requisition.height, dynamic_cast<cpaf::gtk2::gui::Button*>(this)->get_label().c_str());
+    else
+        printf("Calling size_allocate with %dx%d on an unknown control with requisition of %dx%d\n", alloc.width, alloc.height, m_widget->requisition.width, m_widget->requisition.height);
+#endif
+
+    gtk_widget_size_allocate(m_widget, &alloc);
+}
+
+void
+Widget::set_min_size (const cpaf::Size& s)
+{
+#ifdef CPAF_TRACE_ALLOCATION
+    printf("Widget::set_min_size (%f, %f)\n", s.width, s.height);
+#endif
+    //! \todo Does passing 0,0 set it to "as small as possible" in the terms we want?
     gtk_widget_set_size_request (m_widget, s.width, s.height);
+    //! \todo Do we want this?
     gtk_widget_queue_resize (m_widget);
 }
 
@@ -133,6 +193,15 @@ Widget::get_size() const
 {
     // Is this correct? Maybe use gdk_window_get_frame_extents instead?
     return cpaf::Size (m_widget->allocation.width, m_widget->allocation.height);
+}
+
+cpaf::Size
+Widget::get_min_size() const
+{
+#ifdef CPAF_TRACE_ALLOCATION
+    printf("min_size: %dx%d\n", m_widget->requisition.width, m_widget->requisition.height);
+#endif
+    return cpaf::Size (m_widget->requisition.width, m_widget->requisition.height);
 }
 
 void

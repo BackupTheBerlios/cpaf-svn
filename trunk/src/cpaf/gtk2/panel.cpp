@@ -8,6 +8,7 @@
 #include <cpaf/exception.h>
 
 #include <gtk/gtk.h>
+#include <cpaf/gtk2/gui/cpaffixed.h>
 
 using namespace cpaf::gtk2::gui;
 
@@ -46,7 +47,7 @@ Panel::create (const cpaf::gui::initializer::PanelData &params)
     if (!m_layout_manager)
         throw cpaf::Exception (cpaf::Exception::PANEL_NO_LAYOUT_MANAGER, __LINE__, __FILE__);
 
-    Widget::create (params, gtk_fixed_new());
+    Widget::create (params, cpaf_fixed_new());
 
     g_signal_connect_after (m_widget, "size-allocate",
                             G_CALLBACK (cpaf_fixed_size_allocate),
