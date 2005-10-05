@@ -9,6 +9,7 @@
 
 #include <cpaf/dllimpexp.h>
 #include <cpaf/types.h>
+#include <boost/shared_ptr.hpp>
 
 namespace cpaf{
     namespace gui {
@@ -26,6 +27,11 @@ public:
         Updates the position and size of all managed widgets
     */
     virtual void do_layout(const cpaf::Size &size) = 0;
+
+    /*!
+        Removes an object from this layout manager.
+    */
+    virtual void remove(boost::shared_ptr<Widget> widget) = 0;
 
 protected:
     /*!

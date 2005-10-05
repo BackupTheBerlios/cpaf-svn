@@ -350,10 +350,10 @@ void GridBagLayout::do_layout(const cpaf::Size &size)
         set_widget_rect(i->first, i->second);
 }
 
-void GridBagLayout::add(Widget *widget, const GridBagLayoutInfo &info)
+void GridBagLayout::add(boost::shared_ptr<Widget> widget, const GridBagLayoutInfo &info)
 {
     LayoutData data = info.get_data();
-    m_widgets.push_back(WidgetInfo(widget, data));
+    m_widgets.push_back(WidgetInfo(widget.get(), data));
 
     // make sure default row and column weights exist
     get_row_weight(data.row);
@@ -364,13 +364,13 @@ void GridBagLayout::add(Widget *widget, const GridBagLayoutInfo &info)
     m_col_widgets[data.col].insert(std::make_pair(data.row, &m_widgets.back()));
 }
 
-void GridBagLayout::remove(Widget *widget)
+void GridBagLayout::remove(boost::shared_ptr<Widget> widget)
 {
     gblm::Widgets::iterator it;
 
     // see if this widget is managed by this gblm
     for( it = m_widgets.begin(); it != m_widgets.end(); ++it )
-        if( it->widget == widget )
+        if( it->widget == widget.get() )
             break;
 
     // make sure we found something

@@ -389,10 +389,19 @@
 						RelativePath=".\include\cpaf\gtk2\gui\button.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\gtk2\gui\cpaffixed.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\gtk2\gui\entrybox.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\gtk2\gui\panel.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gtk2\gui\passwordbox.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\gtk2\gui\textbox.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gtk2\gui\widget.h">
@@ -1683,6 +1692,24 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\src\cpaf\gtk2\cpaffixed.c">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gtk2\entrybox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\src\cpaf\gtk2\factory.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32"
@@ -1737,34 +1764,12 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\src\cpaf\gtk2\passwordbox.cpp">
+					RelativePath=".\src\cpaf\gtk2\textbox.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32"
 						ExcludedFromBuild="TRUE">
 						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32"
-						ExcludedFromBuild="TRUE">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+							Name="VCCLCompilerTool"/>
 					</FileConfiguration>
 				</File>
 				<File

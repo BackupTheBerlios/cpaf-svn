@@ -22,10 +22,10 @@ struct CPAF_API WidgetData : public ObjectData
 {
 protected:
     //! The wrapper for this implementation object
-    cpaf::gui::Widget *m_wrapper;
+    boost::shared_ptr<Widget> m_wrapper;
 
     //! The parent of this widget.
-    cpaf::gui::Panel *m_parent;
+    boost::shared_ptr<cpaf::gui::Panel> m_parent;
 
     //! Specifies if the widget should be initially visible
     bool m_show;
@@ -39,10 +39,10 @@ protected:
 public:
     WidgetData();
 
-    void set_wrapper(cpaf::gui::Widget *p);
-    cpaf::gui::Widget *get_wrapper() const;
-    void set_parent(cpaf::gui::Panel *p);
-    cpaf::gui::Panel *get_parent() const;
+    void set_wrapper(boost::shared_ptr<cpaf::gui::Widget> p);
+    boost::shared_ptr<cpaf::gui::Widget> get_wrapper() const;
+    void set_parent(boost::shared_ptr<cpaf::gui::Panel> p);
+    boost::shared_ptr<cpaf::gui::Panel> get_parent() const;
     void set_show(bool b);
     bool get_show() const;
     void set_activate(bool b);
@@ -68,7 +68,7 @@ protected:
     { }
 
 public:
-    T &parent(cpaf::gui::Panel *p)
+    T &parent(boost::shared_ptr<cpaf::gui::Panel> p)
     {
         m_data->set_parent(p);
         return dynamic_cast<T&>(*this);
@@ -104,7 +104,7 @@ public:
         return dynamic_cast<T&>(*this);
     }
 
-    cpaf::gui::Panel *get_parent() const { return m_data->get_parent(); }
+    boost::shared_ptr<cpaf::gui::Panel> get_parent() const { return m_data->get_parent(); }
     bool get_show() const { return m_data->get_show(); }
     bool get_enable() const { return m_data->get_enable(); }
     bool get_activate() const { return m_data->get_activate(); }

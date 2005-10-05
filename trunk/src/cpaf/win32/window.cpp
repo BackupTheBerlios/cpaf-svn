@@ -120,7 +120,7 @@ void Window::set_content_panel(cpaf::api::gui::Panel *p)
     m_root_panel->show(true, false);
 }
 
-cpaf::gui::Panel *Window::get_content_panel() const
+boost::shared_ptr<cpaf::gui::Panel> Window::get_content_panel() const
 {
     return m_root_panel->get_wrapper<cpaf::gui::Panel>();
 }

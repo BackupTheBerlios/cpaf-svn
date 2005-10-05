@@ -27,8 +27,8 @@ public:
     virtual bool is_shown() const = 0;
     virtual void destroy() = 0;
 
-    virtual cpaf::gui::Panel *get_parent() const = 0;
-    virtual cpaf::gui::Window *get_parent_window() const = 0;
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_parent() const = 0;
+    virtual boost::shared_ptr<cpaf::gui::Window> get_parent_window() const = 0;
 };
 
         } // gui

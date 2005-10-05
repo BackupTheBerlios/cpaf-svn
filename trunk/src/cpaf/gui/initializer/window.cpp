@@ -9,8 +9,7 @@
 using namespace cpaf::gui::initializer;
 
 WindowData::WindowData()
-    : m_use_client_size(false),
-    m_content_panel(0)
+    : m_use_client_size(false)
 {
     // windows should be activated when shown by default
     WidgetData::m_activate = true;
@@ -43,12 +42,12 @@ bool WindowData::use_client_size() const
     return m_use_client_size;
 }
 
-void WindowData::set_content_panel(cpaf::gui::Panel *p)
+void WindowData::set_content_panel(boost::shared_ptr<cpaf::gui::Panel> p)
 {
     m_content_panel = p;
 }
 
-cpaf::gui::Panel *WindowData::get_content_panel() const
+boost::shared_ptr<cpaf::gui::Panel> WindowData::get_content_panel() const
 {
     return m_content_panel;
 }

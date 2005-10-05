@@ -27,6 +27,8 @@ public:
 
     int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
+    cpaf::gui::LayoutManager &get_layout_manager();
+
 private:
     cpaf::gui::LayoutManager *m_layout_manager;
 };

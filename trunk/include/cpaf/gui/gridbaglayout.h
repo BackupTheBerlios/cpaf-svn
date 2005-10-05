@@ -164,7 +164,9 @@ public:
     /*!
         Adds a widget to this layout manager with the given layout info.
     */
-    void add_widget(Widget *widget, const GridBagLayoutInfo &info);
+    void add(boost::shared_ptr<Widget> widget, const GridBagLayoutInfo &info);
+
+    void remove(boost::shared_ptr<Widget> widget);
 
     /*!
         Sets the weight value for a given column
@@ -265,6 +267,11 @@ private:
         \return The widgets indexed by rows or columns based on the template parameter
     */
     template<gblm::GROUP> gblm::WidgetGroup &get_widgets();
+
+    /*!
+        Calculates the minimum size in the given direction based on the template parameter
+    */
+    
 
     /*!
         \return A reference to the height or width of the given size based on the template parameter

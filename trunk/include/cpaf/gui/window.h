@@ -30,12 +30,12 @@ public:
     /*!
         Sets the content panel for this window
     */
-    void set_content_panel(cpaf::gui::Panel *p);
+    void set_content_panel(boost::shared_ptr<cpaf::gui::Panel> p);
 
     /*!
         \return This window's content panel
     */
-    cpaf::gui::Panel *get_content_panel() const;
+    boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const;
 
 private:
     api_type *m_impl;

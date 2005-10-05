@@ -9,29 +9,27 @@
 using namespace cpaf::gui::initializer;
 
 WidgetData::WidgetData()
-    : m_wrapper(NULL),
-    m_parent(NULL),
-    m_show(false),
+    : m_show(false),
     m_activate(false),
     m_enable(true)
 { }
 
-void WidgetData::set_wrapper(cpaf::gui::Widget *w)
+void WidgetData::set_wrapper(boost::shared_ptr<cpaf::gui::Widget> w)
 {
     m_wrapper = w;
 }
 
-cpaf::gui::Widget *WidgetData::get_wrapper() const
+boost::shared_ptr<cpaf::gui::Widget> WidgetData::get_wrapper() const
 {
     return m_wrapper;
 }
 
-void WidgetData::set_parent(cpaf::gui::Panel *p)
+void WidgetData::set_parent(boost::shared_ptr<cpaf::gui::Panel> p)
 {
     m_parent = p;
 }
 
-cpaf::gui::Panel *WidgetData::get_parent() const
+boost::shared_ptr<cpaf::gui::Panel> WidgetData::get_parent() const
 {
     return m_parent;
 }

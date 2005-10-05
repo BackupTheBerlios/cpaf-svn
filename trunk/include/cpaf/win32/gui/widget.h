@@ -26,7 +26,7 @@ private:
     bool m_delete;
 
 protected:
-    cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
+    boost::weak_ptr<cpaf::gui::Widget> m_wrapper; // wrapper for this impl object
     int m_id; // unique id for the wrapper object, we send events from this
     HWND m_hwnd; // native window handle
     WNDPROC m_old_proc; // old window procedure
@@ -63,7 +63,7 @@ public:
         bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex = 0);
 
     cpaf::object_id get_id() const { return m_id; }
-    template<typename T> T *get_wrapper() const { return dynamic_cast<T*>(m_wrapper); }
+    template<typename T> boost::shared_ptr<T> get_wrapper() const { return boost::dynamic_pointer_cast<T>(m_wrapper.lock()); }
 
     // object interface
     virtual void set_size(const cpaf::Size &s);
@@ -84,8 +84,8 @@ public:
     virtual bool is_enabled() const;
     virtual bool is_shown() const;
     virtual void destroy();
-    virtual cpaf::gui::Panel *get_parent() const;
-    virtual cpaf::gui::Window *get_parent_window() const;
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_parent() const;
+    virtual boost::shared_ptr<cpaf::gui::Window> get_parent_window() const;
 
 protected:
     // implementation specific functions

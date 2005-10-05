@@ -25,7 +25,7 @@ public:
     virtual void create(const data_type &init_params) = 0;
 
     virtual void set_content_panel(cpaf::api::gui::Panel *p) = 0;
-    virtual cpaf::gui::Panel *get_content_panel() const = 0;
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const = 0;
 };
 
         } // gui

@@ -127,12 +127,12 @@ object_id Widget::get_id() const
     return m_id;
 }
 
-Panel *Widget::get_parent() const
+boost::shared_ptr<Panel> Widget::get_parent() const
 {
     return m_impl->get_parent();
 }
 
-Window *Widget::get_parent_window() const
+boost::shared_ptr<Window> Widget::get_parent_window() const
 {
     return m_impl->get_parent_window();
 }

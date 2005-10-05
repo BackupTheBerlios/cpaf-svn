@@ -36,7 +36,7 @@ boost::shared_ptr<Window> Window::initialize(const Initializer &initializer)
 
     // create the native widget
     Initializer::data_type params = initializer.get_data();
-    params.set_wrapper(this);
+    params.set_wrapper(ptr);
     m_impl->create(params);
 
     // store the widget id / shared_ptr pair to retain the wrapper
@@ -51,12 +51,12 @@ Window::api_type *Window::get_impl() const
     return m_impl;
 }
 
-void Window::set_content_panel(Panel *p)
+void Window::set_content_panel(boost::shared_ptr<Panel> p)
 {
     m_impl->set_content_panel(p->get_impl());
 }
 
-Panel *Window::get_content_panel() const
+boost::shared_ptr<Panel> Window::get_content_panel() const
 {
     return m_impl->get_content_panel();
 }

@@ -11,6 +11,7 @@
 #include <cpaf/gui/api-prototypes.h>
 #include <cpaf/types.h>
 #include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 
 //#include <cpaf/gui/object.h>
 #include <cpaf/gui/initializer/widget.h>
@@ -114,12 +115,12 @@ public:
     /*!
         \return The parent of this widget
     */
-    cpaf::gui::Panel *get_parent() const;
+    boost::shared_ptr<Panel> get_parent() const;
 
     /*!
         \return The Window which contains this widget
     */
-    cpaf::gui::Window *get_parent_window() const;
+    boost::shared_ptr<Window> get_parent_window() const;
 
     /*!
         \return This objects unique identifier

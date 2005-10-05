@@ -48,18 +48,21 @@ public:
     virtual bool is_enabled() const;
     virtual bool is_shown() const;
 
-    virtual cpaf::gui::Panel *get_parent() const;
-    virtual cpaf::gui::Window *get_parent_window() const;
-    template<typename T> T *get_wrapper() const { return dynamic_cast<T*>(m_wrapper); }
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_parent() const;
+    virtual boost::shared_ptr<cpaf::gui::Window> get_parent_window() const;
+    template<typename T> boost::shared_ptr<T> get_wrapper() const { return boost::dynamic_pointer_cast<T>(m_wrapper.lock()); }
 
     // implementation specific
     void send_event(cpaf::event::event_id);
+
+    cpaf::object_id get_wrapper_id() { return m_wrapper_id; }
 
 protected:
     Widget();
     void create(const cpaf::gui::initializer::WidgetData&, GtkWidget *);
 
-    cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
+    boost::weak_ptr<cpaf::gui::Widget> m_wrapper; // wrapper for this impl object
+    cpaf::object_id m_wrapper_id;
     GtkWidget * m_widget;
 };
 

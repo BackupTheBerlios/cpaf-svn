@@ -144,7 +144,7 @@ bool MyApp::init()
 {
     // panels must have a layout manager
     GridBagLayout *gblm;
-    Panel *panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout)).get();
+    boost::shared_ptr<cpaf::gui::Panel> panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout));
 
     /*
         Create some explicitly sized and positioned buttons which are initially visible.
@@ -165,7 +165,7 @@ bool MyApp::init()
     // all children must be added to their parents layout manager
     GridBagLayoutInfo info;
     info.position(0,0).padding(5).align_center();
-    gblm->add(btn.get(), info);
+    gblm->add(btn, info);
 
     boost::shared_ptr<MyButton2> my_btn = MyButton2::create(btn_init
         .label("Click me!")
@@ -173,7 +173,7 @@ bool MyApp::init()
         );
 
     info.position(1, 0).expand_both();
-    gblm->add(my_btn.get(), info);
+    gblm->add(my_btn, info);
     my_btn->set_min_size(cpaf::Size(100,30));
 
     gblm->set_column_weight(0, 1);
@@ -192,7 +192,7 @@ bool MyApp::init()
     connect<Event, false>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
 
     info.position(2,1).padding_bottom(0).padding_right(0);
-    gblm->add(destroy_btn.get(), info);
+    gblm->add(destroy_btn, info);
 
     /*
         Create an EntryBox
@@ -235,7 +235,6 @@ bool MyApp::init()
     panel = text->get_parent();
     cpaf::DebugReport() << "panel after:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
 
-
     /*
         Construct a window with a default position and a default size.
         The factory object initializes its members to specify "default values"
@@ -252,12 +251,10 @@ bool MyApp::init()
         //.show()
         );
 
-#if 0
     // test get_parent_window. This should not change the value of wnd
     cpaf::DebugReport() << "Window before:\t" << std::hex << std::setfill('0') << std::setw(8) << wnd;
     wnd = pw->get_parent_window();
     cpaf::DebugReport() << "Window after:\t" << std::hex << std::setfill('0') << std::setw(8) << wnd;
-#endif
 
     wnd->show();
 

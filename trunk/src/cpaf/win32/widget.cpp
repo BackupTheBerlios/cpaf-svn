@@ -22,7 +22,6 @@ using namespace cpaf::win32::gui;
 
 Widget::Widget()
     : m_delete(true),
-    m_wrapper(NULL),
     m_hwnd(0),
     m_old_proc(0),
     m_min_size(0,0),
@@ -33,10 +32,10 @@ void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::Widg
         bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex)
 {
     m_wrapper = params.get_wrapper();
-    m_id = m_wrapper->get_id();
+    m_id = params.get_wrapper()->get_id();
 
     HWND hparent = NULL;
-    cpaf::gui::Panel *parent = params.get_parent();
+    boost::shared_ptr<cpaf::gui::Panel> parent = params.get_parent();
     if( parent )
         hparent = (HWND)parent->get_handle();
     else if( parent_required )
@@ -276,16 +275,16 @@ bool Widget::is_enabled() const
     return ::IsWindowEnabled(m_hwnd) != 0;
 }
 
-cpaf::gui::Panel *Widget::get_parent() const
+boost::shared_ptr<cpaf::gui::Panel> Widget::get_parent() const
 {
     Widget *w = get_widget_from_hwnd(::GetParent(m_hwnd));
     if( w )
         return w->get_wrapper<cpaf::gui::Panel>();
     else
-        return 0;
+        return boost::shared_ptr<cpaf::gui::Panel>();
 }
 
-cpaf::gui::Window *Widget::get_parent_window() const
+boost::shared_ptr<cpaf::gui::Window> Widget::get_parent_window() const
 {
     Widget *w = get_widget_from_hwnd(::GetAncestor(m_hwnd, GA_ROOT));
     if( w )
@@ -293,7 +292,7 @@ cpaf::gui::Window *Widget::get_parent_window() const
     else
         cpaf::DebugReport() << "Bad parent_window HWND";
 
-    return 0;
+    return boost::shared_ptr<cpaf::gui::Window>();
 }
 
 /**********************************************

@@ -34,7 +34,7 @@ boost::shared_ptr<Panel> Panel::initialize(const Initializer &initializer)
 
     // create the native widget
     Initializer::data_type params = initializer.get_data();
-    params.set_wrapper(this);
+    params.set_wrapper(ptr);
     m_impl->create(params);
 
     // store the widget id / shared_ptr pair to retain the wrapper

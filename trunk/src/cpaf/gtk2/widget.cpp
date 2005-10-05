@@ -35,7 +35,7 @@ cpaf_widget_destroy (GtkWidget * gtkwidget,
     widget->send_event (cpaf::event::WIDGET_DESTROY);
 
     // remove the {ID, Widget} pair from the widget id map
-    cpaf::gui::disassociate_widget_id(m_wrapper->get_id());
+    cpaf::gui::disassociate_widget_id(widget->get_wrapper_id());
 }
 
 #ifdef CPAF_TRACE_ALLOCATION
@@ -53,8 +53,8 @@ cpaf_widget_size_allocate (GtkWidget * gtkwidget,
 } // extern "C"
 
 Widget::Widget()
-    : m_wrapper(NULL),
-      m_widget(NULL)
+    : m_widget(NULL),
+    m_wrapper_id(0)
 { }
 
 void
@@ -62,6 +62,7 @@ Widget::create (const cpaf::gui::initializer::WidgetData &params,
                 GtkWidget * widget)
 {
     m_wrapper = params.get_wrapper();
+    m_wrapper_id = params.get_wrapper()->m_id;
     m_widget = widget;
 
     g_object_set_data (G_OBJECT (m_widget), "cpaf_wrapper", this);
@@ -249,7 +250,7 @@ Widget::is_shown() const
     return GTK_WIDGET_VISIBLE (m_widget);
 }
 
-cpaf::gui::Panel *
+boost::shared_ptr<cpaf::gui::Panel>
 Widget::get_parent() const
 {
     return ((Widget*)g_object_get_data (
@@ -258,7 +259,7 @@ Widget::get_parent() const
            )->get_wrapper<cpaf::gui::Panel>();
 }
 
-cpaf::gui::Window *
+boost::shared_ptr<cpaf::gui::Window>
 Widget::get_parent_window() const
 {
     return ((Widget*)g_object_get_data (
@@ -270,6 +271,6 @@ Widget::get_parent_window() const
 void
 Widget::send_event(cpaf::event::event_id event_id)
 {
-    cpaf::event::Event event(event_id, m_wrapper->get_id());
+    cpaf::event::Event event(event_id, m_wrapper_id);
     cpaf::event::get_manager().send_event(event);
 }

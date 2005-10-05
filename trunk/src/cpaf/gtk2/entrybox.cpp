@@ -29,7 +29,7 @@ EntryBox::create (const cpaf::gui::initializer::EntryBoxData &params)
     Widget::create (params, gtk_entry_new ());
 
     //! \todo IMPLEMENT
-    cpaf::gui::Panel *parent = params.get_parent();
+    boost::shared_ptr<cpaf::gui::Panel> parent = params.get_parent();
     if (parent)
     {
         GtkFixed * hparent = GTK_FIXED (parent->get_handle());

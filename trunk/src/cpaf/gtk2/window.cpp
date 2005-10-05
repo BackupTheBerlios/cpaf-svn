@@ -22,7 +22,7 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
     if (params.use_client_size())
         set_client_size(params.get_client_size());
 
-    cpaf::gui::Widget *parent = params.get_parent();
+    boost::shared_ptr<cpaf::gui::Widget> parent = params.get_parent();
     if (parent)
         gtk_window_set_transient_for(GTK_WINDOW(m_widget),
                                      GTK_WINDOW(parent->get_handle()));
@@ -246,9 +246,9 @@ void Window::set_content_panel(cpaf::api::gui::Panel *p)
     g_warning("Window::set_content_panel not yet implemented.");
 }
 
-cpaf::gui::Panel * Window::get_content_panel() const
+boost::shared_ptr<cpaf::gui::Panel> Window::get_content_panel() const
 {
     //! \todo
     g_warning("Window::get_content_panel not yet implemented");
-    return (cpaf::gui::Panel*)NULL;
+    return boost::shared_ptr<cpaf::gui::Panel>();
 }

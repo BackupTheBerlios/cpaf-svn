@@ -53,7 +53,7 @@ public:
     virtual cpaf::Point get_client_position();
 
     virtual void set_content_panel(cpaf::api::gui::Panel *p);
-    virtual cpaf::gui::Panel *get_content_panel() const;
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const;
 };
 
         } // gui
