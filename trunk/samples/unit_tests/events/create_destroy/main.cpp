@@ -24,6 +24,7 @@ The program '[2204] create_destroy.exe: Native' has exited with code 0 (0x0).
 #include <cpaf/gui/button.h>
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
+#include <cpaf/gui/gridbaglayout.h>
 
 #include <cpaf/debug.h>
 
@@ -48,11 +49,10 @@ MyWindow *parent;
 class MyButton : public Button
 {
 public:
-    static MyButton *create(const Initializer &initializer)
+    static boost::shared_ptr<MyButton> create(const Initializer &initializer)
     {
         MyButton *wrapper = new MyButton;
-        wrapper->initialize(initializer);
-        return wrapper;
+        return boost::dynamic_pointer_cast<MyButton>(wrapper->initialize(initializer));
     }
 
 protected:
@@ -83,17 +83,16 @@ protected:
 class MyWindow : public Window
 {
 private:
-    MyButton *m_btn;
-    Panel *m_panel;
+    boost::shared_ptr<MyButton> m_btn;
+    boost::shared_ptr<Panel> m_panel;
 
 public:
     void *my_data;
 
-    static MyWindow *create(const Initializer &initializer)
+    static boost::shared_ptr<MyWindow> create(const Initializer &initializer)
     {
         MyWindow *wrapper = new MyWindow;
-        wrapper->initialize(initializer);
-        return wrapper;
+        return boost::dynamic_pointer_cast<MyWindow>(wrapper->initialize(initializer));
     }
 
 protected:
@@ -102,7 +101,7 @@ protected:
         cpaf::DebugReport() << "MyWindow::ctor";
 
         // create the root panel
-        m_panel = Panel::create(Panel::Initializer());
+        m_panel = Panel::create(Panel::Initializer().layout_manager(new cpaf::gui::GridBagLayout));
 
         // connect events
         connect<Event, false>(WIDGET_DESTROY, get_id())(&MyWindow::on_destroy, *this);
@@ -117,7 +116,7 @@ protected:
     {
         cpaf::DebugReport() << "MyWindow::dtor";
 
-        parent = NULL;
+        parent = 0;
     }
 
     void on_create(Event &event)
@@ -141,7 +140,6 @@ protected:
         // the button must exist at this point so accessing it shouldn't crash
         m_btn->get_label();
         m_btn->get_position();
-        m_btn->set_size(cpaf::Size(100,100));
     }
 
     void on_btn_destroy(Event &event)
@@ -151,7 +149,6 @@ protected:
         // the button must exist at this point so accessing it shouldn't crash
         m_btn->get_label();
         m_btn->get_position();
-        m_btn->set_size(cpaf::Size(100,100));
     }
 
     void on_panel_destroy(Event &event)

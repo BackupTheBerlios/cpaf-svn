@@ -21,9 +21,9 @@ using namespace cpaf::gui;
 class MyApp : public App
 {
 public:
-    TextBox *text;
-    EntryBox *entry;
-    EntryBox *range_begin, *range_end, *insert_text;
+    boost::shared_ptr<TextBox> text;
+    boost::shared_ptr<EntryBox> entry;
+    boost::shared_ptr<EntryBox> range_begin, range_end, insert_text;
     
     bool init();
     
@@ -51,19 +51,19 @@ private:
 bool MyApp::init()
 {
     cpaf::gui::GridBagLayout *gblm_outer;
-    Panel *panel_outer = Panel::create(Panel::Initializer().layout_manager(gblm_outer = new cpaf::gui::GridBagLayout));
+    boost::shared_ptr<Panel> panel_outer =Panel::create(Panel::Initializer().layout_manager(gblm_outer = new cpaf::gui::GridBagLayout));
 
     // use a second panel with another GBLM to simulate column spanning until I implement it
     cpaf::gui::GridBagLayout *gblm;
-    Panel *panel_inner = Panel::create(Panel::Initializer().parent(panel_outer).show().layout_manager(gblm = new cpaf::gui::GridBagLayout));
+    boost::shared_ptr<Panel> panel_inner =Panel::create(Panel::Initializer().parent(panel_outer).show().layout_manager(gblm = new cpaf::gui::GridBagLayout));
 
     // work around for incomplete GBLM implementation (can't calculate gblm min size)
     panel_inner->set_min_size(cpaf::Size(0, 134));
 
     // add the inner panel to the outer panel's gblm
-    gblm_outer->add_widget(panel_inner, cpaf::gui::GridBagLayoutInfo().expand_both().position(0,0));
+    gblm_outer->add(panel_inner, cpaf::gui::GridBagLayoutInfo().expand_both().position(0,0));
 
-    Window *wnd = Window::create(Window::Initializer()
+    boost::shared_ptr<Window> wnd =Window::create(Window::Initializer()
         .content_panel(panel_outer)
         .title("Cpaf")
         .client_size(cpaf::Size(600,450))
@@ -74,38 +74,38 @@ bool MyApp::init()
     btn_init.parent(panel_inner).min_size(cpaf::Size(100, 30));
     entry_init.parent(panel_inner);
 
-    Button *get_text = Button::create(btn_init
+    boost::shared_ptr<Button> get_text =Button::create(btn_init
         .label("Get text")
         .size(cpaf::Size(100,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_text->get_id()) (&MyApp::get_text, *this);
-    Button *get_selection_range = Button::create(btn_init
+    boost::shared_ptr<Button> get_selection_range =Button::create(btn_init
         .label("Get selection range")
         .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_selection_range->get_id()) (&MyApp::get_selection_range, *this);
-    Button *get_selection_bounds = Button::create(btn_init
+    boost::shared_ptr<Button> get_selection_bounds =Button::create(btn_init
         .label("Get selection bounds")
         .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_selection_bounds->get_id()) (&MyApp::get_selection_bounds, *this);
 
-    Button *get_insertion_point = Button::create(btn_init
+    boost::shared_ptr<Button> get_insertion_point =Button::create(btn_init
         .label("Get insertion point")
         .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_insertion_point->get_id()) (&MyApp::get_insertion_point, *this);
-    Button *get_length = Button::create(btn_init
+    boost::shared_ptr<Button> get_length =Button::create(btn_init
         .label("Get length")
         .size(cpaf::Size(100,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_length->get_id()) (&MyApp::get_length, *this);
-    Button *toggle_read_only = Button::create(btn_init
+    boost::shared_ptr<Button> toggle_read_only =Button::create(btn_init
         .label("Toggle read only")
         .size(cpaf::Size(150,30))
         .show()
@@ -113,45 +113,45 @@ bool MyApp::init()
     connect<Event, false>(BUTTON_CLICK, toggle_read_only->get_id()) (&MyApp::toggle_read_only, *this);
 
 
-    Button *get_text_in_range = Button::create(btn_init
+    boost::shared_ptr<Button> get_text_in_range =Button::create(btn_init
         .label("Get text in range")
         .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_text_in_range->get_id()) (&MyApp::get_text_in_range, *this);
-    Button *set_selection_range = Button::create(btn_init
+    boost::shared_ptr<Button> set_selection_range =Button::create(btn_init
         .label("Set selection range")
         .size(cpaf::Size(150,30))
         .position(cpaf::Point(10,135))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_selection_range->get_id()) (&MyApp::set_selection_range, *this);
-    Button *set_selection_bounds = Button::create(btn_init
+    boost::shared_ptr<Button> set_selection_bounds =Button::create(btn_init
         .label("Set selection bounds")
         .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_selection_bounds->get_id()) (&MyApp::set_selection_bounds, *this);
-    Button *set_insertion_point = Button::create(btn_init
+    boost::shared_ptr<Button> set_insertion_point =Button::create(btn_init
         .label("Set insertion point")
         .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_insertion_point->get_id()) (&MyApp::set_insertion_point, *this);
-    Button *delete_range = Button::create(btn_init
+    boost::shared_ptr<Button> delete_range =Button::create(btn_init
         .label("Delete range")
         .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, delete_range->get_id()) (&MyApp::delete_range, *this);
-    Button *insert = Button::create(btn_init
+    boost::shared_ptr<Button> insert =Button::create(btn_init
         .label("Insert")
         .size(cpaf::Size(75,30))
         .position(cpaf::Point(170,170))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, insert->get_id()) (&MyApp::insert, *this);
-    Button *set_max_length = Button::create(btn_init
+    boost::shared_ptr<Button> set_max_length =Button::create(btn_init
         .label("Set max length")
         .size(cpaf::Size(150,30))
         .show()
@@ -199,32 +199,32 @@ bool MyApp::init()
 
     info.expand_horizontal();
 
-    gblm->add_widget(get_text, info.position(0,0));
-    gblm->add_widget(get_selection_range, info.position(1, 0));
-    gblm->add_widget(get_selection_bounds, info.position(2, 0));
-    gblm->add_widget(get_insertion_point, info.position(3, 0));
+    gblm->add(get_text, info.position(0,0));
+    gblm->add(get_selection_range, info.position(1, 0));
+    gblm->add(get_selection_bounds, info.position(2, 0));
+    gblm->add(get_insertion_point, info.position(3, 0));
     
-    gblm->add_widget(get_length, info.position(0, 1));
-    gblm->add_widget(toggle_read_only, info.position(1, 1));
-    gblm->add_widget(get_text_in_range, info.position(2, 1));
-    gblm->add_widget(set_selection_range, info.position(3, 1));
+    gblm->add(get_length, info.position(0, 1));
+    gblm->add(toggle_read_only, info.position(1, 1));
+    gblm->add(get_text_in_range, info.position(2, 1));
+    gblm->add(set_selection_range, info.position(3, 1));
 
-    gblm->add_widget(set_selection_bounds, info.position(0, 2));
-    gblm->add_widget(set_insertion_point, info.position(1, 2));
-    gblm->add_widget(delete_range, info.position(2, 2));
-    gblm->add_widget(insert, info.position(3, 2));
+    gblm->add(set_selection_bounds, info.position(0, 2));
+    gblm->add(set_insertion_point, info.position(1, 2));
+    gblm->add(delete_range, info.position(2, 2));
+    gblm->add(insert, info.position(3, 2));
 
-    gblm->add_widget(set_max_length, info.position(0, 3));
-    gblm->add_widget(range_begin, info.position(1, 3));
-    gblm->add_widget(range_end, info.position(2, 3));
-    gblm->add_widget(insert_text, info.position(3, 3));
+    gblm->add(set_max_length, info.position(0, 3));
+    gblm->add(range_begin, info.position(1, 3));
+    gblm->add(range_end, info.position(2, 3));
+    gblm->add(insert_text, info.position(3, 3));
 
     gblm->set_gap(4);
     gblm->set_row_weight(0, 0).set_row_weight(1, 0).set_row_weight(2, 0)
         .set_row_weight(3, 0).set_row_weight(4, 0);
 
-    gblm_outer->add_widget(entry, info.position(0, 1));
-    gblm_outer->add_widget(text, info.position(0, 2).expand_both());
+    gblm_outer->add(entry, info.position(0, 1));
+    gblm_outer->add(text, info.position(0, 2).expand_both());
 
     gblm_outer->set_gap(4).set_margins(4);
     gblm_outer->set_row_weight(0, 0).set_row_weight(1,0);
