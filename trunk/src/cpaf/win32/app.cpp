@@ -29,9 +29,23 @@ int cpaf::gui::App::run()
         if( !has_widgets() )
             ::PostQuitMessage(0);
 
-        //! \todo Do something if GetMessage returns -1
-        if( ::GetMessage(&msg, 0, 0, 0) == -1 )
-            break;
+        // use peekmessage to check for waiting messages
+        if( !::PeekMessage(&msg, 0, 0, 0, PM_REMOVE) )
+        {
+            // no messages waiting, check the widget deletion stack
+            if( widget_deletion_stack_waiting() )
+            {
+                // delete the widget and check for more messages
+                widget_deletion_stack_pop();
+                continue;
+            }
+            else
+                // nothing to delete, wait for a message
+                // we could use WaitMessage here
+                //! \todo Do something if GetMessage returns -1
+                if( ::GetMessage(&msg, 0, 0, 0) == -1 )
+                    break;
+        }
 
         // process the message
         if( msg.message == WM_QUIT )
