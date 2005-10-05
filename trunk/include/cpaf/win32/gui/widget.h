@@ -88,7 +88,6 @@ public:
     virtual boost::shared_ptr<cpaf::gui::Window> get_parent_window() const;
 
 protected:
-    // implementation specific functions
 
     /*!
         Sets the text of this widget using SetWindowText

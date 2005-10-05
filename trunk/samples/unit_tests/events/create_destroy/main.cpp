@@ -1,21 +1,23 @@
 /*!
-    \brief WIDGET_CREATED and WIDGET_DESTROYED event test case
+    \brief WIDGET_CREATED, WIDGET_DESTROYED and object deallocation test case
 */
 
 /*
 Expected Output
 
-MyWindow::ctor
-MyWindow::on_create
-MyButton::ctor
-MyButton::on_create
-MyWindow::on_destroy
-MyWindow::on_panel_destroy
-MyButton::on_destroy        * Note: These two functions can be invoked in any order. They both connect to the same
-MyWindow::on_btn_destroy    * event from the same object and the order in which the slots are invoked is undefined.
-MyButton::dtor
-MyWindow::dtor
-The program '[2204] create_destroy.exe: Native' has exited with code 0 (0x0).
+MyWindow::MyWindow
+MyWindow::WIDGET_CREATE
+MyPanel::MyPanel
+MyPanel::WIDGET_CREATE
+MyButton::MyButton
+MyButton::WIDGET_CREATE
+MyWindow::WIDGET_DESTROY
+MyPanel::WIDGET_DESTROY
+MyButton::WIDGET_DESTROY
+MyButton::~MyButton
+MyPanel::~MyPanel
+MyWindow::~MyWindow
+create_destroy.exe has exited with code 0 (0x0).
 */
 
 #include <cpaf/main.h>
@@ -58,7 +60,7 @@ public:
 protected:
     MyButton()
     {
-        cpaf::DebugReport() << "MyButton::ctor";
+        cpaf::DebugReport() << "MyButton::MyButton";
         
         connect<Event, false>(WIDGET_DESTROY, get_id())(&MyButton::on_destroy, *this);
         connect<Event, false>(WIDGET_CREATE, get_id())(&MyButton::on_create, *this);
@@ -66,15 +68,45 @@ protected:
 
     ~MyButton()
     {
-        cpaf::DebugReport() << "MyButton::dtor";
+        cpaf::DebugReport() << "MyButton::~MyButton";
     }
 
     void on_create(Event &event)
     {
-        cpaf::DebugReport() << "MyButton::on_create";
+        cpaf::DebugReport() << "MyButton::WIDGET_CREATE";
     }
 
     void on_destroy(Event &event);
+};
+
+/*
+    Derived panel
+*/
+class MyPanel : public Panel
+{
+public:
+    static boost::shared_ptr<MyPanel> create(const Initializer &initializer)
+    {
+        MyPanel *wrapper = new MyPanel;
+        return boost::dynamic_pointer_cast<MyPanel>(wrapper->initialize(initializer));
+    }
+
+protected:
+    MyPanel()
+    {
+        cpaf::DebugReport() << "MyPanel::MyPanel";
+
+        connect<Event, false>(WIDGET_CREATE, get_id()) (&MyPanel::on_create, *this);
+    }
+    ~MyPanel()
+    {
+        cpaf::DebugReport() << "MyPanel::~MyPanel";
+    }
+
+    void on_create(Event &event)
+    {
+        cpaf::DebugReport() << "MyPanel::WIDGET_CREATE";
+    }
 };
 
 /*
@@ -84,7 +116,6 @@ class MyWindow : public Window
 {
 private:
     boost::shared_ptr<MyButton> m_btn;
-    boost::shared_ptr<Panel> m_panel;
 
 public:
     void *my_data;
@@ -98,15 +129,11 @@ public:
 protected:
     MyWindow()
     {
-        cpaf::DebugReport() << "MyWindow::ctor";
-
-        // create the root panel
-        m_panel = Panel::create(Panel::Initializer().layout_manager(new cpaf::gui::GridBagLayout));
+        cpaf::DebugReport() << "MyWindow::MyWindow";
 
         // connect events
         connect<Event, false>(WIDGET_DESTROY, get_id())(&MyWindow::on_destroy, *this);
         connect<Event, false>(WIDGET_CREATE, get_id())(&MyWindow::on_create, *this);
-        connect<Event, false>(WIDGET_DESTROY, m_panel->get_id())(&MyWindow::on_panel_destroy, *this);
 
         parent = this;
         my_data = 0;
@@ -114,20 +141,24 @@ protected:
 
     ~MyWindow()
     {
-        cpaf::DebugReport() << "MyWindow::dtor";
+        cpaf::DebugReport() << "MyWindow::~MyWindow";
 
         parent = 0;
     }
 
     void on_create(Event &event)
     {
-        cpaf::DebugReport() << "MyWindow::on_create";
+        cpaf::DebugReport() << "MyWindow::WIDGET_CREATE";
+
+        // create the root panel
+        boost::shared_ptr<Panel> panel = MyPanel::create(Panel::Initializer().layout_manager(new cpaf::gui::GridBagLayout));
+        connect<Event, false>(WIDGET_DESTROY, panel->get_id())(&MyWindow::on_panel_destroy, *this);
 
         // set our content panel
-        set_content_panel(m_panel);
+        set_content_panel(panel);
 
         // create our button child
-        m_btn = MyButton::create(MyButton::Initializer().parent(m_panel));
+        m_btn = MyButton::create(MyButton::Initializer().parent(panel));
 
         // listen for button destruction event
         connect<Event, false>(WIDGET_DESTROY, m_btn->get_id())(&MyWindow::on_btn_destroy, *this);
@@ -135,7 +166,7 @@ protected:
 
     void on_destroy(Event &event)
     {
-        cpaf::DebugReport() << "MyWindow::on_destroy";
+        cpaf::DebugReport() << "MyWindow::WIDGET_DESTROY";
 
         // the button must exist at this point so accessing it shouldn't crash
         m_btn->get_label();
@@ -144,24 +175,31 @@ protected:
 
     void on_btn_destroy(Event &event)
     {
-        cpaf::DebugReport() << "MyWindow::on_btn_destroy";
+        cpaf::DebugReport() << "MyButton::WIDGET_DESTROY";
 
         // the button must exist at this point so accessing it shouldn't crash
         m_btn->get_label();
         m_btn->get_position();
+
+        /*
+            Release the reference to the button to retain desired deallocation order.
+            If we held onto this resource, object deallocation order would change.
+            You do not need to release your shared pointers in your own code, we
+            do it in this sample to make sure the object deallocation order that the
+            api gaurentees is being respected on all platforms
+        */
+        m_btn.reset();
     }
 
     void on_panel_destroy(Event &event)
     {
-        cpaf::DebugReport() << "MyWindow::on_panel_destroy";
+        cpaf::DebugReport() << "MyPanel::WIDGET_DESTROY";
     }
 };
 
 // We need to implement that here
 void MyButton::on_destroy(Event &event)
 {
-    cpaf::DebugReport() << "MyButton::on_destroy";
-    
     // the parent widget must not be freed yet so this is ok
     parent->my_data;
 }

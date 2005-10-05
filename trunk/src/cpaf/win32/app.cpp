@@ -26,7 +26,7 @@ int cpaf::gui::App::run()
     while( true )
     {
         // if no widgets exist, terminate the application
-        if( has_widgets() )
+        if( !has_widgets() )
             ::PostQuitMessage(0);
 
         //! \todo Do something if GetMessage returns -1

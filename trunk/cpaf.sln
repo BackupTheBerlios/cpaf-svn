@@ -19,6 +19,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "textwidget", "samples\unit_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "create_destroy", "samples\unit_tests\events\create_destroy\create_destroy.vcproj", "{84D3FA38-3823-4F1C-ABB7-B875B3546216}"
 	ProjectSection(ProjectDependencies) = postProject
+		{0D192004-77CE-4E79-81F6-E126E712CFE9} = {0D192004-77CE-4E79-81F6-E126E712CFE9}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gblm", "samples\unit_tests\gblm\gblm.vcproj", "{8B2F8123-2115-486E-8E8E-38E8053CCCD5}"

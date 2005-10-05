@@ -40,7 +40,6 @@ void cpaf::win32::gui::disassociate_hwnd(HWND h)
         //widget_map.erase(i);
 
     ::RemoveProp(h, "cpaf::widget");
-    num_widgets--;
 
     // we do not throw if the hwnd was not found in the map because this function is called by
     // win32::gui::Widget dtor. Throwing dtors are bad and cause all sorts of trouble as I recently
@@ -62,7 +61,7 @@ Widget *cpaf::win32::gui::get_widget_from_hwnd(HWND h)
 bool cpaf::win32::gui::has_widgets()
 {
     //return widget_map.empty();
-    return num_widgets == 0;
+    return num_widgets != 0;
 }
 
 void cpaf::win32::gui::widget_deletion_stack_push(Widget *w)
@@ -72,7 +71,11 @@ void cpaf::win32::gui::widget_deletion_stack_push(Widget *w)
 
 void cpaf::win32::gui::widget_deletion_stack_pop()
 {
-    delete widget_deletion_stack.top();
+    num_widgets--;
+
+    // remove the libraries reference to the wrapper object
+    cpaf::gui::disassociate_widget_id(widget_deletion_stack.top()->get_id());
+
     widget_deletion_stack.pop();
 }
 

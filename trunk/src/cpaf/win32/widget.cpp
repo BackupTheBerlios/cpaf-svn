@@ -125,8 +125,8 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
             // remove ourselves from our parents layout manager
             //get_parent()->get_layout_manager().remove(m_wrapper);
 
-            // we won't remove the ID/Widget pair from the map right now, because
-            // that could deallocate this object and we still need to exist
+            // queue ourselves for deletion in the proper order
+            widget_deletion_stack_push(this);
 
             break;
         }
@@ -178,12 +178,6 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
         ret = ::CallWindowProc(m_old_proc, hwnd, msg, w_param, l_param);
     else
         ret = ::DefWindowProc(hwnd, msg, w_param, l_param);
-
-
-    // if we were being destroyed, now we remove the ID/Widget pair from the map
-    if( msg == WM_DESTROY )
-        // remove the {ID, Widget} pair from the widget id map
-        cpaf::gui::disassociate_widget_id(m_id);
 
     return ret;
 }
