@@ -14,7 +14,7 @@ void cpaf::cocoa::gui::TextBox::create(const cpaf::gui::initializer::TextBoxData
 {
     NSSize size;
 
-    if( !params.m_parent )
+    if( !params.get_parent() )
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     // Initialize the NSTextView, before calling TextWidget::create() (because this will call set_text())

@@ -10,5 +10,5 @@
 void cpaf::cocoa::gui::TextWidget::create(const cpaf::gui::initializer::TextWidgetData &params, id widget)
 {
     cpaf::cocoa::gui::Widget::create(params, widget);
-    set_text(params.m_text);
+    set_text(params.get_text());
 }

@@ -6,6 +6,9 @@
 
 #include <cpaf/cocoa/gui/entrybox.h>
 #include <cpaf/exception.h>
+#include <cpaf/cocoa/utils.h>
+
+using namespace cpaf::cocoa::utils;
 
 CPAF_COCOA_INTERFACE(TextField)
 CPAF_COCOA_IMPLEMENTATION(TextField)
@@ -31,11 +34,11 @@ void cpaf::cocoa::gui::EntryBox::create(const cpaf::gui::initializer::EntryBoxDa
 {
     id widget = nil;
 
-    if( !params.m_parent )
+    if( !params.get_parent() )
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     // Create a password field or a text field?
-    if (params.m_get_password_mode)
+    if (params.get_password_mode())
         widget = [[CpafSecureTextField alloc] init];
     else
         widget = [[CpafTextField alloc] init];
@@ -95,12 +98,13 @@ std::string cpaf::cocoa::gui::EntryBox::get_text() const
 
 std::string cpaf::cocoa::gui::EntryBox::get_text(const cpaf::TextRange &range) const
 {
-    return "";
+    NSString *str = [m_object stringValue];
+    return [[str substringWithRange:convert_range(range, [str length])] UTF8String];
 }
 
 cpaf::text_range_t cpaf::cocoa::gui::EntryBox::get_length() const
 {
-    return get_text().length();
+    return [[m_object stringValue] length];
 }
 
 cpaf::TextRange cpaf::cocoa::gui::EntryBox::get_selection_range() const
@@ -123,6 +127,10 @@ cpaf::TextRange cpaf::cocoa::gui::EntryBox::get_selection_range() const
 
 void cpaf::cocoa::gui::EntryBox::set_selection_range(const cpaf::TextRange &range)
 {
+    // First try to focus the EntryBox. If it accepts focus, select the text
+    if ([m_object acceptsFirstResponder] && [[m_object window] makeFirstResponder:m_object])
+        // Select
+        [(NSText *)[[m_object window] firstResponder] setSelectedRange:convert_range(range, get_length())];
 }
 
 bool cpaf::cocoa::gui::EntryBox::get_selection_bounds(cpaf::TextRange &range) const
@@ -134,7 +142,8 @@ bool cpaf::cocoa::gui::EntryBox::get_selection_bounds(cpaf::TextRange &range) co
 
 void cpaf::cocoa::gui::EntryBox::set_selection_bounds(const cpaf::TextRange &range)
 {
-
+    // It's the same function in the Cocoa port
+    set_selection_range(range);
 }
 
 cpaf::text_range_t cpaf::cocoa::gui::EntryBox::get_insertion_point() const
@@ -144,21 +153,33 @@ cpaf::text_range_t cpaf::cocoa::gui::EntryBox::get_insertion_point() const
 
 void cpaf::cocoa::gui::EntryBox::set_insertion_point(cpaf::text_range_t pos)
 {
-
+    set_selection_range(cpaf::TextRange(pos, pos));
 }
 
 void cpaf::cocoa::gui::EntryBox::delete_range(const cpaf::TextRange &range)
 {
-
+    //! \todo call replace_range()
+    NSString *oldString = [m_object stringValue];
+    NSRange newRange = convert_range(range, [oldString length]);
+    NSString *newString = [NSString stringWithFormat:@"%@%@", [oldString substringToIndex:newRange.location], [oldString substringFromIndex:newRange.location+newRange.length]];
+    [m_object setStringValue:newString];
 }
 
 cpaf::text_range_t cpaf::cocoa::gui::EntryBox::insert_text(const std::string &str, cpaf::text_range_t pos)
 {
+    //! \todo call replace_range()
+    NSString *oldString = [m_object stringValue];
+    cpaf::TextRange tempRange(pos, pos);
+    NSRange newRange = convert_range(tempRange, [oldString length]);
+    NSString *newString = [NSString stringWithFormat:@"%@%@%@", [oldString substringToIndex:newRange.location], [NSString stringWithUTF8String:str.c_str()], [oldString substringFromIndex:newRange.location]];
+    [m_object setStringValue:newString];
+    //! \todo return
     return 0;
 }
 
 cpaf::text_range_t cpaf::cocoa::gui::EntryBox::insert_text(const std::string &str)
 {
+    //! \todo
     return 0;
 }
 
@@ -174,7 +195,7 @@ void cpaf::cocoa::gui::EntryBox::set_read_only(bool b)
     // If the widget will be read only, make sure it isn't focused anymore
     if (b)
     {
-        // \todo Remove duplicate code
+        //! \todo Remove duplicate code
 
         NSResponder *firstResponder = [[m_object window] firstResponder];
 

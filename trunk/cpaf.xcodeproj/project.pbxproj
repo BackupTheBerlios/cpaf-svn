@@ -7,76 +7,100 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6EDF4BAC082E051400957C63 /* app.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BA6082E051400957C63 /* app.h */; };
-		6EDF4BAD082E051400957C63 /* dllimpexp.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BA7082E051400957C63 /* dllimpexp.h */; };
-		6EDF4BAE082E051400957C63 /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BA8082E051400957C63 /* exception.h */; };
-		6EDF4BAF082E051400957C63 /* macros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BA9082E051400957C63 /* macros.h */; };
-		6EDF4BB0082E051400957C63 /* main.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BAA082E051400957C63 /* main.h */; };
-		6EDF4BB1082E051400957C63 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BAB082E051400957C63 /* types.h */; };
-		6EDF4C05082E05CB00957C63 /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BEF082E05CB00957C63 /* button.h */; };
-		6EDF4C06082E05CB00957C63 /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BF0082E05CB00957C63 /* widget.h */; };
-		6EDF4C07082E05CB00957C63 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BF1082E05CB00957C63 /* window.h */; };
-		6EDF4C08082E05CB00957C63 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4BF2082E05CB00957C63 /* utils.h */; };
-		6EDF4CB4082E07EF00957C63 /* api-prototypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4C52082E07EE00957C63 /* api-prototypes.h */; };
-		6EDF4CB5082E07EF00957C63 /* app.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4C53082E07EE00957C63 /* app.h */; };
-		6EDF4CB6082E07EF00957C63 /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4C54082E07EE00957C63 /* button.h */; };
-		6EDF4CD1082E07EF00957C63 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4C7A082E07EF00957C63 /* object.h */; };
-		6EDF4CD2082E07EF00957C63 /* toplevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4C7B082E07EF00957C63 /* toplevel.h */; };
-		6EDF4CD3082E07EF00957C63 /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4C7C082E07EF00957C63 /* widget.h */; };
-		6EDF4CD4082E07EF00957C63 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4C7D082E07EF00957C63 /* window.h */; };
-		6EDF4CDE082E07EF00957C63 /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDF4C92082E07EF00957C63 /* factory.h */; };
-		6EDF4D8F082E08F700957C63 /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D29082E08F600957C63 /* api.cpp */; };
-		6EDF4D90082E08F700957C63 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D2A082E08F600957C63 /* app.cpp */; };
-		6EDF4DAE082E08F700957C63 /* app.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D53082E08F700957C63 /* app.mm */; };
-		6EDF4DAF082E08F700957C63 /* button.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D54082E08F700957C63 /* button.mm */; };
-		6EDF4DB0082E08F700957C63 /* factory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D55082E08F700957C63 /* factory.mm */; };
-		6EDF4DB1082E08F700957C63 /* utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D56082E08F700957C63 /* utils.mm */; };
-		6EDF4DB2082E08F700957C63 /* widget.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D57082E08F700957C63 /* widget.mm */; };
-		6EDF4DB3082E08F700957C63 /* window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D58082E08F700957C63 /* window.mm */; };
-		6EDF4DB4082E08F700957C63 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D59082E08F700957C63 /* exception.cpp */; };
-		6EDF4DD6082E08F700957C63 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D86082E08F700957C63 /* app.cpp */; };
-		6EDF4DD7082E08F700957C63 /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D87082E08F700957C63 /* button.cpp */; };
-		6EDF4DD8082E08F700957C63 /* factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D88082E08F700957C63 /* factory.cpp */; };
-		6EDF4DD9082E08F700957C63 /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D89082E08F700957C63 /* object.cpp */; };
-		6EDF4DDA082E08F700957C63 /* toplevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D8A082E08F700957C63 /* toplevel.cpp */; };
-		6EDF4DDB082E08F700957C63 /* widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D8B082E08F700957C63 /* widget.cpp */; };
-		6EDF4DDC082E08F700957C63 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D8C082E08F700957C63 /* window.cpp */; };
-		6EDF4DDD082E08F700957C63 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D8D082E08F700957C63 /* main.cpp */; };
-		6EDF4DDE082E08F700957C63 /* types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EDF4D8E082E08F700957C63 /* types.cpp */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
-		E2055F26087E34DD000B7316 /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F25087E34DD000B7316 /* id.h */; };
-		E2055F2D087E3517000B7316 /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F28087E3517000B7316 /* button.h */; };
-		E2055F2E087E3517000B7316 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F29087E3517000B7316 /* object.h */; };
-		E2055F2F087E3517000B7316 /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F2A087E3517000B7316 /* textbox.h */; };
-		E2055F30087E3517000B7316 /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F2B087E3517000B7316 /* widget.h */; };
-		E2055F31087E3517000B7316 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F2C087E3517000B7316 /* window.h */; };
-		E2055F34087E353C000B7316 /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = E2055F32087E353C000B7316 /* factory.h */; };
-		E2055F67087EB187000B7316 /* id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2055F66087EB187000B7316 /* id.cpp */; };
-		E231DB38084B9CED00DD0EEA /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = E231DB37084B9CEC00DD0EEA /* event.h */; };
-		E29B7ECE0850218800170856 /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29B7ECD0850218800170856 /* event.cpp */; };
-		E2EBBACE08869989000A6728 /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBACD08869989000A6728 /* textwidget.h */; };
-		E2EBBADE08869A26000A6728 /* textwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2EBBADD08869A26000A6728 /* textwidget.cpp */; };
-		E2EBBAEE08869AE0000A6728 /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBAED08869AE0000A6728 /* textwidget.h */; };
-		E2EBBAF208869B27000A6728 /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBAF108869B27000A6728 /* textwidget.h */; };
-		E2EBBAF608869BE9000A6728 /* textwidget.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2EBBAF508869BE9000A6728 /* textwidget.mm */; };
-		E2EBBB9408869F05000A6728 /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBB8C08869F05000A6728 /* button.h */; };
-		E2EBBB9508869F05000A6728 /* entrybox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBB8D08869F05000A6728 /* entrybox.h */; };
-		E2EBBB9608869F05000A6728 /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBB8E08869F05000A6728 /* object.h */; };
-		E2EBBB9708869F05000A6728 /* sizer.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBB8F08869F05000A6728 /* sizer.h */; };
-		E2EBBB9808869F05000A6728 /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBB9008869F05000A6728 /* textwidget.h */; };
-		E2EBBB9908869F05000A6728 /* toplevel.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBB9108869F05000A6728 /* toplevel.h */; };
-		E2EBBB9A08869F05000A6728 /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBB9208869F05000A6728 /* widget.h */; };
-		E2EBBB9B08869F05000A6728 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBB9308869F05000A6728 /* window.h */; };
-		E2EBBBA808869F89000A6728 /* entrybox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBBA708869F89000A6728 /* entrybox.h */; };
-		E2EBBBAD08869FD1000A6728 /* entrybox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBBAC08869FD1000A6728 /* entrybox.h */; };
-		E2EBBBB70886A0B7000A6728 /* entrybox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBBB60886A0B7000A6728 /* entrybox.h */; };
-		E2EBBBEB0886A1FF000A6728 /* entrybox.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2EBBBEA0886A1FF000A6728 /* entrybox.mm */; };
-		E2EBBBEF0886A253000A6728 /* entrybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2EBBBEE0886A253000A6728 /* entrybox.cpp */; };
-		E2EBBC2F0886A3E4000A6728 /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBC2E0886A3E4000A6728 /* textbox.h */; };
-		E2EBBC380886A4E9000A6728 /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBC370886A4E9000A6728 /* textbox.h */; };
-		E2EBBC440886A6E5000A6728 /* textbox.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2EBBC430886A6E5000A6728 /* textbox.mm */; };
-		E2EBBC4A0886A783000A6728 /* textbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2EBBC490886A783000A6728 /* textbox.cpp */; };
-		E2EBBC510886A824000A6728 /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EBBC500886A824000A6728 /* textbox.h */; };
+		E29EBF9208F59F3300AB483B /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4308F59F3200AB483B /* button.h */; };
+		E29EBF9308F59F3300AB483B /* entrybox.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4408F59F3200AB483B /* entrybox.h */; };
+		E29EBF9408F59F3300AB483B /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4508F59F3200AB483B /* object.h */; };
+		E29EBF9508F59F3300AB483B /* panel.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4608F59F3200AB483B /* panel.h */; };
+		E29EBF9608F59F3300AB483B /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4708F59F3200AB483B /* textbox.h */; };
+		E29EBF9708F59F3300AB483B /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4808F59F3200AB483B /* textwidget.h */; };
+		E29EBF9808F59F3300AB483B /* toplevel.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4908F59F3200AB483B /* toplevel.h */; };
+		E29EBF9908F59F3300AB483B /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4A08F59F3200AB483B /* widget.h */; };
+		E29EBF9A08F59F3300AB483B /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4B08F59F3200AB483B /* window.h */; };
+		E29EBF9B08F59F3300AB483B /* app.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4C08F59F3200AB483B /* app.h */; };
+		E29EBF9C08F59F3300AB483B /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF4F08F59F3200AB483B /* button.h */; };
+		E29EBF9D08F59F3300AB483B /* entrybox.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5008F59F3200AB483B /* entrybox.h */; };
+		E29EBF9E08F59F3300AB483B /* panel.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5108F59F3200AB483B /* panel.h */; };
+		E29EBF9F08F59F3300AB483B /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5208F59F3200AB483B /* textbox.h */; };
+		E29EBFA008F59F3300AB483B /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5308F59F3200AB483B /* textwidget.h */; };
+		E29EBFA108F59F3300AB483B /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5408F59F3200AB483B /* widget.h */; };
+		E29EBFA208F59F3300AB483B /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5508F59F3200AB483B /* window.h */; };
+		E29EBFA308F59F3300AB483B /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5608F59F3200AB483B /* utils.h */; };
+		E29EBFA408F59F3300AB483B /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5708F59F3200AB483B /* debug.h */; };
+		E29EBFA508F59F3300AB483B /* dllimpexp.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5808F59F3200AB483B /* dllimpexp.h */; };
+		E29EBFA608F59F3300AB483B /* event.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5A08F59F3200AB483B /* event.h */; };
+		E29EBFA708F59F3300AB483B /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5B08F59F3200AB483B /* id.h */; };
+		E29EBFA808F59F3300AB483B /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF5C08F59F3200AB483B /* exception.h */; };
+		E29EBFB208F59F3300AB483B /* api-prototypes.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF6908F59F3200AB483B /* api-prototypes.h */; };
+		E29EBFB308F59F3300AB483B /* app.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF6A08F59F3200AB483B /* app.h */; };
+		E29EBFB408F59F3300AB483B /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF6B08F59F3200AB483B /* button.h */; };
+		E29EBFB508F59F3300AB483B /* entrybox.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF6C08F59F3200AB483B /* entrybox.h */; };
+		E29EBFB608F59F3300AB483B /* gridbaglayout.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF6D08F59F3200AB483B /* gridbaglayout.h */; };
+		E29EBFB708F59F3300AB483B /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF6F08F59F3200AB483B /* button.h */; };
+		E29EBFB808F59F3300AB483B /* entrybox.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7008F59F3200AB483B /* entrybox.h */; };
+		E29EBFB908F59F3300AB483B /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7108F59F3200AB483B /* object.h */; };
+		E29EBFBA08F59F3300AB483B /* panel.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7208F59F3200AB483B /* panel.h */; };
+		E29EBFBB08F59F3300AB483B /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7308F59F3200AB483B /* textbox.h */; };
+		E29EBFBC08F59F3300AB483B /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7408F59F3200AB483B /* textwidget.h */; };
+		E29EBFBD08F59F3300AB483B /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7508F59F3200AB483B /* widget.h */; };
+		E29EBFBE08F59F3300AB483B /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7608F59F3200AB483B /* window.h */; };
+		E29EBFBF08F59F3300AB483B /* layoutmanager.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7708F59F3200AB483B /* layoutmanager.h */; };
+		E29EBFC008F59F3300AB483B /* object.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7808F59F3200AB483B /* object.h */; };
+		E29EBFC108F59F3300AB483B /* panel.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7908F59F3200AB483B /* panel.h */; };
+		E29EBFC208F59F3300AB483B /* textbox.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7A08F59F3200AB483B /* textbox.h */; };
+		E29EBFC308F59F3300AB483B /* textwidget.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7B08F59F3200AB483B /* textwidget.h */; };
+		E29EBFC408F59F3300AB483B /* toplevel.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7C08F59F3200AB483B /* toplevel.h */; };
+		E29EBFC508F59F3300AB483B /* widget.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7D08F59F3200AB483B /* widget.h */; };
+		E29EBFC608F59F3300AB483B /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7E08F59F3200AB483B /* window.h */; };
+		E29EBFC708F59F3300AB483B /* macros.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF7F08F59F3200AB483B /* macros.h */; };
+		E29EBFC808F59F3300AB483B /* main.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF8008F59F3200AB483B /* main.h */; };
+		E29EBFC908F59F3300AB483B /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF8208F59F3200AB483B /* factory.h */; };
+		E29EBFCA08F59F3300AB483B /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = E29EBF8308F59F3200AB483B /* types.h */; };
+		E29EC02F08F59F5500AB483B /* api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFE108F59F5500AB483B /* api.cpp */; };
+		E29EC03008F59F5500AB483B /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFE208F59F5500AB483B /* app.cpp */; };
+		E29EC03108F59F5500AB483B /* app.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFE408F59F5500AB483B /* app.mm */; };
+		E29EC03208F59F5500AB483B /* button.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFE508F59F5500AB483B /* button.mm */; };
+		E29EC03308F59F5500AB483B /* entrybox.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFE608F59F5500AB483B /* entrybox.mm */; };
+		E29EC03708F59F5500AB483B /* factory.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFEA08F59F5500AB483B /* factory.mm */; };
+		E29EC03808F59F5500AB483B /* panel.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFEB08F59F5500AB483B /* panel.mm */; };
+		E29EC03908F59F5500AB483B /* textbox.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFEC08F59F5500AB483B /* textbox.mm */; };
+		E29EC03A08F59F5500AB483B /* textwidget.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFED08F59F5500AB483B /* textwidget.mm */; };
+		E29EC03B08F59F5500AB483B /* utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFEE08F59F5500AB483B /* utils.mm */; };
+		E29EC03C08F59F5500AB483B /* widget.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFEF08F59F5500AB483B /* widget.mm */; };
+		E29EC04008F59F5500AB483B /* window.mm in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFF308F59F5500AB483B /* window.mm */; };
+		E29EC04108F59F5500AB483B /* event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFF508F59F5500AB483B /* event.cpp */; };
+		E29EC04208F59F5500AB483B /* id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFF608F59F5500AB483B /* id.cpp */; };
+		E29EC04308F59F5500AB483B /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EBFF708F59F5500AB483B /* exception.cpp */; };
+		E29EC04E08F59F5500AB483B /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00408F59F5500AB483B /* app.cpp */; };
+		E29EC04F08F59F5500AB483B /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00508F59F5500AB483B /* button.cpp */; };
+		E29EC05008F59F5500AB483B /* entrybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00608F59F5500AB483B /* entrybox.cpp */; };
+		E29EC05108F59F5500AB483B /* factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00708F59F5500AB483B /* factory.cpp */; };
+		E29EC05208F59F5500AB483B /* gridbaglayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00808F59F5500AB483B /* gridbaglayout.cpp */; };
+		E29EC05308F59F5500AB483B /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00A08F59F5500AB483B /* button.cpp */; };
+		E29EC05408F59F5500AB483B /* entrybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00B08F59F5500AB483B /* entrybox.cpp */; };
+		E29EC05508F59F5500AB483B /* i_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00C08F59F5500AB483B /* i_button.cpp */; };
+		E29EC05608F59F5500AB483B /* i_entrybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00D08F59F5500AB483B /* i_entrybox.cpp */; };
+		E29EC05708F59F5500AB483B /* i_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00E08F59F5500AB483B /* i_object.cpp */; };
+		E29EC05808F59F5500AB483B /* i_textbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00F08F59F5500AB483B /* i_textbox.cpp */; };
+		E29EC05908F59F5500AB483B /* i_textwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01008F59F5500AB483B /* i_textwidget.cpp */; };
+		E29EC05A08F59F5500AB483B /* i_widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01108F59F5500AB483B /* i_widget.cpp */; };
+		E29EC05B08F59F5500AB483B /* i_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01208F59F5500AB483B /* i_window.cpp */; };
+		E29EC05C08F59F5500AB483B /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01308F59F5500AB483B /* object.cpp */; };
+		E29EC05D08F59F5500AB483B /* panel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01408F59F5500AB483B /* panel.cpp */; };
+		E29EC05E08F59F5500AB483B /* textbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01508F59F5500AB483B /* textbox.cpp */; };
+		E29EC05F08F59F5500AB483B /* textwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01608F59F5500AB483B /* textwidget.cpp */; };
+		E29EC06008F59F5500AB483B /* widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01708F59F5500AB483B /* widget.cpp */; };
+		E29EC06108F59F5500AB483B /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01808F59F5500AB483B /* window.cpp */; };
+		E29EC06208F59F5500AB483B /* layoutmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01908F59F5500AB483B /* layoutmanager.cpp */; };
+		E29EC06308F59F5500AB483B /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01A08F59F5500AB483B /* object.cpp */; };
+		E29EC06408F59F5500AB483B /* panel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01B08F59F5500AB483B /* panel.cpp */; };
+		E29EC06508F59F5500AB483B /* textbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01C08F59F5500AB483B /* textbox.cpp */; };
+		E29EC06608F59F5500AB483B /* textwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01D08F59F5500AB483B /* textwidget.cpp */; };
+		E29EC06708F59F5500AB483B /* toplevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01E08F59F5500AB483B /* toplevel.cpp */; };
+		E29EC06808F59F5500AB483B /* widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01F08F59F5500AB483B /* widget.cpp */; };
+		E29EC06908F59F5500AB483B /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC02008F59F5500AB483B /* window.cpp */; };
+		E29EC06A08F59F5500AB483B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC02108F59F5500AB483B /* main.cpp */; };
+		E29EC06B08F59F5500AB483B /* types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC02208F59F5500AB483B /* types.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
@@ -109,77 +133,101 @@
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		6EDF4BA6082E051400957C63 /* app.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = app.h; path = include/cpaf/app.h; sourceTree = "<group>"; };
-		6EDF4BA7082E051400957C63 /* dllimpexp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = dllimpexp.h; path = include/cpaf/dllimpexp.h; sourceTree = "<group>"; };
-		6EDF4BA8082E051400957C63 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = exception.h; path = include/cpaf/exception.h; sourceTree = "<group>"; };
-		6EDF4BA9082E051400957C63 /* macros.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = macros.h; path = include/cpaf/macros.h; sourceTree = "<group>"; };
-		6EDF4BAA082E051400957C63 /* main.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = main.h; path = include/cpaf/main.h; sourceTree = "<group>"; };
-		6EDF4BAB082E051400957C63 /* types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = types.h; path = include/cpaf/types.h; sourceTree = "<group>"; };
-		6EDF4BEF082E05CB00957C63 /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
-		6EDF4BF0082E05CB00957C63 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = widget.h; sourceTree = "<group>"; };
-		6EDF4BF1082E05CB00957C63 /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = window.h; sourceTree = "<group>"; };
-		6EDF4BF2082E05CB00957C63 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = utils.h; path = include/cpaf/cocoa/utils.h; sourceTree = "<group>"; };
-		6EDF4C52082E07EE00957C63 /* api-prototypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "api-prototypes.h"; sourceTree = "<group>"; };
-		6EDF4C53082E07EE00957C63 /* app.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
-		6EDF4C54082E07EE00957C63 /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
-		6EDF4C7A082E07EF00957C63 /* object.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
-		6EDF4C7B082E07EF00957C63 /* toplevel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = toplevel.h; sourceTree = "<group>"; };
-		6EDF4C7C082E07EF00957C63 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = widget.h; sourceTree = "<group>"; };
-		6EDF4C7D082E07EF00957C63 /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
-		6EDF4C92082E07EF00957C63 /* factory.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = factory.h; sourceTree = "<group>"; };
-		6EDF4D29082E08F600957C63 /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = api.cpp; path = src/cpaf/api.cpp; sourceTree = "<group>"; };
-		6EDF4D2A082E08F600957C63 /* app.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = app.cpp; path = src/cpaf/app.cpp; sourceTree = "<group>"; };
-		6EDF4D53082E08F700957C63 /* app.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = app.mm; sourceTree = "<group>"; };
-		6EDF4D54082E08F700957C63 /* button.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = button.mm; sourceTree = "<group>"; };
-		6EDF4D55082E08F700957C63 /* factory.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = factory.mm; sourceTree = "<group>"; };
-		6EDF4D56082E08F700957C63 /* utils.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = utils.mm; sourceTree = "<group>"; };
-		6EDF4D57082E08F700957C63 /* widget.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = widget.mm; sourceTree = "<group>"; };
-		6EDF4D58082E08F700957C63 /* window.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = window.mm; sourceTree = "<group>"; };
-		6EDF4D59082E08F700957C63 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = exception.cpp; path = src/cpaf/exception.cpp; sourceTree = "<group>"; };
-		6EDF4D86082E08F700957C63 /* app.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
-		6EDF4D87082E08F700957C63 /* button.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
-		6EDF4D88082E08F700957C63 /* factory.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = factory.cpp; sourceTree = "<group>"; };
-		6EDF4D89082E08F700957C63 /* object.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
-		6EDF4D8A082E08F700957C63 /* toplevel.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = toplevel.cpp; sourceTree = "<group>"; };
-		6EDF4D8B082E08F700957C63 /* widget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = widget.cpp; sourceTree = "<group>"; };
-		6EDF4D8C082E08F700957C63 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
-		6EDF4D8D082E08F700957C63 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/cpaf/main.cpp; sourceTree = "<group>"; };
-		6EDF4D8E082E08F700957C63 /* types.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = types.cpp; path = src/cpaf/types.cpp; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* cpaf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = cpaf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2055F25087E34DD000B7316 /* id.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = id.h; sourceTree = "<group>"; };
-		E2055F28087E3517000B7316 /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
-		E2055F29087E3517000B7316 /* object.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
-		E2055F2A087E3517000B7316 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
-		E2055F2B087E3517000B7316 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
-		E2055F2C087E3517000B7316 /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
-		E2055F32087E353C000B7316 /* factory.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = factory.h; sourceTree = "<group>"; };
-		E2055F66087EB187000B7316 /* id.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = id.cpp; sourceTree = "<group>"; };
-		E231DB37084B9CEC00DD0EEA /* event.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
-		E29B7ECD0850218800170856 /* event.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
-		E2EBBACD08869989000A6728 /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
-		E2EBBADD08869A26000A6728 /* textwidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textwidget.cpp; sourceTree = "<group>"; };
-		E2EBBAED08869AE0000A6728 /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
-		E2EBBAF108869B27000A6728 /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
-		E2EBBAF508869BE9000A6728 /* textwidget.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = textwidget.mm; sourceTree = "<group>"; };
-		E2EBBB8C08869F05000A6728 /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
-		E2EBBB8D08869F05000A6728 /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
-		E2EBBB8E08869F05000A6728 /* object.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
-		E2EBBB8F08869F05000A6728 /* sizer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = sizer.h; sourceTree = "<group>"; };
-		E2EBBB9008869F05000A6728 /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
-		E2EBBB9108869F05000A6728 /* toplevel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = toplevel.h; sourceTree = "<group>"; };
-		E2EBBB9208869F05000A6728 /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
-		E2EBBB9308869F05000A6728 /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
-		E2EBBBA708869F89000A6728 /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
-		E2EBBBAC08869FD1000A6728 /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
-		E2EBBBB60886A0B7000A6728 /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
-		E2EBBBEA0886A1FF000A6728 /* entrybox.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = entrybox.mm; sourceTree = "<group>"; };
-		E2EBBBEE0886A253000A6728 /* entrybox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = entrybox.cpp; sourceTree = "<group>"; };
-		E2EBBC2E0886A3E4000A6728 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = textbox.h; sourceTree = "<group>"; };
-		E2EBBC370886A4E9000A6728 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
-		E2EBBC430886A6E5000A6728 /* textbox.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = textbox.mm; sourceTree = "<group>"; };
-		E2EBBC490886A783000A6728 /* textbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = textbox.cpp; sourceTree = "<group>"; };
-		E2EBBC500886A824000A6728 /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = textbox.h; sourceTree = "<group>"; };
+		E29EBF4308F59F3200AB483B /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
+		E29EBF4408F59F3200AB483B /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
+		E29EBF4508F59F3200AB483B /* object.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
+		E29EBF4608F59F3200AB483B /* panel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = panel.h; sourceTree = "<group>"; };
+		E29EBF4708F59F3200AB483B /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
+		E29EBF4808F59F3200AB483B /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
+		E29EBF4908F59F3200AB483B /* toplevel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = toplevel.h; sourceTree = "<group>"; };
+		E29EBF4A08F59F3200AB483B /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
+		E29EBF4B08F59F3200AB483B /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		E29EBF4C08F59F3200AB483B /* app.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
+		E29EBF4F08F59F3200AB483B /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
+		E29EBF5008F59F3200AB483B /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
+		E29EBF5108F59F3200AB483B /* panel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = panel.h; sourceTree = "<group>"; };
+		E29EBF5208F59F3200AB483B /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
+		E29EBF5308F59F3200AB483B /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
+		E29EBF5408F59F3200AB483B /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = widget.h; sourceTree = "<group>"; };
+		E29EBF5508F59F3200AB483B /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = window.h; sourceTree = "<group>"; };
+		E29EBF5608F59F3200AB483B /* utils.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		E29EBF5708F59F3200AB483B /* debug.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
+		E29EBF5808F59F3200AB483B /* dllimpexp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = dllimpexp.h; sourceTree = "<group>"; };
+		E29EBF5A08F59F3200AB483B /* event.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
+		E29EBF5B08F59F3200AB483B /* id.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = id.h; sourceTree = "<group>"; };
+		E29EBF5C08F59F3200AB483B /* exception.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
+		E29EBF6908F59F3200AB483B /* api-prototypes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "api-prototypes.h"; sourceTree = "<group>"; };
+		E29EBF6A08F59F3200AB483B /* app.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
+		E29EBF6B08F59F3200AB483B /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
+		E29EBF6C08F59F3200AB483B /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
+		E29EBF6D08F59F3200AB483B /* gridbaglayout.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = gridbaglayout.h; sourceTree = "<group>"; };
+		E29EBF6F08F59F3200AB483B /* button.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = button.h; sourceTree = "<group>"; };
+		E29EBF7008F59F3200AB483B /* entrybox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = entrybox.h; sourceTree = "<group>"; };
+		E29EBF7108F59F3200AB483B /* object.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
+		E29EBF7208F59F3200AB483B /* panel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = panel.h; sourceTree = "<group>"; };
+		E29EBF7308F59F3200AB483B /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
+		E29EBF7408F59F3200AB483B /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
+		E29EBF7508F59F3200AB483B /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
+		E29EBF7608F59F3200AB483B /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		E29EBF7708F59F3200AB483B /* layoutmanager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = layoutmanager.h; sourceTree = "<group>"; };
+		E29EBF7808F59F3200AB483B /* object.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
+		E29EBF7908F59F3200AB483B /* panel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = panel.h; sourceTree = "<group>"; };
+		E29EBF7A08F59F3200AB483B /* textbox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textbox.h; sourceTree = "<group>"; };
+		E29EBF7B08F59F3200AB483B /* textwidget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = textwidget.h; sourceTree = "<group>"; };
+		E29EBF7C08F59F3200AB483B /* toplevel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = toplevel.h; sourceTree = "<group>"; };
+		E29EBF7D08F59F3200AB483B /* widget.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = widget.h; sourceTree = "<group>"; };
+		E29EBF7E08F59F3200AB483B /* window.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		E29EBF7F08F59F3200AB483B /* macros.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
+		E29EBF8008F59F3200AB483B /* main.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		E29EBF8208F59F3200AB483B /* factory.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = factory.h; sourceTree = "<group>"; };
+		E29EBF8308F59F3200AB483B /* types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		E29EBFE108F59F5500AB483B /* api.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = api.cpp; sourceTree = "<group>"; };
+		E29EBFE208F59F5500AB483B /* app.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
+		E29EBFE408F59F5500AB483B /* app.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = app.mm; sourceTree = "<group>"; };
+		E29EBFE508F59F5500AB483B /* button.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = button.mm; sourceTree = "<group>"; };
+		E29EBFE608F59F5500AB483B /* entrybox.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = entrybox.mm; sourceTree = "<group>"; };
+		E29EBFEA08F59F5500AB483B /* factory.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = factory.mm; sourceTree = "<group>"; };
+		E29EBFEB08F59F5500AB483B /* panel.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = panel.mm; sourceTree = "<group>"; };
+		E29EBFEC08F59F5500AB483B /* textbox.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = textbox.mm; sourceTree = "<group>"; };
+		E29EBFED08F59F5500AB483B /* textwidget.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = textwidget.mm; sourceTree = "<group>"; };
+		E29EBFEE08F59F5500AB483B /* utils.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = utils.mm; sourceTree = "<group>"; };
+		E29EBFEF08F59F5500AB483B /* widget.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = widget.mm; sourceTree = "<group>"; };
+		E29EBFF308F59F5500AB483B /* window.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = window.mm; sourceTree = "<group>"; };
+		E29EBFF508F59F5500AB483B /* event.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
+		E29EBFF608F59F5500AB483B /* id.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = id.cpp; sourceTree = "<group>"; };
+		E29EBFF708F59F5500AB483B /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cpp; sourceTree = "<group>"; };
+		E29EC00408F59F5500AB483B /* app.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
+		E29EC00508F59F5500AB483B /* button.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
+		E29EC00608F59F5500AB483B /* entrybox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = entrybox.cpp; sourceTree = "<group>"; };
+		E29EC00708F59F5500AB483B /* factory.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = factory.cpp; sourceTree = "<group>"; };
+		E29EC00808F59F5500AB483B /* gridbaglayout.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = gridbaglayout.cpp; sourceTree = "<group>"; };
+		E29EC00A08F59F5500AB483B /* button.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
+		E29EC00B08F59F5500AB483B /* entrybox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = entrybox.cpp; sourceTree = "<group>"; };
+		E29EC00C08F59F5500AB483B /* i_button.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_button.cpp; sourceTree = "<group>"; };
+		E29EC00D08F59F5500AB483B /* i_entrybox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_entrybox.cpp; sourceTree = "<group>"; };
+		E29EC00E08F59F5500AB483B /* i_object.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_object.cpp; sourceTree = "<group>"; };
+		E29EC00F08F59F5500AB483B /* i_textbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_textbox.cpp; sourceTree = "<group>"; };
+		E29EC01008F59F5500AB483B /* i_textwidget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_textwidget.cpp; sourceTree = "<group>"; };
+		E29EC01108F59F5500AB483B /* i_widget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_widget.cpp; sourceTree = "<group>"; };
+		E29EC01208F59F5500AB483B /* i_window.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_window.cpp; sourceTree = "<group>"; };
+		E29EC01308F59F5500AB483B /* object.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
+		E29EC01408F59F5500AB483B /* panel.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = panel.cpp; sourceTree = "<group>"; };
+		E29EC01508F59F5500AB483B /* textbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = textbox.cpp; sourceTree = "<group>"; };
+		E29EC01608F59F5500AB483B /* textwidget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = textwidget.cpp; sourceTree = "<group>"; };
+		E29EC01708F59F5500AB483B /* widget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = widget.cpp; sourceTree = "<group>"; };
+		E29EC01808F59F5500AB483B /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
+		E29EC01908F59F5500AB483B /* layoutmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = layoutmanager.cpp; sourceTree = "<group>"; };
+		E29EC01A08F59F5500AB483B /* object.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
+		E29EC01B08F59F5500AB483B /* panel.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = panel.cpp; sourceTree = "<group>"; };
+		E29EC01C08F59F5500AB483B /* textbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = textbox.cpp; sourceTree = "<group>"; };
+		E29EC01D08F59F5500AB483B /* textwidget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = textwidget.cpp; sourceTree = "<group>"; };
+		E29EC01E08F59F5500AB483B /* toplevel.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = toplevel.cpp; sourceTree = "<group>"; };
+		E29EC01F08F59F5500AB483B /* widget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = widget.cpp; sourceTree = "<group>"; };
+		E29EC02008F59F5500AB483B /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
+		E29EC02108F59F5500AB483B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E29EC02208F59F5500AB483B /* types.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = types.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,8 +253,8 @@
 		0867D691FE84028FC02AAC07 /* cpaf */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4B75082E042C00957C63 /* include */,
-				6EDF4D10082E089A00957C63 /* src */,
+				E29EBF3F08F59F3200AB483B /* include */,
+				E29EBFDF08F59F5500AB483B /* src */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
@@ -248,199 +296,223 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		6EDF4B75082E042C00957C63 /* include */ = {
+		E29EBF3F08F59F3200AB483B /* include */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4B79082E043E00957C63 /* cpaf */,
+				E29EBF4008F59F3200AB483B /* cpaf */,
 			);
-			name = include;
+			path = include;
 			sourceTree = "<group>";
 		};
-		6EDF4B79082E043E00957C63 /* cpaf */ = {
+		E29EBF4008F59F3200AB483B /* cpaf */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4B7D082E048300957C63 /* api */,
-				6EDF4BBD082E059400957C63 /* cocoa */,
-				E231DB36084B9CEC00DD0EEA /* event */,
-				6EDF4C26082E07EE00957C63 /* gui */,
-				6EDF4C7E082E07EF00957C63 /* private */,
-				6EDF4BA6082E051400957C63 /* app.h */,
-				6EDF4BA7082E051400957C63 /* dllimpexp.h */,
-				6EDF4BA8082E051400957C63 /* exception.h */,
-				6EDF4BA9082E051400957C63 /* macros.h */,
-				6EDF4BAA082E051400957C63 /* main.h */,
-				6EDF4BAB082E051400957C63 /* types.h */,
+				E29EBF4108F59F3200AB483B /* api */,
+				E29EBF4C08F59F3200AB483B /* app.h */,
+				E29EBF4D08F59F3200AB483B /* cocoa */,
+				E29EBF5708F59F3200AB483B /* debug.h */,
+				E29EBF5808F59F3200AB483B /* dllimpexp.h */,
+				E29EBF5908F59F3200AB483B /* event */,
+				E29EBF5C08F59F3200AB483B /* exception.h */,
+				E29EBF6808F59F3200AB483B /* gui */,
+				E29EBF7F08F59F3200AB483B /* macros.h */,
+				E29EBF8008F59F3200AB483B /* main.h */,
+				E29EBF8108F59F3200AB483B /* private */,
+				E29EBF8308F59F3200AB483B /* types.h */,
 			);
-			name = cpaf;
+			path = cpaf;
 			sourceTree = "<group>";
 		};
-		6EDF4B7D082E048300957C63 /* api */ = {
+		E29EBF4108F59F3200AB483B /* api */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4B81082E048800957C63 /* gui */,
+				E29EBF4208F59F3200AB483B /* gui */,
 			);
-			name = api;
+			path = api;
 			sourceTree = "<group>";
 		};
-		6EDF4B81082E048800957C63 /* gui */ = {
+		E29EBF4208F59F3200AB483B /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				E2EBBB8C08869F05000A6728 /* button.h */,
-				E2EBBB8D08869F05000A6728 /* entrybox.h */,
-				E2EBBB8E08869F05000A6728 /* object.h */,
-				E2EBBB8F08869F05000A6728 /* sizer.h */,
-				E2EBBC2E0886A3E4000A6728 /* textbox.h */,
-				E2EBBB9008869F05000A6728 /* textwidget.h */,
-				E2EBBB9108869F05000A6728 /* toplevel.h */,
-				E2EBBB9208869F05000A6728 /* widget.h */,
-				E2EBBB9308869F05000A6728 /* window.h */,
+				E29EBF4308F59F3200AB483B /* button.h */,
+				E29EBF4408F59F3200AB483B /* entrybox.h */,
+				E29EBF4508F59F3200AB483B /* object.h */,
+				E29EBF4608F59F3200AB483B /* panel.h */,
+				E29EBF4708F59F3200AB483B /* textbox.h */,
+				E29EBF4808F59F3200AB483B /* textwidget.h */,
+				E29EBF4908F59F3200AB483B /* toplevel.h */,
+				E29EBF4A08F59F3200AB483B /* widget.h */,
+				E29EBF4B08F59F3200AB483B /* window.h */,
 			);
-			name = gui;
-			path = include/cpaf/api/gui;
+			path = gui;
 			sourceTree = "<group>";
 		};
-		6EDF4BBD082E059400957C63 /* cocoa */ = {
+		E29EBF4D08F59F3200AB483B /* cocoa */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4BD3082E05CB00957C63 /* gui */,
-				6EDF4BF2082E05CB00957C63 /* utils.h */,
+				E29EBF4E08F59F3200AB483B /* gui */,
+				E29EBF5608F59F3200AB483B /* utils.h */,
 			);
-			name = cocoa;
+			path = cocoa;
 			sourceTree = "<group>";
 		};
-		6EDF4BD3082E05CB00957C63 /* gui */ = {
+		E29EBF4E08F59F3200AB483B /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4BEF082E05CB00957C63 /* button.h */,
-				E2EBBBA708869F89000A6728 /* entrybox.h */,
-				E2EBBC370886A4E9000A6728 /* textbox.h */,
-				E2EBBAED08869AE0000A6728 /* textwidget.h */,
-				6EDF4BF0082E05CB00957C63 /* widget.h */,
-				6EDF4BF1082E05CB00957C63 /* window.h */,
+				E29EBF4F08F59F3200AB483B /* button.h */,
+				E29EBF5008F59F3200AB483B /* entrybox.h */,
+				E29EBF5108F59F3200AB483B /* panel.h */,
+				E29EBF5208F59F3200AB483B /* textbox.h */,
+				E29EBF5308F59F3200AB483B /* textwidget.h */,
+				E29EBF5408F59F3200AB483B /* widget.h */,
+				E29EBF5508F59F3200AB483B /* window.h */,
 			);
-			name = gui;
-			path = include/cpaf/cocoa/gui;
+			path = gui;
 			sourceTree = "<group>";
 		};
-		6EDF4C26082E07EE00957C63 /* gui */ = {
+		E29EBF5908F59F3200AB483B /* event */ = {
 			isa = PBXGroup;
 			children = (
-				E2055F27087E3517000B7316 /* initializer */,
-				6EDF4C52082E07EE00957C63 /* api-prototypes.h */,
-				6EDF4C53082E07EE00957C63 /* app.h */,
-				6EDF4C54082E07EE00957C63 /* button.h */,
-				E2EBBBB60886A0B7000A6728 /* entrybox.h */,
-				E2055F32087E353C000B7316 /* factory.h */,
-				6EDF4C7A082E07EF00957C63 /* object.h */,
-				E2EBBC500886A824000A6728 /* textbox.h */,
-				E2EBBAF108869B27000A6728 /* textwidget.h */,
-				6EDF4C7B082E07EF00957C63 /* toplevel.h */,
-				6EDF4C7C082E07EF00957C63 /* widget.h */,
-				6EDF4C7D082E07EF00957C63 /* window.h */,
+				E29EBF5A08F59F3200AB483B /* event.h */,
+				E29EBF5B08F59F3200AB483B /* id.h */,
 			);
-			name = gui;
-			path = include/cpaf/gui;
+			path = event;
 			sourceTree = "<group>";
 		};
-		6EDF4C7E082E07EF00957C63 /* private */ = {
+		E29EBF6808F59F3200AB483B /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4C92082E07EF00957C63 /* factory.h */,
+				E29EBF6908F59F3200AB483B /* api-prototypes.h */,
+				E29EBF6A08F59F3200AB483B /* app.h */,
+				E29EBF6B08F59F3200AB483B /* button.h */,
+				E29EBF6C08F59F3200AB483B /* entrybox.h */,
+				E29EBF6D08F59F3200AB483B /* gridbaglayout.h */,
+				E29EBF6E08F59F3200AB483B /* initializer */,
+				E29EBF7708F59F3200AB483B /* layoutmanager.h */,
+				E29EBF7808F59F3200AB483B /* object.h */,
+				E29EBF7908F59F3200AB483B /* panel.h */,
+				E29EBF7A08F59F3200AB483B /* textbox.h */,
+				E29EBF7B08F59F3200AB483B /* textwidget.h */,
+				E29EBF7C08F59F3200AB483B /* toplevel.h */,
+				E29EBF7D08F59F3200AB483B /* widget.h */,
+				E29EBF7E08F59F3200AB483B /* window.h */,
 			);
-			name = private;
-			path = include/cpaf/private;
+			path = gui;
 			sourceTree = "<group>";
 		};
-		6EDF4D10082E089A00957C63 /* src */ = {
+		E29EBF6E08F59F3200AB483B /* initializer */ = {
 			isa = PBXGroup;
 			children = (
-				6EDF4D24082E08D800957C63 /* cpaf */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		6EDF4D24082E08D800957C63 /* cpaf */ = {
-			isa = PBXGroup;
-			children = (
-				6EDF4D2B082E08F600957C63 /* cocoa */,
-				E29B7ECC0850218800170856 /* event */,
-				6EDF4D5A082E08F700957C63 /* gui */,
-				6EDF4D29082E08F600957C63 /* api.cpp */,
-				6EDF4D2A082E08F600957C63 /* app.cpp */,
-				6EDF4D59082E08F700957C63 /* exception.cpp */,
-				6EDF4D8D082E08F700957C63 /* main.cpp */,
-				6EDF4D8E082E08F700957C63 /* types.cpp */,
-			);
-			name = cpaf;
-			sourceTree = "<group>";
-		};
-		6EDF4D2B082E08F600957C63 /* cocoa */ = {
-			isa = PBXGroup;
-			children = (
-				6EDF4D53082E08F700957C63 /* app.mm */,
-				6EDF4D54082E08F700957C63 /* button.mm */,
-				E2EBBBEA0886A1FF000A6728 /* entrybox.mm */,
-				6EDF4D55082E08F700957C63 /* factory.mm */,
-				E2EBBC430886A6E5000A6728 /* textbox.mm */,
-				E2EBBAF508869BE9000A6728 /* textwidget.mm */,
-				6EDF4D56082E08F700957C63 /* utils.mm */,
-				6EDF4D57082E08F700957C63 /* widget.mm */,
-				6EDF4D58082E08F700957C63 /* window.mm */,
-			);
-			name = cocoa;
-			path = src/cpaf/cocoa;
-			sourceTree = "<group>";
-		};
-		6EDF4D5A082E08F700957C63 /* gui */ = {
-			isa = PBXGroup;
-			children = (
-				E2EBBC490886A783000A6728 /* textbox.cpp */,
-				E2EBBBEE0886A253000A6728 /* entrybox.cpp */,
-				6EDF4D86082E08F700957C63 /* app.cpp */,
-				6EDF4D87082E08F700957C63 /* button.cpp */,
-				6EDF4D88082E08F700957C63 /* factory.cpp */,
-				6EDF4D89082E08F700957C63 /* object.cpp */,
-				6EDF4D8A082E08F700957C63 /* toplevel.cpp */,
-				6EDF4D8B082E08F700957C63 /* widget.cpp */,
-				6EDF4D8C082E08F700957C63 /* window.cpp */,
-				E2EBBADD08869A26000A6728 /* textwidget.cpp */,
-			);
-			name = gui;
-			path = src/cpaf/gui;
-			sourceTree = "<group>";
-		};
-		E2055F27087E3517000B7316 /* initializer */ = {
-			isa = PBXGroup;
-			children = (
-				E2055F28087E3517000B7316 /* button.h */,
-				E2EBBBAC08869FD1000A6728 /* entrybox.h */,
-				E2055F29087E3517000B7316 /* object.h */,
-				E2055F2A087E3517000B7316 /* textbox.h */,
-				E2EBBACD08869989000A6728 /* textwidget.h */,
-				E2055F2B087E3517000B7316 /* widget.h */,
-				E2055F2C087E3517000B7316 /* window.h */,
+				E29EBF6F08F59F3200AB483B /* button.h */,
+				E29EBF7008F59F3200AB483B /* entrybox.h */,
+				E29EBF7108F59F3200AB483B /* object.h */,
+				E29EBF7208F59F3200AB483B /* panel.h */,
+				E29EBF7308F59F3200AB483B /* textbox.h */,
+				E29EBF7408F59F3200AB483B /* textwidget.h */,
+				E29EBF7508F59F3200AB483B /* widget.h */,
+				E29EBF7608F59F3200AB483B /* window.h */,
 			);
 			path = initializer;
 			sourceTree = "<group>";
 		};
-		E231DB36084B9CEC00DD0EEA /* event */ = {
+		E29EBF8108F59F3200AB483B /* private */ = {
 			isa = PBXGroup;
 			children = (
-				E231DB37084B9CEC00DD0EEA /* event.h */,
-				E2055F25087E34DD000B7316 /* id.h */,
+				E29EBF8208F59F3200AB483B /* factory.h */,
 			);
-			name = event;
-			path = include/cpaf/event;
+			path = private;
 			sourceTree = "<group>";
 		};
-		E29B7ECC0850218800170856 /* event */ = {
+		E29EBFDF08F59F5500AB483B /* src */ = {
 			isa = PBXGroup;
 			children = (
-				E29B7ECD0850218800170856 /* event.cpp */,
-				E2055F66087EB187000B7316 /* id.cpp */,
+				E29EBFE008F59F5500AB483B /* cpaf */,
 			);
-			name = event;
-			path = src/cpaf/event;
+			path = src;
+			sourceTree = "<group>";
+		};
+		E29EBFE008F59F5500AB483B /* cpaf */ = {
+			isa = PBXGroup;
+			children = (
+				E29EBFE108F59F5500AB483B /* api.cpp */,
+				E29EBFE208F59F5500AB483B /* app.cpp */,
+				E29EBFE308F59F5500AB483B /* cocoa */,
+				E29EBFF408F59F5500AB483B /* event */,
+				E29EBFF708F59F5500AB483B /* exception.cpp */,
+				E29EC00308F59F5500AB483B /* gui */,
+				E29EC02108F59F5500AB483B /* main.cpp */,
+				E29EC02208F59F5500AB483B /* types.cpp */,
+			);
+			path = cpaf;
+			sourceTree = "<group>";
+		};
+		E29EBFE308F59F5500AB483B /* cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				E29EBFE408F59F5500AB483B /* app.mm */,
+				E29EBFE508F59F5500AB483B /* button.mm */,
+				E29EBFE608F59F5500AB483B /* entrybox.mm */,
+				E29EBFEA08F59F5500AB483B /* factory.mm */,
+				E29EBFEB08F59F5500AB483B /* panel.mm */,
+				E29EBFEC08F59F5500AB483B /* textbox.mm */,
+				E29EBFED08F59F5500AB483B /* textwidget.mm */,
+				E29EBFEE08F59F5500AB483B /* utils.mm */,
+				E29EBFEF08F59F5500AB483B /* widget.mm */,
+				E29EBFF308F59F5500AB483B /* window.mm */,
+			);
+			path = cocoa;
+			sourceTree = "<group>";
+		};
+		E29EBFF408F59F5500AB483B /* event */ = {
+			isa = PBXGroup;
+			children = (
+				E29EBFF508F59F5500AB483B /* event.cpp */,
+				E29EBFF608F59F5500AB483B /* id.cpp */,
+			);
+			path = event;
+			sourceTree = "<group>";
+		};
+		E29EC00308F59F5500AB483B /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				E29EC00408F59F5500AB483B /* app.cpp */,
+				E29EC00508F59F5500AB483B /* button.cpp */,
+				E29EC00608F59F5500AB483B /* entrybox.cpp */,
+				E29EC00708F59F5500AB483B /* factory.cpp */,
+				E29EC00808F59F5500AB483B /* gridbaglayout.cpp */,
+				E29EC00908F59F5500AB483B /* initializer */,
+				E29EC01908F59F5500AB483B /* layoutmanager.cpp */,
+				E29EC01A08F59F5500AB483B /* object.cpp */,
+				E29EC01B08F59F5500AB483B /* panel.cpp */,
+				E29EC01C08F59F5500AB483B /* textbox.cpp */,
+				E29EC01D08F59F5500AB483B /* textwidget.cpp */,
+				E29EC01E08F59F5500AB483B /* toplevel.cpp */,
+				E29EC01F08F59F5500AB483B /* widget.cpp */,
+				E29EC02008F59F5500AB483B /* window.cpp */,
+			);
+			path = gui;
+			sourceTree = "<group>";
+		};
+		E29EC00908F59F5500AB483B /* initializer */ = {
+			isa = PBXGroup;
+			children = (
+				E29EC00A08F59F5500AB483B /* button.cpp */,
+				E29EC00B08F59F5500AB483B /* entrybox.cpp */,
+				E29EC00C08F59F5500AB483B /* i_button.cpp */,
+				E29EC00D08F59F5500AB483B /* i_entrybox.cpp */,
+				E29EC00E08F59F5500AB483B /* i_object.cpp */,
+				E29EC00F08F59F5500AB483B /* i_textbox.cpp */,
+				E29EC01008F59F5500AB483B /* i_textwidget.cpp */,
+				E29EC01108F59F5500AB483B /* i_widget.cpp */,
+				E29EC01208F59F5500AB483B /* i_window.cpp */,
+				E29EC01308F59F5500AB483B /* object.cpp */,
+				E29EC01408F59F5500AB483B /* panel.cpp */,
+				E29EC01508F59F5500AB483B /* textbox.cpp */,
+				E29EC01608F59F5500AB483B /* textwidget.cpp */,
+				E29EC01708F59F5500AB483B /* widget.cpp */,
+				E29EC01808F59F5500AB483B /* window.cpp */,
+			);
+			path = initializer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,49 +522,54 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EDF4BAC082E051400957C63 /* app.h in Headers */,
-				6EDF4BAD082E051400957C63 /* dllimpexp.h in Headers */,
-				6EDF4BAE082E051400957C63 /* exception.h in Headers */,
-				6EDF4BAF082E051400957C63 /* macros.h in Headers */,
-				6EDF4BB0082E051400957C63 /* main.h in Headers */,
-				6EDF4BB1082E051400957C63 /* types.h in Headers */,
-				6EDF4C05082E05CB00957C63 /* button.h in Headers */,
-				6EDF4C06082E05CB00957C63 /* widget.h in Headers */,
-				6EDF4C07082E05CB00957C63 /* window.h in Headers */,
-				6EDF4C08082E05CB00957C63 /* utils.h in Headers */,
-				6EDF4CB4082E07EF00957C63 /* api-prototypes.h in Headers */,
-				6EDF4CB5082E07EF00957C63 /* app.h in Headers */,
-				6EDF4CB6082E07EF00957C63 /* button.h in Headers */,
-				6EDF4CD1082E07EF00957C63 /* object.h in Headers */,
-				6EDF4CD2082E07EF00957C63 /* toplevel.h in Headers */,
-				6EDF4CD3082E07EF00957C63 /* widget.h in Headers */,
-				6EDF4CD4082E07EF00957C63 /* window.h in Headers */,
-				6EDF4CDE082E07EF00957C63 /* factory.h in Headers */,
-				E231DB38084B9CED00DD0EEA /* event.h in Headers */,
-				E2055F26087E34DD000B7316 /* id.h in Headers */,
-				E2055F2D087E3517000B7316 /* button.h in Headers */,
-				E2055F2E087E3517000B7316 /* object.h in Headers */,
-				E2055F2F087E3517000B7316 /* textbox.h in Headers */,
-				E2055F30087E3517000B7316 /* widget.h in Headers */,
-				E2055F31087E3517000B7316 /* window.h in Headers */,
-				E2055F34087E353C000B7316 /* factory.h in Headers */,
-				E2EBBACE08869989000A6728 /* textwidget.h in Headers */,
-				E2EBBAEE08869AE0000A6728 /* textwidget.h in Headers */,
-				E2EBBAF208869B27000A6728 /* textwidget.h in Headers */,
-				E2EBBB9408869F05000A6728 /* button.h in Headers */,
-				E2EBBB9508869F05000A6728 /* entrybox.h in Headers */,
-				E2EBBB9608869F05000A6728 /* object.h in Headers */,
-				E2EBBB9708869F05000A6728 /* sizer.h in Headers */,
-				E2EBBB9808869F05000A6728 /* textwidget.h in Headers */,
-				E2EBBB9908869F05000A6728 /* toplevel.h in Headers */,
-				E2EBBB9A08869F05000A6728 /* widget.h in Headers */,
-				E2EBBB9B08869F05000A6728 /* window.h in Headers */,
-				E2EBBBA808869F89000A6728 /* entrybox.h in Headers */,
-				E2EBBBAD08869FD1000A6728 /* entrybox.h in Headers */,
-				E2EBBBB70886A0B7000A6728 /* entrybox.h in Headers */,
-				E2EBBC2F0886A3E4000A6728 /* textbox.h in Headers */,
-				E2EBBC380886A4E9000A6728 /* textbox.h in Headers */,
-				E2EBBC510886A824000A6728 /* textbox.h in Headers */,
+				E29EBF9208F59F3300AB483B /* button.h in Headers */,
+				E29EBF9308F59F3300AB483B /* entrybox.h in Headers */,
+				E29EBF9408F59F3300AB483B /* object.h in Headers */,
+				E29EBF9508F59F3300AB483B /* panel.h in Headers */,
+				E29EBF9608F59F3300AB483B /* textbox.h in Headers */,
+				E29EBF9708F59F3300AB483B /* textwidget.h in Headers */,
+				E29EBF9808F59F3300AB483B /* toplevel.h in Headers */,
+				E29EBF9908F59F3300AB483B /* widget.h in Headers */,
+				E29EBF9A08F59F3300AB483B /* window.h in Headers */,
+				E29EBF9B08F59F3300AB483B /* app.h in Headers */,
+				E29EBF9C08F59F3300AB483B /* button.h in Headers */,
+				E29EBF9D08F59F3300AB483B /* entrybox.h in Headers */,
+				E29EBF9E08F59F3300AB483B /* panel.h in Headers */,
+				E29EBF9F08F59F3300AB483B /* textbox.h in Headers */,
+				E29EBFA008F59F3300AB483B /* textwidget.h in Headers */,
+				E29EBFA108F59F3300AB483B /* widget.h in Headers */,
+				E29EBFA208F59F3300AB483B /* window.h in Headers */,
+				E29EBFA308F59F3300AB483B /* utils.h in Headers */,
+				E29EBFA408F59F3300AB483B /* debug.h in Headers */,
+				E29EBFA508F59F3300AB483B /* dllimpexp.h in Headers */,
+				E29EBFA608F59F3300AB483B /* event.h in Headers */,
+				E29EBFA708F59F3300AB483B /* id.h in Headers */,
+				E29EBFA808F59F3300AB483B /* exception.h in Headers */,
+				E29EBFB208F59F3300AB483B /* api-prototypes.h in Headers */,
+				E29EBFB308F59F3300AB483B /* app.h in Headers */,
+				E29EBFB408F59F3300AB483B /* button.h in Headers */,
+				E29EBFB508F59F3300AB483B /* entrybox.h in Headers */,
+				E29EBFB608F59F3300AB483B /* gridbaglayout.h in Headers */,
+				E29EBFB708F59F3300AB483B /* button.h in Headers */,
+				E29EBFB808F59F3300AB483B /* entrybox.h in Headers */,
+				E29EBFB908F59F3300AB483B /* object.h in Headers */,
+				E29EBFBA08F59F3300AB483B /* panel.h in Headers */,
+				E29EBFBB08F59F3300AB483B /* textbox.h in Headers */,
+				E29EBFBC08F59F3300AB483B /* textwidget.h in Headers */,
+				E29EBFBD08F59F3300AB483B /* widget.h in Headers */,
+				E29EBFBE08F59F3300AB483B /* window.h in Headers */,
+				E29EBFBF08F59F3300AB483B /* layoutmanager.h in Headers */,
+				E29EBFC008F59F3300AB483B /* object.h in Headers */,
+				E29EBFC108F59F3300AB483B /* panel.h in Headers */,
+				E29EBFC208F59F3300AB483B /* textbox.h in Headers */,
+				E29EBFC308F59F3300AB483B /* textwidget.h in Headers */,
+				E29EBFC408F59F3300AB483B /* toplevel.h in Headers */,
+				E29EBFC508F59F3300AB483B /* widget.h in Headers */,
+				E29EBFC608F59F3300AB483B /* window.h in Headers */,
+				E29EBFC708F59F3300AB483B /* macros.h in Headers */,
+				E29EBFC808F59F3300AB483B /* main.h in Headers */,
+				E29EBFC908F59F3300AB483B /* factory.h in Headers */,
+				E29EBFCA08F59F3300AB483B /* types.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,32 +680,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EDF4D8F082E08F700957C63 /* api.cpp in Sources */,
-				6EDF4D90082E08F700957C63 /* app.cpp in Sources */,
-				6EDF4DAE082E08F700957C63 /* app.mm in Sources */,
-				6EDF4DAF082E08F700957C63 /* button.mm in Sources */,
-				6EDF4DB0082E08F700957C63 /* factory.mm in Sources */,
-				6EDF4DB1082E08F700957C63 /* utils.mm in Sources */,
-				6EDF4DB2082E08F700957C63 /* widget.mm in Sources */,
-				6EDF4DB3082E08F700957C63 /* window.mm in Sources */,
-				6EDF4DB4082E08F700957C63 /* exception.cpp in Sources */,
-				6EDF4DD6082E08F700957C63 /* app.cpp in Sources */,
-				6EDF4DD7082E08F700957C63 /* button.cpp in Sources */,
-				6EDF4DD8082E08F700957C63 /* factory.cpp in Sources */,
-				6EDF4DD9082E08F700957C63 /* object.cpp in Sources */,
-				6EDF4DDA082E08F700957C63 /* toplevel.cpp in Sources */,
-				6EDF4DDB082E08F700957C63 /* widget.cpp in Sources */,
-				6EDF4DDC082E08F700957C63 /* window.cpp in Sources */,
-				6EDF4DDD082E08F700957C63 /* main.cpp in Sources */,
-				6EDF4DDE082E08F700957C63 /* types.cpp in Sources */,
-				E29B7ECE0850218800170856 /* event.cpp in Sources */,
-				E2055F67087EB187000B7316 /* id.cpp in Sources */,
-				E2EBBADE08869A26000A6728 /* textwidget.cpp in Sources */,
-				E2EBBAF608869BE9000A6728 /* textwidget.mm in Sources */,
-				E2EBBBEB0886A1FF000A6728 /* entrybox.mm in Sources */,
-				E2EBBBEF0886A253000A6728 /* entrybox.cpp in Sources */,
-				E2EBBC440886A6E5000A6728 /* textbox.mm in Sources */,
-				E2EBBC4A0886A783000A6728 /* textbox.cpp in Sources */,
+				E29EC02F08F59F5500AB483B /* api.cpp in Sources */,
+				E29EC03008F59F5500AB483B /* app.cpp in Sources */,
+				E29EC03108F59F5500AB483B /* app.mm in Sources */,
+				E29EC03208F59F5500AB483B /* button.mm in Sources */,
+				E29EC03308F59F5500AB483B /* entrybox.mm in Sources */,
+				E29EC03708F59F5500AB483B /* factory.mm in Sources */,
+				E29EC03808F59F5500AB483B /* panel.mm in Sources */,
+				E29EC03908F59F5500AB483B /* textbox.mm in Sources */,
+				E29EC03A08F59F5500AB483B /* textwidget.mm in Sources */,
+				E29EC03B08F59F5500AB483B /* utils.mm in Sources */,
+				E29EC03C08F59F5500AB483B /* widget.mm in Sources */,
+				E29EC04008F59F5500AB483B /* window.mm in Sources */,
+				E29EC04108F59F5500AB483B /* event.cpp in Sources */,
+				E29EC04208F59F5500AB483B /* id.cpp in Sources */,
+				E29EC04308F59F5500AB483B /* exception.cpp in Sources */,
+				E29EC04E08F59F5500AB483B /* app.cpp in Sources */,
+				E29EC04F08F59F5500AB483B /* button.cpp in Sources */,
+				E29EC05008F59F5500AB483B /* entrybox.cpp in Sources */,
+				E29EC05108F59F5500AB483B /* factory.cpp in Sources */,
+				E29EC05208F59F5500AB483B /* gridbaglayout.cpp in Sources */,
+				E29EC05308F59F5500AB483B /* button.cpp in Sources */,
+				E29EC05408F59F5500AB483B /* entrybox.cpp in Sources */,
+				E29EC05508F59F5500AB483B /* i_button.cpp in Sources */,
+				E29EC05608F59F5500AB483B /* i_entrybox.cpp in Sources */,
+				E29EC05708F59F5500AB483B /* i_object.cpp in Sources */,
+				E29EC05808F59F5500AB483B /* i_textbox.cpp in Sources */,
+				E29EC05908F59F5500AB483B /* i_textwidget.cpp in Sources */,
+				E29EC05A08F59F5500AB483B /* i_widget.cpp in Sources */,
+				E29EC05B08F59F5500AB483B /* i_window.cpp in Sources */,
+				E29EC05C08F59F5500AB483B /* object.cpp in Sources */,
+				E29EC05D08F59F5500AB483B /* panel.cpp in Sources */,
+				E29EC05E08F59F5500AB483B /* textbox.cpp in Sources */,
+				E29EC05F08F59F5500AB483B /* textwidget.cpp in Sources */,
+				E29EC06008F59F5500AB483B /* widget.cpp in Sources */,
+				E29EC06108F59F5500AB483B /* window.cpp in Sources */,
+				E29EC06208F59F5500AB483B /* layoutmanager.cpp in Sources */,
+				E29EC06308F59F5500AB483B /* object.cpp in Sources */,
+				E29EC06408F59F5500AB483B /* panel.cpp in Sources */,
+				E29EC06508F59F5500AB483B /* textbox.cpp in Sources */,
+				E29EC06608F59F5500AB483B /* textwidget.cpp in Sources */,
+				E29EC06708F59F5500AB483B /* toplevel.cpp in Sources */,
+				E29EC06808F59F5500AB483B /* widget.cpp in Sources */,
+				E29EC06908F59F5500AB483B /* window.cpp in Sources */,
+				E29EC06A08F59F5500AB483B /* main.cpp in Sources */,
+				E29EC06B08F59F5500AB483B /* types.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

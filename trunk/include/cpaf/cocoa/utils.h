@@ -14,6 +14,8 @@ namespace cpaf {
 NSPoint convert_point(cpaf::Point p);
 cpaf::Point convert_point(NSPoint p);
 
+NSRange convert_range(cpaf::TextRange r, int length);
+
         } // utils
     } // cocoa
 } // cpaf

@@ -6,6 +6,7 @@
 
 #include <cpaf/cocoa/gui/widget.h>
 #include <cpaf/gui/widget.h>
+#include <cpaf/gui/panel.h>
 #include <cpaf/cocoa/utils.h>
 #include <cpaf/event/event.h>
 
@@ -23,8 +24,8 @@ using namespace cpaf::cocoa::utils;
 
 void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
 {
-	m_wrapper = params.m_wrapper;
-    cpaf::gui::Widget *parent;
+	m_wrapper = params.get_wrapper();
+    //cpaf::gui::Widget *parent;
     
     if ([widget respondsToSelector:@selector(setCpafWidget:)])
         [widget setCpafWidget:this];        
@@ -33,7 +34,7 @@ void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &
     //! \todo m_min_size, m_max_size
 
     m_object = widget;    
-    parent = params.m_parent;
+    boost::shared_ptr<cpaf::gui::Panel> parent = params.get_parent();
 
     //! \todo What's if we're adding the widget later to a container?
     if (parent)
@@ -94,9 +95,9 @@ void cpaf::cocoa::gui::Widget::destroy()
         [m_object release];
         m_object = nil;
     }
-    
+
     // remove the {ID, Widget} pair from the widget id map
-    cpaf::gui::disassociate_widget_id(m_wrapper->get_id());
+    cpaf::gui::disassociate_widget_id(m_wrapper_id);
 }
 
 cpaf::cocoa::gui::Widget::~Widget()
@@ -122,7 +123,7 @@ void cpaf::cocoa::gui::Widget::set_position(const cpaf::Point& s)
     [m_object setFrame:f];
 }
 
-cpaf::Size cpaf::cocoa::gui::Widget::get_size()
+cpaf::Size cpaf::cocoa::gui::Widget::get_size() const
 {
     return cpaf::Size(); //! \todo
 }
@@ -137,12 +138,12 @@ void cpaf::cocoa::gui::Widget::show(bool show, bool activate)
     //! \todo
 }
 
-bool cpaf::cocoa::gui::Widget::is_enabled()
+bool cpaf::cocoa::gui::Widget::is_enabled() const
 {
     return false; //! \todo
 }
 
-bool cpaf::cocoa::gui::Widget::is_shown()
+bool cpaf::cocoa::gui::Widget::is_shown() const
 {
     return false; //! \todo
 }

@@ -15,12 +15,12 @@ CPAF_COCOA_IMPLEMENTATION(Window)
 
 void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
 {
-    double x = params.m_pos.x, y = params.m_pos.y;
-    double w = params.m_size.width, h = params.m_size.height;
+    cpaf::Point pos = params.get_pos();
+    cpaf::Size size = params.get_size();
 
-	m_wrapper = params.m_wrapper;
+	m_wrapper = params.get_wrapper();
 
-    m_object = [[CpafWindow alloc] initWithContentRect:NSMakeRect(x, y, w, h)
+    m_object = [[CpafWindow alloc] initWithContentRect:NSMakeRect(pos.x, pos.y, size.width, size.height)
         styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask)
         backing:NSBackingStoreBuffered defer:YES];
     [m_object setReleasedWhenClosed:NO];
@@ -28,26 +28,26 @@ void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &
     if ([m_object respondsToSelector:@selector(setCpafWidget:)])
         [m_object setCpafWidget:this];
 
-    if (params.m_use_client_size)
-        set_client_size(params.m_client_size);
-    else if (params.m_default_size)
+    if (params.use_client_size())
+        set_client_size(params.get_client_size());
+    else if (params.use_default_size())
         set_size(cpaf::Size(400.0, 300.0));
     else
-        set_size(params.m_size);
+        set_size(size);
 
-    if (params.m_default_position)
+    if (params.use_default_pos())
         set_position(cpaf::Point(0.0, 0.0));
     else
-        set_position(params.m_pos);
+        set_position(pos);
 
-    set_min_size(params.m_min_size);
-    set_max_size(params.m_max_size);
+    set_min_size(params.get_min_size());
+    set_max_size(params.get_max_size());
 
-    set_title(params.m_title);
+    set_title(params.get_title());
 
     //! \todo params.m_parent, params.m_enable
 
-    show(params.m_show, params.m_activate);
+    show(params.get_show(), params.get_activate());
 
     send_event(cpaf::event::WIDGET_CREATE);
 }

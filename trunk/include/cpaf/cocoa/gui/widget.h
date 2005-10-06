@@ -8,6 +8,7 @@
 #define CPAF_COCOA_GUI_WIDGET_H
 
 #include <cpaf/api/gui/widget.h>
+#include <cpaf/gui/widget.h>
 #include <cpaf/types.h>
 #include <cpaf/private/factory.h>
 #include <cpaf/event/event.h>
@@ -38,7 +39,7 @@
   { \
     if (m_cpaf_widget) \
     { \
-      cpaf::event::Event event(event_id, m_cpaf_widget->m_wrapper->get_id()); \
+      cpaf::event::Event event(event_id, m_cpaf_widget->get_wrapper_id()); \
       cpaf::event::get_manager().send_event(event); \
     } \
   } \
@@ -50,12 +51,12 @@ namespace cpaf {
 
 class Widget : public virtual cpaf::api::gui::Widget
 {
-public:
-    // Those are public, because we need to access them from the native object
+protected:
+    cpaf::object_id m_wrapper_id;
+
     boost::weak_ptr<cpaf::gui::Widget> m_wrapper; // wrapper for this impl object
     id m_object;
 
-protected:
     void send_event(cpaf::event::event_id event_id); // cocoa specific
     void create(const cpaf::gui::initializer::WidgetData &params, id widget);
     Widget() { }
@@ -69,21 +70,27 @@ public:
     virtual void set_max_size(const cpaf::Size&) { } //! \todo
     virtual void set_natural_size(const cpaf::Size&) { } //! \todo
     virtual void set_position(const cpaf::Point&);
-    virtual cpaf::Size get_size();
-    virtual cpaf::Size get_min_size() { return cpaf::Size(); } //! \todo
-    virtual cpaf::Size get_max_size() { return cpaf::Size(); } //! \todo
+    virtual cpaf::Size get_size() const;
+    virtual cpaf::Size get_min_size() const { return cpaf::Size(); } //! \todo
+    virtual cpaf::Size get_max_size() const { return cpaf::Size(); } //! \todo
     virtual cpaf::Size get_natural_size() const { return cpaf::Size(); } //! \todo
-    virtual cpaf::Point get_position() { return cpaf::Point(); } //! \todo
+    virtual cpaf::Point get_position() const { return cpaf::Point(); } //! \todo
     virtual void set_rect(const cpaf::Rect&) { }; //! \todo
     virtual cpaf::Rect get_rect() const { return cpaf::Rect(); } //! \todo
 
     // widget interface
     virtual void destroy();
-    virtual void *get_handle() { return m_object; }
+    virtual void *get_handle() const { return m_object; }
     virtual void enable(bool sensitive);
     virtual void show(bool show, bool activate);
-    virtual bool is_enabled();
-    virtual bool is_shown();
+    virtual bool is_enabled() const;
+    virtual bool is_shown() const;
+
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_parent() const { return boost::shared_ptr<cpaf::gui::Panel>(); } //! \todo;
+    virtual boost::shared_ptr<cpaf::gui::Window> get_parent_window() const { return boost::shared_ptr<cpaf::gui::Window>(); } //! \todo;
+
+    // implementation specific
+    cpaf::object_id get_wrapper_id() { return m_wrapper_id; }
 };
 
         } // gui

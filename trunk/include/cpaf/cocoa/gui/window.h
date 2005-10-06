@@ -29,10 +29,10 @@ public:
     virtual void set_min_size(const cpaf::Size&);
     virtual void set_max_size(const cpaf::Size&);
     virtual void set_position(const cpaf::Point&);
-    virtual cpaf::Size get_size();
-    virtual cpaf::Size get_min_size();
-    virtual cpaf::Size get_max_size();
-    virtual cpaf::Point get_position();
+    virtual cpaf::Size get_size() const;
+    virtual cpaf::Size get_min_size() const;
+    virtual cpaf::Size get_max_size() const;
+    virtual cpaf::Point get_position() const;
 
     // widget interface
     virtual void enable(bool sensitive) { } //! \todo
@@ -47,6 +47,9 @@ public:
     virtual void set_client_size(const cpaf::Size&);
     virtual cpaf::Size get_client_size();
     virtual cpaf::Point get_client_position();
+
+    virtual void set_content_panel(cpaf::api::gui::Panel *p) { } //! \todo;
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const { return boost::shared_ptr<cpaf::gui::Panel>(); } //! \todo
 };
 
         } // gui

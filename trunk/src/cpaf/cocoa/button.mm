@@ -24,7 +24,7 @@ CPAF_COCOA_IMPLEMENTATION(Button)
 
 void cpaf::cocoa::gui::Button::create(const cpaf::gui::initializer::ButtonData &params)
 {
-	if( !params.m_parent )
+	if( !params.get_parent() )
 		throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 		
     cpaf::cocoa::gui::Widget::create(params, [[CpafButton alloc] init]);
@@ -36,7 +36,7 @@ void cpaf::cocoa::gui::Button::create(const cpaf::gui::initializer::ButtonData &
     [m_object setTarget:m_object];
     [m_object setAction:@selector(cpafButtonClickEvent)];
     
-    set_label(params.m_label);
+    set_label(params.get_label());
     
     send_event(cpaf::event::WIDGET_CREATE);
 }
