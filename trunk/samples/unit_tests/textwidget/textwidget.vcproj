@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="create_destroy"
-	ProjectGUID="{84D3FA38-3823-4F1C-ABB7-B875B3546216}">
+	Name="textwidget"
+	ProjectGUID="{A45011F8-12CD-4F89-ABC5-F381DDE1579E}">
 	<Platforms>
 		<Platform
 			Name="Win32"/>

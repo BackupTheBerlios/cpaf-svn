@@ -41,12 +41,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="ComCtl32.lib"
-				OutputFile="$(OutDir)/cpaf-gui-win32d.dll"
+				OutputFile="$(OutDir)/cpaf-gui-win32-vc71d.dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/cpaf-gui-win32-dll.pdb"
+				ProgramDatabaseFile="$(OutDir)/cpaf-gui-win32-vc71d-dll.pdb"
 				SubSystem="2"
-				ImportLibrary="$(OutDir)/cpaf-gui-win32d-dll.lib"
+				ImportLibrary="$(OutDir)/cpaf-gui-win32-vc71d-dll.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -97,13 +97,14 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="ComCtl32.lib"
-				OutputFile="$(OutDir)/cpaf-gui-win32.dll"
+				OutputFile="$(OutDir)/cpaf-gui-win32-vc71.dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile="$(OutDir)/cpaf-gui-win32-vc71-dll.pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="$(OutDir)/cpaf-gui-win32-dll.lib"
+				ImportLibrary="$(OutDir)/cpaf-gui-win32-vc71-dll.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -156,7 +157,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalDependencies="ComCtl32.lib"
-				OutputFile="$(OutDir)/cpaf-gui-win32d.lib"/>
+				OutputFile="$(OutDir)/cpaf-gui-win32-vc71d.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -205,7 +206,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalDependencies="ComCtl32.lib"
-				OutputFile="$(OutDir)/cpaf-gui-win32.lib"/>
+				OutputFile="$(OutDir)/cpaf-gui-win32-vc71.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -2235,6 +2236,12 @@
 				</FileConfiguration>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\cocoa_todo.txt">
+		</File>
+		<File
+			RelativePath=".\gtk2_todo.txt">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

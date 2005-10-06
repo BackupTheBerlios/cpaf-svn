@@ -177,7 +177,7 @@ function add_config(proj, config, dll, debug)
 	
 	link_tool.AdditionalLibraryDirectories = '$(CPAF_DIR)/lib';
 	
-	var input = 'cpaf-gui-win32';
+	var input = 'cpaf-gui-win32-vc71';
 	if( debug )
 		input += 'd';
 	if( dll )

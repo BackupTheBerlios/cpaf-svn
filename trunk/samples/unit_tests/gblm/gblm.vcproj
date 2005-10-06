@@ -29,7 +29,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cpaf-gui-win32d-dll.lib"
+				AdditionalDependencies="cpaf-gui-win32-vc71d-dll.lib"
 				AdditionalLibraryDirectories="$(CPAF_DIR)/lib"
 				GenerateDebugInformation="TRUE"/>
 			<Tool
@@ -74,7 +74,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cpaf-gui-win32d.lib"
+				AdditionalDependencies="cpaf-gui-win32-vc71d.lib"
 				AdditionalLibraryDirectories="$(CPAF_DIR)/lib"
 				GenerateDebugInformation="TRUE"/>
 			<Tool
@@ -116,7 +116,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cpaf-gui-win32-dll.lib"
+				AdditionalDependencies="cpaf-gui-win32-vc71-dll.lib"
 				AdditionalLibraryDirectories="$(CPAF_DIR)/lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -157,7 +157,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cpaf-gui-win32.lib"
+				AdditionalDependencies="cpaf-gui-win32-vc71.lib"
 				AdditionalLibraryDirectories="$(CPAF_DIR)/lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
