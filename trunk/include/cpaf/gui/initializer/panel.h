@@ -20,13 +20,13 @@ namespace cpaf {
 struct CPAF_API PanelData : WidgetData
 {
 protected:
-    cpaf::gui::LayoutManager *m_layout_manager;
+    boost::shared_ptr<LayoutManager> m_layout_manager;
 
 public:
     PanelData();
 
-    void set_layout_manager(cpaf::gui::LayoutManager *manager);
-    cpaf::gui::LayoutManager *get_layout_manager() const;
+    void set_layout_manager(boost::shared_ptr<LayoutManager> manager);
+    boost::shared_ptr<LayoutManager> get_layout_manager() const;
 };
 
 /*!
@@ -46,13 +46,13 @@ protected:
     { }
 
 public:
-    T &layout_manager(cpaf::gui::LayoutManager *manager)
+    T &layout_manager(boost::shared_ptr<LayoutManager> manager)
     {
         m_data->set_layout_manager(manager);
         return dynamic_cast<T&>(*this);
     }
 
-    cpaf::gui::LayoutManager *get_layout_manager() { return m_data->get_layout_manager(); }
+    boost::shared_ptr<LayoutManager> get_layout_manager() { return m_data->get_layout_manager(); }
 };
 
         } // initializer

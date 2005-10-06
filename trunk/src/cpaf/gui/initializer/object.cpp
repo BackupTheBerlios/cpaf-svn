@@ -15,17 +15,6 @@ ObjectData::ObjectData()
 
 ObjectData::~ObjectData() { }
 
-void ObjectData::set_size(const cpaf::Size &s)
-{
-    m_size = s;
-    m_default_size = false;
-}
-
-cpaf::Size ObjectData::get_size() const
-{
-    return m_size;
-}
-
 void ObjectData::set_min_size(const cpaf::Size &s)
 {
     m_min_size = s;
@@ -46,23 +35,12 @@ cpaf::Size ObjectData::get_max_size() const
     return m_max_size;
 }
 
-void ObjectData::set_pos(const cpaf::Point &p)
+void ObjectData::set_natural_size(const cpaf::Size &s)
 {
-    m_pos = p;
-    m_default_pos = false;
+    m_natural_size = s;
 }
 
-cpaf::Point ObjectData::get_pos() const
+cpaf::Size ObjectData::get_natural_size() const
 {
-    return m_pos;
-}
-
-bool ObjectData::use_default_pos() const
-{
-    return m_default_pos;
-}
-
-bool ObjectData::use_default_size() const
-{
-    return m_default_size;
+    return m_natural_size;
 }

@@ -77,6 +77,16 @@ cpaf::Size Widget::get_max_size() const
     return m_impl->get_max_size();
 }
 
+void Widget::set_natural_size(const cpaf::Size &s)
+{
+    m_impl->set_natural_size(s);
+}
+
+cpaf::Size Widget::get_natural_size() const
+{
+    return m_impl->get_natural_size();
+}
+
 cpaf::Point Widget::get_position() const
 {
     return m_impl->get_position();

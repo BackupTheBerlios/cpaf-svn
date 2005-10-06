@@ -36,6 +36,7 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
     }
 
     // Quit the application for now when the toplevel is closed
+    //! \todo Find a different sensible thing to quit the application with
     g_signal_connect_swapped(m_widget, "delete-event",
                              G_CALLBACK (gtk_main_quit), NULL);
 

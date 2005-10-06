@@ -28,11 +28,13 @@ public:
     virtual void set_size(const cpaf::Size&) = 0;
     virtual void set_min_size(const cpaf::Size&) = 0;
     virtual void set_max_size(const cpaf::Size&) = 0;
+    virtual void set_natural_size(const cpaf::Size&) = 0;
     virtual void set_position(const cpaf::Point&) = 0;
     virtual void set_rect(const cpaf::Rect&) = 0;
     virtual cpaf::Size get_size() const = 0;
     virtual cpaf::Size get_min_size() const = 0;
     virtual cpaf::Size get_max_size() const = 0;
+    virtual cpaf::Size get_natural_size() const = 0;
     virtual cpaf::Point get_position() const = 0;
     virtual cpaf::Rect get_rect() const = 0;
 

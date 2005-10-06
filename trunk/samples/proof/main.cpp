@@ -143,56 +143,30 @@ void MyApp::on_text_changed(Event &event)
 bool MyApp::init()
 {
     // panels must have a layout manager
-    GridBagLayout *gblm;
-    boost::shared_ptr<cpaf::gui::Panel> panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout));
+    boost::shared_ptr<GridBagLayout> gblm(new GridBagLayout);
+    boost::shared_ptr<cpaf::gui::Panel> panel = Panel::create(Panel::Initializer().layout_manager(gblm));
 
-    /*
-        Create some explicitly sized and positioned buttons which are initially visible.
-        One of these buttons is a derived button.
-        We also reuse the data initializer object to create these buttons.
-    */
     Button::Initializer btn_init;
-    boost::shared_ptr<Button> btn = Button::create(btn_init
+    boost::shared_ptr<Button> pw_mode = Button::create(btn_init
         .parent(panel)
         .label("Toggle password mode")
-        .size(cpaf::Size(200,40))
-        .position(cpaf::Point(50,50))
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, btn->get_id()) (&MyApp::toggle_password_mode, *this);
-    btn->set_min_size(cpaf::Size(150,50));
-
-    // all children must be added to their parents layout manager
-    GridBagLayoutInfo info;
-    info.position(0,0).padding(5).align_center();
-    gblm->add(btn, info);
+    connect<Event, false>(BUTTON_CLICK, pw_mode->get_id()) (&MyApp::toggle_password_mode, *this);
+    pw_mode->set_min_size(cpaf::Size(250,10));
+    //pw_mode->set_natural_size(cpaf::Size(300,0));
 
     boost::shared_ptr<MyButton2> my_btn = MyButton2::create(btn_init
         .label("Click me!")
-        .position(cpaf::Point(100,100))
+        .min_size(cpaf::Size(100,30))
         );
-
-    info.position(1, 0).expand_both();
-    gblm->add(my_btn, info);
-    my_btn->set_min_size(cpaf::Size(100,30));
-
-    gblm->set_column_weight(0, 1);
-    gblm->set_column_weight(1, 2);
-    gblm->set_column_weight(2, 1);
-    gblm->set_row_weight(0, 1);
-    gblm->set_row_weight(1, 2);
 
     destroy_btn = Button::create(btn_init
         .parent(panel)
         .label("Click to destroy me")
-        .size(cpaf::Size(200,30))
-        .position(cpaf::Point(50, 320))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
-
-    info.position(2,1).padding_bottom(0).padding_right(0);
-    gblm->add(destroy_btn, info);
 
     /*
         Create an EntryBox
@@ -200,8 +174,6 @@ bool MyApp::init()
     boost::shared_ptr<EntryBox> entry = EntryBox::create(EntryBox::Initializer()
         .parent(panel)
         .text("I'm an entry box!")
-        .position(cpaf::Point(10,150))
-        .size(cpaf::Size(200,30))
         .show()
         );
 
@@ -211,8 +183,6 @@ bool MyApp::init()
     boost::shared_ptr<TextBox> text = TextBox::create(TextBox::Initializer()
         .parent(panel)
         .text("I'm a multline text box!\nHere's the second line\n\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
-        .position(cpaf::Point(10,200))
-        .size(cpaf::Size(300,100))
         .show()
         );
 
@@ -224,34 +194,44 @@ bool MyApp::init()
     pw = EntryBox::create(EntryBox::Initializer()
         .parent(panel)
         .text("I'm a password box!")
-        .position(cpaf::Point(10,10))
-        .size(cpaf::Size(200,30))
         .password_mode()
         .show()
         );
 
-    // test get_parent(). This should not change the value of panel
-    cpaf::DebugReport() << "panel before:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
-    panel = text->get_parent();
-    cpaf::DebugReport() << "panel after:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
-
-    /*
-        Construct a window with a default position and a default size.
-        The factory object initializes its members to specify "default values"
-        which instruct an implementation to let the system determine an appropriate
-        size and position. If the system is not capable of doing this, the implementation
-        must chose reasonable values.
-
-        This window will be visible without calling wnd->show() if .show() isn't commented out below.
-    */
     boost::shared_ptr<Window> wnd = Window::create(Window::Initializer()
         .content_panel(panel)
         .title("Cpaf")
         .client_size(cpaf::Size(400,400))
-        //.show()
         );
 
-    // test get_parent_window. This should not change the value of wnd
+    // all children must be added to their parents layout manager
+    GridBagLayoutInfo info;
+    gblm->add(pw_mode,
+        info.position(0,1).align_top());
+    gblm->add(pw,
+        info.position(0,0));
+    gblm->add(my_btn,
+        info.position(1, 0).expand_both());
+    gblm->add(destroy_btn,
+        info.position(1,1));
+    gblm->add(entry,
+        info.position(3, 0));
+    gblm->add(text,
+        info.position(3, 1));
+
+    gblm->set_column_weight(0, 0);
+    gblm->set_column_weight(1, 2);
+    gblm->set_column_weight(2, 1);
+    gblm->set_row_weight(0, 0);
+    gblm->set_row_weight(1, 2);
+    gblm->set_margins(5);
+
+    // test get_parent(). This should not change the value of *panel
+    cpaf::DebugReport() << "panel before:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
+    panel = text->get_parent();
+    cpaf::DebugReport() << "panel after:\t" << std::hex << std::setfill('0') << std::setw(8) << panel;
+
+    // test get_parent_window. This should not change the value of *wnd
     cpaf::DebugReport() << "Window before:\t" << std::hex << std::setfill('0') << std::setw(8) << wnd;
     wnd = pw->get_parent_window();
     cpaf::DebugReport() << "Window after:\t" << std::hex << std::setfill('0') << std::setw(8) << wnd;

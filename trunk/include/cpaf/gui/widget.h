@@ -34,13 +34,13 @@ public:
     typedef cpaf::api::gui::Widget api_type;
 
     /*!
-        \brief Sets the minimum size of the widget. A value of -1 for width or height
+        \brief Sets the minimum size of the widget. A value of 0 for width or height
         indicates that there is no minimum size in that direction.
     */
     void set_min_size(const cpaf::Size &s);
 
     /*!
-        \brief Sets the maximum size of the widget. A value of -1 for width or height
+        \brief Sets the maximum size of the widget. A value of 0 for width or height
         indicates that there is no maximum size in that direction.
     */
     void set_max_size(const cpaf::Size &s);
@@ -51,16 +51,33 @@ public:
     cpaf::Size get_size() const;
 
     /*!
-        \return Minimum size of the widget. A value of -1 for width or height
+        \return Minimum size of the widget. A value of 0 for width or height
         indicates that there is no minimum size in that direction.
     */
     cpaf::Size get_min_size() const;
 
     /*!
-        \return Maximum size of the widget. A value of -1 for width or height
+        \return Maximum size of the widget. A value of 0 for width or height
         indicates that there is no maximum size in that direction.
     */
     cpaf::Size get_max_size() const;
+
+    /*!
+        Sets the natural size for this widget. The natural size is used by layout managers
+        to determine how large to make widgets which are not expanded. The default natural size
+        has a width and height of 0, which means that an acceptible natural size will be calculated
+        for the width and height. You can override the calculated value by specifying your own value
+        for the width and or height.
+    */
+    void set_natural_size(const cpaf::Size &s);
+
+    /*!
+        \return Natural size of the widget. The natural size is used by layout managers
+        to determine how large to make widgets which are not expanded. Unless a natural
+        size is explicitly specified by a call to set_natural_size or through an inintializer,
+        this value is a calculated value and can vary from widget to widget and from port to port.
+    */
+    cpaf::Size get_natural_size() const;
 
     /*!
         \return Position of the widget. If the widget is a \ref g_tlw TLW, the position is in

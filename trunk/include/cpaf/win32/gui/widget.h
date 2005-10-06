@@ -31,7 +31,7 @@ protected:
     HWND m_hwnd; // native window handle
     WNDPROC m_old_proc; // old window procedure
 
-    cpaf::Size m_min_size, m_max_size;
+    cpaf::Size m_min_size, m_max_size, m_natural_size;
 
     Widget();
 
@@ -69,11 +69,13 @@ public:
     virtual void set_size(const cpaf::Size &s);
     virtual void set_min_size(const cpaf::Size &s);
     virtual void set_max_size(const cpaf::Size &s);
+    virtual void set_natural_size(const cpaf::Size &s);
     virtual void set_position(const cpaf::Point &p);
     virtual void set_rect(const cpaf::Rect &r);
     virtual cpaf::Size get_size() const;
     virtual cpaf::Size get_min_size() const;
     virtual cpaf::Size get_max_size() const;
+    virtual cpaf::Size get_natural_size() const;
     virtual cpaf::Point get_position() const;
     virtual cpaf::Rect get_rect() const;
 

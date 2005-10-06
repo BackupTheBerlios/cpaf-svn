@@ -66,7 +66,7 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
 
         client_size.width = rect.right - rect.left;
         client_size.height = rect.bottom - rect.top;
-        init_params.set_size(client_size);
+        //init_params.set_size(client_size);
     }
 
     // set the content panel

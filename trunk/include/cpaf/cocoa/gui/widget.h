@@ -11,7 +11,6 @@
 #include <cpaf/types.h>
 #include <cpaf/private/factory.h>
 #include <cpaf/event/event.h>
-#include <cpaf/event/id.h>
 
 #import <Cocoa/Cocoa.h>
 
@@ -53,28 +52,30 @@ class Widget : public virtual cpaf::api::gui::Widget
 {
 public:
     // Those are public, because we need to access them from the native object
-    cpaf::gui::Widget *m_wrapper; // wrapper for this impl object
+    boost::weak_ptr<cpaf::gui::Widget> m_wrapper; // wrapper for this impl object
     id m_object;
 
 protected:
     void send_event(cpaf::event::event_id event_id); // cocoa specific
     void create(const cpaf::gui::initializer::WidgetData &params, id widget);
-    Widget() : m_wrapper(NULL) { }
+    Widget() { }
 
 public:
     virtual ~Widget();
 
     // object interface
     virtual void set_size(const cpaf::Size&);
-    virtual void set_min_size(const cpaf::Size&) { }
-    virtual void set_max_size(const cpaf::Size&) { }
+    virtual void set_min_size(const cpaf::Size&) { } //! \todo
+    virtual void set_max_size(const cpaf::Size&) { } //! \todo
+    virtual void set_natural_size(const cpaf::Size&) { } //! \todo
     virtual void set_position(const cpaf::Point&);
     virtual cpaf::Size get_size();
     virtual cpaf::Size get_min_size() { return cpaf::Size(); } //! \todo
     virtual cpaf::Size get_max_size() { return cpaf::Size(); } //! \todo
+    virtual cpaf::Size get_natural_size() const { return cpaf::Size(); } //! \todo
     virtual cpaf::Point get_position() { return cpaf::Point(); } //! \todo
-    virtual void set_rect(const cpaf::Rect&) { };
-    virtual cpaf::Rect get_rect() const { return cpaf::Rect(); }
+    virtual void set_rect(const cpaf::Rect&) { }; //! \todo
+    virtual cpaf::Rect get_rect() const { return cpaf::Rect(); } //! \todo
 
     // widget interface
     virtual void destroy();

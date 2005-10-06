@@ -8,16 +8,14 @@
 
 using namespace cpaf::gui::initializer;
 
-PanelData::PanelData()
-: m_layout_manager(0)
-{ }
+PanelData::PanelData() { }
 
-void PanelData::set_layout_manager(cpaf::gui::LayoutManager *manager)
+void PanelData::set_layout_manager(boost::shared_ptr<cpaf::gui::LayoutManager> manager)
 {
     m_layout_manager = manager;
 }
 
-cpaf::gui::LayoutManager *PanelData::get_layout_manager() const
+boost::shared_ptr<cpaf::gui::LayoutManager> PanelData::get_layout_manager() const
 {
     return m_layout_manager;
 }

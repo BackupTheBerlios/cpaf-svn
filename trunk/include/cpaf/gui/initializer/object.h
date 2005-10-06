@@ -21,19 +21,14 @@ namespace cpaf {
 struct CPAF_API ObjectData
 {
 protected:
-    //! \todo We need a special value to indicate "no maximum size." -1?
-
-    //! The size of the object
-    cpaf::Size m_size;
-
     //! The minimum allowable size of the object
     cpaf::Size m_min_size;
 
     //! The maximum allowable size of the object. A size of (0,0) means there is no maximum
     cpaf::Size m_max_size;
 
-    //! The position of the object
-    cpaf::Point m_pos;
+    //! The natural size of the object
+    cpaf::Size m_natural_size;
 
     //! If true, the value of m_size must be ignored, and an acceptible size
     //! must be chosen automatically.
@@ -47,17 +42,12 @@ public:
     ObjectData();
     virtual ~ObjectData();
 
-    void set_size(const cpaf::Size &s);
-    cpaf::Size get_size() const;
     void set_min_size(const cpaf::Size &s);
     cpaf::Size get_min_size() const;
     void set_max_size(const cpaf::Size &s);
     cpaf::Size get_max_size() const;
-    void set_pos(const cpaf::Point &p);
-    cpaf::Point get_pos() const;
-
-    bool use_default_pos() const;
-    bool use_default_size() const;
+    void set_natural_size(const cpaf::Size &s);
+    cpaf::Size get_natural_size() const;
 };
 
 /*!
@@ -76,12 +66,6 @@ protected:
     { }
 
 public:
-    T &size(const cpaf::Size &s)
-    {
-        m_data->set_size(s);
-        return dynamic_cast<T&>(*this);
-    }
-
     T &min_size(const cpaf::Size &s)
     {
         m_data->set_min_size(s);
@@ -94,16 +78,15 @@ public:
         return dynamic_cast<T&>(*this);
     }
 
-    T &position(const cpaf::Point &p)
+    T &natural_size(const cpaf::Size &s)
     {
-        m_data->set_pos(p);
+        m_data->set_natural_size(s);
         return dynamic_cast<T&>(*this);
     }
 
     cpaf::Size get_min_size() const { return m_data->get_min_size(); }
     cpaf::Size get_max_size() const { return m_data->get_max_size(); }
-    cpaf::Size get_size() const { return m_data->get_size(); }
-    cpaf::Point get_pos() const { return m_data->get_pos(); }
+    cpaf::Size get_natural_size() const { return m_data->get_natural_size(); }
 
     virtual ~Object() { }
 

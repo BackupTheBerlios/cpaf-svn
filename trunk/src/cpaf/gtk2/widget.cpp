@@ -86,20 +86,12 @@ Widget::create (const cpaf::gui::initializer::WidgetData &params,
                            G_CALLBACK (gtk_widget_destroyed),
                            &m_widget);
 
-    if (!params.use_default_size())
-        set_size (params.get_size());
-
     //! \todo Fix logic later
     if (params.get_min_size().width != 0.0 && params.get_min_size().height != 0.0)
         set_min_size(params.get_min_size());
 
     //! \todo Uncomment after all set_{min,max}_size methods are aware of the DEFAULT_* values
     //set_max_size(params.get_max_size());
-
-#if 0 // FIXME: currently done in real controls because parent isn't associated yet here
-    if (!params.use_default_pos())
-        set_position (params.get_pos());
-#endif
 
     enable (params.get_enable());
 

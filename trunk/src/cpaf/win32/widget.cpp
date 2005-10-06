@@ -43,25 +43,12 @@ void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::Widg
     else
         hparent = ::GetDesktopWindow();
 
-    int x = params.get_pos().x, y = params.get_pos().y;
-    int w = params.get_size().width, h = params.get_size().height;
-
-    if( params.use_default_pos() )
-        x = CW_USEDEFAULT;
-    if( params.use_default_size() )
-        w = CW_USEDEFAULT;
-
-    RECT rect; rect.top = y; rect.left = x; rect.right = rect.left + w; rect.bottom = rect.top + h;
-    ::MapDialogRect(hparent, &rect);
-    cpaf::DebugReport()  << "MapDialogRect: {" << rect.left << ", " << rect.top << ", "
-        << rect.right - rect.left << ", " << rect.top - rect.bottom << "}";
-
     {
         CreationHook hook; // hook WM_CREATE for initialization stuff
         CreationInfo info(this);
 
         m_hwnd = ::CreateWindowEx(styles_ex, class_name, window_name, styles,
-            x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
+            CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
             &info);
     }
 
@@ -71,9 +58,9 @@ void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::Widg
     // set the default font to what it should be
     ::SendMessage(m_hwnd, WM_SETFONT, (WPARAM)::GetStockObject(DEFAULT_GUI_FONT), 0);
 
-    // initialize min and max sizes
     m_min_size = params.get_min_size();
     m_max_size = params.get_max_size();
+    m_natural_size = params.get_natural_size();
 
     // show the window if necessary
     if( params.get_show() )
@@ -94,6 +81,15 @@ Widget::~Widget()
     // delete our wrapper
     //delete m_wrapper;
     cpaf::DebugReport() << "~Widget";
+
+    /* 
+        Remove our widget window property here too
+        incase WM_CREATE failed, in which case there will be
+        no WM_DESTROY event sent. This can happen if a
+        WIDGET_CREATE event handler throws.
+    */
+    if( m_hwnd )
+        disassociate_hwnd(m_hwnd);
 }
 
 int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
@@ -127,6 +123,8 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 
             // queue ourselves for deletion in the proper order
             widget_deletion_stack_push(this);
+
+            m_hwnd = 0;
 
             break;
         }
@@ -212,6 +210,24 @@ cpaf::Size Widget::get_min_size() const
 cpaf::Size Widget::get_max_size() const
 {
     return m_max_size;
+}
+
+void Widget::set_natural_size(const cpaf::Size &s)
+{
+    m_natural_size = s;
+}
+
+cpaf::Size Widget::get_natural_size() const
+{
+    cpaf::Size size = m_natural_size;
+ 
+    //! \todo If m_natural_size has default values (0), calculate an acceptible value
+    if( size.width == 0 )
+        size.width = 100;
+    if( size.height == 0 )
+        size.height = 30;
+
+    return size;
 }
 
 void Widget::set_position(const cpaf::Point &p)

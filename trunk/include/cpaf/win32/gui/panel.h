@@ -30,7 +30,7 @@ public:
     cpaf::gui::LayoutManager &get_layout_manager();
 
 private:
-    cpaf::gui::LayoutManager *m_layout_manager;
+    boost::shared_ptr<cpaf::gui::LayoutManager> m_layout_manager;
 };
 
         } // gui

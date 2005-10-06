@@ -29,15 +29,13 @@ cpaf_fixed_size_allocate(GtkWidget *gtkwidget,
 } // extern "C"
 
 Panel::Panel()
-:   m_layout_manager(NULL),
-    m_last_width(0),
+:   m_last_width(0),
     m_last_height(0)
 { }
 
 Panel::~Panel()
 {
-    // delete the layout manager
-    delete m_layout_manager;
+
 }
 
 void

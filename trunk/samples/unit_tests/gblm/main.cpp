@@ -18,8 +18,8 @@ class MyApp : public cpaf::gui::App
 
 bool MyApp::init()
 {
-    GridBagLayout *gblm;
-    boost::shared_ptr<Panel> panel = Panel::create(Panel::Initializer().layout_manager(gblm = new GridBagLayout).show());
+    boost::shared_ptr<GridBagLayout> gblm(new GridBagLayout);
+    boost::shared_ptr<Panel> panel = Panel::create(Panel::Initializer().layout_manager(gblm).show());
 
     GridBagLayoutInfo info;
     info.padding(5);

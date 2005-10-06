@@ -125,9 +125,8 @@ CreationHook::CreationHook()
 CreationHook::~CreationHook()
 {
     // unhook
-    //! \todo destructors really shouldn't throw...
-    //if( !::UnhookWindowsHookEx(m_hook) )
-        //throw cpaf::win32::Exception(cpaf::win32::Exception::UNHOOK, ::GetLastError(), __LINE__, __FILE__);
+    if( m_hook )
+        ::UnhookWindowsHookEx(m_hook);
 }
 
 LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_param, LPARAM l_param)
@@ -148,6 +147,8 @@ LRESULT CALLBACK cpaf::win32::gui::CreationHook::hook_proc(int code, WPARAM w_pa
             // unhook now
             if( !::UnhookWindowsHookEx(m_hook) )
                 throw cpaf::win32::Exception(cpaf::win32::Exception::UNHOOK, ::GetLastError(), __LINE__, __FILE__);
+            else
+                m_hook = 0;
 
             return 0;
         }

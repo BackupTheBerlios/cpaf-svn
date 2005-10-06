@@ -24,7 +24,7 @@ public:
     void create(const cpaf::gui::initializer::PanelData &params);
 
     // Implementation specific
-    cpaf::gui::LayoutManager *m_layout_manager;
+    boost::shared_ptr<LayoutManager> m_layout_manager;
     int m_last_width;
     int m_last_height;
 };

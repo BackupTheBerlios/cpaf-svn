@@ -151,7 +151,8 @@ protected:
         cpaf::DebugReport() << "MyWindow::WIDGET_CREATE";
 
         // create the root panel
-        boost::shared_ptr<Panel> panel = MyPanel::create(Panel::Initializer().layout_manager(new cpaf::gui::GridBagLayout));
+        boost::shared_ptr<Panel> panel = MyPanel::create(Panel::Initializer()
+            .layout_manager(boost::shared_ptr<cpaf::gui::LayoutManager>(new cpaf::gui::GridBagLayout)));
         connect<Event, false>(WIDGET_DESTROY, panel->get_id())(&MyWindow::on_panel_destroy, *this);
 
         // set our content panel
@@ -211,7 +212,7 @@ bool MyApp::init()
 {
     MyWindow::create(MyWindow::Initializer()
         .show()
-        );
+        )->destroy();
 
     return true;
 }
