@@ -26,14 +26,15 @@ protected:
     //! The size of the client area of the window.
     cpaf::Size m_client_size;
 
+    //! The position in screen coordinates of the window
+    cpaf::Point m_position;
+
     /*!
-        If this member is true, you must ignore the value specified by
-        ObjectData::m_size and ObjectData::m_default_size, and use the
-        size provided by m_client_size instead. If this member is false,
-        you must consider ObjectData::m_default_size and ObjectData::m_size
-        as you normally would.
+        If this member is true, an acceptible value for this windows
+        position should be calculated and used. If it is false,
+        the value of m_pos must be used.
     */
-    bool m_use_client_size;
+    bool m_default_position;
 
     //! The content panel for the window
     boost::shared_ptr<cpaf::gui::Panel> m_content_panel;
@@ -43,12 +44,14 @@ public:
 
     void set_title(const std::string &str);
     std::string get_title() const;
+    void set_position(const cpaf::Point &p);
+    cpaf::Point get_position() const;
     void set_client_size(const cpaf::Size &s);
     cpaf::Size get_client_size() const;
     void set_content_panel(boost::shared_ptr<cpaf::gui::Panel> p);
     boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const;
     
-    bool use_client_size() const;
+    bool default_position() const;
 };
 
 /*!
@@ -74,6 +77,12 @@ public:
         return dynamic_cast<T&>(*this);
     }
 
+    T &position(const cpaf::Point &p)
+    {
+        m_data->set_position(p);
+        return dynamic_cast<T&>(*this);
+    }
+
     T &client_size(const cpaf::Size &s)
     {
         m_data->set_client_size(s);
@@ -87,6 +96,7 @@ public:
     }
 
     std::string get_title() const { return m_data->get_title(); }
+    cpaf::Point get_position() const { return m_data->get_position(); }
     cpaf::Size get_client_size() const { return m_data->get_client_size(); }
     boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const { return m_data->get_content_panel(); }
 };

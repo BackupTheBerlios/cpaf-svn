@@ -55,19 +55,16 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
     int style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN, style_ex = WS_EX_CONTROLPARENT;
 
     // handle client size
-    if( init_params.use_client_size() )
-    {
-        RECT rect = {0};
-        cpaf::Size client_size = init_params.get_client_size();
-        rect.right = client_size.width;
-        rect.bottom = client_size.height;
+    RECT rect = {0};
+    cpaf::Size client_size = init_params.get_client_size();
+    rect.right = client_size.width;
+    rect.bottom = client_size.height;
 
-        ::AdjustWindowRectEx(&rect, style, false, style_ex);
+    ::AdjustWindowRectEx(&rect, style, false, style_ex);
 
-        client_size.width = rect.right - rect.left;
-        client_size.height = rect.bottom - rect.top;
-        //init_params.set_size(client_size);
-    }
+    client_size.width = rect.right - rect.left;
+    client_size.height = rect.bottom - rect.top;
+    //init_params.set_size(client_size);
 
     // set the content panel
     HWND w = 0;

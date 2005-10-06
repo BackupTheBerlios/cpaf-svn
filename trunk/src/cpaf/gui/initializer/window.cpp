@@ -9,7 +9,7 @@
 using namespace cpaf::gui::initializer;
 
 WindowData::WindowData()
-    : m_use_client_size(false)
+    : m_default_position(false)
 {
     // windows should be activated when shown by default
     WidgetData::m_activate = true;
@@ -28,8 +28,6 @@ std::string WindowData::get_title() const
 void WindowData::set_client_size(const cpaf::Size &s)
 {
     m_client_size = s;
-    m_default_size = false;
-    m_use_client_size = true;
 }
 
 cpaf::Size WindowData::get_client_size() const
@@ -37,9 +35,20 @@ cpaf::Size WindowData::get_client_size() const
     return m_client_size;
 }
 
-bool WindowData::use_client_size() const
+void WindowData::set_position(const cpaf::Point &p)
 {
-    return m_use_client_size;
+    m_default_position = false;
+    m_position = p;
+}
+
+cpaf::Point WindowData::get_position() const
+{
+    return m_position;
+}
+
+bool WindowData::default_position() const
+{
+    return m_default_position;
 }
 
 void WindowData::set_content_panel(boost::shared_ptr<cpaf::gui::Panel> p)
