@@ -1,0 +1,46 @@
+Functions to implement:
+    Widget::set_min_size
+    Widget::set_max_size
+    Widget::set_natural_size
+    Widget::set_rect
+    Widget::get_min_Size
+    Widget::get_max_size
+    Widget::get_natural_size
+    Widget::get_position
+    Widget::get_rect
+    Widget::get_parent
+    Widget::get_parent_window
+
+    TextBox::get_text
+    TextBox::get_length
+    TextBox::get_selection_range
+    TextBox::set_selection_range
+    TextBox::get_selection_bounds
+    TextBox::get_insertion_point
+    TextBox::set_insertion_point
+    TextBox::delete_range
+    TextBox::insert_text(const std::string &str, cpaf::text_range_t pos)
+    TextBox::insert_text(const std::string &str)
+    TextBox::set_max_length
+    TextBox::set_read_only
+    TextBox::is_read_only
+    
+    EntryBox::get_text
+    EntryBox::set_selection_range
+    EntryBox::set_selection_bounds
+    EntryBox::set_insertion_point
+    EntryBox::delete_range
+    EntryBox::insert_text(const std::string &str, cpaf::text_range_t pos)
+    EntryBox::insert_text(const std::string &str)
+    EntryBox::set_max_length
+    
+    Window::set_content_panel
+    Window::get_content_panel
+    Window::get_client_size
+    Window::get_client_position
+    
+    
+Respect initializer values during widget construction
+
+Use Layout Managers within panels to size widgets. None of the samples will
+function until this is done.

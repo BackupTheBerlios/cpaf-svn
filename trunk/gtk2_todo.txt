@@ -1,0 +1,25 @@
+Functions requiring implementation:
+    Widget::set_max_size
+    Widget::get_max_size
+    Widget::get_position
+    Widget::set_natural_size
+    Widget::get_natural_size
+
+    Window::set_content_panel
+    Window::get_content_panel
+
+    TextBox::set_max_length
+    TextBox::insert_text (const std::string &str)
+
+    EntryBox::get_length
+    EntryBox::get_text
+    EntryBox::get_selection_range
+    EntryBox::set_selection_range
+    EntryBox::get_selection_bounds
+    EntryBox::set_selection_bounds
+    EntryBox::insert_text (const std::string &str)
+
+Need to respect initializer parameters during widget construction.
+
+Respect a panels visibility state if its parent is another panel. Current code assumes
+that the panel will be shown once it becomes the content panel of a window.
