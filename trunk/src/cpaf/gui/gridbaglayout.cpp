@@ -285,12 +285,8 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
             else
             {
                 size_src_val_natural = get_size_value<group>(info.widget->get_natural_size());
-                
-                // make sure the natural size isn't larger than what is available
-                if( size_src_val_natural > size_src_val )
-                    size_src_val_natural = size_src_val;
 
-                // also make sure the natural size isn't larger than the max or smaller than min
+                // make sure the natural size isn't larger than the max or smaller than min
                 float min_val = data.m_min_size;
                 float max_val = data.m_max_size;
 
@@ -298,6 +294,10 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
                     size_src_val_natural = min_val;
                 if( max_val != 0 && size_src_val_natural > max_val )
                     size_src_val_natural = max_val;
+
+                // make sure the natural size isn't larger than what is available
+                if( size_src_val_natural > size_src_val )
+                    size_src_val_natural = size_src_val;
 
                 size_dest_val = size_src_val_natural;
             }
