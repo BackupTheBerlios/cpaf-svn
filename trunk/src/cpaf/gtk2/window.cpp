@@ -18,9 +18,7 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
 {
     Widget::create(params, gtk_window_new(GTK_WINDOW_TOPLEVEL));
 
-    //! \todo Based on docs in factory/window.h header, the logic needs to be more complex
-    if (params.use_client_size())
-        set_client_size(params.get_client_size());
+    set_client_size(params.get_client_size());
 
     boost::shared_ptr<cpaf::gui::Widget> parent = params.get_parent();
     if (parent)
