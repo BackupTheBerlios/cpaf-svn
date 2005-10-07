@@ -78,13 +78,6 @@
 		E29EC05208F59F5500AB483B /* gridbaglayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00808F59F5500AB483B /* gridbaglayout.cpp */; };
 		E29EC05308F59F5500AB483B /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00A08F59F5500AB483B /* button.cpp */; };
 		E29EC05408F59F5500AB483B /* entrybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00B08F59F5500AB483B /* entrybox.cpp */; };
-		E29EC05508F59F5500AB483B /* i_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00C08F59F5500AB483B /* i_button.cpp */; };
-		E29EC05608F59F5500AB483B /* i_entrybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00D08F59F5500AB483B /* i_entrybox.cpp */; };
-		E29EC05708F59F5500AB483B /* i_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00E08F59F5500AB483B /* i_object.cpp */; };
-		E29EC05808F59F5500AB483B /* i_textbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC00F08F59F5500AB483B /* i_textbox.cpp */; };
-		E29EC05908F59F5500AB483B /* i_textwidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01008F59F5500AB483B /* i_textwidget.cpp */; };
-		E29EC05A08F59F5500AB483B /* i_widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01108F59F5500AB483B /* i_widget.cpp */; };
-		E29EC05B08F59F5500AB483B /* i_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01208F59F5500AB483B /* i_window.cpp */; };
 		E29EC05C08F59F5500AB483B /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01308F59F5500AB483B /* object.cpp */; };
 		E29EC05D08F59F5500AB483B /* panel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01408F59F5500AB483B /* panel.cpp */; };
 		E29EC05E08F59F5500AB483B /* textbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E29EC01508F59F5500AB483B /* textbox.cpp */; };
@@ -194,7 +187,7 @@
 		E29EBFED08F59F5500AB483B /* textwidget.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = textwidget.mm; sourceTree = "<group>"; };
 		E29EBFEE08F59F5500AB483B /* utils.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = utils.mm; sourceTree = "<group>"; };
 		E29EBFEF08F59F5500AB483B /* widget.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = widget.mm; sourceTree = "<group>"; };
-		E29EBFF308F59F5500AB483B /* window.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = window.mm; sourceTree = "<group>"; };
+		E29EBFF308F59F5500AB483B /* window.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 2; path = window.mm; sourceTree = "<group>"; };
 		E29EBFF508F59F5500AB483B /* event.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = event.cpp; sourceTree = "<group>"; };
 		E29EBFF608F59F5500AB483B /* id.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = id.cpp; sourceTree = "<group>"; };
 		E29EBFF708F59F5500AB483B /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cpp; sourceTree = "<group>"; };
@@ -205,13 +198,6 @@
 		E29EC00808F59F5500AB483B /* gridbaglayout.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = gridbaglayout.cpp; sourceTree = "<group>"; };
 		E29EC00A08F59F5500AB483B /* button.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
 		E29EC00B08F59F5500AB483B /* entrybox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = entrybox.cpp; sourceTree = "<group>"; };
-		E29EC00C08F59F5500AB483B /* i_button.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_button.cpp; sourceTree = "<group>"; };
-		E29EC00D08F59F5500AB483B /* i_entrybox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_entrybox.cpp; sourceTree = "<group>"; };
-		E29EC00E08F59F5500AB483B /* i_object.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_object.cpp; sourceTree = "<group>"; };
-		E29EC00F08F59F5500AB483B /* i_textbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_textbox.cpp; sourceTree = "<group>"; };
-		E29EC01008F59F5500AB483B /* i_textwidget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_textwidget.cpp; sourceTree = "<group>"; };
-		E29EC01108F59F5500AB483B /* i_widget.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_widget.cpp; sourceTree = "<group>"; };
-		E29EC01208F59F5500AB483B /* i_window.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = i_window.cpp; sourceTree = "<group>"; };
 		E29EC01308F59F5500AB483B /* object.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
 		E29EC01408F59F5500AB483B /* panel.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = panel.cpp; sourceTree = "<group>"; };
 		E29EC01508F59F5500AB483B /* textbox.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = textbox.cpp; sourceTree = "<group>"; };
@@ -498,13 +484,6 @@
 			children = (
 				E29EC00A08F59F5500AB483B /* button.cpp */,
 				E29EC00B08F59F5500AB483B /* entrybox.cpp */,
-				E29EC00C08F59F5500AB483B /* i_button.cpp */,
-				E29EC00D08F59F5500AB483B /* i_entrybox.cpp */,
-				E29EC00E08F59F5500AB483B /* i_object.cpp */,
-				E29EC00F08F59F5500AB483B /* i_textbox.cpp */,
-				E29EC01008F59F5500AB483B /* i_textwidget.cpp */,
-				E29EC01108F59F5500AB483B /* i_widget.cpp */,
-				E29EC01208F59F5500AB483B /* i_window.cpp */,
 				E29EC01308F59F5500AB483B /* object.cpp */,
 				E29EC01408F59F5500AB483B /* panel.cpp */,
 				E29EC01508F59F5500AB483B /* textbox.cpp */,
@@ -702,13 +681,6 @@
 				E29EC05208F59F5500AB483B /* gridbaglayout.cpp in Sources */,
 				E29EC05308F59F5500AB483B /* button.cpp in Sources */,
 				E29EC05408F59F5500AB483B /* entrybox.cpp in Sources */,
-				E29EC05508F59F5500AB483B /* i_button.cpp in Sources */,
-				E29EC05608F59F5500AB483B /* i_entrybox.cpp in Sources */,
-				E29EC05708F59F5500AB483B /* i_object.cpp in Sources */,
-				E29EC05808F59F5500AB483B /* i_textbox.cpp in Sources */,
-				E29EC05908F59F5500AB483B /* i_textwidget.cpp in Sources */,
-				E29EC05A08F59F5500AB483B /* i_widget.cpp in Sources */,
-				E29EC05B08F59F5500AB483B /* i_window.cpp in Sources */,
 				E29EC05C08F59F5500AB483B /* object.cpp in Sources */,
 				E29EC05D08F59F5500AB483B /* panel.cpp in Sources */,
 				E29EC05E08F59F5500AB483B /* textbox.cpp in Sources */,

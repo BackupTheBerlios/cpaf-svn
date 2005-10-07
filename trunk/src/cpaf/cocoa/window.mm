@@ -15,12 +15,10 @@ CPAF_COCOA_IMPLEMENTATION(Window)
 
 void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
 {
-    cpaf::Point pos = params.get_pos();
-    cpaf::Size size = params.get_size();
-
 	m_wrapper = params.get_wrapper();
 
-    m_object = [[CpafWindow alloc] initWithContentRect:NSMakeRect(pos.x, pos.y, size.width, size.height)
+
+    m_object = [[CpafWindow alloc] initWithContentRect:NSMakeRect(0.0, 0.0, 0.0, 0.0)
         styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask)
         backing:NSBackingStoreBuffered defer:YES];
     [m_object setReleasedWhenClosed:NO];
@@ -28,17 +26,11 @@ void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &
     if ([m_object respondsToSelector:@selector(setCpafWidget:)])
         [m_object setCpafWidget:this];
 
-    if (params.use_client_size())
-        set_client_size(params.get_client_size());
-    else if (params.use_default_size())
-        set_size(cpaf::Size(400.0, 300.0));
-    else
-        set_size(size);
-
-    if (params.use_default_pos())
-        set_position(cpaf::Point(0.0, 0.0));
-    else
-        set_position(pos);
+    set_client_size(params.get_client_size());
+    
+    if (!params.default_position())
+        set_position(params.get_position());
+    //! \todo else: estimate a good default position
 
     set_min_size(params.get_min_size());
     set_max_size(params.get_max_size());
@@ -78,25 +70,25 @@ void cpaf::cocoa::gui::Window::set_position(const cpaf::Point &p)
     [m_object setFrame:f display:YES];
 }
 
-cpaf::Size cpaf::cocoa::gui::Window::get_size()
+cpaf::Size cpaf::cocoa::gui::Window::get_size() const
 {
     NSRect f = [m_object frame];
     return cpaf::Size(f.size.width, f.size.height);
 }
 
-cpaf::Size cpaf::cocoa::gui::Window::get_min_size()
+cpaf::Size cpaf::cocoa::gui::Window::get_min_size() const
 {
     NSSize size = [m_object minSize];
     return cpaf::Size(size.width, size.height);
 }
 
-cpaf::Size cpaf::cocoa::gui::Window::get_max_size()
+cpaf::Size cpaf::cocoa::gui::Window::get_max_size() const
 {
     NSSize size = [m_object maxSize];
     return cpaf::Size(size.width, size.height);
 }
 
-cpaf::Point cpaf::cocoa::gui::Window::get_position()
+cpaf::Point cpaf::cocoa::gui::Window::get_position() const
 {
     NSRect f = [m_object frame];
     return convert_point(f.origin);
