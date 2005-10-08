@@ -99,7 +99,8 @@ int cpaf::entry(cpaf::main_ptr main, int argc, char *argv[])
     }
     catch(std::exception &e)
     {
-        cpaf::DebugReport(cpaf::DebugReport::ERROR) << "Exception: " << e.what();
+        // the second argument is 0 to work around a bug in Apple's g++ 3.3
+        cpaf::DebugReport(cpaf::DebugReport::ERROR, 0) << "Exception: " << e.what();
         return 1;
     }
     catch(...)
