@@ -1,0 +1,204 @@
+CC = g++
+LD = g++
+OBJ_DIR = build
+OUTPUT_DIR = lib
+TARGET = libcpaf.dylib
+INCLUDE_DIRS = -Iinclude -I/sw/include
+#CXXFLAGS = -pipe -D_DEBUG -DCPAF_COCOA -DCPAF_BUILDING -DCPAF_DLL -ggdb -Wall
+CXXFLAGS = -arch ppc -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -g -O0 -Wno-four-char-constants -DCPAF_COCOA -DCPAF_BUILDING -DCPAF_DLL -D_DEBUG -fmessage-length=0 -mtune=G4 -mfix-and-continue
+LD_FLAGS = -dynamiclib -framework Cocoa
+
+SRC_OBJS =                      \
+	$(OBJ_DIR)/gui/app.o        \
+	$(OBJ_DIR)/gui/object.o     \
+	$(OBJ_DIR)/gui/widget.o     \
+	$(OBJ_DIR)/gui/toplevel.o   \
+	$(OBJ_DIR)/gui/factory.o    \
+	$(OBJ_DIR)/gui/gridbaglayout.o    \
+	$(OBJ_DIR)/gui/layoutmanager.o    \
+	$(OBJ_DIR)/gui/window.o     \
+	$(OBJ_DIR)/gui/panel.o      \
+	$(OBJ_DIR)/gui/button.o     \
+	$(OBJ_DIR)/gui/textwidget.o \
+	$(OBJ_DIR)/gui/entrybox.o   \
+	$(OBJ_DIR)/gui/textbox.o    \
+	$(OBJ_DIR)/gui/initializer/object.o     \
+	$(OBJ_DIR)/gui/initializer/widget.o     \
+	$(OBJ_DIR)/gui/initializer/window.o     \
+	$(OBJ_DIR)/gui/initializer/panel.o      \
+	$(OBJ_DIR)/gui/initializer/button.o     \
+	$(OBJ_DIR)/gui/initializer/textwidget.o \
+	$(OBJ_DIR)/gui/initializer/entrybox.o   \
+	$(OBJ_DIR)/gui/initializer/textbox.o    \
+	$(OBJ_DIR)/event/event.o    \
+	$(OBJ_DIR)/event/id.o       \
+	$(OBJ_DIR)/cocoa/app.o       \
+	$(OBJ_DIR)/cocoa/factory.o   \
+	$(OBJ_DIR)/cocoa/widget.o    \
+	$(OBJ_DIR)/cocoa/window.o    \
+	$(OBJ_DIR)/cocoa/panel.o     \
+	$(OBJ_DIR)/cocoa/button.o    \
+	$(OBJ_DIR)/cocoa/entrybox.o  \
+	$(OBJ_DIR)/cocoa/textbox.o   \
+	$(OBJ_DIR)/cocoa/textwidget.o     \
+	$(OBJ_DIR)/cocoa/utils.o     \
+	$(OBJ_DIR)/types.o          \
+	$(OBJ_DIR)/main.o           \
+	$(OBJ_DIR)/exception.o      \
+	$(OBJ_DIR)/app.o            \
+	$(OBJ_DIR)/api.o
+
+define build_target
+	@echo Creating library...
+	$(LD) $(LD_FLAGS) -o "$(OUTPUT_DIR)/$(TARGET)" $(SRC_OBJS)
+endef
+
+define compile_source
+	$(CC) $(CXXFLAGS) $(INCLUDE_DIRS) -c "$<" -o "$@"
+endef
+
+.PHONY: directories
+
+$(TARGET): directories $(SRC_OBJS)
+	$(build_target)
+
+.PHONY: clean cleanall
+
+install:
+	@echo Installing not yet supported.
+
+cleanall:
+	@echo Deleting intermediate files.
+	-@rm -rf "$(OBJ_DIR)"/*
+	-@rm -rf "$(OUTPUT_DIR)/$(TARGET)"
+	-@if [ -d "$OUTPUT_DIR" ]; then rmdir "$(OUTPUT_DIR)"; fi
+
+clean: cleanall
+
+directories:
+	-@if [ ! -d "$(OUTPUT_DIR)" ]; then mkdir "$(OUTPUT_DIR)"; fi
+	-@if [ ! -d "$(OBJ_DIR)" ]; then mkdir "$(OBJ_DIR)"; fi
+	-@if [ ! -d "$(OBJ_DIR)/gui" ]; then mkdir "$(OBJ_DIR)/gui"; fi
+	-@if [ ! -d "$(OBJ_DIR)/gui/initializer" ]; then mkdir "$(OBJ_DIR)/gui/initializer"; fi
+	-@if [ ! -d "$(OBJ_DIR)/event" ]; then mkdir "$(OBJ_DIR)/event"; fi
+	-@if [ ! -d "$(OBJ_DIR)/cocoa" ]; then mkdir "$(OBJ_DIR)/cocoa"; fi
+
+$(OBJ_DIR)/gui/app.o: src/cpaf/gui/app.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/object.o: src/cpaf/gui/object.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/widget.o: src/cpaf/gui/widget.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/toplevel.o: src/cpaf/gui/toplevel.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/factory.o: src/cpaf/gui/factory.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/gridbaglayout.o: src/cpaf/gui/gridbaglayout.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/layoutmanager.o: src/cpaf/gui/layoutmanager.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/window.o: src/cpaf/gui/window.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/panel.o: src/cpaf/gui/panel.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/button.o: src/cpaf/gui/button.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/textwidget.o: src/cpaf/gui/textwidget.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/entrybox.o: src/cpaf/gui/entrybox.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/textbox.o: src/cpaf/gui/textbox.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/object.o: src/cpaf/gui/initializer/object.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/widget.o: src/cpaf/gui/initializer/widget.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/toplevel.o: src/cpaf/gui/initializer/toplevel.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/factory.o: src/cpaf/gui/initializer/factory.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/window.o: src/cpaf/gui/initializer/window.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/panel.o: src/cpaf/gui/initializer/panel.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/button.o: src/cpaf/gui/initializer/button.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/textwidget.o: src/cpaf/gui/initializer/textwidget.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/entrybox.o: src/cpaf/gui/initializer/entrybox.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/initializer/textbox.o: src/cpaf/gui/initializer/textbox.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/event/event.o: src/cpaf/event/event.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/event/id.o: src/cpaf/event/id.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/app.o: src/cpaf/cocoa/app.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/factory.o: src/cpaf/cocoa/factory.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/widget.o: src/cpaf/cocoa/widget.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/window.o: src/cpaf/cocoa/window.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/panel.o: src/cpaf/cocoa/panel.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/button.o: src/cpaf/cocoa/button.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/entrybox.o: src/cpaf/cocoa/entrybox.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/textbox.o: src/cpaf/cocoa/textbox.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/textwidget.o: src/cpaf/cocoa/textwidget.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/utils.o: src/cpaf/cocoa/utils.mm
+	$(compile_source)
+
+$(OBJ_DIR)/types.o: src/cpaf/types.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/main.o: src/cpaf/main.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/exception.o: src/cpaf/exception.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/app.o: src/cpaf/app.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/api.o: src/cpaf/api.cpp
+	$(compile_source)

@@ -1,0 +1,36 @@
+CC = gcc
+LD = g++
+CPAF_DIR = ../..
+TARGET = main
+INCLUDE_DIRS = -I $(CPAF_DIR)/include -I /sw/include
+CXXFLAGS = -pipe -DCPAF_DLL -D_DEBUG -DCPAF_COCOA -ggdb -Wall
+LDFLAGS = -L$(CPAF_DIR)/lib
+LIBS = -lcpaf -framework Cocoa
+
+SRC_OBJS = main.o
+
+define build_target
+	@echo Creating executable...
+	$(LD) $(LDFLAGS) -o "$(TARGET)" $(SRC_OBJS) $(LIBS)
+endef
+
+define compile_source
+	$(CC) $(CXXFLAGS) $(INCLUDE_DIRS) -c "$<" -o "$@"
+endef
+
+$(TARGET): $(SRC_OBJS)
+	$(build_target)
+
+.PHONY: clean cleanall
+
+install:
+	@echo Installing not yet supported.
+
+cleanall:
+	@echo Deleting intermediate files.
+	-@rm -f *.o $(TARGET)
+
+clean: cleanall
+
+main.o: main.cpp
+	$(compile_source)
