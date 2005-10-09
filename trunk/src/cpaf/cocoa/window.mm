@@ -5,18 +5,19 @@
  */
 
 #include <cpaf/cocoa/gui/window.h>
+#include <cpaf/cocoa/gui/panel.h>
 #include <cpaf/cocoa/utils.h>
 #include <cpaf/gui/widget.h>
 
 using namespace cpaf::cocoa::utils;
+using namespace cpaf::cocoa::gui;
 
 CPAF_COCOA_INTERFACE(Window)
 CPAF_COCOA_IMPLEMENTATION(Window)
 
-void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &params)
+void Window::create(const cpaf::gui::initializer::WindowData &params)
 {
-	m_wrapper = params.get_wrapper();
-
+    m_wrapper = params.get_wrapper();
 
     m_object = [[CpafWindow alloc] initWithContentRect:NSMakeRect(0.0, 0.0, 0.0, 0.0)
         styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask)
@@ -37,6 +38,13 @@ void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &
 
     set_title(params.get_title());
 
+    if (params.get_content_panel())
+    {
+        Panel * root_panel = dynamic_cast<Panel*>(params.get_content_panel()->get_impl());
+        [m_object setContentView:(id)root_panel->get_handle()];
+        params.get_content_panel()->show(true, false);
+    }
+
     //! \todo params.m_parent, params.m_enable
 
     show(params.get_show(), params.get_activate());
@@ -44,7 +52,7 @@ void cpaf::cocoa::gui::Window::create(const cpaf::gui::initializer::WindowData &
     send_event(cpaf::event::WIDGET_CREATE);
 }
 
-void cpaf::cocoa::gui::Window::set_size(const cpaf::Size &s)
+void Window::set_size(const cpaf::Size &s)
 {
     NSRect f = [m_object frame];
     f.size.width = s.width;
@@ -52,49 +60,49 @@ void cpaf::cocoa::gui::Window::set_size(const cpaf::Size &s)
     [m_object setFrame:f display:YES];
 }
 
-void cpaf::cocoa::gui::Window::set_min_size(const cpaf::Size &s)
+void Window::set_min_size(const cpaf::Size &s)
 {
     [m_object setMinSize:NSMakeSize(s.width, s.height)];
 }
 
-void cpaf::cocoa::gui::Window::set_max_size(const cpaf::Size &s)
+void Window::set_max_size(const cpaf::Size &s)
 {
     // FLT_MAX means "no limit"
     [m_object setMaxSize:NSMakeSize(s.width?s.width:FLT_MAX, s.height?s.height:FLT_MAX)];
 }
 
-void cpaf::cocoa::gui::Window::set_position(const cpaf::Point &p)
+void Window::set_position(const cpaf::Point &p)
 {
     NSRect f = [m_object frame];
     f.origin = convert_point(p);
     [m_object setFrame:f display:YES];
 }
 
-cpaf::Size cpaf::cocoa::gui::Window::get_size() const
+cpaf::Size Window::get_size() const
 {
     NSRect f = [m_object frame];
     return cpaf::Size(f.size.width, f.size.height);
 }
 
-cpaf::Size cpaf::cocoa::gui::Window::get_min_size() const
+cpaf::Size Window::get_min_size() const
 {
     NSSize size = [m_object minSize];
     return cpaf::Size(size.width, size.height);
 }
 
-cpaf::Size cpaf::cocoa::gui::Window::get_max_size() const
+cpaf::Size Window::get_max_size() const
 {
     NSSize size = [m_object maxSize];
     return cpaf::Size(size.width, size.height);
 }
 
-cpaf::Point cpaf::cocoa::gui::Window::get_position() const
+cpaf::Point Window::get_position() const
 {
     NSRect f = [m_object frame];
     return convert_point(f.origin);
 }
 
-void cpaf::cocoa::gui::Window::show(bool show, bool activate)
+void Window::show(bool show, bool activate)
 {
     if (show)
         if (activate)
@@ -105,17 +113,17 @@ void cpaf::cocoa::gui::Window::show(bool show, bool activate)
         [m_object close];
 }
 
-void cpaf::cocoa::gui::Window::set_title(const std::string &t)
+void Window::set_title(const std::string &t)
 {
     [m_object setTitle:[NSString stringWithUTF8String:t.c_str()]];
 }
 
-std::string cpaf::cocoa::gui::Window::get_title()
+std::string Window::get_title()
 {
     return [[m_object title] UTF8String];
 }
 
-void cpaf::cocoa::gui::Window::set_client_size(const cpaf::Size &s)
+void Window::set_client_size(const cpaf::Size &s)
 {
     NSRect cf = [[m_object contentView] frame];
     NSRect wf = [m_object frame];
@@ -132,12 +140,24 @@ void cpaf::cocoa::gui::Window::set_client_size(const cpaf::Size &s)
     [m_object setFrame:wf display:YES];
 }
 
-cpaf::Size cpaf::cocoa::gui::Window::get_client_size()
+cpaf::Size Window::get_client_size()
 {
     return cpaf::Size(); //! \todo
 }
 
-cpaf::Point cpaf::cocoa::gui::Window::get_client_position()
+cpaf::Point Window::get_client_position()
 {
     return cpaf::Point(); //! \todo
+}
+
+void Window::set_content_panel(cpaf::api::gui::Panel *p)
+{
+    //! \todo
+    NSLog(@"Setting content panel");
+}
+boost::shared_ptr<cpaf::gui::Panel> Window::get_content_panel() const
+{
+    //! \todo
+    NSLog(@"Getting content panel");
+    return boost::shared_ptr<cpaf::gui::Panel>();
 }

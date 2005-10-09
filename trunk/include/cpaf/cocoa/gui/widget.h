@@ -86,11 +86,12 @@ public:
     virtual bool is_enabled() const;
     virtual bool is_shown() const;
 
-    virtual boost::shared_ptr<cpaf::gui::Panel> get_parent() const { return boost::shared_ptr<cpaf::gui::Panel>(); } //! \todo;
-    virtual boost::shared_ptr<cpaf::gui::Window> get_parent_window() const { return boost::shared_ptr<cpaf::gui::Window>(); } //! \todo;
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_parent() const;
+    virtual boost::shared_ptr<cpaf::gui::Window> get_parent_window() const;
 
     // implementation specific
     cpaf::object_id get_wrapper_id() { return m_wrapper_id; }
+    template<typename T> boost::shared_ptr<T> get_wrapper() const { return boost::dynamic_pointer_cast<T>(m_wrapper.lock()); }
 };
 
         } // gui

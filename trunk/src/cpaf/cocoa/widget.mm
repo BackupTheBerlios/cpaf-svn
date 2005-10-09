@@ -7,6 +7,7 @@
 #include <cpaf/cocoa/gui/widget.h>
 #include <cpaf/gui/widget.h>
 #include <cpaf/gui/panel.h>
+#include <cpaf/gui/window.h>
 #include <cpaf/cocoa/utils.h>
 #include <cpaf/event/event.h>
 
@@ -24,8 +25,7 @@ using namespace cpaf::cocoa::utils;
 
 void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
 {
-	m_wrapper = params.get_wrapper();
-    //cpaf::gui::Widget *parent;
+    m_wrapper = params.get_wrapper();
     
     if ([widget respondsToSelector:@selector(setCpafWidget:)])
         [widget setCpafWidget:this];        
@@ -34,13 +34,16 @@ void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &
     //! \todo m_min_size, m_max_size
 
     m_object = widget;    
-    boost::shared_ptr<cpaf::gui::Panel> parent = params.get_parent();
 
     //! \todo What's if we're adding the widget later to a container?
-    if (parent)
+    if (params.get_parent())
     {
-        //! \todo Check if the parent is a window or so
-        [[(id)parent->get_handle() contentView] addSubview:m_object];
+        id parent = (id)params.get_parent()->get_handle();
+        if ([parent isKindOfClass:[NSWindow class]])
+            [parent setContentView:m_object];
+        else if ([parent isKindOfClass:[NSView class]])
+            [parent addSubview:m_object];
+        //! \todo else?
     }
 
     // The widget shouldn't move when we resize the window
@@ -146,4 +149,31 @@ bool cpaf::cocoa::gui::Widget::is_enabled() const
 bool cpaf::cocoa::gui::Widget::is_shown() const
 {
     return false; //! \todo
+}
+
+boost::shared_ptr<cpaf::gui::Panel> cpaf::cocoa::gui::Widget::get_parent() const
+{
+    id parent = [m_object superview];
+
+    if (parent && [parent respondsToSelector:@selector(cpafWidget)])
+    {
+        cpaf::cocoa::gui::Widget *w = [parent cpafWidget];
+        return w->get_wrapper<cpaf::gui::Panel>();
+    }
+
+    //! \todo What should I do if the parent doesn't'respond to cpafWidget ?
+    return boost::shared_ptr<cpaf::gui::Panel>();
+}
+boost::shared_ptr<cpaf::gui::Window> cpaf::cocoa::gui::Widget::get_parent_window() const
+{
+    NSWindow *win = [m_object window];
+
+    if ([win respondsToSelector:@selector(cpafWidget)])
+    {
+        cpaf::cocoa::gui::Widget *w = [win cpafWidget];
+        return w->get_wrapper<cpaf::gui::Window>();
+    }
+
+    //! \todo What should I do if the parent doesn't'respond to cpafWidget ?
+    return boost::shared_ptr<cpaf::gui::Window>();
 }

@@ -48,8 +48,8 @@ public:
     virtual cpaf::Size get_client_size();
     virtual cpaf::Point get_client_position();
 
-    virtual void set_content_panel(cpaf::api::gui::Panel *p) { } //! \todo;
-    virtual boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const { return boost::shared_ptr<cpaf::gui::Panel>(); } //! \todo
+    virtual void set_content_panel(cpaf::api::gui::Panel *p);
+    virtual boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const;
 };
 
         } // gui

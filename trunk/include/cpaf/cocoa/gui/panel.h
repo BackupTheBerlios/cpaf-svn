@@ -19,6 +19,9 @@ class Panel : public virtual cpaf::cocoa::gui::Widget, public virtual cpaf::api:
 {
 public:
     void create(const cpaf::gui::initializer::PanelData &params);
+
+    // Implementation specific
+    boost::shared_ptr<cpaf::gui::LayoutManager> m_layout_manager;
 };
 
         } // gui
