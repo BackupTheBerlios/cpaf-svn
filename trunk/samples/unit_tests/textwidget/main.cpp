@@ -50,12 +50,12 @@ private:
 */
 bool MyApp::init()
 {
-    cpaf::gui::GridBagLayout *gblm_outer;
-    boost::shared_ptr<Panel> panel_outer =Panel::create(Panel::Initializer().layout_manager(gblm_outer = new cpaf::gui::GridBagLayout));
+    boost::shared_ptr<cpaf::gui::GridBagLayout> gblm_outer(new cpaf::gui::GridBagLayout);
+    boost::shared_ptr<Panel> panel_outer =Panel::create(Panel::Initializer().layout_manager(gblm_outer));
 
     // use a second panel with another GBLM to simulate column spanning until I implement it
-    cpaf::gui::GridBagLayout *gblm;
-    boost::shared_ptr<Panel> panel_inner =Panel::create(Panel::Initializer().parent(panel_outer).show().layout_manager(gblm = new cpaf::gui::GridBagLayout));
+    boost::shared_ptr<cpaf::gui::GridBagLayout> gblm(new cpaf::gui::GridBagLayout);
+    boost::shared_ptr<Panel> panel_inner =Panel::create(Panel::Initializer().parent(panel_outer).show().layout_manager(gblm));
 
     // work around for incomplete GBLM implementation (can't calculate gblm min size)
     panel_inner->set_min_size(cpaf::Size(0, 134));
@@ -76,38 +76,32 @@ bool MyApp::init()
 
     boost::shared_ptr<Button> get_text =Button::create(btn_init
         .label("Get text")
-        .size(cpaf::Size(100,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_text->get_id()) (&MyApp::get_text, *this);
     boost::shared_ptr<Button> get_selection_range =Button::create(btn_init
         .label("Get selection range")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_selection_range->get_id()) (&MyApp::get_selection_range, *this);
     boost::shared_ptr<Button> get_selection_bounds =Button::create(btn_init
         .label("Get selection bounds")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_selection_bounds->get_id()) (&MyApp::get_selection_bounds, *this);
 
     boost::shared_ptr<Button> get_insertion_point =Button::create(btn_init
         .label("Get insertion point")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_insertion_point->get_id()) (&MyApp::get_insertion_point, *this);
     boost::shared_ptr<Button> get_length =Button::create(btn_init
         .label("Get length")
-        .size(cpaf::Size(100,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_length->get_id()) (&MyApp::get_length, *this);
     boost::shared_ptr<Button> toggle_read_only =Button::create(btn_init
         .label("Toggle read only")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, toggle_read_only->get_id()) (&MyApp::toggle_read_only, *this);
@@ -115,45 +109,36 @@ bool MyApp::init()
 
     boost::shared_ptr<Button> get_text_in_range =Button::create(btn_init
         .label("Get text in range")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, get_text_in_range->get_id()) (&MyApp::get_text_in_range, *this);
     boost::shared_ptr<Button> set_selection_range =Button::create(btn_init
         .label("Set selection range")
-        .size(cpaf::Size(150,30))
-        .position(cpaf::Point(10,135))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_selection_range->get_id()) (&MyApp::set_selection_range, *this);
     boost::shared_ptr<Button> set_selection_bounds =Button::create(btn_init
         .label("Set selection bounds")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_selection_bounds->get_id()) (&MyApp::set_selection_bounds, *this);
     boost::shared_ptr<Button> set_insertion_point =Button::create(btn_init
         .label("Set insertion point")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_insertion_point->get_id()) (&MyApp::set_insertion_point, *this);
     boost::shared_ptr<Button> delete_range =Button::create(btn_init
         .label("Delete range")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, delete_range->get_id()) (&MyApp::delete_range, *this);
     boost::shared_ptr<Button> insert =Button::create(btn_init
         .label("Insert")
-        .size(cpaf::Size(75,30))
-        .position(cpaf::Point(170,170))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, insert->get_id()) (&MyApp::insert, *this);
     boost::shared_ptr<Button> set_max_length =Button::create(btn_init
         .label("Set max length")
-        .size(cpaf::Size(150,30))
         .show()
         );
     connect<Event, false>(BUTTON_CLICK, set_max_length->get_id()) (&MyApp::set_max_length, *this);
