@@ -157,6 +157,8 @@ protected:
 
         // set our content panel
         set_content_panel(panel);
+        if (get_content_panel() != panel)
+            cpaf::DebugReport() << "get_content_panel() doesn't work!";
 
         // create our button child
         m_btn = MyButton::create(MyButton::Initializer().parent(panel));

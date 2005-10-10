@@ -25,9 +25,6 @@ Functions to implement:
     EntryBox::insert_text(const std::string &str)
     EntryBox::set_max_length
     
-    Window::set_content_panel
-    Window::get_content_panel
-    
     
 Respect initializer values during widget construction
 

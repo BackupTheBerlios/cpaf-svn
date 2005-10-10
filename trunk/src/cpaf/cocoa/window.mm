@@ -45,7 +45,11 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
     if ([m_object respondsToSelector:@selector(setCpafWidget:)])
         [m_object setCpafWidget:this];
 
-    set_client_size(params.get_client_size());
+    //! \todo Is there no default_size() ?
+    if (params.get_client_size().width > 0 && params.get_client_size().height > 0)
+      set_client_size(params.get_client_size());
+    else
+      set_client_size(cpaf::Size(400.0, 300.0)); //! \todo What's'a good default size?
     
     if (!params.default_position())
         set_position(params.get_position());
@@ -57,11 +61,7 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
     set_title(params.get_title());
 
     if (params.get_content_panel())
-    {
-        Panel * root_panel = dynamic_cast<Panel*>(params.get_content_panel()->get_impl());
-        [m_object setContentView:(id)root_panel->get_handle()];
-        params.get_content_panel()->show(true, false);
-    }
+        set_content_panel(params.get_content_panel()->get_impl());
 
     //! \todo params.m_parent, params.m_enable
 
@@ -172,12 +172,12 @@ cpaf::Point Window::get_client_position()
 
 void Window::set_content_panel(cpaf::api::gui::Panel *p)
 {
-    //! \todo
-    NSLog(@"Setting content panel");
+    //! \todo What's happening with the old panel?
+    m_root_panel = dynamic_cast<Panel*>(p);
+    [m_object setContentView:(id)m_root_panel->get_handle()];
+    m_root_panel->show(true, false);
 }
 boost::shared_ptr<cpaf::gui::Panel> Window::get_content_panel() const
 {
-    //! \todo
-    NSLog(@"Getting content panel");
-    return boost::shared_ptr<cpaf::gui::Panel>();
+    return m_root_panel->get_wrapper<cpaf::gui::Panel>();
 }

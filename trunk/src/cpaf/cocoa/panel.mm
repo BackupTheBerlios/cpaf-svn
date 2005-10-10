@@ -22,3 +22,17 @@ void Panel::create(const cpaf::gui::initializer::PanelData &params)
 
     send_event(cpaf::event::WIDGET_CREATE);
 }
+
+void Panel::destroy()
+{
+  NSWindow *window = [m_object window];
+
+  // Are we the content view of a window?
+  if ([window contentView] == m_object)
+  {
+      // Then set up a dummy content view, so we don't crash
+      [window setContentView:[[[NSView alloc] init] autorelease]];
+  }
+
+  Widget::destroy();
+}

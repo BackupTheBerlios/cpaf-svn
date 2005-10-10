@@ -9,6 +9,7 @@
 
 #include <cpaf/api/gui/window.h>
 #include <cpaf/cocoa/gui/widget.h>
+#include <cpaf/cocoa/gui/panel.h>
 #include <cpaf/types.h>
 
 #include <string>
@@ -19,6 +20,8 @@ namespace cpaf {
 
 class Window : public virtual cpaf::cocoa::gui::Widget, public virtual cpaf::api::gui::Window
 {
+private:
+    cpaf::cocoa::gui::Panel *m_root_panel;
 public:
     Window() { };
 

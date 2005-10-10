@@ -26,6 +26,7 @@ using namespace cpaf::cocoa::utils;
 void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
 {
     m_wrapper = params.get_wrapper();
+    m_wrapper_id = params.get_wrapper()->get_id();
 
     m_object = widget;
     
@@ -75,7 +76,7 @@ void cpaf::cocoa::gui::Widget::destroy()
         if ([m_object isKindOfClass:[NSView class]])
             subviews = [m_object subviews];
         if ([m_object isKindOfClass:[NSWindow class]])
-            subviews = [[m_object contentView] subviews];
+            subviews = [NSArray arrayWithObject:[m_object contentView]];
 
         // Release the children
         if (subviews)
@@ -179,10 +180,18 @@ void cpaf::cocoa::gui::Widget::set_rect(const cpaf::Rect& rect)
 {
     NSRect f = [m_object frame];
 
-    f.origin.x = rect.position.x;
-    f.origin.y = [[m_object superview] frame].size.height - rect.position.y - rect.size.height;
-    f.size.width = rect.size.width;
-    f.size.height = rect.size.height;
+    /*!
+        \note I am rounding the coordinates, because Mac OS X up to 10.4 has rendering bugs with
+              not rounded coordinates. We may need to change that behaviour when Mac OS X 10.5 is
+              out, which may support UI-scaling.
+
+        \todo There are other places where we have to round the coordinates
+    */
+
+    f.origin.x = rintf(rect.position.x);
+    f.origin.y = [[m_object superview] frame].size.height - rintf(rect.position.y) - rintf(rect.size.height);
+    f.size.width = rintf(rect.size.width);
+    f.size.height = rintf(rect.size.height);
 
     [m_object setFrame:f];
 }
