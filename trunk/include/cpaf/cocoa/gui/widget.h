@@ -59,6 +59,9 @@ protected:
 
     void send_event(cpaf::event::event_id event_id); // cocoa specific
     void create(const cpaf::gui::initializer::WidgetData &params, id widget);
+
+    cpaf::Size m_min_size, m_max_size, m_natural_size;
+
     Widget() { }
 
 public:
@@ -66,17 +69,17 @@ public:
 
     // object interface
     virtual void set_size(const cpaf::Size&);
-    virtual void set_min_size(const cpaf::Size&) { } //! \todo
-    virtual void set_max_size(const cpaf::Size&) { } //! \todo
-    virtual void set_natural_size(const cpaf::Size&) { } //! \todo
+    virtual void set_min_size(const cpaf::Size&);
+    virtual void set_max_size(const cpaf::Size&);
+    virtual void set_natural_size(const cpaf::Size&);
     virtual void set_position(const cpaf::Point&);
     virtual cpaf::Size get_size() const;
-    virtual cpaf::Size get_min_size() const { return cpaf::Size(); } //! \todo
-    virtual cpaf::Size get_max_size() const { return cpaf::Size(); } //! \todo
-    virtual cpaf::Size get_natural_size() const { return cpaf::Size(); } //! \todo
-    virtual cpaf::Point get_position() const { return cpaf::Point(); } //! \todo
-    virtual void set_rect(const cpaf::Rect&) { }; //! \todo
-    virtual cpaf::Rect get_rect() const { return cpaf::Rect(); } //! \todo
+    virtual cpaf::Size get_min_size() const;
+    virtual cpaf::Size get_max_size() const;
+    virtual cpaf::Size get_natural_size() const;
+    virtual cpaf::Point get_position() const;
+    virtual void set_rect(const cpaf::Rect&);
+    virtual cpaf::Rect get_rect() const;
 
     // widget interface
     virtual void destroy();

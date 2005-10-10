@@ -7,10 +7,10 @@
 #include <cpaf/cocoa/gui/panel.h>
 #include <cpaf/exception.h>
 
+using namespace cpaf::cocoa::gui;
+
 CPAF_COCOA_INTERFACE(View)
 CPAF_COCOA_IMPLEMENTATION(View)
-
-using namespace cpaf::cocoa::gui;
 
 void Panel::create(const cpaf::gui::initializer::PanelData &params)
 {

@@ -1,15 +1,7 @@
 Functions to implement:
-    Widget::set_min_size
-    Widget::set_max_size
-    Widget::set_natural_size
     Widget::set_rect
-    Widget::get_min_Size
-    Widget::get_max_size
-    Widget::get_natural_size
     Widget::get_position
     Widget::get_rect
-    Widget::get_parent
-    Widget::get_parent_window
 
     TextBox::get_text
     TextBox::get_length

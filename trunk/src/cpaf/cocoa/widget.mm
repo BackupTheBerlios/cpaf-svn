@@ -26,14 +26,17 @@ using namespace cpaf::cocoa::utils;
 void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
 {
     m_wrapper = params.get_wrapper();
+
+    m_object = widget;
     
     if ([widget respondsToSelector:@selector(setCpafWidget:)])
         [widget setCpafWidget:this];        
 
     //! \todo m_show, m_activate, m_enable
-    //! \todo m_min_size, m_max_size
 
-    m_object = widget;    
+    m_min_size = params.get_min_size();
+    m_max_size = params.get_max_size();
+    m_natural_size = params.get_natural_size();
 
     //! \todo What's if we're adding the widget later to a container?
     if (params.get_parent())
@@ -44,10 +47,12 @@ void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &
         else if ([parent isKindOfClass:[NSView class]])
             [parent addSubview:m_object];
         //! \todo else?
+        //! \todo do_layout?
     }
 
     // The widget shouldn't move when we resize the window
-    [m_object setAutoresizingMask:NSViewMinYMargin];
+    //! \todo Remove this?
+    // [m_object setAutoresizingMask:NSViewMinYMargin];
 
     // Don't send a WIDGET_CREATE-event here, every subclass has to do that
 }
@@ -118,6 +123,21 @@ void cpaf::cocoa::gui::Widget::set_size(const cpaf::Size& s)
     [m_object setFrame:f];
 }
 
+void cpaf::cocoa::gui::Widget::set_min_size(const cpaf::Size& size)
+{
+    m_min_size = size;
+}
+
+void cpaf::cocoa::gui::Widget::set_max_size(const cpaf::Size& size)
+{
+    m_max_size = size;
+}
+
+void cpaf::cocoa::gui::Widget::set_natural_size(const cpaf::Size& size)
+{
+    m_natural_size = size;
+}
+
 void cpaf::cocoa::gui::Widget::set_position(const cpaf::Point& s)
 {
     NSRect f = [m_object frame];
@@ -128,7 +148,45 @@ void cpaf::cocoa::gui::Widget::set_position(const cpaf::Point& s)
 
 cpaf::Size cpaf::cocoa::gui::Widget::get_size() const
 {
-    return cpaf::Size(); //! \todo
+    //! \todo
+    NSLog(@"TODO: Widget::get_size()");
+    return cpaf::Size();
+}
+
+cpaf::Size cpaf::cocoa::gui::Widget::get_min_size() const
+{
+    return m_min_size;
+}
+
+cpaf::Size cpaf::cocoa::gui::Widget::get_max_size() const
+{
+    return m_max_size;
+}
+
+cpaf::Size cpaf::cocoa::gui::Widget::get_natural_size() const
+{
+    return m_natural_size;
+}
+
+cpaf::Point cpaf::cocoa::gui::Widget::get_position() const
+{
+    //! \todo
+    NSLog(@"TODO: Widget::get_position()");
+    return cpaf::Point();
+}
+
+void cpaf::cocoa::gui::Widget::set_rect(const cpaf::Rect& rect)
+{
+    //! \todo use setFrame: directly and remove the debug message
+    NSLog(@"set rect to %@: %f %f %f %f", [m_object description], rect.position.x, rect.position.y, rect.size.width, rect.size.height);
+    set_position(rect.position);
+    set_size(rect.size);
+}
+
+cpaf::Rect cpaf::cocoa::gui::Widget::get_rect() const
+{
+    //! \todo
+    return cpaf::Rect();
 }
 
 void cpaf::cocoa::gui::Widget::enable(bool e)

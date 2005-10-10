@@ -15,6 +15,23 @@ using namespace cpaf::cocoa::gui;
 CPAF_COCOA_INTERFACE(Window)
 CPAF_COCOA_IMPLEMENTATION(Window)
 
+@interface CpafWindow (Cpaf)
+- (void)windowDidResize:(NSNotification *)aNotification;
+@end
+
+@implementation CpafWindow (Cpaf)
+- (void)windowDidResize:(NSNotification *)aNotification
+{
+    id contentView = [self contentView];
+    if ([contentView respondsToSelector:@selector(cpafWidget)])
+    {
+        Panel *p = dynamic_cast<Panel *>([contentView cpafWidget]);
+        NSRect r = [contentView frame];
+        p->m_layout_manager->do_layout(cpaf::Size(r.size.width, r.size.height));
+    }
+}
+@end
+
 void Window::create(const cpaf::gui::initializer::WindowData &params)
 {
     m_wrapper = params.get_wrapper();
@@ -23,6 +40,7 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
         styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask)
         backing:NSBackingStoreBuffered defer:YES];
     [m_object setReleasedWhenClosed:NO];
+    [m_object setDelegate:m_object];
 
     if ([m_object respondsToSelector:@selector(setCpafWidget:)])
         [m_object setCpafWidget:this];
