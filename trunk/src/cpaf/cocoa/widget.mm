@@ -177,10 +177,14 @@ cpaf::Point cpaf::cocoa::gui::Widget::get_position() const
 
 void cpaf::cocoa::gui::Widget::set_rect(const cpaf::Rect& rect)
 {
-    //! \todo use setFrame: directly and remove the debug message
-    NSLog(@"set rect to %@: %f %f %f %f", [m_object description], rect.position.x, rect.position.y, rect.size.width, rect.size.height);
-    set_position(rect.position);
-    set_size(rect.size);
+    NSRect f = [m_object frame];
+
+    f.origin.x = rect.position.x;
+    f.origin.y = [[m_object superview] frame].size.height - rect.position.y - rect.size.height;
+    f.size.width = rect.size.width;
+    f.size.height = rect.size.height;
+
+    [m_object setFrame:f];
 }
 
 cpaf::Rect cpaf::cocoa::gui::Widget::get_rect() const

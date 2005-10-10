@@ -1,5 +1,4 @@
 Functions to implement:
-    Widget::set_rect
     Widget::get_position
     Widget::get_rect
 
@@ -28,8 +27,6 @@ Functions to implement:
     
     Window::set_content_panel
     Window::get_content_panel
-    Window::get_client_size
-    Window::get_client_position
     
     
 Respect initializer values during widget construction

@@ -4,8 +4,7 @@ OBJ_DIR = build
 OUTPUT_DIR = lib
 TARGET = libcpaf.dylib
 INCLUDE_DIRS = -Iinclude -I/sw/include
-#CXXFLAGS = -pipe -D_DEBUG -DCPAF_COCOA -DCPAF_BUILDING -DCPAF_DLL -ggdb -Wall
-CXXFLAGS = -arch ppc -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -g -O0 -Wno-four-char-constants -DCPAF_COCOA -DCPAF_BUILDING -DCPAF_DLL -D_DEBUG -fmessage-length=0 -mtune=G4 -mfix-and-continue
+CXXFLAGS = -pipe -D_DEBUG -DCPAF_COCOA -DCPAF_BUILDING -DCPAF_DLL -Wall -ggdb
 LD_FLAGS = -dynamiclib -framework Cocoa
 
 SRC_OBJS =                      \

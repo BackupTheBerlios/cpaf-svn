@@ -160,12 +160,14 @@ void Window::set_client_size(const cpaf::Size &s)
 
 cpaf::Size Window::get_client_size()
 {
-    return cpaf::Size(); //! \todo
+    NSRect f = [[m_object contentView] frame];
+    return cpaf::Size(f.size.width, f.size.height);
 }
 
 cpaf::Point Window::get_client_position()
 {
-    return cpaf::Point(); //! \todo
+    NSRect f = [[m_object contentView] frame];
+    return convert_point(f.origin);
 }
 
 void Window::set_content_panel(cpaf::api::gui::Panel *p)
