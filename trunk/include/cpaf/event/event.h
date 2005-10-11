@@ -35,12 +35,12 @@ namespace cpaf {
     namespace event {
 
 // prototypes
-class ListenerFunctorBase;
+class Slot;
 class EventChain;
 class Manager;
 
 template<typename E> class EventChainWrapper;
-template<typename L, typename E> class ListenerFunctor;
+template<typename L, typename E> class SafeSlot;
 
 /*!
     Return an reference to the main threads Manager object
@@ -54,18 +54,38 @@ const object_id OBJECT_ID_ANY = 0;
 
 class CPAF_API Event
 {
-private:
-    event_id m_id;
-    object_id m_obj_id;
-    bool m_continue;
-
 public:
     /*!
         Construct an event with the given event_id \a id being sent from the object \a obj
     */
     Event(event_id id, object_id obj);
 
+    /*!
+        Copy constructors are needed for all event types because event objects must
+        be duplicated during internal event processing.
+
+        \todo This copying process is candidate for a memory pooling optimization to avoid
+        the overhead of too many heap allocations.
+    */
+    Event(const Event &other)
+        : m_id(other.m_id),
+        m_obj_id(other.m_obj_id),
+        m_continue(other.m_continue)
+    { }
+
     virtual ~Event() { }
+
+    /*!
+        Creates a clone of this event All event derivatives must implement their own
+        version of this function because event objects must be duplicated during
+        interal event processing.
+
+        \todo This can be optimized by utilizing a memory pool allocation strategy
+    */
+    virtual Event *clone()
+    {
+        return new Event(*this);
+    }
 
     /*!
         \return The id of this event
@@ -88,19 +108,24 @@ public:
         \return Whether or not processing of this event will continue down the event chain
     */
     bool should_continue() { return m_continue; }
+
+private:
+    event_id m_id;
+    object_id m_obj_id;
+    bool m_continue;
 };
 
 /*!
     Base functor class providing a virtual operator().
 */
-class ListenerFunctorBase
+class Slot
 {
 public:
 
     /*!
         Virtual dtor
     */
-    virtual ~ListenerFunctorBase() { }
+    virtual ~Slot() { }
 
     /*!
         Invoke the event listener
@@ -117,16 +142,16 @@ class CPAF_API EventChain
     friend class Manager;
 
 private:
-    typedef boost::shared_ptr<ListenerFunctorBase> functor_ptr_type;
-    typedef std::vector<functor_ptr_type> listener_vector_type;
-    listener_vector_type m_listeners;
+    typedef boost::shared_ptr<Slot> slot_type;
+    typedef std::vector<slot_type> slot_chain_type;
+    slot_chain_type m_slots;
 
     Manager *m_manager;
 
     object_id m_object_id; // the object that this eventchain recieves events from
     event_id m_event_id; // the event id that this eventchain recieves events from
 
-    /*
+    /*!
         Private constructor for use via the friended Manager class
     */
     EventChain(Manager *manager, object_id object, event_id event);
@@ -148,9 +173,9 @@ public:
     void process_event(Event &e);
 
     /*!
-        Connect an event listener
+        Add a slot to this event chain.
     */
-    EventChain &connect(ListenerFunctorBase *func);
+    EventChain &connect(Slot *func);
 };
 
 
@@ -256,9 +281,9 @@ public:
         \param l Listening object connecting this event
         \param function The listening function
     */
-    template<typename L> EventChainWrapper<E> &operator()(typename ListenerFunctor<L, E>::ptr_type function, L &l)
+    template<typename L> EventChainWrapper<E> &operator()(typename SafeSlot<L, E>::ptr_type function, L &l)
     {
-        m_chain.connect(new ListenerFunctor<L,E>(l, function));
+        m_chain.connect(new SafeSlot<L,E>(l, function));
         return *this;
     }
 };
@@ -266,7 +291,7 @@ public:
 /*!
     Templated specialization of the base functor class for type safety
 */
-template<typename L, typename E> class ListenerFunctor : public ListenerFunctorBase
+template<typename L, typename E> class SafeSlot : public Slot
 {
 public:
     typedef void(L::*ptr_type)(Event &e); // the function pointer for this functor
@@ -277,13 +302,13 @@ private:
     L &m_listener;
 
 public:
-    ListenerFunctor(L &listener, ptr_type function)
+    SafeSlot(L &listener, ptr_type function)
         : m_ptr(function),
         m_listener(listener)
     { }
 
     /*!
-        Invokes the event listener function via the function pointer.
+        Invokes the slot via the function pointer.
         Type safety is gaurenteed via dynamic_cast.
     */
     void operator() (Event &e)

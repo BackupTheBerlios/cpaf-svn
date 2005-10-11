@@ -85,7 +85,7 @@ void cpaf::event::Manager::send_event(Event &e)
 inline void cpaf::event::Manager::send_event(event_chain_vector &chain, Event &e)
 {
     for( event_chain_vector::iterator i = chain.begin(), end = chain.end(); i != end; ++i )
-            (*i)->process_event(e);
+        (*i)->process_event(e);
 }
 
 /*
@@ -97,11 +97,11 @@ cpaf::event::EventChain::EventChain(Manager *manager, object_id object, event_id
     m_event_id(event)
 { }
 
-EventChain &cpaf::event::EventChain::connect(ListenerFunctorBase *func)
+EventChain &cpaf::event::EventChain::connect(Slot *func)
 {
     // add the event listener to the end for now
     //! \todo allow insertions into an arbitrary position in the chain
-    m_listeners.push_back(functor_ptr_type(func));
+    m_slots.push_back(slot_type(func));
 
     return *this;
 }
@@ -109,7 +109,7 @@ EventChain &cpaf::event::EventChain::connect(ListenerFunctorBase *func)
 void cpaf::event::EventChain::process_event(Event &e)
 {
     // send the event to all listeners in our chain starting from the back
-    for( listener_vector_type::reverse_iterator i = m_listeners.rbegin(), end = m_listeners.rend(); i != end; ++i )
+    for( slot_chain_type::reverse_iterator i = m_slots.rbegin(), end = m_slots.rend(); i != end; ++i )
     {
         // initialize the event
         e.continue_processing(false);
