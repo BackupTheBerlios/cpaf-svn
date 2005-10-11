@@ -253,9 +253,6 @@
 				RelativePath=".\include\cpaf\main.h">
 			</File>
 			<File
-				RelativePath=".\include\cpaf\win32\resource.h">
-			</File>
-			<File
 				RelativePath=".\include\cpaf\types.h">
 			</File>
 			<Filter
@@ -397,9 +394,6 @@
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gtk2\gui\panel.h">
-					</File>
-					<File
-						RelativePath=".\include\cpaf\gtk2\gui\passwordbox.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\gtk2\gui\textbox.h">
@@ -2240,7 +2234,13 @@
 			RelativePath=".\cocoa_todo.txt">
 		</File>
 		<File
+			RelativePath=".\cpaf_todo.txt">
+		</File>
+		<File
 			RelativePath=".\gtk2_todo.txt">
+		</File>
+		<File
+			RelativePath=".\win32_todo.txt">
 		</File>
 	</Files>
 	<Globals>
