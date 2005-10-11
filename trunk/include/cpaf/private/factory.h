@@ -25,12 +25,6 @@
 
 #include <cpaf/dllimpexp.h>
 
-//#include <cpaf/gui/api-prototypes.h>
-//#include <cpaf/gui/widget.h>
-//#include <cpaf/gui/button.h>
-//#include <cpaf/gui/window.h>
-//#include <map>
-
 namespace cpaf {
     namespace gui {
         namespace factory {
@@ -64,26 +58,6 @@ namespace cpaf { \
     } \
 }
 
-//These functions are currently unused, see "technotes/widget destruction.txt"
-/*
-// map from implementations to their wrappers
-typedef std::map<cpaf::api::gui::Widget *, cpaf::gui::Widget *> WidgetImplementationWrapperMap;
-
-// adds a wrappper implementation pair to the map
-void add_implementation_wrapper(cpaf::api::gui::Widget *impl, cpaf::gui::Widget* wrapper);
-
-// removes a wrapper implementation pair from the map but does not delete the implementation or wrapper objects
-// this is called by top level wrapper ctors to allow creation of them on the stack
-void remove_implementation_wrapper(cpaf::api::gui::Widget *impl);
-
-// called by gui::Foo destructors to delete their implementations only if the impl pointer is
-// in the map. If the impl pointer is in the map, it will be removed, and then deleted.
-void delete_widget_implementation(cpaf::api::gui::Widget *impl);
-
-// called by implementation destructors to delete their gui wrappers only if the implementation
-// pointer is in the map. If the impl pointer is in the map, it will be removed, and its wrapper deleted.
-void delete_implementation_wrapper(cpaf::api::gui::Widget *impl);
-*/
         } // factory
     } // gui
 } // cpaf

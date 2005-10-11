@@ -32,16 +32,12 @@
 using namespace cpaf::win32::gui;
 
 namespace {
-    //typedef std::map<HWND, Widget *> WidgetMap;
-    //WidgetMap widget_map;
     unsigned int num_widgets = 0;
     WidgetDeletionStack widget_deletion_stack;
 }
 
 void cpaf::win32::gui::associate_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
 {
-    //widget_map[h] = wnd;
-
     // don't store NULL pointers because that throws off the num_widgets count
     // when they are removed
     if( wnd == 0 )
@@ -54,27 +50,11 @@ void cpaf::win32::gui::associate_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
 
 void cpaf::win32::gui::disassociate_hwnd(HWND h)
 {
-    //WidgetMap::iterator i = widget_map.find(h);
-
-    //if( i != widget_map.end() )
-        //widget_map.erase(i);
-
     ::RemoveProp(h, "cpaf::widget");
-
-    // we do not throw if the hwnd was not found in the map because this function is called by
-    // win32::gui::Widget dtor. Throwing dtors are bad and cause all sorts of trouble as I recently
-    // discovered...
 }
 
 Widget *cpaf::win32::gui::get_widget_from_hwnd(HWND h)
 {
-    /*
-    WidgetMap::iterator i = widget_map.find(h);
-    if( i != widget_map.end() )
-        return i->second;
-    else
-        return NULL;
-    */
     return static_cast<Widget*>(::GetProp(h, "cpaf::widget"));
 }
 
@@ -110,7 +90,6 @@ CreationInfo::CreationInfo(Widget *w)
 
 LRESULT CALLBACK cpaf::win32::gui::widget_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-    //DBG_MSG_2("cpaf::win32::gui::widget_wndproc: %s", cpaf::win32::MessageTypeNames[msg]);
     Widget *wnd = get_widget_from_hwnd(hwnd);
 
     // once we can find our widget class, use it to process messages

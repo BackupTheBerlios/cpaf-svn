@@ -59,7 +59,7 @@ cpaf::text_range_t TextWidget::get_length() const
 
 cpaf::TextRange TextWidget::get_selection_range() const
 {
-    // unfortunately, the win32 api returns a normalized ranged.
+    // unfortunately, the win32 api returns a normalized range.
     // in other words, we cannot find out where the caret is in relation
     // to the end of the selection. At least not for EntryBox and TextBox
     TextRange r;

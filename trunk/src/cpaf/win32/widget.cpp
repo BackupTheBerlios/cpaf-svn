@@ -32,9 +32,6 @@
 
 #include <cpaf/win32/msgnames.h>
 
-// for delete_implementation_wrapper
-//#include <cpaf/private/factory.h>
-
 #include <cpaf/gui/panel.h>
 #include <cpaf/gui/window.h>
 
@@ -95,11 +92,6 @@ void Widget::destroy()
 
 Widget::~Widget()
 {
-    // delete our wrapper safely
-    //cpaf::gui::factory::delete_implementation_wrapper(this);
-
-    // delete our wrapper
-    //delete m_wrapper;
     cpaf::DebugReport() << "~Widget";
 
     /* 
@@ -120,7 +112,6 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
     case WM_CREATE:
         {
             // make sure we initialize all necessary members before sending WIDGET_CREATE
-            // like m_hwnd
             m_hwnd = hwnd;
 
             // send the creation event

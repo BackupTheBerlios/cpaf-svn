@@ -37,12 +37,6 @@ void Button::create(const cpaf::gui::initializer::ButtonData &params)
 
 int Button::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-    /*switch(msg)
-    {
-    case WM_GETDLGCODE:
-        return DLGC_BUTTON | DLGC_UNDEFPUSHBUTTON;
-    }*/
-
     return Widget::process_message(hwnd, msg, w_param, l_param);
 }
 

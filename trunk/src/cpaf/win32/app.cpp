@@ -80,8 +80,6 @@ int cpaf::gui::App::run()
                 ::TranslateMessage(&msg);
                 ::DispatchMessage(&msg);
             }
-            //else
-                //DBG_MSG("IsDialogMessage processed");
         }
     }
 

@@ -52,15 +52,11 @@ WNDCLASSEX wnd_class = {
 
 LRESULT CALLBACK cpaf::win32::gui::window_wndproc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-    //DBG_MSG_2("cpaf::win32::gui::window_wndproc: %s", cpaf::win32::MessageTypeNames[msg]);
     return ::DefWindowProc(hwnd, msg, w_param, l_param);
 }
 
 void Window::create(const cpaf::gui::initializer::WindowData &params)
 {
-    //! \todo remove duplicated code from window and button create methods
-
-    //! \todo handle client_size from the factory
     static bool registered = false;
 
     // register the window class
@@ -74,6 +70,7 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
 
     int style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN, style_ex = WS_EX_CONTROLPARENT;
 
+    //! \todo handle client_size from the factory
     // handle client size
     RECT rect = {0};
     cpaf::Size client_size = init_params.get_client_size();
