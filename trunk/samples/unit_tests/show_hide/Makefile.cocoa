@@ -1,8 +1,8 @@
 CC = gcc
 LD = g++
-CPAF_DIR = ../../../..
+CPAF_DIR = ../../..
 TARGET = main
-APP_NAME = create_destroy
+APP_NAME = show_hide
 INCLUDE_DIRS = -I $(CPAF_DIR)/include -I /sw/include
 CXXFLAGS = -pipe -DCPAF_DLL -D_DEBUG -DCPAF_COCOA -ggdb -Wall
 LDFLAGS = -L$(CPAF_DIR)/lib

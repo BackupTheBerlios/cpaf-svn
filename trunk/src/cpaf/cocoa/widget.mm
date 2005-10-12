@@ -50,7 +50,9 @@ void Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
     if ([widget respondsToSelector:@selector(setCpafWidget:)])
         [widget setCpafWidget:this];        
 
-    //! \todo m_show, m_activate, m_enable
+    //! \todo m_enable
+
+    show(params.get_show(), params.get_activate());
 
     m_min_size = params.get_min_size();
     m_max_size = params.get_max_size();
@@ -228,8 +230,8 @@ void Widget::enable(bool e)
 
 void Widget::show(bool show, bool activate)
 {
-    //! \todo
-    NSLog(@"TODO: Widget::show()");
+    //! \todo activate
+    [m_object setHidden:!show];
 }
 
 bool Widget::is_enabled() const
@@ -240,8 +242,7 @@ bool Widget::is_enabled() const
 
 bool Widget::is_shown() const
 {
-    NSLog(@"TODO: Widget::is_shown()");
-    return false; //! \todo
+    return ![m_object isHidden];
 }
 
 boost::shared_ptr<cpaf::gui::Panel> Widget::get_parent() const

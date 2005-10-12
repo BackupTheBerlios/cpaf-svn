@@ -34,7 +34,7 @@ install:
 cleanall:
 	@echo Deleting intermediate files.
 	-@rm -f *.o $(TARGET)
-	-@rm -rf $(TARGET).app
+	-@rm -rf $(APP_NAME).app
 
 clean: cleanall
 
