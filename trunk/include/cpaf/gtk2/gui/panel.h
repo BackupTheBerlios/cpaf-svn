@@ -18,6 +18,9 @@
     You should have received a copy of the GNU Lesser General Public
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+    Copyright (C) 2005 Mart Raudsepp
+    leio (at) dustbite [dot] net
 */
 
 #ifndef CPAF_GTK2_GUI_PANEL_H
