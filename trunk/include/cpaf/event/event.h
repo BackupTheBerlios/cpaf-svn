@@ -36,10 +36,10 @@ namespace cpaf {
 
 // prototypes
 class Slot;
-class EventChain;
+class SlotChain;
 class Manager;
 
-template<typename E> class EventChainWrapper;
+template<typename E> class SlotChainWrapper;
 template<typename L, typename E> class SafeSlot;
 
 /*!
@@ -47,76 +47,83 @@ template<typename L, typename E> class SafeSlot;
 */
 CPAF_API cpaf::event::Manager &get_manager();
 
-typedef boost::shared_ptr<EventChain> event_chain_ptr;
+typedef boost::shared_ptr<SlotChain> slot_chain_ptr;
 
 const event_id EVENT_ID_ANY = 0;
 const object_id OBJECT_ID_ANY = 0;
+
+/*!
+    This enum describes the different types of slot chains.
+    A slot chain's type influences when it will be executed
+    during event processing.
+
+    \todo Document when each type of chain is executed
+*/
+enum SLOT_CHAIN_TYPE {
+    BEFORE = 1,
+    AFTER = 2,
+};
 
 class CPAF_API Event
 {
 public:
     /*!
-        Construct an event with the given event_id \a id being sent from the object \a obj
+        Construct an event.
+
+        \param id   The ID of the event being sent
+        \param obj  The ID of the object sending this event
     */
     Event(event_id id, object_id obj);
 
-    /*!
-        Copy constructors are needed for all event types because event objects must
-        be duplicated during internal event processing.
+    Event(const Event &other);
 
-        \todo This copying process is candidate for a memory pooling optimization to avoid
-        the overhead of too many heap allocations.
-    */
-    Event(const Event &other)
-        : m_id(other.m_id),
-        m_obj_id(other.m_obj_id),
-        m_continue(other.m_continue)
-    { }
-
-    virtual ~Event() { }
+    virtual ~Event();
 
     /*!
-        Creates a clone of this event All event derivatives must implement their own
-        version of this function because event objects must be duplicated during
-        interal event processing.
-
-        \todo This can be optimized by utilizing a memory pool allocation strategy
+        Creates a clone of this event object.
     */
-    virtual Event *clone()
-    {
-        return new Event(*this);
-    }
+    virtual Event *clone() const;
 
     /*!
         \return The id of this event
     */
-    event_id get_id() { return m_id; }
+    event_id get_id() const;
 
     /*!
         \return The id of the object sending this event
     */
-    object_id get_object_id() { return m_obj_id; }
+    object_id get_object_id() const;
 
     /*!
-        Specify whether or not processing of this event continue to further links in the event chain.
+        Specify whether or not processing of this event continue to further slot in the slot chain.
         If you do not wish an event to be processed further, you do not need to do anything. To allow
-        further links in the chain to process the event, specify true to this function.
+        further slot in the chain to process the event, call this function.
     */
-    void continue_processing(bool c = true) { m_continue = c; }
+    void continue_processing(bool c = true) const;
 
     /*!
-        \return Whether or not processing of this event will continue down the event chain
+        \return Whether or not processing of this event should continue down the slot chain
     */
-    bool should_continue() { return m_continue; }
+    bool should_continue() const;
+
+    /*!
+        Vetos the event.
+    */
+    void veto(bool v = false) const;
+
+    /*!
+        \return Whether or not this event has been vetoed.
+    */
+    bool get_veto() const;
 
 private:
-    event_id m_id;
-    object_id m_obj_id;
-    bool m_continue;
+    const event_id m_id;
+    const object_id m_obj_id;
+    mutable bool m_continue, m_veto;
 };
 
 /*!
-    Base functor class providing a virtual operator().
+    Base slot class providing a virtual operator().
 */
 class Slot
 {
@@ -130,55 +137,51 @@ public:
     /*!
         Invoke the event listener
     */
-    virtual void operator() (Event &e) = 0;
+    virtual void operator() (const Event &e) = 0;
 
 };
 
 /*!
-    Represents a chain of event listeners
+    Represents a chain of slots.
 */
-class CPAF_API EventChain
+class CPAF_API SlotChain
 {
-    friend class Manager;
+public:
+    /*!
+        \return The event id that this chain recieves events for
+    */
+    event_id get_event_id() const { return m_event_id; }
+
+    /*!
+        \return The object that this event chain recieves events from
+    */
+    object_id get_object_id() const { return m_object_id; }
+
+    /*!
+        Add a slot to this event chain.
+    */
+    SlotChain &connect(Slot *func);
 
 private:
     typedef boost::shared_ptr<Slot> slot_type;
     typedef std::vector<slot_type> slot_chain_type;
     slot_chain_type m_slots;
 
-    Manager *m_manager;
-
-    object_id m_object_id; // the object that this eventchain recieves events from
-    event_id m_event_id; // the event id that this eventchain recieves events from
+    object_id m_object_id; // the object that this SlotChain recieves events from
+    event_id m_event_id; // the event id that this SlotChain recieves events from
 
     /*!
         Private constructor for use via the friended Manager class
     */
-    EventChain(Manager *manager, object_id object, event_id event);
-
-public:
-    /*!
-        \return The event id that this chain recieves events for
-    */
-    event_id get_event_id() { return m_event_id; }
-
-    /*!
-        \return The object that this event chain recieves events from
-    */
-    object_id get_object_id() { return m_object_id; }
-
+    SlotChain(object_id object, event_id event);
+    
     /*!
         Process an event.
     */
-    void process_event(Event &e);
+    void process_event(Event &event, bool &veto);
 
-    /*!
-        Add a slot to this event chain.
-    */
-    EventChain &connect(Slot *func);
+    friend class Manager;
 };
-
-
 
 /*!
     Main event system object. Manages sending events and connecting listeners which form chains.
@@ -189,28 +192,27 @@ public:
     Manager();
 
     /*!
-        Creates an EventChain object to connect event listeners to.
+        Creates an SlotChain object to connect event listeners to.
 
         \param from     Object to recieve events from
         \param event_id Event id to recieve
-        \param after    If true, this event chain will be a "post processing" event chain. If false,
-                        it is a regular event chain. "Post processing" event chains will recieve events
-                        only after all regular event chains have processed the event.
+        \param type     Specifies what type of slot chain this is. Different types of slot
+                        chains are executed at different times during event processing.
 
-        \return Reference to the EventChain object.
+        \return Reference to the SlotChain object.
     */
-    EventChain &create_event_chain(object_id from, event_id id, bool after = false);
+    SlotChain &create_event_chain(object_id from, event_id id, SLOT_CHAIN_TYPE type);
 
     /*!
         Sends an event
     */
-    void send_event(Event &e);
+    void send_event(Event &event);
 
 private:
     // storage related typedefs
-    typedef std::vector<event_chain_ptr> event_chain_vector;
-    typedef std::map<event_id, event_chain_vector> event_vector_map;
-    typedef std::map<object_id, event_chain_vector> object_vector_map;
+    typedef std::vector<slot_chain_ptr> slot_chain_vector;
+    typedef std::map<event_id, slot_chain_vector> event_vector_map;
+    typedef std::map<object_id, slot_chain_vector> object_vector_map;
     typedef std::map<object_id, event_vector_map> object_event_vector_map;
 
     // there are two of each map, one for regular event chains, and one for "post processing" chains
@@ -226,52 +228,73 @@ private:
     // {object, chain} map
     object_vector_map m_obj_map[2];
 
-    void send_event(event_chain_vector &chain, Event &e);
+    void send_event(slot_chain_vector &chain, Event &event, bool &veto);
+
+    /*!
+        \return Whether a slot chain exists for this object_id event_id pair. If a slot chain
+            exists, the value of chain will point to that slot chain. If a chain does not exist,
+            the value of chain is undefined.
+    */
+    bool get_slot_chain(object_event_vector_map &map, slot_chain_vector *&chain, object_id from, event_id id);
+
+    /*!
+        \return Whether or not a slot chain exists for the given key.
+    */
+    template<typename M, typename T> bool get_slot_chain(M &map, slot_chain_vector *&chain, T key);
 };
 
 /*!
-    This is a convenience function which allows you to more easliy connect events. The purpose of this
-    function is to create a templated wrapper around an EventChain object which you use to add
-    event listeners forming a chain. Example usage:
+    This is a convenience function which allows you to more easliy connect slots. The purpose of this
+    function is to create a templated wrapper around an SlotChain object which you use to add slots
+    forming a chain. Example usage:
 
-    // connect one listener
-    connect<Event, false>(WIDGET_CREATE, OBJECT_ID_ANY) (*this, &Foo::on_create);
+    // connect a single slot
+    connect<Event, BEFORE>(WIDGET_CREATE, object_id) (&Foo::on_create, *this);
 
-    // connect two listeners
-    connect<Event, false>(WIDGET_CREATE, OBJECT_ID_ANY) (*this, &Foo::on_create) (*this, &Foo::on_create2);
+    // connect two slots in the same slot chain
+    connect<Event, BEFORE>(WIDGET_CREATE, object_id) (&Foo::on_create, *this) (&Foo::on_create2, *this);
 
     Template parameters:
     Event       Event type being connected
-    After       True if you want to recieve the event after it has been processed by the normal event listeners
+    Type       True if you want to recieve the event after it has been processed by the normal event listeners
 
     \param event    Id of the event
     \param object   The object to recieve events from
     \param manager  An event manager to connect to
 */
-template<typename Event, bool After> EventChainWrapper<Event> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
+template<typename Event, SLOT_CHAIN_TYPE Type> SlotChainWrapper<Event> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
 {
-    return EventChainWrapper<Event>(manager.create_event_chain(object, event, After));
+    return SlotChainWrapper<Event>(manager.create_event_chain(object, event, Type));
 }
 
 /*!
-    A templated wrapper around the EventChain class to allow for clean, typesafe code
+    This is a convenience overload of the connect() function which allows you to omit
+    the SLOT_CHAIN_TYPE template parameter. A default parameter value of BEFORE is used
 */
-template<typename E> class EventChainWrapper
+template<typename Event> SlotChainWrapper<Event> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
+{
+    return SlotChainWrapper<Event>(manager.create_event_chain(object, event, BEFORE));
+}
+
+/*!
+    A templated wrapper around the SlotChain class to allow for clean, typesafe code
+*/
+template<typename E> class SlotChainWrapper
 {
 private:
-    EventChain &m_chain;
+    SlotChain &m_chain;
 
 public:
 
     /*!
-        Construct a wrapper around an EventChain object
+        Construct a wrapper around an SlotChain object
     */
-    EventChainWrapper(EventChain &chain)
+    SlotChainWrapper(SlotChain &chain)
       : m_chain(chain)
     { }
 
     /*!
-        Templated wrapper around the EventChain::connect function. This function is used to
+        Templated wrapper around the SlotChain::connect function. This function is used to
         cleany create a ListenerFunctor which will provide type-safety to event
         processing.
 
@@ -281,7 +304,7 @@ public:
         \param l Listening object connecting this event
         \param function The listening function
     */
-    template<typename L> EventChainWrapper<E> &operator()(typename SafeSlot<L, E>::ptr_type function, L &l)
+    template<typename L> SlotChainWrapper<E> &operator()(typename SafeSlot<L, E>::ptr_type function, L &l)
     {
         m_chain.connect(new SafeSlot<L,E>(l, function));
         return *this;
@@ -294,8 +317,8 @@ public:
 template<typename L, typename E> class SafeSlot : public Slot
 {
 public:
-    typedef void(L::*ptr_type)(Event &e); // the function pointer for this functor
-    typedef Event event_type; // the type of event that this functor works with
+    typedef void(L::*ptr_type)(const Event &e); // the function pointer for this functor
+    typedef E event_type; // the type of event that this functor works with
 
 private:
     ptr_type m_ptr;
@@ -311,9 +334,9 @@ public:
         Invokes the slot via the function pointer.
         Type safety is gaurenteed via dynamic_cast.
     */
-    void operator() (Event &e)
+    void operator() (const Event &e)
     {
-        (m_listener.*m_ptr)(dynamic_cast<E&>(e));
+        (m_listener.*m_ptr)(dynamic_cast<const event_type&>(e));
     }
 };
 

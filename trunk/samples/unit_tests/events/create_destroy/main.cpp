@@ -62,8 +62,8 @@ protected:
     {
         cpaf::DebugReport() << "MyButton::MyButton";
         
-        connect<Event, false>(WIDGET_DESTROY, get_id())(&MyButton::on_destroy, *this);
-        connect<Event, false>(WIDGET_CREATE, get_id())(&MyButton::on_create, *this);
+        connect<Event>(WIDGET_DESTROY, get_id())(&MyButton::on_destroy, *this);
+        connect<Event>(WIDGET_CREATE, get_id())(&MyButton::on_create, *this);
     }
 
     ~MyButton()
@@ -71,12 +71,12 @@ protected:
         cpaf::DebugReport() << "MyButton::~MyButton";
     }
 
-    void on_create(Event &event)
+    void on_create(const Event &event)
     {
         cpaf::DebugReport() << "MyButton::WIDGET_CREATE";
     }
 
-    void on_destroy(Event &event);
+    void on_destroy(const Event &event);
 };
 
 /*
@@ -96,14 +96,14 @@ protected:
     {
         cpaf::DebugReport() << "MyPanel::MyPanel";
 
-        connect<Event, false>(WIDGET_CREATE, get_id()) (&MyPanel::on_create, *this);
+        connect<Event>(WIDGET_CREATE, get_id()) (&MyPanel::on_create, *this);
     }
     ~MyPanel()
     {
         cpaf::DebugReport() << "MyPanel::~MyPanel";
     }
 
-    void on_create(Event &event)
+    void on_create(const Event &event)
     {
         cpaf::DebugReport() << "MyPanel::WIDGET_CREATE";
     }
@@ -132,8 +132,8 @@ protected:
         cpaf::DebugReport() << "MyWindow::MyWindow";
 
         // connect events
-        connect<Event, false>(WIDGET_DESTROY, get_id())(&MyWindow::on_destroy, *this);
-        connect<Event, false>(WIDGET_CREATE, get_id())(&MyWindow::on_create, *this);
+        connect<Event>(WIDGET_DESTROY, get_id())(&MyWindow::on_destroy, *this);
+        connect<Event>(WIDGET_CREATE, get_id())(&MyWindow::on_create, *this);
 
         parent = this;
         my_data = 0;
@@ -146,14 +146,14 @@ protected:
         parent = 0;
     }
 
-    void on_create(Event &event)
+    void on_create(const Event &event)
     {
         cpaf::DebugReport() << "MyWindow::WIDGET_CREATE";
 
         // create the root panel
         boost::shared_ptr<Panel> panel = MyPanel::create(Panel::Initializer()
             .layout_manager(boost::shared_ptr<cpaf::gui::LayoutManager>(new cpaf::gui::GridBagLayout)));
-        connect<Event, false>(WIDGET_DESTROY, panel->get_id())(&MyWindow::on_panel_destroy, *this);
+        connect<Event>(WIDGET_DESTROY, panel->get_id())(&MyWindow::on_panel_destroy, *this);
 
         // set our content panel
         set_content_panel(panel);
@@ -164,10 +164,10 @@ protected:
         m_btn = MyButton::create(MyButton::Initializer().parent(panel));
 
         // listen for button destruction event
-        connect<Event, false>(WIDGET_DESTROY, m_btn->get_id())(&MyWindow::on_btn_destroy, *this);
+        connect<Event>(WIDGET_DESTROY, m_btn->get_id())(&MyWindow::on_btn_destroy, *this);
     }
 
-    void on_destroy(Event &event)
+    void on_destroy(const Event &event)
     {
         cpaf::DebugReport() << "MyWindow::WIDGET_DESTROY";
 
@@ -176,7 +176,7 @@ protected:
         m_btn->get_position();
     }
 
-    void on_btn_destroy(Event &event)
+    void on_btn_destroy(const Event &event)
     {
         cpaf::DebugReport() << "MyButton::WIDGET_DESTROY";
 
@@ -194,14 +194,14 @@ protected:
         m_btn.reset();
     }
 
-    void on_panel_destroy(Event &event)
+    void on_panel_destroy(const Event &event)
     {
         cpaf::DebugReport() << "MyPanel::WIDGET_DESTROY";
     }
 };
 
 // We need to implement that here
-void MyButton::on_destroy(Event &event)
+void MyButton::on_destroy(const Event &event)
 {
     // the parent widget must not be freed yet so this is ok
     parent->my_data;

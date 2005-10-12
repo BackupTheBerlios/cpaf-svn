@@ -1,1 +1,12 @@
 Fix the GBLM to not crash the application if a child that it was managing was destroyed. Seen in proof sample after you click the "Click to destroy me" button.
+
+
+========================================
+                  Events
+========================================
+
+-Provide a front end function allowing you to connect a slot for a range
+of object id's given in std::set form. This would be a pure convenience front
+end function which connected N slots, one per object id in the set, to the
+same function.
+

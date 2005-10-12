@@ -31,9 +31,9 @@ public:
     boost::shared_ptr<Button> destroy_btn;
 
     bool init();
-    void toggle_password_mode(Event &event);
-    void destroy_button(Event &event);
-    void on_text_changed(Event &event);
+    void toggle_password_mode(const Event &event);
+    void destroy_button(const Event &event);
+    void on_text_changed(const Event &event);
 };
 
 /*
@@ -54,11 +54,11 @@ protected:
         cpaf::DebugReport() << "MyButton::Ctor";
 
         // connected one event listener
-        connect<Event, false>(WIDGET_DESTROY, get_id()) (&MyButton::on_destroy, *this);
+        connect<Event>(WIDGET_DESTROY, get_id()) (&MyButton::on_destroy, *this);
 
         // connecting multiple event listeners into a chain
         // also store the event chain object for later use
-        EventChainWrapper<Event> w = connect<Event, false>(WIDGET_CREATE, get_id())
+        SlotChainWrapper<Event> w = connect<Event>(WIDGET_CREATE, get_id())
             (&MyButton::on_create, *this)
             (&MyButton::on_create, *this);
 
@@ -66,10 +66,10 @@ protected:
         w(&MyButton::on_create, *this);
 
         // connect the click-event
-        connect<Event, false>(BUTTON_CLICK, get_id()) (&MyButton::on_btn_click, *this);
+        connect<Event>(BUTTON_CLICK, get_id()) (&MyButton::on_btn_click, *this);
     }
 
-    void on_create(cpaf::event::Event &event)
+    void on_create(const Event &event)
     {
         cpaf::DebugReport() << "MyButton::on_create";
 
@@ -77,7 +77,7 @@ protected:
         event.continue_processing();
     }
 
-    virtual void on_btn_click(cpaf::event::Event &event)
+    virtual void on_btn_click(const Event &event)
     {
         static int status = 0;
 
@@ -89,7 +89,7 @@ protected:
             cpaf::get_app().quit();
     }
 
-    virtual void on_destroy(cpaf::event::Event &event)
+    virtual void on_destroy(const Event &event)
     {
         cpaf::DebugReport() << "MyButton::on_destroy";
     }
@@ -117,13 +117,13 @@ protected:
     }
 };
 
-void MyApp::toggle_password_mode(Event &event)
+void MyApp::toggle_password_mode(const Event &event)
 {
     cpaf::DebugReport() << "MyApp::toggle_password_mode";
     pw->set_password_mode(!pw->get_password_mode());
 }
 
-void MyApp::destroy_button(Event &event)
+void MyApp::destroy_button(const Event &event)
 {
     cpaf::DebugReport() << "MyApp::destroy_button";
     destroy_btn->destroy();
@@ -132,7 +132,7 @@ void MyApp::destroy_button(Event &event)
     destroy_btn.reset();
 }
 
-void MyApp::on_text_changed(Event &event)
+void MyApp::on_text_changed(const Event &event)
 {
     cpaf::DebugReport() << "MyApp::on_text_changed";
 }
@@ -152,7 +152,7 @@ bool MyApp::init()
         .label("Toggle password mode")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, pw_mode->get_id()) (&MyApp::toggle_password_mode, *this);
+    connect<Event>(BUTTON_CLICK, pw_mode->get_id()) (&MyApp::toggle_password_mode, *this);
     pw_mode->set_min_size(cpaf::Size(250,10));
     //pw_mode->set_natural_size(cpaf::Size(300,0));
 
@@ -166,7 +166,7 @@ bool MyApp::init()
         .label("Click to destroy me")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
+    connect<Event>(BUTTON_CLICK, destroy_btn->get_id()) (&MyApp::destroy_button, *this);
 
     /*
         Create an EntryBox
@@ -186,7 +186,7 @@ bool MyApp::init()
         .show()
         );
 
-    connect<Event, false>(TEXT_CHANGED, text->get_id()) (&MyApp::on_text_changed, *this);
+    connect<Event>(TEXT_CHANGED, text->get_id()) (&MyApp::on_text_changed, *this);
 
     /*
         Create a EntryBox for passwords

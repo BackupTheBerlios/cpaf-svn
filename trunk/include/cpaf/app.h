@@ -28,6 +28,7 @@
 
 #include <vector>
 #include <string>
+#include <boost/scoped_ptr.hpp>
 
 namespace cpaf {
 
@@ -41,11 +42,11 @@ public:
 
 private:
     cmd_line m_cmd;
-    cpaf::event::Manager m_manager; // construct the singleton event manager class
+    boost::scoped_ptr<cpaf::event::Manager> m_manager; // singleton event manager class
 
 public:
-    //! \todo Should I make this not an inilined dtor?
-    virtual ~App() { }
+    App();
+    virtual ~App();
 
     /*!
         Initialize the application.

@@ -27,19 +27,19 @@ public:
     
     bool init();
     
-    void get_text(Event &event);
-    void get_selection_range(Event &event);
-    void get_selection_bounds(Event &event);
-    void get_insertion_point(Event &event);
-    void get_length(Event &event);
-    void toggle_read_only(Event &event);
-    void get_text_in_range(Event &event);
-    void set_selection_range(Event &event);
-    void set_selection_bounds(Event &event);
-    void set_max_length(Event &event);
-    void set_insertion_point(Event &event);
-    void delete_range(Event &event);
-    void insert(Event &event);
+    void get_text(const Event &event);
+    void get_selection_range(const Event &event);
+    void get_selection_bounds(const Event &event);
+    void get_insertion_point(const Event &event);
+    void get_length(const Event &event);
+    void toggle_read_only(const Event &event);
+    void get_text_in_range(const Event &event);
+    void set_selection_range(const Event &event);
+    void set_selection_bounds(const Event &event);
+    void set_max_length(const Event &event);
+    void set_insertion_point(const Event &event);
+    void delete_range(const Event &event);
+    void insert(const Event &event);
 
 private:
     cpaf::TextRange get_range();
@@ -78,70 +78,70 @@ bool MyApp::init()
         .label("Get text")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, get_text->get_id()) (&MyApp::get_text, *this);
+    connect<Event>(BUTTON_CLICK, get_text->get_id()) (&MyApp::get_text, *this);
     boost::shared_ptr<Button> get_selection_range =Button::create(btn_init
         .label("Get selection range")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, get_selection_range->get_id()) (&MyApp::get_selection_range, *this);
+    connect<Event>(BUTTON_CLICK, get_selection_range->get_id()) (&MyApp::get_selection_range, *this);
     boost::shared_ptr<Button> get_selection_bounds =Button::create(btn_init
         .label("Get selection bounds")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, get_selection_bounds->get_id()) (&MyApp::get_selection_bounds, *this);
+    connect<Event>(BUTTON_CLICK, get_selection_bounds->get_id()) (&MyApp::get_selection_bounds, *this);
 
     boost::shared_ptr<Button> get_insertion_point =Button::create(btn_init
         .label("Get insertion point")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, get_insertion_point->get_id()) (&MyApp::get_insertion_point, *this);
+    connect<Event>(BUTTON_CLICK, get_insertion_point->get_id()) (&MyApp::get_insertion_point, *this);
     boost::shared_ptr<Button> get_length =Button::create(btn_init
         .label("Get length")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, get_length->get_id()) (&MyApp::get_length, *this);
+    connect<Event>(BUTTON_CLICK, get_length->get_id()) (&MyApp::get_length, *this);
     boost::shared_ptr<Button> toggle_read_only =Button::create(btn_init
         .label("Toggle read only")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, toggle_read_only->get_id()) (&MyApp::toggle_read_only, *this);
+    connect<Event>(BUTTON_CLICK, toggle_read_only->get_id()) (&MyApp::toggle_read_only, *this);
 
 
     boost::shared_ptr<Button> get_text_in_range =Button::create(btn_init
         .label("Get text in range")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, get_text_in_range->get_id()) (&MyApp::get_text_in_range, *this);
+    connect<Event>(BUTTON_CLICK, get_text_in_range->get_id()) (&MyApp::get_text_in_range, *this);
     boost::shared_ptr<Button> set_selection_range =Button::create(btn_init
         .label("Set selection range")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, set_selection_range->get_id()) (&MyApp::set_selection_range, *this);
+    connect<Event>(BUTTON_CLICK, set_selection_range->get_id()) (&MyApp::set_selection_range, *this);
     boost::shared_ptr<Button> set_selection_bounds =Button::create(btn_init
         .label("Set selection bounds")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, set_selection_bounds->get_id()) (&MyApp::set_selection_bounds, *this);
+    connect<Event>(BUTTON_CLICK, set_selection_bounds->get_id()) (&MyApp::set_selection_bounds, *this);
     boost::shared_ptr<Button> set_insertion_point =Button::create(btn_init
         .label("Set insertion point")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, set_insertion_point->get_id()) (&MyApp::set_insertion_point, *this);
+    connect<Event>(BUTTON_CLICK, set_insertion_point->get_id()) (&MyApp::set_insertion_point, *this);
     boost::shared_ptr<Button> delete_range =Button::create(btn_init
         .label("Delete range")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, delete_range->get_id()) (&MyApp::delete_range, *this);
+    connect<Event>(BUTTON_CLICK, delete_range->get_id()) (&MyApp::delete_range, *this);
     boost::shared_ptr<Button> insert =Button::create(btn_init
         .label("Insert")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, insert->get_id()) (&MyApp::insert, *this);
+    connect<Event>(BUTTON_CLICK, insert->get_id()) (&MyApp::insert, *this);
     boost::shared_ptr<Button> set_max_length =Button::create(btn_init
         .label("Set max length")
         .show()
         );
-    connect<Event, false>(BUTTON_CLICK, set_max_length->get_id()) (&MyApp::set_max_length, *this);
+    connect<Event>(BUTTON_CLICK, set_max_length->get_id()) (&MyApp::set_max_length, *this);
 
     range_begin = EntryBox::create(entry_init
         .text("3")
@@ -244,14 +244,14 @@ cpaf::TextRange MyApp::get_range()
     return cpaf::TextRange(begin, end);
 }
 
-void MyApp::get_text(Event &event)
+void MyApp::get_text(const Event &event)
 {
     cpaf::DebugReport() << "Get Text:";
     cpaf::DebugReport() << "entry:\t" << entry->get_text();
     cpaf::DebugReport() << "text:\n" << text->get_text() << "\n";
 }
 
-void MyApp::get_selection_range(Event &event)
+void MyApp::get_selection_range(const Event &event)
 {
     cpaf::TextRange e = entry->get_selection_range();
     cpaf::TextRange t = text->get_selection_range();
@@ -260,7 +260,7 @@ void MyApp::get_selection_range(Event &event)
     cpaf::DebugReport() << "text:\t" << t.first << " " << t.second << "\n";
 }
 
-void MyApp::get_selection_bounds(Event &event)
+void MyApp::get_selection_bounds(const Event &event)
 {
     cpaf::TextRange e, t;
     bool e_ret = entry->get_selection_bounds(e);
@@ -270,70 +270,70 @@ void MyApp::get_selection_bounds(Event &event)
     cpaf::DebugReport() << "text:\t" << t.first << " " << t.second << " return value: " << t_ret << "\n";
 }
 
-void MyApp::get_insertion_point(Event &event)
+void MyApp::get_insertion_point(const Event &event)
 {
     cpaf::DebugReport() << "Get Insertion Point:";
     cpaf::DebugReport() << "entry:\t" << entry->get_insertion_point();
     cpaf::DebugReport() << "text:\t" << text->get_insertion_point() << "\n";
 }
 
-void MyApp::get_length(Event &event)
+void MyApp::get_length(const Event &event)
 {
     cpaf::DebugReport() << "Get Length";
     cpaf::DebugReport() << "entry:\t" << entry->get_length();
     cpaf::DebugReport() << "text:\t" << text->get_length() << "\n";
 }
 
-void MyApp::toggle_read_only(Event &event)
+void MyApp::toggle_read_only(const Event &event)
 {
     cpaf::DebugReport() << "Toggle read only" << "\n";
     entry->set_read_only(!entry->is_read_only());
     text->set_read_only(!text->is_read_only());
 }
 
-void MyApp::get_text_in_range(Event &event)
+void MyApp::get_text_in_range(const Event &event)
 {
     cpaf::DebugReport() << "Get Text In Range:";
     cpaf::DebugReport() << "entry:\t" << entry->get_text(get_range());
     cpaf::DebugReport() << "text:\t" << text->get_text(get_range()) << "\n";
 }
 
-void MyApp::set_selection_range(Event &event)
+void MyApp::set_selection_range(const Event &event)
 {
     cpaf::DebugReport() << "Set Selection Range" << "\n";
     entry->set_selection_range(get_range());
     text->set_selection_range(get_range());
 }
 
-void MyApp::set_selection_bounds(Event &event)
+void MyApp::set_selection_bounds(const Event &event)
 {
     cpaf::DebugReport() << "Set Selection Bounds" << "\n";
     entry->set_selection_bounds(get_range());
     text->set_selection_bounds(get_range());
 }
 
-void MyApp::set_max_length(Event &event)
+void MyApp::set_max_length(const Event &event)
 {
     cpaf::DebugReport() << "Set Max Length" << "\n";
     entry->set_max_length(get_range().first);
     text->set_max_length(get_range().first);
 }
 
-void MyApp::set_insertion_point(Event &event)
+void MyApp::set_insertion_point(const Event &event)
 {
     cpaf::DebugReport() << "Set Isertion Point" << "\n";
     entry->set_insertion_point(get_range().first);
     text->set_insertion_point(get_range().first);
 }
 
-void MyApp::delete_range(Event &event)
+void MyApp::delete_range(const Event &event)
 {
     cpaf::DebugReport() << "Delete Range" << "\n";
     entry->delete_range(get_range());
     text->delete_range(get_range());
 }
 
-void MyApp::insert(Event &event)
+void MyApp::insert(const Event &event)
 {
     cpaf::DebugReport() << "Insert Text" << "\n";
     entry->insert_text(insert_text->get_text());

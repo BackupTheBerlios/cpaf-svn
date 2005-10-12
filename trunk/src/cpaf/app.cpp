@@ -22,12 +22,23 @@
 
 #include <cpaf/app.h>
 
-const cpaf::App::cmd_line &cpaf::App::get_cmd_line()
+using cpaf::App;
+
+App::App()
+: m_manager(new cpaf::event::Manager)
+{ }
+
+App::~App()
+{
+
+}
+
+const App::cmd_line &App::get_cmd_line()
 {
     return m_cmd;
 }
 
-void cpaf::App::set_cmd_line(const cmd_line &cmd)
+void App::set_cmd_line(const cmd_line &cmd)
 {
     m_cmd = cmd;
 }
