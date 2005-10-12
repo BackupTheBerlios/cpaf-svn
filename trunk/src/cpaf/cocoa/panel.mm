@@ -28,6 +28,24 @@ using namespace cpaf::cocoa::gui;
 CPAF_COCOA_INTERFACE(View)
 CPAF_COCOA_IMPLEMENTATION(View)
 
+@interface CpafView (Cpaf)
+- (void)cpafDoLayout;
+- (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize;
+@end
+
+@implementation CpafView (Cpaf)
+- (void)cpafDoLayout
+{
+    Panel *p = dynamic_cast<Panel *>([self cpafWidget]);
+    NSRect r = [self frame];
+    p->m_layout_manager->do_layout(cpaf::Size(r.size.width, r.size.height));
+}
+- (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
+{
+  [self cpafDoLayout];
+}
+@end
+
 void Panel::create(const cpaf::gui::initializer::PanelData &params)
 {
     m_layout_manager = params.get_layout_manager();

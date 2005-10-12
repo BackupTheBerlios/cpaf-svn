@@ -31,23 +31,6 @@ using namespace cpaf::cocoa::gui;
 CPAF_COCOA_INTERFACE(Window)
 CPAF_COCOA_IMPLEMENTATION(Window)
 
-@interface CpafWindow (Cpaf)
-- (void)windowDidResize:(NSNotification *)aNotification;
-@end
-
-@implementation CpafWindow (Cpaf)
-- (void)windowDidResize:(NSNotification *)aNotification
-{
-    id contentView = [self contentView];
-    if ([contentView respondsToSelector:@selector(cpafWidget)])
-    {
-        Panel *p = dynamic_cast<Panel *>([contentView cpafWidget]);
-        NSRect r = [contentView frame];
-        p->m_layout_manager->do_layout(cpaf::Size(r.size.width, r.size.height));
-    }
-}
-@end
-
 void Window::create(const cpaf::gui::initializer::WindowData &params)
 {
     m_wrapper = params.get_wrapper();
@@ -138,6 +121,13 @@ cpaf::Point Window::get_position() const
 
 void Window::show(bool show, bool activate)
 {
+    //! \todo That's only a temporary fix
+    if (m_root_panel && show)
+    {
+        id view = (id)m_root_panel->get_handle();
+        [view performSelector:@selector(cpafDoLayout)];
+    }
+
     if (show)
         if (activate)
             [m_object makeKeyAndOrderFront:nil];
@@ -189,10 +179,14 @@ cpaf::Point Window::get_client_position()
 void Window::set_content_panel(cpaf::api::gui::Panel *p)
 {
     //! \todo What's happening with the old panel?
+
     m_root_panel = dynamic_cast<Panel*>(p);
-    [m_object setContentView:(id)m_root_panel->get_handle()];
+    id view = (id)m_root_panel->get_handle();
+    [m_object setContentView:view];
+    [view performSelector:@selector(cpafDoLayout)];
     m_root_panel->show(true, false);
 }
+
 boost::shared_ptr<cpaf::gui::Panel> Window::get_content_panel() const
 {
     return m_root_panel->get_wrapper<cpaf::gui::Panel>();

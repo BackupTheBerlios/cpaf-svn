@@ -31,15 +31,16 @@
 #include <cpaf/private/factory.h>
 
 using namespace cpaf::cocoa::utils;
+using namespace cpaf::cocoa::gui;
 
 // So we don't get compiler warnings
 @interface NSObject (CpafObject)
-- (void)setCpafWidget:(cpaf::cocoa::gui::Widget *)widget;
-- (cpaf::cocoa::gui::Widget *)cpafWidget;
+- (void)setCpafWidget:(Widget *)widget;
+- (Widget *)cpafWidget;
 @end
 
 
-void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
+void Widget::create(const cpaf::gui::initializer::WidgetData &params, id widget)
 {
     m_wrapper = params.get_wrapper();
     m_wrapper_id = params.get_wrapper()->get_id();
@@ -74,13 +75,13 @@ void cpaf::cocoa::gui::Widget::create(const cpaf::gui::initializer::WidgetData &
     // Don't send a WIDGET_CREATE-event here, every subclass has to do that
 }
 
-void cpaf::cocoa::gui::Widget::send_event(cpaf::event::event_id event_id) // cocoa specific
+void Widget::send_event(cpaf::event::event_id event_id) // cocoa specific
 {
     cpaf::event::Event event(event_id, m_wrapper.lock()->get_id());
     cpaf::event::get_manager().send_event(event);
 }
 
-void cpaf::cocoa::gui::Widget::destroy()
+void Widget::destroy()
 {
     if (m_object)
     {
@@ -103,7 +104,7 @@ void cpaf::cocoa::gui::Widget::destroy()
             // Loop through the children
             while ((view = [e nextObject]) != nil)
             {
-                cpaf::cocoa::gui::Widget *widget;
+                Widget *widget;
                 
                 // Is there an implementation object available? 
                 if ([view respondsToSelector:@selector(cpafWidget)])
@@ -125,13 +126,13 @@ void cpaf::cocoa::gui::Widget::destroy()
     cpaf::gui::disassociate_widget_id(m_wrapper_id);
 }
 
-cpaf::cocoa::gui::Widget::~Widget()
+Widget::~Widget()
 {
     // delete our wrapper
     //delete m_wrapper;
 }
 
-void cpaf::cocoa::gui::Widget::set_size(const cpaf::Size& s)
+void Widget::set_size(const cpaf::Size& s)
 {
     NSRect f = [m_object frame];
     f.size.width = s.width;
@@ -140,22 +141,22 @@ void cpaf::cocoa::gui::Widget::set_size(const cpaf::Size& s)
     [m_object setFrame:f];
 }
 
-void cpaf::cocoa::gui::Widget::set_min_size(const cpaf::Size& size)
+void Widget::set_min_size(const cpaf::Size& size)
 {
     m_min_size = size;
 }
 
-void cpaf::cocoa::gui::Widget::set_max_size(const cpaf::Size& size)
+void Widget::set_max_size(const cpaf::Size& size)
 {
     m_max_size = size;
 }
 
-void cpaf::cocoa::gui::Widget::set_natural_size(const cpaf::Size& size)
+void Widget::set_natural_size(const cpaf::Size& size)
 {
     m_natural_size = size;
 }
 
-void cpaf::cocoa::gui::Widget::set_position(const cpaf::Point& s)
+void Widget::set_position(const cpaf::Point& s)
 {
     NSRect f = [m_object frame];
     f.origin.x = s.x;
@@ -163,36 +164,36 @@ void cpaf::cocoa::gui::Widget::set_position(const cpaf::Point& s)
     [m_object setFrame:f];
 }
 
-cpaf::Size cpaf::cocoa::gui::Widget::get_size() const
+cpaf::Size Widget::get_size() const
 {
     //! \todo
     NSLog(@"TODO: Widget::get_size()");
     return cpaf::Size();
 }
 
-cpaf::Size cpaf::cocoa::gui::Widget::get_min_size() const
+cpaf::Size Widget::get_min_size() const
 {
     return m_min_size;
 }
 
-cpaf::Size cpaf::cocoa::gui::Widget::get_max_size() const
+cpaf::Size Widget::get_max_size() const
 {
     return m_max_size;
 }
 
-cpaf::Size cpaf::cocoa::gui::Widget::get_natural_size() const
+cpaf::Size Widget::get_natural_size() const
 {
     return m_natural_size;
 }
 
-cpaf::Point cpaf::cocoa::gui::Widget::get_position() const
+cpaf::Point Widget::get_position() const
 {
     //! \todo
     NSLog(@"TODO: Widget::get_position()");
     return cpaf::Point();
 }
 
-void cpaf::cocoa::gui::Widget::set_rect(const cpaf::Rect& rect)
+void Widget::set_rect(const cpaf::Rect& rect)
 {
     NSRect f = [m_object frame];
 
@@ -212,52 +213,58 @@ void cpaf::cocoa::gui::Widget::set_rect(const cpaf::Rect& rect)
     [m_object setFrame:f];
 }
 
-cpaf::Rect cpaf::cocoa::gui::Widget::get_rect() const
+cpaf::Rect Widget::get_rect() const
 {
     //! \todo
+    NSLog(@"TODO: Widget::get_rect()");
     return cpaf::Rect();
 }
 
-void cpaf::cocoa::gui::Widget::enable(bool e)
+void Widget::enable(bool e)
 {
     //! \todo
+    NSLog(@"TODO: Widget::enable()");
 }
 
-void cpaf::cocoa::gui::Widget::show(bool show, bool activate)
+void Widget::show(bool show, bool activate)
 {
     //! \todo
+    NSLog(@"TODO: Widget::show()");
 }
 
-bool cpaf::cocoa::gui::Widget::is_enabled() const
+bool Widget::is_enabled() const
 {
+    NSLog(@"TODO: Widget::is_enabled()");
     return false; //! \todo
 }
 
-bool cpaf::cocoa::gui::Widget::is_shown() const
+bool Widget::is_shown() const
 {
+    NSLog(@"TODO: Widget::is_shown()");
     return false; //! \todo
 }
 
-boost::shared_ptr<cpaf::gui::Panel> cpaf::cocoa::gui::Widget::get_parent() const
+boost::shared_ptr<cpaf::gui::Panel> Widget::get_parent() const
 {
     id parent = [m_object superview];
 
     if (parent && [parent respondsToSelector:@selector(cpafWidget)])
     {
-        cpaf::cocoa::gui::Widget *w = [parent cpafWidget];
+        Widget *w = [parent cpafWidget];
         return w->get_wrapper<cpaf::gui::Panel>();
     }
 
     //! \todo What should I do if the parent doesn't'respond to cpafWidget ?
     return boost::shared_ptr<cpaf::gui::Panel>();
 }
-boost::shared_ptr<cpaf::gui::Window> cpaf::cocoa::gui::Widget::get_parent_window() const
+
+boost::shared_ptr<cpaf::gui::Window> Widget::get_parent_window() const
 {
     NSWindow *win = [m_object window];
 
     if ([win respondsToSelector:@selector(cpafWidget)])
     {
-        cpaf::cocoa::gui::Widget *w = [win cpafWidget];
+        Widget *w = [win cpafWidget];
         return w->get_wrapper<cpaf::gui::Window>();
     }
 
