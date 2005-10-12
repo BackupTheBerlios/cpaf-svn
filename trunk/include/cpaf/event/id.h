@@ -42,16 +42,76 @@ event_id get_unique_id();
 //! Helper macro for implementing event ids in source files
 #define CPAF_IMPLEMENT_EXPORTED_EVENT(name)  const event_id name = get_unique_id();
 
-// event declarations
+// event id declarations
 
-// widget
+/*******************************************
+ *                  Widget                 *
+ *******************************************/
+
+//! The widget was created
 CPAF_DECLARE_EXPORTED_EVENT(WIDGET_CREATE)
+
+//! The widget is about to be destroyed
 CPAF_DECLARE_EXPORTED_EVENT(WIDGET_DESTROY)
 
-// button
+//! The size of a widget has changed
+CPAF_DECLARE_EXPORTED_EVENT(WIDGET_SIZE_CHANGED)
+
+/*******************************************
+ *                  Mouse                  *
+ *******************************************/
+
+ //! The mouse entered the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_ENTER)
+
+//! The mouse left the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_LEAVE)
+
+//! The mouse moved within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_MOVE)
+
+//! The mouse was stationary within the widget's client area for a period of time
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_HOVER)
+
+//! The left mouse button was pressed within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_LEFT_DOWN)
+
+//! The left mouse button was released within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_LEFT_UP)
+
+//! The left mose button was double clicked within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_LEFT_DOUBLECLICK)
+
+//! The middle mouse button was pressed within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_MIDDLE_DOWN)
+
+//! The middle mouse button was released within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_MIDDLE_UP)
+
+//! The middle mose button was double clicked within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_MIDDLE_DOUBLECLICK)
+
+//! The right mouse button was pressed within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_RIGHT_DOWN)
+
+//! The right mouse button was released within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_RIGHT_UP)
+
+//! The middle mose button was double clicked within the widget's area
+CPAF_DECLARE_EXPORTED_EVENT(MOUSE_MIDDLE_DOUBLECLICK)
+
+/*******************************************
+ *                  Button                 *
+ *******************************************/
+
+//! The button was clicked
 CPAF_DECLARE_EXPORTED_EVENT(BUTTON_CLICK)
 
-// edit
+/*******************************************
+ *                TextWidget               *
+ *******************************************/
+
+//! The text in the text widget has changed
 CPAF_DECLARE_EXPORTED_EVENT(TEXT_CHANGED)
 
     } // event

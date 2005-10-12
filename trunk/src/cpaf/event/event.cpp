@@ -180,9 +180,10 @@ void cpaf::event::SlotChain::process_event(Event &event, bool &veto)
     veto |= event.get_veto();
 }
 
-/*
-cpaf::event::Event
-*/
+/*******************************************
+ *     Event Object Implementations        *
+ *******************************************/
+
 Event::Event(event_id id, object_id obj)
     : m_id(id),
     m_obj_id(obj),
@@ -222,6 +223,11 @@ bool Event::get_veto() const
     return m_veto;
 }
 
+bool Event::can_veto() const
+{
+    return false;
+}
+
 void Event::continue_processing(bool c) const
 {
     m_continue = c;
@@ -230,4 +236,36 @@ void Event::continue_processing(bool c) const
 bool Event::should_continue() const
 {
     return m_continue;
+}
+
+MouseEvent::MouseEvent(event_id id, object_id obj, const cpaf::Point &pos, int button_flags, int key_flags)
+: Event(id, obj),
+m_position(pos),
+m_button_flags(button_flags),
+m_key_flags(key_flags)
+{ }
+
+cpaf::Point MouseEvent::get_position() const
+{
+    return m_position;
+}
+
+int MouseEvent::get_button_flags() const
+{
+    return m_button_flags;
+}
+
+bool MouseEvent::get_button_state(BUTTON_FLAGS button) const
+{
+    return m_button_flags & button;
+}
+
+int MouseEvent::get_key_flags() const
+{
+    return m_key_flags;
+}
+
+bool MouseEvent::get_key_state(KEY_FLAGS key) const
+{
+    return m_key_flags & key;
 }

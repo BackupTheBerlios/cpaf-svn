@@ -116,6 +116,11 @@ public:
     */
     bool get_veto() const;
 
+    /*!
+        \reteurn True if this event is allowed t be vetoed
+    */
+    virtual bool can_veto() const;
+
 private:
     const event_id m_id;
     const object_id m_obj_id;
@@ -338,6 +343,79 @@ public:
     {
         (m_listener.*m_ptr)(dynamic_cast<const event_type&>(e));
     }
+};
+
+/*******************************************
+ *       Event Object Declarations         *
+ *******************************************/
+
+class MouseEvent : public Event
+{
+public:
+    /*!
+        Constructs a mouse event
+
+        \param id       The id of the event
+        \param obj      The id of the object sending the event
+        \param pos      Position of the mouse in client coordinates of the widget
+        \param button_flags Identifies what mouse buttons were pressed when the mouse event was generated
+        \param key_flags Identifies what keys were pressed when the mouse event was generated
+    */
+    MouseEvent(event_id id, object_id obj, const cpaf::Point &pos, int button_flags, int key_flags);
+
+    /*!
+        Bit flags for the keys that may have been pressed when the event was sent
+    */
+    enum KEY_FLAGS {
+        NONE =      0x0,
+        SHIFT =     0x1,
+        ALT =       0x2,
+        CONTROL =   0x4,
+    };
+
+    /*!
+        Bit flags for identifying which mouse buttons are pressed, if any.
+    */
+    enum BUTTON_FLAGS {
+        LEFT =      0x1,
+        RIGHT =     0x2,
+        MIDDLE =    0x4
+    };
+
+    /*!
+        \return A bitmask identifying which keys were pressed when the event was sent
+    */
+    int get_button_flags() const;
+
+    /*!
+        \return Whether or not the given mouse button was pressed when the event was sent
+    */
+    bool get_button_state(BUTTON_FLAGS button) const;
+
+    /*!
+        \return A bitmask identifying which keys were pressed when the event was sent
+    */
+    int get_key_flags() const;
+
+    /*!
+        \return Whether or not the given key was pressed when the event was sent
+    */
+    bool get_key_state(KEY_FLAGS key) const;
+
+    /*!
+        \return Position of the mouse in client coordinates when this event was sent
+    */
+    cpaf::Point get_position() const;
+
+private:
+    //! position of the mouse event in client coordinates
+    cpaf::Point m_position;
+
+    //! Identifies what mouse buttons were pressed whe the event was generated
+    int m_button_flags;
+
+    //! Identifies what keys were pressed when the event was generated
+    int m_key_flags;
 };
 
     } // event
