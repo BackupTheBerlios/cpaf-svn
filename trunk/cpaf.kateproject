@@ -24,7 +24,7 @@ Files=event.h/id.h
 
 [Dir include/cpaf/gtk2]
 Dirs=gui
-Files=factory.h/gtk.h/utils.h
+Files=gtk.h/utils.h
 
 [Dir include/cpaf/gtk2/gui]
 Dirs=
