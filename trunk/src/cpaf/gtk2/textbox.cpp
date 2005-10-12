@@ -74,6 +74,7 @@ TextBox::create (const cpaf::gui::initializer::TextBoxData &params)
                        params.get_pos().y);
     }
     else
+        // FIXME: throw earlier or clean up m_text
         throw cpaf::Exception (cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     if (!params.get_text().empty())

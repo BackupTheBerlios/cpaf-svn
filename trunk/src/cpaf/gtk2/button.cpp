@@ -50,7 +50,14 @@ Button::create (const cpaf::gui::initializer::ButtonData &params)
 
     //! \todo IMPLEMENT
     boost::shared_ptr<cpaf::gui::Panel> parent = params.get_parent();
-    if (!parent)
+    if (parent)
+    {
+        GtkFixed* hparent = GTK_FIXED (parent->get_handle());
+        gtk_fixed_put (hparent,
+                       m_widget,
+                       0, 0);
+    }
+    else
         throw cpaf::Exception(cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     g_signal_connect(m_widget, "clicked",
