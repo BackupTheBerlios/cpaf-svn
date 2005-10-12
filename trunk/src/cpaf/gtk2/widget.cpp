@@ -78,7 +78,7 @@ Widget::create (const cpaf::gui::initializer::WidgetData &params,
                 GtkWidget * widget)
 {
     m_wrapper = params.get_wrapper();
-    m_wrapper_id = params.get_wrapper()->m_id;
+    m_wrapper_id = params.get_wrapper()->get_id();
     m_widget = widget;
 
     g_object_set_data (G_OBJECT (m_widget), "cpaf_wrapper", this);
