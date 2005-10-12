@@ -59,7 +59,7 @@ Dirs=
 Files=main.cpp
 
 [Dir samples/unit_tests]
-Dirs=events/textwidget/gblm
+Dirs=events/textwidget/gblm/show_hide
 Files=
 
 [Dir samples/unit_tests/events]
@@ -71,6 +71,10 @@ Dirs=
 Files=main.cpp
 
 [Dir samples/unit_tests/gblm]
+Dirs=
+Files=main.cpp
+
+[Dir samples/unit_tests/show_hide]
 Dirs=
 Files=main.cpp
 
