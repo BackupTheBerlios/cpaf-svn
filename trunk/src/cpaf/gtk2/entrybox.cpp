@@ -51,8 +51,7 @@ EntryBox::create (const cpaf::gui::initializer::EntryBoxData &params)
         GtkFixed * hparent = GTK_FIXED (parent->get_handle());
         gtk_fixed_put (hparent,
                        m_widget,
-                       params.get_pos().x,
-                       params.get_pos().y);
+                       0, 0);
     }
     else
         throw cpaf::Exception (cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);

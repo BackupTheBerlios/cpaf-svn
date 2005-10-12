@@ -70,11 +70,10 @@ TextBox::create (const cpaf::gui::initializer::TextBoxData &params)
         GtkFixed * hparent = GTK_FIXED (parent->get_handle());
         gtk_fixed_put (hparent,
                        m_widget,
-                       params.get_pos().x,
-                       params.get_pos().y);
+                       0, 0);
     }
     else
-        // FIXME: throw earlier or clean up m_text
+        //! \todo throw earlier or clean up m_text
         throw cpaf::Exception (cpaf::Exception::WIDGET_NO_PARENT, __LINE__, __FILE__);
 
     if (!params.get_text().empty())
