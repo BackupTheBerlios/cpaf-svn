@@ -21,6 +21,7 @@
 */
 
 #include <cpaf/cocoa/gui/EventLoop.h>
+#import <Cocoa/Cocoa.h>
 
 // implement factory
 cpaf::api::gui::EventLoop *cpaf::api::gui::EventLoop::create()

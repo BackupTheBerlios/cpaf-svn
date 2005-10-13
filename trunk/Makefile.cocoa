@@ -165,7 +165,7 @@ $(OBJ_DIR)/event/id.o: src/cpaf/event/id.cpp
 $(OBJ_DIR)/cocoa/app.o: src/cpaf/cocoa/app.mm
 	$(compile_source)
 
-$(OBJ_DIR)/cocoa/eventloop.o : src/cpaf/gtk2/eventloop.mm
+$(OBJ_DIR)/cocoa/eventloop.o : src/cpaf/cocoa/eventloop.mm
 	$(compile_source)
 
 $(OBJ_DIR)/cocoa/factory.o: src/cpaf/cocoa/factory.mm
