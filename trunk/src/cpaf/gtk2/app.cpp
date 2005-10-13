@@ -47,14 +47,6 @@ void cpaf::gui::App::gui_init()
     }
 }
 
-int cpaf::gui::App::run()
-{
-    gtk_main();
-
-    //! \todo return the exit code value instead of 0
-    return 0;
-}
-
 void cpaf::gui::App::_quit()
 {
 

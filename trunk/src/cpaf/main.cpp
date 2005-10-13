@@ -62,7 +62,10 @@ int cpaf::entry(cpaf::main_ptr main, HINSTANCE hInstance, HINSTANCE hPrevInstanc
 
         app->set_cmd_line(cmd);
         app->init();
-        return app->run();
+        app->run();
+
+        //! \todo Provide proper return code facility
+        return 0;
     }
     catch(cpaf::win32::Exception &e)
     {
@@ -106,7 +109,10 @@ int cpaf::entry(cpaf::main_ptr main, int argc, char *argv[])
 
         app->set_cmd_line(cmd);
         app->init();
-        return app->run();
+        app->run();
+
+        //! \todo Provide proper return code facility
+        return 0;
     }
     catch(cpaf::Exception &e)
     {

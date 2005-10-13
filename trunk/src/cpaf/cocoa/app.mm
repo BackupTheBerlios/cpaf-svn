@@ -128,15 +128,9 @@ void cpaf::gui::App::gui_init()
     
     // Set up an initial menu bar, because the default one doesn't work as expected
     set_up_menubar();
-}
-
-int cpaf::gui::App::run()
-{
-    [pool release];
-
-    [NSApp run]; // Run the application
     
-    return 0;
+    //! \todo I (RM) moved this code here from App::run which no longer exists, verify that this is correct
+    [pool release];
 }
 
 void cpaf::gui::App::_quit()

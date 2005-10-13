@@ -56,7 +56,7 @@ public:
     /*!
         Run the application.
     */
-    virtual int run() = 0;
+    virtual void run() = 0;
 
     /*!
         Quit the application.

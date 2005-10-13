@@ -24,6 +24,8 @@
 #define CPAF_GUI_APP_H
 
 #include <cpaf/app.h>
+#include <cpaf/gui/eventloop.h>
+#include <boost/shared_ptr.hpp>
 
 #include <list>
 
@@ -35,16 +37,13 @@ namespace cpaf {
 
 class CPAF_API App : public cpaf::App
 {
-protected:
-    App();
-
 public:
     virtual bool init() = 0;
 
     /*
-        This function must be implemented by an implementation (win32, gtk2, ...).
+        Runs the main event loop.
     */
-    int run();
+    void run();
 
     /*!
         Quits the application.
@@ -62,7 +61,18 @@ public:
     */
     static const TopLevelList &get_top_level_widgets();
 
+    /*!
+        \return The event loop
+    */
+    boost::shared_ptr<cpaf::gui::EventLoop> get_event_loop();
+
+protected:
+    App();
+
 private:
+    //! The event loop
+    boost::shared_ptr<cpaf::gui::EventLoop> m_event_loop;
+
     /*!
         Called by the constructor, and implemented by an implementation for port specific initialization.
 

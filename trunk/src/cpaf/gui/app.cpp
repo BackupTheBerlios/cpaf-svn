@@ -22,6 +22,7 @@
 
 #include <cpaf/gui/app.h>
 #include <cpaf/gui/toplevel.h>
+#include <cpaf/api/gui/EventLoop.h>
 
 using namespace cpaf::gui;
 
@@ -30,9 +31,16 @@ namespace {
 }
 
 App::App()
+: m_event_loop(new cpaf::gui::EventLoop)
 {
     // implementation specific gui initialization
     gui_init();
+}
+
+void App::run()
+{
+    // run the event loop
+    m_event_loop->run();
 }
 
 void App::quit()

@@ -268,6 +268,9 @@
 						RelativePath=".\include\cpaf\api\gui\entrybox.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\api\gui\eventloop.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\api\gui\object.h">
 					</File>
 					<File
@@ -304,6 +307,9 @@
 				</File>
 				<File
 					RelativePath=".\include\cpaf\gui\entrybox.h">
+				</File>
+				<File
+					RelativePath=".\include\cpaf\gui\eventloop.h">
 				</File>
 				<File
 					RelativePath=".\include\cpaf\gui\gridbaglayout.h">
@@ -393,6 +399,9 @@
 						RelativePath=".\include\cpaf\gtk2\gui\entrybox.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\gtk2\gui\eventloop.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\gtk2\gui\panel.h">
 					</File>
 					<File
@@ -426,6 +435,9 @@
 					</File>
 					<File
 						RelativePath=".\include\cpaf\win32\gui\entrybox.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\win32\gui\eventloop.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\win32\gui\panel.h">
@@ -464,6 +476,9 @@
 					</File>
 					<File
 						RelativePath=".\include\cpaf\cocoa\gui\entrybox.h">
+					</File>
+					<File
+						RelativePath=".\include\cpaf\cocoa\gui\eventloop.h">
 					</File>
 					<File
 						RelativePath=".\include\cpaf\cocoa\gui\panel.h">
@@ -728,6 +743,37 @@
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\entrybox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\gui\eventloop.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32">
 						<Tool
@@ -1433,6 +1479,16 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\src\cpaf\cocoa\eventloop.mm"
+					FileType="0">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCustomBuildTool"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\src\cpaf\cocoa\factory.mm"
 					FileType="0">
 					<FileConfiguration
@@ -1705,6 +1761,15 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\src\cpaf\gtk2\eventloop.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32"
+						ExcludedFromBuild="TRUE">
+						<Tool
+							Name="VCCLCompilerTool"/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\src\cpaf\gtk2\factory.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32"
@@ -1916,6 +1981,37 @@
 				</File>
 				<File
 					RelativePath=".\src\cpaf\win32\entrybox.cpp">
+					<FileConfiguration
+						Name="debug dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release dll|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="debug static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="release static lib|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(SafeParentName)/"
+							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\win32\eventloop.cpp">
 					<FileConfiguration
 						Name="debug dll|Win32">
 						<Tool
