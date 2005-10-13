@@ -36,6 +36,7 @@
 #include <cpaf/gui/window.h>
 
 using namespace cpaf::win32::gui;
+using namespace cpaf::event;
 
 Widget::Widget()
     : m_delete(true),
@@ -115,16 +116,16 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
             m_hwnd = hwnd;
 
             // send the creation event
-            cpaf::event::Event event(cpaf::event::WIDGET_CREATE, m_id);
-            cpaf::event::get_manager().send_event(event);
+            Event event(cpaf::event::WIDGET_CREATE, m_id);
+            get_manager().send_event(event);
             break;
         }
 
     case WM_DESTROY:
         {
             // send destroy event
-            cpaf::event::Event event(cpaf::event::WIDGET_DESTROY, m_id);
-            cpaf::event::get_manager().send_event(event);
+            Event event(cpaf::event::WIDGET_DESTROY, m_id);
+            get_manager().send_event(event);
 
             // remove our widget window property
             disassociate_hwnd(m_hwnd);
@@ -165,12 +166,87 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
                     Button *btn = get_widget_from_hwnd<Button>((HWND)l_param);
                     if( btn )
                     {
-                        cpaf::event::Event click_event(cpaf::event::BUTTON_CLICK, btn->get_id());
-                        cpaf::event::get_manager().send_event(click_event);
+                        Event click_event(BUTTON_CLICK, btn->get_id());
+                        get_manager().send_event(click_event);
                     }
                     return 0;
                 }
             }
+        }
+
+    case WM_MOUSEMOVE:
+    case WM_MOUSELEAVE:
+    case WM_MOUSEHOVER:
+    case WM_LBUTTONDOWN:
+    case WM_RBUTTONDOWN:
+    case WM_MBUTTONDOWN:
+    case WM_LBUTTONUP:
+    case WM_RBUTTONUP:
+    case WM_MBUTTONUP:
+    case WM_LBUTTONDBLCLK:
+    case WM_MBUTTONDBLCLK:
+    case WM_RBUTTONDBLCLK:
+        {
+            int key_flags = 0, button_flags = 0;
+            event_id id;
+
+            switch(msg)
+            {
+            case WM_MOUSEMOVE:
+                id = MOUSE_MOVE;
+                break;
+            case WM_MOUSELEAVE:
+                id = MOUSE_LEAVE;
+                break;
+            case WM_MOUSEHOVER:
+                id = MOUSE_HOVER;
+                break;
+            case WM_LBUTTONDOWN:
+                id = MOUSE_LEFT_DOWN;
+                break;
+            case WM_MBUTTONDOWN:
+                id = MOUSE_MIDDLE_DOWN;
+                break;
+            case WM_RBUTTONDOWN:
+                id = MOUSE_RIGHT_DOWN;
+                break;
+            case WM_LBUTTONUP:
+                id = MOUSE_LEFT_UP;
+                break;
+            case WM_MBUTTONUP:
+                id = MOUSE_MIDDLE_UP;
+                break;
+            case WM_RBUTTONUP:
+                id = MOUSE_RIGHT_UP;
+                break;
+            case WM_LBUTTONDBLCLK:
+                id = MOUSE_LEFT_DOUBLECLICK;
+                break;
+            case WM_MBUTTONDBLCLK:
+                id = MOUSE_MIDDLE_DOUBLECLICK;
+                break;
+            case WM_RBUTTONDBLCLK:
+                id = MOUSE_RIGHT_DOUBLECLICK;
+                break;
+            default:
+                id = 0;
+            };
+
+            button_flags |= (w_param & MK_LBUTTON) ? MouseEvent::LEFT : 0;
+            button_flags |= (w_param & MK_MBUTTON) ? MouseEvent::MIDDLE : 0;
+            button_flags |= (w_param & MK_RBUTTON) ? MouseEvent::RIGHT : 0;
+
+            cpaf::DebugReport() << id << " " << std::hex << button_flags;
+
+            MouseEvent event(id, m_id, cpaf::Point(LOWORD(l_param), HIWORD(l_param)),
+                button_flags, key_flags | MouseEvent::SHIFT);
+
+            get_manager().send_event(event);
+
+            if( event.get_veto() )
+                return 0;
+            else
+                break;
         }
 
     case WM_SYSCOLORCHANGE:
