@@ -30,6 +30,8 @@ namespace cpaf {
 class EventLoop
 {
 public:
+    virtual ~EventLoop();
+
     virtual void run() = 0;
     virtual void run_once() = 0;
     virtual void run_until() = 0;

@@ -22,6 +22,8 @@
 
 #include <cpaf/gtk2/gui/EventLoop.h>
 
+#include <gtk/gtk.h>
+
 // implement factory
 cpaf::api::gui::EventLoop *cpaf::api::gui::EventLoop::create()
 {

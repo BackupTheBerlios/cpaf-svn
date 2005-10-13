@@ -25,6 +25,8 @@
 
 using cpaf::gui::EventLoop;
 
+cpaf::api::gui::EventLoop::~EventLoop() { }
+
 EventLoop::EventLoop()
 : m_impl(cpaf::api::gui::EventLoop::create())
 {
