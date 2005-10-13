@@ -22,18 +22,27 @@ cpaf::gui::$(NAME)::$(NAME)(api_type *impl)
 { }
 
 $(IF CONSTRUCTABLE)
-$(NAME) *$(NAME)::create(const Initializer &initializer)
+boost::shared_ptr<$(NAME)> $(NAME)::create(const Initializer &initializer)
 {
     $(NAME) *wrapper = new $(NAME);
-    wrapper->initialize(initializer);
-    return wrapper;
+    return wrapper->initialize(initializer);
 }
 
-void cpaf::gui::$(NAME)::inintialize(const Initializer &initializer)
+boost::shared_ptr<$(NAME)> cpaf::gui::$(NAME)::inintialize(const Initializer &initializer)
 {
+    // create a shared pointer for this wapper
+    boost::shared_ptr<$(NAME)> ptr(this);
+
+    // create the native widget
     Initializer::data_type params = initializer.get_data();
-    params.set_wrapper(this);
+    params.set_wrapper(ptr);
     m_impl->create(params);
+
+    // store the widget id / shared_ptr pair to retain the wrapper
+    associate_widget_id(get_id(), ptr);
+
+    // lastly, return the wrapper
+    return ptr;
 }
 $(END)
 

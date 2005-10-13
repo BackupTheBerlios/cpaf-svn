@@ -20,7 +20,7 @@ public:
     typedef $(NAME)Initializer Initializer;
 
 $(IF CONSTRUCTABLE)
-    static $(NAME) *create(const Initializer &initializer);
+    static boost::shared_ptr<$(NAME)> create(const Initializer &initializer);
 $(END)
 
 private:
@@ -36,14 +36,11 @@ $(IF CONSTRUCTABLE)
     /*!
         \brief Constructs the native widget using the given initializer
     */
-    void initialize(const Initializer &initializer);
+    boost::shared_ptr<$(NAME)> initialize(const Initializer &initializer);
 $(END)
 
 public:
     api_type *get_impl() const;
-$(IF CONSTRUCTABLE)
-    template<typename Widget> friend Widget *cpaf::gui::factory::create_widget(typename Widget::Initializer const &);
-$(END)
 };
 
     } // gui
