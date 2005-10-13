@@ -58,9 +58,9 @@ public:
     virtual cpaf::Point get_position() const;
 
     // widget interface
-    virtual void enable(bool sensitive) { } //! \todo
-    virtual bool is_enabled() { return false; }  //! \todo
-    virtual bool is_shown() { return false; }  //! \todo
+    virtual void enable(bool sensitive);
+    virtual bool is_enabled() const;
+    virtual bool is_shown() const;
     virtual void show(bool show, bool activate);
 
     // toplevel interface

@@ -123,6 +123,26 @@ cpaf::Point Window::get_position() const
     return convert_point(f.origin);
 }
 
+void Window::enable(bool sensitive)
+{
+    //! \todo
+    NSLog(@"TODO: Window::enable()");
+}
+
+bool Window::is_enabled() const
+{
+    //! \todo
+    NSLog(@"TODO: Window::is_enabled()");
+    return false;
+}
+
+bool Window::is_shown() const
+{
+    //! \todo
+    NSLog(@"TODO: Window::is_shown()");
+    return false;
+}
+
 void Window::show(bool show, bool activate)
 {
     //! \todo That's only a temporary fix

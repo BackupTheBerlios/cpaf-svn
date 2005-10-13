@@ -18,16 +18,25 @@ class MyApp : public App
 {
 public:
     boost::shared_ptr<Button> test_btn;
-    boost::shared_ptr<Button> showhide_btn;
+    boost::shared_ptr<Window> test_wnd;
+    boost::shared_ptr<Button> showhidebtn_btn;
+    boost::shared_ptr<Button> showhidewnd_btn;
 
     bool init();
-    void showhide(const Event &event);
+    void showhidebtn(const Event &event);
+    void showhidewnd(const Event &event);
 };
 
-void MyApp::showhide(const Event &event)
+void MyApp::showhidebtn(const Event &event)
 {
-    cpaf::DebugReport() << "MyApp::showhide";
+    cpaf::DebugReport() << "MyApp::showhidebtn";
     test_btn->show(!test_btn->is_shown());
+}
+
+void MyApp::showhidewnd(const Event &event)
+{
+    cpaf::DebugReport() << "MyApp::showhidewnd";
+    test_wnd->show(!test_wnd->is_shown());
 }
 
 /*
@@ -43,24 +52,33 @@ bool MyApp::init()
 
     btn_init.parent(panel).show();
 
-    showhide_btn = Button::create(btn_init.label("Show/hide the button"));
-    connect<Event>(BUTTON_CLICK, showhide_btn->get_id()) (&MyApp::showhide, *this);
+    showhidewnd_btn = Button::create(btn_init.label("Show/hide the window"));
+    connect<Event>(BUTTON_CLICK, showhidewnd_btn->get_id()) (&MyApp::showhidewnd, *this);
+
+    showhidebtn_btn = Button::create(btn_init.label("Show/hide the button"));
+    connect<Event>(BUTTON_CLICK, showhidebtn_btn->get_id()) (&MyApp::showhidebtn, *this);
 
     test_btn = Button::create(btn_init.label("The test button").show(false));
 
     boost::shared_ptr<Window> wnd = Window::create(Window::Initializer()
         .content_panel(panel)
         .title("Show/hide unit test")
-        .client_size(cpaf::Size(400,400))
+        .client_size(cpaf::Size(500,300))
         );
 
+    test_wnd = Window::create(Window::Initializer().title("Test window").client_size(cpaf::Size(200,20)));
 
     GridBagLayoutInfo info;
     gblm->add(
-    EntryBox::create(EntryBox::Initializer().parent(panel).text("The test button should be hidden by default").min_size(cpaf::Size(100,25)).show())
-, info.position(0,0).align_top().expand_horizontal());
-    gblm->add(showhide_btn, info.position(0,1).expand_both());
-    gblm->add(test_btn, info.position(0,2).expand_both());
+        EntryBox::create(EntryBox::Initializer().parent(panel)
+            .text("The test button and the test window should be hidden by default")
+            .min_size(cpaf::Size(100,25)).show()),
+        info.position(0,0).align_top().expand_horizontal()
+    );
+    info.expand_both();
+    gblm->add(showhidewnd_btn, info.position(0,1));
+    gblm->add(showhidebtn_btn, info.position(0,2));
+    gblm->add(test_btn, info.position(0,3));
     gblm->set_row_weight(0, 0);
     gblm->set_margins(5);
 
