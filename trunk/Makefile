@@ -7,7 +7,7 @@ INCLUDE_DIRS = -I include -I .
 CXXFLAGS = -pipe -D_DEBUG -DCPAF_GTK2 -DCPAF_BUILDING -DCPAF_DLL `pkg-config --cflags gtk+-2.0` -ggdb -Wall #-fvisibility-inlines-hidden -fvisibility=hidden
 LD_FLAGS = -shared -fpic -Wl,-O1 `pkg-config --libs gtk+-2.0`
 
-SRC_OBJS =                      \
+SRC_OBJS =                          \
 	$(OBJ_DIR)/gui/app.o        \
 	$(OBJ_DIR)/gui/object.o     \
 	$(OBJ_DIR)/gui/widget.o     \
@@ -21,6 +21,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gui/textwidget.o \
 	$(OBJ_DIR)/gui/entrybox.o   \
 	$(OBJ_DIR)/gui/textbox.o    \
+	$(OBJ_DIR)/gui/eventloop.o  \
 	$(OBJ_DIR)/gui/initializer/object.o     \
 	$(OBJ_DIR)/gui/initializer/widget.o     \
 	$(OBJ_DIR)/gui/initializer/window.o     \
@@ -32,6 +33,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/event/event.o    \
 	$(OBJ_DIR)/event/id.o       \
 	$(OBJ_DIR)/gtk2/app.o       \
+	$(OBJ_DIR)/gtk2/eventloop.o \
 	$(OBJ_DIR)/gtk2/factory.o   \
 	$(OBJ_DIR)/gtk2/widget.o    \
 	$(OBJ_DIR)/gtk2/window.o    \
@@ -83,6 +85,9 @@ directories:
 	-@if [ ! -d "$(OBJ_DIR)/gtk2" ]; then mkdir "$(OBJ_DIR)/gtk2"; fi
 
 $(OBJ_DIR)/gui/app.o: src/cpaf/gui/app.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/eventloop.o: src/cpaf/gui/eventloop.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gui/object.o: src/cpaf/gui/object.cpp
@@ -158,6 +163,9 @@ $(OBJ_DIR)/event/id.o: src/cpaf/event/id.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/app.o: src/cpaf/gtk2/app.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gtk2/eventloop.o : src/cpaf/gtk2/eventloop.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/factory.o: src/cpaf/gtk2/factory.cpp

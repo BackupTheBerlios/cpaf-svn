@@ -21,6 +21,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gui/textwidget.o \
 	$(OBJ_DIR)/gui/entrybox.o   \
 	$(OBJ_DIR)/gui/textbox.o    \
+	$(OBJ_DIR)/gui/eventloop.o \
 	$(OBJ_DIR)/gui/initializer/object.o     \
 	$(OBJ_DIR)/gui/initializer/widget.o     \
 	$(OBJ_DIR)/gui/initializer/window.o     \
@@ -32,6 +33,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/event/event.o    \
 	$(OBJ_DIR)/event/id.o       \
 	$(OBJ_DIR)/cocoa/app.o       \
+	$(OBJ_DIR)/cocoa/eventloop.o \
 	$(OBJ_DIR)/cocoa/factory.o   \
 	$(OBJ_DIR)/cocoa/widget.o    \
 	$(OBJ_DIR)/cocoa/window.o    \
@@ -83,6 +85,9 @@ directories:
 	-@if [ ! -d "$(OBJ_DIR)/cocoa" ]; then mkdir "$(OBJ_DIR)/cocoa"; fi
 
 $(OBJ_DIR)/gui/app.o: src/cpaf/gui/app.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/gui/eventloop.o: src/cpaf/gui/eventloop.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gui/object.o: src/cpaf/gui/object.cpp
@@ -158,6 +163,9 @@ $(OBJ_DIR)/event/id.o: src/cpaf/event/id.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/cocoa/app.o: src/cpaf/cocoa/app.mm
+	$(compile_source)
+
+$(OBJ_DIR)/cocoa/eventloop.o : src/cpaf/gtk2/eventloop.mm
 	$(compile_source)
 
 $(OBJ_DIR)/cocoa/factory.o: src/cpaf/cocoa/factory.mm
