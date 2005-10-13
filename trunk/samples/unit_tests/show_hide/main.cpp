@@ -21,10 +21,10 @@ public:
     boost::shared_ptr<Button> showhide_btn;
 
     bool init();
-    void showhide(Event &event);
+    void showhide(const Event &event);
 };
 
-void MyApp::showhide(Event &event)
+void MyApp::showhide(const Event &event)
 {
     cpaf::DebugReport() << "MyApp::showhide";
     test_btn->show(!test_btn->is_shown());
@@ -44,7 +44,7 @@ bool MyApp::init()
     btn_init.parent(panel).show();
 
     showhide_btn = Button::create(btn_init.label("Show/hide the button"));
-    connect<Event, false>(BUTTON_CLICK, showhide_btn->get_id()) (&MyApp::showhide, *this);
+    connect<Event>(BUTTON_CLICK, showhide_btn->get_id()) (&MyApp::showhide, *this);
 
     test_btn = Button::create(btn_init.label("The test button").show(false));
 
