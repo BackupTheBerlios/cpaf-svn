@@ -21,16 +21,28 @@ public:
     bool init();
     void btn_mouse_event(const MouseEvent &event);
     void wnd_mouse_event(const MouseEvent &event);
+    void dump_event(const MouseEvent &event);
 };
+
+void MyApp::dump_event(const MouseEvent &event)
+{
+    cpaf::DebugReport() << "Button flags: " << event.get_button_flags();
+    cpaf::DebugReport() << "Key flags: " << event.get_key_flags();
+    cpaf::DebugReport() << "Position: " << event.get_position().x << "x" << event.get_position().y;
+    //! \todo get_button/key_state()
+    cpaf::DebugReport() << "";
+}
 
 void MyApp::btn_mouse_event(const MouseEvent &event)
 {
-    cpaf::DebugReport() << "MyApp::btn_mouse_event";
+    cpaf::DebugReport() << "Button mouse event:";
+    dump_event(event);
 }
 
 void MyApp::wnd_mouse_event(const MouseEvent &event)
 {
-    cpaf::DebugReport() << "MyApp::wnd_mouse_event";
+    cpaf::DebugReport() << "Window mouse event:";
+    dump_event(event);
 }
 
 /*
@@ -57,18 +69,32 @@ bool MyApp::init()
         );
 
     connect<MouseEvent>(MOUSE_ENTER, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_LEAVE, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_MOVE, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_HOVER, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_LEFT_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_LEFT_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_LEFT_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_MIDDLE_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_MIDDLE_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_MIDDLE_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_RIGHT_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_RIGHT_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_RIGHT_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEAVE, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MOVE, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_HOVER, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+
+    connect<MouseEvent>(MOUSE_ENTER, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEAVE, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MOVE, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_HOVER, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_DOWN, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_UP, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_DOUBLECLICK, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_DOWN, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_UP, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_DOUBLECLICK, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_DOWN, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_UP, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_DOUBLECLICK, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
 
     GridBagLayoutInfo info;
     gblm->add(btn, info.position(0, 0).align_top().align_left());
