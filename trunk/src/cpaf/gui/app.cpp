@@ -22,7 +22,7 @@
 
 #include <cpaf/gui/app.h>
 #include <cpaf/gui/toplevel.h>
-#include <cpaf/api/gui/EventLoop.h>
+#include <cpaf/api/gui/eventloop.h>
 
 using namespace cpaf::gui;
 
