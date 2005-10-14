@@ -138,9 +138,7 @@ bool Window::is_enabled() const
 
 bool Window::is_shown() const
 {
-    //! \todo
-    NSLog(@"TODO: Window::is_shown()");
-    return false;
+    return [m_object isVisible];
 }
 
 void Window::show(bool show, bool activate)
