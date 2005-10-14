@@ -23,7 +23,7 @@
 #ifndef CPAF_GTK2_GUI_EVENTLOOP_H
 #define CPAF_GTK2_GUI_EVENTLOOP_H
 
-#include <cpaf/api/gui/EventLoop.h>
+#include <cpaf/api/gui/eventloop.h>
 
 namespace cpaf {
     namespace gtk2 {

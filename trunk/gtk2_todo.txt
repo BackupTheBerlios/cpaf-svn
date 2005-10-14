@@ -27,3 +27,5 @@ that the panel will be shown once it becomes the content panel of a window.
 Confirm that exception safety is maintained and that nothing crashes if an exception is thrown during widget creation. For example, if a panel is created with no layout manager, the wrapper and implementation object should both be deallocated.
 
 Consider if gtk_widget_queue_resize (m_widget); is necessary in Widget::set_min_size
+
+Implement the event loop fully
