@@ -260,25 +260,26 @@ private:
     connect<Event, BEFORE>(WIDGET_CREATE, object_id) (&Foo::on_create, *this) (&Foo::on_create2, *this);
 
     Template parameters:
-    Event       Event type being connected
-    Type       True if you want to recieve the event after it has been processed by the normal event listeners
+    E   Event type being connected
+    T   The type of slot chain being created. The type of slot chain effects when it executes in
+        relation to other slot chains.
 
     \param event    Id of the event
     \param object   The object to recieve events from
     \param manager  An event manager to connect to
 */
-template<typename Event, SLOT_CHAIN_TYPE Type> SlotChainWrapper<Event> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
+template<typename E, SLOT_CHAIN_TYPE T> SlotChainWrapper<E> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
 {
-    return SlotChainWrapper<Event>(manager.create_event_chain(object, event, Type));
+    return SlotChainWrapper<E>(manager.create_event_chain(object, event, T));
 }
 
 /*!
     This is a convenience overload of the connect() function which allows you to omit
     the SLOT_CHAIN_TYPE template parameter. A default parameter value of BEFORE is used
 */
-template<typename Event> SlotChainWrapper<Event> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
+template<typename E> SlotChainWrapper<E> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
 {
-    return SlotChainWrapper<Event>(manager.create_event_chain(object, event, BEFORE));
+    return SlotChainWrapper<E>(manager.create_event_chain(object, event, BEFORE));
 }
 
 /*!
@@ -322,7 +323,7 @@ public:
 template<typename L, typename E> class SafeSlot : public Slot
 {
 public:
-    typedef void(L::*ptr_type)(const Event &e); // the function pointer for this functor
+    typedef void(L::*ptr_type)(const E &e); // the function pointer for this functor
     typedef E event_type; // the type of event that this functor works with
 
 private:

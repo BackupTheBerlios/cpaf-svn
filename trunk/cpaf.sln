@@ -27,6 +27,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gblm", "samples\unit_tests\
 		{0D192004-77CE-4E79-81F6-E126E712CFE9} = {0D192004-77CE-4E79-81F6-E126E712CFE9}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "show_hide", "samples\unit_tests\show_hide\show_hide.vcproj", "{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D192004-77CE-4E79-81F6-E126E712CFE9} = {0D192004-77CE-4E79-81F6-E126E712CFE9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mouse", "samples\unit_tests\events\mouse\mouse.vcproj", "{BD71217E-0A8C-4091-91E6-3C19B2155119}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D192004-77CE-4E79-81F6-E126E712CFE9} = {0D192004-77CE-4E79-81F6-E126E712CFE9}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -105,6 +115,30 @@ Global
 		{8B2F8123-2115-486E-8E8E-38E8053CCCD5}.release dll.Build.0 = release dll|Win32
 		{8B2F8123-2115-486E-8E8E-38E8053CCCD5}.release static lib.ActiveCfg = release static lib|Win32
 		{8B2F8123-2115-486E-8E8E-38E8053CCCD5}.release static lib.Build.0 = release static lib|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.Debug.ActiveCfg = debug static lib|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.Debug.Build.0 = debug static lib|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.debug dll.ActiveCfg = debug dll|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.debug dll.Build.0 = debug dll|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.debug static lib.ActiveCfg = debug static lib|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.debug static lib.Build.0 = debug static lib|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.Release.ActiveCfg = release static lib|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.Release.Build.0 = release static lib|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.release dll.ActiveCfg = release dll|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.release dll.Build.0 = release dll|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.release static lib.ActiveCfg = release static lib|Win32
+		{7AA05FBE-7BDC-4BD4-92BA-608C0A51781D}.release static lib.Build.0 = release static lib|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.Debug.ActiveCfg = debug static lib|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.Debug.Build.0 = debug static lib|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.debug dll.ActiveCfg = debug dll|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.debug dll.Build.0 = debug dll|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.debug static lib.ActiveCfg = debug static lib|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.debug static lib.Build.0 = debug static lib|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.Release.ActiveCfg = release static lib|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.Release.Build.0 = release static lib|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.release dll.ActiveCfg = release dll|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.release dll.Build.0 = release dll|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.release static lib.ActiveCfg = release static lib|Win32
+		{BD71217E-0A8C-4091-91E6-3C19B2155119}.release static lib.Build.0 = release static lib|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

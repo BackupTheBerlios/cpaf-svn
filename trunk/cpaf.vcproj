@@ -773,35 +773,7 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\gui\eventloop.cpp">
-					<FileConfiguration
-						Name="debug dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release dll|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="debug static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="release static lib|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							ObjectFile="$(IntDir)/$(SafeParentName)/"
-							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
-					</FileConfiguration>
+					RelativePath=".\src\cpaf\gui\eventloop.cpp">
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\factory.cpp">
