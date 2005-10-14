@@ -108,6 +108,7 @@ static void set_up_menubar()
 }
 
 @interface CpafApplicationDelegate : NSObject
+- (void)cpafTerminate:(id)sender;
 @end
 
 @implementation CpafApplicationDelegate
@@ -128,12 +129,10 @@ void cpaf::gui::App::gui_init()
     
     // Set up an initial menu bar, because the default one doesn't work as expected
     set_up_menubar();
-    
-    //! \todo I (RM) moved this code here from App::run which no longer exists, verify that this is correct
-    [pool release];
 }
 
 void cpaf::gui::App::_quit()
 {
     [NSApp terminate:nil];
+    [pool release];
 }
