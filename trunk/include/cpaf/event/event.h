@@ -350,7 +350,7 @@ public:
  *       Event Object Declarations         *
  *******************************************/
 
-class MouseEvent : public Event
+class CPAF_API MouseEvent : public Event
 {
 public:
     /*!
