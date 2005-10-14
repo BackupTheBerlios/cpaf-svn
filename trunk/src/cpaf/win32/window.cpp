@@ -43,7 +43,7 @@ WNDCLASSEX wnd_class = {
     GetModuleHandle(NULL),
     NULL,
     LoadCursor(NULL, IDC_ARROW),
-    (HBRUSH)(COLOR_BACKGROUND+1),
+    (HBRUSH)(COLOR_WINDOW+1),
     NULL,
     CLASSNAME
 };
@@ -90,6 +90,8 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
         m_root_panel = dynamic_cast<Panel*>(params.get_content_panel()->get_impl());
         w = (HWND)m_root_panel->get_handle();
     }
+    else
+        m_root_panel = 0;
     
     // create a window
     Widget::create(CreationInfo(this), init_params, false, CLASSNAME, params.get_title().c_str(),
