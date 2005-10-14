@@ -1,0 +1,9 @@
+/*
+Some definitions for windows resource files. If you don't include this, CREATEPROCESS_MANIFEST_RESOURCE_ID
+and RT_MANIFEST will be undefined but the resource compiler will not issue any warnings. The end result is
+that the manifest file will not be properly compiled and theming wont work.
+*/
+#include <winuser.h>
+
+// manifest file for XP control theming
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "cpaf/win32/cpaf.manifest"

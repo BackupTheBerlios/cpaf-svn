@@ -22,6 +22,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gui/textwidget.o \
 	$(OBJ_DIR)/gui/entrybox.o   \
 	$(OBJ_DIR)/gui/textbox.o    \
+	$(OBJ_DIR)/gui/eventloop.o  \
 	$(OBJ_DIR)/gui/initializer/object.o     \
 	$(OBJ_DIR)/gui/initializer/widget.o     \
 	$(OBJ_DIR)/gui/initializer/window.o     \
@@ -34,6 +35,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/event/id.o       \
 	$(OBJ_DIR)/win32/app.o       \
 	$(OBJ_DIR)/win32/exception.o  \
+	$(OBJ_DIR)/win32/eventloop.o  \
 	$(OBJ_DIR)/win32/factory.o    \
 	$(OBJ_DIR)/win32/widget.o     \
 	$(OBJ_DIR)/win32/window.o     \
@@ -91,6 +93,8 @@ directories:
 $(OBJ_DIR)/gui/app.o: src/cpaf/gui/app.cpp
 	$(compile_source)
 
+$(OBJ_DIR)/gui/eventloop.o: src/cpaf/gui/eventloop.cpp
+	$(compile_source)
 $(OBJ_DIR)/gui/object.o: src/cpaf/gui/object.cpp
 	$(compile_source)
 
@@ -188,6 +192,9 @@ $(OBJ_DIR)/win32/button.o: src/cpaf/win32/button.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/win32/entrybox.o: src/cpaf/win32/entrybox.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/win32/eventloop.o: src/cpaf/win32/eventloop.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/win32/textbox.o: src/cpaf/win32/textbox.cpp
