@@ -7,7 +7,6 @@
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
 #include <cpaf/gui/gridbaglayout.h>
-#include <cpaf/event/event.h>
 
 using namespace cpaf::event;
 using namespace cpaf::gui;
@@ -18,19 +17,26 @@ using namespace cpaf::gui;
 class MyApp : public App
 {
 public:
+    boost::shared_ptr<Button> test_btn;
+    boost::shared_ptr<Window> test_wnd;
+    boost::shared_ptr<Button> showhidebtn_btn;
+    boost::shared_ptr<Button> showhidewnd_btn;
+
     bool init();
-    void btn_mouse_event(const MouseEvent &event);
-    void wnd_mouse_event(const MouseEvent &event);
+    void showhidebtn(const Event &event);
+    void showhidewnd(const Event &event);
 };
 
-void MyApp::btn_mouse_event(const MouseEvent &event)
+void MyApp::showhidebtn(const Event &event)
 {
-    cpaf::DebugReport() << "MyApp::btn_mouse_event";
+    cpaf::DebugReport() << "MyApp::showhidebtn";
+    test_btn->show(!test_btn->is_shown());
 }
 
-void MyApp::wnd_mouse_event(const MouseEvent &event)
+void MyApp::showhidewnd(const Event &event)
 {
-    cpaf::DebugReport() << "MyApp::wnd_mouse_event";
+    cpaf::DebugReport() << "MyApp::showhidewnd";
+    test_wnd->show(!test_wnd->is_shown());
 }
 
 /*
@@ -42,37 +48,39 @@ bool MyApp::init()
     boost::shared_ptr<GridBagLayout> gblm(new GridBagLayout);
     boost::shared_ptr<cpaf::gui::Panel> panel = Panel::create(Panel::Initializer().layout_manager(gblm));
 
+    Button::Initializer btn_init;
 
-    boost::shared_ptr<Button> btn = Button::create(Button::Initializer()
-        .parent(panel)
-        .label("Button")
-        .show()
-        .min_size(cpaf::Size(150, 100))
-        );
+    btn_init.parent(panel).show();
+
+    showhidewnd_btn = Button::create(btn_init.label("Show/hide the window"));
+    connect<Event>(BUTTON_CLICK, showhidewnd_btn->get_id()) (&MyApp::showhidewnd, *this);
+
+    showhidebtn_btn = Button::create(btn_init.label("Show/hide the button"));
+    connect<Event>(BUTTON_CLICK, showhidebtn_btn->get_id()) (&MyApp::showhidebtn, *this);
+
+    test_btn = Button::create(btn_init.label("The test button").show(false));
 
     boost::shared_ptr<Window> wnd = Window::create(Window::Initializer()
         .content_panel(panel)
-        .title("Test window")
-        .client_size(cpaf::Size(400, 300))
+        .title("Show/hide unit test")
+        .client_size(cpaf::Size(500,300))
         );
 
-    connect<MouseEvent>(MOUSE_ENTER, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_LEAVE, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_MOVE, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_HOVER, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_LEFT_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_LEFT_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_LEFT_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_MIDDLE_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_MIDDLE_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_MIDDLE_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_RIGHT_DOWN, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_RIGHT_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
-    //connect<Event>(MOUSE_RIGHT_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
+    test_wnd = Window::create(Window::Initializer().title("Test window").client_size(cpaf::Size(200,20)));
 
     GridBagLayoutInfo info;
-    gblm->add(btn, info.position(0, 0).align_top().align_left());
-    gblm->set_margins(10);
+    gblm->add(
+        EntryBox::create(EntryBox::Initializer().parent(panel)
+            .text("The test button and the test window should be hidden by default")
+            .min_size(cpaf::Size(100,25)).show()),
+        info.position(0,0).align_top().expand_horizontal()
+    );
+    info.expand_both();
+    gblm->add(showhidewnd_btn, info.position(0,1));
+    gblm->add(showhidebtn_btn, info.position(0,2));
+    gblm->add(test_btn, info.position(0,3));
+    gblm->set_row_weight(0, 0);
+    gblm->set_margins(5);
 
     wnd->show();
 
