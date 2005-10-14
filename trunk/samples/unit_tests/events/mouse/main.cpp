@@ -20,7 +20,7 @@ class MyApp : public App
 public:
     bool init();
     void btn_mouse_event(const MouseEvent &event);
-    void wnd_mouse_event(const MouseEvent &event);
+    void panel_mouse_event(const MouseEvent &event);
     void dump_event(const MouseEvent &event);
 };
 
@@ -39,9 +39,9 @@ void MyApp::btn_mouse_event(const MouseEvent &event)
     dump_event(event);
 }
 
-void MyApp::wnd_mouse_event(const MouseEvent &event)
+void MyApp::panel_mouse_event(const MouseEvent &event)
 {
-    cpaf::DebugReport() << "Window mouse event:";
+    cpaf::DebugReport() << "Panel mouse event:";
     dump_event(event);
 }
 
@@ -82,19 +82,19 @@ bool MyApp::init()
     connect<MouseEvent>(MOUSE_RIGHT_UP, btn->get_id()) (&MyApp::btn_mouse_event, *this);
     connect<MouseEvent>(MOUSE_RIGHT_DOUBLECLICK, btn->get_id()) (&MyApp::btn_mouse_event, *this);
 
-    connect<MouseEvent>(MOUSE_ENTER, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_LEAVE, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_MOVE, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_HOVER, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_LEFT_DOWN, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_LEFT_UP, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_LEFT_DOUBLECLICK, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_MIDDLE_DOWN, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_MIDDLE_UP, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_MIDDLE_DOUBLECLICK, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_RIGHT_DOWN, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_RIGHT_UP, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
-    connect<MouseEvent>(MOUSE_RIGHT_DOUBLECLICK, wnd->get_id()) (&MyApp::wnd_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_ENTER, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEAVE, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MOVE, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_HOVER, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_DOWN, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_UP, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_LEFT_DOUBLECLICK, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_DOWN, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_UP, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_MIDDLE_DOUBLECLICK, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_DOWN, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_UP, panel->get_id()) (&MyApp::panel_mouse_event, *this);
+    connect<MouseEvent>(MOUSE_RIGHT_DOUBLECLICK, panel->get_id()) (&MyApp::panel_mouse_event, *this);
 
     GridBagLayoutInfo info;
     gblm->add(btn, info.position(0, 0).align_top().align_left());
