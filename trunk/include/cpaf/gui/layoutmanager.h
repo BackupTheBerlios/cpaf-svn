@@ -24,45 +24,40 @@
 #define CPAF_GUI_LAYOUTMANAGER_H
 
 #include <cpaf/gui/object.h>
-#include <boost/shared_ptr.hpp>
 
 namespace cpaf{
     namespace gui {
-
         class Widget;
 
 /*!
     Base class for layout managers
-    \todo pimpl
 */
-class CPAF_API LayoutManager
+class CPAF_API LayoutManager : public Object
 {
 public:
+    typedef cpaf::api::gui::LayoutManager api_type;
+
     /*!
         Updates the position and size of all managed widgets
     */
-    virtual void do_layout(const cpaf::Size &size) = 0;
+    void do_layout(const cpaf::Size &size);
 
     /*!
         Removes an object from this layout manager.
     */
-    virtual void remove(boost::weak_ptr<Widget> widget) = 0;
+    void remove(boost::weak_ptr<Widget> widget);
 
 protected:
-    /*!
-        Sets the position for a given widget
-    */
-    void set_widget_pos(boost::shared_ptr<Widget> widget, const cpaf::Point &pos);
+    LayoutManager(api_type *impl);
 
-    /*!
-        Sets the size for a given widget
-    */
-    void set_widget_size(boost::shared_ptr<Widget> widget, const cpaf::Size &size);
+private:
+    api_type *m_impl;
 
-    /*!
-        Sets the rect for a given widget
-    */
-    void set_widget_rect(boost::shared_ptr<Widget> widget, const cpaf::Rect &rect);
+protected:
+    template<typename T> T* get_impl()
+    {
+        return dynamic_cast<T*>(m_impl);
+    }
 
 public:
     virtual ~LayoutManager();

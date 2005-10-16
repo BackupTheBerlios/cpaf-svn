@@ -126,7 +126,7 @@ public:
     virtual ~Object();
     api_type *get_impl() const;
 
-    friend class LayoutManager;
+    friend class cpaf::api::gui::LayoutManager;
 };
 
     } // gui

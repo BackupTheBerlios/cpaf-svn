@@ -315,6 +315,9 @@
 					RelativePath=".\include\cpaf\gui\eventloop.h">
 				</File>
 				<File
+					RelativePath=".\include\cpaf\gui\gblmimpl.h">
+				</File>
+				<File
 					RelativePath=".\include\cpaf\gui\gridbaglayout.h">
 				</File>
 				<File
@@ -808,6 +811,9 @@
 							ObjectFile="$(IntDir)/$(SafeParentName)/"
 							ProgramDataBaseFileName="$(IntDir)/$(SafeParentName)/"/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\src\cpaf\gui\gblmimpl.cpp">
 				</File>
 				<File
 					RelativePath=".\src\cpaf\gui\gridbaglayout.cpp">
