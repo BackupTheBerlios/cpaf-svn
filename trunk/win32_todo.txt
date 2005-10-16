@@ -1,1 +1,0 @@
-Respect client size when creating Windows
