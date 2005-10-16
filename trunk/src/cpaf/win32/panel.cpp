@@ -125,7 +125,7 @@ int Panel::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
                 before or after the size event is sent
         */
         // update the layout manager
-        m_layout_manager->do_layout(cpaf::Size(LOWORD(l_param), HIWORD(l_param)));
+        m_layout_manager->set_size(cpaf::Size(LOWORD(l_param), HIWORD(l_param)));
 
         break;
     };

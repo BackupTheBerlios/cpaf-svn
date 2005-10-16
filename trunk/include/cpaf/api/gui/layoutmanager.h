@@ -34,12 +34,8 @@ namespace cpaf {
 class LayoutManager : public virtual Object
 {
 public:
-    virtual void do_layout(const cpaf::Size &size) = 0;
     virtual void remove(boost::weak_ptr<cpaf::gui::Widget> widget) = 0;
-
-    void set_widget_pos(boost::shared_ptr<cpaf::gui::Widget> widget, const cpaf::Point &pos);
-    void set_widget_size(boost::shared_ptr<cpaf::gui::Widget> widget, const cpaf::Size &size);
-    void set_widget_rect(boost::shared_ptr<cpaf::gui::Widget> widget, const cpaf::Rect &rect);
+    virtual void invalidate() = 0;
 };
 
         } // gui

@@ -35,28 +35,12 @@ LayoutManager::LayoutManager(api_type *impl)
 
 LayoutManager::~LayoutManager() { }
 
-void LayoutManager::do_layout(const cpaf::Size &size)
-{
-    //! \todo Remove this function once it becomes obsolete
-    m_impl->do_layout(size);
-}
-
 void LayoutManager::remove(boost::weak_ptr<Widget> widget)
 {
     m_impl->remove(widget);
 }
 
-void cpaf::api::gui::LayoutManager::set_widget_pos(boost::shared_ptr<cpaf::gui::Widget> widget, const cpaf::Point &pos)
+void LayoutManager::invalidate()
 {
-    widget->set_position(pos);
-}
-
-void cpaf::api::gui::LayoutManager::set_widget_size(boost::shared_ptr<cpaf::gui::Widget> widget, const cpaf::Size &size)
-{
-    widget->set_size(size);
-}
-
-void cpaf::api::gui::LayoutManager::set_widget_rect(boost::shared_ptr<cpaf::gui::Widget> widget, const cpaf::Rect &rect)
-{
-    widget->set_rect(rect);
+    m_impl->invalidate();
 }

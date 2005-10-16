@@ -66,6 +66,10 @@ struct WidgetInfo
 {
     //! What widget is this information for
     boost::weak_ptr<Widget> widget;
+
+    cpaf::Size m_min_size;
+    cpaf::Size m_max_size;
+
     //! The information for this widget
     LayoutData data;
 
@@ -109,9 +113,11 @@ class GridBagLayout : public cpaf::api::gui::LayoutManager
 public:
     GridBagLayout();
 
-    void do_layout(const cpaf::Size &size);
-    void add(boost::weak_ptr<cpaf::gui::Widget> widget, const GridBagLayoutInfo &info);
+    // LayoutManager interface
     void remove(boost::weak_ptr<cpaf::gui::Widget> widget);
+    void invalidate();
+
+    void add(boost::weak_ptr<cpaf::gui::Widget> widget, const GridBagLayoutInfo &info);
     void set_column_weight(int column, float weight);
     void set_row_weight(int row, float weight);
     void set_column_gap(float gap);
@@ -141,6 +147,15 @@ public:
 private:
     typedef std::map<boost::shared_ptr<cpaf::gui::Widget>, cpaf::Rect> WidgetRects;
 
+    cpaf::Rect m_rect;
+    cpaf::Size m_min_size, m_max_size, m_natural_size;
+
+    /*!
+        If this value is true, the values for m_min_size, m_max_size, and m_natural_size
+        need to be recalculated.
+    */
+    bool m_values_invalid;
+
     gblm::Widgets m_widgets;
     gblm::Weights m_rows, m_columns;
     gblm::WidgetGroup m_row_widgets, m_col_widgets;
@@ -148,6 +163,11 @@ private:
     float m_margin_top, m_margin_left, m_margin_right, m_margin_bottom;
 
     static const int DEFAULT_WEIGHT = 1;
+
+    /*!
+        Update the positions and sizes of all widgets
+    */
+    void update_layout();
 
     /*!
         \return a reference to the existing column with this index.
@@ -165,7 +185,7 @@ private:
         Calculates the sizes of the widgets contained in this objects columns or rows
         based on the template parameter
     */
-    template<gblm::GROUP> void calc_group_sizes(float avail, WidgetRects &rects);
+    template<gblm::GROUP> void calc_group_sizes(const cpaf::Rect &avail, WidgetRects &rects);
 
     /*!
         \return Weights for the widgets in the given row or column based on the
@@ -192,6 +212,11 @@ private:
         \return A reference to the x or y value of the given position based on the template parameter
     */
     template<gblm::GROUP> float &get_pos_value(cpaf::Point &pos);
+
+    /*!
+        \returnThe x or y value of the given position based on the template parameter
+    */
+    template<gblm::GROUP> float get_pos_value(const cpaf::Point &pos);
 
     /*!
         Returns either the left and right or top and bottom padding values from the given data

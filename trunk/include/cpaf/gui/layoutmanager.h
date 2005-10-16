@@ -38,14 +38,19 @@ public:
     typedef cpaf::api::gui::LayoutManager api_type;
 
     /*!
-        Updates the position and size of all managed widgets
-    */
-    void do_layout(const cpaf::Size &size);
-
-    /*!
         Removes an object from this layout manager.
     */
     void remove(boost::weak_ptr<Widget> widget);
+
+    /*!
+        \brief Invalidates the layout.
+
+        Layout Manager implementations cache a large amount of data about the
+        Widgets they are managing in order to execute efficiently. Calling this
+        function flags this data as being invalid. You should not need to
+        manually call this function.
+    */
+    void invalidate();
 
 protected:
     LayoutManager(api_type *impl);

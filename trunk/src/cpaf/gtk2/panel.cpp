@@ -40,7 +40,7 @@ cpaf_fixed_size_allocate(GtkWidget *gtkwidget,
     //! \todo Revise the logic. Possibly writing our own gtk+ container for this
     if (alloc->width != widget->m_last_width || alloc->height != widget->m_last_height)
     {
-        widget->m_layout_manager->do_layout(cpaf::Size(alloc->width, alloc->height));
+        widget->m_layout_manager->set_size(cpaf::Size(alloc->width, alloc->height));
         widget->m_last_width = alloc->width;
         widget->m_last_height = alloc->height;
     }

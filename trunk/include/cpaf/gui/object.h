@@ -95,23 +95,26 @@ public:
     */
     cpaf::Rect get_rect() const;
 
-private:
+public:
     /*!
-        \brief Sets the absolute size of this widget.
+        \brief Sets the absolute size of this widget. If the widget is a TopLevel widget,
+        the value is in screen coordinates, otherwise it is client coordinates.
     */
     void set_size(const cpaf::Size &s);
 
     /*!
-        \brief Sets the position of a widget in client coordinates.
+        \brief Sets the position of a widget. If the widget is a TopLevel widget,
+        the position value is in screen coordinates, otherwise it is client coordinates.
     */
     void set_position(const cpaf::Point &p);
 
     /*!
-        \brief Sets both the position and the size of the widget in client coordinates.
+        \brief Sets both the position and the size of the widget. If the widget
+        is a TopLevel widget, the value is in screen coordinates, otherwise
+        it is client coordinates.
     */
     void set_rect(const cpaf::Rect &r);
 
-private:
     boost::shared_ptr<api_type> m_impl;
 
 protected:

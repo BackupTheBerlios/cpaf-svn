@@ -36,165 +36,75 @@ GridBagLayout::GridBagLayout()
 
 }
 
-void GridBagLayout::set_size(const cpaf::Size&)
+void GridBagLayout::set_size(const cpaf::Size &size)
 {
-
+    m_rect.size = size;
+    update_layout();
 }
 
-void GridBagLayout::set_min_size(const cpaf::Size&)
+void GridBagLayout::set_min_size(const cpaf::Size &size)
 {
-
+    //! \todo Decide whether to honor specified sizes
 }
 
-void GridBagLayout::set_max_size(const cpaf::Size&)
+void GridBagLayout::set_max_size(const cpaf::Size &size)
 {
-
+    //! \todo Decide whether to honor specified sizes
 }
 
-void GridBagLayout::set_natural_size(const cpaf::Size&)
+void GridBagLayout::set_natural_size(const cpaf::Size &size)
 {
-
+    //! \todo Decide whether to honor specified sizes
 }
 
-void GridBagLayout::set_position(const cpaf::Point&)
+void GridBagLayout::set_position(const cpaf::Point &pos)
 {
-
+    m_rect.position = pos;
+    update_layout();
 }
 
-void GridBagLayout::set_rect(const cpaf::Rect&)
+void GridBagLayout::set_rect(const cpaf::Rect &rect)
 {
-
+    m_rect = rect;
+    update_layout();
 }
 
 cpaf::Size GridBagLayout::get_size() const
 {
-    return cpaf::Size();
+    return m_rect.size;
 }
 
 cpaf::Size GridBagLayout::get_min_size() const
 {
-    return cpaf::Size();
+    return m_min_size;
 }
 
 cpaf::Size GridBagLayout::get_max_size() const
 {
-    return cpaf::Size();
+    return m_max_size;
 }
 
 cpaf::Size GridBagLayout::get_natural_size() const
 {
-    return cpaf::Size();
+    return m_natural_size;
 }
 
 cpaf::Point GridBagLayout::get_position() const
 {
-    return cpaf::Point();
+    return m_rect.position;
 }
 
 cpaf::Rect GridBagLayout::get_rect() const
 {
-    return cpaf::Rect();
+    return m_rect;
 }
 
-inline void reset_group_done_state(GroupInfo::value_type &value)
+void GridBagLayout::invalidate()
 {
-    value.second.m_done = false;
+    m_values_invalid = true;
 }
 
-// need namespace declarations for template specializations (by standard)
-namespace cpaf {
-    namespace gui {
-        namespace gblm {
-
-template<> inline gblm::Weights &GridBagLayout::get_weights<COLUMN>()
-{
-    return m_columns;
-}
-
-template<> inline gblm::Weights &GridBagLayout::get_weights<ROW>()
-{
-    return m_rows;
-}
-
-template<> inline gblm::WidgetGroup &GridBagLayout::get_widgets<COLUMN>()
-{
-    return m_col_widgets;
-}
-
-template<> inline gblm::WidgetGroup &GridBagLayout::get_widgets<ROW>()
-{
-    return m_row_widgets;
-}
-
-template<> inline float &GridBagLayout::get_size_value<COLUMN>(cpaf::Size &size)
-{
-    return size.width;
-}
-
-template<> inline float &GridBagLayout::get_size_value<ROW>(cpaf::Size &size)
-{
-    return size.height;
-}
-
-template<> inline float GridBagLayout::get_size_value<COLUMN>(const cpaf::Size &size)
-{
-    return size.width;
-}
-
-template<> inline float GridBagLayout::get_size_value<ROW>(const cpaf::Size &size)
-{
-    return size.height;
-}
-
-template<> inline void GridBagLayout::get_pad_values<COLUMN>(const LayoutData &data, float &pad1, float &pad2)
-{
-    pad1 = data.pad_left;
-    pad2 = data.pad_right;
-}
-
-template<> inline void GridBagLayout::get_pad_values<ROW>(const LayoutData &data, float &pad1, float &pad2)
-{
-    pad1 = data.pad_top;
-    pad2 = data.pad_bottom;
-}
-
-template<> inline float GridBagLayout::get_gap<COLUMN>()
-{
-    return m_column_gap;
-}
-
-template<> inline float GridBagLayout::get_gap<ROW>()
-{
-    return m_row_gap;
-}
-
-template<> inline float &GridBagLayout::get_pos_value<COLUMN>(cpaf::Point &pos)
-{
-    return pos.x;
-}
-
-template<> inline float &GridBagLayout::get_pos_value<ROW>(cpaf::Point &pos)
-{
-    return pos.y;
-}
-
-template<> void GridBagLayout::get_margin_values<COLUMN>(float &margin1, float &margin2)
-{
-    margin1 = m_margin_left;
-    margin2 = m_margin_right;
-}
-
-template<> void GridBagLayout::get_margin_values<ROW>(float &margin1, float &margin2)
-{
-    margin1 = m_margin_top;
-    margin2 = m_margin_bottom;
-}
-
-        } // gblm
-    } // gui
-} // cpaf
-
-template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, WidgetRects &rects)
+template<GROUP group> inline void GridBagLayout::calc_group_sizes(const cpaf::Rect &avail, WidgetRects &rects)
 {
     GroupInfo info;
 
@@ -241,8 +151,8 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
 
     // calculate sizes for each group accounting for gaps
     float margin1, margin2;
-    float available_size = avail;
     float gap = get_gap<group>();
+    float available_size = get_size_value<group>(avail.size);
 
     get_margin_values<group>(margin1, margin2);
     available_size -= (info.size() - 1) * gap + margin1 + margin2;;
@@ -321,8 +231,8 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
         }
     } while(again);
 
-    cpaf::Point pos;
-    get_pos_value<group>(pos) = margin1;
+    cpaf::Point pos = avail.position;
+    get_pos_value<group>(pos) += margin1;
 
     // calculate widget sizes
     for( GroupInfo::iterator i = info.begin(); i != info.end(); ++i )
@@ -419,17 +329,17 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
     }
 }
 
-void GridBagLayout::do_layout(const cpaf::Size &size)
+void GridBagLayout::update_layout()
 {
     WidgetRects widget_rects;
 
     // do all calculations for the hozirontal and vertical directions
-    calc_group_sizes<COLUMN>(size.width, widget_rects);
-    calc_group_sizes<ROW>(size.height, widget_rects);
+    calc_group_sizes<COLUMN>(m_rect, widget_rects);
+    calc_group_sizes<ROW>(m_rect, widget_rects);
 
     // now actually position the widgets
     for( WidgetRects::iterator i = widget_rects.begin(), end = widget_rects.end(); i != end; ++i )
-        set_widget_rect(i->first, i->second);
+        i->first->set_rect(i->second);
 }
 
 void GridBagLayout::add(boost::weak_ptr<cpaf::gui::Widget> widget, const cpaf::gui::GridBagLayoutInfo &info)
@@ -548,3 +458,106 @@ LayoutData::LayoutData()
     pad_left(0), pad_top(0), pad_right(0), pad_bottom(0),
     col(0), row(0), col_span(0), row_span(0)
 { }
+
+// need namespace declarations for template specializations (by standard)
+namespace cpaf {
+    namespace gui {
+        namespace gblm {
+
+template<> inline gblm::Weights &GridBagLayout::get_weights<COLUMN>()
+{
+    return m_columns;
+}
+
+template<> inline gblm::Weights &GridBagLayout::get_weights<ROW>()
+{
+    return m_rows;
+}
+
+template<> inline gblm::WidgetGroup &GridBagLayout::get_widgets<COLUMN>()
+{
+    return m_col_widgets;
+}
+
+template<> inline gblm::WidgetGroup &GridBagLayout::get_widgets<ROW>()
+{
+    return m_row_widgets;
+}
+
+template<> inline float &GridBagLayout::get_size_value<COLUMN>(cpaf::Size &size)
+{
+    return size.width;
+}
+
+template<> inline float &GridBagLayout::get_size_value<ROW>(cpaf::Size &size)
+{
+    return size.height;
+}
+
+template<> inline float GridBagLayout::get_size_value<COLUMN>(const cpaf::Size &size)
+{
+    return size.width;
+}
+
+template<> inline float GridBagLayout::get_size_value<ROW>(const cpaf::Size &size)
+{
+    return size.height;
+}
+
+template<> inline void GridBagLayout::get_pad_values<COLUMN>(const LayoutData &data, float &pad1, float &pad2)
+{
+    pad1 = data.pad_left;
+    pad2 = data.pad_right;
+}
+
+template<> inline void GridBagLayout::get_pad_values<ROW>(const LayoutData &data, float &pad1, float &pad2)
+{
+    pad1 = data.pad_top;
+    pad2 = data.pad_bottom;
+}
+
+template<> inline float GridBagLayout::get_gap<COLUMN>()
+{
+    return m_column_gap;
+}
+
+template<> inline float GridBagLayout::get_gap<ROW>()
+{
+    return m_row_gap;
+}
+
+template<> inline float &GridBagLayout::get_pos_value<COLUMN>(cpaf::Point &pos)
+{
+    return pos.x;
+}
+
+template<> inline float &GridBagLayout::get_pos_value<ROW>(cpaf::Point &pos)
+{
+    return pos.y;
+}
+
+template<> inline float GridBagLayout::get_pos_value<COLUMN>(const cpaf::Point &pos)
+{
+    return pos.x;
+}
+
+template<> inline float GridBagLayout::get_pos_value<ROW>(const cpaf::Point &pos)
+{
+    return pos.y;
+}
+
+template<> void GridBagLayout::get_margin_values<COLUMN>(float &margin1, float &margin2)
+{
+    margin1 = m_margin_left;
+    margin2 = m_margin_right;
+}
+
+template<> void GridBagLayout::get_margin_values<ROW>(float &margin1, float &margin2)
+{
+    margin1 = m_margin_top;
+    margin2 = m_margin_bottom;
+}
+
+        } // gblm
+    } // gui
+} // cpaf

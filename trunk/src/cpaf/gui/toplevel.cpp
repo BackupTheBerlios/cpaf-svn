@@ -46,21 +46,6 @@ TopLevel::api_type *TopLevel::get_impl() const
     return m_impl;
 }
 
-void TopLevel::set_size(const cpaf::Size &s)
-{
-    m_impl->set_size(s);
-}
-
-void TopLevel::set_position(const cpaf::Point &p)
-{
-    m_impl->set_position(p);
-}
-
-void TopLevel::set_rect(const cpaf::Rect &r)
-{
-    m_impl->set_rect(r);
-}
-
 void TopLevel::show(bool show, bool focus)
 {
     m_impl->show(show, focus);

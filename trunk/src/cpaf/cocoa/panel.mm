@@ -42,7 +42,7 @@ CPAF_COCOA_IMPLEMENTATION(View)
 {
     Panel *p = dynamic_cast<Panel *>([self cpafWidget]);
     NSRect r = [self frame];
-    p->m_layout_manager->do_layout(cpaf::Size(r.size.width, r.size.height));
+    p->m_layout_manager->set_size(cpaf::Size(r.size.width, r.size.height));
 }
 - (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
 {
