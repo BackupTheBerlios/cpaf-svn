@@ -29,7 +29,7 @@ using namespace cpaf::gui;
 Button::Button()
     : Widget(factory::create_widget_implementation<api_type>())
 {
-    m_impl = Widget::get_impl<api_type>();
+    m_impl = Object::get_impl<api_type>();
 }
 
 Button::Button(cpaf::api::gui::Button *impl)

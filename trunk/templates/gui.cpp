@@ -1,6 +1,6 @@
 /*!
     \file src/cpaf/gui/$(NAME_LOWER).$(SRC_EXT)
-    \brief Implementation of cpaf::gui::$(NAME)
+    \brief Implementation of $(NAME)
     \date Created: $(DATE)
 */
 
@@ -8,15 +8,17 @@
 #include <cpaf/api/gui/$(NAME_LOWER).h>
 #include <cpaf/private/factory.h>
 
+using namespace cpaf::gui;
+
 $(IF CONSTRUCTABLE)
-cpaf::gui::$(NAME)::$(NAME)()
-    : $(BASE)(cpaf::gui::factory::create_widget_implementation<api_type>())
+$(NAME)::$(NAME)()
+    : $(BASE)(factory::create_widget_implementation<api_type>())
 {
-    m_impl = cpaf::gui::Widget::get_impl<api_type>();
+    m_impl = Object::get_impl<api_type>();
 }
 $(END)
 
-cpaf::gui::$(NAME)::$(NAME)(api_type *impl)
+$(NAME)::$(NAME)(api_type *impl)
     : $(BASE)(impl),
     m_impl(impl)
 { }
@@ -28,7 +30,7 @@ boost::shared_ptr<$(NAME)> $(NAME)::create(const Initializer &initializer)
     return wrapper->initialize(initializer);
 }
 
-boost::shared_ptr<$(NAME)> cpaf::gui::$(NAME)::inintialize(const Initializer &initializer)
+boost::shared_ptr<$(NAME)> $(NAME)::inintialize(const Initializer &initializer)
 {
     // create a shared pointer for this wapper
     boost::shared_ptr<$(NAME)> ptr(this);
@@ -46,7 +48,7 @@ boost::shared_ptr<$(NAME)> cpaf::gui::$(NAME)::inintialize(const Initializer &in
 }
 $(END)
 
-cpaf::gui::$(NAME)::api_type *cpaf::gui::$(NAME)::get_impl() const
+$(NAME)::api_type *$(NAME)::get_impl() const
 {
     return m_impl;
 }

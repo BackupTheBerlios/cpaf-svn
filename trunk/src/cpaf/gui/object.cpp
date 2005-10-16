@@ -20,26 +20,24 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
-/*
 #include <cpaf/gui/object.h>
 #include <cpaf/api/gui/object.h>
 
 using namespace cpaf::gui;
 
-Object::Object()
-    : m_impl(NULL)
-{ }
-
-Object::~Object(cpaf::api::gui::Object *impl)
+Object::Object(api_type *impl)
     : m_impl(impl)
 { }
 
-Object::api_type *get_impl() const
+Object::~Object()
 {
-    return m_impl;
+
 }
 
+Object::api_type *Object::get_impl() const
+{
+    return m_impl.get();
+}
 void Object::set_size(const cpaf::Size &s)
 {
     m_impl->set_size(s);
@@ -60,23 +58,42 @@ void Object::set_position(const cpaf::Point &p)
     m_impl->set_position(p);
 }
 
-cpaf::Size Object::get_size()
+void Object::set_rect(const cpaf::Rect &r)
+{
+    m_impl->set_rect(r);
+}
+
+cpaf::Size Object::get_size() const
 {
     return m_impl->get_size();
 }
 
-cpaf::Size Object::get_min_size()
+cpaf::Size Object::get_min_size() const
 {
     return m_impl->get_min_size();
 }
 
-cpaf::Size Object::get_max_size()
+cpaf::Size Object::get_max_size() const
 {
     return m_impl->get_max_size();
 }
 
-cpaf::Point Object::get_position()
+void Object::set_natural_size(const cpaf::Size &s)
+{
+    m_impl->set_natural_size(s);
+}
+
+cpaf::Size Object::get_natural_size() const
+{
+    return m_impl->get_natural_size();
+}
+
+cpaf::Point Object::get_position() const
 {
     return m_impl->get_position();
 }
-*/
+
+cpaf::Rect Object::get_rect() const
+{
+    return m_impl->get_rect();
+}

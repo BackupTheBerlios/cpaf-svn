@@ -31,7 +31,7 @@ using namespace cpaf::gui;
 Window::Window()
     : TopLevel(factory::create_widget_implementation<api_type>())
 {
-    m_impl = Widget::get_impl<api_type>();
+    m_impl = Object::get_impl<api_type>();
 }
 
 Window::Window(api_type *impl)

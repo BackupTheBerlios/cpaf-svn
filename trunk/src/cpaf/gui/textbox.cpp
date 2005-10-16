@@ -29,7 +29,7 @@ using namespace cpaf::gui;
 TextBox::TextBox()
     : TextWidget(factory::create_widget_implementation<api_type>())
 {
-    m_impl = Widget::get_impl<api_type>();
+    m_impl = Object::get_impl<api_type>();
 }
 
 TextBox::TextBox(api_type *impl)

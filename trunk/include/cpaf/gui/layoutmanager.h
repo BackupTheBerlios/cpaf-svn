@@ -1,5 +1,5 @@
 /*!
-    \file src\cpaf\layout_manager.h
+    \file include/cpaf/gui/layoutmanager.h
     \brief Layout Manager declarations
     \date Created: 2005-08-24
 */
@@ -23,8 +23,7 @@
 #ifndef CPAF_GUI_LAYOUTMANAGER_H
 #define CPAF_GUI_LAYOUTMANAGER_H
 
-#include <cpaf/dllimpexp.h>
-#include <cpaf/types.h>
+#include <cpaf/gui/object.h>
 #include <boost/shared_ptr.hpp>
 
 namespace cpaf{

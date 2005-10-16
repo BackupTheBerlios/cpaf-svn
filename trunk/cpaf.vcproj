@@ -271,6 +271,9 @@
 						RelativePath=".\include\cpaf\api\gui\eventloop.h">
 					</File>
 					<File
+						RelativePath=".\include\cpaf\api\gui\layoutmanager.h">
+					</File>
+					<File
 						RelativePath=".\include\cpaf\api\gui\object.h">
 					</File>
 					<File
