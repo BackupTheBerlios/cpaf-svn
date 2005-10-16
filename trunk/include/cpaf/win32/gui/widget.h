@@ -80,10 +80,11 @@ public:
         \param styles_ex    Extended window styles
     */
     virtual void create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
-        bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex = 0);
+        bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex = 0,
+        int x = 0, int y = 0, int w = 0, int h = 0);
 
     cpaf::object_id get_id() const { return m_id; }
-    template<typename T> boost::shared_ptr<T> get_wrapper() const { return boost::dynamic_pointer_cast<T>(m_wrapper.lock()); }
+    template<typename T> boost::shared_ptr<T> get_wrapper() const;
 
     // object interface
     virtual void set_size(const cpaf::Size &s);
@@ -117,6 +118,11 @@ protected:
     void set_window_text(const std::string &str);
     std::string get_window_text() const;
 };
+
+template<typename T> inline boost::shared_ptr<T> Widget::get_wrapper() const
+{
+    return boost::dynamic_pointer_cast<T>(m_wrapper.lock());
+}
 
         } // gui
     } // win32

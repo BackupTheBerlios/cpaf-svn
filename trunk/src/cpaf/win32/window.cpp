@@ -70,18 +70,29 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
 
     int style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN, style_ex = WS_EX_CONTROLPARENT;
 
-    //! \todo handle client_size from the factory
     // handle client size
-    RECT rect = {0};
     cpaf::Size client_size = init_params.get_client_size();
-    rect.right = client_size.width;
-    rect.bottom = client_size.height;
+    {
+        RECT rect = {0};
+        rect.right = client_size.width;
+        rect.bottom = client_size.height;
 
-    ::AdjustWindowRectEx(&rect, style, false, style_ex);
+        ::AdjustWindowRectEx(&rect, style, false, style_ex);
 
-    client_size.width = rect.right - rect.left;
-    client_size.height = rect.bottom - rect.top;
-    //init_params.set_size(client_size);
+        if( client_size.width != 0 )
+            client_size.width = rect.right - rect.left;
+        else
+            client_size.width = CW_USEDEFAULT;
+        if( client_size.height != 0 )
+            client_size.height = rect.bottom - rect.top;
+        else
+            client_size.height = CW_USEDEFAULT;
+    }
+
+    // handle window position
+    cpaf::Point pos = init_params.get_position();
+    if( init_params.default_position() )
+        pos.x = pos.y = CW_USEDEFAULT;
 
     // set the content panel
     HWND w = 0;
@@ -95,7 +106,7 @@ void Window::create(const cpaf::gui::initializer::WindowData &params)
     
     // create a window
     Widget::create(CreationInfo(this), init_params, false, CLASSNAME, params.get_title().c_str(),
-        style, style_ex);
+        style, style_ex, pos.x, pos.y, client_size.width, client_size.height);
 
     if( params.get_content_panel() )
     {

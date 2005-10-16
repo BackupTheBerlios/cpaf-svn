@@ -25,7 +25,7 @@
 using namespace cpaf::gui::initializer;
 
 WindowData::WindowData()
-    : m_default_position(false)
+    : m_default_position(true)
 {
     // windows should be activated when shown by default
     WidgetData::m_activate = true;

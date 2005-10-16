@@ -47,7 +47,8 @@ Widget::Widget()
 { }
 
 void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
-        bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex)
+        bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex,
+        int x, int y, int w, int h)
 {
     m_wrapper = params.get_wrapper();
     m_id = params.get_wrapper()->get_id();
@@ -66,7 +67,7 @@ void Widget::create(const CreationInfo &info, const cpaf::gui::initializer::Widg
         CreationInfo info(this);
 
         m_hwnd = ::CreateWindowEx(styles_ex, class_name, window_name, styles,
-            CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, hparent, NULL, ::GetModuleHandle(NULL),
+            x, y, w, h, hparent, NULL, ::GetModuleHandle(NULL),
             &info);
     }
 
