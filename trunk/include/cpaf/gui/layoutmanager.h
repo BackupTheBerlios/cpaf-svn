@@ -47,23 +47,23 @@ public:
     /*!
         Removes an object from this layout manager.
     */
-    virtual void remove(boost::shared_ptr<Widget> widget) = 0;
+    virtual void remove(boost::weak_ptr<Widget> widget) = 0;
 
 protected:
     /*!
         Sets the position for a given widget
     */
-    void set_widget_pos(Widget *widget, const cpaf::Point &pos);
+    void set_widget_pos(boost::shared_ptr<Widget> widget, const cpaf::Point &pos);
 
     /*!
         Sets the size for a given widget
     */
-    void set_widget_size(Widget *widget, const cpaf::Size &size);
+    void set_widget_size(boost::shared_ptr<Widget> widget, const cpaf::Size &size);
 
     /*!
         Sets the rect for a given widget
     */
-    void set_widget_rect(Widget *widget, const cpaf::Rect &rect);
+    void set_widget_rect(boost::shared_ptr<Widget> widget, const cpaf::Rect &rect);
 
 public:
     virtual ~LayoutManager();

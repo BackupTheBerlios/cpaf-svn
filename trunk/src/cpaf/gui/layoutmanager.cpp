@@ -27,17 +27,17 @@ using namespace cpaf::gui;
 
 LayoutManager::~LayoutManager() { }
 
-void LayoutManager::set_widget_pos(Widget *widget, const cpaf::Point &pos)
+void LayoutManager::set_widget_pos(boost::shared_ptr<Widget> widget, const cpaf::Point &pos)
 {
     widget->set_position(pos);
 }
 
-void LayoutManager::set_widget_size(Widget *widget, const cpaf::Size &size)
+void LayoutManager::set_widget_size(boost::shared_ptr<Widget> widget, const cpaf::Size &size)
 {
     widget->set_size(size);
 }
 
-void LayoutManager::set_widget_rect(Widget *widget, const cpaf::Rect &rect)
+void LayoutManager::set_widget_rect(boost::shared_ptr<Widget> widget, const cpaf::Rect &rect)
 {
     widget->set_rect(rect);
 }

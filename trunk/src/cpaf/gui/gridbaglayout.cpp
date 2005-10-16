@@ -155,8 +155,8 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
         for( GroupWidgets::iterator i = data.m_widgets.begin(), end = data.m_widgets.end(); i != end; ++i )
         {
             const WidgetInfo &info = *(i->second);
-            float min_val = get_size_value<group>(info.widget->get_min_size());
-            float max_val = get_size_value<group>(info.widget->get_max_size());
+            float min_val = get_size_value<group>(info.widget.lock()->get_min_size());
+            float max_val = get_size_value<group>(info.widget.lock()->get_max_size());
             float pad1, pad2;
 
             get_pad_values<group>(info.data, pad1, pad2);
@@ -274,7 +274,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
         {
             const WidgetInfo &info = *(i->second);
 
-            cpaf::Rect &rect = rects[info.widget];
+            cpaf::Rect &rect = rects[info.widget.lock()];
 
             float &size_dest_val = get_size_value<group>(rect.size);
             float size_src_val_natural = 0;
@@ -300,7 +300,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes(float avail, W
                 size_dest_val = size_src_val;
             else
             {
-                size_src_val_natural = get_size_value<group>(info.widget->get_natural_size());
+                size_src_val_natural = get_size_value<group>(info.widget.lock()->get_natural_size());
 
                 // make sure the natural size isn't larger than the max or smaller than min
                 float min_val = data.m_min_size;
@@ -373,10 +373,10 @@ void GridBagLayout::do_layout(const cpaf::Size &size)
         set_widget_rect(i->first, i->second);
 }
 
-void GridBagLayout::add(boost::shared_ptr<Widget> widget, const GridBagLayoutInfo &info)
+void GridBagLayout::add(boost::weak_ptr<Widget> widget, const GridBagLayoutInfo &info)
 {
     LayoutData data = info.get_data();
-    m_widgets.push_back(WidgetInfo(widget.get(), data));
+    m_widgets.push_back(WidgetInfo(widget, data));
 
     // make sure default row and column weights exist
     get_row_weight(data.row);
@@ -387,13 +387,13 @@ void GridBagLayout::add(boost::shared_ptr<Widget> widget, const GridBagLayoutInf
     m_col_widgets[data.col].insert(std::make_pair(data.row, &m_widgets.back()));
 }
 
-void GridBagLayout::remove(boost::shared_ptr<Widget> widget)
+void GridBagLayout::remove(boost::weak_ptr<Widget> widget)
 {
     gblm::Widgets::iterator it;
 
     // see if this widget is managed by this gblm
     for( it = m_widgets.begin(); it != m_widgets.end(); ++it )
-        if( it->widget == widget.get() )
+        if( it->widget.lock() == widget.lock() )
             break;
 
     // make sure we found something

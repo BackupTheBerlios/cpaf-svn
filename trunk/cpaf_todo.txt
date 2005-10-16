@@ -2,6 +2,8 @@ Fix the GBLM to not crash the application if a child that it was managing was de
 
 Implement group spanning in GBLM
 
+Optimize GBLM heavily
+
 ========================================
                   Events
 ========================================

@@ -25,6 +25,7 @@
 
 #include <cpaf/gui/layoutmanager.h>
 #include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 #include <set>
 #include <list>
 #include <map>
@@ -68,11 +69,11 @@ public:
 struct WidgetInfo
 {
     //! What widget is this information for
-    Widget *widget;
+    boost::weak_ptr<Widget> widget;
     //! The information for this widget
     LayoutData data;
 
-    WidgetInfo(Widget *w, const LayoutData &d) : widget(w), data(d) { }
+    WidgetInfo(boost::weak_ptr<Widget> w, const LayoutData &d) : widget(w), data(d) { }
 };
 
 typedef std::list<WidgetInfo> Widgets;
@@ -180,9 +181,9 @@ public:
     /*!
         Adds a widget to this layout manager with the given layout info.
     */
-    void add(boost::shared_ptr<Widget> widget, const GridBagLayoutInfo &info);
+    void add(boost::weak_ptr<Widget> widget, const GridBagLayoutInfo &info);
 
-    void remove(boost::shared_ptr<Widget> widget);
+    void remove(boost::weak_ptr<Widget> widget);
 
     /*!
         Sets the weight value for a given column
@@ -245,7 +246,7 @@ public:
     //void remove_widget(Widget *widget);
 
 private:
-    typedef std::map<cpaf::gui::Widget *, cpaf::Rect> WidgetRects;
+    typedef std::map<boost::shared_ptr<cpaf::gui::Widget>, cpaf::Rect> WidgetRects;
 
     gblm::Widgets m_widgets;
     gblm::Weights m_rows, m_columns;

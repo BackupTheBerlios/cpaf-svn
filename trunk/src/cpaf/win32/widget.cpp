@@ -133,6 +133,9 @@ int Widget::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 
             // remove ourselves from our parents layout manager
             //get_parent()->get_layout_manager().remove(m_wrapper);
+            Panel *parent = get_widget_from_hwnd<Panel>(::GetParent(m_hwnd));
+            if( parent )
+                parent->get_layout_manager().remove(m_wrapper);
 
             // queue ourselves for deletion in the proper order
             widget_deletion_stack_push(this);
