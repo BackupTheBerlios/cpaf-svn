@@ -122,6 +122,7 @@ public:
     GridBagLayout();
 
     // LayoutManager interface
+    void assign(boost::weak_ptr<cpaf::gui::Panel> panel);
     void remove(boost::weak_ptr<cpaf::gui::Object> object);
     void invalidate();
 
@@ -154,6 +155,9 @@ public:
 
 private:
     typedef std::map<boost::weak_ptr<cpaf::gui::Object>, cpaf::Rect> ObjectRects;
+
+    // the panel this gblm is managing
+    boost::weak_ptr<cpaf::gui::Panel> m_panel;
 
     mutable cpaf::Rect m_rect;
     mutable cpaf::Size m_min_size, m_max_size, m_natural_size;

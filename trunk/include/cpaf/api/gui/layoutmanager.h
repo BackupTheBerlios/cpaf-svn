@@ -27,13 +27,14 @@
 #include <boost/weak_ptr.hpp>
 
 namespace cpaf {
-    namespace gui { class Object; }
+    namespace gui { class Object; class Panel; }
     namespace api {
         namespace gui {
 
 class LayoutManager : public virtual Object
 {
 public:
+    virtual void assign(boost::weak_ptr<cpaf::gui::Panel>) = 0;
     virtual void remove(boost::weak_ptr<cpaf::gui::Object>) = 0;
     virtual void invalidate() = 0;
 };

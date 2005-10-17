@@ -1,0 +1,6 @@
+=====================
+      TextBox
+=====================
+
+-See why the TextBox in the textwidget sample flickers during resize.
+-Convert \n's into \r\n's in the appropriate places.

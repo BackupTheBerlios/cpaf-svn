@@ -28,6 +28,7 @@
 namespace cpaf{
     namespace gui {
         class Widget;
+        class Panel;
 
 /*!
     Base class for layout managers
@@ -51,6 +52,14 @@ public:
         manually call this function.
     */
     void invalidate();
+
+    /*!
+        Assigns this layout manager to the given panel. This function
+        is an implementation detail, your code must not call this function.
+
+        \todo Find a betterway to expose to deal with this implementation detail
+    */
+    void assign(boost::weak_ptr<cpaf::gui::Panel> panel);
 
 protected:
     LayoutManager(api_type *impl);

@@ -44,3 +44,8 @@ void LayoutManager::invalidate()
 {
     m_impl->invalidate();
 }
+
+void LayoutManager::assign(boost::weak_ptr<cpaf::gui::Panel> panel)
+{
+    m_impl->assign(panel);
+}

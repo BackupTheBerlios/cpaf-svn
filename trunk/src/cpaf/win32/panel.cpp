@@ -72,6 +72,8 @@ void Panel::create(const cpaf::gui::initializer::PanelData &params)
     m_layout_manager = params.get_layout_manager();
     if( !m_layout_manager )
         throw cpaf::Exception(cpaf::Exception::PANEL_NO_LAYOUT_MANAGER, __LINE__, __FILE__);
+    else
+        m_layout_manager->assign(boost::dynamic_pointer_cast<cpaf::gui::Panel>(params.get_wrapper()));
 
     // Create a panel
     cpaf::win32::gui::Widget::create(CreationInfo(this), params, false, CLASSNAME, 0,
@@ -138,16 +140,6 @@ void Panel::show(bool show, bool focus)
     // don't actually show ourselves if we are orphaned
     if( get_parent_window() )
         Widget::show(show, focus);
-}
-
-cpaf::Size Panel::get_min_size() const
-{
-    return m_layout_manager->get_min_size();
-}
-
-cpaf::Size Panel::get_max_size() const
-{
-    return m_layout_manager->get_max_size();
 }
 
 cpaf::gui::LayoutManager &Panel::get_layout_manager()

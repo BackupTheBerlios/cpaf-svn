@@ -55,6 +55,8 @@ void Panel::create(const cpaf::gui::initializer::PanelData &params)
     m_layout_manager = params.get_layout_manager();
     if( !m_layout_manager )
         throw cpaf::Exception(cpaf::Exception::PANEL_NO_LAYOUT_MANAGER, __LINE__, __FILE__);
+    else
+        m_layout_manager->assign(boost::dynamic_pointer_cast<cpaf::gui::Panel>(params.get_wrapper());
 
     Widget::create(params, [[CpafView alloc] init]);
 

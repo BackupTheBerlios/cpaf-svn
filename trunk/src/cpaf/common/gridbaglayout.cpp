@@ -21,7 +21,7 @@
 */
 
 #include <cpaf/common/gui/gridbaglayout.h>
-#include <cpaf/gui/object.h>
+#include <cpaf/gui/panel.h>
 
 using namespace cpaf::common::gui::gblm;
 using namespace cpaf::common::gui;
@@ -507,6 +507,14 @@ template<GROUP group> void GridBagLayout::update_group_sizes() const
         get_size_value<group>(m_min_size) = total_min + extra;
     if( total_max > 0 )
         get_size_value<group>(m_max_size) = total_max + extra;
+
+    // set the min and max sizes of our panel
+    boost::shared_ptr<cpaf::gui::Panel> panel = m_panel.lock();
+    if( panel )
+    {
+        panel->set_min_size(m_min_size);
+        panel->set_max_size(m_max_size);
+    }
 }
 
 void GridBagLayout::add(boost::weak_ptr<cpaf::gui::Object> object, const cpaf::gui::GridBagLayoutInfo &info)
@@ -613,6 +621,11 @@ float &GridBagLayout::get_column_weight(int index)
 float &GridBagLayout::get_row_weight(int index)
 {
     return get_group_data<ROW>(index).m_weight;
+}
+
+void GridBagLayout::assign(boost::weak_ptr<cpaf::gui::Panel> panel)
+{
+    m_panel = panel;
 }
 
 LayoutData::LayoutData()
