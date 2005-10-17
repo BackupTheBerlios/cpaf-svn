@@ -3,7 +3,7 @@ LD = g++
 OBJ_DIR = build
 OUTPUT_DIR = lib
 TARGET = libcpaf_gui_win32.dll
-INCLUDE_DIRS = -I include -I . -I C:\boost
+INCLUDE_DIRS = -I include -I . -I C:\C++\boost_1_31_0
 CXXFLAGS = -pipe -D_DEBUG -DCPAF_WIN32 -DCPAF_BUILDING -DCPAF_DLL -ggdb -Wall
 LD_FLAGS = -shared -fpic -Wl,-O1
 LIBS = -lcomctl32 -lgdi32
@@ -33,6 +33,7 @@ SRC_OBJS =                      \
 	$(OBJ_DIR)/gui/initializer/textbox.o    \
 	$(OBJ_DIR)/event/event.o    \
 	$(OBJ_DIR)/event/id.o       \
+	$(OBJ_DIR)/common/gui/gridbaglayout.o   \
 	$(OBJ_DIR)/win32/app.o       \
 	$(OBJ_DIR)/win32/exception.o  \
 	$(OBJ_DIR)/win32/eventloop.o  \
@@ -75,6 +76,8 @@ cleanall:
 	-@if exist "$(OUTPUT_DIR)" rmdir /s /q "$(OUTPUT_DIR)"
 	-@if exist "$(OBJ_DIR)/gui/initializer" rmdir /s /q "$(OBJ_DIR)/gui/initializer"
 	-@if exist "$(OBJ_DIR)/gui" rmdir /s /q "$(OBJ_DIR)/gui"
+	-@if exist "$(OBJ_DIR)/common/gui" rmdir /s /q "$(OBJ_DIR)/common/gui"
+	-@if exist "$(OBJ_DIR)/common" rmdir /s /q "$(OBJ_DIR)/common"
 	-@if exist "$(OBJ_DIR)/event" rmdir /s /q "$(OBJ_DIR)/event"
 	-@if exist "$(OBJ_DIR)/win32" rmdir /s /q "$(OBJ_DIR)/win32"
 	-@if exist "$(OBJ_DIR)" del /q "$(OBJ_DIR)"\*.*
@@ -88,6 +91,8 @@ directories:
 	-@if not exist "$(OBJ_DIR)/gui" mkdir "$(OBJ_DIR)/gui"
 	-@if not exist "$(OBJ_DIR)/gui/initializer" mkdir "$(OBJ_DIR)/gui/initializer"
 	-@if not exist "$(OBJ_DIR)/event" mkdir "$(OBJ_DIR)/event"
+	-@if not exist "$(OBJ_DIR)/common" mkdir "$(OBJ_DIR)/common"
+	-@if not exist "$(OBJ_DIR)/common/gui" mkdir "$(OBJ_DIR)/common/gui"
 	-@if not exist "$(OBJ_DIR)/win32" mkdir "$(OBJ_DIR)/win32"
 
 $(OBJ_DIR)/gui/app.o: src/cpaf/gui/app.cpp
@@ -165,6 +170,9 @@ $(OBJ_DIR)/event/event.o: src/cpaf/event/event.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/event/id.o: src/cpaf/event/id.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/common/gui/gridbaglayout.o: src/cpaf/common/gridbaglayout.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/win32/app.o: src/cpaf/win32/app.cpp

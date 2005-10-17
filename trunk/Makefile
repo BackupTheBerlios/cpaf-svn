@@ -32,6 +32,7 @@ SRC_OBJS =                          \
 	$(OBJ_DIR)/gui/initializer/textbox.o    \
 	$(OBJ_DIR)/event/event.o    \
 	$(OBJ_DIR)/event/id.o       \
+	$(OBJ_DIR)/common/gui/gridbaglayout.o   \
 	$(OBJ_DIR)/gtk2/app.o       \
 	$(OBJ_DIR)/gtk2/eventloop.o \
 	$(OBJ_DIR)/gtk2/factory.o   \
@@ -82,6 +83,8 @@ directories:
 	-@if [ ! -d "$(OBJ_DIR)/gui" ]; then mkdir "$(OBJ_DIR)/gui"; fi
 	-@if [ ! -d "$(OBJ_DIR)/gui/initializer" ]; then mkdir "$(OBJ_DIR)/gui/initializer"; fi
 	-@if [ ! -d "$(OBJ_DIR)/event" ]; then mkdir "$(OBJ_DIR)/event"; fi
+	-@if [ ! -d "$(OBJ_DIR)/common" ]; then mkdir "$(OBJ_DIR)/common"; fi
+	-@if [ ! -d "$(OBJ_DIR)/common/gui" ]; then mkdir "$(OBJ_DIR)/common/gui"; fi
 	-@if [ ! -d "$(OBJ_DIR)/gtk2" ]; then mkdir "$(OBJ_DIR)/gtk2"; fi
 
 $(OBJ_DIR)/gui/app.o: src/cpaf/gui/app.cpp
@@ -163,6 +166,9 @@ $(OBJ_DIR)/event/id.o: src/cpaf/event/id.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/app.o: src/cpaf/gtk2/app.cpp
+	$(compile_source)
+
+$(OBJ_DIR)/common/gui/gridbaglayout.o: src/cpaf/common/gridbaglayout.cpp
 	$(compile_source)
 
 $(OBJ_DIR)/gtk2/eventloop.o : src/cpaf/gtk2/eventloop.cpp
