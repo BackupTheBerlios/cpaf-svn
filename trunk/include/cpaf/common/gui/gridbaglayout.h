@@ -170,6 +170,7 @@ private:
 
     mutable gblm::Objects m_objects;
     mutable gblm::Groups m_rows, m_columns;
+    mutable int m_non_empty_rows, m_non_empty_columns;
 
     float m_row_gap, m_column_gap;
     float m_margin_top, m_margin_left, m_margin_right, m_margin_bottom;
@@ -253,6 +254,11 @@ private:
         \return The gap between rows or columns based on the template parameter
     */
     template<gblm::GROUP> float get_gap() const;
+
+    /*!
+        \return The number of groups which contain objects that effect the layout
+    */
+    template<gblm::GROUP> int &get_non_empty_groups() const;
 };
         } // gui
     } // common

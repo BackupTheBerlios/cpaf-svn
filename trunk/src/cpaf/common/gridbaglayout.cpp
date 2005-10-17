@@ -45,13 +45,11 @@ template<> inline gblm::Groups &GridBagLayout::get_objects<ROW>() const
 
 template<> inline gblm::GroupData &GridBagLayout::get_group_data<COLUMN>(int index) const
 {
-    //return get_group_data(m_columns, index);
     return m_columns[index];
 }
 
 template<> inline gblm::GroupData &GridBagLayout::get_group_data<ROW>(int index) const
 {
-    //return get_group_data(m_rows, index);
     return m_rows[index];
 }
 
@@ -127,6 +125,16 @@ template<> void GridBagLayout::get_margin_values<ROW>(float &margin1, float &mar
 {
     margin1 = m_margin_top;
     margin2 = m_margin_bottom;
+}
+
+template<> inline int &GridBagLayout::get_non_empty_groups<COLUMN>() const
+{
+    return m_non_empty_columns;
+}
+
+template<> inline int &GridBagLayout::get_non_empty_groups<ROW>() const
+{
+    return m_non_empty_rows;
 }
 
         } // gui
@@ -234,7 +242,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
     float available_size = get_size_value<group>(m_rect.size);
 
     get_margin_values<group>(margin1, margin2);
-    available_size -= (info.size() - 1) * gap + margin1 + margin2;
+    available_size -= (get_non_empty_groups<group>() - 1) * gap + margin1 + margin2;
 
     // before we begin, we must reset non persistant data stored within GroupData objects
     for( Groups::iterator i = info.begin(), end = info.end(); i != end; ++i )
@@ -452,7 +460,9 @@ template<GROUP group> void GridBagLayout::update_group_sizes() const
 
     float total_min = 0, total_max = 0;
     float gap = get_gap<group>();
-    int non_empty_groups = 0;
+    
+    int &non_empty_groups = get_non_empty_groups<group>();
+    non_empty_groups = 0;
 
     // calculate the minimum and maximum group size
     for( Groups::iterator gi = groups.begin(), gend = groups.end(); gi != gend; ++gi )
