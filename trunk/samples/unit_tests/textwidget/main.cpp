@@ -24,7 +24,8 @@ public:
     boost::shared_ptr<TextBox> text;
     boost::shared_ptr<EntryBox> entry;
     boost::shared_ptr<EntryBox> range_begin, range_end, insert_text;
-    
+    boost::shared_ptr<cpaf::gui::GridBagLayout> gblm_inner;
+
     bool init();
     
     void get_text(const Event &event);
@@ -51,93 +52,86 @@ private:
 bool MyApp::init()
 {
     boost::shared_ptr<cpaf::gui::GridBagLayout> gblm_outer(new cpaf::gui::GridBagLayout);
-    boost::shared_ptr<Panel> panel_outer =Panel::create(Panel::Initializer().layout_manager(gblm_outer));
+    boost::shared_ptr<Panel> panel = Panel::create(Panel::Initializer().layout_manager(gblm_outer));
 
     // use a second panel with another GBLM to simulate column spanning until I implement it
-    boost::shared_ptr<cpaf::gui::GridBagLayout> gblm(new cpaf::gui::GridBagLayout);
-    boost::shared_ptr<Panel> panel_inner =Panel::create(Panel::Initializer().parent(panel_outer).show().layout_manager(gblm));
+    gblm_inner = boost::shared_ptr<cpaf::gui::GridBagLayout>(new cpaf::gui::GridBagLayout);
 
-    // work around for incomplete GBLM implementation (can't calculate gblm min size)
-    panel_inner->set_min_size(cpaf::Size(0, 134));
-
-    // add the inner panel to the outer panel's gblm
-    gblm_outer->add(panel_inner, cpaf::gui::GridBagLayoutInfo().expand_both().position(0,0));
-
-    boost::shared_ptr<Window> wnd =Window::create(Window::Initializer()
-        .content_panel(panel_outer)
+    boost::shared_ptr<Window> wnd = Window::create(Window::Initializer()
+        .content_panel(panel)
         .title("Cpaf")
         .client_size(cpaf::Size(600,450))
         );
 
     Button::Initializer btn_init;
     EntryBox::Initializer entry_init;
-    btn_init.parent(panel_inner).min_size(cpaf::Size(100, 30));
-    entry_init.parent(panel_inner);
+    btn_init.parent(panel).min_size(cpaf::Size(100, 30));
+    entry_init.parent(panel);
 
-    boost::shared_ptr<Button> get_text =Button::create(btn_init
+    boost::shared_ptr<Button> get_text = Button::create(btn_init
         .label("Get text")
         .show()
         );
     connect<Event>(BUTTON_CLICK, get_text->get_id()) (&MyApp::get_text, *this);
-    boost::shared_ptr<Button> get_selection_range =Button::create(btn_init
+    boost::shared_ptr<Button> get_selection_range = Button::create(btn_init
         .label("Get selection range")
         .show()
         );
     connect<Event>(BUTTON_CLICK, get_selection_range->get_id()) (&MyApp::get_selection_range, *this);
-    boost::shared_ptr<Button> get_selection_bounds =Button::create(btn_init
+    boost::shared_ptr<Button> get_selection_bounds = Button::create(btn_init
         .label("Get selection bounds")
         .show()
         );
     connect<Event>(BUTTON_CLICK, get_selection_bounds->get_id()) (&MyApp::get_selection_bounds, *this);
 
-    boost::shared_ptr<Button> get_insertion_point =Button::create(btn_init
+    boost::shared_ptr<Button> get_insertion_point = Button::create(btn_init
         .label("Get insertion point")
         .show()
         );
     connect<Event>(BUTTON_CLICK, get_insertion_point->get_id()) (&MyApp::get_insertion_point, *this);
-    boost::shared_ptr<Button> get_length =Button::create(btn_init
+    boost::shared_ptr<Button> get_length = Button::create(btn_init
         .label("Get length")
         .show()
         );
     connect<Event>(BUTTON_CLICK, get_length->get_id()) (&MyApp::get_length, *this);
-    boost::shared_ptr<Button> toggle_read_only =Button::create(btn_init
+    boost::shared_ptr<Button> toggle_read_only = Button::create(btn_init
         .label("Toggle read only")
         .show()
         );
     connect<Event>(BUTTON_CLICK, toggle_read_only->get_id()) (&MyApp::toggle_read_only, *this);
 
 
-    boost::shared_ptr<Button> get_text_in_range =Button::create(btn_init
+    boost::shared_ptr<Button> get_text_in_range = Button::create(btn_init
         .label("Get text in range")
         .show()
         );
     connect<Event>(BUTTON_CLICK, get_text_in_range->get_id()) (&MyApp::get_text_in_range, *this);
-    boost::shared_ptr<Button> set_selection_range =Button::create(btn_init
+    boost::shared_ptr<Button> set_selection_range = Button::create(btn_init
         .label("Set selection range")
         .show()
         );
     connect<Event>(BUTTON_CLICK, set_selection_range->get_id()) (&MyApp::set_selection_range, *this);
-    boost::shared_ptr<Button> set_selection_bounds =Button::create(btn_init
+    boost::shared_ptr<Button> set_selection_bounds = Button::create(btn_init
         .label("Set selection bounds")
         .show()
         );
     connect<Event>(BUTTON_CLICK, set_selection_bounds->get_id()) (&MyApp::set_selection_bounds, *this);
-    boost::shared_ptr<Button> set_insertion_point =Button::create(btn_init
+    boost::shared_ptr<Button> set_insertion_point = Button::create(btn_init
         .label("Set insertion point")
         .show()
         );
     connect<Event>(BUTTON_CLICK, set_insertion_point->get_id()) (&MyApp::set_insertion_point, *this);
-    boost::shared_ptr<Button> delete_range =Button::create(btn_init
+    boost::shared_ptr<Button> delete_range = Button::create(btn_init
         .label("Delete range")
         .show()
         );
     connect<Event>(BUTTON_CLICK, delete_range->get_id()) (&MyApp::delete_range, *this);
-    boost::shared_ptr<Button> insert =Button::create(btn_init
+    boost::shared_ptr<Button> insert = Button::create(btn_init
         .label("Insert")
         .show()
         );
     connect<Event>(BUTTON_CLICK, insert->get_id()) (&MyApp::insert, *this);
-    boost::shared_ptr<Button> set_max_length =Button::create(btn_init
+    boost::shared_ptr<Button> set_max_length = Button::create(btn_init
         .label("Set max length")
         .show()
         );
@@ -163,7 +157,7 @@ bool MyApp::init()
         Create an EntryBox
     */
     entry = EntryBox::create(EntryBox::Initializer()
-        .parent(panel_outer)
+        .parent(panel)
         .text("I'm an entry box!")
         .min_size(cpaf::Size(0,30))
         .show()
@@ -173,7 +167,7 @@ bool MyApp::init()
         Create a TextBox
     */
     text = TextBox::create(TextBox::Initializer()
-        .parent(panel_outer)
+        .parent(panel)
         .text("I'm a multline text box!\nHere's the second line\nLorem ipsum dolor sit amet, sed consectetuer adipiscing elit.")
         .min_size(cpaf::Size(0,30))
         .show()
@@ -184,30 +178,31 @@ bool MyApp::init()
 
     info.expand_horizontal();
 
-    gblm->add(get_text, info.position(0,0));
-    gblm->add(get_selection_range, info.position(1, 0));
-    gblm->add(get_selection_bounds, info.position(2, 0));
-    gblm->add(get_insertion_point, info.position(3, 0));
+    gblm_inner->add(get_text, info.position(0,0));
+    gblm_inner->add(get_selection_range, info.position(1, 0));
+    gblm_inner->add(get_selection_bounds, info.position(2, 0));
+    gblm_inner->add(get_insertion_point, info.position(3, 0));
     
-    gblm->add(get_length, info.position(0, 1));
-    gblm->add(toggle_read_only, info.position(1, 1));
-    gblm->add(get_text_in_range, info.position(2, 1));
-    gblm->add(set_selection_range, info.position(3, 1));
+    gblm_inner->add(get_length, info.position(0, 1));
+    gblm_inner->add(toggle_read_only, info.position(1, 1));
+    gblm_inner->add(get_text_in_range, info.position(2, 1));
+    gblm_inner->add(set_selection_range, info.position(3, 1));
 
-    gblm->add(set_selection_bounds, info.position(0, 2));
-    gblm->add(set_insertion_point, info.position(1, 2));
-    gblm->add(delete_range, info.position(2, 2));
-    gblm->add(insert, info.position(3, 2));
+    gblm_inner->add(set_selection_bounds, info.position(0, 2));
+    gblm_inner->add(set_insertion_point, info.position(1, 2));
+    gblm_inner->add(delete_range, info.position(2, 2));
+    gblm_inner->add(insert, info.position(3, 2));
 
-    gblm->add(set_max_length, info.position(0, 3));
-    gblm->add(range_begin, info.position(1, 3));
-    gblm->add(range_end, info.position(2, 3));
-    gblm->add(insert_text, info.position(3, 3));
+    gblm_inner->add(set_max_length, info.position(0, 3));
+    gblm_inner->add(range_begin, info.position(1, 3));
+    gblm_inner->add(range_end, info.position(2, 3));
+    gblm_inner->add(insert_text, info.position(3, 3));
 
-    gblm->set_gap(4);
-    gblm->set_row_weight(0, 0).set_row_weight(1, 0).set_row_weight(2, 0)
+    gblm_inner->set_gap(4);
+    gblm_inner->set_row_weight(0, 0).set_row_weight(1, 0).set_row_weight(2, 0)
         .set_row_weight(3, 0).set_row_weight(4, 0);
 
+    gblm_outer->add(gblm_inner, cpaf::gui::GridBagLayoutInfo().expand_both().position(0,0));
     gblm_outer->add(entry, info.position(0, 1));
     gblm_outer->add(text, info.position(0, 2).expand_both());
 

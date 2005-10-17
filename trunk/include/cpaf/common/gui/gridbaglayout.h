@@ -155,17 +155,17 @@ public:
 private:
     typedef std::map<boost::weak_ptr<cpaf::gui::Object>, cpaf::Rect> ObjectRects;
 
-    cpaf::Rect m_rect;
-    cpaf::Size m_min_size, m_max_size, m_natural_size;
+    mutable cpaf::Rect m_rect;
+    mutable cpaf::Size m_min_size, m_max_size, m_natural_size;
 
     /*!
         If this value is true, the values for m_min_size, m_max_size, and m_natural_size
         need to be recalculated.
     */
-    bool m_values_invalid;
+    mutable bool m_values_invalid;
 
-    gblm::Objects m_objects;
-    gblm::Groups m_rows, m_columns;
+    mutable gblm::Objects m_objects;
+    mutable gblm::Groups m_rows, m_columns;
 
     float m_row_gap, m_column_gap;
     float m_margin_top, m_margin_left, m_margin_right, m_margin_bottom;
@@ -178,12 +178,12 @@ private:
     /*!
         Updates the cache of Object sizes if necessary
     */
-    void update_sizes();
+    void update_sizes() const;
 
     /*!
         Updates the cached min and max size values for each group
     */
-    template<gblm::GROUP> void update_group_sizes();
+    template<gblm::GROUP> void update_group_sizes() const;
 
     /*!
         \return a reference to the existing column with this index.
@@ -206,49 +206,49 @@ private:
     /*!
         \return The group info indexed by rows or columns based on the template parameter
     */
-    template<gblm::GROUP> gblm::Groups &get_objects(); 
+    template<gblm::GROUP> gblm::Groups &get_objects() const; 
 
     /*!
         \return The group data for a given row or column based on the template parameter
     */
-    template<gblm::GROUP> gblm::GroupData &get_group_data(int index);
+    template<gblm::GROUP> gblm::GroupData &get_group_data(int index) const;
 
     /*!
         \return A reference to the height or width of the given size based on the template parameter
     */
-    template<gblm::GROUP> float &get_size_value(cpaf::Size &size);
+    template<gblm::GROUP> float &get_size_value(cpaf::Size &size) const;
 
     /*!
         \return The height of width of the given size based on the template parameter.
     */
-    template<gblm::GROUP> float get_size_value(const cpaf::Size &size);
+    template<gblm::GROUP> float get_size_value(const cpaf::Size &size) const;
 
     /*!
         \return A reference to the x or y value of the given position based on the template parameter
     */
-    template<gblm::GROUP> float &get_pos_value(cpaf::Point &pos);
+    template<gblm::GROUP> float &get_pos_value(cpaf::Point &pos) const;
 
     /*!
         \returnThe x or y value of the given position based on the template parameter
     */
-    template<gblm::GROUP> float get_pos_value(const cpaf::Point &pos);
+    template<gblm::GROUP> float get_pos_value(const cpaf::Point &pos) const;
 
     /*!
         Returns either the left and right or top and bottom padding values from the given data
             based on the template parameter through the pad1 and pad2 arguments.
     */
-    template<gblm::GROUP> void get_pad_values(const gblm::LayoutData &data, float &pad1, float &pad2);
+    template<gblm::GROUP> void get_pad_values(const gblm::LayoutData &data, float &pad1, float &pad2) const;
 
     /*!
         Returns either the left and right or top and bottom margin values
             based on the template parameter through the margin1 and margin2 arguments.
     */
-    template<gblm::GROUP> void get_margin_values(float &margin1, float &margin2);
+    template<gblm::GROUP> void get_margin_values(float &margin1, float &margin2) const;
 
     /*!
         \return The gap between rows or columns based on the template parameter
     */
-    template<gblm::GROUP> float get_gap();
+    template<gblm::GROUP> float get_gap() const;
 };
         } // gui
     } // common

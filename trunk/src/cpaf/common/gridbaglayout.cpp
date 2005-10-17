@@ -33,97 +33,97 @@ namespace cpaf {
     namespace common {
         namespace gui {
 
-template<> inline gblm::Groups &GridBagLayout::get_objects<COLUMN>()
+template<> inline gblm::Groups &GridBagLayout::get_objects<COLUMN>() const
 {
     return m_columns;
 }
 
-template<> inline gblm::Groups &GridBagLayout::get_objects<ROW>()
+template<> inline gblm::Groups &GridBagLayout::get_objects<ROW>() const
 {
     return m_rows;
 }
 
-template<> inline gblm::GroupData &GridBagLayout::get_group_data<COLUMN>(int index)
+template<> inline gblm::GroupData &GridBagLayout::get_group_data<COLUMN>(int index) const
 {
     //return get_group_data(m_columns, index);
     return m_columns[index];
 }
 
-template<> inline gblm::GroupData &GridBagLayout::get_group_data<ROW>(int index)
+template<> inline gblm::GroupData &GridBagLayout::get_group_data<ROW>(int index) const
 {
     //return get_group_data(m_rows, index);
     return m_rows[index];
 }
 
-template<> inline float &GridBagLayout::get_size_value<COLUMN>(cpaf::Size &size)
+template<> inline float &GridBagLayout::get_size_value<COLUMN>(cpaf::Size &size) const
 {
     return size.width;
 }
 
-template<> inline float &GridBagLayout::get_size_value<ROW>(cpaf::Size &size)
+template<> inline float &GridBagLayout::get_size_value<ROW>(cpaf::Size &size) const
 {
     return size.height;
 }
 
-template<> inline float GridBagLayout::get_size_value<COLUMN>(const cpaf::Size &size)
+template<> inline float GridBagLayout::get_size_value<COLUMN>(const cpaf::Size &size) const
 {
     return size.width;
 }
 
-template<> inline float GridBagLayout::get_size_value<ROW>(const cpaf::Size &size)
+template<> inline float GridBagLayout::get_size_value<ROW>(const cpaf::Size &size) const
 {
     return size.height;
 }
 
-template<> inline void GridBagLayout::get_pad_values<COLUMN>(const LayoutData &data, float &pad1, float &pad2)
+template<> inline void GridBagLayout::get_pad_values<COLUMN>(const LayoutData &data, float &pad1, float &pad2) const
 {
     pad1 = data.pad_left;
     pad2 = data.pad_right;
 }
 
-template<> inline void GridBagLayout::get_pad_values<ROW>(const LayoutData &data, float &pad1, float &pad2)
+template<> inline void GridBagLayout::get_pad_values<ROW>(const LayoutData &data, float &pad1, float &pad2) const
 {
     pad1 = data.pad_top;
     pad2 = data.pad_bottom;
 }
 
-template<> inline float GridBagLayout::get_gap<COLUMN>()
+template<> inline float GridBagLayout::get_gap<COLUMN>() const
 {
     return m_column_gap;
 }
 
-template<> inline float GridBagLayout::get_gap<ROW>()
+template<> inline float GridBagLayout::get_gap<ROW>() const
 {
     return m_row_gap;
 }
 
-template<> inline float &GridBagLayout::get_pos_value<COLUMN>(cpaf::Point &pos)
+template<> inline float &GridBagLayout::get_pos_value<COLUMN>(cpaf::Point &pos) const
 {
     return pos.x;
 }
 
-template<> inline float &GridBagLayout::get_pos_value<ROW>(cpaf::Point &pos)
+template<> inline float &GridBagLayout::get_pos_value<ROW>(cpaf::Point &pos) const
 {
     return pos.y;
 }
 
-template<> inline float GridBagLayout::get_pos_value<COLUMN>(const cpaf::Point &pos)
+template<> inline float GridBagLayout::get_pos_value<COLUMN>(const cpaf::Point &pos) const
 {
     return pos.x;
 }
 
-template<> inline float GridBagLayout::get_pos_value<ROW>(const cpaf::Point &pos)
+template<> inline float GridBagLayout::get_pos_value<ROW>(const cpaf::Point &pos) const
 {
     return pos.y;
 }
 
-template<> void GridBagLayout::get_margin_values<COLUMN>(float &margin1, float &margin2)
+template<> void GridBagLayout::get_margin_values<COLUMN>(float &margin1, float &margin2) const
 {
     margin1 = m_margin_left;
     margin2 = m_margin_right;
 }
 
-template<> void GridBagLayout::get_margin_values<ROW>(float &margin1, float &margin2)
+template<> void GridBagLayout::get_margin_values<ROW>(float &margin1, float &margin2) const
 {
     margin1 = m_margin_top;
     margin2 = m_margin_bottom;
@@ -184,16 +184,25 @@ cpaf::Size GridBagLayout::get_size() const
 
 cpaf::Size GridBagLayout::get_min_size() const
 {
+    // make sure we get a chance to calculate our min size if its invalid
+    update_sizes();
+
     return m_min_size;
 }
 
 cpaf::Size GridBagLayout::get_max_size() const
 {
+    // make sure we get a chance to calculate our min size if its invalid
+    update_sizes();
+
     return m_max_size;
 }
 
 cpaf::Size GridBagLayout::get_natural_size() const
 {
+    // make sure we get a chance to calculate our min size if its invalid
+    update_sizes();
+
     return m_natural_size;
 }
 
@@ -417,7 +426,7 @@ void GridBagLayout::update_layout()
         i->object.lock()->set_rect(i->m_rect);
 }
 
-void GridBagLayout::update_sizes()
+void GridBagLayout::update_sizes() const
 {
     if( m_values_invalid )
     {
@@ -437,12 +446,13 @@ void GridBagLayout::update_sizes()
     }
 }
 
-template<GROUP group> void GridBagLayout::update_group_sizes()
+template<GROUP group> void GridBagLayout::update_group_sizes() const
 {
     Groups &groups = get_objects<group>();
 
     float total_min = 0, total_max = 0;
     float gap = get_gap<group>();
+    int non_empty_groups = 0;
 
     // calculate the minimum and maximum group size
     for( Groups::iterator gi = groups.begin(), gend = groups.end(); gi != gend; ++gi )
@@ -452,6 +462,9 @@ template<GROUP group> void GridBagLayout::update_group_sizes()
         // skip empty groups
         if( data.empty() )
             continue;
+        else
+            // keep track of how many non empty groups there are for accurate gap calculations
+            non_empty_groups++;
 
         float &min_val_total = data.m_min_size;
         float &max_val_total = data.m_max_size;
@@ -486,7 +499,8 @@ template<GROUP group> void GridBagLayout::update_group_sizes()
     // finish calculating min and maxes
     float margin1, margin2;
     get_margin_values<group>(margin1, margin2);
-    float extra = (get_objects<group>().size() - 1) * gap + margin1 + margin2;
+
+    float extra = (non_empty_groups - 1) * gap + margin1 + margin2;
 
     // assign the GBLM's min and max size values
     if( total_min > 0 )
