@@ -62,6 +62,11 @@ public:
     GridBagLayoutInfo &position(unsigned int col, unsigned int row);
     GridBagLayoutInfo &column(unsigned int col);
     GridBagLayoutInfo &row(unsigned int row);
+
+    /*!
+        \brief Specifies the group spanning values for this object. A value of
+        1 means that the object only spans one group, which is the default value.
+    */
     GridBagLayoutInfo &span(unsigned int col, unsigned int row);
     GridBagLayoutInfo &col_span(unsigned int span);
     GridBagLayoutInfo &row_span(unsigned int span);

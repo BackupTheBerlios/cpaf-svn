@@ -259,6 +259,11 @@ private:
         \return The number of groups which contain objects that effect the layout
     */
     template<gblm::GROUP> int &get_non_empty_groups() const;
+
+    /*!
+        \return An objects group spanning value
+    */
+    template<gblm::GROUP> int get_group_span(const gblm::LayoutData &data) const;
 };
         } // gui
     } // common

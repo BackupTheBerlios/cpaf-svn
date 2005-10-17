@@ -41,21 +41,25 @@ bool MyApp::init()
     gblm->add(Button::create(btn_init.label("6")),
         info.position(2,2).expand_horizontal().align_center_vertical());
     gblm->add(Button::create(btn_init.label("7")),
-        info.position(3,2).expand_vertical().align_center_horizontal());
+        info.position(3,2).expand_vertical().align_center_horizontal().row_span(2));
     gblm->add(Button::create(btn_init.label("8")),
-        info.position(4,2).align_center().expand_both());
+        info.position(4,2).align_center().expand_both().row_span(1));
 
     gblm->add(Button::create(btn_init.label("9")),
         info.position(1,3).expand_both());
     gblm->add(Button::create(btn_init.label("10")),
         info.position(2,3));
-    gblm->add(Button::create(btn_init.label("11")),
-        info.position(3,3));
     gblm->add(Button::create(btn_init.label("12")),
         info.position(4,3));
 
+    gblm->add(Button::create(btn_init.label("13")),
+        info.position(1,4).col_span(2).expand_both());
+    gblm->add(Button::create(btn_init.label("14")),
+        info.position(3,4));
+
     gblm->set_gap(10).set_row_weight(1,0).set_row_weight(3,0)
         .set_column_weight(1,0).set_column_weight(3,2);
+
     Window::create(Window::Initializer().content_panel(panel).show());
 
     return true;

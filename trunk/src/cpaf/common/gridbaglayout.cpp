@@ -137,6 +137,16 @@ template<> inline int &GridBagLayout::get_non_empty_groups<ROW>() const
     return m_non_empty_rows;
 }
 
+template<> int GridBagLayout::get_group_span<COLUMN>(const gblm::LayoutData &data) const
+{
+    return data.col_span;
+}
+
+template<> int GridBagLayout::get_group_span<ROW>(const gblm::LayoutData &data) const
+{
+    return data.row_span;
+}
+
         } // gui
     } // common
 } // cpaf
@@ -262,6 +272,9 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
         {
             const GroupData &data = i->second;
 
+            if( data.empty() )
+                continue;
+
             if( data.m_done)
                 current_size += get_size_value<group>(data.m_rect.size);
             else
@@ -275,7 +288,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
         {
             GroupData &data = i->second;
 
-            if( data.m_done )
+            if( data.m_done || data.empty() )
                 continue;
 
             cpaf::Rect &rect = data.m_rect;
@@ -326,23 +339,38 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
     get_pos_value<group>(pos) += margin1;
 
     // calculate object sizes
-    for( Groups::iterator i = info.begin(); i != info.end(); ++i )
+    for( Groups::iterator gi = info.begin(); gi != info.end(); ++gi )
     {
-        GroupData &data = i->second;
+        GroupData &data = gi->second;
 
-        for( GroupObjects::iterator i = data.m_objects.begin(), end = data.m_objects.end(); i != end; ++i )
+        if( data.empty() )
+            continue;
+
+        for( GroupObjects::iterator oi = data.m_objects.begin(), end = data.m_objects.end(); oi != end; ++oi )
         {
-            ObjectInfo &info = *(i->second);
+            ObjectInfo &info = *(oi->second);
 
             cpaf::Rect &rect = info.m_rect;
 
             float &size_dest_val = get_size_value<group>(rect.size);
             float size_src_val_natural = 0;
             float size_src_val = get_size_value<group>(data.m_rect.size);
-            float pad1, pad2;
+            float pad1, pad2; get_pad_values<group>(info.data, pad1, pad2);
             bool expand;
+            int group_span = get_group_span<group>(info.data);
 
-            get_pad_values<group>(info.data, pad1, pad2);
+            // account for group spanning
+            if( group_span > 1 )
+            {
+                Groups::iterator spanned_group = gi;
+                spanned_group++;
+                for( int i = 1; i < group_span; ++i, spanned_group++ )
+                {
+                    GroupData &data = spanned_group->second;
+
+                    size_src_val += get_size_value<group>(data.m_rect.size) + gap;
+                }
+            }
 
             if( group == COLUMN )
             {
@@ -536,8 +564,7 @@ void GridBagLayout::add(boost::weak_ptr<cpaf::gui::Object> object, const cpaf::g
     get_group_data<COLUMN>(data.col).m_objects.insert(std::make_pair(data.row, &m_objects.back()));
     get_group_data<ROW>(data.row).m_objects.insert(std::make_pair(data.col, &m_objects.back()));
 
-    // recalculate cached data
-    m_values_invalid = true;
+    invalidate();
 }
 
 void GridBagLayout::remove(boost::weak_ptr<cpaf::gui::Object> object)
@@ -558,33 +585,37 @@ void GridBagLayout::remove(boost::weak_ptr<cpaf::gui::Object> object)
     get_group_data<COLUMN>(it->data.col).m_objects.erase(it->data.row);
     m_objects.erase(it);
 
-    // recalculate cached data
-    m_values_invalid = true;
+    invalidate();
 }
 
 void GridBagLayout::set_column_weight(int column, float weight)
 {
     get_group_data<COLUMN>(column).m_weight = weight;
+    invalidate();
 }
 
 void GridBagLayout::set_row_weight(int row, float weight)
 {
     get_group_data<ROW>(row).m_weight = weight;
+    invalidate();
 }
 
 void GridBagLayout::set_column_gap(float gap)
 {
     m_column_gap = gap;
+    invalidate();
 }
 
 void GridBagLayout::set_row_gap(float gap)
 {
     m_row_gap = gap;
+    invalidate();
 }
 
 void GridBagLayout::set_gap(float gap)
 {
     m_row_gap = m_column_gap = gap;
+    invalidate();
 }
 
 void GridBagLayout::set_margins(float margin)
@@ -593,6 +624,7 @@ void GridBagLayout::set_margins(float margin)
     m_margin_top =
     m_margin_right =
     m_margin_bottom = margin;
+    invalidate();
 }
 
 void GridBagLayout::set_margins(float left, float top, float right, float bottom)
@@ -601,26 +633,31 @@ void GridBagLayout::set_margins(float left, float top, float right, float bottom
     m_margin_top = top;
     m_margin_right = right;
     m_margin_bottom = bottom;
+    invalidate();
 }
 
 void GridBagLayout::set_left_margin(float margin)
 {
     m_margin_left = margin;
+    invalidate();
 }
 
 void GridBagLayout::set_top_margin(float margin)
 {
     m_margin_top = margin;
+    invalidate();
 }
 
 void GridBagLayout::set_right_margin(float margin)
 {
     m_margin_right = margin;
+    invalidate();
 }
 
 void GridBagLayout::set_bottom_margin(float margin)
 {
     m_margin_bottom = margin;
+    invalidate();
 }
 
 float &GridBagLayout::get_column_weight(int index)
@@ -641,5 +678,5 @@ void GridBagLayout::assign(boost::weak_ptr<cpaf::gui::Panel> panel)
 LayoutData::LayoutData()
     : alignment_info(GridBagLayoutInfo::ALIGN_CENTER_H | GridBagLayoutInfo::ALIGN_CENTER_V),
     pad_left(0), pad_top(0), pad_right(0), pad_bottom(0),
-    col(0), row(0), col_span(0), row_span(0)
+    col(0), row(0), col_span(1), row_span(1)
 { }

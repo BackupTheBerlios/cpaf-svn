@@ -1,6 +1,4 @@
-Fix the GBLM to not crash the application if a child that it was managing was destroyed. Seen in proof sample after you click the "Click to destroy me" button.
-
-Implement group spanning in GBLM
+Respect minimum sizes when dealing with group spanning in the GBLM
 
 Optimize GBLM heavily
 
