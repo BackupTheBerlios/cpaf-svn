@@ -42,6 +42,8 @@ enum GROUP {
     ROW,
 };
 
+const int DEFAULT_WEIGHT = 1;
+
 class LayoutData
 {
 public:
@@ -63,40 +65,42 @@ public:
     unsigned int col, row, col_span, row_span;
 };
 
-struct WidgetInfo
+struct ObjectInfo
 {
     //! What widget is this information for
-    boost::weak_ptr<cpaf::gui::Widget> widget;
+    boost::weak_ptr<cpaf::gui::Object> object;
 
     cpaf::Size m_min_size;
     cpaf::Size m_max_size;
+    cpaf::Rect m_rect;
 
     //! The information for this widget
     LayoutData data;
 
-    WidgetInfo(boost::weak_ptr<cpaf::gui::Widget> w, const LayoutData &d) : widget(w), data(d) { }
+    ObjectInfo(boost::weak_ptr<cpaf::gui::Object> o, const LayoutData &d) : object(o), data(d) { }
+
+    bool operator < (const ObjectInfo &other) const
+    {
+        return object < other.object;
+    }
 };
 
-typedef std::list<WidgetInfo> Widgets;
-typedef std::map<int, const WidgetInfo * const> GroupWidgets;
-typedef std::map<int, GroupWidgets> WidgetGroup;
-typedef std::map<int, float> Weights; // represents weights for rows and columns
-
+typedef std::list<ObjectInfo> Objects;
+typedef std::map<int, ObjectInfo *> GroupObjects;
 
 /*!
     Stores information for each group for processing
 */
 struct GroupData {
-    GroupWidgets &m_widgets;
+    GroupObjects m_objects;
     bool m_done;
     float m_weight;
     float m_min_size;
     float m_max_size;
     cpaf::Rect m_rect;
 
-    GroupData(GroupWidgets &widgets, float weight)
-        : m_widgets(widgets),
-        m_done(false),
+    GroupData(float weight = DEFAULT_WEIGHT)
+        : m_done(false),
         m_weight(weight),
         m_min_size(0),
         m_max_size(0)
@@ -105,9 +109,10 @@ struct GroupData {
     /*!
         \return True if this group is empty (it has no widgets)
     */
-    bool empty() const { return m_widgets.empty(); }
+    bool empty() const { return m_objects.empty(); }
 };
-typedef std::map<int, GroupData> GroupInfo;
+
+typedef std::map<int, GroupData> Groups;
 
             } // gblm
 
@@ -117,10 +122,10 @@ public:
     GridBagLayout();
 
     // LayoutManager interface
-    void remove(boost::weak_ptr<cpaf::gui::Widget> widget);
+    void remove(boost::weak_ptr<cpaf::gui::Object> object);
     void invalidate();
 
-    void add(boost::weak_ptr<cpaf::gui::Widget> widget, const cpaf::gui::GridBagLayoutInfo &info);
+    void add(boost::weak_ptr<cpaf::gui::Object> object, const cpaf::gui::GridBagLayoutInfo &info);
     void set_column_weight(int column, float weight);
     void set_row_weight(int row, float weight);
     void set_column_gap(float gap);
@@ -148,7 +153,7 @@ public:
     cpaf::Rect get_rect() const;
 
 private:
-    typedef std::map<boost::shared_ptr<cpaf::gui::Widget>, cpaf::Rect> WidgetRects;
+    typedef std::map<boost::weak_ptr<cpaf::gui::Object>, cpaf::Rect> ObjectRects;
 
     cpaf::Rect m_rect;
     cpaf::Size m_min_size, m_max_size, m_natural_size;
@@ -159,18 +164,26 @@ private:
     */
     bool m_values_invalid;
 
-    gblm::Widgets m_widgets;
-    gblm::Weights m_rows, m_columns;
-    gblm::WidgetGroup m_row_widgets, m_col_widgets;
+    gblm::Objects m_objects;
+    gblm::Groups m_rows, m_columns;
+
     float m_row_gap, m_column_gap;
     float m_margin_top, m_margin_left, m_margin_right, m_margin_bottom;
-
-    static const int DEFAULT_WEIGHT = 1;
 
     /*!
         Update the positions and sizes of all widgets
     */
     void update_layout();
+
+    /*!
+        Updates the cache of Object sizes if necessary
+    */
+    void update_sizes();
+
+    /*!
+        Updates the cached min and max size values for each group
+    */
+    template<gblm::GROUP> void update_group_sizes();
 
     /*!
         \return a reference to the existing column with this index.
@@ -188,18 +201,17 @@ private:
         Calculates the sizes of the widgets contained in this objects columns or rows
         based on the template parameter
     */
-    template<gblm::GROUP> void calc_group_sizes(const cpaf::Rect &avail, WidgetRects &rects);
+    template<gblm::GROUP> void calc_group_sizes();
 
     /*!
-        \return Weights for the widgets in the given row or column based on the
-            template parameter.
+        \return The group info indexed by rows or columns based on the template parameter
     */
-    template<gblm::GROUP> gblm::Weights &get_weights();
+    template<gblm::GROUP> gblm::Groups &get_objects(); 
 
     /*!
-        \return The widgets indexed by rows or columns based on the template parameter
+        \return The group data for a given row or column based on the template parameter
     */
-    template<gblm::GROUP> gblm::WidgetGroup &get_widgets();    
+    template<gblm::GROUP> gblm::GroupData &get_group_data(int index);
 
     /*!
         \return A reference to the height or width of the given size based on the template parameter

@@ -202,9 +202,9 @@ GridBagLayout::GridBagLayout()
     m_impl = get_impl<cpaf::common::gui::GridBagLayout>();
 }
 
-void GridBagLayout::add(boost::weak_ptr<Widget> widget, const GridBagLayoutInfo &info)
+void GridBagLayout::add(boost::weak_ptr<Object> object, const GridBagLayoutInfo &info)
 {
-    m_impl->add(widget, info);
+    m_impl->add(object, info);
 }
 
 GridBagLayout &GridBagLayout::set_column_weight(int column, float weight)

@@ -40,7 +40,7 @@ public:
     /*!
         Removes an object from this layout manager.
     */
-    void remove(boost::weak_ptr<Widget> widget);
+    void remove(boost::weak_ptr<Object> object);
 
     /*!
         \brief Invalidates the layout.

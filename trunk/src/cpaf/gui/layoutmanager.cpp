@@ -35,9 +35,9 @@ LayoutManager::LayoutManager(api_type *impl)
 
 LayoutManager::~LayoutManager() { }
 
-void LayoutManager::remove(boost::weak_ptr<Widget> widget)
+void LayoutManager::remove(boost::weak_ptr<Object> object)
 {
-    m_impl->remove(widget);
+    m_impl->remove(object);
 }
 
 void LayoutManager::invalidate()

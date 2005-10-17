@@ -27,14 +27,14 @@
 #include <boost/weak_ptr.hpp>
 
 namespace cpaf {
-    namespace gui { class Widget; }
+    namespace gui { class Object; }
     namespace api {
         namespace gui {
 
 class LayoutManager : public virtual Object
 {
 public:
-    virtual void remove(boost::weak_ptr<cpaf::gui::Widget> widget) = 0;
+    virtual void remove(boost::weak_ptr<cpaf::gui::Object>) = 0;
     virtual void invalidate() = 0;
 };
 

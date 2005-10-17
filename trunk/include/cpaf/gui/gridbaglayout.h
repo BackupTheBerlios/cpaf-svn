@@ -106,7 +106,7 @@ public:
     /*!
         Adds a widget to this layout manager with the given layout info.
     */
-    void add(boost::weak_ptr<Widget> widget, const GridBagLayoutInfo &info);
+    void add(boost::weak_ptr<Object> object, const GridBagLayoutInfo &info);
 
     /*!
         Sets the weight value for a given column
