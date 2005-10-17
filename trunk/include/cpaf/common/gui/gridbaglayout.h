@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/gui/gblmimpl.h
+    \file include/cpaf/gui/common/gridbaglayout.h
     \brief Grid Bag Layout Manager implementation declarations
     \date Created: 2005-10-16
 */
@@ -28,13 +28,14 @@
 #include <map>
 
 namespace cpaf {
-    namespace gui { 
+    namespace common {
+        namespace gui { 
 
-        /*!
-            Namespace to tuck away the implementation details for the Grid Bag
-            layout manager
-        */
-        namespace gblm {
+            /*!
+                Namespace to tuck away the implementation details for the Grid Bag
+                layout manager
+            */
+            namespace gblm {
 
 enum GROUP {
     COLUMN,
@@ -65,7 +66,7 @@ public:
 struct WidgetInfo
 {
     //! What widget is this information for
-    boost::weak_ptr<Widget> widget;
+    boost::weak_ptr<cpaf::gui::Widget> widget;
 
     cpaf::Size m_min_size;
     cpaf::Size m_max_size;
@@ -73,7 +74,7 @@ struct WidgetInfo
     //! The information for this widget
     LayoutData data;
 
-    WidgetInfo(boost::weak_ptr<Widget> w, const LayoutData &d) : widget(w), data(d) { }
+    WidgetInfo(boost::weak_ptr<cpaf::gui::Widget> w, const LayoutData &d) : widget(w), data(d) { }
 };
 
 typedef std::list<WidgetInfo> Widgets;
@@ -108,6 +109,8 @@ struct GroupData {
 };
 typedef std::map<int, GroupData> GroupInfo;
 
+            } // gblm
+
 class GridBagLayout : public cpaf::api::gui::LayoutManager
 {
 public:
@@ -117,7 +120,7 @@ public:
     void remove(boost::weak_ptr<cpaf::gui::Widget> widget);
     void invalidate();
 
-    void add(boost::weak_ptr<cpaf::gui::Widget> widget, const GridBagLayoutInfo &info);
+    void add(boost::weak_ptr<cpaf::gui::Widget> widget, const cpaf::gui::GridBagLayoutInfo &info);
     void set_column_weight(int column, float weight);
     void set_row_weight(int row, float weight);
     void set_column_gap(float gap);
@@ -235,7 +238,6 @@ private:
     */
     template<gblm::GROUP> float get_gap();
 };
-
-        } // gblm
-    } // gui
+        } // gui
+    } // common
 } // cpaf

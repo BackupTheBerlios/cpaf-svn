@@ -1,5 +1,5 @@
 /*!
-    \file src/cpaf/gui/gblmimpl.cpp
+    \file src/cpaf/gui/common/gridbaglayout.cpp
     \brief Grid Bag Layout Manager implementation
     \date Created: 2005-10-16
 */
@@ -20,10 +20,12 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <cpaf/gui/gblmimpl.h>
+#include <cpaf/common/gui/gridbaglayout.h>
 #include <cpaf/gui/widget.h>
 
-using namespace cpaf::gui::gblm;
+using namespace cpaf::common::gui::gblm;
+using namespace cpaf::common::gui;
+using cpaf::gui::GridBagLayoutInfo;
 
 GridBagLayout::GridBagLayout()
     : m_row_gap(0),
@@ -461,8 +463,8 @@ LayoutData::LayoutData()
 
 // need namespace declarations for template specializations (by standard)
 namespace cpaf {
-    namespace gui {
-        namespace gblm {
+    namespace common {
+        namespace gui {
 
 template<> inline gblm::Weights &GridBagLayout::get_weights<COLUMN>()
 {
@@ -558,6 +560,6 @@ template<> void GridBagLayout::get_margin_values<ROW>(float &margin1, float &mar
     margin2 = m_margin_bottom;
 }
 
-        } // gblm
-    } // gui
+        } // gui
+    } // common
 } // cpaf

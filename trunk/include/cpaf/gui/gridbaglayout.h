@@ -27,16 +27,14 @@
 #include <cpaf/gui/layoutmanager.h>
 
 namespace cpaf {
-    namespace gui {
-
-        /*!
-            Namespace to tuck away the implementation details for the Grid Bag
-            layout manager
-        */
-        namespace gblm {
+    namespace common {
+        namespace gui {
             class GridBagLayout;
-            class LayoutData;
-        } // gblm
+            namespace gblm { class LayoutData; }
+        } // gui
+    } // common
+
+    namespace gui {
 
 /*!
     Layout flags for the grid bag layout manager. The default flags
@@ -76,8 +74,8 @@ public:
     GridBagLayoutInfo &padding_bottom(int pad);
 
 private:
-    friend class gblm::GridBagLayout;
-    friend class gblm::LayoutData;
+    friend class cpaf::common::gui::GridBagLayout;
+    friend class cpaf::common::gui::gblm::LayoutData;
 
     // bit flags for alignment information
     static const int ALIGN_LEFT     = 1;
@@ -90,9 +88,9 @@ private:
     static const int EXPAND_VERTICAL    = 2 << 4;
     static const int EXPAND_BOTH        = 3 << 4;
 
-    boost::shared_ptr<gblm::LayoutData> m_data;
+    boost::shared_ptr<cpaf::common::gui::gblm::LayoutData> m_data;
 
-    const gblm::LayoutData &get_data() const;
+    const cpaf::common::gui::gblm::LayoutData &get_data() const;
 };
 
 /*!
@@ -101,7 +99,7 @@ private:
 class CPAF_API GridBagLayout : public LayoutManager
 {
 public:
-    typedef cpaf::gui::gblm::GridBagLayout api_type;
+    typedef cpaf::common::gui::GridBagLayout api_type;
 
     GridBagLayout();
 

@@ -1,5 +1,5 @@
 /*!
-    \file src\cpaf\gridbaglayout.cpp
+    \file src/cpaf/gridbaglayout.cpp
     \brief Grid Bag Layout Manager implementation
     \date Created: 2005-08-31
 */
@@ -22,7 +22,7 @@
 
 #include <cpaf/gui/gridbaglayout.h>
 #include <cpaf/gui/widget.h>
-#include <cpaf/gui/gblmimpl.h>
+#include <cpaf/common/gui/gridbaglayout.h>
 
 #include <vector>
 #include <utility>
@@ -30,7 +30,7 @@
 using namespace cpaf::gui;
 
 GridBagLayoutInfo::GridBagLayoutInfo()
-: m_data(new gblm::LayoutData)
+: m_data(new cpaf::common::gui::gblm::LayoutData)
 { }
 
 GridBagLayoutInfo &GridBagLayoutInfo::align_left()
@@ -191,15 +191,15 @@ GridBagLayoutInfo &GridBagLayoutInfo::padding_bottom(int pad)
     return *this;
 }
 
-const gblm::LayoutData &GridBagLayoutInfo::get_data() const
+const cpaf::common::gui::gblm::LayoutData &GridBagLayoutInfo::get_data() const
 {
     return *(m_data.get());
 }
 
 GridBagLayout::GridBagLayout()
-: LayoutManager(new gblm::GridBagLayout)
+: LayoutManager(new cpaf::common::gui::GridBagLayout)
 {
-    m_impl = get_impl<gblm::GridBagLayout>();
+    m_impl = get_impl<cpaf::common::gui::GridBagLayout>();
 }
 
 void GridBagLayout::add(boost::weak_ptr<Widget> widget, const GridBagLayoutInfo &info)
