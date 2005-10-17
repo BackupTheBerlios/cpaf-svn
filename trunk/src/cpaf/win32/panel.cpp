@@ -133,6 +133,13 @@ int Panel::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
     return cpaf::win32::gui::Widget::process_message(hwnd, msg, w_param, l_param);
 }
 
+void Panel::show(bool show, bool focus)
+{
+    // don't actually show ourselves if we are orphaned
+    if( get_parent_window() )
+        Widget::show(show, focus);
+}
+
 cpaf::Size Panel::get_min_size() const
 {
     return m_layout_manager->get_min_size();

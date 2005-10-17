@@ -50,6 +50,8 @@ public:
     cpaf::Size get_min_size() const;
     cpaf::Size get_max_size() const;
 
+    void show(bool show, bool focus);
+
     cpaf::gui::LayoutManager &get_layout_manager();
 
 private:
