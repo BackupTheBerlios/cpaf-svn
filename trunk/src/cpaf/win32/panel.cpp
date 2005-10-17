@@ -133,6 +133,16 @@ int Panel::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
     return cpaf::win32::gui::Widget::process_message(hwnd, msg, w_param, l_param);
 }
 
+cpaf::Size Panel::get_min_size() const
+{
+    return m_layout_manager->get_min_size();
+}
+
+cpaf::Size Panel::get_max_size() const
+{
+    return m_layout_manager->get_max_size();
+}
+
 cpaf::gui::LayoutManager &Panel::get_layout_manager()
 {
     return *m_layout_manager;

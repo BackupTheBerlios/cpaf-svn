@@ -47,6 +47,9 @@ public:
 
     int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
+    cpaf::Size get_min_size() const;
+    cpaf::Size get_max_size() const;
+
     cpaf::gui::LayoutManager &get_layout_manager();
 
 private:

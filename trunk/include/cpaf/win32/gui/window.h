@@ -52,6 +52,8 @@ public:
 
     int process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
+    cpaf::Size client_size_to_absolute(const cpaf::Size &size);
+
     // window interface
     virtual void set_content_panel(cpaf::api::gui::Panel *p);
     virtual boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const;

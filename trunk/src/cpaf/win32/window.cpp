@@ -122,6 +122,27 @@ int Window::process_message(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
     case WM_SIZE:
         if( m_root_panel )
             m_root_panel->set_size(cpaf::Size(LOWORD(l_param), HIWORD(l_param)));
+        break;
+
+    case WM_GETMINMAXINFO:
+        {
+            cpaf::Size min = m_root_panel->get_min_size();
+            cpaf::Size max = m_root_panel->get_max_size();
+
+            cpaf::Size abs_min = client_size_to_absolute(min);
+            cpaf::Size abs_max = client_size_to_absolute(max);
+
+            MINMAXINFO *info = (MINMAXINFO*)l_param;
+            if( max.width != 0 )
+                info->ptMaxTrackSize.x = abs_max.width;
+            if( max.height != 0 )
+                info->ptMaxTrackSize.y = abs_max.height;
+            if( min.width != 0 )
+                info->ptMinTrackSize.x = abs_min.width;
+            if( min.height != 0 )
+                info->ptMinTrackSize.y = abs_min.height;
+            return 0;
+        }
     }
 
     return Widget::process_message(hwnd, msg, w_param, l_param);
@@ -211,4 +232,20 @@ void Window::set_client_size(const cpaf::Size &s)
         // test to see if it is ok now
         ::GetClientRect(m_hwnd, &new_rect);
     }
+}
+
+cpaf::Size Window::client_size_to_absolute(const cpaf::Size &size)
+{
+    // find the difference between the current client size and window size
+    // and use it to calculate a new window size based on the given client size
+
+    cpaf::Size result = size;
+    RECT window_rect, client_rect;
+    ::GetWindowRect(m_hwnd, &window_rect);
+    ::GetClientRect(m_hwnd, &client_rect);
+
+    result.width += (window_rect.right - window_rect.left) - (client_rect.right);
+    result.height += (window_rect.bottom - window_rect.top) - (client_rect.bottom);
+
+    return result;
 }
