@@ -8,8 +8,10 @@
 #include <cpaf/gui/button.h>
 #include <cpaf/gui/panel.h>
 #include <cpaf/gui/gridbaglayout.h>
+#include <cpaf/flags.h>
 
 using namespace cpaf::gui;
+using namespace cpaf::flags;
 
 class MyApp : public cpaf::gui::App
 {
@@ -29,7 +31,7 @@ bool MyApp::init()
     gblm->add(Button::create(btn_init.label("1")),
         info.position(1,1));
     gblm->add(Button::create(btn_init.label("2")),
-        info.position(2,1).layout_flags(GridBagLayoutInfo::EXPAND_BOTH));
+        info.position(2,1).flags(EXPAND_BOTH));
     gblm->add(Button::create(btn_init.label("3")),
         info.position(3,1));
     gblm->add(Button::create(btn_init.label("4")),
@@ -38,9 +40,9 @@ bool MyApp::init()
     gblm->add(Button::create(btn_init.label("5")),
         info.position(1,2));
     gblm->add(Button::create(btn_init.label("6")),
-        info.position(2,2).layout_flags(GridBagLayoutInfo::EXPAND_HORIZONTAL | GridBagLayoutInfo::ALIGN_CENTER_VERTICAL));
+        info.position(2,2).flags(EXPAND_HORIZONTAL | ALIGN_CENTER_VERTICAL));
     gblm->add(Button::create(btn_init.label("7")),
-        info.position(3,2).layout_flags(GridBagLayoutInfo::EXPAND_VERTICAL | GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL).row_span(2));
+        info.position(3,2).flags(EXPAND_VERTICAL | ALIGN_CENTER_HORIZONTAL).row_span(2));
 
     /*
         Button 8 is special. It is expanded in both directions but also has a minimal
@@ -50,7 +52,7 @@ bool MyApp::init()
         the button will be centered with a size equal to its maximum.
     */
     gblm->add(Button::create(btn_init.label("8").max_size(cpaf::Size(100,100))),
-        info.position(4,2).layout_flags(GridBagLayoutInfo::ALIGN_CENTER | GridBagLayoutInfo::EXPAND_BOTH).row_span(1));
+        info.position(4,2).flags(ALIGN_CENTER | EXPAND_BOTH).row_span(1));
 
     gblm->add(Button::create(btn_init.label("9").max_size(cpaf::Size(0,0))),
         info.position(1,3));

@@ -9,11 +9,13 @@
 #include <cpaf/gui/window.h>
 #include <cpaf/debug.h>
 #include <cpaf/gui/gridbaglayout.h>
+#include <cpaf/flags.h>
 
 #include <sstream>
 
 using namespace cpaf::event;
 using namespace cpaf::gui;
+using namespace cpaf::flags;
 
 /*
     Our derived application class
@@ -176,7 +178,7 @@ bool MyApp::init()
     // add things to the GBLM
     cpaf::gui::GridBagLayoutInfo info;
 
-    info.expand_horizontal();
+    info.flags(EXPAND_HORIZONTAL);
 
     gblm_inner->add(get_text, info.position(0,0));
     gblm_inner->add(get_selection_range, info.position(1, 0));
@@ -202,9 +204,9 @@ bool MyApp::init()
     gblm_inner->set_row_weight(0, 0).set_row_weight(1, 0).set_row_weight(2, 0)
         .set_row_weight(3, 0).set_row_weight(4, 0);
 
-    gblm_outer->add(gblm_inner, cpaf::gui::GridBagLayoutInfo().expand_both().position(0,0));
+    gblm_outer->add(gblm_inner, cpaf::gui::GridBagLayoutInfo().flags(EXPAND_BOTH).position(0,0));
     gblm_outer->add(entry, info.position(0, 1));
-    gblm_outer->add(text, info.position(0, 2).expand_both());
+    gblm_outer->add(text, info.position(0, 2).flags(EXPAND_BOTH));
 
     gblm_outer->set_gap(4).set_margins(4);
     gblm_outer->set_row_weight(0, 0).set_row_weight(1,0);
@@ -316,7 +318,7 @@ void MyApp::set_max_length(const Event &event)
 
 void MyApp::set_insertion_point(const Event &event)
 {
-    cpaf::DebugReport() << "Set Isertion Point" << "\n";
+    cpaf::DebugReport() << "Set Insertion Point" << "\n";
     entry->set_insertion_point(get_range().first);
     text->set_insertion_point(get_range().first);
 }

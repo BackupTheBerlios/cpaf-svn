@@ -17,9 +17,11 @@ playing nice through dll boundaries, a dynamically linked run time library MUST 
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
 #include <cpaf/gui/gridbaglayout.h>
+#include <cpaf/flags.h>
 
 using namespace cpaf::event;
 using namespace cpaf::gui;
+using namespace cpaf::flags;
 
 /*
     Our derived application class
@@ -34,6 +36,7 @@ public:
     void toggle_password_mode(const Event &event);
     void destroy_button(const Event &event);
     void on_text_changed(const Event &event);
+    void get_pos(const Event &event);
 };
 
 /*
@@ -137,6 +140,12 @@ void MyApp::on_text_changed(const Event &event)
     cpaf::DebugReport() << "MyApp::on_text_changed";
 }
 
+void MyApp::get_pos(const Event &event)
+{
+    cpaf::Point p = cpaf::gui::get_widget_from_id(event.get_object_id())->get_parent_window()->get_position();
+    cpaf::DebugReport() << "MyApp::get_pos " << p.x << " x " << p.y;
+}
+
 /*
     Initialization function for our application class
 */
@@ -155,6 +164,14 @@ bool MyApp::init()
     connect<Event>(BUTTON_CLICK, pw_mode->get_id()) (&MyApp::toggle_password_mode, *this);
     pw_mode->set_min_size(cpaf::Size(250,10));
     //pw_mode->set_natural_size(cpaf::Size(300,0));
+
+    boost::shared_ptr<Button> get_pos = Button::create(btn_init
+        .parent(panel)
+        .label("Get window position")
+        .show()
+        );
+    connect<Event>(BUTTON_CLICK, get_pos->get_id()) (&MyApp::get_pos, *this);
+    get_pos->set_min_size(cpaf::Size(250,10));
 
     boost::shared_ptr<MyButton2> my_btn = MyButton2::create(btn_init
         .label("Click me!")
@@ -211,13 +228,15 @@ bool MyApp::init()
     gblm->add(pw,
         info.position(0,0));
     gblm->add(my_btn,
-        info.position(1, 0).layout_flags(GridBagLayoutInfo::EXPAND_BOTH));
+        info.position(1, 0).flags(EXPAND_BOTH));
     gblm->add(destroy_btn,
         info.position(1,1));
     gblm->add(entry,
         info.position(3, 0));
     gblm->add(text,
         info.position(3, 1));
+    gblm->add(get_pos,
+        info.position(0,2));
 
     gblm->set_column_weight(0, 0);
     gblm->set_column_weight(1, 2);

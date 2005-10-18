@@ -7,9 +7,11 @@
 #include <cpaf/gui/textbox.h>
 #include <cpaf/gui/panel.h>
 #include <cpaf/gui/gridbaglayout.h>
+#include <cpaf/flags.h>
 
 using namespace cpaf::event;
 using namespace cpaf::gui;
+using namespace cpaf::flags;
 
 /*
     Our derived application class
@@ -73,9 +75,9 @@ bool MyApp::init()
         EntryBox::create(EntryBox::Initializer().parent(panel)
             .text("The test button and the test window should be hidden by default")
             .min_size(cpaf::Size(100,25)).show()),
-            info.position(0,0).layout_flags(GridBagLayoutInfo::ALIGN_TOP | GridBagLayoutInfo::EXPAND_HORIZONTAL)
+            info.position(0,0).flags(ALIGN_TOP | EXPAND_HORIZONTAL)
     );
-    info.layout_flags(GridBagLayoutInfo::EXPAND_BOTH);
+    info.flags(EXPAND_BOTH);
     gblm->add(showhidewnd_btn, info.position(0,1));
     gblm->add(showhidebtn_btn, info.position(0,2));
     gblm->add(test_btn, info.position(0,3));
