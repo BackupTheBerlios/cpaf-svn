@@ -72,6 +72,7 @@ struct ObjectInfo
 
     cpaf::Size m_min_size;
     cpaf::Size m_max_size;
+    cpaf::Size m_natural_size;
     cpaf::Rect m_rect;
 
     //! The information for this widget

@@ -25,6 +25,7 @@
 #define CPAF_GUI_GRIDBAG_H
 
 #include <cpaf/gui/layoutmanager.h>
+#include <cpaf/flags.h>
 
 namespace cpaf {
     namespace common {
@@ -40,40 +41,13 @@ namespace cpaf {
     Layout flags for the grid bag layout manager. The default flags
     specify that the widget will be centered both vertically and horizontally
     within its alloted space and will not be expanded in either direction.
+
+    \todo Add a reference, or "See also" link, pointing to the enum documentation
+    for layout flags
 */
 class CPAF_API GridBagLayoutInfo
 {
 public:
-    /*!
-        Flags controlling the placement of the Object within the layout.
-
-        Mutually exclusive flags:
-            {ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER_HORIZONTALORIZONTAL}
-            {ALIGN_TOP, ALIGN_BOTTOM, ALIGN_CENTER_VERTICALERTICAL}
-        Combinations of mutually exclusive flags will result in undefined behavior.
-
-        If no flags are specified, the default combation of flags is ALIGN_LEFT | ALIGN_TOP.
-        
-        If a combination of EXPAND flags and ALIGN flags are made which both effect the same axis
-        (horizontal or vertical), the EXPAND flag will have priority unless the maximal size
-        of an Object is exceeded, in which case the EXPAND flag will be ignored and the
-        ALIGN flag will be used instead.
-        
-        If an EXPAND flag was set but no ALIGN flag was set and an Objects maximal size is
-        exceeded, the EXPAND flag will be ignored and ALIGN_LEFT | ALIGN_TOP is assumed.
-    */
-    enum LAYOUT_FLAGS {
-        ALIGN_LEFT              = 1,
-        ALIGN_RIGHT             = 2,
-        ALIGN_CENTER_HORIZONTAL = 3,
-        ALIGN_TOP               = 1 << 2,
-        ALIGN_BOTTOM            = 2 << 2,
-        ALIGN_CENTER_VERTICAL   = 3 << 2,
-        ALIGN_CENTER            = ALIGN_CENTER_HORIZONTAL | ALIGN_CENTER_VERTICAL,
-        EXPAND_HORIZONTAL       = 1 << 4,
-        EXPAND_VERTICAL         = 2 << 4,
-        EXPAND_BOTH             = 3 << 4,
-    };
 
     GridBagLayoutInfo();
 

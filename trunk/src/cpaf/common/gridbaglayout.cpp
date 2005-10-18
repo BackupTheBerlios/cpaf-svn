@@ -22,11 +22,12 @@
 
 #include <cpaf/common/gui/gridbaglayout.h>
 #include <cpaf/gui/panel.h>
+#include <cpaf/flags.h>
 
 using namespace cpaf::common::gui::gblm;
 using namespace cpaf::common::gui;
 using cpaf::gui::GridBagLayoutInfo;
-
+using namespace cpaf::flags;
 
 // need namespace declarations for template specializations (by standard)
 namespace cpaf {
@@ -364,11 +365,11 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
 
             if( group == COLUMN )
             {
-                expand = (info.data.flags & GridBagLayoutInfo::EXPAND_HORIZONTAL) == GridBagLayoutInfo::EXPAND_HORIZONTAL;
+                expand = (info.data.flags & EXPAND_HORIZONTAL) == EXPAND_HORIZONTAL;
             }
             else
             {
-                expand = (info.data.flags & GridBagLayoutInfo::EXPAND_VERTICAL) == GridBagLayoutInfo::EXPAND_VERTICAL;
+                expand = (info.data.flags & EXPAND_VERTICAL) == EXPAND_VERTICAL;
             }
 
             // account for padding
@@ -391,7 +392,7 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
             }
             else
             {
-                size_src_val_natural = get_size_value<group>(info.object.lock()->get_natural_size());
+                size_src_val_natural = get_size_value<group>(info.m_natural_size);
 
                 // make sure the natural size isn't larger than the max or smaller than min
                 float min_val = get_size_value<group>(info.m_min_size);
@@ -424,13 +425,13 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
 
                 if( group == COLUMN )
                 {
-                    where = (info.data.flags & GridBagLayoutInfo::ALIGN_LEFT) == GridBagLayoutInfo::ALIGN_LEFT;
-                    center = (info.data.flags & GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL) == GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL;
+                    where = (info.data.flags & ALIGN_LEFT) == ALIGN_LEFT;
+                    center = (info.data.flags & ALIGN_CENTER_HORIZONTAL) == ALIGN_CENTER_HORIZONTAL;
                 }
                 else
                 {
-                    where = (info.data.flags & GridBagLayoutInfo::ALIGN_TOP) == GridBagLayoutInfo::ALIGN_TOP;
-                    center = (info.data.flags & GridBagLayoutInfo::ALIGN_CENTER_VERTICAL) == GridBagLayoutInfo::ALIGN_CENTER_VERTICAL;
+                    where = (info.data.flags & ALIGN_TOP) == ALIGN_TOP;
+                    center = (info.data.flags & ALIGN_CENTER_VERTICAL) == ALIGN_CENTER_VERTICAL;
                 }
 
                 // center flags override any other flags, so check them first
@@ -462,7 +463,7 @@ void GridBagLayout::update_layout()
 
     // now actually position the objects
     for( Objects::iterator i = m_objects.begin(), end = m_objects.end(); i != end; ++i )
-        i->object.lock()->set_rect(i->m_rect);
+        boost::shared_ptr<cpaf::gui::Object>(i->object)->set_rect(i->m_rect);
 }
 
 void GridBagLayout::update_sizes() const
@@ -474,8 +475,10 @@ void GridBagLayout::update_sizes() const
         {
             gblm::ObjectInfo &info = *i;
 
-            info.m_min_size = info.object.lock()->get_min_size();
-            info.m_max_size = info.object.lock()->get_max_size();
+            boost::shared_ptr<cpaf::gui::Object> ptr(info.object);
+            info.m_min_size = ptr->get_min_size();
+            info.m_max_size = ptr->get_max_size();
+            info.m_natural_size = ptr->get_natural_size();
         }
 
         update_group_sizes<COLUMN>();
@@ -667,7 +670,7 @@ void GridBagLayout::assign(boost::weak_ptr<cpaf::gui::Panel> panel)
 }
 
 LayoutData::LayoutData()
-    : flags(GridBagLayoutInfo::ALIGN_LEFT | GridBagLayoutInfo::ALIGN_TOP),
+    : flags(ALIGN_LEFT | ALIGN_TOP),
     pad_left(0), pad_top(0), pad_right(0), pad_bottom(0),
     col(0), row(0), col_span(1), row_span(1)
 { }

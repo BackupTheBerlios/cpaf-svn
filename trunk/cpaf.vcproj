@@ -247,6 +247,9 @@
 				RelativePath=".\include\cpaf\exception.h">
 			</File>
 			<File
+				RelativePath=".\include\cpaf\flags.h">
+			</File>
+			<File
 				RelativePath=".\include\cpaf\macros.h">
 			</File>
 			<File
