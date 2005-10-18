@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/win32/textwidget.h
+    \file include/cpaf/win32/gui/textwidget.h
     \brief win32 version of cpaf::api::gui::TextWidget
     \date Created: 2005-07-17
 */

@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/gtk2/panel.h
+    \file include/cpaf/gtk2/gui/panel.h
     \brief gtk2 version of cpaf::api::gui::Panel
     \date Created: 2005-08-08
 */

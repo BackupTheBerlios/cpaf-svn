@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/cocoa/utils.mm
+    \file src/cpaf/cocoa/utils.mm
     \brief Cocoa utilities
     \date Created: 2005-05-05
 */

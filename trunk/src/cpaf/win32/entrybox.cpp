@@ -1,5 +1,5 @@
 /*!
-    \file src/cpaf/win32/textbox.cpp
+    \file src/cpaf/win32/entrybox.cpp
     \brief Implementation of cpaf::win32::gui::TextBox
     \date Created: 2005-07-17
 */

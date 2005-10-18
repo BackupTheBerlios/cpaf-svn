@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/gui/common/gridbaglayout.h
+    \file include/cpaf/common/gui/gridbaglayout.h
     \brief Grid Bag Layout Manager implementation declarations
     \date Created: 2005-10-16
 */
@@ -233,7 +233,7 @@ private:
     template<gblm::GROUP> float &get_pos_value(cpaf::Point &pos) const;
 
     /*!
-        \returnThe x or y value of the given position based on the template parameter
+        \return The x or y value of the given position based on the template parameter
     */
     template<gblm::GROUP> float get_pos_value(const cpaf::Point &pos) const;
 

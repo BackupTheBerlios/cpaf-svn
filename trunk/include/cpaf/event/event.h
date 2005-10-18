@@ -117,7 +117,7 @@ public:
     bool get_veto() const;
 
     /*!
-        \reteurn True if this event is allowed t be vetoed
+        \return True if this event is allowed to be vetoed
     */
     virtual bool can_veto() const;
 
@@ -199,10 +199,10 @@ public:
     /*!
         Creates an SlotChain object to connect event listeners to.
 
-        \param from     Object to recieve events from
-        \param event_id Event id to recieve
-        \param type     Specifies what type of slot chain this is. Different types of slot
-                        chains are executed at different times during event processing.
+        \param from Object to recieve events from
+        \param id   Event id to recieve
+        \param type Specifies what type of slot chain this is. Different types of slot
+                    chains are executed at different times during event processing.
 
         \return Reference to the SlotChain object.
     */
@@ -267,6 +267,11 @@ private:
     \param event    Id of the event
     \param object   The object to recieve events from
     \param manager  An event manager to connect to
+
+    \note Due to a limitation with the version of doxygen used to generate these docs (1.4.5),
+    an overloaded version of this template is ommited from the documentation. Be aware that there
+    is a second version of this function with the second template parameter ommited. A default value
+    of BEFORE is assumed for this template.
 */
 template<typename E, SLOT_CHAIN_TYPE T> SlotChainWrapper<E> connect(event_id event, object_id object, cpaf::event::Manager &manager = cpaf::event::get_manager())
 {

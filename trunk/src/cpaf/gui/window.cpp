@@ -87,12 +87,12 @@ cpaf::Size Window::get_max_content_size() const
     return m_impl->get_max_content_size();
 }
 
-void Window::set_content_panel(boost::shared_ptr<Panel> p)
+void Window::set_content_panel(boost::shared_ptr<cpaf::gui::Panel> p)
 {
     m_impl->set_content_panel(p->get_impl());
 }
 
-boost::shared_ptr<Panel> Window::get_content_panel() const
+boost::shared_ptr<cpaf::gui::Panel> Window::get_content_panel() const
 {
     return m_impl->get_content_panel();
 }

@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/cocoa/entrybox.h
+    \file include/cpaf/cocoa/gui/entrybox.h
     \brief Cocoa version of cpaf::api::gui::EntryBox
     \date Created: 2005-07-14
 */

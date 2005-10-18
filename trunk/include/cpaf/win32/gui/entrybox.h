@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/win32/entrybox.h
+    \file include/cpaf/win32/gui/entrybox.h
     \brief win32 version of cpaf::api::gui::EntryBox
     \date Created: 2005-07-13
 */

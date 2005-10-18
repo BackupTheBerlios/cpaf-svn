@@ -41,8 +41,8 @@ protected:
 public:
     PanelData();
 
-    void set_layout_manager(boost::shared_ptr<LayoutManager> manager);
-    boost::shared_ptr<LayoutManager> get_layout_manager() const;
+    void set_layout_manager(boost::shared_ptr<cpaf::gui::LayoutManager> manager);
+    boost::shared_ptr<cpaf::gui::LayoutManager> get_layout_manager() const;
 };
 
 /*!

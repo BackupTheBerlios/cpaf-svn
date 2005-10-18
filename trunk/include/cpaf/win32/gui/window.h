@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/win32/window.h
+    \file include/cpaf/win32/gui/window.h
     \brief win32 version of cpaf::api::gui::Window
     \date Created: 2005-04-05
 */

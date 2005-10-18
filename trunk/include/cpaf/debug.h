@@ -1,5 +1,5 @@
 /*!
-    \file incude/cpaf/debug.h
+    \file include/cpaf/debug.h
     \brief Stream like object for outputting debug information
     \date Created: 2005-08-20
 */

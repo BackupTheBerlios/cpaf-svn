@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/win32/widget.h
+    \file include/cpaf/win32/gui/widget.h
     \brief win32 version of cpaf::api::gui::Widget
     \date Created: 2005-04-05
 */
@@ -78,6 +78,10 @@ public:
         \param window_name  Window name passed to CreateWindowEx
         \param styles       Window styles
         \param styles_ex    Extended window styles
+        \param x            X position
+        \param y            Y position
+        \param w            Width
+        \param h            Height
     */
     virtual void create(const CreationInfo &info, const cpaf::gui::initializer::WidgetData &params,
         bool parent_required, LPCTSTR class_name, LPCTSTR window_name, int styles, int styles_ex = 0,

@@ -28,9 +28,10 @@
 #include <gdk/gdkx.h>
 #include <X11/Xatom.h>
 
-//! \note X11 specific
 long * cpaf::gtk2::utils::get_extents(GtkWidget * widget)
 {
+    //! \note X11 specific
+
     if (!GTK_WIDGET_REALIZED(widget) || !GTK_WIDGET_TOPLEVEL(widget))
         return NULL;
 

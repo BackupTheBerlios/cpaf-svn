@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/win32/panel.h
+    \file include/cpaf/win32/gui/panel.h
     \brief win32 version of cpaf::api::gui::Panel
     \date Created: 2005-08-08
 */

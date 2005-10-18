@@ -121,6 +121,8 @@ void disassociate_widget_id(cpaf::object_id id);
 
 /*!
     Retrieves a shared_ptr to the widget with the given id
+
+    \todo Decide what to do if the id isn't in the map
 */
 boost::shared_ptr<Widget> get_widget_from_id(cpaf::object_id id);
 

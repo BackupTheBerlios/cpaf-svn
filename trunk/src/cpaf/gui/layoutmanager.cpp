@@ -1,5 +1,5 @@
 /*!
-    \file src\cpaf\layoutmanager.cpp
+    \file src/cpaf/gui/layoutmanager.cpp
     \brief Layout Manager implementation
     \date Created: 2005-08-24
 */

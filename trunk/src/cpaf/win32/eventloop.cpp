@@ -1,5 +1,5 @@
 /*!
-    \file src/cpaf/win32/gui/eventloop.cpp
+    \file src/cpaf/win32/eventloop.cpp
     \brief Implements the EventLoop object for win32
     \date Created: 2005-10-13
 */

@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/gui/api/object.h
+    \file include/cpaf/api/gui/object.h
     \brief Object interface declaration
     \date Created: 2005-04-05
 */

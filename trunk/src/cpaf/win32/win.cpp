@@ -43,7 +43,6 @@ void cpaf::win32::gui::associate_hwnd(HWND h, cpaf::win32::gui::Widget *wnd)
     if( wnd == 0 )
         return;
 
-    //! \todo Throw if this fails
     if( ::SetProp(h, "cpaf::widget", wnd) )
         num_widgets++;
 }

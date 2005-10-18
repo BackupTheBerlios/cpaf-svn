@@ -1,5 +1,5 @@
 /*!
-    \file src/cpaf/gtk2/gui/eventloop.cpp
+    \file src/cpaf/gtk2/eventloop.cpp
     \brief Implements the EventLoop object for gtk2
     \date Created: 2005-10-13
 */

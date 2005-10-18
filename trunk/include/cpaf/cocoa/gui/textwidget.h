@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/cocoa/textwidget.h
+    \file include/cpaf/cocoa/gui/textwidget.h
     \brief Cocoa version of cpaf::api::gui::TextWidget
     \date Created: 2005-07-14
 */

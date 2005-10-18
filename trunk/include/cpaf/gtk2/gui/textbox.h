@@ -1,8 +1,8 @@
-/**
- * \file include/cpaf/gtk2/textbox.h
- * \brief Gtk2 version of cpaf::api::gui::TextBox
- * \date Created: 2005-07-08
- */
+/*!
+    \file include/cpaf/gtk2/gui/textbox.h
+    \brief Gtk2 version of cpaf::api::gui::TextBox
+    \date Created: 2005-07-08
+*/
 
 /*
     This library is free software; you can redistribute it and/or

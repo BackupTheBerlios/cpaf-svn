@@ -1,5 +1,5 @@
 /*!
-    \file src/cpaf/gtk2/cpaffixed.cpp
+    \file src/cpaf/gtk2/cpaffixed.c
     \brief Custom container derived from GtkFixed
     \date Created: 2005-10-04
 */

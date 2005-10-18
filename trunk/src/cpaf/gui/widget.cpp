@@ -127,7 +127,6 @@ boost::shared_ptr<Widget> cpaf::gui::get_widget_from_id(cpaf::object_id id)
 {
     WidgetMap::iterator it= widget_map.find(id);
 
-    //! \todo Decide what to do if the id isn't in the map
     if( it != widget_map.end() )
         return it->second;
 }

@@ -45,7 +45,7 @@ namespace cpaf {
             If an EXPAND flag was set but no ALIGN flag was set and an Objects maximal size is
             exceeded, the EXPAND flag will be ignored and ALIGN_LEFT | ALIGN_TOP is assumed.
         */
-        enum {
+        enum LAYOUT_FLAGS {
             ALIGN_LEFT              = 0x01,
             ALIGN_RIGHT             = 0x02,
             ALIGN_CENTER_HORIZONTAL = 0x04,

@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/cocoa/panel.h
+    \file include/cpaf/cocoa/gui/panel.h
     \brief cocoa version of cpaf::api::gui::Panel
     \date Created: 2005-08-08
 */

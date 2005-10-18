@@ -1,5 +1,5 @@
 /*!
-    \file src/cpaf/gridbaglayout.cpp
+    \file src/cpaf/gui/gridbaglayout.cpp
     \brief Grid Bag Layout Manager implementation
     \date Created: 2005-08-31
 */

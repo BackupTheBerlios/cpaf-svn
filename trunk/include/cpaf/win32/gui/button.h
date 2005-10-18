@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/win32/button.h
+    \file include/cpaf/win32/gui/button.h
     \brief win32 version of cpaf::api::gui::Button
     \date Created: 2005-04-05
 */

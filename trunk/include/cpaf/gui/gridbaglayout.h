@@ -1,6 +1,5 @@
-
 /*!
-    \file include/cpaf/gridbaglayout.h
+    \file include/cpaf/gui/gridbaglayout.h
     \brief Grid Bag Layout Manager declaration
     \date Created: 2005-08-31
 */

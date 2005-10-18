@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/win32/textbox.h
+    \file include/cpaf/win32/gui/textbox.h
     \brief win32 version of cpaf::api::gui::TextBox
     \date Created: 2005-07-07
 */

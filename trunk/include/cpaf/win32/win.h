@@ -48,6 +48,8 @@ template <typename T> T *get_widget_from_hwnd(HWND h)
 }
 /*!
     Associate a Widget pointer with a HWND
+
+    \todo Throw if setting the window property fails
 */
 void associate_hwnd(HWND h, Widget *wnd);
 

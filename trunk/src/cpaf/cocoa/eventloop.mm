@@ -1,5 +1,5 @@
 /*!
-    \file src/cpaf/cocoa/gui/eventloop.cpp
+    \file src/cpaf/cocoa/eventloop.mm
     \brief Implements the EventLoop object for cocoa
     \date Created: 2005-10-13
 */

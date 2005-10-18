@@ -1,5 +1,5 @@
 /*!
-    \file include/cpaf/cocoa/textbox.h
+    \file include/cpaf/cocoa/gui/textbox.h
     \brief Cocoa version of cpaf::api::gui::TextBox
     \date Created: 2005-07-08
 */
