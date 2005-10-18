@@ -52,7 +52,7 @@ public:
     /*!
         Contains bit flags for expansion and alignment information
     */
-    int layout_flags;
+    int flags;
 
     /*!
         Padding values

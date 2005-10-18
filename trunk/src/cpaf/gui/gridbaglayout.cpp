@@ -33,18 +33,18 @@ GridBagLayoutInfo::GridBagLayoutInfo()
 : m_data(new cpaf::common::gui::gblm::LayoutData)
 { }
 
-GridBagLayoutInfo &GridBagLayoutInfo::layout_flags(int flags)
+GridBagLayoutInfo &GridBagLayoutInfo::flags(int flags)
 {
     // we do not validate the sanity of the flags, it is up to the programmer to verify
     // that nonsensical combinations aren't specified. The behavior for nonsensical flags
     // is officially undefined.
-    m_data->layout_flags = flags;
+    m_data->flags = flags;
     return *this;
 }
 
-int GridBagLayoutInfo::get_layout_flags() const
+int GridBagLayoutInfo::get_flags() const
 {
-    return m_data->layout_flags;
+    return m_data->flags;
 }
 
 GridBagLayoutInfo &GridBagLayoutInfo::position(unsigned int col, unsigned int row)

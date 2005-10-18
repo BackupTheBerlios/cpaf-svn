@@ -364,11 +364,11 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
 
             if( group == COLUMN )
             {
-                expand = (info.data.layout_flags & GridBagLayoutInfo::EXPAND_HORIZONTAL) == GridBagLayoutInfo::EXPAND_HORIZONTAL;
+                expand = (info.data.flags & GridBagLayoutInfo::EXPAND_HORIZONTAL) == GridBagLayoutInfo::EXPAND_HORIZONTAL;
             }
             else
             {
-                expand = (info.data.layout_flags & GridBagLayoutInfo::EXPAND_VERTICAL) == GridBagLayoutInfo::EXPAND_VERTICAL;
+                expand = (info.data.flags & GridBagLayoutInfo::EXPAND_VERTICAL) == GridBagLayoutInfo::EXPAND_VERTICAL;
             }
 
             // account for padding
@@ -424,13 +424,13 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
 
                 if( group == COLUMN )
                 {
-                    where = (info.data.layout_flags & GridBagLayoutInfo::ALIGN_LEFT) == GridBagLayoutInfo::ALIGN_LEFT;
-                    center = (info.data.layout_flags & GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL) == GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL;
+                    where = (info.data.flags & GridBagLayoutInfo::ALIGN_LEFT) == GridBagLayoutInfo::ALIGN_LEFT;
+                    center = (info.data.flags & GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL) == GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL;
                 }
                 else
                 {
-                    where = (info.data.layout_flags & GridBagLayoutInfo::ALIGN_TOP) == GridBagLayoutInfo::ALIGN_TOP;
-                    center = (info.data.layout_flags & GridBagLayoutInfo::ALIGN_CENTER_VERTICAL) == GridBagLayoutInfo::ALIGN_CENTER_VERTICAL;
+                    where = (info.data.flags & GridBagLayoutInfo::ALIGN_TOP) == GridBagLayoutInfo::ALIGN_TOP;
+                    center = (info.data.flags & GridBagLayoutInfo::ALIGN_CENTER_VERTICAL) == GridBagLayoutInfo::ALIGN_CENTER_VERTICAL;
                 }
 
                 // center flags override any other flags, so check them first
@@ -667,7 +667,7 @@ void GridBagLayout::assign(boost::weak_ptr<cpaf::gui::Panel> panel)
 }
 
 LayoutData::LayoutData()
-    : layout_flags(GridBagLayoutInfo::ALIGN_LEFT | GridBagLayoutInfo::ALIGN_TOP),
+    : flags(GridBagLayoutInfo::ALIGN_LEFT | GridBagLayoutInfo::ALIGN_TOP),
     pad_left(0), pad_top(0), pad_right(0), pad_bottom(0),
     col(0), row(0), col_span(1), row_span(1)
 { }

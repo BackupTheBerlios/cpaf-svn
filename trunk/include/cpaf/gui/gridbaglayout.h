@@ -83,12 +83,12 @@ public:
 
         \param flags A combination of LAYOUT_FLAGS
     */
-    GridBagLayoutInfo &layout_flags(int flags);
+    GridBagLayoutInfo &flags(int flags);
 
     /*!
         \return The current combination of layout flags
     */
-    int get_layout_flags() const;
+    int get_flags() const;
 
     GridBagLayoutInfo &position(unsigned int col, unsigned int row);
     GridBagLayoutInfo &column(unsigned int col);
