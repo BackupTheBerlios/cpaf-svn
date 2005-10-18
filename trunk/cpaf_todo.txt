@@ -1,6 +1,13 @@
+========================================
+                 GBLM
+========================================
+
 Respect minimum sizes when dealing with group spanning in the GBLM
 
-Optimize GBLM heavily
+Try to find more things to optimize for GBLM
+
+Verify that the documented default flag values (ALIGN_LEFT|ALIGN_TOP)
+is actually honored, say, when flags == 0.
 
 ========================================
                   Events

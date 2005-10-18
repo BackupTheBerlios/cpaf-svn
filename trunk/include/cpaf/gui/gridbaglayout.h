@@ -53,9 +53,8 @@ public:
 
     /*!
         \brief Specify flags controlling the placement of objects within the layout.
-        You can specify both alignment and ex
 
-        \param flags A combination of LAYOUT_FLAGS
+        \param flags A combination of cpaf::flags::LAYOUT_FLAGS
     */
     GridBagLayoutInfo &flags(int flags);
 
@@ -63,6 +62,16 @@ public:
         \return The current combination of layout flags
     */
     int get_flags() const;
+
+    /*!
+        Adds the given flags to the current flags.
+    */
+    GridBagLayoutInfo &add_flags(int flags);
+
+    /*!
+        Removes the given flags from the current flags if they exist in the current flags.
+    */
+    GridBagLayoutInfo &remove_flags(int flags);
 
     GridBagLayoutInfo &position(unsigned int col, unsigned int row);
     GridBagLayoutInfo &column(unsigned int col);

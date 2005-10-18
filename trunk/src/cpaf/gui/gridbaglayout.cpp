@@ -47,6 +47,18 @@ int GridBagLayoutInfo::get_flags() const
     return m_data->flags;
 }
 
+GridBagLayoutInfo &GridBagLayoutInfo::add_flags(int flags)
+{
+    m_data->flags |= flags;
+    return *this;
+}
+
+GridBagLayoutInfo &GridBagLayoutInfo::remove_flags(int flags)
+{
+    m_data->flags &= ~flags;
+    return *this;
+}
+
 GridBagLayoutInfo &GridBagLayoutInfo::position(unsigned int col, unsigned int row)
 {
     m_data->col = col;
