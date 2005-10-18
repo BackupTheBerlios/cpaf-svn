@@ -294,7 +294,6 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
             cpaf::Rect &rect = data.m_rect;
             float &dest_val = get_size_value<group>(rect.size);
             float min_val = data.m_min_size;
-            float max_val = data.m_max_size;
 
             dest_val = (extra_size * data.m_weight) / weight_sum;
 
@@ -317,15 +316,6 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
                 if( dest_val < min_val )
                 {
                     dest_val = min_val;
-
-                    // done sizing this group, start over
-                    data.m_done = again = true;
-                    break;
-                }
-                // make sure maximal size is still respected
-                if( max_val != 0 && dest_val > max_val )
-                {
-                    dest_val = max_val;
 
                     // done sizing this group, start over
                     data.m_done = again = true;
@@ -374,18 +364,31 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
 
             if( group == COLUMN )
             {
-                expand = (info.data.alignment_info & GridBagLayoutInfo::EXPAND_HORIZONTAL) == GridBagLayoutInfo::EXPAND_HORIZONTAL;
+                expand = (info.data.layout_flags & GridBagLayoutInfo::EXPAND_HORIZONTAL) == GridBagLayoutInfo::EXPAND_HORIZONTAL;
             }
             else
             {
-                expand = (info.data.alignment_info & GridBagLayoutInfo::EXPAND_VERTICAL) == GridBagLayoutInfo::EXPAND_VERTICAL;
+                expand = (info.data.layout_flags & GridBagLayoutInfo::EXPAND_VERTICAL) == GridBagLayoutInfo::EXPAND_VERTICAL;
             }
 
             // account for padding
             size_src_val -= pad1 + pad2;
 
             if( expand )
-                size_dest_val = size_src_val;
+            {
+                // if the size we would specify is larger than the widgets maximum,
+                // don't expand it, just specify its size to be equal to its max and
+                // use alignment flags
+                float max_val = get_size_value<group>(info.m_max_size);
+
+                if( max_val != 0 && size_src_val > max_val )
+                {
+                    size_dest_val = size_src_val_natural = max_val;
+                    expand = false;
+                }
+                else
+                    size_dest_val = size_src_val;
+            }
             else
             {
                 size_src_val_natural = get_size_value<group>(info.object.lock()->get_natural_size());
@@ -421,13 +424,13 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
 
                 if( group == COLUMN )
                 {
-                    where = (info.data.alignment_info & GridBagLayoutInfo::ALIGN_LEFT) == GridBagLayoutInfo::ALIGN_LEFT;
-                    center = (info.data.alignment_info & GridBagLayoutInfo::ALIGN_CENTER_H) == GridBagLayoutInfo::ALIGN_CENTER_H;
+                    where = (info.data.layout_flags & GridBagLayoutInfo::ALIGN_LEFT) == GridBagLayoutInfo::ALIGN_LEFT;
+                    center = (info.data.layout_flags & GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL) == GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL;
                 }
                 else
                 {
-                    where = (info.data.alignment_info & GridBagLayoutInfo::ALIGN_TOP) == GridBagLayoutInfo::ALIGN_TOP;
-                    center = (info.data.alignment_info & GridBagLayoutInfo::ALIGN_CENTER_V) == GridBagLayoutInfo::ALIGN_CENTER_V;
+                    where = (info.data.layout_flags & GridBagLayoutInfo::ALIGN_TOP) == GridBagLayoutInfo::ALIGN_TOP;
+                    center = (info.data.layout_flags & GridBagLayoutInfo::ALIGN_CENTER_VERTICAL) == GridBagLayoutInfo::ALIGN_CENTER_VERTICAL;
                 }
 
                 // center flags override any other flags, so check them first
@@ -505,13 +508,11 @@ template<GROUP group> void GridBagLayout::update_group_sizes() const
             non_empty_groups++;
 
         float &min_val_total = data.m_min_size;
-        float &max_val_total = data.m_max_size;
 
         for( GroupObjects::iterator i = data.m_objects.begin(), end = data.m_objects.end(); i != end; ++i )
         {
             const ObjectInfo &info = *(i->second);
             float min_val = get_size_value<group>(info.m_min_size);
-            float max_val = get_size_value<group>(info.m_max_size);
             float pad1, pad2;
 
             get_pad_values<group>(info.data, pad1, pad2);
@@ -519,40 +520,30 @@ template<GROUP group> void GridBagLayout::update_group_sizes() const
             // accound for padding
             if( min_val != 0 )
                 min_val += pad1 + pad2;
-            if( max_val != 0 )
-                max_val += pad1 + pad2;
 
-            // honor mins and maxes
+            // honor mins
             if( min_val > min_val_total )
                 min_val_total = min_val;
-            if( max_val > max_val_total )
-                max_val_total = max_val;
         }
 
-        // calculate min and max sizes for the gblm itself
+        // calculate min size for the gblm itself
         total_min += min_val_total;
-        total_max += max_val_total;
     }
 
-    // finish calculating min and maxes
+    // finish calculating min
     float margin1, margin2;
     get_margin_values<group>(margin1, margin2);
 
     float extra = (non_empty_groups - 1) * gap + margin1 + margin2;
 
-    // assign the GBLM's min and max size values
+    // assign the GBLM's min  size value
     if( total_min > 0 )
         get_size_value<group>(m_min_size) = total_min + extra;
-    if( total_max > 0 )
-        get_size_value<group>(m_max_size) = total_max + extra;
 
-    // set the min and max sizes of our panel
+    // set the min size of our panel
     boost::shared_ptr<cpaf::gui::Panel> panel = m_panel.lock();
     if( panel )
-    {
         panel->set_min_size(m_min_size);
-        panel->set_max_size(m_max_size);
-    }
 }
 
 void GridBagLayout::add(boost::weak_ptr<cpaf::gui::Object> object, const cpaf::gui::GridBagLayoutInfo &info)
@@ -676,7 +667,7 @@ void GridBagLayout::assign(boost::weak_ptr<cpaf::gui::Panel> panel)
 }
 
 LayoutData::LayoutData()
-    : alignment_info(GridBagLayoutInfo::ALIGN_CENTER_H | GridBagLayoutInfo::ALIGN_CENTER_V),
+    : layout_flags(GridBagLayoutInfo::ALIGN_LEFT | GridBagLayoutInfo::ALIGN_TOP),
     pad_left(0), pad_top(0), pad_right(0), pad_bottom(0),
     col(0), row(0), col_span(1), row_span(1)
 { }

@@ -22,42 +22,49 @@ bool MyApp::init()
     boost::shared_ptr<Panel> panel = Panel::create(Panel::Initializer().layout_manager(gblm).show());
 
     GridBagLayoutInfo info;
-    info.padding(5);
 
     Button::Initializer btn_init;
     btn_init.parent(panel).min_size(cpaf::Size(25,25)).show();
 
     gblm->add(Button::create(btn_init.label("1")),
-        info.position(1,1).align_top().align_right().expand_both());
+        info.position(1,1));
     gblm->add(Button::create(btn_init.label("2")),
-        info.position(2,1).align_top().align_left().expand_both());
+        info.position(2,1).layout_flags(GridBagLayoutInfo::EXPAND_BOTH));
     gblm->add(Button::create(btn_init.label("3")),
-        info.position(3,1).align_bottom().align_right().expand_both());
+        info.position(3,1));
     gblm->add(Button::create(btn_init.label("4")),
-        info. position(4,1).align_bottom().align_left().expand_both());
+        info. position(4,1));
 
     gblm->add(Button::create(btn_init.label("5")),
-        info.position(1,2).expand_both());
+        info.position(1,2));
     gblm->add(Button::create(btn_init.label("6")),
-        info.position(2,2).expand_horizontal().align_center_vertical());
+        info.position(2,2).layout_flags(GridBagLayoutInfo::EXPAND_HORIZONTAL | GridBagLayoutInfo::ALIGN_CENTER_VERTICAL));
     gblm->add(Button::create(btn_init.label("7")),
-        info.position(3,2).expand_vertical().align_center_horizontal().row_span(2));
-    gblm->add(Button::create(btn_init.label("8")),
-        info.position(4,2).align_center().expand_both().row_span(1));
+        info.position(3,2).layout_flags(GridBagLayoutInfo::EXPAND_VERTICAL | GridBagLayoutInfo::ALIGN_CENTER_HORIZONTAL).row_span(2));
 
-    gblm->add(Button::create(btn_init.label("9")),
-        info.position(1,3).expand_both());
+    /*
+        Button 8 is special. It is expanded in both directions but also has a minimal
+        size, with centered alignment flags. What this means is that so long as the button
+        is given a size less than its maximum, it will be expanded to fill up all of
+        the space available to it. But, if there is more space available than the maximum size,
+        the button will be centered with a size equal to its maximum.
+    */
+    gblm->add(Button::create(btn_init.label("8").max_size(cpaf::Size(100,100))),
+        info.position(4,2).layout_flags(GridBagLayoutInfo::ALIGN_CENTER | GridBagLayoutInfo::EXPAND_BOTH).row_span(1));
+
+    gblm->add(Button::create(btn_init.label("9").max_size(cpaf::Size(0,0))),
+        info.position(1,3));
     gblm->add(Button::create(btn_init.label("10")),
         info.position(2,3));
     gblm->add(Button::create(btn_init.label("12")),
         info.position(4,3));
 
     gblm->add(Button::create(btn_init.label("13")),
-        info.position(1,4).col_span(2).expand_both());
+        info.position(1,4).col_span(2));
     gblm->add(Button::create(btn_init.label("14")),
         info.position(3,4));
 
-    gblm->set_gap(10).set_row_weight(1,0).set_row_weight(3,0)
+    gblm->set_gap(10).set_margins(5).set_row_weight(1,0).set_row_weight(3,0)
         .set_column_weight(1,0).set_column_weight(3,2);
 
     Window::create(Window::Initializer().content_panel(panel).show());

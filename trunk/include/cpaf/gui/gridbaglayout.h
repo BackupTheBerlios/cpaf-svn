@@ -44,20 +44,51 @@ namespace cpaf {
 class CPAF_API GridBagLayoutInfo
 {
 public:
+    /*!
+        Flags controlling the placement of the Object within the layout.
+
+        Mutually exclusive flags:
+            {ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER_HORIZONTALORIZONTAL}
+            {ALIGN_TOP, ALIGN_BOTTOM, ALIGN_CENTER_VERTICALERTICAL}
+        Combinations of mutually exclusive flags will result in undefined behavior.
+
+        If no flags are specified, the default combation of flags is ALIGN_LEFT | ALIGN_TOP.
+        
+        If a combination of EXPAND flags and ALIGN flags are made which both effect the same axis
+        (horizontal or vertical), the EXPAND flag will have priority unless the maximal size
+        of an Object is exceeded, in which case the EXPAND flag will be ignored and the
+        ALIGN flag will be used instead.
+        
+        If an EXPAND flag was set but no ALIGN flag was set and an Objects maximal size is
+        exceeded, the EXPAND flag will be ignored and ALIGN_LEFT | ALIGN_TOP is assumed.
+    */
+    enum LAYOUT_FLAGS {
+        ALIGN_LEFT              = 1,
+        ALIGN_RIGHT             = 2,
+        ALIGN_CENTER_HORIZONTAL = 3,
+        ALIGN_TOP               = 1 << 2,
+        ALIGN_BOTTOM            = 2 << 2,
+        ALIGN_CENTER_VERTICAL   = 3 << 2,
+        ALIGN_CENTER            = ALIGN_CENTER_HORIZONTAL | ALIGN_CENTER_VERTICAL,
+        EXPAND_HORIZONTAL       = 1 << 4,
+        EXPAND_VERTICAL         = 2 << 4,
+        EXPAND_BOTH             = 3 << 4,
+    };
+
     GridBagLayoutInfo();
 
-    GridBagLayoutInfo &align_left();
-    GridBagLayoutInfo &align_right();
-    GridBagLayoutInfo &align_top();
-    GridBagLayoutInfo &align_bottom();
+    /*!
+        \brief Specify flags controlling the placement of objects within the layout.
+        You can specify both alignment and ex
 
-    GridBagLayoutInfo &align_center_horizontal();
-    GridBagLayoutInfo &align_center_vertical();
-    GridBagLayoutInfo &align_center();
+        \param flags A combination of LAYOUT_FLAGS
+    */
+    GridBagLayoutInfo &layout_flags(int flags);
 
-    GridBagLayoutInfo &expand_horizontal();
-    GridBagLayoutInfo &expand_vertical();
-    GridBagLayoutInfo &expand_both();
+    /*!
+        \return The current combination of layout flags
+    */
+    int get_layout_flags() const;
 
     GridBagLayoutInfo &position(unsigned int col, unsigned int row);
     GridBagLayoutInfo &column(unsigned int col);
@@ -78,24 +109,10 @@ public:
     GridBagLayoutInfo &padding_top(int pad);
     GridBagLayoutInfo &padding_bottom(int pad);
 
-private:
-    friend class cpaf::common::gui::GridBagLayout;
-    friend class cpaf::common::gui::gblm::LayoutData;
-
-    // bit flags for alignment information
-    static const int ALIGN_LEFT     = 1;
-    static const int ALIGN_RIGHT    = 2;
-    static const int ALIGN_CENTER_H = 3;
-    static const int ALIGN_TOP      = 1 << 2;
-    static const int ALIGN_BOTTOM   = 2 << 2;
-    static const int ALIGN_CENTER_V = 3 << 2;
-    static const int EXPAND_HORIZONTAL  = 1 << 4;
-    static const int EXPAND_VERTICAL    = 2 << 4;
-    static const int EXPAND_BOTH        = 3 << 4;
-
-    boost::shared_ptr<cpaf::common::gui::gblm::LayoutData> m_data;
-
     const cpaf::common::gui::gblm::LayoutData &get_data() const;
+
+private:
+    boost::shared_ptr<cpaf::common::gui::gblm::LayoutData> m_data;
 };
 
 /*!

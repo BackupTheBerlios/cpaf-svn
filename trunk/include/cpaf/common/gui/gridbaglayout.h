@@ -52,7 +52,7 @@ public:
     /*!
         Contains bit flags for expansion and alignment information
     */
-    int alignment_info;
+    int layout_flags;
 
     /*!
         Padding values
@@ -96,14 +96,12 @@ struct GroupData {
     bool m_done;
     float m_weight;
     float m_min_size;
-    float m_max_size;
     cpaf::Rect m_rect;
 
     GroupData(float weight = DEFAULT_WEIGHT)
         : m_done(false),
         m_weight(weight),
-        m_min_size(0),
-        m_max_size(0)
+        m_min_size(0)
     { }
 
     /*!

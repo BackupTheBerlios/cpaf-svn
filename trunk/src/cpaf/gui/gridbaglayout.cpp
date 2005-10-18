@@ -33,82 +33,18 @@ GridBagLayoutInfo::GridBagLayoutInfo()
 : m_data(new cpaf::common::gui::gblm::LayoutData)
 { }
 
-GridBagLayoutInfo &GridBagLayoutInfo::align_left()
+GridBagLayoutInfo &GridBagLayoutInfo::layout_flags(int flags)
 {
-    m_data->alignment_info &= ~ALIGN_CENTER_H;
-    m_data->alignment_info |= ALIGN_LEFT;
-    m_data->alignment_info &= ~EXPAND_HORIZONTAL;
+    // we do not validate the sanity of the flags, it is up to the programmer to verify
+    // that nonsensical combinations aren't specified. The behavior for nonsensical flags
+    // is officially undefined.
+    m_data->layout_flags = flags;
     return *this;
 }
 
-GridBagLayoutInfo &GridBagLayoutInfo::align_right()
+int GridBagLayoutInfo::get_layout_flags() const
 {
-    m_data->alignment_info &= ~ALIGN_CENTER_H;
-    m_data->alignment_info |= ALIGN_RIGHT;
-    m_data->alignment_info &= ~EXPAND_HORIZONTAL;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::align_top()
-{
-    m_data->alignment_info &= ~ALIGN_CENTER_V;
-    m_data->alignment_info |= ALIGN_TOP;
-    m_data->alignment_info &= ~EXPAND_VERTICAL;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::align_bottom()
-{
-    m_data->alignment_info &= ~ALIGN_CENTER_V;
-    m_data->alignment_info |= ALIGN_BOTTOM;
-    m_data->alignment_info &= ~EXPAND_VERTICAL;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::align_center_horizontal()
-{
-    m_data->alignment_info |= ALIGN_CENTER_H;
-    m_data->alignment_info &= ~EXPAND_HORIZONTAL;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::align_center_vertical()
-{
-    m_data->alignment_info |= ALIGN_CENTER_V;
-    m_data->alignment_info &= ~EXPAND_VERTICAL;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::align_center()
-{
-    m_data->alignment_info |= ALIGN_CENTER_V;
-    m_data->alignment_info |= ALIGN_CENTER_H;
-    m_data->alignment_info &= ~EXPAND_BOTH;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::expand_horizontal()
-{
-    m_data->alignment_info &= ~ALIGN_CENTER_H;
-    m_data->alignment_info &= ~EXPAND_BOTH;
-    m_data->alignment_info |= EXPAND_HORIZONTAL;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::expand_vertical()
-{
-    m_data->alignment_info &= ~ALIGN_CENTER_V;
-    m_data->alignment_info &= ~EXPAND_BOTH;
-    m_data->alignment_info |= EXPAND_VERTICAL;
-    return *this;
-}
-
-GridBagLayoutInfo &GridBagLayoutInfo::expand_both()
-{
-    m_data->alignment_info &= ~ALIGN_CENTER_V;
-    m_data->alignment_info &= ~ALIGN_CENTER_H;
-    m_data->alignment_info |= EXPAND_BOTH;
-    return *this;
+    return m_data->layout_flags;
 }
 
 GridBagLayoutInfo &GridBagLayoutInfo::position(unsigned int col, unsigned int row)
