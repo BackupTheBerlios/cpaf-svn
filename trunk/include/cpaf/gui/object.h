@@ -41,12 +41,20 @@ public:
     /*!
         \brief Sets the minimum size of the widget. A value of 0 for width or height
         indicates that there is no minimum size in that direction.
+
+        If the Object's current size is less than the newly specified minimum size,
+        the object will be resized so that its size is equal to the newly specified
+        minimum size.
     */
     void set_min_size(const cpaf::Size &s);
 
     /*!
         \brief Sets the maximum size of the widget. A value of 0 for width or height
         indicates that there is no maximum size in that direction.
+
+        If the Object's current size is greater than the newly specified maximum size,
+        the object will be resized so that its size is equal to the newly specified
+        maximum size.
     */
     void set_max_size(const cpaf::Size &s);
 
