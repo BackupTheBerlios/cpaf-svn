@@ -40,6 +40,11 @@ public:
 
     virtual void create(const data_type &init_params) = 0;
 
+    virtual void set_min_content_size(const cpaf::Size&) = 0;
+    virtual void set_max_content_size(const cpaf::Size&) = 0;
+    virtual cpaf::Size get_min_content_size() const = 0;
+    virtual cpaf::Size get_max_content_size() const = 0;
+
     virtual void set_content_panel(cpaf::api::gui::Panel *p) = 0;
     virtual boost::shared_ptr<cpaf::gui::Panel> get_content_panel() const = 0;
 };

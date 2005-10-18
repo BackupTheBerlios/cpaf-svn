@@ -44,6 +44,38 @@ public:
     static boost::shared_ptr<Window> create(const Initializer &initializer);
 
     /*!
+        \brief Sets the minimum size for the content of this window. That is
+        to say that the content panel of this Window will never be smaller
+        than the minimum content size.
+
+        If the content panel's size is currently smaller than the new minimum
+        content size, the Window will be resized so the content size of
+        the panel is equal to the newly specified minimum content size.
+    */
+    void set_min_content_size(const cpaf::Size &size);
+
+    /*!
+        \brief Sets the maximum size for the content of this window. That is
+        to say that the content panel of this Window will never be larger
+        than the maximum content size.
+
+        If the content panel's size is currently larger than the new maximum
+        content size, the Window will be resized so the content size of
+        the panel is equal to the newly specified maximum content size.
+    */
+    void set_max_content_size(const cpaf::Size &size);
+
+    /*!
+        \return The minimum allowable content size
+    */
+    cpaf::Size get_min_content_size() const;
+
+    /*!
+        \return The maximum allowable content size
+    */
+    cpaf::Size get_max_content_size() const;
+
+    /*!
         Sets the content panel for this window
     */
     void set_content_panel(boost::shared_ptr<cpaf::gui::Panel> p);

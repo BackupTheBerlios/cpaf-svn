@@ -270,3 +270,25 @@ boost::shared_ptr<cpaf::gui::Panel> Window::get_content_panel() const
     g_warning("Window::get_content_panel not yet implemented");
     return boost::shared_ptr<cpaf::gui::Panel>();
 }
+
+void Window::set_min_content_size(const cpaf::Size &size)
+{
+    //! \todo Implement
+}
+
+void Window::set_max_content_size(const cpaf::Size &size)
+{
+    //! \todo Implement
+}
+
+cpaf::Size Window::get_min_content_size() const
+{
+    //! \todo Implement
+    return cpaf::Size(0,0);
+}
+
+cpaf::Size Window::get_max_content_size() const
+{
+    //! \todo Implement
+    return cpaf::Size(0,0);
+}

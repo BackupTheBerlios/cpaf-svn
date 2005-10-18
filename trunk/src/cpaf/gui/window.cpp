@@ -67,6 +67,26 @@ Window::api_type *Window::get_impl() const
     return m_impl;
 }
 
+void Window::set_min_content_size(const cpaf::Size &size)
+{
+    m_impl->set_min_content_size(size);
+}
+
+void Window::set_max_content_size(const cpaf::Size &size)
+{
+    m_impl->set_max_content_size(size);
+}
+
+cpaf::Size Window::get_min_content_size() const
+{
+    return m_impl->get_min_content_size();
+}
+
+cpaf::Size Window::get_max_content_size() const
+{
+    return m_impl->get_max_content_size();
+}
+
 void Window::set_content_panel(boost::shared_ptr<Panel> p)
 {
     m_impl->set_content_panel(p->get_impl());
