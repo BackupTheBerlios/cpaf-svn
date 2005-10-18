@@ -492,7 +492,7 @@ template<GROUP group> void GridBagLayout::update_group_sizes() const
 {
     Groups &groups = get_objects<group>();
 
-    float total_min = 0, total_max = 0;
+    float total_min = 0;
     float gap = get_gap<group>();
     
     int &non_empty_groups = get_non_empty_groups<group>();
