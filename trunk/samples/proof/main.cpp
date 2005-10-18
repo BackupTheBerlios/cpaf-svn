@@ -207,11 +207,11 @@ bool MyApp::init()
     // all children must be added to their parents layout manager
     GridBagLayoutInfo info;
     gblm->add(pw_mode,
-        info.position(0,1).align_top());
+        info.position(0,1));
     gblm->add(pw,
         info.position(0,0));
     gblm->add(my_btn,
-        info.position(1, 0).expand_both());
+        info.position(1, 0).layout_flags(GridBagLayoutInfo::EXPAND_BOTH));
     gblm->add(destroy_btn,
         info.position(1,1));
     gblm->add(entry,

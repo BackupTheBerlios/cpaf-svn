@@ -394,8 +394,8 @@ template<GROUP group> inline void GridBagLayout::calc_group_sizes()
                 size_src_val_natural = get_size_value<group>(info.object.lock()->get_natural_size());
 
                 // make sure the natural size isn't larger than the max or smaller than min
-                float min_val = data.m_min_size;
-                float max_val = data.m_max_size;
+                float min_val = get_size_value<group>(info.m_min_size);
+                float max_val = get_size_value<group>(info.m_max_size);
 
                 if( min_val != 0 && size_src_val_natural < min_val )
                     size_src_val_natural = min_val;

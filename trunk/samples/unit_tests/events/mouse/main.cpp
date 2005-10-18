@@ -97,7 +97,7 @@ bool MyApp::init()
     connect<MouseEvent>(MOUSE_RIGHT_DOUBLECLICK, panel->get_id()) (&MyApp::panel_mouse_event, *this);
 
     GridBagLayoutInfo info;
-    gblm->add(btn, info.position(0, 0).align_top().align_left());
+    gblm->add(btn, info.position(0, 0));
     gblm->set_margins(10);
 
     wnd->show();
