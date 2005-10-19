@@ -124,7 +124,7 @@ void disassociate_widget_id(cpaf::object_id id);
 
     \todo Decide what to do if the id isn't in the map
 */
-boost::shared_ptr<Widget> get_widget_from_id(cpaf::object_id id);
+CPAF_API boost::shared_ptr<Widget> get_widget_from_id(cpaf::object_id id);
 
     } // gui
 } // cpaf
