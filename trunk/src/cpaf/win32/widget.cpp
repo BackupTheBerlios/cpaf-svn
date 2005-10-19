@@ -286,11 +286,37 @@ cpaf::Size Widget::get_size() const
 void Widget::set_min_size(const cpaf::Size &s)
 {
     m_min_size = s;
+
+    // resize ourself if we are smaller than the new minimum
+    cpaf::Size size = get_size();
+
+    if( size.width < m_min_size.width || size.height < m_min_size.height )
+    {
+        if( size.width < m_min_size.width )
+            size.width = m_min_size.width;
+        if( size.height < m_min_size.height )
+            size.height = m_min_size.height;
+
+        set_size(size);
+    }
 }
 
 void Widget::set_max_size(const cpaf::Size &s)
 {
     m_max_size = s;
+
+    // resize ourself if we are larger than the new maximum
+    cpaf::Size size = get_size();
+
+    if( size.width > m_max_size.width || size.height > m_max_size.height )
+    {
+        if( size.width > m_max_size.width )
+            size.width = m_max_size.width;
+        if( size.height > m_max_size.height )
+            size.height = m_max_size.height;
+
+        set_size(size);
+    }
 }
 
 cpaf::Size Widget::get_min_size() const
